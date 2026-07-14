@@ -70,8 +70,9 @@ The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 
 | Token parity comparison | Working; exact measured comparison with first mismatch |
 | Routing callback probe | Passed; 1,350 real events and exact token parity |
 | Stratified GPU telemetry | Five Vulkan prompt pairs pass exact parity; CUDA callback divergence is disclosed |
+| Held-out policy evaluation | Five additional Vulkan prompt pairs pass parity; frozen static-96 reaches 96.45% |
 | Expert-size and transfer curve | Passed; 3.190434 MiB encoded expert and measured pageable/pinned CUDA curves |
-| Machine recommendation | Regenerated from the stratified curve; `CONDITIONAL`, static-96 replay, live cache disabled |
+| Machine recommendation | Regenerated from held-out evidence; `CONDITIONAL`, static-96 replay, live cache disabled |
 | Causal replay report | Working; self-contained HTML with measured/estimated labels |
 | CPU-only reproduction fixture | Working; eight previously measured events with checked totals |
 | Codex/GPT-5.6 annotations | Active in the build and evidence workflow; no runtime API key required |
@@ -170,11 +171,11 @@ uv run expertflow recommend `
   --baseline C:\models\expertflow\runs\q4-gpu10-smoke8\manifest.json `
   --profile C:\models\expertflow\runs\q4-probe\profile.json `
   --simulation C:\models\expertflow\runs\q4-probe\simulation.json `
-  --capacity-curve C:\models\expertflow\runs\stratified-q4-vulkan\capacity-curve-cpu21.json `
-  --output C:\models\expertflow\runs\q4-probe\recommendation-stratified.json
+  --capacity-curve C:\models\expertflow\runs\heldout-q4-vulkan\heldout-curve-cpu21.json `
+  --output C:\models\expertflow\runs\q4-probe\recommendation-heldout.json
 ```
 
-The current gate is `CONDITIONAL`: keep live caching disabled until per-layer transfer deadlines, held-out policy evidence, and a same-runtime end-to-end comparison are measured. The replay recommendation selects the largest tested point inside the measured envelope: static-96 over the 21 target layers, 6,433.14 MiB projected cache, 800.86 MiB remaining configurable headroom, and a 99.57% in-sample hit estimate.
+The current gate is `CONDITIONAL`: keep live caching disabled until per-layer transfer deadlines and a same-runtime end-to-end comparison are measured. The replay recommendation selects the largest tested point inside the measured envelope: static-96 over the 21 target layers, 6,433.14 MiB projected cache, 800.86 MiB remaining configurable headroom, and a 96.45% held-out hit estimate.
 
 ### Measure the CUDA transfer curve
 
@@ -193,12 +194,13 @@ The command records pageable-to-pinned staging, pageable-to-GPU copies, and pinn
 ```powershell
 uv run expertflow replay trace-a.jsonl trace-b.jsonl `
   --phase prefill --max-layer 20 `
-  --recommendation C:\models\expertflow\runs\q4-probe\recommendation-stratified.json `
-  --output C:\models\expertflow\runs\q4-probe\report-stratified.html `
+  --fit-trace training-a.jsonl --fit-trace training-b.jsonl `
+  --recommendation C:\models\expertflow\runs\q4-probe\recommendation-heldout.json `
+  --output C:\models\expertflow\runs\q4-probe\report-heldout.html `
   --max-events 300
 ```
 
-The result is one self-contained HTML file with the gate verdict, measured memory envelope, estimated policy comparison, explicit evidence blockers, and a bounded event timeline. It does not require a web server or model weights to open. The current development-machine report replays 2,688 measured prefill events from five sources and shows the static-96 99.57% in-sample estimate versus 90.17% for LRU while preserving the `CONDITIONAL` verdict.
+The result is one self-contained HTML file with the gate verdict, measured memory envelope, estimated policy comparison, explicit evidence blockers, and a bounded event timeline. It does not require a web server or model weights to open. The current report replays 3,213 held-out prefill events with a frozen five-trace training hotset and shows static-96 at 96.45% versus 91.55% for held-out LRU while preserving the `CONDITIONAL` verdict.
 
 To check the simulator without downloading the model, use the small [replay fixture](examples/replay/README.md):
 
@@ -275,6 +277,7 @@ Codex with GPT-5.6 is also being used to annotate the measured artifacts, explai
 - [Stratified Q4 routing evidence](docs/evidence/stratified-q4-routing.md)
 - [Q4 expert-size and transfer evidence](docs/evidence/q4-expert-transfer.md)
 - [Stratified Q4 capacity curve](docs/evidence/q4-capacity-curve.md)
+- [Held-out Q4 routing evidence](docs/evidence/q4-heldout-routing.md)
 
 ## License
 

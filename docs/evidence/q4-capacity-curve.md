@@ -35,10 +35,11 @@ The earlier 40.68% static-8 figure is a demand-weighted aggregate of five indepe
 
 Static placement overtakes LRU at 16 slots and becomes materially stronger at 64 slots. However, all static hotsets in this checkpoint are fit and evaluated on the same five public synthetic prompts. Their high-capacity hit rates are in-sample feasibility evidence, not held-out generalization.
 
+The later [held-out checkpoint](q4-heldout-routing.md) freezes these residents and evaluates five new prompts. Static-96 reaches 96.45% held out versus 91.55% for LRU; static does not overtake LRU until 64 slots in that evaluation.
+
 ## Decision
 
-The old single-prompt static-8 machine recommendation is superseded for the stratified workload. The regenerated recommendation selects static-96 as the largest tested point that fits the measured envelope, but retains `live_cache_enabled=false` and carries forward these blockers:
+The old single-prompt static-8 machine recommendation is superseded for the stratified workload. The held-out recommendation selects static-96 as the largest tested point that fits the measured envelope, but retains `live_cache_enabled=false` and carries forward these blockers:
 
-- no held-out workload for static-hotset selection;
 - no measured per-layer CUDA compute deadlines;
 - no live cache or exact same-runtime end-to-end comparison.

@@ -9,7 +9,10 @@ import json
 from pathlib import Path
 
 from expertflow.analysis.cache_sim import simulate_policies
-from expertflow.analysis.capacity_curve import build_capacity_curve
+from expertflow.analysis.capacity_curve import (
+    build_capacity_curve,
+    build_held_out_capacity_curve,
+)
 from expertflow.analysis.profile import summarize_routing
 from expertflow.analysis.replay import replay_policy
 from expertflow.doctor import collect_doctor_report
@@ -93,6 +96,7 @@ def build_parser() -> argparse.ArgumentParser:
     replay.add_argument("--max-events", type=int, default=300)
     replay.add_argument("--phase", choices=("prefill", "decode"))
     replay.add_argument("--max-layer", type=int)
+    replay.add_argument("--fit-trace", type=Path, action="append")
 
     simulate = commands.add_parser(
         "simulate", help="Compare estimated cache policies over a router trace."
@@ -128,6 +132,25 @@ def build_parser() -> argparse.ArgumentParser:
     curve.add_argument("--slot-bytes", type=int, required=True)
     curve.add_argument("--expert-transfer-ms", type=float, required=True)
     curve.add_argument("--output", type=Path, required=True)
+
+    heldout = commands.add_parser(
+        "heldout-curve",
+        help="Fit static residents on training traces and score held-out traces.",
+    )
+    heldout.add_argument(
+        "--train", type=Path, action="append", required=True
+    )
+    heldout.add_argument(
+        "--eval", type=Path, action="append", required=True
+    )
+    heldout.add_argument("--phase", choices=("prefill", "decode"))
+    heldout.add_argument("--max-layer", type=int)
+    heldout.add_argument(
+        "--capacity", type=int, action="append", required=True
+    )
+    heldout.add_argument("--slot-bytes", type=int, required=True)
+    heldout.add_argument("--expert-transfer-ms", type=float, required=True)
+    heldout.add_argument("--output", type=Path, required=True)
     return parser
 
 
@@ -255,6 +278,9 @@ def _run_replay(args: argparse.Namespace) -> int:
     if args.max_layer is not None and args.max_layer < 0:
         raise ValueError("max_layer must be non-negative")
     sources = [source.resolve() for source in args.trace]
+    training_sources = [
+        source.resolve() for source in (args.fit_trace or [])
+    ]
     recommendation_path = args.recommendation.resolve()
     recommendation = _load_json_object(
         recommendation_path, "recommendation"
@@ -278,10 +304,20 @@ def _run_replay(args: argparse.Namespace) -> int:
     ]
     if not events:
         raise ValueError("replay selection produced no events")
+    training_events = [
+        event
+        for source in training_sources
+        for event in load_router_events(source)
+        if (args.phase is None or event.phase == args.phase)
+        and (args.max_layer is None or event.layer_id <= args.max_layer)
+    ]
     replay = replay_policy(
         events,
         policy=policy,
         capacity_per_layer=capacity,
+        static_training_events=(
+            training_events if training_sources else None
+        ),
     )
     output = args.output.resolve()
     trace_arguments = " ".join(f'"{source}"' for source in sources)
@@ -290,14 +326,19 @@ def _run_replay(args: argparse.Namespace) -> int:
         selection_arguments += f" --phase {args.phase}"
     if args.max_layer is not None:
         selection_arguments += f" --max-layer {args.max_layer}"
+    fit_arguments = "".join(
+        f' --fit-trace "{source}"' for source in training_sources
+    )
     command = (
-        f"expertflow replay {trace_arguments}{selection_arguments} "
+        f"expertflow replay {trace_arguments}{selection_arguments}"
+        f"{fit_arguments} "
         f'--recommendation "{recommendation_path}" --output "{output}"'
     )
     rendered = render_replay_report(
         recommendation,
         replay,
         source_trace=sources,
+        fit_trace=training_sources or None,
         recommendation_source=recommendation_path,
         reproduction_command=command,
         max_events=args.max_events,
@@ -381,6 +422,48 @@ def _run_capacity_curve(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_heldout_curve(args: argparse.Namespace) -> int:
+    if args.max_layer is not None and args.max_layer < 0:
+        raise ValueError("max_layer must be non-negative")
+    training_sources = [path.resolve() for path in args.train]
+    evaluation_sources = [path.resolve() for path in args.eval]
+
+    def selected(sources: list[Path]):
+        return [
+            event
+            for source in sources
+            for event in load_router_events(source)
+            if (args.phase is None or event.phase == args.phase)
+            and (args.max_layer is None or event.layer_id <= args.max_layer)
+        ]
+
+    report = build_held_out_capacity_curve(
+        selected(training_sources),
+        selected(evaluation_sources),
+        capacities=tuple(args.capacity),
+        slot_bytes=args.slot_bytes,
+        expert_transfer_ms=args.expert_transfer_ms,
+    )
+    report["training_source_traces"] = [
+        str(source) for source in training_sources
+    ]
+    report["evaluation_source_traces"] = [
+        str(source) for source in evaluation_sources
+    ]
+    report["selection"] = {
+        "phase": args.phase,
+        "max_layer": args.max_layer,
+    }
+    output = args.output.resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(
+        json.dumps(report, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    print(output)
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "baseline":
@@ -401,6 +484,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_transfer_benchmark(args)
     if args.command == "capacity-curve":
         return _run_capacity_curve(args)
+    if args.command == "heldout-curve":
+        return _run_heldout_curve(args)
     raise AssertionError(f"unhandled command: {args.command}")
 
 

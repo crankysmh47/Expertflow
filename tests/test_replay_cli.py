@@ -73,7 +73,8 @@ def test_replay_cli_combines_and_filters_multiple_traces(
     tmp_path: Path,
 ) -> None:
     traces = [tmp_path / "first.jsonl", tmp_path / "second.jsonl"]
-    for trace in traces:
+    training_trace = tmp_path / "training.jsonl"
+    for trace in [*traces, training_trace]:
         records = []
         for phase, layer in (("prefill", 0), ("prefill", 1), ("decode", 0)):
             records.append(
@@ -133,6 +134,8 @@ def test_replay_cli_combines_and_filters_multiple_traces(
             "prefill",
             "--max-layer",
             "0",
+            "--fit-trace",
+            str(training_trace),
             "--recommendation",
             str(recommendation),
             "--output",
@@ -145,3 +148,5 @@ def test_replay_cli_combines_and_filters_multiple_traces(
     assert "2 token/layer events" in html
     assert "first.jsonl" in html
     assert "second.jsonl" in html
+    assert "Training traces:" in html
+    assert "training.jsonl" in html

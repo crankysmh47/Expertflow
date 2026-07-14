@@ -51,3 +51,23 @@ def test_lru_replay_preserves_causal_identity() -> None:
     assert second.layer_id == 7
     assert second.ready_expert_ids == (1,)
     assert second.blocking_expert_ids == (3,)
+
+
+def test_static_replay_can_use_a_frozen_training_hotset() -> None:
+    training = (
+        event(0, (1, 2)),
+        event(1, (1, 2)),
+        event(2, (1, 3)),
+    )
+    evaluation = (event(0, (3, 4)), event(1, (3, 4)))
+
+    replay = replay_policy(
+        evaluation,
+        policy="static_hotset",
+        capacity_per_layer=2,
+        static_training_events=training,
+    )
+
+    assert replay.hit_count == 0
+    assert replay.miss_count == 4
+    assert replay.timeline[0].blocking_expert_ids == (3, 4)

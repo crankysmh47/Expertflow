@@ -32,6 +32,7 @@ def render_replay_report(
     replay: PolicyReplay,
     *,
     source_trace: Path | Sequence[Path],
+    fit_trace: Path | Sequence[Path] | None = None,
     recommendation_source: Path,
     reproduction_command: str,
     max_events: int = 300,
@@ -149,6 +150,18 @@ def render_replay_report(
         f"<code>{escape(str(path.resolve()))}</code>"
         for path in source_paths
     )
+    fit_lines = ""
+    if fit_trace is not None:
+        fit_paths = (
+            (fit_trace,) if isinstance(fit_trace, Path) else tuple(fit_trace)
+        )
+        if not fit_paths:
+            raise ValueError("fit_trace must contain at least one path")
+        rendered_fit_paths = "<br>".join(
+            f"<code>{escape(str(path.resolve()))}</code>"
+            for path in fit_paths
+        )
+        fit_lines = f"<br>Training traces:<br>{rendered_fit_paths}"
 
     return f"""<!doctype html>
 <html lang="en">
@@ -194,5 +207,5 @@ def render_replay_report(
   {cache_detail}
   <section><h2>Policy decision</h2><p><strong>{escape(replay.policy)}</strong> at {replay.capacity_per_layer} slots/layer: {selected_rate:.2%} estimated selection hits. LRU comparison: {lru_rate:.2%}.</p><p>{replay.hit_count:,} ready selections; {replay.miss_count:,} blocking selections across {replay.event_count:,} token/layer events.</p><ul>{reason_items}</ul></section>
   <section><h2>Causal timeline</h2><p class="muted">{escape(timeline_note)}</p><div class="table-wrap"><table><thead><tr><th>Outcome</th><th>Token</th><th>Layer</th><th>Phase</th><th>Ready experts</th><th>Blocking experts</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div></section>
-  <section><h2>Provenance and reproduction</h2><p class="muted">Trace schema: <code>1.0.0</code><br>Recommendation schema: <code>1.0.0</code><br>Traces:<br>{trace_lines}<br>Recommendation: <code>{escape(str(recommendation_source.resolve()))}</code></p><pre><code>{escape(reproduction_command)}</code></pre></section>
+  <section><h2>Provenance and reproduction</h2><p class="muted">Trace schema: <code>1.0.0</code><br>Recommendation schema: <code>1.0.0</code><br>Evaluation traces:<br>{trace_lines}{fit_lines}<br>Recommendation: <code>{escape(str(recommendation_source.resolve()))}</code></p><pre><code>{escape(reproduction_command)}</code></pre></section>
 </main></body></html>"""
