@@ -13,6 +13,7 @@ from expertflow.analysis.capacity_curve import (
     build_capacity_curve,
     build_held_out_capacity_curve,
 )
+from expertflow.analysis.deadline import evaluate_one_layer_oracle
 from expertflow.analysis.profile import summarize_routing
 from expertflow.analysis.replay import replay_policy
 from expertflow.doctor import collect_doctor_report
@@ -97,6 +98,7 @@ def build_parser() -> argparse.ArgumentParser:
     replay.add_argument("--phase", choices=("prefill", "decode"))
     replay.add_argument("--max-layer", type=int)
     replay.add_argument("--fit-trace", type=Path, action="append")
+    replay.add_argument("--fit-phase", choices=("prefill", "decode"))
 
     simulate = commands.add_parser(
         "simulate", help="Compare estimated cache policies over a router trace."
@@ -144,6 +146,8 @@ def build_parser() -> argparse.ArgumentParser:
         "--eval", type=Path, action="append", required=True
     )
     heldout.add_argument("--phase", choices=("prefill", "decode"))
+    heldout.add_argument("--train-phase", choices=("prefill", "decode"))
+    heldout.add_argument("--eval-phase", choices=("prefill", "decode"))
     heldout.add_argument("--max-layer", type=int)
     heldout.add_argument(
         "--capacity", type=int, action="append", required=True
@@ -151,6 +155,27 @@ def build_parser() -> argparse.ArgumentParser:
     heldout.add_argument("--slot-bytes", type=int, required=True)
     heldout.add_argument("--expert-transfer-ms", type=float, required=True)
     heldout.add_argument("--output", type=Path, required=True)
+
+    deadline = commands.add_parser(
+        "deadline-eval",
+        help="Evaluate a backend-specific oracle one-layer transfer bound.",
+    )
+    deadline.add_argument(
+        "--train", type=Path, action="append", required=True
+    )
+    deadline.add_argument(
+        "--eval", type=Path, action="append", required=True
+    )
+    deadline.add_argument(
+        "--train-phase", choices=("prefill", "decode"), required=True
+    )
+    deadline.add_argument(
+        "--eval-phase", choices=("prefill", "decode"), required=True
+    )
+    deadline.add_argument("--max-layer", type=int)
+    deadline.add_argument("--capacity", type=int, required=True)
+    deadline.add_argument("--expert-transfer-ms", type=float, required=True)
+    deadline.add_argument("--output", type=Path, required=True)
     return parser
 
 
@@ -281,6 +306,9 @@ def _run_replay(args: argparse.Namespace) -> int:
     training_sources = [
         source.resolve() for source in (args.fit_trace or [])
     ]
+    if args.fit_phase is not None and not training_sources:
+        raise ValueError("fit_phase requires at least one fit_trace")
+    training_phase = args.fit_phase or args.phase
     recommendation_path = args.recommendation.resolve()
     recommendation = _load_json_object(
         recommendation_path, "recommendation"
@@ -308,7 +336,7 @@ def _run_replay(args: argparse.Namespace) -> int:
         event
         for source in training_sources
         for event in load_router_events(source)
-        if (args.phase is None or event.phase == args.phase)
+        if (training_phase is None or event.phase == training_phase)
         and (args.max_layer is None or event.layer_id <= args.max_layer)
     ]
     replay = replay_policy(
@@ -329,6 +357,8 @@ def _run_replay(args: argparse.Namespace) -> int:
     fit_arguments = "".join(
         f' --fit-trace "{source}"' for source in training_sources
     )
+    if args.fit_phase is not None:
+        fit_arguments += f" --fit-phase {args.fit_phase}"
     command = (
         f"expertflow replay {trace_arguments}{selection_arguments}"
         f"{fit_arguments} "
@@ -427,19 +457,27 @@ def _run_heldout_curve(args: argparse.Namespace) -> int:
         raise ValueError("max_layer must be non-negative")
     training_sources = [path.resolve() for path in args.train]
     evaluation_sources = [path.resolve() for path in args.eval]
+    if args.phase is not None and (
+        args.train_phase is not None or args.eval_phase is not None
+    ):
+        raise ValueError(
+            "phase cannot be combined with train_phase or eval_phase"
+        )
+    training_phase = args.train_phase or args.phase
+    evaluation_phase = args.eval_phase or args.phase
 
-    def selected(sources: list[Path]):
+    def selected(sources: list[Path], phase: str | None):
         return [
             event
             for source in sources
             for event in load_router_events(source)
-            if (args.phase is None or event.phase == args.phase)
+            if (phase is None or event.phase == phase)
             and (args.max_layer is None or event.layer_id <= args.max_layer)
         ]
 
     report = build_held_out_capacity_curve(
-        selected(training_sources),
-        selected(evaluation_sources),
+        selected(training_sources, training_phase),
+        selected(evaluation_sources, evaluation_phase),
         capacities=tuple(args.capacity),
         slot_bytes=args.slot_bytes,
         expert_transfer_ms=args.expert_transfer_ms,
@@ -451,7 +489,57 @@ def _run_heldout_curve(args: argparse.Namespace) -> int:
         str(source) for source in evaluation_sources
     ]
     report["selection"] = {
-        "phase": args.phase,
+        "training_phase": training_phase,
+        "evaluation_phase": evaluation_phase,
+        "max_layer": args.max_layer,
+    }
+    output = args.output.resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(
+        json.dumps(report, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    print(output)
+    return 0
+
+
+def _run_deadline_eval(args: argparse.Namespace) -> int:
+    if args.max_layer is not None and args.max_layer < 0:
+        raise ValueError("max_layer must be non-negative")
+    training_sources = [path.resolve() for path in args.train]
+    evaluation_sources = [path.resolve() for path in args.eval]
+
+    def selected(source: Path, phase: str):
+        return [
+            event
+            for event in load_router_events(source)
+            if event.phase == phase
+            and (args.max_layer is None or event.layer_id <= args.max_layer)
+        ]
+
+    training_events = [
+        event
+        for source in training_sources
+        for event in selected(source, args.train_phase)
+    ]
+    evaluation_traces = [
+        selected(source, args.eval_phase) for source in evaluation_sources
+    ]
+    report = evaluate_one_layer_oracle(
+        training_events,
+        evaluation_traces,
+        capacity_per_layer=args.capacity,
+        expert_transfer_ms=args.expert_transfer_ms,
+    )
+    report["training_source_traces"] = [
+        str(source) for source in training_sources
+    ]
+    report["evaluation_source_traces"] = [
+        str(source) for source in evaluation_sources
+    ]
+    report["selection"] = {
+        "training_phase": args.train_phase,
+        "evaluation_phase": args.eval_phase,
         "max_layer": args.max_layer,
     }
     output = args.output.resolve()
@@ -486,6 +574,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_capacity_curve(args)
     if args.command == "heldout-curve":
         return _run_heldout_curve(args)
+    if args.command == "deadline-eval":
+        return _run_deadline_eval(args)
     raise AssertionError(f"unhandled command: {args.command}")
 
 

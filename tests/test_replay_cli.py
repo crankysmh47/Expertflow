@@ -136,6 +136,8 @@ def test_replay_cli_combines_and_filters_multiple_traces(
             "0",
             "--fit-trace",
             str(training_trace),
+            "--fit-phase",
+            "decode",
             "--recommendation",
             str(recommendation),
             "--output",
@@ -150,3 +152,4 @@ def test_replay_cli_combines_and_filters_multiple_traces(
     assert "second.jsonl" in html
     assert "Training traces:" in html
     assert "training.jsonl" in html
+    assert "--fit-phase decode" in html

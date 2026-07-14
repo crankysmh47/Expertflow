@@ -83,8 +83,10 @@ def test_heldout_curve_cli_keeps_train_and_evaluation_sources_separate(
             str(training),
             "--eval",
             str(evaluation),
-            "--phase",
+            "--train-phase",
             "prefill",
+            "--eval-phase",
+            "decode",
             "--max-layer",
             "0",
             "--capacity",
@@ -101,5 +103,7 @@ def test_heldout_curve_cli_keeps_train_and_evaluation_sources_separate(
     report = json.loads(output.read_text(encoding="utf-8"))
     assert result == 0
     assert report["fit_scope"] == "held_out"
+    assert report["training_event_count"] == 1
+    assert report["evaluation_event_count"] == 1
     assert report["training_source_traces"] == [str(training.resolve())]
     assert report["evaluation_source_traces"] == [str(evaluation.resolve())]

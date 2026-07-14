@@ -41,6 +41,8 @@ The static-96 estimate falls from 99.57% in-sample to 96.45% held out. Static pl
 
 The serialized H2D columns remain transfer-only estimates. They use held-out miss counts and the measured 0.235042 ms pinned transfer mean per expert, but do not establish whether transfers meet layer deadlines.
 
+This table evaluates held-out prompt prefill. The later [decode deadline checkpoint](q4-deadline-oracle.md) trains on prefill and evaluates untouched decode events. Static-96 reaches 93.28% in that cross-phase test and is the current conservative recommendation input.
+
 ## Artifacts
 
 - Held-out curve: `C:\models\expertflow\runs\heldout-q4-vulkan\heldout-curve-cpu21.json`, 8,862 bytes, SHA-256 `3f93aa31897427e50bf0b3c08006176d5041072b62d22a26ba3868f8a48384bf`
@@ -51,7 +53,7 @@ The report replays the held-out events with the frozen training hotset. It recon
 
 ## Decision
 
-Static-96 remains the highest tested point inside the measured envelope: 6,433.14 MiB projected cache and 800.86 MiB configurable headroom left beyond the separate 1,024 MiB safety reserve. Its evidence label is now held out rather than in-sample.
+Static-96 remains the highest tested point inside the measured envelope: 6,433.14 MiB projected cache and 800.86 MiB configurable headroom left beyond the separate 1,024 MiB safety reserve. Its evidence label is now held out rather than in-sample. The current decode-focused recommendation uses the cross-phase 93.28% result rather than the stronger prefill-only result.
 
 The verdict remains `CONDITIONAL` and `live_cache_enabled=false`. Held-out policy evidence is no longer a blocker. The remaining blockers are:
 
