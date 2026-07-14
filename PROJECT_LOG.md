@@ -135,3 +135,10 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - A real Windows WDDM check showed `nvidia-smi --query-compute-apps` returns `[N/A]` for per-process GPU bytes. Added a failing regression test, then made the parser skip those unavailable rows. Global GPU used/free sampling remains authoritative and the per-process field stays zero rather than inventing a value.
 - Verified the Win32 process-memory sampler against the current Python process after defining 64-bit-safe handle types.
 - TDD green result: `4` measurement tests passed; the complete suite passed `27` tests in `0.05s`.
+
+### 22:41 PKT — Minimum cache-policy comparison implemented
+
+- TDD red result: `ModuleNotFoundError: No module named 'expertflow.analysis.cache_sim'`.
+- Implemented one capacity-controlled simulator comparing a no-residency reactive baseline, a trace-derived static hotset, and online per-layer LRU over the same canonical event stream.
+- Reports separate hits, misses, demand-time loads, and static preloads; reject capacities below router top-k; and are hard-labeled `estimated` so they cannot be confused with live movement telemetry.
+- TDD green result: `2` policy tests passed; the complete suite passed `29` tests in `0.05s`.
