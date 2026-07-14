@@ -120,3 +120,10 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Measured device check now passes: `CUDA0: NVIDIA GeForce RTX 5060 Ti (16310 MiB, 15158 MiB free)`.
 - Added `configs/runtime-artifacts.toml` and `docs/evidence/llama-baseline.md`; binaries and third-party source remain outside Git.
 - Resumed the Q4 model through its existing aria2 control map immediately after the runtime check.
+
+### 22:31 PKT — Deterministic baseline invocation frozen
+
+- Inspected `llama-cli b10002 --help` and confirmed the current names and semantics for model, prompt, seed, temperature, context, prediction count, GPU layers, threads, conversation, single-turn, prompt-display, performance, and log-file flags.
+- TDD red result: `ModuleNotFoundError: No module named 'expertflow.runtime'`.
+- Added immutable `BaselineRunConfig` validation and one reviewable command builder. The first real checks will use fixed seed `42`, temperature `0`, explicit context and token limits, explicit CPU thread counts, a single non-interactive turn, and an explicit GPU-layer policy.
+- TDD green result: `2` baseline-command tests passed; the complete suite passed `23` tests in `0.05s`.
