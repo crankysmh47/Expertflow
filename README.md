@@ -70,6 +70,7 @@ The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 
 | Token parity comparison | Working; exact measured comparison with first mismatch |
 | Routing callback probe | Passed; 1,350 real events and exact token parity |
 | Stratified GPU telemetry | Five Vulkan prompt pairs pass exact parity; CUDA callback divergence is disclosed |
+| Expert-size and transfer curve | Passed; 3.190434 MiB encoded expert and measured pageable/pinned CUDA curves |
 | Machine recommendation | Working; current verdict is `CONDITIONAL` with live caching disabled |
 | Causal replay report | Working; self-contained HTML with measured/estimated labels |
 | CPU-only reproduction fixture | Working; eight previously measured events with checked totals |
@@ -172,7 +173,19 @@ uv run expertflow recommend `
   --output C:\models\expertflow\runs\q4-probe\recommendation.json
 ```
 
-The current real recommendation is `CONDITIONAL`: use static-hotset for replay, but keep live caching disabled until expert byte size and transfer timing are measured. A five-prompt trace now exists; its CUDA callback divergence and parity-safe Vulkan replacement are documented rather than averaged away.
+The current real recommendation is `CONDITIONAL`: use static-hotset for replay, but keep live caching disabled until per-layer transfer deadlines and a same-runtime end-to-end comparison are measured. Expert size, a first transfer curve, and a five-prompt trace now exist; the CUDA callback divergence and parity-safe Vulkan replacement are documented rather than averaged away.
+
+### Measure the CUDA transfer curve
+
+```powershell
+uv run expertflow transfer-benchmark `
+  --cudart C:\models\expertflow\dependencies\llama-b10002\runtime\cudart64_12.dll `
+  --payload-bytes 3345412 `
+  --payload-bytes 26763296 `
+  --output C:\models\expertflow\runs\transfer-q4\transfer.json
+```
+
+The command records pageable-to-pinned staging, pageable-to-GPU copies, and pinned-to-GPU copies with raw batch samples. Transfer-only measurements are not reported as token latency savings.
 
 ### Render the causal replay report
 
@@ -258,6 +271,7 @@ Codex with GPT-5.6 is also being used to annotate the measured artifacts, explai
 - [Pinned llama.cpp baseline evidence](docs/evidence/llama-baseline.md)
 - [Gemma 4 routing source map](docs/evidence/gemma4-routing-source-map.md)
 - [Stratified Q4 routing evidence](docs/evidence/stratified-q4-routing.md)
+- [Q4 expert-size and transfer evidence](docs/evidence/q4-expert-transfer.md)
 
 ## License
 

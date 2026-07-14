@@ -15,6 +15,7 @@ from expertflow.doctor import collect_doctor_report
 from expertflow.recommendation import build_recommendation
 from expertflow.reporting import render_replay_report
 from expertflow.runtime.baseline import BaselineRunConfig
+from expertflow.runtime.cuda_transfer import benchmark_cuda_transfers
 from expertflow.runtime.measurement import run_measured_baseline
 from expertflow.trace.io import load_router_events
 from expertflow.trace.parity import compare_token_sequences
@@ -95,6 +96,20 @@ def build_parser() -> argparse.ArgumentParser:
     simulate.add_argument("trace", type=Path)
     simulate.add_argument("--capacity-per-layer", type=int, required=True)
     simulate.add_argument("--output", type=Path, required=True)
+
+    transfer = commands.add_parser(
+        "transfer-benchmark",
+        help="Measure CUDA host-to-device transfer latency.",
+    )
+    transfer.add_argument("--cudart", type=Path, required=True)
+    transfer.add_argument(
+        "--payload-bytes", type=int, action="append", required=True
+    )
+    transfer.add_argument("--batches", type=int, default=30)
+    transfer.add_argument("--copies-per-batch", type=int, default=50)
+    transfer.add_argument("--warmup-copies", type=int, default=10)
+    transfer.add_argument("--device", type=int, default=0)
+    transfer.add_argument("--output", type=Path, required=True)
     return parser
 
 
@@ -271,6 +286,25 @@ def _run_simulate(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_transfer_benchmark(args: argparse.Namespace) -> int:
+    report = benchmark_cuda_transfers(
+        args.cudart.resolve(),
+        payload_bytes=tuple(args.payload_bytes),
+        batches=args.batches,
+        copies_per_batch=args.copies_per_batch,
+        warmup_copies=args.warmup_copies,
+        device=args.device,
+    )
+    output = args.output.resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(
+        json.dumps(report, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    print(output)
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "baseline":
@@ -287,6 +321,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_replay(args)
     if args.command == "simulate":
         return _run_simulate(args)
+    if args.command == "transfer-benchmark":
+        return _run_transfer_benchmark(args)
     raise AssertionError(f"unhandled command: {args.command}")
 
 

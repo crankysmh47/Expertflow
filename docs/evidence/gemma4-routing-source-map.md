@@ -3,7 +3,7 @@
 - **Inspection revision:** `ggml-org/llama.cpp@a7312ae94f801fc9c6786dc56e38df57b964f697` (release `b10002`)
 - **Inspected:** 2026-07-14 PKT
 - **Source verdict:** PASS
-- **Overall 24-hour gate:** CONDITIONAL; parity-safe Vulkan telemetry passed, live cache still needs byte and transfer measurements
+- **Overall 24-hour gate:** CONDITIONAL; parity-safe Vulkan telemetry and the first transfer curve passed, while live-cache deadlines remain unmeasured
 
 ## Routing path
 
@@ -36,4 +36,6 @@ The real Q4 GGUF now loads and generates text. Tracing-disabled and tracing-enab
 
 The original one-prompt result did not establish backend-wide transparency. The later five-prompt CUDA matrix passed parity for only two prompts; a CPU control passed, isolating the failure to the CUDA observation path. The same five-prompt matrix passed exact parity on the pinned Vulkan backend.
 
-For 3,840 fixed-prompt token/layer events, CUDA and Vulkan selected the same ordered top-8 set in 84.74% of events and overlapped on 99.26% of individual expert demands. Their aggregate prefill static-8 estimates differ by 0.0065 percentage points and LRU-8 by 0.0358 points. ExpertFlow therefore uses CUDA for inference/memory baselines and Vulkan for transparent GPU router telemetry. The overall live-cache gate remains conditional because expert byte size, transfer time, and end-to-end benefit are not measured.
+For 3,840 fixed-prompt token/layer events, CUDA and Vulkan selected the same ordered top-8 set in 84.74% of events and overlapped on 99.26% of individual expert demands. Their aggregate prefill static-8 estimates differ by 0.0065 percentage points and LRU-8 by 0.0358 points. ExpertFlow therefore uses CUDA for inference/memory baselines and Vulkan for transparent GPU router telemetry.
+
+The later [expert-size and transfer checkpoint](q4-expert-transfer.md) measured a 3.190434 MiB encoded expert and a 0.2350 ms mean pinned-to-GPU transfer for its two weight slices. The overall live-cache gate remains conditional because per-layer deadlines and end-to-end benefit are not measured.

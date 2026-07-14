@@ -65,4 +65,4 @@ The static difference is 0.0065 percentage points and the LRU difference is 0.03
 
 Use the verified b10002 CUDA build for the measured inference/memory baseline and the verified b10002 Vulkan build for transparent router telemetry. Keep the backend identity attached to every artifact and use fixed-prompt prefill when comparing them.
 
-This recovers a parity-safe GPU trace path, but it does not authorize live caching. Per-expert byte size and transfer timing remain unmeasured, and policy hit rates are still estimates rather than latency savings.
+This recovers a parity-safe GPU trace path, but it does not authorize live caching. The later [expert-size and transfer checkpoint](q4-expert-transfer.md) measures the remaining Layer 0 inputs; per-layer deadlines and end-to-end savings are still unmeasured, and policy hit rates remain estimates rather than latency savings.
