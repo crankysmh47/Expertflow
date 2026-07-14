@@ -2,7 +2,22 @@
 
 A hardware-aware routing observatory for running sparse mixture-of-experts models on one local GPU.
 
-ExpertFlow is an OpenAI Build Week project in active development. The small analysis path works today; the real Gemma 4 Q4 baseline is still being collected. See [current status](#current-status) before treating any result as final.
+ExpertFlow is an OpenAI Build Week project in active development. The real Gemma 4 Q4 baseline, routing probe, recommendation, and causal replay path now work on the development machine. The GPT-5.6 explanation layer is still pending, and the live-cache gate remains conditional. See [current status](#current-status) before treating any result as final.
+
+## Table of contents
+
+- [Installation](#installation)
+- [Quick start](#quick-start)
+- [What is ExpertFlow?](#what-is-expertflow)
+- [Why this approach?](#why-this-approach)
+- [Current status](#current-status)
+- [CLI](#cli)
+- [Trace contract](#trace-contract)
+- [Architecture](#architecture)
+- [OpenAI Build Week integration](#openai-build-week-integration)
+- [Further reading](#further-reading)
+- [License](#license)
+- [Development](#development)
 
 ## Installation
 
@@ -54,6 +69,8 @@ The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 
 | Unmodified real-model baseline | Passed on CPU and bounded 10-layer GPU offload |
 | Token parity comparison | Working; exact measured comparison with first mismatch |
 | Routing callback probe | Passed; 1,350 real events and exact token parity |
+| Machine recommendation | Working; current verdict is `CONDITIONAL` with live caching disabled |
+| Causal replay report | Working; self-contained HTML with measured/estimated labels |
 | GPT-5.6 explanation layer | Pending; no API-backed claim yet |
 
 The append-only [project log](PROJECT_LOG.md) records commands, failures, decisions, hashes, and test results as the work moves.
@@ -66,6 +83,7 @@ expertflow doctor    Record hardware, storage, and toolchain readiness
 expertflow profile   Build a measured locality profile from router JSONL
 expertflow parity    Compare exact token sequences with and without tracing
 expertflow recommend Produce an evidence-bounded machine recommendation
+expertflow replay    Render a standalone causal policy replay report
 expertflow simulate  Compare estimated cache policies under one slot budget
 ```
 
@@ -154,6 +172,17 @@ uv run expertflow recommend `
 
 The current real recommendation is `CONDITIONAL`: use static-hotset for replay, but keep live caching disabled until expert byte size, transfer timing, and a stratified trace are available.
 
+### Render the causal replay report
+
+```powershell
+uv run expertflow replay C:\models\expertflow\runs\q4-probe\trace.jsonl `
+  --recommendation C:\models\expertflow\runs\q4-probe\recommendation.json `
+  --output C:\models\expertflow\runs\q4-probe\report.html `
+  --max-events 300
+```
+
+The result is one self-contained HTML file with the gate verdict, measured memory envelope, estimated policy comparison, explicit evidence blockers, and a bounded event timeline. It does not require a web server or model weights to open. The real development-machine report shows a `36.37%` estimated static-hotset hit rate versus `31.87%` for LRU, while preserving the `CONDITIONAL` verdict.
+
 ## Trace contract
 
 Router traces use strict JSONL. One record represents one token/layer decision from the authoritative router:
@@ -187,10 +216,10 @@ Gemma 4 router callback
 strict JSONL trace ----> measured locality profile
         |                         |
         v                         v
-reactive/static/LRU simulator -> machine recommendation (next stage)
+reactive/static/LRU simulator -> machine recommendation
         |
         v
-causal replay and GPT-5.6 explanation (next stage)
+causal replay report -> GPT-5.6 explanation (next stage)
 ```
 
 The repository keeps reviewable code and manifests. Large or generated material stays under the external artifact root.

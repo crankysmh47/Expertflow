@@ -33,6 +33,18 @@ class CacheSimulationReport:
     lru: PolicyResult
 
 
+PolicyName = Literal["reactive", "static_hotset", "lru"]
+
+
+@dataclass(frozen=True, slots=True)
+class PolicyEventOutcome:
+    """One causal demand outcome shared by aggregate and replay views."""
+
+    event: RouterTraceEvent
+    ready_expert_ids: tuple[int, ...]
+    blocking_expert_ids: tuple[int, ...]
+
+
 def _result(
     policy: str,
     *,
@@ -53,13 +65,10 @@ def _result(
     )
 
 
-def simulate_policies(
+def _validated_trace(
     events: list[RouterTraceEvent] | tuple[RouterTraceEvent, ...],
-    *,
     capacity_per_layer: int,
-) -> CacheSimulationReport:
-    """Compare no-residency, trace hotset, and online LRU policies."""
-
+) -> tuple[RouterTraceEvent, ...]:
     if capacity_per_layer <= 0:
         raise ValueError("capacity_per_layer must be positive")
     trace = tuple(events)
@@ -67,6 +76,97 @@ def simulate_policies(
         len(event.selected_expert_ids) > capacity_per_layer for event in trace
     ):
         raise ValueError("capacity_per_layer cannot be below router top-k")
+    return trace
+
+
+def _static_residents(
+    trace: tuple[RouterTraceEvent, ...], capacity_per_layer: int
+) -> dict[int, frozenset[int]]:
+    layer_counts: defaultdict[int, Counter[int]] = defaultdict(Counter)
+    for event in trace:
+        layer_counts[event.layer_id].update(event.selected_expert_ids)
+    return {
+        layer_id: frozenset(
+            expert_id
+            for expert_id, _ in sorted(
+                counts.items(), key=lambda item: (-item[1], item[0])
+            )[:capacity_per_layer]
+        )
+        for layer_id, counts in layer_counts.items()
+    }
+
+
+def policy_outcomes(
+    events: list[RouterTraceEvent] | tuple[RouterTraceEvent, ...],
+    *,
+    policy: PolicyName,
+    capacity_per_layer: int,
+) -> tuple[PolicyEventOutcome, ...]:
+    """Return causal outcomes used by both simulation and replay reports."""
+
+    trace = _validated_trace(events, capacity_per_layer)
+    if policy == "reactive":
+        return tuple(
+            PolicyEventOutcome(event, (), event.selected_expert_ids)
+            for event in trace
+        )
+
+    if policy == "static_hotset":
+        residents = _static_residents(trace, capacity_per_layer)
+        return tuple(
+            PolicyEventOutcome(
+                event,
+                tuple(
+                    expert
+                    for expert in event.selected_expert_ids
+                    if expert in residents[event.layer_id]
+                ),
+                tuple(
+                    expert
+                    for expert in event.selected_expert_ids
+                    if expert not in residents[event.layer_id]
+                ),
+            )
+            for event in trace
+        )
+
+    if policy != "lru":
+        raise ValueError(f"unsupported policy: {policy}")
+    caches: defaultdict[int, OrderedDict[int, None]] = defaultdict(OrderedDict)
+    outcomes: list[PolicyEventOutcome] = []
+    for event in trace:
+        cache = caches[event.layer_id]
+        required = frozenset(event.selected_expert_ids)
+        ready: list[int] = []
+        blocking: list[int] = []
+        for expert_id in event.selected_expert_ids:
+            if expert_id in cache:
+                ready.append(expert_id)
+                cache.move_to_end(expert_id)
+            else:
+                blocking.append(expert_id)
+
+        for expert_id in blocking:
+            while len(cache) >= capacity_per_layer:
+                victim = next(
+                    cached for cached in cache if cached not in required
+                )
+                del cache[victim]
+            cache[expert_id] = None
+        outcomes.append(
+            PolicyEventOutcome(event, tuple(ready), tuple(blocking))
+        )
+    return tuple(outcomes)
+
+
+def simulate_policies(
+    events: list[RouterTraceEvent] | tuple[RouterTraceEvent, ...],
+    *,
+    capacity_per_layer: int,
+) -> CacheSimulationReport:
+    """Compare no-residency, trace hotset, and online LRU policies."""
+
+    trace = _validated_trace(events, capacity_per_layer)
 
     demand_count = sum(len(event.selected_expert_ids) for event in trace)
     reactive = _result(
@@ -76,24 +176,14 @@ def simulate_policies(
         load_count=demand_count,
     )
 
-    layer_counts: defaultdict[int, Counter[int]] = defaultdict(Counter)
-    for event in trace:
-        layer_counts[event.layer_id].update(event.selected_expert_ids)
-    static_residents = {
-        layer_id: frozenset(
-            expert_id
-            for expert_id, _ in sorted(
-                counts.items(), key=lambda item: (-item[1], item[0])
-            )[:capacity_per_layer]
-        )
-        for layer_id, counts in layer_counts.items()
-    }
-    static_hits = sum(
-        expert_id in static_residents[event.layer_id]
-        for event in trace
-        for expert_id in event.selected_expert_ids
+    static_residents = _static_residents(trace, capacity_per_layer)
+    static_outcomes = policy_outcomes(
+        trace, policy="static_hotset", capacity_per_layer=capacity_per_layer
     )
-    static_preloads = sum(len(residents) for residents in static_residents.values())
+    static_hits = sum(len(outcome.ready_expert_ids) for outcome in static_outcomes)
+    static_preloads = sum(
+        len(residents) for residents in static_residents.values()
+    )
     static_hotset = _result(
         "static_hotset",
         demand_count=demand_count,
@@ -102,28 +192,13 @@ def simulate_policies(
         preload_count=static_preloads,
     )
 
-    lru_caches: defaultdict[int, OrderedDict[int, None]] = defaultdict(OrderedDict)
-    lru_hits = 0
-    lru_loads = 0
-    for event in trace:
-        cache = lru_caches[event.layer_id]
-        required = frozenset(event.selected_expert_ids)
-        misses: list[int] = []
-        for expert_id in event.selected_expert_ids:
-            if expert_id in cache:
-                lru_hits += 1
-                cache.move_to_end(expert_id)
-            else:
-                misses.append(expert_id)
-
-        for expert_id in misses:
-            while len(cache) >= capacity_per_layer:
-                victim = next(
-                    cached for cached in cache if cached not in required
-                )
-                del cache[victim]
-            cache[expert_id] = None
-            lru_loads += 1
+    lru_outcomes = policy_outcomes(
+        trace, policy="lru", capacity_per_layer=capacity_per_layer
+    )
+    lru_hits = sum(len(outcome.ready_expert_ids) for outcome in lru_outcomes)
+    lru_loads = sum(
+        len(outcome.blocking_expert_ids) for outcome in lru_outcomes
+    )
 
     lru = _result(
         "lru",

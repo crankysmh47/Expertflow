@@ -10,8 +10,10 @@ from pathlib import Path
 
 from expertflow.analysis.cache_sim import simulate_policies
 from expertflow.analysis.profile import summarize_routing
+from expertflow.analysis.replay import replay_policy
 from expertflow.doctor import collect_doctor_report
 from expertflow.recommendation import build_recommendation
+from expertflow.reporting import render_replay_report
 from expertflow.runtime.baseline import BaselineRunConfig
 from expertflow.runtime.measurement import run_measured_baseline
 from expertflow.trace.io import load_router_events
@@ -78,6 +80,14 @@ def build_parser() -> argparse.ArgumentParser:
     recommend.add_argument("--simulation", type=Path, required=True)
     recommend.add_argument("--output", type=Path, required=True)
     recommend.add_argument("--safety-reserve-mib", type=int, default=1024)
+
+    replay = commands.add_parser(
+        "replay", help="Render a standalone causal policy replay report."
+    )
+    replay.add_argument("trace", type=Path)
+    replay.add_argument("--recommendation", type=Path, required=True)
+    replay.add_argument("--output", type=Path, required=True)
+    replay.add_argument("--max-events", type=int, default=300)
 
     simulate = commands.add_parser(
         "simulate", help="Compare estimated cache policies over a router trace."
@@ -199,6 +209,46 @@ def _run_recommend(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_replay(args: argparse.Namespace) -> int:
+    source = args.trace.resolve()
+    recommendation_path = args.recommendation.resolve()
+    recommendation = _load_json_object(
+        recommendation_path, "recommendation"
+    )
+    replay_config = recommendation.get("replay")
+    if not isinstance(replay_config, dict):
+        raise ValueError("recommendation replay must be an object")
+    policy = replay_config.get("policy")
+    if policy not in {"reactive", "static_hotset", "lru"}:
+        raise ValueError("recommendation replay policy is unsupported")
+    capacity = replay_config.get("capacity_per_layer")
+    if isinstance(capacity, bool) or not isinstance(capacity, int):
+        raise ValueError("recommendation capacity_per_layer must be an integer")
+
+    replay = replay_policy(
+        list(load_router_events(source)),
+        policy=policy,
+        capacity_per_layer=capacity,
+    )
+    output = args.output.resolve()
+    command = (
+        f'expertflow replay "{source}" --recommendation '
+        f'"{recommendation_path}" --output "{output}"'
+    )
+    rendered = render_replay_report(
+        recommendation,
+        replay,
+        source_trace=source,
+        recommendation_source=recommendation_path,
+        reproduction_command=command,
+        max_events=args.max_events,
+    )
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(rendered, encoding="utf-8")
+    print(output)
+    return 0
+
+
 def _run_simulate(args: argparse.Namespace) -> int:
     source = args.trace.resolve()
     simulation = simulate_policies(
@@ -233,6 +283,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_parity(args)
     if args.command == "recommend":
         return _run_recommend(args)
+    if args.command == "replay":
+        return _run_replay(args)
     if args.command == "simulate":
         return _run_simulate(args)
     raise AssertionError(f"unhandled command: {args.command}")

@@ -43,10 +43,10 @@
 - Create: `tests/test_replay.py`
 - Modify: `PROJECT_LOG.md`
 
-- [ ] Write failing tests for deterministic per-token/layer `ready` and `blocking` decisions under static-hotset and LRU policies.
-- [ ] Reuse the existing capacity and trace ordering rules; do not create a second simulator.
-- [ ] Emit a compact timeline plus aggregate counts, with all policy outcomes labeled `estimated`.
-- [ ] Preserve request, phase, forward, token, and layer identities so each aggregate is causally inspectable.
+- [x] Write failing tests for deterministic per-token/layer `ready` and `blocking` decisions under static-hotset and LRU policies.
+- [x] Reuse the existing capacity and trace ordering rules; do not create a second simulator.
+- [x] Emit a compact timeline plus aggregate counts, with all policy outcomes labeled `estimated`.
+- [x] Preserve request, phase, forward, token, and layer identities so each aggregate is causally inspectable.
 
 ### Task 4: Standalone HTML replay report
 
@@ -58,10 +58,10 @@
 - Modify: `README.md`
 - Modify: `PROJECT_LOG.md`
 
-- [ ] Write failing escaping and report-content tests before rendering code.
-- [ ] Add `expertflow replay <trace> --recommendation ... --output report.html`.
-- [ ] Render one self-contained HTML file with hardware readiness, gate verdict, policy comparison, remaining measured headroom, and a bounded causal timeline.
-- [ ] Embed source paths, schema versions, and a reproduction command; do not require a web server or model weights to open the report.
+- [x] Write failing escaping and report-content tests before rendering code.
+- [x] Add `expertflow replay <trace> --recommendation ... --output report.html`.
+- [x] Render one self-contained HTML file with hardware readiness, gate verdict, policy comparison, remaining measured headroom, and a bounded causal timeline.
+- [x] Embed source paths, schema versions, and a reproduction command; do not require a web server or model weights to open the report.
 - [ ] Verify the real report in a browser and capture evidence only after the HTML passes tests and visual inspection.
 
 ### Task 5: Reproduction fixture and completion gate

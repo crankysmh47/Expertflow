@@ -223,3 +223,13 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Recommendation TDD red results: `expertflow.recommendation` was absent, then the public CLI rejected `recommend`. Implemented strict evidence-kind validation, measured VRAM headroom, policy selection, reason codes, and the public command.
 - TDD green result: `3` focused recommendation tests passed and the complete suite passed `39` tests in `0.12s`.
 - Real recommendation written externally: `CONDITIONAL`, `live_cache_enabled=false`, static-hotset replay at 8 slots/layer, and `7,234` MiB remaining configurable headroom after the measured `8,053` MiB peak plus a `1,024` MiB safety reserve. Expert bytes, transfer timing, and a stratified trace remain explicit blockers.
+
+### 23:59 PKT — Causal replay and standalone report implemented
+
+- Replay TDD began with missing-module and missing-command failures. Added deterministic per-event `ready` and `blocking` outcomes for static-hotset and LRU while preserving request, phase, forward, token, and layer identity.
+- Refactored aggregate simulation and causal replay to consume one shared policy-outcome engine, preventing report totals from drifting from the simulator. Every replay outcome remains explicitly labeled `estimated`.
+- Report TDD covered HTML escaping, verdict and memory evidence, reason codes, schema/source provenance, reproduction commands, and absence of scripts or remote assets.
+- A follow-up red test rejected the first renderer because it did not accept a recommendation source path. The renderer now embeds resolved trace and recommendation paths plus both schema versions.
+- Added `expertflow replay <trace> --recommendation ... --output report.html --max-events 300` and updated the public README.
+- Regenerated the real report at `C:\models\expertflow\runs\q4-probe\report.html`: `49,247` bytes, SHA-256 `b0d6f5ea63a4fe7681b74d141b137871b44ad4ed8824c913b1f6f446a12b713a`. It contains 300 bounded timeline rows and records that 1,050 of 1,350 events are omitted from the view, without omitting them from aggregate totals.
+- The in-app browser refused the local `file://` URL under its security policy. No workaround was attempted. Automated structure/content checks pass; browser visual inspection remains an explicit pending checklist item.
