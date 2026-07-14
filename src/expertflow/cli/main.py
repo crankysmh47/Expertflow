@@ -11,6 +11,8 @@ from pathlib import Path
 from expertflow.analysis.cache_sim import simulate_policies
 from expertflow.analysis.profile import summarize_routing
 from expertflow.doctor import collect_doctor_report
+from expertflow.runtime.baseline import BaselineRunConfig
+from expertflow.runtime.measurement import run_measured_baseline
 from expertflow.trace.io import load_router_events
 
 
@@ -20,6 +22,19 @@ def build_parser() -> argparse.ArgumentParser:
         description="Profile and explain sparse-MoE routing on local hardware.",
     )
     commands = parser.add_subparsers(dest="command", required=True)
+
+    baseline = commands.add_parser(
+        "baseline", help="Run and measure an unmodified llama.cpp baseline."
+    )
+    baseline.add_argument("--runtime", type=Path, required=True)
+    baseline.add_argument("--model", type=Path, required=True)
+    baseline.add_argument("--model-sha256", required=True)
+    baseline.add_argument("--prompt-file", type=Path, required=True)
+    baseline.add_argument("--output-dir", type=Path, required=True)
+    baseline.add_argument("--gpu-layers", default="auto")
+    baseline.add_argument("--ctx-size", type=int, default=1024)
+    baseline.add_argument("--predict", type=int, default=32)
+    baseline.add_argument("--threads", type=int, default=12)
 
     doctor = commands.add_parser(
         "doctor", help="Record hardware, storage, and toolchain readiness."
@@ -50,6 +65,32 @@ def build_parser() -> argparse.ArgumentParser:
     simulate.add_argument("--capacity-per-layer", type=int, required=True)
     simulate.add_argument("--output", type=Path, required=True)
     return parser
+
+
+def _run_baseline(args: argparse.Namespace) -> int:
+    digest = args.model_sha256.lower()
+    if len(digest) != 64 or any(character not in "0123456789abcdef" for character in digest):
+        raise ValueError("model_sha256 must be 64 hexadecimal characters")
+
+    output_dir = args.output_dir.resolve()
+    config = BaselineRunConfig(
+        executable=args.runtime.resolve(),
+        model=args.model.resolve(),
+        prompt=args.prompt_file.read_text(encoding="utf-8").strip(),
+        log_file=output_dir / "llama.log",
+        gpu_layers=args.gpu_layers,
+        context_size=args.ctx_size,
+        predict_tokens=args.predict,
+        threads=args.threads,
+    )
+    manifest_path = output_dir / "manifest.json"
+    result = run_measured_baseline(
+        config,
+        model_sha256=digest,
+        manifest_path=manifest_path,
+    )
+    print(manifest_path)
+    return int(result["return_code"])
 
 
 def _run_doctor(args: argparse.Namespace) -> int:
@@ -112,6 +153,8 @@ def _run_simulate(args: argparse.Namespace) -> int:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if args.command == "baseline":
+        return _run_baseline(args)
     if args.command == "doctor":
         return _run_doctor(args)
     if args.command == "profile":

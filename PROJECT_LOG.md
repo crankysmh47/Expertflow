@@ -149,3 +149,11 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Added `expertflow simulate <trace> --capacity-per-layer <slots> --output <report>` over the same strict JSONL and policy engine.
 - The CLI integration test confirms reactive, static-hotset, and LRU results and the mandatory top-level `estimated` label.
 - TDD green result: the simulation CLI test passed; the complete suite passed `30` tests in `0.07s`.
+
+### 22:45 PKT — One-command measured baseline path completed
+
+- TDD red result: the CLI module had no `run_measured_baseline` integration for the new test to patch.
+- Added `expertflow baseline` with required runtime, model, model SHA-256, prompt file, and output directory plus explicit GPU-layer, context, token, and thread controls.
+- Added the checked-in deterministic baseline prompt at `configs/baseline-prompt.txt`.
+- The command writes `manifest.json`, `stdout.txt`, `stderr.txt`, and `llama.log` into one external run directory and returns the runtime's exit code.
+- TDD green result: the baseline CLI integration test passed; the complete suite passed `31` tests in `0.07s`.
