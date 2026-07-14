@@ -50,10 +50,10 @@ The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 
 | Locality profile | Working; measured concentration and reuse metrics |
 | Policy simulation | Working; reactive, static-hotset, and LRU results labeled estimated |
 | Pinned llama.cpp CUDA runtime | Verified; release `b10002`, CUDA 12.4, RTX 5060 Ti visible |
-| Gemma 4 Q4 artifact | Download/verification in progress |
-| Unmodified real-model baseline | Pending verified Q4 completion |
+| Gemma 4 Q4 artifact | Verified; 14,439,361,440 bytes and pinned SHA-256 |
+| Unmodified real-model baseline | Passed on CPU and bounded 10-layer GPU offload |
 | Token parity comparison | Working; exact measured comparison with first mismatch |
-| Routing callback probe | GPU build passed against b10002; real trace pending |
+| Routing callback probe | Passed; 1,350 real events and exact token parity |
 | GPT-5.6 explanation layer | Pending; no API-backed claim yet |
 
 The append-only [project log](PROJECT_LOG.md) records commands, failures, decisions, hashes, and test results as the work moves.
@@ -92,7 +92,7 @@ The official runtime artifacts and hashes are pinned in `configs/runtime-artifac
 uv run expertflow baseline `
   --runtime C:\models\expertflow\dependencies\llama-b10002\runtime\llama-cli.exe `
   --model C:\models\expertflow\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\gemma-4-26B_q4_0-it.gguf `
-  --model-sha256 21005eb9bd80c75b5236d5b8e9828b5b887609f0cdd9158e86ea3e16044928f4 `
+  --model-sha256 4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5 `
   --prompt-file configs\baseline-prompt.txt `
   --output-dir C:\models\expertflow\runs\q4-auto `
   --gpu-layers auto --ctx-size 1024 --predict 32 --threads 12
@@ -110,6 +110,8 @@ powershell -ExecutionPolicy Bypass -File scripts\build_router_probe.ps1 `
 ```
 
 Build provenance and the callback boundary are recorded in [router probe evidence](docs/evidence/router-probe-build.md).
+
+The first real Q4 measurements, token parity, and conditional live-cache verdict are in [Q4 baseline evidence](docs/evidence/q4-baseline-result.md).
 
 ### Profile a router trace
 

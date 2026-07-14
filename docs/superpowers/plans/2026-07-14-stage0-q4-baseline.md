@@ -8,6 +8,18 @@
 
 **Tech Stack:** Python 3.11, pytest, huggingface_hub, PowerShell 7/Windows PowerShell compatibility, CMake, Ninja, llama.cpp, GGUF.
 
+## Execution status (2026-07-14 23:40 PKT)
+
+| Task | Status |
+| --- | --- |
+| Repository and manifest foundation | Complete |
+| Pinned Q4 download and verification | Complete |
+| Official CUDA runtime | Complete |
+| Full source archive | Pending; exact headers and source revision verified |
+| CPU and bounded GPU baseline | PASS |
+| Router trace and exact parity | PASS |
+| Overall live-cache gate | CONDITIONAL; broaden trace and measure transfers |
+
 ## Global Constraints
 
 - Primary model profile: Gemma 4 26B A4B Q4 GGUF, text-only, batch size 1.

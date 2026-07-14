@@ -23,8 +23,8 @@ The first verified local build produced:
 
 ```text
 C:\models\expertflow\dependencies\llama-b10002\runtime\expertflow-router-probe.exe
-2,930,097 bytes
-SHA-256 d791b3835fcebe6e95efcebc7d0ab62967b0aae46916baeaf53acf377845f2d5
+2,950,780 bytes
+SHA-256 97e0b1ccfa47b2f5285682eac6584e6619acf0f72e29b7c468cae12a9c8fd56b
 ```
 
 `--version` reports:
@@ -38,3 +38,5 @@ A missing-model link smoke reached the real model loader, loaded the official CU
 The final probe statically links its MinGW support libraries. Its only non-system runtime dependencies are the pinned `llama.dll`, `ggml.dll`, and `ggml-base.dll`; it does not depend on a developer shell's `libgcc`, `libstdc++`, or `libwinpthread` DLLs.
 
 The seven directly included headers were fetched from revision-pinned raw GitHub URLs and their exact sizes and hashes are recorded in `configs/runtime-artifacts.toml`. Full source-archive verification remains pending and is not implied by the successful header/runtime build.
+
+The finalized callback ignores graph-reservation probes, requests tensors only during an active one-token decode, accepts GGML's collapsed trailing unit dimension (`ne0=8`, `ne1=1`), and fails nonzero if a tracing run emits no events. The real-model trace and exact parity result are recorded in `q4-baseline-result.md`.

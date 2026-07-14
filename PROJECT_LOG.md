@@ -196,3 +196,21 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Build PASS with GCC 15.2.0. `--help` and `--version` both execute. The final build statically links MinGW support libraries, leaving only system DLLs plus the pinned `llama.dll`, `ggml.dll`, and `ggml-base.dll`. Probe result: `2,930,097` bytes, SHA-256 `d791b3835fcebe6e95efcebc7d0ab62967b0aae46916baeaf53acf377845f2d5`.
 - Real Q4 trace and token parity remain pending model verification; this build result alone is not recorded as a telemetry PASS.
 - A deliberate missing-model smoke advanced through dynamic linking and loaded the official CUDA, RPC, and Zen4 CPU backends before returning the expected model-open exit `1`; this verifies the executable/runtime boundary without claiming real inference.
+
+### 23:27 PKT — Q4 hash provenance corrected and artifact recovered
+
+- aria2 completed all `3,443 / 3,443` pieces and removed its control map. The file has the pinned length `14,439,361,440` bytes.
+- The first repository verification failed closed: local SHA-256 `4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5` did not match the manifest's `21005eb9...` value.
+- Systematic diagnosis found no zero-filled four-MiB pieces. A fresh revision-pinned Hugging Face HEAD response reports `X-Linked-Size: 14439361440` and `X-Linked-ETag: 4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5`, exactly matching the independently streamed local digest.
+- Root cause: `21005eb9...` is the Xet CAS object identifier embedded in the signed redirect path, not the downloadable file SHA-256. The earlier log entry calling it the remote ETag is superseded by this correction.
+- Added a failing pinned-manifest test for the authoritative file digest, then corrected the manifest and all public command examples. No model bytes were changed or redownloaded.
+
+### 23:40 PKT — Real Q4 baseline, trace, and parity gate completed
+
+- Corrected-manifest verification passed in `9.702` seconds: `14,439,361,440` bytes, SHA-256 `4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5`, no aria2 control map, and `128,417,697,792` free bytes on C. The full suite passed `36` tests in `0.11s`.
+- CPU compatibility run passed in `23.683` seconds with peak GPU use `2,935` MiB and peak working set `11,348,004,864` bytes. The model identified itself as text-only `Q4_0` and generated output.
+- Bounded 10-layer GPU run passed with peak GPU use `7,437` MiB and cleaned up afterward. A same-limit warm repeat passed in `8.527` seconds with prompt/generation rates `27.0/26.1` t/s; cold and warm state are disclosed, so no speedup claim is made.
+- First trace attempt emitted zero records. A fail-closed diagnostic showed the callback saw the correct names but graph-reservation tensors preceded an active token batch. Gating requests to real decode windows exposed a second contract issue: one-token tensors collapse to `dims=1` while retaining `ne0=8, ne1=1`. Sequential one-token submission and extent-based validation resolved both without patching llama.cpp.
+- Final parity PASS: all 38 prompt token IDs and 8 generated token IDs match exactly with tracing disabled/enabled.
+- Final trace PASS: `1,350` strict events (`45` decoded tokens × `30` MoE layers), `10,800` selected-expert demands, and no schema errors.
+- Measured mean adjacent-token reuse is `32.59%`. Estimated 8-slot static-hotset hit rate is `36.37%` versus LRU `31.87%`. Telemetry is PASS; the overall live-cache decision is `CONDITIONAL` pending stratified traces and measured transfer timing.

@@ -103,9 +103,15 @@ struct trace_state {
     std::vector<llama_token> batch_tokens;
     std::string phase;
     std::string error;
+    std::vector<std::string> observed_tensor_names;
+    std::vector<std::string> observation_tensor_names;
     std::uint64_t base_token_index = 0;
     std::uint64_t forward_id = 0;
     std::uint64_t hook_order = 0;
+    std::uint64_t callback_asks = 0;
+    std::uint64_t selected_asks = 0;
+    std::uint64_t callback_observations = 0;
+    bool active_forward = false;
 
     trace_state(const std::string & path, bool enabled) {
         if (enabled) {
@@ -120,7 +126,10 @@ struct trace_state {
         batch_tokens.assign(batch.token, batch.token + batch.n_tokens);
         phase = next_phase;
         base_token_index = next_base_token_index;
+        active_forward = true;
     }
+
+    void end_forward() { active_forward = false; }
 };
 
 bool starts_with(const char * value, const char * prefix) {
@@ -145,7 +154,23 @@ bool router_trace_callback(ggml_tensor * tensor, bool ask, void * user_data) {
     const char * name = ggml_get_name(tensor);
     const bool selected_experts = starts_with(name, topk_prefix);
     if (ask) {
-        return selected_experts;
+        ++state.callback_asks;
+        const std::string tensor_name(name);
+        const bool routing_candidate =
+            tensor_name.find("moe") != std::string::npos ||
+            tensor_name.find("ffn") != std::string::npos ||
+            tensor_name.find("top") != std::string::npos;
+        if (routing_candidate && state.observed_tensor_names.size() < 100) {
+            state.observed_tensor_names.push_back(tensor_name);
+        }
+        if (selected_experts && state.active_forward) {
+            ++state.selected_asks;
+        }
+        return selected_experts && state.active_forward;
+    }
+    ++state.callback_observations;
+    if (state.observation_tensor_names.size() < 100) {
+        state.observation_tensor_names.emplace_back(name);
     }
     if (!selected_experts) {
         return true;
@@ -153,13 +178,21 @@ bool router_trace_callback(ggml_tensor * tensor, bool ask, void * user_data) {
 
     const int layer_id = parse_layer_id(name);
     if (layer_id < 0 || tensor->type != GGML_TYPE_I32 ||
-        ggml_n_dims(tensor) < 2 || tensor->ne[0] <= 0 || tensor->ne[1] <= 0 ||
+        tensor->ne[0] <= 0 || tensor->ne[1] <= 0 ||
         !ggml_is_contiguous(tensor)) {
-        state.error = std::string("unexpected router tensor contract for ") + name;
+        state.error = std::string("unexpected router tensor contract for ") + name +
+            ": layer=" + std::to_string(layer_id) +
+            ", type=" + std::to_string(static_cast<int>(tensor->type)) +
+            ", dims=" + std::to_string(ggml_n_dims(tensor)) +
+            ", ne0=" + std::to_string(tensor->ne[0]) +
+            ", ne1=" + std::to_string(tensor->ne[1]) +
+            ", contiguous=" + std::to_string(ggml_is_contiguous(tensor));
         return false;
     }
     if (static_cast<std::size_t>(tensor->ne[1]) != state.batch_tokens.size()) {
-        state.error = std::string("router token columns do not match active batch for ") + name;
+        state.error = std::string("router token columns do not match active batch for ") + name +
+            ": columns=" + std::to_string(tensor->ne[1]) +
+            ", batch_tokens=" + std::to_string(state.batch_tokens.size());
         return false;
     }
 
@@ -292,8 +325,8 @@ int main(int argc, char ** argv) {
 
     llama_context_params context_params = llama_context_default_params();
     context_params.n_ctx = static_cast<std::uint32_t>(n_prompt + config.n_predict + 8);
-    context_params.n_batch = static_cast<std::uint32_t>(n_prompt);
-    context_params.n_ubatch = static_cast<std::uint32_t>(n_prompt);
+    context_params.n_batch = 1;
+    context_params.n_ubatch = 1;
     context_params.no_perf = false;
     if (config.trace_enabled) {
         context_params.cb_eval = router_trace_callback;
@@ -311,39 +344,72 @@ int main(int argc, char ** argv) {
     llama_sampler * sampler = llama_sampler_chain_init(llama_sampler_chain_default_params());
     llama_sampler_chain_add(sampler, llama_sampler_init_greedy());
 
-    llama_batch batch = llama_batch_get_one(prompt_tokens.data(), n_prompt);
     std::vector<llama_token> generated_tokens;
-    std::uint64_t token_index = 0;
     int exit_code = 0;
 
-    for (int position = 0; position + batch.n_tokens < n_prompt + config.n_predict;) {
+    const auto decode_token = [&](
+        llama_token & token, const char * phase, std::uint64_t token_index) {
+        llama_batch batch = llama_batch_get_one(&token, 1);
         if (config.trace_enabled) {
-            trace.begin_forward(
-                batch, position == 0 ? "prefill" : "decode", token_index);
+            trace.begin_forward(batch, phase, token_index);
         }
         const int decode_result = llama_decode(context, batch);
+        if (config.trace_enabled) {
+            trace.end_forward();
+        }
         if (decode_result != 0) {
             std::fprintf(stderr, "decode failed with code %d: %s\n", decode_result, trace.error.c_str());
-            exit_code = 1;
-            break;
+            return false;
         }
-        position += batch.n_tokens;
-        token_index += static_cast<std::uint64_t>(batch.n_tokens);
         if (config.trace_enabled) {
             ++trace.forward_id;
         }
+        return true;
+    };
 
+    for (std::size_t index = 0; index < prompt_tokens.size(); ++index) {
+        if (!decode_token(prompt_tokens[index], "prefill", index)) {
+            exit_code = 1;
+            break;
+        }
+    }
+
+    for (int generated = 0; exit_code == 0 && generated < config.n_predict; ++generated) {
         const llama_token token = llama_sampler_sample(sampler, context, -1);
         generated_tokens.push_back(token);
         if (llama_vocab_is_eog(vocab, token)) {
             break;
         }
-        batch = llama_batch_get_one(&generated_tokens.back(), 1);
+        if (generated + 1 < config.n_predict &&
+            !decode_token(
+                generated_tokens.back(),
+                "decode",
+                prompt_tokens.size() + static_cast<std::size_t>(generated))) {
+            exit_code = 1;
+            break;
+        }
     }
 
     if (exit_code == 0 &&
         !write_token_sequence(config.tokens_path, prompt_tokens, generated_tokens)) {
         std::fprintf(stderr, "unable to write token sequence\n");
+        exit_code = 1;
+    }
+    if (config.trace_enabled && trace.hook_order == 0) {
+        std::fprintf(
+            stderr,
+            "trace produced zero events after %llu callback asks, %llu selected asks, and %llu observations; routing candidates:\n",
+            static_cast<unsigned long long>(trace.callback_asks),
+            static_cast<unsigned long long>(trace.selected_asks),
+            static_cast<unsigned long long>(trace.callback_observations));
+        std::fprintf(stderr, "last callback error: %s\n", trace.error.c_str());
+        for (const std::string & name : trace.observed_tensor_names) {
+            std::fprintf(stderr, "  %s\n", name.c_str());
+        }
+        std::fprintf(stderr, "observation tensor names:\n");
+        for (const std::string & name : trace.observation_tensor_names) {
+            std::fprintf(stderr, "  %s\n", name.c_str());
+        }
         exit_code = 1;
     }
 

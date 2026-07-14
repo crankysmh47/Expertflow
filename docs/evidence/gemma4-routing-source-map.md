@@ -3,7 +3,7 @@
 - **Inspection revision:** `ggml-org/llama.cpp@a7312ae94f801fc9c6786dc56e38df57b964f697` (release `b10002`)
 - **Inspected:** 2026-07-14 PKT
 - **Source verdict:** PASS
-- **Overall 24-hour gate:** PENDING real Q4 load, trace parity, and locality evidence
+- **Overall 24-hour gate:** CONDITIONAL; telemetry passed, live cache needs broader traces
 
 ## Routing path
 
@@ -30,9 +30,6 @@ Prompt evaluation may expose multiple token columns in one callback. The probe m
 
 Source checks 2 and 3 pass: the exact routing operation is identified, and the trace hook is bounded to an evaluation callback plus a small writer. The first implementation should be a separate probe executable or narrowly scoped callback integration, not a modification to `build_moe_ffn`.
 
-The overall gate remains pending until:
+The real Q4 GGUF now loads and generates text. Tracing-disabled and tracing-enabled probe runs match all 38 prompt token IDs and 8 generated token IDs. The strict schema validates 1,350 router events over 45 decoded tokens and 30 MoE layers. An 8-slot static hotset estimates a 36.37% hit rate versus 31.87% for online LRU on this short trace.
 
-- the pinned Q4 GGUF loads and generates text;
-- uninstrumented and callback-instrumented deterministic token sequences match;
-- trace records validate against the agreed schema; and
-- measured locality supports at least one useful cache-policy result.
+The telemetry boundary therefore passes. The overall live-cache gate is conditional because one prompt is not a representative workload and no transfer-time or end-to-end speedup has been measured.

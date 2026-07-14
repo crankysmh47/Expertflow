@@ -17,7 +17,7 @@ def test_loads_pinned_q4_artifact() -> None:
     assert spec.revision == "21bfe2a8c89118c9a1a2aa242934fc4d1c0fff15"
     assert spec.filename == "gemma-4-26B_q4_0-it.gguf"
     assert spec.size_bytes == 14_439_361_440
-    assert spec.sha256 == "21005eb9bd80c75b5236d5b8e9828b5b887609f0cdd9158e86ea3e16044928f4"
+    assert spec.sha256 == "4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5"
 
 
 def test_rejects_wrong_artifact_size(tmp_path: Path) -> None:
@@ -48,4 +48,3 @@ def test_rejects_wrong_artifact_digest(tmp_path: Path) -> None:
 
     with pytest.raises(ArtifactVerificationError, match="SHA-256"):
         verify_artifact(candidate, spec)
-
