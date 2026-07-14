@@ -157,3 +157,10 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Added the checked-in deterministic baseline prompt at `configs/baseline-prompt.txt`.
 - The command writes `manifest.json`, `stdout.txt`, `stderr.txt`, and `llama.log` into one external run directory and returns the runtime's exit code.
 - TDD green result: the baseline CLI integration test passed; the complete suite passed `31` tests in `0.07s`.
+
+### 22:50 PKT — Judge-facing README added and verified
+
+- Added the root `README.md` with reproducible Windows setup, the current Q4-first runtime direction, exact fetch and measured-baseline commands, trace/profile/simulation examples, architecture, repository map, and Build Week integration notes.
+- Kept the status section evidence-based: the CUDA runtime and analysis harness are complete, while the Q4 baseline, router trace, and GPT-5.6 integration remain explicitly pending.
+- Verified every local README link resolves, both installed console entry points render help, and the full suite passes `31` tests in `0.07s`.
+- Model and exact llama.cpp source downloads remained active throughout this documentation work; no download-completion claim is made here.
