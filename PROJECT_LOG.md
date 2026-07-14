@@ -214,3 +214,12 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Final parity PASS: all 38 prompt token IDs and 8 generated token IDs match exactly with tracing disabled/enabled.
 - Final trace PASS: `1,350` strict events (`45` decoded tokens × `30` MoE layers), `10,800` selected-expert demands, and no schema errors.
 - Measured mean adjacent-token reuse is `32.59%`. Estimated 8-slot static-hotset hit rate is `36.37%` versus LRU `31.87%`. Telemetry is PASS; the overall live-cache decision is `CONDITIONAL` pending stratified traces and measured transfer timing.
+
+### 23:49 PKT — Source provenance closed and recommendation layer started
+
+- Clean full source archive completed without resume: `37,514,614` bytes, SHA-256 `b07eaf97a236c7f9d9ec2e919504a40340fb5b090f7463013c2ceb3c1d3004e2`. Archive integrity and the exact commit-named root passed before extraction; the expected `src/models/gemma4.cpp` is present.
+- Removed only the known partial archive and stalled `.git`-only shallow-fetch directory after resolving and checking both paths below `C:\models\expertflow\dependencies`. Rebuilt the GPU probe successfully against the full source tree.
+- Added the Layer 2 recommendation/replay execution plan.
+- Recommendation TDD red results: `expertflow.recommendation` was absent, then the public CLI rejected `recommend`. Implemented strict evidence-kind validation, measured VRAM headroom, policy selection, reason codes, and the public command.
+- TDD green result: `3` focused recommendation tests passed and the complete suite passed `39` tests in `0.12s`.
+- Real recommendation written externally: `CONDITIONAL`, `live_cache_enabled=false`, static-hotset replay at 8 slots/layer, and `7,234` MiB remaining configurable headroom after the measured `8,053` MiB peak plus a `1,024` MiB safety reserve. Expert bytes, transfer timing, and a stratified trace remain explicit blockers.

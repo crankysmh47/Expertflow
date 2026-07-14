@@ -4,7 +4,7 @@
 - **Source revision:** `a7312ae94f801fc9c6786dc56e38df57b964f697`
 - **Target:** Windows x86_64, CUDA 12.4
 - **External root:** `C:\models\expertflow\dependencies`
-- **Status:** runtime verified; model baseline pending Q4 completion
+- **Status:** runtime, full source archive, and Q4 baseline verified
 
 ## Verified release artifacts
 
@@ -31,6 +31,8 @@ CUDA0: NVIDIA GeForce RTX 5060 Ti (16310 MiB, 15158 MiB free)
 ```
 
 The exact source commit was resolved from the reported short hash through GitHub's commit API. The Gemma 4 routing source map was rechecked at this release-matched revision.
+
+The clean codeload archive for that commit is `37,514,614` bytes with SHA-256 `b07eaf97a236c7f9d9ec2e919504a40340fb5b090f7463013c2ceb3c1d3004e2`. Its integrity and commit-named root were checked before extraction under the external dependency directory.
 
 ## Toolchain boundary
 

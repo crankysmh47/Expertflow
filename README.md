@@ -65,6 +65,7 @@ expertflow baseline  Run and measure an unmodified llama.cpp baseline
 expertflow doctor    Record hardware, storage, and toolchain readiness
 expertflow profile   Build a measured locality profile from router JSONL
 expertflow parity    Compare exact token sequences with and without tracing
+expertflow recommend Produce an evidence-bounded machine recommendation
 expertflow simulate  Compare estimated cache policies under one slot budget
 ```
 
@@ -139,6 +140,19 @@ uv run expertflow simulate C:\models\expertflow\runs\trace.jsonl `
 ```
 
 Simulation output is labeled `estimated`. The current policies are reactive, trace-derived static hotset, and online per-layer LRU. Slot capacity must be at least the router top-k.
+
+### Produce a machine-specific recommendation
+
+```powershell
+uv run expertflow recommend `
+  --doctor C:\models\expertflow\runs\preflight\doctor.json `
+  --baseline C:\models\expertflow\runs\q4-gpu10-smoke8\manifest.json `
+  --profile C:\models\expertflow\runs\q4-probe\profile.json `
+  --simulation C:\models\expertflow\runs\q4-probe\simulation.json `
+  --output C:\models\expertflow\runs\q4-probe\recommendation.json
+```
+
+The current real recommendation is `CONDITIONAL`: use static-hotset for replay, but keep live caching disabled until expert byte size, transfer timing, and a stratified trace are available.
 
 ## Trace contract
 

@@ -11,6 +11,7 @@ from pathlib import Path
 from expertflow.analysis.cache_sim import simulate_policies
 from expertflow.analysis.profile import summarize_routing
 from expertflow.doctor import collect_doctor_report
+from expertflow.recommendation import build_recommendation
 from expertflow.runtime.baseline import BaselineRunConfig
 from expertflow.runtime.measurement import run_measured_baseline
 from expertflow.trace.io import load_router_events
@@ -66,6 +67,17 @@ def build_parser() -> argparse.ArgumentParser:
     parity.add_argument("baseline", type=Path)
     parity.add_argument("instrumented", type=Path)
     parity.add_argument("--output", type=Path, required=True)
+
+    recommend = commands.add_parser(
+        "recommend",
+        help="Create an evidence-bounded machine-specific recommendation.",
+    )
+    recommend.add_argument("--doctor", type=Path, required=True)
+    recommend.add_argument("--baseline", type=Path, required=True)
+    recommend.add_argument("--profile", type=Path, required=True)
+    recommend.add_argument("--simulation", type=Path, required=True)
+    recommend.add_argument("--output", type=Path, required=True)
+    recommend.add_argument("--safety-reserve-mib", type=int, default=1024)
 
     simulate = commands.add_parser(
         "simulate", help="Compare estimated cache policies over a router trace."
@@ -151,6 +163,42 @@ def _run_parity(args: argparse.Namespace) -> int:
     )
 
 
+def _load_json_object(path: Path, label: str) -> dict[str, object]:
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise ValueError(f"cannot read {label} JSON: {error}") from error
+    if not isinstance(value, dict):
+        raise ValueError(f"{label} JSON must contain an object")
+    return value
+
+
+def _run_recommend(args: argparse.Namespace) -> int:
+    source_paths = {
+        "doctor": args.doctor.resolve(),
+        "baseline": args.baseline.resolve(),
+        "profile": args.profile.resolve(),
+        "simulation": args.simulation.resolve(),
+    }
+    report = build_recommendation(
+        _load_json_object(source_paths["doctor"], "doctor"),
+        _load_json_object(source_paths["baseline"], "baseline"),
+        _load_json_object(source_paths["profile"], "profile"),
+        _load_json_object(source_paths["simulation"], "simulation"),
+        safety_reserve_mib=args.safety_reserve_mib,
+    )
+    report["sources"] = {
+        name: str(path) for name, path in source_paths.items()
+    }
+    output = args.output.resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(
+        json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    print(output)
+    return 0
+
+
 def _run_simulate(args: argparse.Namespace) -> int:
     source = args.trace.resolve()
     simulation = simulate_policies(
@@ -183,6 +231,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_profile(args)
     if args.command == "parity":
         return _run_parity(args)
+    if args.command == "recommend":
+        return _run_recommend(args)
     if args.command == "simulate":
         return _run_simulate(args)
     raise AssertionError(f"unhandled command: {args.command}")

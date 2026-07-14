@@ -15,7 +15,7 @@
 | Repository and manifest foundation | Complete |
 | Pinned Q4 download and verification | Complete |
 | Official CUDA runtime | Complete |
-| Full source archive | Pending; exact headers and source revision verified |
+| Full source archive | Complete; clean archive hashed, validated, and extracted |
 | CPU and bounded GPU baseline | PASS |
 | Router trace and exact parity | PASS |
 | Overall live-cache gate | CONDITIONAL; broaden trace and measure transfers |

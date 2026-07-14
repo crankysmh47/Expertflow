@@ -9,6 +9,9 @@ executable_subpath = "llama-b10002/runtime/llama-cli.exe"
 repository = "ggml-org/llama.cpp"
 revision = "a7312ae94f801fc9c6786dc56e38df57b964f697"
 archive_url = "https://codeload.github.com/ggml-org/llama.cpp/zip/a7312ae94f801fc9c6786dc56e38df57b964f697"
+archive_filename = "llama.cpp-a7312ae94f801fc9c6786dc56e38df57b964f697.zip"
+archive_size_bytes = 37514614
+archive_sha256 = "b07eaf97a236c7f9d9ec2e919504a40340fb5b090f7463013c2ceb3c1d3004e2"
 
 [[sources.llama_cpp.headers]]
 path = "include/llama.h"
