@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from html import escape
 from pathlib import Path
 
@@ -31,7 +31,7 @@ def render_replay_report(
     recommendation: Mapping[str, object],
     replay: PolicyReplay,
     *,
-    source_trace: Path,
+    source_trace: Path | Sequence[Path],
     recommendation_source: Path,
     reproduction_command: str,
     max_events: int = 300,
@@ -75,6 +75,47 @@ def render_replay_report(
     ):
         raise ValueError("reason_codes must be an array of strings")
 
+    cache_card = ""
+    cache_detail = ""
+    expert_cache_value = recommendation.get("expert_cache")
+    if expert_cache_value is not None:
+        expert_cache = _mapping(expert_cache_value, "expert_cache")
+        projected_cache = _number(
+            expert_cache.get("projected_cache_mib"),
+            "expert_cache.projected_cache_mib",
+        )
+        remaining_after_cache = _number(
+            expert_cache.get("remaining_headroom_after_cache_mib"),
+            "expert_cache.remaining_headroom_after_cache_mib",
+        )
+        measured_transfer = _number(
+            expert_cache.get("measured_expert_transfer_ms"),
+            "expert_cache.measured_expert_transfer_ms",
+        )
+        estimated_sweep = _number(
+            expert_cache.get(
+                "estimated_serial_h2d_ms_per_layer_sweep"
+            ),
+            "expert_cache.estimated_serial_h2d_ms_per_layer_sweep",
+        )
+        fit_scope = expert_cache.get("fit_scope")
+        if not isinstance(fit_scope, str) or not fit_scope:
+            raise ValueError("expert_cache.fit_scope must be a string")
+        cache_card = (
+            '<div class="card"><div class="label">Projected expert cache</div>'
+            f'<div class="metric">{projected_cache:,.2f} MiB</div>'
+            f'<span class="tag estimated">{escape(fit_scope.upper().replace("_", "-"))}</span></div>'
+        )
+        cache_detail = (
+            "<section><h2>Projected cache envelope</h2>"
+            f"<p>Replay allocation {projected_cache:,.2f} MiB · "
+            f"remaining configurable headroom {remaining_after_cache:,.2f} MiB. "
+            f"Measured pinned expert transfer {measured_transfer:.4f} ms; "
+            f"estimated serialized H2D per selected-layer sweep "
+            f"{estimated_sweep:.4f} ms.</p>"
+            '<p class="muted">The allocation and sweep are estimates; live caching remains disabled.</p></section>'
+        )
+
     rows: list[str] = []
     for event in replay.timeline[:max_events]:
         ready = ", ".join(str(value) for value in event.ready_expert_ids) or "none"
@@ -96,6 +137,17 @@ def render_replay_report(
     timeline_note = (
         f"Showing {len(rows):,} of {len(replay.timeline):,} events"
         + (f"; {omitted:,} omitted from this bounded view." if omitted else ".")
+    )
+    source_paths = (
+        (source_trace,)
+        if isinstance(source_trace, Path)
+        else tuple(source_trace)
+    )
+    if not source_paths:
+        raise ValueError("source_trace must contain at least one path")
+    trace_lines = "<br>".join(
+        f"<code>{escape(str(path.resolve()))}</code>"
+        for path in source_paths
     )
 
     return f"""<!doctype html>
@@ -136,9 +188,11 @@ def render_replay_report(
     <div class="card"><div class="label">Peak VRAM</div><div class="metric">{peak_vram:,} MiB</div><span class="tag">MEASURED</span></div>
     <div class="card"><div class="label">Configurable headroom</div><div class="metric">{headroom:,} MiB</div><span class="tag">MEASURED</span></div>
     <div class="card"><div class="label">Replay hit rate</div><div class="metric">{selected_rate:.2%}</div><span class="tag estimated">ESTIMATED</span></div>
+    {cache_card}
   </div>
   <section><h2>Memory envelope</h2><p>Total {total_vram:,} MiB · measured peak {peak_vram:,} MiB · safety reserve {safety_reserve:,} MiB · remaining {headroom:,} MiB.</p></section>
+  {cache_detail}
   <section><h2>Policy decision</h2><p><strong>{escape(replay.policy)}</strong> at {replay.capacity_per_layer} slots/layer: {selected_rate:.2%} estimated selection hits. LRU comparison: {lru_rate:.2%}.</p><p>{replay.hit_count:,} ready selections; {replay.miss_count:,} blocking selections across {replay.event_count:,} token/layer events.</p><ul>{reason_items}</ul></section>
   <section><h2>Causal timeline</h2><p class="muted">{escape(timeline_note)}</p><div class="table-wrap"><table><thead><tr><th>Outcome</th><th>Token</th><th>Layer</th><th>Phase</th><th>Ready experts</th><th>Blocking experts</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div></section>
-  <section><h2>Provenance and reproduction</h2><p class="muted">Trace schema: <code>1.0.0</code><br>Recommendation schema: <code>1.0.0</code><br>Trace: <code>{escape(str(source_trace.resolve()))}</code><br>Recommendation: <code>{escape(str(recommendation_source.resolve()))}</code></p><pre><code>{escape(reproduction_command)}</code></pre></section>
+  <section><h2>Provenance and reproduction</h2><p class="muted">Trace schema: <code>1.0.0</code><br>Recommendation schema: <code>1.0.0</code><br>Traces:<br>{trace_lines}<br>Recommendation: <code>{escape(str(recommendation_source.resolve()))}</code></p><pre><code>{escape(reproduction_command)}</code></pre></section>
 </main></body></html>"""

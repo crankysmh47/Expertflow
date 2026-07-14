@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 
 from expertflow.analysis.cache_sim import simulate_policies
+from expertflow.analysis.capacity_curve import build_capacity_curve
 from expertflow.analysis.profile import summarize_routing
 from expertflow.analysis.replay import replay_policy
 from expertflow.doctor import collect_doctor_report
@@ -79,16 +80,19 @@ def build_parser() -> argparse.ArgumentParser:
     recommend.add_argument("--baseline", type=Path, required=True)
     recommend.add_argument("--profile", type=Path, required=True)
     recommend.add_argument("--simulation", type=Path, required=True)
+    recommend.add_argument("--capacity-curve", type=Path)
     recommend.add_argument("--output", type=Path, required=True)
     recommend.add_argument("--safety-reserve-mib", type=int, default=1024)
 
     replay = commands.add_parser(
         "replay", help="Render a standalone causal policy replay report."
     )
-    replay.add_argument("trace", type=Path)
+    replay.add_argument("trace", type=Path, nargs="+")
     replay.add_argument("--recommendation", type=Path, required=True)
     replay.add_argument("--output", type=Path, required=True)
     replay.add_argument("--max-events", type=int, default=300)
+    replay.add_argument("--phase", choices=("prefill", "decode"))
+    replay.add_argument("--max-layer", type=int)
 
     simulate = commands.add_parser(
         "simulate", help="Compare estimated cache policies over a router trace."
@@ -110,6 +114,20 @@ def build_parser() -> argparse.ArgumentParser:
     transfer.add_argument("--warmup-copies", type=int, default=10)
     transfer.add_argument("--device", type=int, default=0)
     transfer.add_argument("--output", type=Path, required=True)
+
+    curve = commands.add_parser(
+        "capacity-curve",
+        help="Estimate cache policy curves over one or more router traces.",
+    )
+    curve.add_argument("trace", type=Path, nargs="+")
+    curve.add_argument("--phase", choices=("prefill", "decode"))
+    curve.add_argument("--max-layer", type=int)
+    curve.add_argument(
+        "--capacity", type=int, action="append", required=True
+    )
+    curve.add_argument("--slot-bytes", type=int, required=True)
+    curve.add_argument("--expert-transfer-ms", type=float, required=True)
+    curve.add_argument("--output", type=Path, required=True)
     return parser
 
 
@@ -205,11 +223,20 @@ def _run_recommend(args: argparse.Namespace) -> int:
         "profile": args.profile.resolve(),
         "simulation": args.simulation.resolve(),
     }
+    if args.capacity_curve is not None:
+        source_paths["capacity_curve"] = args.capacity_curve.resolve()
     report = build_recommendation(
         _load_json_object(source_paths["doctor"], "doctor"),
         _load_json_object(source_paths["baseline"], "baseline"),
         _load_json_object(source_paths["profile"], "profile"),
         _load_json_object(source_paths["simulation"], "simulation"),
+        capacity_curve=(
+            _load_json_object(
+                source_paths["capacity_curve"], "capacity_curve"
+            )
+            if "capacity_curve" in source_paths
+            else None
+        ),
         safety_reserve_mib=args.safety_reserve_mib,
     )
     report["sources"] = {
@@ -225,7 +252,9 @@ def _run_recommend(args: argparse.Namespace) -> int:
 
 
 def _run_replay(args: argparse.Namespace) -> int:
-    source = args.trace.resolve()
+    if args.max_layer is not None and args.max_layer < 0:
+        raise ValueError("max_layer must be non-negative")
+    sources = [source.resolve() for source in args.trace]
     recommendation_path = args.recommendation.resolve()
     recommendation = _load_json_object(
         recommendation_path, "recommendation"
@@ -240,20 +269,35 @@ def _run_replay(args: argparse.Namespace) -> int:
     if isinstance(capacity, bool) or not isinstance(capacity, int):
         raise ValueError("recommendation capacity_per_layer must be an integer")
 
+    events = [
+        event
+        for source in sources
+        for event in load_router_events(source)
+        if (args.phase is None or event.phase == args.phase)
+        and (args.max_layer is None or event.layer_id <= args.max_layer)
+    ]
+    if not events:
+        raise ValueError("replay selection produced no events")
     replay = replay_policy(
-        list(load_router_events(source)),
+        events,
         policy=policy,
         capacity_per_layer=capacity,
     )
     output = args.output.resolve()
+    trace_arguments = " ".join(f'"{source}"' for source in sources)
+    selection_arguments = ""
+    if args.phase is not None:
+        selection_arguments += f" --phase {args.phase}"
+    if args.max_layer is not None:
+        selection_arguments += f" --max-layer {args.max_layer}"
     command = (
-        f'expertflow replay "{source}" --recommendation '
-        f'"{recommendation_path}" --output "{output}"'
+        f"expertflow replay {trace_arguments}{selection_arguments} "
+        f'--recommendation "{recommendation_path}" --output "{output}"'
     )
     rendered = render_replay_report(
         recommendation,
         replay,
-        source_trace=source,
+        source_trace=sources,
         recommendation_source=recommendation_path,
         reproduction_command=command,
         max_events=args.max_events,
@@ -305,6 +349,38 @@ def _run_transfer_benchmark(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_capacity_curve(args: argparse.Namespace) -> int:
+    if args.max_layer is not None and args.max_layer < 0:
+        raise ValueError("max_layer must be non-negative")
+    sources = [path.resolve() for path in args.trace]
+    events = [
+        event
+        for source in sources
+        for event in load_router_events(source)
+        if (args.phase is None or event.phase == args.phase)
+        and (args.max_layer is None or event.layer_id <= args.max_layer)
+    ]
+    report = build_capacity_curve(
+        events,
+        capacities=tuple(args.capacity),
+        slot_bytes=args.slot_bytes,
+        expert_transfer_ms=args.expert_transfer_ms,
+    )
+    report["source_traces"] = [str(source) for source in sources]
+    report["selection"] = {
+        "phase": args.phase,
+        "max_layer": args.max_layer,
+    }
+    output = args.output.resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(
+        json.dumps(report, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    print(output)
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "baseline":
@@ -323,6 +399,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_simulate(args)
     if args.command == "transfer-benchmark":
         return _run_transfer_benchmark(args)
+    if args.command == "capacity-curve":
+        return _run_capacity_curve(args)
     raise AssertionError(f"unhandled command: {args.command}")
 
 

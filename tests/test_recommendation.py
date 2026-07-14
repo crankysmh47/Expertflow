@@ -63,3 +63,59 @@ def test_rejects_simulation_mislabeled_as_measured() -> None:
 
     with pytest.raises(RecommendationInputError, match="simulation.*estimated"):
         build_recommendation(doctor, baseline, profile, simulation)
+
+
+def test_supersedes_single_trace_policy_with_stratified_capacity_curve() -> None:
+    curve = {
+        "schema_version": "1.0.0",
+        "measurement_kind": "estimated",
+        "fit_scope": "in_sample",
+        "event_count": 2_688,
+        "expert_demand_count": 21_504,
+        "layer_ids": [0, 1],
+        "router_top_k": 8,
+        "slot_bytes": 3_346_048,
+        "expert_transfer_ms": 0.235,
+        "points": [
+            {
+                "capacity_per_layer": 64,
+                "projected_cache_bytes": 4_000_000_000,
+                "static_hotset": {
+                    "hit_rate": 0.92,
+                    "estimated_serial_h2d_ms_per_layer_sweep": 2.8,
+                },
+                "lru": {
+                    "hit_rate": 0.84,
+                    "estimated_serial_h2d_ms_per_layer_sweep": 6.1,
+                },
+            },
+            {
+                "capacity_per_layer": 96,
+                "projected_cache_bytes": 9_000_000_000,
+                "static_hotset": {
+                    "hit_rate": 0.99,
+                    "estimated_serial_h2d_ms_per_layer_sweep": 0.2,
+                },
+                "lru": {
+                    "hit_rate": 0.90,
+                    "estimated_serial_h2d_ms_per_layer_sweep": 3.9,
+                },
+            },
+        ],
+    }
+
+    recommendation = build_recommendation(
+        *evidence(), capacity_curve=curve, safety_reserve_mib=1_024
+    )
+
+    assert recommendation["verdict"] == "CONDITIONAL"
+    assert recommendation["live_cache_enabled"] is False
+    assert recommendation["replay"]["capacity_per_layer"] == 64
+    assert recommendation["replay"]["policy"] == "static_hotset"
+    assert recommendation["expert_cache"]["projected_cache_bytes"] == 4_000_000_000
+    assert recommendation["expert_cache"]["fit_scope"] == "in_sample"
+    assert "EXPERT_BYTES_NOT_MEASURED" not in recommendation["reason_codes"]
+    assert "TRANSFER_TIMING_NOT_MEASURED" not in recommendation["reason_codes"]
+    assert "STRATIFIED_TRACE_REQUIRED" not in recommendation["reason_codes"]
+    assert "HELD_OUT_POLICY_REQUIRED" in recommendation["reason_codes"]
+    assert "PER_LAYER_DEADLINES_NOT_MEASURED" in recommendation["reason_codes"]

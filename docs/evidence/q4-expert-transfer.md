@@ -71,6 +71,6 @@ These are repeated warm-buffer, default-stream microbenchmarks with no competing
 
 ## Gate decision
 
-The 24-hour empirical requirements for real Gemma expert sizes and a first measured transfer curve now pass. The live-runtime gate does not. The parity-safe stratified trace estimates a 40.68% static-8 prefill hit rate, but ExpertFlow has not measured CUDA per-layer compute deadlines or demonstrated that a transfer issued by a real cache arrives before expert use. It also has no same-runtime reactive-versus-cached end-to-end comparison.
+The 24-hour empirical requirements for real Gemma expert sizes and a first measured transfer curve now pass. The live-runtime gate does not. A single global cache over the parity-safe stratified prefill trace reaches 33.13% static-8 and 35.13% LRU-8 on the 21 CPU-resident target layers. Static reaches 92.77% at 64 slots/layer, but that hotset is fit and evaluated on the same small workload. ExpertFlow has not measured CUDA per-layer compute deadlines or demonstrated that a transfer issued by a real cache arrives before expert use. It also has no same-runtime reactive-versus-cached end-to-end comparison.
 
-Continue with the Observatory and use these values in the offline deadline simulator. Keep `live_cache_enabled=false` until deadline feasibility and exact end-to-end behavior pass.
+Continue with the Observatory and use these values in the offline deadline simulator. The [stratified capacity curve](q4-capacity-curve.md) now consumes the measured slot and transfer values, but `live_cache_enabled=false` remains mandatory until deadline feasibility and exact end-to-end behavior pass.

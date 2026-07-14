@@ -71,7 +71,7 @@ The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 
 | Routing callback probe | Passed; 1,350 real events and exact token parity |
 | Stratified GPU telemetry | Five Vulkan prompt pairs pass exact parity; CUDA callback divergence is disclosed |
 | Expert-size and transfer curve | Passed; 3.190434 MiB encoded expert and measured pageable/pinned CUDA curves |
-| Machine recommendation | Working; current verdict is `CONDITIONAL` with live caching disabled |
+| Machine recommendation | Regenerated from the stratified curve; `CONDITIONAL`, static-96 replay, live cache disabled |
 | Causal replay report | Working; self-contained HTML with measured/estimated labels |
 | CPU-only reproduction fixture | Working; eight previously measured events with checked totals |
 | Codex/GPT-5.6 annotations | Active in the build and evidence workflow; no runtime API key required |
@@ -170,10 +170,11 @@ uv run expertflow recommend `
   --baseline C:\models\expertflow\runs\q4-gpu10-smoke8\manifest.json `
   --profile C:\models\expertflow\runs\q4-probe\profile.json `
   --simulation C:\models\expertflow\runs\q4-probe\simulation.json `
-  --output C:\models\expertflow\runs\q4-probe\recommendation.json
+  --capacity-curve C:\models\expertflow\runs\stratified-q4-vulkan\capacity-curve-cpu21.json `
+  --output C:\models\expertflow\runs\q4-probe\recommendation-stratified.json
 ```
 
-The current real recommendation is `CONDITIONAL`: use static-hotset for replay, but keep live caching disabled until per-layer transfer deadlines and a same-runtime end-to-end comparison are measured. Expert size, a first transfer curve, and a five-prompt trace now exist; the CUDA callback divergence and parity-safe Vulkan replacement are documented rather than averaged away.
+The current gate is `CONDITIONAL`: keep live caching disabled until per-layer transfer deadlines, held-out policy evidence, and a same-runtime end-to-end comparison are measured. The replay recommendation selects the largest tested point inside the measured envelope: static-96 over the 21 target layers, 6,433.14 MiB projected cache, 800.86 MiB remaining configurable headroom, and a 99.57% in-sample hit estimate.
 
 ### Measure the CUDA transfer curve
 
@@ -190,13 +191,14 @@ The command records pageable-to-pinned staging, pageable-to-GPU copies, and pinn
 ### Render the causal replay report
 
 ```powershell
-uv run expertflow replay C:\models\expertflow\runs\q4-probe\trace.jsonl `
-  --recommendation C:\models\expertflow\runs\q4-probe\recommendation.json `
-  --output C:\models\expertflow\runs\q4-probe\report.html `
+uv run expertflow replay trace-a.jsonl trace-b.jsonl `
+  --phase prefill --max-layer 20 `
+  --recommendation C:\models\expertflow\runs\q4-probe\recommendation-stratified.json `
+  --output C:\models\expertflow\runs\q4-probe\report-stratified.html `
   --max-events 300
 ```
 
-The result is one self-contained HTML file with the gate verdict, measured memory envelope, estimated policy comparison, explicit evidence blockers, and a bounded event timeline. It does not require a web server or model weights to open. The real development-machine report shows a `36.37%` estimated static-hotset hit rate versus `31.87%` for LRU, while preserving the `CONDITIONAL` verdict.
+The result is one self-contained HTML file with the gate verdict, measured memory envelope, estimated policy comparison, explicit evidence blockers, and a bounded event timeline. It does not require a web server or model weights to open. The current development-machine report replays 2,688 measured prefill events from five sources and shows the static-96 99.57% in-sample estimate versus 90.17% for LRU while preserving the `CONDITIONAL` verdict.
 
 To check the simulator without downloading the model, use the small [replay fixture](examples/replay/README.md):
 
@@ -272,6 +274,7 @@ Codex with GPT-5.6 is also being used to annotate the measured artifacts, explai
 - [Gemma 4 routing source map](docs/evidence/gemma4-routing-source-map.md)
 - [Stratified Q4 routing evidence](docs/evidence/stratified-q4-routing.md)
 - [Q4 expert-size and transfer evidence](docs/evidence/q4-expert-transfer.md)
+- [Stratified Q4 capacity curve](docs/evidence/q4-capacity-curve.md)
 
 ## License
 

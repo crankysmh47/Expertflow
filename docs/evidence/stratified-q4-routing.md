@@ -59,7 +59,9 @@ For the fixed prompt-prefill portion, CUDA and Vulkan selected exactly the same 
 | CUDA observation path | 40.6868% | 33.1283% |
 | Vulkan observation path | 40.6803% | 33.1641% |
 
-The static difference is 0.0065 percentage points and the LRU difference is 0.0358 points. Generated-continuation events are excluded from this cross-backend comparison because the failed CUDA callback cases produced different continuations.
+The static difference is 0.0065 percentage points and the LRU difference is 0.0358 points. Generated-continuation events are excluded from this cross-backend comparison because the failed CUDA callback cases produced different continuations. These are demand-weighted prompt-local simulations: each prompt receives its own fitted static hotset and a reset LRU cache.
+
+A later [global capacity curve](q4-capacity-curve.md) fits one cache across the ordered five-prompt prefill workload. At eight slots over the 21 CPU-resident target layers, global static reaches 33.13% and LRU reaches 35.13%; static overtakes at 16 slots. The global result supersedes the earlier single-prompt static-8 recommendation.
 
 ## Current decision
 
