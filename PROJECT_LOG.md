@@ -69,3 +69,11 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - The public scheduler evaluation callback can request only that small tensor and copy it to host after computation. The existing `examples/eval-callback` and `common/debug.cpp` demonstrate this mechanism.
 - Source feasibility verdict: `PASS`. No graph, router, allocator, scheduler, or model-format mutation is needed for the first telemetry probe. The overall gate remains pending the real Q4 load, deterministic parity, schema validation, and locality evidence.
 - Added `docs/evidence/gemma4-routing-source-map.md` and removed the now-unused empty `third_party/` directory to preserve the external-artifact boundary.
+
+### 22:08 PKT — Trace schema implemented while artifacts transfer
+
+- Installed Scoop-verified `aria2` 1.37.0 outside the repository and resumed the same Q4 partial with eight ranged connections. The target became a sparse file, so apparent length is explicitly not used as completion evidence; the aria2 control map and final cryptographic verification remain authoritative.
+- Attempted to resume the exact llama.cpp source archive and CUDA assets alongside the model. A PowerShell argument-interpolation error pointed aria2 at a literal `System.Collections.Hashtable.Dir` path in the repository; the command was stopped, its 2 MB throwaway file was removed after resolving and checking the target path, and no tracked or verified artifact was affected. Runtime downloads remain resumable and will restart with explicit scalar paths.
+- TDD red result for the Observatory trace contract: `ModuleNotFoundError: No module named 'expertflow.trace'`.
+- Implemented dependency-free, immutable `RouterTraceEvent` parsing with schema-version enforcement, unsigned range checks, unique expert IDs, optional matched weights, finite-value validation, strict fields, and record-numbered failures.
+- TDD green result: `8` schema tests passed, and the complete suite passed `14` tests in `0.03s`.
