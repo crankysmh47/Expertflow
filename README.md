@@ -52,7 +52,8 @@ The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 
 | Pinned llama.cpp CUDA runtime | Verified; release `b10002`, CUDA 12.4, RTX 5060 Ti visible |
 | Gemma 4 Q4 artifact | Download/verification in progress |
 | Unmodified real-model baseline | Pending verified Q4 completion |
-| Routing callback probe and parity | Source boundary passed; implementation pending |
+| Token parity comparison | Working; exact measured comparison with first mismatch |
+| Routing callback probe | Source boundary passed; build and real trace pending |
 | GPT-5.6 explanation layer | Pending; no API-backed claim yet |
 
 The append-only [project log](PROJECT_LOG.md) records commands, failures, decisions, hashes, and test results as the work moves.
@@ -63,6 +64,7 @@ The append-only [project log](PROJECT_LOG.md) records commands, failures, decisi
 expertflow baseline  Run and measure an unmodified llama.cpp baseline
 expertflow doctor    Record hardware, storage, and toolchain readiness
 expertflow profile   Build a measured locality profile from router JSONL
+expertflow parity    Compare exact token sequences with and without tracing
 expertflow simulate  Compare estimated cache policies under one slot budget
 ```
 
@@ -107,6 +109,13 @@ uv run expertflow profile C:\models\expertflow\runs\trace.jsonl `
 ```
 
 Profile output is labeled `measured` because it summarizes observed router events. It includes expert concentration, static hit curves, adjacent-token reuse, and mean reuse distance by layer.
+
+Compare the deterministic probe's tracing-disabled and tracing-enabled token artifacts with:
+
+```powershell
+uv run expertflow parity baseline-tokens.json instrumented-tokens.json `
+  --output C:\models\expertflow\runs\parity.json
+```
 
 ### Compare cache policies
 

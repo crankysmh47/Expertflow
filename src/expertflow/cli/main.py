@@ -14,6 +14,7 @@ from expertflow.doctor import collect_doctor_report
 from expertflow.runtime.baseline import BaselineRunConfig
 from expertflow.runtime.measurement import run_measured_baseline
 from expertflow.trace.io import load_router_events
+from expertflow.trace.parity import compare_token_sequences
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -57,6 +58,14 @@ def build_parser() -> argparse.ArgumentParser:
         action="append",
         help="Resident experts per layer; repeat to produce a hit curve.",
     )
+
+    parity = commands.add_parser(
+        "parity",
+        help="Compare deterministic token sequences with and without tracing.",
+    )
+    parity.add_argument("baseline", type=Path)
+    parity.add_argument("instrumented", type=Path)
+    parity.add_argument("--output", type=Path, required=True)
 
     simulate = commands.add_parser(
         "simulate", help="Compare estimated cache policies over a router trace."
@@ -129,6 +138,19 @@ def _run_profile(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_parity(args: argparse.Namespace) -> int:
+    report = compare_token_sequences(args.baseline, args.instrumented)
+    output = args.output.resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(
+        json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    print(output)
+    return int(
+        not (report["prompt_matches"] and report["generated_matches"])
+    )
+
+
 def _run_simulate(args: argparse.Namespace) -> int:
     source = args.trace.resolve()
     simulation = simulate_policies(
@@ -159,6 +181,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_doctor(args)
     if args.command == "profile":
         return _run_profile(args)
+    if args.command == "parity":
+        return _run_parity(args)
     if args.command == "simulate":
         return _run_simulate(args)
     raise AssertionError(f"unhandled command: {args.command}")

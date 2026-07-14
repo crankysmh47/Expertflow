@@ -164,3 +164,12 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Kept the status section evidence-based: the CUDA runtime and analysis harness are complete, while the Q4 baseline, router trace, and GPT-5.6 integration remain explicitly pending.
 - Verified every local README link resolves, both installed console entry points render help, and the full suite passes `31` tests in `0.07s`.
 - Model and exact llama.cpp source downloads remained active throughout this documentation work; no download-completion claim is made here.
+
+### 22:58 PKT — Exact token-parity gate implemented
+
+- TDD red results: the token-parity module was initially absent, then the public CLI rejected `parity` as an unknown command.
+- Added strict, versioned prompt/generated token artifacts and exact comparison with the first differing generated token reported by index and both token IDs.
+- Added `expertflow parity <baseline> <instrumented> --output <report>`; its output is hard-labeled `measured` and never infers equality from rendered text.
+- TDD green result: `4` focused tests passed and the complete suite passed `35` tests in `0.09s`.
+- A follow-up red test showed parity mismatches still returned process status `0`. The CLI now writes the measured mismatch report and returns `1`, so the parity gate cannot be accidentally ignored; the complete suite passes `36` tests in `0.11s`.
+- Decoded the active aria2 control map rather than trusting the sparse file length: `2,392 / 3,443` four-MiB pieces were complete (`69.47%`) at this checkpoint. Paused the independently resumable source archive at `19,509,248` bytes to prioritize the blocking model transfer.
