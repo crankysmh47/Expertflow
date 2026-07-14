@@ -243,3 +243,32 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - TDD green result: the fixture reproduces 26 static-hotset hits and 19 LRU hits across 64 expert demands at eight slots/layer. The same checked evidence produces `CONDITIONAL`, `live_cache_enabled=false`, static-hotset policy, and `7,234` MiB measured configurable headroom.
 - Final Layer 2 gate passed: `44` tests in `0.18s`, Python compilation, both TOML manifests, every local README link, and `git diff --check`.
 - Layer 2 verdict remains `CONDITIONAL`. Live caching stays disabled until expert byte size, transfer timing, and a stratified multi-prompt trace are measured. Browser visual inspection of the standalone report is also pending because the in-app browser blocked its local URL. GPT-5.6 explanation is the next product layer and is not yet claimed.
+
+### 00:17 PKT — Stratified Q4 trace collection exposed a GPU parity failure
+
+- Superseded the proposed API-backed GPT-5.6 explanation layer. The user confirmed this Codex/GPT-5.6 build session itself should provide annotations and judge-facing explanations; ExpertFlow will not add an unnecessary API-key dependency.
+- Preflight measured the RTX 5060 Ti at `2,212` MiB used, `13,839` MiB free, and 13% utilization, with no llama or probe process active.
+- The first collection wrapper stopped before inference because Windows PowerShell promoted normal CUDA initialization text on native stderr into a terminating `NativeCommandError`. Root cause was the wrapper boundary, not the model. A process-level redirection diagnostic passed `--version` with exit `0`; all subsequent runs used `Start-Process`, hidden windows, redirected stdout/stderr, and explicit native exit codes.
+- Collected paired tracing-disabled/tracing-enabled Q4 runs for five public synthetic prompt shapes under `C:\models\expertflow\runs\stratified-q4`: code generation, short factual response, constrained planning, incident summarization, and bilingual explanation.
+- Collection completed with exit `0` for all ten GPU inference processes: `4,890` strict events and `39,120` selected-expert demands. Demand-weighted estimated hit rates are static-hotset `38.81%` and LRU `33.11%` at eight slots/layer.
+- Exact generated-token parity passed for `code-python-lru` and `incident-summary`, but failed for `short-factual-tides` at token 2, `constrained-gpu-plan` at token 2, and `bilingual-cache` at token 1. Prompt token IDs matched in every case.
+- Repeated the three failed cases in both modes. Tracing-disabled repeats match tracing-disabled, and tracing-enabled repeats match tracing-enabled, while cross-mode parity still fails. This rules out ordinary run-to-run sampling nondeterminism.
+- A CPU-only `short-factual-tides` control passed exact prompt/generated parity across 600 trace events in `8.019` seconds. Current root-cause boundary is therefore the GPU tensor-observation graph path; the lower-level scheduling mechanism is not yet claimed.
+- The original one-prompt telemetry PASS is insufficient across the stratified workload. Live caching remains disabled, and the new evidence is recorded in `docs/evidence/stratified-q4-routing.md`.
+
+### 00:23 PKT — Pinned Vulkan backend recovered transparent GPU telemetry
+
+- The machine has CMake and Ninja but no CUDA compiler. Rebuilding the pinned CUDA scheduler would require a large toolkit installation, so the next bounded control used the official b10002 Windows Vulkan artifact from the same llama.cpp revision.
+- GitHub release metadata reported `llama-b10002-bin-win-vulkan-x64.zip`, `32,950,223` bytes, SHA-256 `c2b66ab6912e9fad75c7c6d2000f660bb40bc1f063aa62ec671d471e27dd92ea`. The downloaded C-drive archive matched both size and digest before extraction.
+- The unchanged probe binary loaded the ABI-compatible Vulkan DLLs and selected the NVIDIA GeForce RTX 5060 Ti as Vulkan device 0. A formerly failing short-factual control passed exact parity across 600 events.
+- Repeated the complete five-prompt matrix on Vulkan with the same Q4 model, 10 offloaded layers, 12 threads, and eight generated tokens. All ten processes exited `0`; all five prompt and generated-token comparisons passed exactly.
+- Vulkan totals: `4,890` events, `39,120` demands, demand-weighted static-hotset `38.93%`, and LRU `34.63%`. These full-trace policy figures remain estimated.
+- Compared only fixed-prompt prefill events across the CUDA and Vulkan observation paths: 3,840 token/layer events and 30,720 expert demands. Ordered top-8 sets matched exactly for `84.74%` of events and individual selected experts overlapped `99.26%`.
+- Prefill policy estimates are effectively backend-stable: CUDA/Vulkan static-hotset `40.6868%/40.6803%` and LRU `33.1283%/33.1641%`. Generated continuations were excluded from the cross-backend comparison because three CUDA callback cases diverged.
+- Runtime direction is now explicit: verified CUDA for inference and memory baselines; verified Vulkan for parity-safe GPU router telemetry. Live caching remains disabled pending expert byte size and transfer timing.
+
+### 00:27 PKT — Stratified evidence verification checkpoint
+
+- The first GGUF metadata-inspection attempt failed before reading the model because the invoked Python environment did not contain NumPy. The pinned llama.cpp `gguf-py` package declares NumPy, tqdm, PyYAML, and requests; the default Python 3.11 environment already provides a stable NumPy 1.26.4, so inspection will use that interpreter without adding a project dependency.
+- An expected `scripts/check_markdown_links.py` helper was not present in this small repository. Replaced that check with a read-only PowerShell validation of all nine local README links; all targets exist.
+- Verification passed: `44` tests, runtime-artifact TOML parsing, all nine local README targets, and `git diff --check`.

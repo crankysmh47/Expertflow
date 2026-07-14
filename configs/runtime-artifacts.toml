@@ -5,6 +5,13 @@ platform = "windows-x86_64"
 cuda_version = "12.4"
 executable_subpath = "llama-b10002/runtime/llama-cli.exe"
 
+[runtime.llama_cpp_vulkan]
+release = "b10002"
+revision = "a7312ae94f801fc9c6786dc56e38df57b964f697"
+platform = "windows-x86_64"
+backend = "vulkan"
+executable_subpath = "llama-b10002-vulkan/runtime/llama-cli.exe"
+
 [sources.llama_cpp]
 repository = "ggml-org/llama.cpp"
 revision = "a7312ae94f801fc9c6786dc56e38df57b964f697"
@@ -59,3 +66,9 @@ url = "https://github.com/ggml-org/llama.cpp/releases/download/b10002/cudart-lla
 filename = "cudart-llama-bin-win-cuda-12.4-x64.zip"
 size_bytes = 391443627
 sha256 = "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6"
+
+[artifacts.llama_vulkan_binary]
+url = "https://github.com/ggml-org/llama.cpp/releases/download/b10002/llama-b10002-bin-win-vulkan-x64.zip"
+filename = "llama-b10002-bin-win-vulkan-x64.zip"
+size_bytes = 32950223
+sha256 = "c2b66ab6912e9fad75c7c6d2000f660bb40bc1f063aa62ec671d471e27dd92ea"

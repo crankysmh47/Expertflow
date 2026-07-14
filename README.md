@@ -2,7 +2,7 @@
 
 A hardware-aware routing observatory for running sparse mixture-of-experts models on one local GPU.
 
-ExpertFlow is an OpenAI Build Week project in active development. The real Gemma 4 Q4 baseline, routing probe, recommendation, and causal replay path now work on the development machine. The GPT-5.6 explanation layer is still pending, and the live-cache gate remains conditional. See [current status](#current-status) before treating any result as final.
+ExpertFlow is an OpenAI Build Week project in active development. The real Gemma 4 Q4 baseline, routing probe, recommendation, and causal replay path now work on the development machine. Codex/GPT-5.6 annotations are part of the build workflow, and the live-cache gate remains conditional. See [current status](#current-status) before treating any result as final.
 
 ## Table of contents
 
@@ -69,10 +69,11 @@ The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 
 | Unmodified real-model baseline | Passed on CPU and bounded 10-layer GPU offload |
 | Token parity comparison | Working; exact measured comparison with first mismatch |
 | Routing callback probe | Passed; 1,350 real events and exact token parity |
+| Stratified GPU telemetry | Five Vulkan prompt pairs pass exact parity; CUDA callback divergence is disclosed |
 | Machine recommendation | Working; current verdict is `CONDITIONAL` with live caching disabled |
 | Causal replay report | Working; self-contained HTML with measured/estimated labels |
 | CPU-only reproduction fixture | Working; eight previously measured events with checked totals |
-| GPT-5.6 explanation layer | Pending; no API-backed claim yet |
+| Codex/GPT-5.6 annotations | Active in the build and evidence workflow; no runtime API key required |
 
 The append-only [project log](PROJECT_LOG.md) records commands, failures, decisions, hashes, and test results as the work moves.
 
@@ -171,7 +172,7 @@ uv run expertflow recommend `
   --output C:\models\expertflow\runs\q4-probe\recommendation.json
 ```
 
-The current real recommendation is `CONDITIONAL`: use static-hotset for replay, but keep live caching disabled until expert byte size, transfer timing, and a stratified trace are available.
+The current real recommendation is `CONDITIONAL`: use static-hotset for replay, but keep live caching disabled until expert byte size and transfer timing are measured. A five-prompt trace now exists; its CUDA callback divergence and parity-safe Vulkan replacement are documented rather than averaged away.
 
 ### Render the causal replay report
 
@@ -230,7 +231,7 @@ strict JSONL trace ----> measured locality profile
 reactive/static/LRU simulator -> machine recommendation
         |
         v
-causal replay report -> GPT-5.6 explanation (next stage)
+causal replay report -> Codex/GPT-5.6 evidence annotations
 ```
 
 The repository keeps reviewable code and manifests. Large or generated material stays under the external artifact root.
@@ -248,7 +249,7 @@ PROJECT_LOG.md       chronological execution record
 
 Codex is being used to evaluate the plan, inspect the machine, implement the project, run tests, and maintain `PROJECT_LOG.md`. The final submission will include the required Codex session identifier from `/feedback`.
 
-GPT-5.6 will receive validated doctor/profile/simulation artifacts and produce a grounded explanation and recommended configuration. That layer is intentionally downstream of deterministic measurements. It is marked pending above because the repository does not yet contain the API integration.
+Codex with GPT-5.6 is also being used to annotate the measured artifacts, explain failed gates, and prepare the judge-facing narrative. ExpertFlow does not require an OpenAI API key at runtime; deterministic local code remains responsible for every metric and verdict.
 
 ## Further reading
 
@@ -256,6 +257,7 @@ GPT-5.6 will receive validated doctor/profile/simulation artifacts and produce a
 - [Stage 0 execution plan](docs/superpowers/plans/2026-07-14-stage0-q4-baseline.md)
 - [Pinned llama.cpp baseline evidence](docs/evidence/llama-baseline.md)
 - [Gemma 4 routing source map](docs/evidence/gemma4-routing-source-map.md)
+- [Stratified Q4 routing evidence](docs/evidence/stratified-q4-routing.md)
 
 ## License
 
