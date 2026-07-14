@@ -93,3 +93,13 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Reports are stable JSON, preserve the resolved source-trace path, and explicitly label their outputs as `measured` rather than estimated.
 - Verified the installed console entry point with `expertflow --help`.
 - TDD green result: the CLI integration test passed and the complete suite passed `18` tests in `0.05s`.
+
+### 22:19 PKT — Judge-facing hardware doctor completed
+
+- TDD red result: `ModuleNotFoundError: No module named 'expertflow.doctor'`.
+- Added `expertflow doctor` with machine-readable GPU, system RAM, artifact-disk, Python, platform, and tool-path evidence. The default artifact root is the user-approved `C:\models\expertflow`.
+- Real preflight written externally to `C:\models\expertflow\runs\preflight\doctor.json`.
+- Measured GPU snapshot: RTX 5060 Ti, driver `591.86`, 16,311 MiB total, 2,258 MiB used, 13,793 MiB free.
+- Measured system RAM: `33,396,539,392` bytes. Measured free space on the artifact disk: `132,702,834,688` bytes.
+- Confirmed CMake, Ninja, GCC/G++, aria2, curl, and nvidia-smi; `nvcc` remains absent and is reported as `null` rather than hidden.
+- TDD green result: `3` doctor tests passed; the complete suite passed `21` tests in `0.05s`.
