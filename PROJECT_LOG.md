@@ -26,3 +26,11 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Remote ETag: `21005eb9bd80c75b5236d5b8e9828b5b887609f0cdd9158e86ea3e16044928f4`.
 - Next action: commit the approved design and Stage 0 execution plan, then download and verify the pinned Q4 artifact.
 
+### 21:28 PKT — Artifact foundation completed
+
+- Added a clean Python package scaffold, pinned artifact manifest, and model-weight ignore rules.
+- TDD red result: `tests/test_artifacts.py` failed during collection with `ModuleNotFoundError: No module named 'expertflow.artifacts'`, confirming the loader did not exist.
+- Implemented immutable `ArtifactSpec`, TOML manifest loading, exact byte-length validation, and streaming SHA-256 verification.
+- TDD green result: `3 passed in 0.08s` on Python 3.11.9 with pytest 8.4.0.
+- No model bytes have been written into the repository.
+- Next action: add the tested fetch CLI, then download the pinned Q4 file to `D:\models\expertflow`.

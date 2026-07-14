@@ -1,0 +1,7 @@
+[artifacts.gemma4_q4]
+repository = "google/gemma-4-26B-A4B-it-qat-q4_0-gguf"
+revision = "21bfe2a8c89118c9a1a2aa242934fc4d1c0fff15"
+filename = "gemma-4-26B_q4_0-it.gguf"
+size_bytes = 14439361440
+sha256 = "21005eb9bd80c75b5236d5b8e9828b5b887609f0cdd9158e86ea3e16044928f4"
+
