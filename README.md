@@ -71,6 +71,7 @@ The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 
 | Routing callback probe | Passed; 1,350 real events and exact token parity |
 | Machine recommendation | Working; current verdict is `CONDITIONAL` with live caching disabled |
 | Causal replay report | Working; self-contained HTML with measured/estimated labels |
+| CPU-only reproduction fixture | Working; eight previously measured events with checked totals |
 | GPT-5.6 explanation layer | Pending; no API-backed claim yet |
 
 The append-only [project log](PROJECT_LOG.md) records commands, failures, decisions, hashes, and test results as the work moves.
@@ -182,6 +183,16 @@ uv run expertflow replay C:\models\expertflow\runs\q4-probe\trace.jsonl `
 ```
 
 The result is one self-contained HTML file with the gate verdict, measured memory envelope, estimated policy comparison, explicit evidence blockers, and a bounded event timeline. It does not require a web server or model weights to open. The real development-machine report shows a `36.37%` estimated static-hotset hit rate versus `31.87%` for LRU, while preserving the `CONDITIONAL` verdict.
+
+To check the simulator without downloading the model, use the small [replay fixture](examples/replay/README.md):
+
+```powershell
+uv run expertflow simulate examples\replay\trace.jsonl `
+  --capacity-per-layer 8 `
+  --output replay-simulation.json
+```
+
+Those eight previously measured events produce 26 static-hotset hits and 19 LRU hits out of 64 expert demands. The outcomes are still estimates; the fixture does not claim live transfer savings.
 
 ## Trace contract
 

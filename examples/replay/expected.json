@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "source_measurement_kind": "previously_measured",
+  "source_trace_sha256": "1b40767674870423e50fa4e0422cefe1ac2d17c86d7e363985c00d538668ad22",
+  "selection": "first eight layer_id=0 events in source order",
+  "event_count": 8,
+  "demand_count": 64,
+  "capacity_per_layer": 8,
+  "outcome_measurement_kind": "estimated",
+  "machine_evidence": {
+    "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+    "total_vram_mib": 16311,
+    "measured_peak_vram_mib": 8053,
+    "safety_reserve_mib": 1024
+  },
+  "recommendation": {
+    "verdict": "CONDITIONAL",
+    "live_cache_enabled": false,
+    "policy": "static_hotset",
+    "remaining_configurable_headroom_mib": 7234
+  },
+  "static_hotset": {
+    "hits": 26,
+    "misses": 38,
+    "hit_rate": 0.40625
+  },
+  "lru": {
+    "hits": 19,
+    "misses": 45,
+    "hit_rate": 0.296875
+  }
+}

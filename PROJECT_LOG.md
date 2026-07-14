@@ -233,3 +233,13 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Added `expertflow replay <trace> --recommendation ... --output report.html --max-events 300` and updated the public README.
 - Regenerated the real report at `C:\models\expertflow\runs\q4-probe\report.html`: `49,247` bytes, SHA-256 `b0d6f5ea63a4fe7681b74d141b137871b44ad4ed8824c913b1f6f446a12b713a`. It contains 300 bounded timeline rows and records that 1,050 of 1,350 events are omitted from the view, without omitting them from aggregate totals.
 - The in-app browser refused the local `file://` URL under its security policy. No workaround was attempted. Automated structure/content checks pass; browser visual inspection remains an explicit pending checklist item.
+
+## 2026-07-15
+
+### 00:03 PKT — Layer 2 reproduction fixture completed
+
+- Added a checked-in, prompt-text-free fixture containing the first eight `layer_id=0` events from the real Q4 trace in source order. The full source trace SHA-256 is `1b40767674870423e50fa4e0422cefe1ac2d17c86d7e363985c00d538668ad22`; the fixture is labeled `previously_measured`.
+- TDD red result: the reproduction test failed because `examples/replay/expected.json` did not exist. Added the trace, expected evidence, and a short CPU-only reproduction guide.
+- TDD green result: the fixture reproduces 26 static-hotset hits and 19 LRU hits across 64 expert demands at eight slots/layer. The same checked evidence produces `CONDITIONAL`, `live_cache_enabled=false`, static-hotset policy, and `7,234` MiB measured configurable headroom.
+- Final Layer 2 gate passed: `44` tests in `0.18s`, Python compilation, both TOML manifests, every local README link, and `git diff --check`.
+- Layer 2 verdict remains `CONDITIONAL`. Live caching stays disabled until expert byte size, transfer timing, and a stratified multi-prompt trace are measured. Browser visual inspection of the standalone report is also pending because the in-app browser blocked its local URL. GPT-5.6 explanation is the next product layer and is not yet claimed.

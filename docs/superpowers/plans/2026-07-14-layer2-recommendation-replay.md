@@ -73,10 +73,10 @@
 - Modify: `README.md`
 - Modify: `PROJECT_LOG.md`
 
-- [ ] Derive a small prompt-text-free fixture from the public checked-in baseline prompt trace and label it `previously_measured`.
-- [ ] Add a test that reproduces the checked-in expected recommendation and policy totals.
-- [ ] Run the complete suite, README link check, TOML validation, and `git diff --check`.
-- [ ] Record the final Layer 2 verdict and remaining blockers before committing.
+- [x] Derive a small prompt-text-free fixture from the public checked-in baseline prompt trace and label it `previously_measured`.
+- [x] Add a test that reproduces the checked-in expected recommendation and policy totals.
+- [x] Run the complete suite, README link check, TOML validation, and `git diff --check`.
+- [x] Record the final Layer 2 verdict and remaining blockers before committing.
 
 ## Stop rules
 
