@@ -103,3 +103,20 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Measured system RAM: `33,396,539,392` bytes. Measured free space on the artifact disk: `132,702,834,688` bytes.
 - Confirmed CMake, Ninja, GCC/G++, aria2, curl, and nvidia-smi; `nvcc` remains absent and is reported as `null` rather than hidden.
 - TDD green result: `3` doctor tests passed; the complete suite passed `21` tests in `0.05s`.
+
+### 22:23 PKT — llama.cpp release provenance corrected
+
+- Verified `llama-b10002-bin-win-cuda-12.4-x64.zip`: `248,820,066` bytes and SHA-256 `d8fa3634b6a6a2eb64b56d3f4d68b8e71ee6e1ccb980059476dd51787f1d2f3f`, exactly matching the official release asset metadata.
+- Extracted the verified archive under `C:\models\expertflow\dependencies\llama-b10002\runtime`.
+- `llama-cli --version` reports build `10002`, commit `a7312ae94`, built with Clang 20.1.8 for Windows x86_64.
+- This exposed a provenance mismatch: earlier source inspection used then-current HEAD `bf2c86ddc0685f580595954056c2e77ebabfab4f`, not the release's source commit.
+- Resolved the runtime's full source commit as `a7312ae94f801fc9c6786dc56e38df57b964f697` through GitHub's commit API and re-inspected the Gemma 4 logits, `build_moe_ffn`, `ffn_moe_topk`, weights, and callback boundaries. The cited paths, line numbers, shapes, and source-feasibility PASS are unchanged.
+- Updated the execution plan and source map to the release-matched commit. The obsolete partial source archive will not be used.
+
+### 22:26 PKT — CUDA baseline runtime fully verified
+
+- Verified `cudart-llama-bin-win-cuda-12.4-x64.zip`: `391,443,627` bytes and SHA-256 `8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6`, exactly matching official release metadata.
+- Extracted `cublas64_12.dll`, `cublasLt64_12.dll`, and `cudart64_12.dll` into the versioned external runtime directory.
+- Measured device check now passes: `CUDA0: NVIDIA GeForce RTX 5060 Ti (16310 MiB, 15158 MiB free)`.
+- Added `configs/runtime-artifacts.toml` and `docs/evidence/llama-baseline.md`; binaries and third-party source remain outside Git.
+- Resumed the Q4 model through its existing aria2 control map immediately after the runtime check.

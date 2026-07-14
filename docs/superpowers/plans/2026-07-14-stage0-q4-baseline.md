@@ -209,7 +209,7 @@ Expected: both assets match the sizes and SHA-256 values recorded in `configs/ru
 
 - [ ] **Step 2: Download and verify the exact source archive**
 
-Download the GitHub codeload archive for commit `bf2c86ddc0685f580595954056c2e77ebabfab4f`, hash it, and extract it below the external dependency directory.
+Download the GitHub codeload archive for release-matched commit `a7312ae94f801fc9c6786dc56e38df57b964f697`, hash it, and extract it below the external dependency directory.
 Expected: the source directory name and archive digest are written into the manifest and evidence document.
 
 - [ ] **Step 3: Extract and identify the runtime**

@@ -1,11 +1,13 @@
 # Gemma 4 routing telemetry source map
 
-- **Inspection revision:** `ggml-org/llama.cpp@bf2c86ddc0685f580595954056c2e77ebabfab4f`
+- **Inspection revision:** `ggml-org/llama.cpp@a7312ae94f801fc9c6786dc56e38df57b964f697` (release `b10002`)
 - **Inspected:** 2026-07-14 PKT
 - **Source verdict:** PASS
 - **Overall 24-hour gate:** PENDING real Q4 load, trace parity, and locality evidence
 
 ## Routing path
+
+The initial live-HEAD inspection used `bf2c86ddc0685f580595954056c2e77ebabfab4f`. After the official `b10002` executable reported build commit `a7312ae94`, the full commit was resolved through GitHub's commit API and every cited routing boundary below was rechecked against the release-matched source. The cited line numbers and tensor contracts are identical.
 
 1. `src/models/gemma4.cpp:100` loads the optional router tensor `ffn_gate_inp` with shape `[n_embd, n_expert]`; its presence marks an MoE layer.
 2. `src/models/gemma4.cpp:316` computes Gemma 4 router logits from `attn_out`. At line 320, `build_lora_mm` produces `[n_expert, n_tokens]`, named `ffn_moe_logits-{layer}` by the graph callback.
