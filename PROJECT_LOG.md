@@ -179,3 +179,20 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Confirmed from the pinned `llama-cli b10002 --help` that warmup is enabled by default and has an explicit `--no-warmup` switch.
 - Added a failing command-contract assertion, then included `--no-warmup` in every measured baseline. This avoids a hidden empty warmup pass and keeps the MoE baseline aligned with the callback probe's no-warmup execution.
 - The focused command tests pass `2` tests and the complete suite passes `36` tests in `0.11s`.
+
+### 23:07 PKT — Download recovery paths measured and bounded
+
+- A codeload resume attempt failed closed with curl error `33`: the exact source ZIP endpoint does not honor byte ranges. No partial archive is being treated as complete or verified.
+- A shallow Git fetch of the same pinned llama.cpp commit established HTTPS but delivered no pack bytes for several minutes, so it was stopped instead of competing indefinitely with the model.
+- Restarted only the model's aria2 transfer with `16` ranges. The control map preserved all `2,645 / 3,443` completed pieces across the restart; by this checkpoint it had reached `2,753 / 3,443` (`79.96%`) with about `2,760` MiB remaining.
+- Drafted a separate `native/router_probe` executable and external C-drive build script. They remain uncommitted until compiled against the exact pinned source and exercised on the verified model.
+
+### 23:11 PKT — Official-CUDA router probe build passed
+
+- Confirmed the verified b10002 DLLs export every C API symbol required for model loading, greedy decoding, `cb_eval`, tensor contract checks, and host copying.
+- Added a separate `native/router_probe` executable that emits strict schema `1.0.0` JSONL from `ffn_moe_topk-{layer}` and versioned prompt/generated token artifacts for exact parity.
+- Generated minimal MinGW import libraries from checked-in `.def` files and linked the probe directly to the official verified `llama.dll`, `ggml.dll`, and `ggml-base.dll`; no runtime or graph source was patched.
+- Fetched the seven required headers from revision-pinned raw URLs, recorded every size and SHA-256 in `configs/runtime-artifacts.toml`, and kept them under the external C-drive dependency root.
+- Build PASS with GCC 15.2.0. `--help` and `--version` both execute. The final build statically links MinGW support libraries, leaving only system DLLs plus the pinned `llama.dll`, `ggml.dll`, and `ggml-base.dll`. Probe result: `2,930,097` bytes, SHA-256 `d791b3835fcebe6e95efcebc7d0ab62967b0aae46916baeaf53acf377845f2d5`.
+- Real Q4 trace and token parity remain pending model verification; this build result alone is not recorded as a telemetry PASS.
+- A deliberate missing-model smoke advanced through dynamic linking and loaded the official CUDA, RPC, and Zen4 CPU backends before returning the expected model-open exit `1`; this verifies the executable/runtime boundary without claiming real inference.

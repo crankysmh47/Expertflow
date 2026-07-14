@@ -1,0 +1,20 @@
+LIBRARY llama.dll
+EXPORTS
+    llama_batch_get_one
+    llama_context_default_params
+    llama_decode
+    llama_free
+    llama_init_from_model
+    llama_model_default_params
+    llama_model_free
+    llama_model_get_vocab
+    llama_model_load_from_file
+    llama_sampler_chain_add
+    llama_sampler_chain_default_params
+    llama_sampler_chain_init
+    llama_sampler_free
+    llama_sampler_init_greedy
+    llama_sampler_sample
+    llama_set_n_threads
+    llama_tokenize
+    llama_vocab_is_eog

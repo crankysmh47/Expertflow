@@ -53,7 +53,7 @@ The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 
 | Gemma 4 Q4 artifact | Download/verification in progress |
 | Unmodified real-model baseline | Pending verified Q4 completion |
 | Token parity comparison | Working; exact measured comparison with first mismatch |
-| Routing callback probe | Source boundary passed; build and real trace pending |
+| Routing callback probe | GPU build passed against b10002; real trace pending |
 | GPT-5.6 explanation layer | Pending; no API-backed claim yet |
 
 The append-only [project log](PROJECT_LOG.md) records commands, failures, decisions, hashes, and test results as the work moves.
@@ -99,6 +99,17 @@ uv run expertflow baseline `
 ```
 
 The run directory contains `manifest.json`, `stdout.txt`, `stderr.txt`, and `llama.log`. The manifest records the exact command, model identity, elapsed time, process memory, and sampled GPU memory.
+
+### Build the routing probe
+
+The separate probe links to the same verified b10002 CUDA DLLs as the baseline. Its build tree stays outside Git:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\build_router_probe.ps1 `
+  -LlamaCppSource C:\models\expertflow\dependencies\llama.cpp-a7312ae94f801fc9c6786dc56e38df57b964f697
+```
+
+Build provenance and the callback boundary are recorded in [router probe evidence](docs/evidence/router-probe-build.md).
 
 ### Profile a router trace
 

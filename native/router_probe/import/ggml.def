@@ -1,0 +1,3 @@
+LIBRARY ggml.dll
+EXPORTS
+    ggml_backend_load_all

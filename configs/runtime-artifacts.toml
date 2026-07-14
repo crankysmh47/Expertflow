@@ -10,6 +10,41 @@ repository = "ggml-org/llama.cpp"
 revision = "a7312ae94f801fc9c6786dc56e38df57b964f697"
 archive_url = "https://codeload.github.com/ggml-org/llama.cpp/zip/a7312ae94f801fc9c6786dc56e38df57b964f697"
 
+[[sources.llama_cpp.headers]]
+path = "include/llama.h"
+size_bytes = 82037
+sha256 = "2331631b6a3567311abc0402c55aa9a867ee99759f2550bdfa261ec3693a21f6"
+
+[[sources.llama_cpp.headers]]
+path = "ggml/include/ggml.h"
+size_bytes = 109956
+sha256 = "ef022ca08ce00bf3f3be80b604bf3501a51240abc4b29296fe758419ad1fa0b3"
+
+[[sources.llama_cpp.headers]]
+path = "ggml/include/ggml-alloc.h"
+size_bytes = 3753
+sha256 = "94e4cd069b9313b2ceb35dacec901981e0bb478d8bb31035b7126be091998c23"
+
+[[sources.llama_cpp.headers]]
+path = "ggml/include/ggml-backend.h"
+size_bytes = 25306
+sha256 = "a620e815b43a44cc72d5f216629a3a91980335b61bc37eb6b2d0813368c3704f"
+
+[[sources.llama_cpp.headers]]
+path = "ggml/include/ggml-cpu.h"
+size_bytes = 7696
+sha256 = "1aafe97e576ea38c0da57517fb2492955d0b69c1a799842481fc069d6d9d28ef"
+
+[[sources.llama_cpp.headers]]
+path = "ggml/include/ggml-opt.h"
+size_bytes = 14040
+sha256 = "3586de1bc8a934b5c72339e2b6937b0641e8f149b512231e666f67de0736eea2"
+
+[[sources.llama_cpp.headers]]
+path = "ggml/include/gguf.h"
+size_bytes = 11355
+sha256 = "e56714aab702e5ce62ee587a409643c08f7e93e8fbb77f48ef7cc85075f96fa4"
+
 [artifacts.llama_cuda_binary]
 url = "https://github.com/ggml-org/llama.cpp/releases/download/b10002/llama-b10002-bin-win-cuda-12.4-x64.zip"
 filename = "llama-b10002-bin-win-cuda-12.4-x64.zip"
