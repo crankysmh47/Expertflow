@@ -1,0 +1,26 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.py[cod]
+
+# Generated project outputs
+artifacts/
+runs/
+reports/
+
+# Model weights never belong in Git
+models/
+*.gguf
+*.safetensors
+
+# Local build trees
+build/
+cmake-build-*/
+
+# Editor and OS noise
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
