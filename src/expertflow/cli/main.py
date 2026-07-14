@@ -8,6 +8,7 @@ from dataclasses import asdict
 import json
 from pathlib import Path
 
+from expertflow.analysis.cache_sim import simulate_policies
 from expertflow.analysis.profile import summarize_routing
 from expertflow.doctor import collect_doctor_report
 from expertflow.trace.io import load_router_events
@@ -41,6 +42,13 @@ def build_parser() -> argparse.ArgumentParser:
         action="append",
         help="Resident experts per layer; repeat to produce a hit curve.",
     )
+
+    simulate = commands.add_parser(
+        "simulate", help="Compare estimated cache policies over a router trace."
+    )
+    simulate.add_argument("trace", type=Path)
+    simulate.add_argument("--capacity-per-layer", type=int, required=True)
+    simulate.add_argument("--output", type=Path, required=True)
     return parser
 
 
@@ -80,12 +88,36 @@ def _run_profile(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_simulate(args: argparse.Namespace) -> int:
+    source = args.trace.resolve()
+    simulation = simulate_policies(
+        list(load_router_events(source)),
+        capacity_per_layer=args.capacity_per_layer,
+    )
+    report = {
+        "schema_version": "1.0.0",
+        "measurement_kind": simulation.measurement_kind,
+        "source_trace": str(source),
+        "simulation": asdict(simulation),
+    }
+
+    output = args.output.resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(
+        json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    print(output)
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "doctor":
         return _run_doctor(args)
     if args.command == "profile":
         return _run_profile(args)
+    if args.command == "simulate":
+        return _run_simulate(args)
     raise AssertionError(f"unhandled command: {args.command}")
 
 
