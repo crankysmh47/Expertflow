@@ -11,14 +11,14 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Q8 was removed from the critical path.
 - Repository began as an unborn `main` branch containing only the untracked `expertflow_hackathon_spec_v0_11.md`.
 - Created branch `codex/expertflow-stage0`; no linked worktree was created because the repository had no initial commit.
-- Repository policy: model weights live outside Git under `D:\models\expertflow`; generated runs and reports remain ignored.
+- Initial repository policy placed weights under `D:\models\expertflow`; this was corrected to `C:\models\expertflow` at 21:31 PKT when the user clarified that `D:` is an HDD.
 
 ### 21:25 PKT — Machine and artifact preflight
 
 - GPU after reboot: NVIDIA GeForce RTX 5060 Ti, 2,075 MiB used, 13,976 MiB free.
 - System RAM previously measured: 31.1 GiB.
 - Free disk at preflight: approximately 137.8 GiB on `C:` and 137.7 GiB on `D:`.
-- No Q4 GGUF was found in `D:\models\expertflow` or the Hugging Face cache.
+- No Q4 GGUF was found in the existing Hugging Face cache.
 - Canonical repository: `google/gemma-4-26B-A4B-it-qat-q4_0-gguf`.
 - Pinned repository revision: `21bfe2a8c89118c9a1a2aa242934fc4d1c0fff15`.
 - Canonical text-only file: `gemma-4-26B_q4_0-it.gguf`.
@@ -33,4 +33,39 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Implemented immutable `ArtifactSpec`, TOML manifest loading, exact byte-length validation, and streaming SHA-256 verification.
 - TDD green result: `3 passed in 0.08s` on Python 3.11.9 with pytest 8.4.0.
 - No model bytes have been written into the repository.
-- Next action: add the tested fetch CLI, then download the pinned Q4 file to `D:\models\expertflow`.
+- Next action: download the pinned Q4 file to `C:\models\expertflow`.
+
+### 21:31 PKT — Model storage corrected to the SSD
+
+- The first download command targeted `D:\models\expertflow` before the user clarified that `D:` is an HDD.
+- Stopped the wrapper and its orphaned Python child processes (`2768`, `5036`, and `22976`).
+- Inspection showed the lock and incomplete files were both zero bytes; no model payload required migration or redownload.
+- Removed only the empty downloader state under the verified path `D:\models\expertflow`.
+- Created `C:\models\expertflow` and changed the CLI default, plan, and repository policy to that SSD path.
+- Free space on `C:` before restarting the transfer: approximately 137.5 GiB.
+
+### 21:41 PKT — Download transport and runtime toolchain decision
+
+- Hugging Face Xet and `hf_hub_download` transports repeatedly stalled while holding incomplete-file locks; a direct ranged request to the same pinned revision succeeded.
+- Preserved the valid partial payload and resumed it with retrying `curl` directly into the canonical path on `C:`. The transfer passed 1 GiB and continued to grow; final size and SHA-256 remain pending and will be recorded only after verification.
+- Shallow Git transports for llama.cpp also stalled or left a broken promisor checkout. Switched to GitHub's exact-commit codeload archive for reproducible source inspection, with its local SHA-256 to be pinned after download.
+- Host inspection found CMake and Ninja but no `nvcc`, Visual Studio C++ toolchain, or Vulkan SDK. MSYS2 UCRT GCC/G++ are available.
+- Chosen bounded path: official llama.cpp `b10002` CUDA 12.4 Windows assets for the real GPU baseline, exact commit `bf2c86ddc0685f580595954056c2e77ebabfab4f` source for inspection, and a CPU-only GCC instrumentation build for trace/parity validation. A CUDA compiler installation is deferred until the 24-hour feasibility gate justifies live runtime modification.
+- All model, runtime, and source artifacts remain external under `C:\models\expertflow`; the repository retains only manifests, code, tests, compact evidence, and logs.
+
+### 21:48 PKT — Resumable downloader hardened and Q4 prioritized
+
+- Added a regression test proving that an incomplete canonical model file is resumed through the pinned revision URL instead of being rejected as though it were complete.
+- TDD red result: `TypeError: fetch_artifact() got an unexpected keyword argument 'downloader'`.
+- Replaced the unreliable Hugging Face client transport with a retrying ranged `curl` downloader, while retaining strict final byte-length and SHA-256 verification. Exact-size corrupt files still fail closed.
+- TDD green result: all `6` tests passed in `0.04s` on the project Python 3.12.11 environment.
+- Paused the resumable llama.cpp source and binary transfers because three simultaneous connections stalled together. The Q4 transfer was given sole bandwidth and continued growing on `C:`; runtime/source downloads will resume after it completes.
+
+### 22:02 PKT — Gemma 4 routing source boundary located
+
+- Queried GitHub's exact-commit tree for llama.cpp revision `bf2c86ddc0685f580595954056c2e77ebabfab4f` and inspected the authoritative raw source.
+- `src/models/gemma4.cpp` builds router logits as `[n_expert, n_tokens]` and passes them to `build_moe_ffn`.
+- `src/llama-graph.cpp` materializes `selected_experts` with `ggml_argsort_top_k` as `[n_expert_used, n_tokens]` and already names the tensor `ffn_moe_topk-{layer}` through the graph callback.
+- The public scheduler evaluation callback can request only that small tensor and copy it to host after computation. The existing `examples/eval-callback` and `common/debug.cpp` demonstrate this mechanism.
+- Source feasibility verdict: `PASS`. No graph, router, allocator, scheduler, or model-format mutation is needed for the first telemetry probe. The overall gate remains pending the real Q4 load, deterministic parity, schema validation, and locality evidence.
+- Added `docs/evidence/gemma4-routing-source-map.md` and removed the now-unused empty `third_party/` directory to preserve the external-artifact boundary.

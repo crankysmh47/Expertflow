@@ -7,9 +7,10 @@ name = "expertflow-local"
 version = "0.1.0"
 description = "Hardware-aware routing observatory for local sparse MoE inference"
 requires-python = ">=3.11"
-dependencies = [
-  "huggingface-hub>=1.4,<2",
-]
+dependencies = []
+
+[project.scripts]
+expertflow-fetch-q4 = "expertflow.cli.fetch_q4:main"
 
 [project.optional-dependencies]
 dev = [
@@ -23,4 +24,3 @@ testpaths = ["tests"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/expertflow"]
-

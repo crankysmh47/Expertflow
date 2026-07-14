@@ -13,7 +13,7 @@
 - Primary model profile: Gemma 4 26B A4B Q4 GGUF, text-only, batch size 1.
 - Canonical model revision: `21bfe2a8c89118c9a1a2aa242934fc4d1c0fff15`.
 - Canonical model file: `gemma-4-26B_q4_0-it.gguf`.
-- Model weights must remain outside Git under `D:\models\expertflow`.
+- Model weights must remain outside Git under `C:\models\expertflow`.
 - Q8 is excluded from the critical path.
 - No llama.cpp cache or routing mutation is allowed in this plan.
 - Every material command, result, failure, and decision must be appended to `PROJECT_LOG.md`.
@@ -125,8 +125,10 @@ git commit -m "chore: establish ExpertFlow Q4 baseline"
 ### Task 2: Download and verify the pinned Q4 artifact
 
 **Files:**
-- Create: `scripts/fetch_q4.py`
+- Create: `src/expertflow/fetching.py`
+- Create: `src/expertflow/cli/fetch_q4.py`
 - Create: `tests/test_fetch_q4.py`
+- Modify: `pyproject.toml`
 - Modify: `PROJECT_LOG.md`
 
 **Interfaces:**
@@ -174,7 +176,7 @@ Expected: PASS without downloading the 14 GB file.
 
 - [ ] **Step 4: Download the real artifact**
 
-Run: `python scripts/fetch_q4.py --destination D:\models\expertflow`  
+Run: `expertflow-fetch-q4 --destination C:\models\expertflow`
 Expected: the pinned file downloads or resumes and verification prints `verified` plus its absolute path.
 
 - [ ] **Step 5: Record exact file size, SHA-256, elapsed time, and free disk in the project log**
@@ -185,56 +187,49 @@ Expected: length `14439361440`.
 - [ ] **Step 6: Commit the downloader**
 
 ```powershell
-git add PROJECT_LOG.md scripts/fetch_q4.py tests/test_fetch_q4.py
+git add PROJECT_LOG.md pyproject.toml uv.lock src/expertflow/fetching.py src/expertflow/cli tests/test_fetch_q4.py
 git commit -m "feat: fetch and verify pinned Gemma Q4 artifact"
 ```
 
-### Task 3: Pin and build an unmodified llama.cpp baseline
+### Task 3: Pin an unmodified llama.cpp GPU baseline and exact source
 
 **Files:**
-- Create: `third_party/llama.cpp` as a Git submodule
-- Create: `scripts/build_llama.ps1`
+- Create: `configs/runtime-artifacts.toml`
 - Create: `docs/evidence/llama-baseline.md`
 - Modify: `PROJECT_LOG.md`
 
 **Interfaces:**
-- Consumes: CMake, Ninja, the target GPU, and the pinned llama.cpp commit recorded by the submodule.
-- Produces: a reproducible `llama-cli.exe` path and a build-evidence document.
+- Consumes: the official pinned llama.cpp CUDA 12.4 Windows release assets, the exact pinned source archive, and the target GPU.
+- Produces: a verified GPU-capable `llama-cli.exe`, an exact source tree for inspection, and a build-evidence document.
 
-- [ ] **Step 1: Add llama.cpp as a pinned submodule**
+- [ ] **Step 1: Download the pinned official CUDA runtime assets**
 
-Run: `git submodule add https://github.com/ggml-org/llama.cpp third_party/llama.cpp`  
-Expected: `.gitmodules` and a submodule entry are created.
+Download release `b10002` assets `llama-b10002-bin-win-cuda-12.4-x64.zip` and `cudart-llama-bin-win-cuda-12.4-x64.zip` to `C:\models\expertflow\dependencies`.
+Expected: both assets match the sizes and SHA-256 values recorded in `configs/runtime-artifacts.toml`.
 
-- [ ] **Step 2: Record and pin the fetched commit**
+- [ ] **Step 2: Download and verify the exact source archive**
 
-Run: `git -C third_party/llama.cpp rev-parse HEAD`  
-Expected: a 40-character commit written into `PROJECT_LOG.md` and `docs/evidence/llama-baseline.md`.
+Download the GitHub codeload archive for commit `bf2c86ddc0685f580595954056c2e77ebabfab4f`, hash it, and extract it below the external dependency directory.
+Expected: the source directory name and archive digest are written into the manifest and evidence document.
 
-- [ ] **Step 3: Create a deterministic CUDA build script**
+- [ ] **Step 3: Extract and identify the runtime**
 
-```powershell
-$ErrorActionPreference = 'Stop'
-cmake -S third_party/llama.cpp -B build/llama -G Ninja `
-  -DGGML_CUDA=ON -DLLAMA_CURL=OFF -DCMAKE_BUILD_TYPE=Release
-cmake --build build/llama --config Release --target llama-cli -j 6
-```
+Extract both official archives into one versioned runtime directory and locate `llama-cli.exe`.
 
-- [ ] **Step 4: Build and capture compiler/configuration output**
+- [ ] **Step 4: Record executable version and GPU visibility**
 
-Run: `powershell -ExecutionPolicy Bypass -File scripts/build_llama.ps1 *>&1 | Tee-Object artifacts/logs/llama-build.log`  
-Expected: exit code 0 and a discoverable `llama-cli.exe`.
+Run: `<runtime>\llama-cli.exe --version` and `<runtime>\llama-cli.exe --list-devices`
+Expected: version `b10002` (or its pinned commit) and the NVIDIA CUDA device are reported.
 
-- [ ] **Step 5: Record the executable path and version**
+- [ ] **Step 5: Record the instrumentation build constraint**
 
-Run: `Get-ChildItem build/llama -Recurse -Filter llama-cli.exe` followed by `<path> --version`  
-Expected: version output containing the pinned build number or commit.
+Record that the host currently lacks `nvcc` and the Visual Studio C++ toolchain. Use the available MSYS2 UCRT GCC toolchain for a CPU-only telemetry/parity build during the feasibility gate; defer CUDA compiler installation until the gate justifies live runtime work.
 
-- [ ] **Step 6: Commit the pinned baseline**
+- [ ] **Step 6: Commit the pinned runtime manifest and evidence**
 
 ```powershell
-git add .gitmodules third_party/llama.cpp scripts/build_llama.ps1 docs/evidence/llama-baseline.md PROJECT_LOG.md
-git commit -m "build: pin CUDA llama.cpp baseline"
+git add configs/runtime-artifacts.toml docs/evidence/llama-baseline.md PROJECT_LOG.md
+git commit -m "build: pin llama.cpp CUDA baseline"
 ```
 
 ### Task 4: Run and measure the unmodified Q4 baseline
@@ -302,12 +297,12 @@ git commit -m "test: measure unmodified Gemma Q4 baseline"
 - Modify: `PROJECT_LOG.md`
 
 **Interfaces:**
-- Consumes: the exact pinned llama.cpp source and successful baseline model load.
+- Consumes: the exact pinned llama.cpp source extracted below `C:\models\expertflow\dependencies` and successful baseline model load.
 - Produces: a source map naming the Gemma 4 model loader, MoE graph construction, top-k routing operation, tensor shapes, and candidate telemetry boundary.
 
 - [ ] **Step 1: Locate Gemma 4 architecture and expert tensors**
 
-Run: `rg -n "GEMMA4|gemma4|expert|top_k|topk|moe|ffn_gate" third_party/llama.cpp/src third_party/llama.cpp/ggml`  
+Run: `rg -n "GEMMA4|gemma4|expert|top_k|topk|moe|ffn_gate" <pinned-source>/src <pinned-source>/ggml`
 Expected: a bounded list of source files and functions copied into the source-map document.
 
 - [ ] **Step 2: Trace the graph from router logits to selected expert IDs**
@@ -334,4 +329,3 @@ git commit -m "docs: map Gemma 4 routing telemetry boundary"
 - Spec coverage: this plan covers only the independently testable Stage 0 baseline and routing-feasibility result; Observatory implementation receives its own plan after the real trace boundary is known.
 - Placeholder scan: no deferred implementation markers are present; each action has a concrete command or decision rule.
 - Type consistency: `ArtifactSpec`, `load_artifact_spec`, `verify_artifact`, `artifact_destination`, and `fetch_artifact` retain the same names and signatures across tasks.
-

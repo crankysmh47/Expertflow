@@ -16,7 +16,7 @@ The hackathon submission floor is a complete runnable Observatory. Live expert m
 ### Real-model path
 
 - A pinned Gemma 4 26B A4B Q4 GGUF is the canonical deployment artifact.
-- A pinned llama.cpp revision performs unmodified baseline inference and hybrid CPU/GPU execution.
+- Official pinned llama.cpp CUDA release binaries perform the unmodified GPU baseline; an exact source archive at the corresponding pinned revision supplies the inspection and instrumentation base.
 - The first C/C++ change may only export routing telemetry. It must not mutate cache placement, allocation, routing decisions, or generated tokens.
 - The initial trace contract records token index, layer index, selected expert identifiers, optional routing weights, and a monotonic timestamp.
 - Instrumented and uninstrumented deterministic runs must generate identical token sequences.
@@ -77,11 +77,10 @@ docs/evidence/           compact source maps and gate decisions
 scripts/                 reproducible setup, download, and benchmark entry points
 src/expertflow/          Python product package
 tests/                   unit and integration tests
-third_party/             pinned source dependencies such as llama.cpp
 PROJECT_LOG.md           append-oriented execution history
 ```
 
-Generated weights, builds, runs, and reports are excluded from Git.
+Generated weights, third-party source trees, runtime binaries, builds, runs, and reports are excluded from Git and stored beneath `C:\models\expertflow`. Their pinned identities and checksums remain in `configs/`.
 
 ## Scope exclusions
 
@@ -89,4 +88,3 @@ Generated weights, builds, runs, and reports are excluded from Git.
 - No cache mutation is attempted before routing telemetry and parity pass.
 - No neural predictor, MTP controller, multimodal input, KV-cache optimization, or multi-user scheduler is part of the initial gate.
 - No speedup, exactness, or memory-fit claim is public until supported by recorded artifacts.
-
