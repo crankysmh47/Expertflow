@@ -173,3 +173,9 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - TDD green result: `4` focused tests passed and the complete suite passed `35` tests in `0.09s`.
 - A follow-up red test showed parity mismatches still returned process status `0`. The CLI now writes the measured mismatch report and returns `1`, so the parity gate cannot be accidentally ignored; the complete suite passes `36` tests in `0.11s`.
 - Decoded the active aria2 control map rather than trusting the sparse file length: `2,392 / 3,443` four-MiB pieces were complete (`69.47%`) at this checkpoint. Paused the independently resumable source archive at `19,509,248` bytes to prioritize the blocking model transfer.
+
+### 23:06 PKT — Baseline warmup made explicit
+
+- Confirmed from the pinned `llama-cli b10002 --help` that warmup is enabled by default and has an explicit `--no-warmup` switch.
+- Added a failing command-contract assertion, then included `--no-warmup` in every measured baseline. This avoids a hidden empty warmup pass and keeps the MoE baseline aligned with the callback probe's no-warmup execution.
+- The focused command tests pass `2` tests and the complete suite passes `36` tests in `0.11s`.

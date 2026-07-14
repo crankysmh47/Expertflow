@@ -67,6 +67,7 @@ def build_llama_command(config: BaselineRunConfig) -> list[str]:
         "--conversation",
         "--single-turn",
         "--no-display-prompt",
+        "--no-warmup",
         "--perf",
         "--log-file",
         str(config.log_file),

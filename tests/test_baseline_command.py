@@ -40,6 +40,7 @@ def test_builds_deterministic_single_turn_command() -> None:
         "--conversation",
         "--single-turn",
         "--no-display-prompt",
+        "--no-warmup",
         "--perf",
         "--log-file",
         r"C:\runs\llama.log",
