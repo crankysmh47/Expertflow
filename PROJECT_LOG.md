@@ -85,3 +85,11 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Request boundaries reset temporal metrics, empty traces remain valid, invalid budgets fail, and backward token indices fail visibly rather than producing misleading locality.
 - TDD green result: `3` profile tests passed; the complete suite passed `17` tests in `0.04s`.
 - Artifact acquisition remained active at the network's measured approximately 2.6 MiB/s. No completion claim is made while the Q4 aria2 control map exists.
+
+### 22:17 PKT — Measured profile exposed through the public CLI
+
+- TDD red result: `ModuleNotFoundError: No module named 'expertflow.cli.main'`.
+- Added streaming JSONL trace input and the public `expertflow profile <trace> --output <report>` command with repeatable static expert budgets.
+- Reports are stable JSON, preserve the resolved source-trace path, and explicitly label their outputs as `measured` rather than estimated.
+- Verified the installed console entry point with `expertflow --help`.
+- TDD green result: the CLI integration test passed and the complete suite passed `18` tests in `0.05s`.

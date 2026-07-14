@@ -10,6 +10,7 @@ requires-python = ">=3.11"
 dependencies = []
 
 [project.scripts]
+expertflow = "expertflow.cli.main:main"
 expertflow-fetch-q4 = "expertflow.cli.fetch_q4:main"
 
 [project.optional-dependencies]
