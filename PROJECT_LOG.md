@@ -127,3 +127,11 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - TDD red result: `ModuleNotFoundError: No module named 'expertflow.runtime'`.
 - Added immutable `BaselineRunConfig` validation and one reviewable command builder. The first real checks will use fixed seed `42`, temperature `0`, explicit context and token limits, explicit CPU thread counts, a single non-interactive turn, and an explicit GPU-layer policy.
 - TDD green result: `2` baseline-command tests passed; the complete suite passed `23` tests in `0.05s`.
+
+### 22:36 PKT — Baseline memory measurement harness completed
+
+- TDD red result: `ModuleNotFoundError: No module named 'expertflow.runtime.measurement'`.
+- Added the measured execution wrapper that writes raw stdout, stderr, llama runtime logs, exact command/model/runtime provenance, UTC start/finish, wall time, before/after GPU snapshots, sampled peak global GPU use, process working set, peak working set, private bytes, and peak pagefile bytes.
+- A real Windows WDDM check showed `nvidia-smi --query-compute-apps` returns `[N/A]` for per-process GPU bytes. Added a failing regression test, then made the parser skip those unavailable rows. Global GPU used/free sampling remains authoritative and the per-process field stays zero rather than inventing a value.
+- Verified the Win32 process-memory sampler against the current Python process after defining 64-bit-safe handle types.
+- TDD green result: `4` measurement tests passed; the complete suite passed `27` tests in `0.05s`.
