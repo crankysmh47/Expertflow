@@ -77,3 +77,11 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - TDD red result for the Observatory trace contract: `ModuleNotFoundError: No module named 'expertflow.trace'`.
 - Implemented dependency-free, immutable `RouterTraceEvent` parsing with schema-version enforcement, unsigned range checks, unique expert IDs, optional matched weights, finite-value validation, strict fields, and record-numbered failures.
 - TDD green result: `8` schema tests passed, and the complete suite passed `14` tests in `0.03s`.
+
+### 22:14 PKT — First Observatory locality profile implemented
+
+- TDD red result: `ModuleNotFoundError: No module named 'expertflow.analysis'`.
+- Implemented deterministic per-layer aggregation over canonical router events: selection concentration, stable top-expert ordering, static-residency hit curves for explicit budgets, adjacent-token expert reuse, and mean token reuse distance.
+- Request boundaries reset temporal metrics, empty traces remain valid, invalid budgets fail, and backward token indices fail visibly rather than producing misleading locality.
+- TDD green result: `3` profile tests passed; the complete suite passed `17` tests in `0.04s`.
+- Artifact acquisition remained active at the network's measured approximately 2.6 MiB/s. No completion claim is made while the Q4 aria2 control map exists.
