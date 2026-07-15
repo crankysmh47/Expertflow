@@ -248,3 +248,36 @@ def select_collection_rows(
                 if ordinal < len(rows):
                     selected.append(rows[ordinal])
     return tuple(selected)
+
+
+def validate_selection_lock(path: Path) -> dict[str, object]:
+    """Validate the independent predictor freeze before expanded test collection."""
+    try:
+        lock = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise ExpandedManifestError(f"cannot read selection lock: {error}") from error
+    if not isinstance(lock, dict) or lock.get("schema_version") != "1.0.0":
+        raise ExpandedManifestError("unsupported selection lock")
+    selected_model = lock.get("selected_model")
+    features = lock.get("feature_contract")
+    widths = lock.get("evaluated_candidate_widths")
+    seed = lock.get("seed")
+    if not isinstance(selected_model, str) or not selected_model:
+        raise ExpandedManifestError("predictor family is not frozen")
+    if not isinstance(features, str) or not features:
+        raise ExpandedManifestError("feature contract is not frozen")
+    if widths != [8, 12, 16]:
+        raise ExpandedManifestError("candidate widths must be frozen to 8, 12, and 16")
+    if isinstance(seed, bool) or not isinstance(seed, int):
+        raise ExpandedManifestError("training seed is not frozen")
+    if lock.get("test_opened") is not True:
+        raise ExpandedManifestError("predictor selection lock has not opened test")
+    return {
+        "path": str(path.resolve()),
+        "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        "selected_model": selected_model,
+        "feature_contract": features,
+        "candidate_widths": widths,
+        "seed": seed,
+        "test_opened": True,
+    }

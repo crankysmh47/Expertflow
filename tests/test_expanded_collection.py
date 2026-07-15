@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from pathlib import Path
 
 import pytest
@@ -11,6 +12,7 @@ from expertflow.expanded_collection import (
     normalized_prompt_sha256,
     prompt_sha256,
     select_collection_rows,
+    validate_selection_lock,
     validate_canonical_shard,
 )
 
@@ -134,3 +136,62 @@ def test_collection_selection_requires_explicit_test_unseal() -> None:
 
     with pytest.raises(ExpandedManifestError, match="sealed"):
         select_collection_rows(manifest, splits=("test",))
+
+
+def test_test_unseal_requires_the_frozen_predictor_contract(tmp_path: Path) -> None:
+    lock = tmp_path / "selection-lock.json"
+    lock.write_text(
+        json.dumps(
+            {
+                "schema_version": "1.0.0",
+                "selected_model": "b2_transition",
+                "feature_contract": "fixed features",
+                "evaluated_candidate_widths": [8, 12, 16],
+                "seed": 20260716,
+                "test_opened": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    provenance = validate_selection_lock(lock)
+
+    assert provenance["selected_model"] == "b2_transition"
+    assert provenance["candidate_widths"] == [8, 12, 16]
+
+
+def test_test_unseal_rejects_unfrozen_widths(tmp_path: Path) -> None:
+    lock = tmp_path / "selection-lock.json"
+    lock.write_text(
+        json.dumps(
+            {
+                "schema_version": "1.0.0",
+                "selected_model": "b2_transition",
+                "feature_contract": "fixed features",
+                "evaluated_candidate_widths": [8, 16],
+                "seed": 20260716,
+                "test_opened": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ExpandedManifestError, match="candidate widths"):
+        validate_selection_lock(lock)
+
+
+def test_selection_lock_records_exact_file_bytes_hash(tmp_path: Path) -> None:
+    lock = tmp_path / "selection-lock.json"
+    payload = {
+        "schema_version": "1.0.0",
+        "selected_model": "b2_transition",
+        "feature_contract": "fixed features",
+        "evaluated_candidate_widths": [8, 12, 16],
+        "seed": 20260716,
+        "test_opened": True,
+    }
+    lock.write_bytes((json.dumps(payload, indent=2).replace("\n", "\r\n") + "\r\n").encode())
+
+    provenance = validate_selection_lock(lock)
+
+    assert provenance["sha256"] == hashlib.sha256(lock.read_bytes()).hexdigest()
