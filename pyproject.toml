@@ -17,6 +17,10 @@ expertflow-fetch-q4 = "expertflow.cli.fetch_q4:main"
 dev = [
   "pytest>=8.4,<9",
 ]
+predictor = [
+  "numpy>=1.26,<3",
+  "torch>=2.7,<3",
+]
 
 [tool.pytest.ini_options]
 addopts = "-ra"
