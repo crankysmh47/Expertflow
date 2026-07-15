@@ -1,8 +1,10 @@
 # Q4 minimal live-cache bounded-spike decision
 
+> **Superseded by tracing quarantine:** The empirical routing inputs to this decision are labeled `trace_v1_perturbing` and excluded from final claims. Gate 4 is closed and this historical conditional-go is not actionable until a parity-safe replacement corpus is collected and re-evaluated. See `configs/trace-evidence-status.json`.
+
 Date: 2026-07-15 PKT
 
-Decision: **CONDITIONAL-GO-FOR-BOUNDED-SPIKE.** The protected Observatory remains the submission floor. Proceed only through the clean CUDA baseline and minimal exact blocking proof described below.
+Historical decision: **CONDITIONAL-GO-FOR-BOUNDED-SPIKE; NOW SUSPENDED.** The protected Observatory remains the submission floor. Do not proceed to a cache proof while the observer gate is open.
 
 This decision permits a correctness experiment, not a production cache or runtime-speedup claim. The projected arena fits and idle CUDA transfer measurements justify checking the physical path. The static policy result is positive on a genuinely held-out split, but its margin over LRU is small enough that expansion still needs a stronger same-runtime result.
 

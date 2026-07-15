@@ -1,5 +1,7 @@
 # Decode transfer deadline and oracle evidence
 
+> **Quarantined historical evidence:** This result derives from the callback now labeled `trace_v1_perturbing`. It is retained for audit but excluded from final locality, deadline, policy, recommendation, and Gate 4 claims. The `93.28%` value is withdrawn pending a parity-safe replacement corpus. See `configs/trace-evidence-status.json`.
+
 Date: 2026-07-15 PKT
 
 This checkpoint evaluates the deployment-relevant cross-phase policy: fit static residents on the original five prompt-prefill traces, then score the five untouched held-out decode traces. It also compares measured Vulkan callback windows with the CUDA transfer microbenchmark as an explicitly backend-specific oracle bound.

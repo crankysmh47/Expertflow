@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "recorded_date": "2026-07-15",
+  "trace_generation": {
+    "label": "trace_v1_perturbing",
+    "reason": "The registered llama.cpp evaluation callback changes generated tokens for deterministic code and translation prompts.",
+    "corpus_collection_enabled": false,
+    "eligible_for_final_claims": false
+  },
+  "real_model_roots": [
+    {
+      "id": "q4-baseline",
+      "paths": [
+        "C:\\models\\expertflow\\runs\\q4-probe",
+        "C:\\models\\expertflow\\runs\\q4-gpu10",
+        "C:\\models\\expertflow\\runs\\q4-gpu10-smoke8",
+        "C:\\models\\expertflow\\runs\\q4-cpu-smoke"
+      ],
+      "excluded_from_final_claims": true
+    },
+    {
+      "id": "stratified-cuda",
+      "paths": ["C:\\models\\expertflow\\runs\\stratified-q4"],
+      "excluded_from_final_claims": true
+    },
+    {
+      "id": "stratified-vulkan",
+      "paths": ["C:\\models\\expertflow\\runs\\stratified-q4-vulkan"],
+      "excluded_from_final_claims": true
+    },
+    {
+      "id": "heldout-vulkan",
+      "paths": ["C:\\models\\expertflow\\runs\\heldout-q4-vulkan"],
+      "excluded_from_final_claims": true
+    },
+    {
+      "id": "physical-feasibility-vulkan",
+      "paths": ["C:\\models\\expertflow\\runs\\physical-feasibility-q4-vulkan"],
+      "excluded_from_final_claims": true
+    },
+    {
+      "id": "gate3-clean-runtime",
+      "paths": ["C:\\models\\expertflow\\runs\\live-cache-spike\\gate3"],
+      "excluded_from_final_claims": true
+    },
+    {
+      "id": "gate3-divergence-audit",
+      "paths": ["C:\\models\\expertflow\\runs\\live-cache-spike\\gate3-divergence-audit"],
+      "excluded_from_final_claims": true
+    }
+  ],
+  "derived_claims": [
+    {
+      "id": "locality",
+      "status": "withdrawn_pending_recollection",
+      "excluded_from_final_claims": true
+    },
+    {
+      "id": "static-policy",
+      "status": "withdrawn_pending_recollection",
+      "excluded_from_final_claims": true
+    },
+    {
+      "id": "lru-policy",
+      "status": "withdrawn_pending_recollection",
+      "excluded_from_final_claims": true
+    },
+    {
+      "id": "session-policy",
+      "status": "withdrawn_pending_recollection",
+      "excluded_from_final_claims": true
+    },
+    {
+      "id": "oracle-deadline",
+      "status": "withdrawn_pending_recollection",
+      "excluded_from_final_claims": true
+    },
+    {
+      "id": "static-96-93.28-percent",
+      "status": "withdrawn_pending_recollection",
+      "excluded_from_final_claims": true
+    }
+  ],
+  "offline_fixture": {
+    "path": "examples/replay/trace.jsonl",
+    "allowed_use": "synthetic_or_offline_validation_only",
+    "supports_real_model_policy_claims": false
+  },
+  "gate4_open": false,
+  "live_cache_enabled": false
+}

@@ -1,5 +1,7 @@
 # Q4 physical-feasibility routing evidence
 
+> **Quarantined historical evidence:** The 40-conversation corpus was collected through the callback now labeled `trace_v1_perturbing`. Preserve it, but exclude it and every derived policy result from final claims. Do not collect additional shards until tracing parity is restored. See `configs/trace-evidence-status.json`.
+
 Date: 2026-07-15 PKT
 
 This checkpoint expands the locality probe from ten historical prompts to a frozen 40-conversation corpus. The corpus is checked in at `configs/q4-physical-feasibility-corpus.json`; raw traces and process logs remain under `C:\models\expertflow\runs\physical-feasibility-q4-vulkan`.
