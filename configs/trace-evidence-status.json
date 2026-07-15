@@ -87,7 +87,7 @@
     "supports_real_model_policy_claims": false
   },
   "observer_isolation": {
-    "status": "non_segmenting_boundary_identified_implementation_not_started",
+    "status": "observer_v2_one_layer_fail_stop_boundary_not_reached",
     "passing_variants": ["T1-empty", "T2-counter", "T3-metadata"],
     "first_failing_variant": "T3.5-boundary-only",
     "first_failing_operation": "return true for ffn_moe_topk tensor during scheduler ask",
@@ -101,6 +101,16 @@
       "callback_eval_allowed": false,
       "graph_partitioning_allowed": false,
       "replacement_traces_eligible": false
+    },
+    "observer_v2_prototype": {
+      "verdict": "fail_stop_boundary_not_reached",
+      "v0_passed": true,
+      "v1_passed": true,
+      "v2_expected_records": 53,
+      "v2_observed_records": 0,
+      "v3_started": false,
+      "llama_commit_created": false,
+      "implementation_expanded": false
     },
     "replacement_corpus_authorized": false
   },
