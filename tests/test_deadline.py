@@ -77,3 +77,42 @@ def test_deadline_evaluation_rejects_non_monotonic_timestamps() -> None:
             capacity_per_layer=2,
             expert_transfer_ms=0.5,
         )
+
+
+def test_labels_cross_backend_deadline_estimate_at_serialization_boundary() -> None:
+    training = [
+        event(0, 0, (1, 2), 0, phase="prefill"),
+        event(0, 1, (1, 2), 1, phase="prefill"),
+    ]
+    evaluation = [
+        event(1, 0, (3, 4), 1_000_000),
+        event(1, 1, (3, 4), 3_000_000),
+    ]
+
+    with pytest.raises(ValueError, match="both be declared"):
+        evaluate_one_layer_oracle(
+            training,
+            [evaluation],
+            capacity_per_layer=2,
+            expert_transfer_ms=0.5,
+            transfer_backend="cuda",
+        )
+
+    report = evaluate_one_layer_oracle(
+        training,
+        [evaluation],
+        capacity_per_layer=2,
+        expert_transfer_ms=0.5,
+        transfer_backend="cuda_idle_microbenchmark",
+        window_backend="vulkan_router_callback",
+        transfer_statistic="pooled_p95",
+    )
+
+    assert report["measurement_kind"] == "estimated_cross_backend"
+    assert report["timing_evidence"] == {
+        "transfer_backend": "cuda_idle_microbenchmark",
+        "window_backend": "vulkan_router_callback",
+        "transfer_statistic": "pooled_p95",
+        "contention_measured": False,
+        "live_runtime_measurement": False,
+    }

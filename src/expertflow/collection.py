@@ -423,7 +423,20 @@ def collect_trace_pairs(
             passed += 1
             skipped += 1
             continue
-        shard_dir = output_dir / conversation.conversation_id
+        prior_attempts = (
+            existing_shard.get("attempts", [])
+            if isinstance(existing_shard, dict)
+            else []
+        )
+        if not isinstance(prior_attempts, list):
+            raise ValueError("existing shard attempts must be an array")
+        attempt_index = len(prior_attempts)
+        shard_root = output_dir / conversation.conversation_id
+        shard_dir = (
+            shard_root
+            if attempt_index == 0
+            else shard_root / f"attempt-{attempt_index:04d}"
+        )
         shard_dir.mkdir(parents=True, exist_ok=True)
         baseline_tokens = shard_dir / "baseline-tokens.json"
         instrumented_tokens = shard_dir / "instrumented-tokens.json"
@@ -470,12 +483,7 @@ def collect_trace_pairs(
             stderr_path=instrumented_stderr,
         )
         attempt: dict[str, object] = {
-            "attempt_index": (
-                len(existing_shard.get("attempts", []))
-                if isinstance(existing_shard, dict)
-                and isinstance(existing_shard.get("attempts"), list)
-                else 0
-            ),
+            "attempt_index": attempt_index,
             "baseline": _process_record(
                 baseline_argv,
                 baseline_result,

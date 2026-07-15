@@ -347,3 +347,46 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Focused gate: 5 tests passed. Fresh full gate: 71 tests passed in 0.38 seconds. `expertflow collect-pairs --help` and `git diff --check` passed.
 - Re-resolved physical inputs on C: Vulkan probe `C:\models\expertflow\dependencies\llama-b10002-vulkan\runtime\expertflow-router-probe.exe`; CUDA runtime `C:\models\expertflow\dependencies\llama-b10002\runtime\cudart64_12.dll`; Q4 model `C:\models\expertflow\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\gemma-4-26B_q4_0-it.gguf`.
 - Rehashed the 14,439,361,440-byte model in 20.9 seconds: SHA-256 `4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5`, matching the frozen artifact declaration.
+
+### 09:23 PKT - Forty-conversation paired collection completed
+
+- Command: `uv run expertflow collect-pairs --corpus C:\sem4\Expertflow\configs\q4-physical-feasibility-corpus.json --probe C:\models\expertflow\dependencies\llama-b10002-vulkan\runtime\expertflow-router-probe.exe --model C:\models\expertflow\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\gemma-4-26B_q4_0-it.gguf --model-sha256 4c856...054c5 --output-dir C:\models\expertflow\runs\physical-feasibility-q4-vulkan --predict 64 --gpu-layers 10 --threads 12`.
+- First pass completed all 40 conversation pairs in 839.8 seconds wall time / 827.886 seconds summed native process time. Latest-attempt traces contain 152,760 events and 1,222,080 expert demands; 39 pairs passed exact prompt/generated parity and one failed.
+- `train-translation-02` returned exit 0 in both modes, matched prompt tokens, and diverged at generated token 0: baseline `100`, instrumented `20663`. Its trace contains 3,180 structurally valid events.
+- Systematic-debugging review found a collector preservation flaw before retry: later attempts reused shard-root filenames. TDD RED proved the second attempt path overwrote the first. GREEN passed after retries began writing `attempt-0001`, `attempt-0002`, and so on; 6 collector tests passed.
+- The explicit retry command revalidated/skipped 39 shards and reran only the failed pair. It reproduced the same mismatch and identical baseline/instrumented token hashes. Original and retry token artifacts were independently rehashed and remain valid. The failure is deterministic and prompt-specific at the Vulkan observation boundary; no lower-level scheduler mechanism is claimed.
+- Final collection manifest: 243,939 bytes, SHA-256 `47e2154870c50b2aed9aef148a7b9a6496173d2a1516529c744fa7f5a1981093`. Downstream tools abort on failed shards by default and require `--exclude-failed-shards`, which records every exclusion in output.
+
+### 09:28 PKT - Expanded held-out evaluation completed
+
+- Held-out evaluator TDD RED began with the absent module. GREEN proves static residents use training only, LRU resets for each conversation, prompt/domain/global totals reconcile, incomplete collections fail, and failed-shard exclusion must be explicit.
+- Commands: `expertflow heldout-breakdown` over the collection manifest with training phase `prefill`, evaluation phases `prefill` and `decode`, target layers 0-20, capacity 96, slot bytes 3,346,048, explicit failed-shard exclusion, and the pooled two-slice p95 transfer value `0.23628799617290496` ms.
+- Training uses 31 parity-safe conversations and 40,740 target-layer prefill events. The failed training translation shard is listed in both outputs. All eight validation/test conversations remain untouched and parity-safe.
+- Held-out prefill: 13,503 events / 108,024 demands; static-96 95.8491%, LRU 87.4806%. Artifact `heldout-breakdown-prefill-static96-p95.json`, 19,586 bytes, SHA-256 `24eb45f64a9e4165b1f5ba0e94d91ce7aa1fbb9fde6c7be337aca99e13872b6b`.
+- Held-out decode: 10,584 events / 84,672 demands / 504 forwards; static-96 87.5720%, LRU 86.3390%. Artifact `heldout-breakdown-decode-static96-p95.json`, 19,618 bytes, SHA-256 `b887438a9a18e5f730d8d2a5328f9b7dec69417802c7a5ea0ee2489da00be69d`.
+- Static-96 loses to LRU on code, structured-output, and topic-shift decode. It has 10,523 misses versus 11,567 for LRU, only 9.0257% fewer cold bytes. This fails the spec's practical-policy gate of 20% fewer cold bytes or 25% less estimated PCIe stall than LRU.
+
+### 09:31 PKT - Exhaustive Q4 expert layout reconciled
+
+- Read pinned CUDA source around `ggml_backend_cuda_buffer_type_get_alloc_size`: quantized row ends pad to 512 elements and CUDA tensor starts align to 128 bytes. For one expert, Q4_0 padding is 180 bytes for down and 144 bytes for gate/up.
+- Expert-layout TDD RED began with the absent inventory module, then with the absent GGUF metadata adapter. GREEN covers exact source spans, divisibility, row padding, 128-byte packing, component mapping, and projected target allocation.
+- Command: `python scripts\measure_q4_expert_layout.py --model ...gemma-4-26B_q4_0-it.gguf --gguf-py ...\llama.cpp-a7312...\gguf-py --output C:\models\expertflow\runs\expert-layout-q4\inventory.json --model-revision 21bfe...fff15 --llama-revision a731...f697 --capacity 96 --target-max-layer 20`.
+- The 22.1-second run enumerated all 30 layers, 128 experts/layer, 3,840 objects, and three source spans/object. Every encoded object is 3,345,412 bytes; every projected slot is 3,346,048 bytes.
+- Independent arithmetic matched exactly: 2,016 slots across 21 layers at 96 slots/layer require 6,745,632,768 bytes / 6,433.136719 MiB. Inventory: 6,803,857 bytes, SHA-256 `daf9a54c1d03a933a667644de412038fb1530ee90ef1761f2f74dbdacb5f1b7a`.
+
+### 09:34 PKT - Pooled CUDA single-copy transfer measurement completed
+
+- Transfer TDD RED required explicit p50, single-copy CUDA events, host API-call timing, and CLI sample count. GREEN added an idle-stream `measure_single_copy` boundary and preserved sustained batch averages as a separate metric.
+- Preflight: RTX 5060 Ti, 16,311 MiB, 2,406 MiB desktop allocation, 0% GPU utilization, WDDM, and no probe/llama process.
+- Ran three sequential `expertflow transfer-benchmark` commands over 1, 1,115,136, 2,230,272, 3,345,412, 3,346,048, 26,763,296, and 26,768,384 bytes; each used 30 batches, 50 copies/batch, 10 warmups, and 200 single-copy samples. All three completed in 69 seconds.
+- Aggregation TDD RED began with the absent raw-sample pooling function and command. GREEN pools samples rather than averaging percentiles. Aggregate: 495,063 bytes, SHA-256 `fb90c8820085f80849977cbf7849de2c899d9c1a4dfd20b5e3fe20e63244b94b`.
+- Aligned pinned expert: 0.234016 ms p50 / 0.234272 ms p95 and 13.35 GiB/s sustained. Two real weight slices: 0.235808 ms p50 / 0.236288 ms p95. A one-byte pinned `cudaMemcpyAsync` host call is approximately 0.0013 ms p50 / 0.0015 ms p95. These are idle lower bounds without model compute or contention.
+
+### 09:37 PKT - Backend-labeled deadline sensitivity completed
+
+- Deadline TDD RED proved a mixed-backend estimate could be serialized without naming both timing sources. GREEN now requires both labels and emits `estimated_cross_backend`, `contention_measured=false`, and `live_runtime_measurement=false`.
+- Ran `expertflow deadline-eval` twice from the collection manifest using training prefill, held-out decode, layers 0-20, static-96, CUDA idle pinned two-slice p50/p95, and Vulkan b10002 callback windows.
+- P50 artifact: 3,677,285 bytes, SHA-256 `477c3fcb2a8857e52af25a049495a598a516f751a3a32bc4921c9e16f21d9d79`. No-prefetch 4.9234 ms/token; oracle residual 0.1702 ms/token; 212 late events.
+- P95 artifact: 3,679,388 bytes, SHA-256 `4d46952c1eee603ce6bab09201a75c116f1b493aa061283ba8a9b296a320e8ee`. No-prefetch 4.9335 ms/token; oracle residual 0.1705 ms/token; 212 late events. Late layers: 207 at layer 0, 4 at layer 7, 1 at layer 15.
+- The p95 oracle reduces transfer-only residual 96.5432%, but it uses perfect future knowledge and cross-backend windows. It does not overcome the weak non-oracle static-vs-LRU result or clear CUDA deadline/contention/live-runtime gates.
+- Verification checkpoint: 84 tests passed in 0.43 seconds, Python compilation passed, CLI/help for new commands passed, and `git diff --check` passed. `live_cache_enabled=false` throughout.

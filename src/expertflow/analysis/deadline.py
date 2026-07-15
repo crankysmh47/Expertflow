@@ -23,6 +23,9 @@ def evaluate_one_layer_oracle(
     *,
     capacity_per_layer: int,
     expert_transfer_ms: float,
+    transfer_backend: str | None = None,
+    window_backend: str | None = None,
+    transfer_statistic: str | None = None,
 ) -> dict[str, object]:
     """Evaluate a frozen cache and an oracle one-layer issue boundary."""
 
@@ -32,6 +35,18 @@ def evaluate_one_layer_oracle(
         raise ValueError("training and evaluation traces must not be empty")
     if capacity_per_layer <= 0 or expert_transfer_ms <= 0:
         raise ValueError("capacity and transfer time must be positive")
+    if (transfer_backend is None) != (window_backend is None):
+        raise ValueError("transfer_backend and window_backend must both be declared")
+    if transfer_statistic is not None and transfer_backend is None:
+        raise ValueError("transfer_statistic requires declared timing backends")
+    if transfer_backend is not None and (
+        not transfer_backend.strip()
+        or not window_backend
+        or not window_backend.strip()
+        or transfer_statistic is None
+        or not transfer_statistic.strip()
+    ):
+        raise ValueError("declared timing evidence labels must be non-empty")
     if any(
         len(event.selected_expert_ids) > capacity_per_layer
         for event in training
@@ -129,9 +144,24 @@ def evaluate_one_layer_oracle(
 
     if not windows:
         raise ValueError("evaluation requires at least two layers per token")
-    return {
+    measurement_kind = "estimated"
+    timing_evidence: dict[str, object] | None = None
+    if transfer_backend is not None and window_backend is not None:
+        measurement_kind = (
+            "estimated_cross_backend"
+            if transfer_backend != window_backend
+            else "estimated_backend_specific"
+        )
+        timing_evidence = {
+            "transfer_backend": transfer_backend,
+            "window_backend": window_backend,
+            "transfer_statistic": transfer_statistic,
+            "contention_measured": False,
+            "live_runtime_measurement": False,
+        }
+    report = {
         "schema_version": "1.0.0",
-        "measurement_kind": "estimated",
+        "measurement_kind": measurement_kind,
         "window_measurement_kind": "measured_backend_specific",
         "fit_scope": "held_out",
         "capacity_per_layer": capacity_per_layer,
@@ -161,3 +191,6 @@ def evaluate_one_layer_oracle(
         },
         "timeline": timeline,
     }
+    if timing_evidence is not None:
+        report["timing_evidence"] = timing_evidence
+    return report

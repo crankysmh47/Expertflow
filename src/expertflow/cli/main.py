@@ -14,6 +14,10 @@ from expertflow.analysis.capacity_curve import (
     build_held_out_capacity_curve,
 )
 from expertflow.analysis.deadline import evaluate_one_layer_oracle
+from expertflow.analysis.heldout_breakdown import (
+    build_heldout_breakdown,
+    load_collection_breakdown_inputs,
+)
 from expertflow.analysis.profile import summarize_routing
 from expertflow.analysis.replay import replay_policy
 from expertflow.collection import CollectionConfig, collect_trace_pairs
@@ -21,7 +25,10 @@ from expertflow.doctor import collect_doctor_report
 from expertflow.recommendation import build_recommendation
 from expertflow.reporting import render_replay_report
 from expertflow.runtime.baseline import BaselineRunConfig
-from expertflow.runtime.cuda_transfer import benchmark_cuda_transfers
+from expertflow.runtime.cuda_transfer import (
+    aggregate_cuda_transfer_trials,
+    benchmark_cuda_transfers,
+)
 from expertflow.runtime.measurement import run_measured_baseline
 from expertflow.trace.io import load_router_events
 from expertflow.trace.parity import compare_token_sequences
@@ -132,8 +139,16 @@ def build_parser() -> argparse.ArgumentParser:
     transfer.add_argument("--batches", type=int, default=30)
     transfer.add_argument("--copies-per-batch", type=int, default=50)
     transfer.add_argument("--warmup-copies", type=int, default=10)
+    transfer.add_argument("--single-copy-samples", type=int, default=200)
     transfer.add_argument("--device", type=int, default=0)
     transfer.add_argument("--output", type=Path, required=True)
+
+    transfer_aggregate = commands.add_parser(
+        "transfer-aggregate",
+        help="Pool raw CUDA transfer samples from independent trials.",
+    )
+    transfer_aggregate.add_argument("trial", type=Path, nargs="+")
+    transfer_aggregate.add_argument("--output", type=Path, required=True)
 
     curve = commands.add_parser(
         "capacity-curve",
@@ -170,16 +185,46 @@ def build_parser() -> argparse.ArgumentParser:
     heldout.add_argument("--expert-transfer-ms", type=float, required=True)
     heldout.add_argument("--output", type=Path, required=True)
 
+    breakdown = commands.add_parser(
+        "heldout-breakdown",
+        help="Report held-out policy results by conversation and domain.",
+    )
+    breakdown.add_argument(
+        "--collection-manifest", type=Path, required=True
+    )
+    breakdown.add_argument(
+        "--phase", choices=("prefill", "decode"), required=True
+    )
+    breakdown.add_argument(
+        "--eval-phase",
+        choices=("prefill", "decode"),
+        help="Evaluation phase; defaults to the training --phase.",
+    )
+    breakdown.add_argument("--max-layer", type=int)
+    breakdown.add_argument(
+        "--exclude-failed-shards",
+        action="store_true",
+        help="Exclude failed parity shards and list every exclusion in output.",
+    )
+    breakdown.add_argument("--capacity", type=int, required=True)
+    breakdown.add_argument("--slot-bytes", type=int, required=True)
+    breakdown.add_argument(
+        "--expert-transfer-ms", type=float, required=True
+    )
+    breakdown.add_argument("--output", type=Path, required=True)
+
     deadline = commands.add_parser(
         "deadline-eval",
         help="Evaluate a backend-specific oracle one-layer transfer bound.",
     )
     deadline.add_argument(
-        "--train", type=Path, action="append", required=True
+        "--train", type=Path, action="append"
     )
     deadline.add_argument(
-        "--eval", type=Path, action="append", required=True
+        "--eval", type=Path, action="append"
     )
+    deadline.add_argument("--collection-manifest", type=Path)
+    deadline.add_argument("--exclude-failed-shards", action="store_true")
     deadline.add_argument(
         "--train-phase", choices=("prefill", "decode"), required=True
     )
@@ -189,6 +234,11 @@ def build_parser() -> argparse.ArgumentParser:
     deadline.add_argument("--max-layer", type=int)
     deadline.add_argument("--capacity", type=int, required=True)
     deadline.add_argument("--expert-transfer-ms", type=float, required=True)
+    deadline.add_argument("--transfer-backend")
+    deadline.add_argument("--window-backend")
+    deadline.add_argument("--transfer-statistic")
+    deadline.add_argument("--transfer-source", type=Path)
+    deadline.add_argument("--window-source", type=Path)
     deadline.add_argument("--output", type=Path, required=True)
     return parser
 
@@ -446,7 +496,24 @@ def _run_transfer_benchmark(args: argparse.Namespace) -> int:
         batches=args.batches,
         copies_per_batch=args.copies_per_batch,
         warmup_copies=args.warmup_copies,
+        single_copy_samples=args.single_copy_samples,
         device=args.device,
+    )
+    output = args.output.resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(
+        json.dumps(report, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    print(output)
+    return 0
+
+
+def _run_transfer_aggregate(args: argparse.Namespace) -> int:
+    sources = tuple(path.resolve() for path in args.trial)
+    report = aggregate_cuda_transfer_trials(
+        [_load_json_object(path, "transfer trial") for path in sources],
+        source_paths=tuple(str(path) for path in sources),
     )
     output = args.output.resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -541,11 +608,44 @@ def _run_heldout_curve(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_heldout_breakdown(args: argparse.Namespace) -> int:
+    manifest = args.collection_manifest.resolve()
+    training, evaluations, excluded = load_collection_breakdown_inputs(
+        manifest,
+        phase=args.phase,
+        evaluation_phase=args.eval_phase,
+        max_layer=args.max_layer,
+        exclude_failed=args.exclude_failed_shards,
+    )
+    report = build_heldout_breakdown(
+        training,
+        evaluations,
+        capacity_per_layer=args.capacity,
+        slot_bytes=args.slot_bytes,
+        expert_transfer_ms=args.expert_transfer_ms,
+    )
+    report["collection_manifest"] = str(manifest)
+    report["selection"] = {
+        "training_phase": args.phase,
+        "evaluation_phase": args.eval_phase or args.phase,
+        "max_layer": args.max_layer,
+    }
+    report["excluded_shards"] = list(excluded)
+    output = args.output.resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(
+        json.dumps(report, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    print(output)
+    return 0
+
+
 def _run_deadline_eval(args: argparse.Namespace) -> int:
     if args.max_layer is not None and args.max_layer < 0:
         raise ValueError("max_layer must be non-negative")
-    training_sources = [path.resolve() for path in args.train]
-    evaluation_sources = [path.resolve() for path in args.eval]
+    training_sources = [path.resolve() for path in (args.train or [])]
+    evaluation_sources = [path.resolve() for path in (args.eval or [])]
 
     def selected(source: Path, phase: str):
         return [
@@ -555,19 +655,64 @@ def _run_deadline_eval(args: argparse.Namespace) -> int:
             and (args.max_layer is None or event.layer_id <= args.max_layer)
         ]
 
-    training_events = [
-        event
-        for source in training_sources
-        for event in selected(source, args.train_phase)
-    ]
-    evaluation_traces = [
-        selected(source, args.eval_phase) for source in evaluation_sources
-    ]
+    collection_manifest: Path | None = None
+    evaluation_metadata: list[dict[str, str]] = []
+    excluded_shards: list[dict[str, object]] = []
+    if args.collection_manifest is not None:
+        if training_sources or evaluation_sources:
+            raise ValueError(
+                "collection_manifest cannot be combined with train/eval paths"
+            )
+        collection_manifest = args.collection_manifest.resolve()
+        training_loaded, evaluation_loaded, excluded = (
+            load_collection_breakdown_inputs(
+                collection_manifest,
+                phase=args.train_phase,
+                evaluation_phase=args.eval_phase,
+                max_layer=args.max_layer,
+                exclude_failed=args.exclude_failed_shards,
+            )
+        )
+        training_events = list(training_loaded)
+        evaluation_traces = [list(item.events) for item in evaluation_loaded]
+        evaluation_sources = [
+            Path(item.source_trace) for item in evaluation_loaded
+        ]
+        evaluation_metadata = [
+            {
+                "conversation_id": item.conversation_id,
+                "split": item.split,
+                "domain": item.domain,
+                "source_trace": item.source_trace,
+            }
+            for item in evaluation_loaded
+        ]
+        excluded_shards = list(excluded)
+    else:
+        if not training_sources or not evaluation_sources:
+            raise ValueError(
+                "deadline-eval requires train/eval paths or collection_manifest"
+            )
+        if args.exclude_failed_shards:
+            raise ValueError(
+                "exclude_failed_shards requires collection_manifest"
+            )
+        training_events = [
+            event
+            for source in training_sources
+            for event in selected(source, args.train_phase)
+        ]
+        evaluation_traces = [
+            selected(source, args.eval_phase) for source in evaluation_sources
+        ]
     report = evaluate_one_layer_oracle(
         training_events,
         evaluation_traces,
         capacity_per_layer=args.capacity,
         expert_transfer_ms=args.expert_transfer_ms,
+        transfer_backend=args.transfer_backend,
+        window_backend=args.window_backend,
+        transfer_statistic=args.transfer_statistic,
     )
     report["training_source_traces"] = [
         str(source) for source in training_sources
@@ -580,6 +725,17 @@ def _run_deadline_eval(args: argparse.Namespace) -> int:
         "evaluation_phase": args.eval_phase,
         "max_layer": args.max_layer,
     }
+    if collection_manifest is not None:
+        report["collection_manifest"] = str(collection_manifest)
+        report["evaluation_metadata"] = evaluation_metadata
+        report["excluded_shards"] = excluded_shards
+    timing_sources: dict[str, str] = {}
+    if args.transfer_source is not None:
+        timing_sources["transfer"] = str(args.transfer_source.resolve())
+    if args.window_source is not None:
+        timing_sources["window"] = str(args.window_source.resolve())
+    if timing_sources:
+        report["timing_sources"] = timing_sources
     output = args.output.resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
@@ -610,10 +766,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_simulate(args)
     if args.command == "transfer-benchmark":
         return _run_transfer_benchmark(args)
+    if args.command == "transfer-aggregate":
+        return _run_transfer_aggregate(args)
     if args.command == "capacity-curve":
         return _run_capacity_curve(args)
     if args.command == "heldout-curve":
         return _run_heldout_curve(args)
+    if args.command == "heldout-breakdown":
+        return _run_heldout_breakdown(args)
     if args.command == "deadline-eval":
         return _run_deadline_eval(args)
     raise AssertionError(f"unhandled command: {args.command}")

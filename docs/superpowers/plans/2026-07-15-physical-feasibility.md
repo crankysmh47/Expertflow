@@ -38,7 +38,7 @@
 - [x] Implement the smallest manifest validator and process runner. Store argv arrays, runtime/model/probe hashes, start/end timestamps, duration, native exit code, output hashes, and parity result per conversation.
 - [x] Add resume validation that skips a pair only when both token files, the trace, logs, hashes, and exact parity report are present and valid.
 - [x] Run the focused tests and the full suite, then commit the collector separately.
-- [ ] Launch all 40 pairs under `C:\models\expertflow\runs\physical-feasibility-q4-vulkan`, reporting progress after each bounded batch.
+- [x] Launch all 40 pairs under `C:\models\expertflow\runs\physical-feasibility-q4-vulkan`, reporting progress after each bounded batch.
 
 ### Task 2: Train-only static fitting and prompt/domain held-out breakdown
 
@@ -52,11 +52,11 @@
 - Consumes: the frozen collection manifest, training traces, and validation/test traces.
 - Produces: `build_heldout_breakdown(...) -> dict[str, object]` with per-prompt, per-domain, per-split, phase-separated static-96 and reset-per-conversation LRU metrics.
 
-- [ ] Write a failing test showing that static residents come only from training events and that an evaluation conversation cannot affect any later conversation's initial cache.
-- [ ] Verify the focused red failure, then implement the minimum evaluator by reusing the current policy outcome engine.
-- [ ] Add weighted aggregate reconciliation tests: prompt totals must sum to domain, split, and global totals.
-- [ ] Generate prefill and decode breakdown artifacts and record every prompt's parity, event count, demand count, hit rate, cold bytes/token, and serialized transfer estimate.
-- [ ] Commit the evaluator and evidence checkpoint.
+- [x] Write a failing test showing that static residents come only from training events and that an evaluation conversation cannot affect any later conversation's initial cache.
+- [x] Verify the focused red failure, then implement the minimum evaluator by reusing the current policy outcome engine.
+- [x] Add weighted aggregate reconciliation tests: prompt totals must sum to domain, split, and global totals.
+- [x] Generate prefill and decode breakdown artifacts and record every prompt's parity, event count, demand count, hit rate, cold bytes/token, and serialized transfer estimate.
+- [x] Commit the evaluator and evidence checkpoint.
 
 ### Task 3: Exhaustive packed expert inventory and static-96 physical fit
 
@@ -72,11 +72,11 @@
 - Consumes: tensor name, dimensions, quantization type, encoded bytes, GGUF offset/alignment, layer ID, and expert count from the pinned GGUF reader.
 - Produces: `build_expert_inventory(tensors, *, alignment: int) -> dict[str, object]` and a JSON row for every one of 30 layers x 128 experts.
 
-- [ ] Write a failing synthetic-layout test covering fused gate/up, down projection, per-expert scale, tensor-end padding, and conservative slot alignment.
-- [ ] Verify the red failure, implement byte-span accounting, and reject non-divisible expert tensors or overlapping/out-of-bounds spans.
-- [ ] Run the script over the real Q4 file and independently reconcile every layer-expert object, every layer total, all 3,840 objects, and the projected 21 x 96 slot allocation.
-- [ ] Document that `96` means 96 resident expert slots per target layer, not 96 global slots; state exact encoded/aligned bytes, target layers, selection procedure, phase, fit scope, and why this differs from the earlier prompt-local static-8 36.37% result.
-- [ ] Commit the inventory and documentation checkpoint.
+- [x] Write a failing synthetic-layout test covering fused gate/up, down projection, per-expert scale, tensor-end padding, and conservative slot alignment.
+- [x] Verify the red failure, implement byte-span accounting, and reject non-divisible expert tensors or overlapping/out-of-bounds spans.
+- [x] Run the script over the real Q4 file and independently reconcile every layer-expert object, every layer total, all 3,840 objects, and the projected 21 x 96 slot allocation.
+- [x] Document that `96` means 96 resident expert slots per target layer, not 96 global slots; state exact encoded/aligned bytes, target layers, selection procedure, phase, fit scope, and why this differs from the earlier prompt-local static-8 36.37% result.
+- [x] Commit the inventory and documentation checkpoint.
 
 ### Task 4: Independent CUDA transfer latency and enqueue benchmark
 
@@ -91,11 +91,11 @@
 - Consumes: `cudart` DLL, exact payload sizes, batch/copy counts, warmups, single-copy sample count, and device index.
 - Produces: pageable-to-pinned staging, pageable H2D, pinned H2D, single-copy CUDA-event p50/p95 latency, host enqueue p50/p95, and sustained batch bandwidth.
 
-- [ ] Add a failing test for `measure_single_copy` output and `cudaMemcpyAsync` host-enqueue overhead, with explicit units and sample provenance.
-- [ ] Verify the red failure, then implement the narrow CUDA Runtime calls without adding a toolkit or framework dependency.
-- [ ] Run idle-GPU trials for 1 byte, the exact component sizes, exact packed expert size, aligned slot size, and eight-slot layer fill; preserve raw samples.
-- [ ] Repeat enough independent trials to report p50/p95 and note WDDM, default stream, idle GPU, no concurrent model, and no copy/compute contention.
-- [ ] Commit code and measured evidence.
+- [x] Add a failing test for `measure_single_copy` output and `cudaMemcpyAsync` host-enqueue overhead, with explicit units and sample provenance.
+- [x] Verify the red failure, then implement the narrow CUDA Runtime calls without adding a toolkit or framework dependency.
+- [x] Run idle-GPU trials for 1 byte, the exact component sizes, exact packed expert size, aligned slot size, and eight-slot layer fill; preserve raw samples.
+- [x] Repeat enough independent trials to report p50/p95 and note WDDM, default stream, idle GPU, no concurrent model, and no copy/compute contention.
+- [x] Commit code and measured evidence.
 
 ### Task 5: Measured transfer sensitivity in the deadline simulator
 
@@ -110,10 +110,10 @@
 - Consumes: frozen training traces, validation/test decode traces, static capacity, measured CUDA transfer p50/p95, and observed Vulkan callback windows.
 - Produces: a scenario matrix whose fields name transfer backend, window backend, statistic, and evidence kind.
 
-- [ ] Write a failing test proving the simulator cannot serialize a mixed-backend result without both backend labels and an `estimated_cross_backend` classification.
-- [ ] Implement p50/p95 transfer scenarios while preserving the existing one-layer perfect-future oracle as a separate non-deployable upper bound.
-- [ ] Rerun validation and test scenarios, and reconcile no-prefetch, oracle, static, and LRU totals against the held-out breakdown.
-- [ ] Commit the simulator/evidence checkpoint without changing the live-cache verdict.
+- [x] Write a failing test proving the simulator cannot serialize a mixed-backend result without both backend labels and an `estimated_cross_backend` classification.
+- [x] Implement p50/p95 transfer scenarios while preserving the existing one-layer perfect-future oracle as a separate non-deployable upper bound.
+- [x] Rerun validation and test scenarios, and reconcile no-prefetch, oracle, static, and LRU totals against the held-out breakdown.
+- [x] Commit the simulator/evidence checkpoint without changing the live-cache verdict.
 
 ### Task 6: Continuously shippable Observatory and visual replay verification
 
