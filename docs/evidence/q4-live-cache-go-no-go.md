@@ -1,10 +1,10 @@
-# Q4 minimal live-cache go/no-go
+# Q4 minimal live-cache bounded-spike decision
 
 Date: 2026-07-15 PKT
 
-Decision: **NO-GO for the minimal live-cache spike on the current evidence.** Keep shipping the Observatory and simulator. Do not modify the live llama.cpp cache path yet.
+Decision: **CONDITIONAL-GO-FOR-BOUNDED-SPIKE.** The protected Observatory remains the submission floor. Proceed only through the clean CUDA baseline and minimal exact blocking proof described below.
 
-This is a bounded decision, not a claim that expert caching cannot work. The packed arena fits on paper and the perfect-future simulation shows useful transfer headroom. The practical static policy is the failing gate.
+This decision permits a correctness experiment, not a production cache or runtime-speedup claim. The projected arena fits and idle CUDA transfer measurements justify checking the physical path. The static policy result is positive on a genuinely held-out split, but its margin over LRU is small enough that expansion still needs a stronger same-runtime result.
 
 ## Gate review
 
@@ -12,10 +12,16 @@ This is a bounded decision, not a claim that expert caching cannot work. The pac
 | --- | --- | --- |
 | Cache physically fits | Pass as a projection | 96 slots in each of 21 layers produces 2,016 slots. At 3,346,048 bytes per slot, the arena is exactly 6,745,632,768 bytes / 6,433.136719 MiB. This leaves 800.863 MiB of the measured configurable envelope. No live allocation has been attempted. |
 | Transfer timing leaves meaningful headroom | Inconclusive | Three idle-CUDA trials put an aligned pinned slot at 0.234016 ms p50 / 0.234272 ms p95. The p95 two-slice value is 0.236288 ms. A cross-backend perfect-future simulation reduces transfer-only residual from 4.9335 to 0.1705 ms/token, but CUDA copy/compute contention and in-model CUDA windows are unmeasured. |
-| A practical non-oracle policy remains promising | Fail | On eight held-out conversations, static-96 reaches 87.57% versus 86.34% for conversation-reset LRU. It removes only 9.03% of LRU's cold bytes, below the 20% gate, and loses on code, structured output, and topic shift. |
+| A practical non-oracle policy remains promising | Conditional pass for a bounded spike | Static-96 was selected exclusively from 31 parity-safe training conversations, then scored on eight untouched conversations: four validation and four test. It reaches 87.57% versus 86.34% for conversation-reset LRU and removes 9.03% of LRU's cold bytes. That is enough to test the exact physical path, but it remains below the earlier 20% expansion target and loses on code, structured output, and topic shift. |
 | llama.cpp change can stay isolated and off by default | Not demonstrated | The existing router probe is a separate executable and proves that telemetry can stay outside the official runtime path. A cache could be designed behind an off-by-default flag, but no cache allocation, replacement, or parity-preserving feature-flag boundary exists yet. |
 
-Because all four gates must support proceeding, the practical-policy failure is enough to stop. The two unmeasured runtime boundaries make the same decision safer.
+The held-out methodology correction changes the verdict: static-96 is not an in-sample oracle, so a minimal exact blocking proof is now justified. The two unmeasured runtime boundaries still prevent any expansion or performance claim until direct evidence closes them.
+
+## Held-out split verification
+
+The serialized report lists 31 `train-*` fit traces. The evaluation set contains only `validation-*` and `test-*` conversations, one from each of the eight domains. In `build_held_out_capacity_curve`, resident counts come only from `training_events`; hit and miss totals come only from `evaluation_events`. The corrected result therefore has conversation-level separation for both static selection and scoring.
+
+This verification changes the eligibility verdict, not the measured effect size. Static-96 still cuts cold bytes by 9.0257% rather than the earlier 20% target.
 
 ## Evidence used
 
@@ -28,10 +34,10 @@ Because all four gates must support proceeding, the practical-policy failure is 
 
 CUDA microbenchmarks, Vulkan callback timing, simulator estimates, oracle results, and live runtime measurements remain separate evidence classes. There is no live-runtime measurement in this checkpoint.
 
-## What would change the decision
+## Bounded permission
 
-Reconsider the blocking exact-cache experiment only after a practical, training-only policy clears the declared improvement threshold on a larger held-out set without collapsing on topic shifts. Before touching the live path, also measure transfer under representative CUDA model contention and write down an off-by-default feature-flag boundary that can be removed cleanly.
+First protect and reproduce the Observatory, install the supported VS 2022/v143 and CUDA 12.8 toolchain, and build exact llama.cpp commit `a7312ae94f801fc9c6786dc56e38df57b964f697` without live-cache changes. Stop if that clean build cannot reproduce known-good behavior.
 
-If those gates pass, the first experiment is still intentionally small: exact blocking loads, deterministic slot replacement, and token parity. No asynchronous prefetch, learned predictor, MTP controller, KV-cache claim, or speedup claim belongs in that spike.
+If the clean gate passes, the first experiment is one layer, true-router-selected exact blocking loads, deterministic forced replacement, direct execution from preallocated Q4 slots, and parity. The flag is disabled by default. No asynchronous prefetch, learned predictor, MTP controller, KV-cache claim, full static-96 allocation, or speedup claim belongs in this spike.
 
 `live_cache_enabled=false`

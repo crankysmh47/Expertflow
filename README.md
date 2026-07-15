@@ -2,7 +2,7 @@
 
 A hardware-aware routing observatory for running sparse mixture-of-experts models on one local GPU.
 
-ExpertFlow is an OpenAI Build Week project in active development. The real Gemma 4 Q4 baseline, routing probe, recommendation, and causal replay path work on the development machine. Codex/GPT-5.6 annotations are part of the build workflow. The current evidence says no-go for a live-cache spike, so `live_cache_enabled=false` remains mandatory. See [current status](#current-status) before treating any result as final.
+ExpertFlow is an OpenAI Build Week project in active development. The real Gemma 4 Q4 baseline, routing probe, recommendation, and causal replay path work on the development machine. Codex/GPT-5.6 annotations are part of the build workflow. The current decision is conditional-go for a bounded live-cache correctness spike. `live_cache_enabled=false` remains mandatory for the default release. See [current status](#current-status) before treating any result as final.
 
 ## Table of contents
 
@@ -74,9 +74,9 @@ The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 
 | Expert layout | All 3,840 Q4 layer-expert objects measured; exact aligned slot is 3,346,048 bytes |
 | CUDA transfer microbenchmark | Three idle-GPU trials pooled; aligned pinned slot is 0.234016 ms p50 / 0.234272 ms p95 |
 | Deadline simulator | Cross-backend estimate only; CUDA transfer and Vulkan windows remain separately labeled |
-| Machine recommendation | `CONDITIONAL`, static-96 replay, live cache disabled; practical policy clears only a 9.03% cold-byte reduction |
+| Machine recommendation | `CONDITIONAL`, static-96 replay, live cache disabled; training-only static-96 earns a bounded proof despite only a 9.03% cold-byte reduction |
 | Causal replay report | Working; self-contained HTML includes per-prompt/domain physical evidence and measurement boundaries |
-| Minimal live-cache spike | No-go on current evidence; not started |
+| Minimal live-cache spike | Conditional-go under protected, time-boxed gates; no cache code started |
 | CPU-only reproduction fixture | Working; eight previously measured events with checked totals |
 | Codex/GPT-5.6 annotations | Active in the build and evidence workflow; no runtime API key required |
 
@@ -182,7 +182,7 @@ uv run expertflow recommend `
   --output C:\models\expertflow\runs\q4-probe\recommendation-physical-feasibility.json
 ```
 
-The recommendation remains `CONDITIONAL`, but the engineering decision is no-go for the live-cache spike. Static-96 projects to 6,433.14 MiB over 21 target layers and leaves 800.86 MiB of configurable headroom. On the expanded held-out decode set, it reaches 87.57% versus 86.34% for conversation-reset LRU. The 9.03% cold-byte reduction misses the practical-policy gate.
+The recommendation remains `CONDITIONAL`, and the engineering decision now permits only a bounded live-cache correctness spike. Static-96 projects to 6,433.14 MiB over 21 target layers and leaves 800.86 MiB of configurable headroom. Its residents were selected from 31 parity-safe training conversations and evaluated on eight untouched validation/test conversations. It reaches 87.57% versus 86.34% for conversation-reset LRU. The 9.03% cold-byte reduction is enough to justify the physical proof, but remains below the 20% expansion target.
 
 ### Measure the CUDA transfer curve
 
