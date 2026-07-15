@@ -417,3 +417,19 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Systematic-debugging inspection separated two issues. The Git blob/current LF checkout hashes to `245aac7ffa83f464f33f220c2c7cafbf931671884c48fe2f92d48795ef11df8e`; with this machine's global `core.autocrlf=true`, `git archive` materializes the text entry with CRLF and a different raw-byte hash. The historical `1b4076...` value matched neither representation.
 - Fixture TDD RED added a cross-platform canonical hash assertion and failed on the absent normalization contract. GREEN records `source_trace_hash_normalization=utf-8-lf`, updates the canonical hash to `245aac...df8e`, and explains the rule in the fixture README. The focused test and fresh full suite passed; 87 tests remain green and `git diff --check` passes.
 - The first clean archive remains preserved as failed judge-replay evidence. A new commit and a second unique clean archive are required before the judge path can be called verified.
+
+### 10:08 PKT - Clean judge replay verified
+
+- Committed the normalized fixture contract as `15a945b` (`fix: normalize replay fixture identity`) and created a second fresh setup at `C:\models\expertflow\judge-replay-clean-15a945b` from `git archive`.
+- `uv sync --frozen --extra dev` created a new virtual environment and installed the locked package. The clean full suite passed: 87 tests in 0.52 seconds. `expertflow --help` passed and the checked-in `simulate` command wrote `replay-simulation.json` successfully.
+- The first post-run checker incorrectly looked for `event_count` and `expert_demand_count` at the simulation root. The CLI schema intentionally stores demand counts inside each policy and does not serialize the source event count. No project command or test failed; the checker was corrected to count JSONL records and compare both policy demand fields.
+- Corrected reconciliation passed: canonical trace SHA-256 `245aac7ffa83f464f33f220c2c7cafbf931671884c48fe2f92d48795ef11df8e`, 8 events, 64 demands, static 26 hits / 38 misses, LRU 19 hits / 45 misses. Output SHA-256: `54f46ccbf719b37f5cca55cc87d1625b8e8abdfd88f34faadc13042709010162`.
+- The clean judge replay is now verified for exact commit `15a945bde3e4e9f1341cbce01702776381ef8774`. Both clean archives and their virtual environments remain under the C-drive artifact root; no D-drive storage was used.
+
+### 10:12 PKT - Bounded physical-feasibility stage closed
+
+- Fresh final verification completed in 2.232 seconds: 87 tests in 0.45 seconds, Python compilation, CLI startup, three TOML files, 18 local README links, all collection/evaluation/layout/timing/report reconciliations, and `git diff --check` passed.
+- Final evidence reconciliation: 40 corpus conversations; 39 parity-passed and 1 explicitly failed pair; 8 held-out conversations; static-96 87.5720% versus conversation-reset LRU 86.3390%; 3,840 packed objects; exact projected cache 6,745,632,768 bytes; 3 transfer trials; deadline label `estimated_cross_backend`; contention measured false; live runtime measured false; live cache enabled false.
+- The HTML remained unchanged after visual inspection: SHA-256 `f3dc647d9965d726771632421b8fa5dffddc165d3ebae49f6f10381bbb75a90c`. The HTTP server remained stopped, and no llama/probe/ExpertFlow model process was active. `nvidia-smi` reported 2,422 MiB desktop allocation and 2% utilization, not a model workload.
+- Git environment is a normal repository (`.git` equals the common Git directory) on `codex/expertflow-stage0`. The remote advertises no default branch/reference, so no merge, push, or PR action was inferred. The continuously shippable branch is preserved for user review.
+- Final decision remains no-go for a minimal live-cache spike on current evidence. No live allocation, blocking slot experiment, asynchronous prefetch, predictor, MTP, KV-cache change, CUDA deadline claim, or runtime speedup claim was added.

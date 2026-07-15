@@ -127,11 +127,11 @@
 - Consumes: static-96 contract, exhaustive byte inventory, per-prompt/domain results, transfer measurements, deadline scenarios, and gate verdict.
 - Produces: a standalone report that keeps evidence classes visibly separate and a clean judge replay path.
 
-- [ ] Add failing report tests for per-domain tables, the static-96 definition, backend/evidence labels, and `live_cache_enabled=false`.
-- [ ] Implement the minimum renderer changes and regenerate the external HTML.
-- [ ] Serve it over localhost, inspect the complete page visually, capture the server command and result, and fix any clipping or misleading labels.
-- [ ] Reproduce the checked-in judge fixture from a clean C-drive archive/setup and record exact commands and duration.
-- [ ] Run all tests, Python compilation, CLI help, TOML parsing, local-link validation, artifact reconciliation, and `git diff --check`; commit the shippable checkpoint.
+- [x] Add failing report tests for per-domain tables, the static-96 definition, backend/evidence labels, and `live_cache_enabled=false`.
+- [x] Implement the minimum renderer changes and regenerate the external HTML.
+- [x] Serve it over localhost, inspect the complete page visually, capture the server command and result, and fix any clipping or misleading labels.
+- [x] Reproduce the checked-in judge fixture from a clean C-drive archive/setup and record exact commands and duration.
+- [x] Run all tests, Python compilation, CLI help, TOML parsing, local-link validation, artifact reconciliation, and `git diff --check`; commit the shippable checkpoint.
 
 ### Task 7: Written go/no-go for a minimal exact blocking cache spike
 
@@ -144,10 +144,10 @@
 - Consumes: only the verified outputs of Tasks 1-6.
 - Produces: `PROCEED`, `CONDITIONAL`, or `NO-GO`, with explicit gates for fit, measured transfer headroom, non-oracle held-out policy, and feature-flag isolation.
 
-- [ ] State each gate with direct artifact paths/hashes and separate measured facts from estimates.
-- [ ] Recommend a live spike only if all four user-defined conditions pass; otherwise keep the Observatory-first direction.
-- [ ] If approved, write a separate plan for the exact blocking, feature-flagged slot experiment. Do not implement asynchronous prefetch, prediction, MTP, or speculative decoding.
-- [ ] Run final verification and commit the decision memo.
+- [x] State each gate with direct artifact paths/hashes and separate measured facts from estimates.
+- [x] Recommend a live spike only if all four user-defined conditions pass; otherwise keep the Observatory-first direction.
+- [x] If approved, write a separate plan for the exact blocking, feature-flagged slot experiment. Do not implement asynchronous prefetch, prediction, MTP, or speculative decoding. (Not approved: the non-oracle gate failed, so no live-spike plan or implementation was started.)
+- [x] Run final verification and commit the decision memo.
 
 ## Stop Rules
 
