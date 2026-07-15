@@ -24,6 +24,10 @@ constexpr const char * llama_revision = "a7312ae94f801fc9c6786dc56e38df57b964f69
 enum class trace_mode {
     full,
     empty,
+    counter,
+    metadata,
+    boundary,
+    ids,
     disabled,
 };
 
@@ -45,7 +49,7 @@ void usage(const char * program) {
     std::fprintf(
         stderr,
         "usage: %s -m MODEL --tokens FILE [--trace FILE | --no-trace] "
-        "[--trace-mode full|empty|disabled] "
+        "[--trace-mode full|empty|counter|metadata|boundary|ids|disabled] "
         "[-n TOKENS] [-ngl LAYERS] [--threads N] "
         "[--capture-tensor NAME --capture-token-index INDEX --capture-output FILE] "
         "[PROMPT]\n",
@@ -75,6 +79,22 @@ bool parse_trace_mode(const char * value, trace_mode & output) {
     }
     if (std::strcmp(value, "empty") == 0) {
         output = trace_mode::empty;
+        return true;
+    }
+    if (std::strcmp(value, "counter") == 0) {
+        output = trace_mode::counter;
+        return true;
+    }
+    if (std::strcmp(value, "metadata") == 0) {
+        output = trace_mode::metadata;
+        return true;
+    }
+    if (std::strcmp(value, "boundary") == 0) {
+        output = trace_mode::boundary;
+        return true;
+    }
+    if (std::strcmp(value, "ids") == 0) {
+        output = trace_mode::ids;
         return true;
     }
     if (std::strcmp(value, "disabled") == 0) {
@@ -198,6 +218,34 @@ struct trace_state {
     }
 
     void end_forward() { active_forward = false; }
+};
+
+constexpr std::uint64_t metadata_canary_token = UINT64_C(0xd1a6c0decafef00d);
+constexpr std::uint16_t metadata_canary_layer = UINT16_C(0xffff);
+
+struct trace_metadata_event {
+    std::uint64_t token_index = 0;
+    std::uint16_t layer_id = 0;
+};
+
+struct trace_metadata_state {
+    trace_metadata_event * events = nullptr;
+    std::size_t capacity = 0;
+    std::size_t count = 0;
+    std::uint64_t current_token_index = 0;
+    bool overflow = false;
+};
+
+constexpr std::int32_t expert_id_canary = INT32_C(0x5a17c0de);
+
+struct trace_ids_state {
+    trace_metadata_event * events = nullptr;
+    std::int32_t * expert_ids = nullptr;
+    std::size_t capacity = 0;
+    std::size_t count = 0;
+    std::uint64_t current_token_index = 0;
+    bool overflow = false;
+    bool invalid_tensor = false;
 };
 
 bool starts_with(const char * value, const char * prefix) {
@@ -371,6 +419,80 @@ bool empty_trace_callback(ggml_tensor *, bool, void *) {
     return false;
 }
 
+bool counter_trace_callback(ggml_tensor *, bool ask, void * user_data) {
+    if (ask) {
+        ++*static_cast<std::uint64_t *>(user_data);
+    }
+    return false;
+}
+
+bool metadata_trace_callback(ggml_tensor * tensor, bool ask, void * user_data) {
+    if (!ask) {
+        return false;
+    }
+    const char * name = ggml_get_name(tensor);
+    if (!starts_with(name, topk_prefix)) {
+        return false;
+    }
+    auto & state = *static_cast<trace_metadata_state *>(user_data);
+    const int layer_id = parse_layer_id(name);
+    if (layer_id < 0 || state.count >= state.capacity) {
+        state.overflow = true;
+        return false;
+    }
+    state.events[state.count++] = {
+        state.current_token_index,
+        static_cast<std::uint16_t>(layer_id),
+    };
+    return false;
+}
+
+bool boundary_trace_callback(ggml_tensor * tensor, bool ask, void * user_data) {
+    const bool selected_experts = starts_with(ggml_get_name(tensor), topk_prefix);
+    if (ask) {
+        return selected_experts;
+    }
+    if (selected_experts) {
+        ++*static_cast<std::uint64_t *>(user_data);
+    }
+    return true;
+}
+
+bool ids_trace_callback(ggml_tensor * tensor, bool ask, void * user_data) {
+    const char * name = ggml_get_name(tensor);
+    const bool selected_experts = starts_with(name, topk_prefix);
+    if (ask) {
+        return selected_experts;
+    }
+    if (!selected_experts) {
+        return true;
+    }
+
+    auto & state = *static_cast<trace_ids_state *>(user_data);
+    const int layer_id = parse_layer_id(name);
+    if (layer_id < 0 || state.count >= state.capacity) {
+        state.overflow = true;
+        return true;
+    }
+    if (!ggml_is_contiguous(tensor) || tensor->type != GGML_TYPE_I32 ||
+        tensor->ne[0] != 8 || tensor->ne[1] != 1 ||
+        tensor->ne[2] != 1 || tensor->ne[3] != 1) {
+        state.invalid_tensor = true;
+        return true;
+    }
+
+    ggml_backend_tensor_get(
+        tensor,
+        state.expert_ids + state.count * 8,
+        0,
+        8 * sizeof(std::int32_t));
+    state.events[state.count++] = {
+        state.current_token_index,
+        static_cast<std::uint16_t>(layer_id),
+    };
+    return true;
+}
+
 bool write_token_sequence(
     const std::string & path,
     const std::vector<llama_token> & prompt_tokens,
@@ -470,16 +592,56 @@ int main(int argc, char ** argv) {
         return 1;
     }
 
+    const std::size_t metadata_capacity =
+        static_cast<std::size_t>(n_prompt + config.n_predict + 1) * 30;
+    std::vector<trace_metadata_event> metadata_storage;
+    trace_metadata_state metadata;
+    if (config.mode == trace_mode::metadata) {
+        metadata_storage.resize(metadata_capacity + 2);
+        metadata_storage.front() = {metadata_canary_token, metadata_canary_layer};
+        metadata_storage.back() = {metadata_canary_token, metadata_canary_layer};
+        metadata.events = metadata_storage.data() + 1;
+        metadata.capacity = metadata_capacity;
+    }
+    std::vector<trace_metadata_event> ids_event_storage;
+    std::vector<std::int32_t> ids_value_storage;
+    trace_ids_state ids;
+    if (config.mode == trace_mode::ids) {
+        ids_event_storage.resize(metadata_capacity + 2);
+        ids_event_storage.front() = {metadata_canary_token, metadata_canary_layer};
+        ids_event_storage.back() = {metadata_canary_token, metadata_canary_layer};
+        ids_value_storage.resize(metadata_capacity * 8 + 2);
+        ids_value_storage.front() = expert_id_canary;
+        ids_value_storage.back() = expert_id_canary;
+        ids.events = ids_event_storage.data() + 1;
+        ids.expert_ids = ids_value_storage.data() + 1;
+        ids.capacity = metadata_capacity;
+    }
+
     llama_context_params context_params = llama_context_default_params();
     context_params.n_ctx = static_cast<std::uint32_t>(n_prompt + config.n_predict + 8);
     context_params.n_batch = 1;
     context_params.n_ubatch = 1;
     context_params.no_perf = false;
+    std::uint64_t callback_counter = 0;
+    std::uint64_t boundary_counter = 0;
     if (full_trace) {
         context_params.cb_eval = router_trace_callback;
         context_params.cb_eval_user_data = &trace;
     } else if (config.mode == trace_mode::empty) {
         context_params.cb_eval = empty_trace_callback;
+    } else if (config.mode == trace_mode::counter) {
+        context_params.cb_eval = counter_trace_callback;
+        context_params.cb_eval_user_data = &callback_counter;
+    } else if (config.mode == trace_mode::metadata) {
+        context_params.cb_eval = metadata_trace_callback;
+        context_params.cb_eval_user_data = &metadata;
+    } else if (config.mode == trace_mode::boundary) {
+        context_params.cb_eval = boundary_trace_callback;
+        context_params.cb_eval_user_data = &boundary_counter;
+    } else if (config.mode == trace_mode::ids) {
+        context_params.cb_eval = ids_trace_callback;
+        context_params.cb_eval_user_data = &ids;
     }
 
     llama_context * context = llama_init_from_model(model, context_params);
@@ -499,6 +661,8 @@ int main(int argc, char ** argv) {
     const auto decode_token = [&](
         llama_token & token, const char * phase, std::uint64_t token_index) {
         llama_batch batch = llama_batch_get_one(&token, 1);
+        metadata.current_token_index = token_index;
+        ids.current_token_index = token_index;
         if (full_trace) {
             trace.begin_forward(batch, phase, token_index);
         }
@@ -569,6 +733,71 @@ int main(int argc, char ** argv) {
             static_cast<unsigned long long>(trace.capture_token_index),
             trace.error.c_str());
         exit_code = 1;
+    }
+    if (config.mode == trace_mode::counter) {
+        std::fprintf(
+            stderr,
+            "trace_counter=%llu\n",
+            static_cast<unsigned long long>(callback_counter));
+    }
+    if (config.mode == trace_mode::boundary) {
+        std::fprintf(
+            stderr,
+            "trace_boundary_count=%llu\n",
+            static_cast<unsigned long long>(boundary_counter));
+        if (boundary_counter == 0) {
+            exit_code = 1;
+        }
+    }
+    if (config.mode == trace_mode::metadata) {
+        const bool canaries_valid =
+            metadata_storage.front().token_index == metadata_canary_token &&
+            metadata_storage.front().layer_id == metadata_canary_layer &&
+            metadata_storage.back().token_index == metadata_canary_token &&
+            metadata_storage.back().layer_id == metadata_canary_layer;
+        std::fprintf(
+            stderr,
+            "trace_metadata_count=%llu trace_metadata_capacity=%llu "
+            "trace_metadata_overflow=%d trace_metadata_canaries=%d\n",
+            static_cast<unsigned long long>(metadata.count),
+            static_cast<unsigned long long>(metadata.capacity),
+            metadata.overflow ? 1 : 0,
+            canaries_valid ? 1 : 0);
+        if (metadata.count == 0 || metadata.overflow || !canaries_valid) {
+            exit_code = 1;
+        }
+    }
+    if (config.mode == trace_mode::ids) {
+        const bool event_canaries_valid =
+            ids_event_storage.front().token_index == metadata_canary_token &&
+            ids_event_storage.front().layer_id == metadata_canary_layer &&
+            ids_event_storage.back().token_index == metadata_canary_token &&
+            ids_event_storage.back().layer_id == metadata_canary_layer;
+        const bool id_canaries_valid =
+            ids_value_storage.front() == expert_id_canary &&
+            ids_value_storage.back() == expert_id_canary;
+        bool expert_ids_valid = true;
+        for (std::size_t index = 0; index < ids.count * 8; ++index) {
+            if (ids.expert_ids[index] < 0 || ids.expert_ids[index] >= 128) {
+                expert_ids_valid = false;
+                break;
+            }
+        }
+        std::fprintf(
+            stderr,
+            "trace_ids_count=%llu trace_ids_capacity=%llu "
+            "trace_ids_overflow=%d trace_ids_invalid_tensor=%d "
+            "trace_ids_canaries=%d trace_ids_values_valid=%d\n",
+            static_cast<unsigned long long>(ids.count),
+            static_cast<unsigned long long>(ids.capacity),
+            ids.overflow ? 1 : 0,
+            ids.invalid_tensor ? 1 : 0,
+            event_canaries_valid && id_canaries_valid ? 1 : 0,
+            expert_ids_valid ? 1 : 0);
+        if (ids.count == 0 || ids.overflow || ids.invalid_tensor ||
+            !event_canaries_valid || !id_canaries_valid || !expert_ids_valid) {
+            exit_code = 1;
+        }
     }
 
     llama_sampler_free(sampler);
