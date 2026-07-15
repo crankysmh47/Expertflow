@@ -86,6 +86,15 @@
     "allowed_use": "synthetic_or_offline_validation_only",
     "supports_real_model_policy_claims": false
   },
+  "observer_isolation": {
+    "status": "first_failing_boundary_identified_observer_not_repaired",
+    "passing_variants": ["T1-empty", "T2-counter", "T3-metadata"],
+    "first_failing_variant": "T3.5-boundary-only",
+    "first_failing_operation": "return true for ffn_moe_topk tensor during scheduler ask",
+    "host_tensor_readback_required_for_failure": false,
+    "required_next_boundary": "post-graph or backend-native deferred observation that preserves the normal scheduler path",
+    "replacement_corpus_authorized": false
+  },
   "gate4_open": false,
   "live_cache_enabled": false
 }
