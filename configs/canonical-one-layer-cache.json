@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "status": "c4_passed_exact_one_layer_primitive",
+  "live_cache_enabled": false,
+  "canonical_expertflow_commit": "56d2ab4cf96ce4b036fc9518b63158491551923a",
+  "llama_cpp_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+  "layer_id": 24,
+  "top_k": 8,
+  "packed_object_bytes": 3345412,
+  "aligned_object_bytes": 3346048,
+  "measured_arena_allocation_bytes": 26763904,
+  "measured_arena_allocation_mib": 25.523101806640625,
+  "controlled_proof": {
+    "conversation_id": "train-translation-01",
+    "decode_indices": [84, 85, 86, 87],
+    "fixed_expert_ids": [2, 3, 5, 32, 38, 58, 91],
+    "rotating_expert_ids": [33, 34, 44],
+    "replaceable_slots": 1,
+    "maximum_gate": "C3"
+  },
+  "c4_minimum": {
+    "physical_slots": 8,
+    "replaceable_slots": 8,
+    "requires_user_approval": false,
+    "approved_at_local_date": "2026-07-16",
+    "passed": true,
+    "verified_repetitions": 3,
+    "verified_cache_events": 2388,
+    "verified_router_events": 71640
+  }
+}

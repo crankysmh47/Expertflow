@@ -45,6 +45,9 @@ def main() -> int:
     for task_id, n_predict, instruction in TASKS:
         run_dir = root / "runs" / task_id / args.mode
         run_dir.mkdir(parents=True, exist_ok=True)
+        run_environment = environment.copy()
+        if run_environment.get("EXPERTFLOW_LIVE_CACHE_MODE") == "blocking":
+            run_environment["EXPERTFLOW_LIVE_CACHE_LOG"] = str((run_dir / "live-cache-events.jsonl").resolve())
         existing = run_dir / "measurement.json"
         if existing.is_file() and json.loads(existing.read_text(encoding="utf-8")).get("status") == "passed":
             continue
@@ -70,7 +73,7 @@ def main() -> int:
             "event": "command_start", "mode": args.mode, "task_id": task_id,
             "n_predict": n_predict, "command": measured,
         })
-        result = subprocess.run(measured, env=environment, check=False)
+        result = subprocess.run(measured, env=run_environment, check=False)
         append_jsonl(ledger, {
             "at": datetime.now(timezone.utc).isoformat(),
             "event": "command_end", "mode": args.mode, "task_id": task_id,

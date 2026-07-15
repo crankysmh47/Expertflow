@@ -1,8 +1,10 @@
 #include "ggml-backend.h"
 #include "ggml.h"
 #include "llama.h"
+#include "live_cache_config.h"
 
 #include <chrono>
+#include <array>
 #include <clocale>
 #include <cstdint>
 #include <cstdlib>
@@ -585,10 +587,28 @@ int main(int argc, char ** argv) {
         return 2;
     }
 
+    const live_cache_config cache_config = live_cache_config_parse(
+        [](const char * name) { return std::getenv(name); });
+    if (!cache_config.valid) {
+        std::fprintf(stderr, "invalid live-cache configuration: %s\n", cache_config.error.c_str());
+        return 3;
+    }
+
     ggml_backend_load_all();
 
     llama_model_params model_params = llama_model_default_params();
     model_params.n_gpu_layers = config.n_gpu_layers;
+    std::array<llama_model_tensor_buft_override, 4> tensor_overrides = {};
+    if (cache_config.use_tensor_overrides()) {
+        const auto patterns = live_cache_tensor_override_patterns();
+        for (std::size_t index = 0; index < patterns.size(); ++index) {
+            tensor_overrides[index] = {
+                patterns[index],
+                ggml_backend_cpu_buffer_type(),
+            };
+        }
+        model_params.tensor_buft_overrides = tensor_overrides.data();
+    }
     llama_model * model = llama_model_load_from_file(config.model_path.c_str(), model_params);
     if (model == nullptr) {
         std::fprintf(stderr, "unable to load model\n");

@@ -2,6 +2,12 @@ cmake_minimum_required(VERSION 3.20)
 
 project(expertflow_router_probe LANGUAGES CXX)
 
+enable_testing()
+
+add_executable(test-live-cache-config test_live_cache_config.cpp live_cache_config.cpp)
+target_compile_features(test-live-cache-config PRIVATE cxx_std_17)
+add_test(NAME test-live-cache-config COMMAND test-live-cache-config)
+
 set(LLAMA_CPP_SOURCE "" CACHE PATH "Path to the pinned llama.cpp source tree")
 if(NOT EXISTS "${LLAMA_CPP_SOURCE}/include/llama.h" OR
    NOT EXISTS "${LLAMA_CPP_SOURCE}/ggml/include/ggml.h")
@@ -39,7 +45,7 @@ set_target_properties(ggml_base_runtime PROPERTIES
     IMPORTED_IMPLIB "${LLAMA_IMPORT_DIR}/libggml-base.dll.a"
 )
 
-add_executable(expertflow-router-probe main.cpp)
+add_executable(expertflow-router-probe main.cpp live_cache_config.cpp)
 target_compile_features(expertflow-router-probe PRIVATE cxx_std_17)
 target_include_directories(
     expertflow-router-probe
