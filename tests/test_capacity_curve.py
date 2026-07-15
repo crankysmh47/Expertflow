@@ -95,3 +95,23 @@ def test_freezes_static_hotset_before_held_out_evaluation() -> None:
     assert point["static_hotset"]["hit_rate"] == 0.0
     assert point["lru"]["hit_rate"] == 0.5
     assert point["projected_cache_bytes"] == 200
+
+
+def test_held_out_curve_resets_lru_between_conversations() -> None:
+    training = [event(0, 0, (9, 10))]
+    first = (event(0, 0, (1, 2)),)
+    second = (event(0, 0, (1, 2)),)
+
+    report = build_held_out_capacity_curve(
+        training,
+        [*first, *second],
+        evaluation_groups=(first, second),
+        capacities=(2,),
+        slot_bytes=100,
+        expert_transfer_ms=0.5,
+    )
+
+    assert report["lru_reset_scope"] == "conversation"
+    point = report["points"][0]
+    assert point["lru"]["hit_count"] == 0
+    assert point["lru"]["miss_count"] == 4

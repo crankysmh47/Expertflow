@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections import Counter, defaultdict
 from dataclasses import asdict
+from typing import Sequence
 
 from expertflow.analysis.cache_sim import PolicyResult, simulate_policies
 from expertflow.trace.schema import RouterTraceEvent
@@ -24,6 +25,23 @@ def _policy_point(
         * expert_transfer_ms
     )
     return body
+
+
+def _combine_policy_results(
+    policy: str, results: Sequence[PolicyResult]
+) -> PolicyResult:
+    demand_count = sum(result.demand_count for result in results)
+    hit_count = sum(result.hit_count for result in results)
+    miss_count = sum(result.miss_count for result in results)
+    return PolicyResult(
+        policy=policy,
+        demand_count=demand_count,
+        hit_count=hit_count,
+        miss_count=miss_count,
+        load_count=sum(result.load_count for result in results),
+        preload_count=sum(result.preload_count for result in results),
+        hit_rate=hit_count / demand_count,
+    )
 
 
 def build_capacity_curve(
@@ -102,6 +120,7 @@ def build_held_out_capacity_curve(
     training_events: list[RouterTraceEvent] | tuple[RouterTraceEvent, ...],
     evaluation_events: list[RouterTraceEvent] | tuple[RouterTraceEvent, ...],
     *,
+    evaluation_groups: Sequence[Sequence[RouterTraceEvent]] | None = None,
     capacities: tuple[int, ...],
     slot_bytes: int,
     expert_transfer_ms: float,
@@ -116,6 +135,15 @@ def build_held_out_capacity_curve(
         raise ValueError("capacities must contain positive values")
     if slot_bytes <= 0 or expert_transfer_ms <= 0:
         raise ValueError("slot bytes and transfer time must be positive")
+    groups = (
+        (evaluation,)
+        if evaluation_groups is None
+        else tuple(tuple(group) for group in evaluation_groups)
+    )
+    if not groups or any(not group for group in groups):
+        raise ValueError("evaluation groups must not be empty")
+    if tuple(event for group in groups for event in group) != evaluation:
+        raise ValueError("evaluation groups must partition evaluation events")
 
     top_k_values = {
         len(event.selected_expert_ids)
@@ -165,8 +193,16 @@ def build_held_out_capacity_curve(
             preload_count=sum(len(values) for values in residents.values()),
             hit_rate=static_hits / demand_count,
         )
-        evaluation_simulation = simulate_policies(
-            evaluation, capacity_per_layer=capacity
+        evaluation_simulations = [
+            simulate_policies(group, capacity_per_layer=capacity)
+            for group in groups
+        ]
+        reactive = _combine_policy_results(
+            "reactive",
+            [simulation.reactive for simulation in evaluation_simulations],
+        )
+        lru = _combine_policy_results(
+            "lru", [simulation.lru for simulation in evaluation_simulations]
         )
         points.append(
             {
@@ -175,7 +211,7 @@ def build_held_out_capacity_curve(
                     capacity * len(layer_ids) * slot_bytes
                 ),
                 "reactive": _policy_point(
-                    evaluation_simulation.reactive,
+                    reactive,
                     layer_count=len(layer_ids),
                     router_top_k=router_top_k,
                     expert_transfer_ms=expert_transfer_ms,
@@ -187,7 +223,7 @@ def build_held_out_capacity_curve(
                     expert_transfer_ms=expert_transfer_ms,
                 ),
                 "lru": _policy_point(
-                    evaluation_simulation.lru,
+                    lru,
                     layer_count=len(layer_ids),
                     router_top_k=router_top_k,
                     expert_transfer_ms=expert_transfer_ms,
@@ -199,6 +235,11 @@ def build_held_out_capacity_curve(
         "schema_version": "1.0.0",
         "measurement_kind": "estimated",
         "fit_scope": "held_out",
+        "lru_reset_scope": (
+            "evaluation_set"
+            if evaluation_groups is None
+            else "conversation"
+        ),
         "training_event_count": len(training),
         "evaluation_event_count": len(evaluation),
         "event_count": len(evaluation),

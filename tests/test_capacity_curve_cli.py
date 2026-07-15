@@ -107,3 +107,46 @@ def test_heldout_curve_cli_keeps_train_and_evaluation_sources_separate(
     assert report["evaluation_event_count"] == 1
     assert report["training_source_traces"] == [str(training.resolve())]
     assert report["evaluation_source_traces"] == [str(evaluation.resolve())]
+
+
+def test_heldout_curve_cli_resets_lru_for_each_evaluation_source(
+    tmp_path: Path,
+) -> None:
+    training = tmp_path / "training.jsonl"
+    first = tmp_path / "first-eval.jsonl"
+    second = tmp_path / "second-eval.jsonl"
+    output = tmp_path / "heldout.json"
+    for path in (training, first, second):
+        write_trace(path)
+
+    result = main(
+        [
+            "heldout-curve",
+            "--train",
+            str(training),
+            "--eval",
+            str(first),
+            "--eval",
+            str(second),
+            "--train-phase",
+            "prefill",
+            "--eval-phase",
+            "decode",
+            "--max-layer",
+            "0",
+            "--capacity",
+            "2",
+            "--slot-bytes",
+            "100",
+            "--expert-transfer-ms",
+            "0.5",
+            "--output",
+            str(output),
+        ]
+    )
+
+    report = json.loads(output.read_text(encoding="utf-8"))
+    assert result == 0
+    assert report["lru_reset_scope"] == "conversation"
+    assert report["points"][0]["lru"]["hit_count"] == 0
+    assert report["points"][0]["lru"]["miss_count"] == 4

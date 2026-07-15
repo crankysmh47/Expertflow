@@ -120,6 +120,10 @@ def build_parser() -> argparse.ArgumentParser:
     replay.add_argument("--max-layer", type=int)
     replay.add_argument("--fit-trace", type=Path, action="append")
     replay.add_argument("--fit-phase", choices=("prefill", "decode"))
+    replay.add_argument("--heldout-breakdown", type=Path)
+    replay.add_argument("--expert-layout", type=Path)
+    replay.add_argument("--transfer-evidence", type=Path)
+    replay.add_argument("--deadline-evidence", type=Path)
 
     simulate = commands.add_parser(
         "simulate", help="Compare estimated cache policies over a router trace."
@@ -401,6 +405,31 @@ def _run_replay(args: argparse.Namespace) -> int:
     recommendation = _load_json_object(
         recommendation_path, "recommendation"
     )
+    physical_arguments = {
+        "heldout_breakdown": args.heldout_breakdown,
+        "expert_layout": args.expert_layout,
+        "transfer": args.transfer_evidence,
+        "deadline": args.deadline_evidence,
+    }
+    supplied_physical = {
+        name: path.resolve()
+        for name, path in physical_arguments.items()
+        if path is not None
+    }
+    if supplied_physical and len(supplied_physical) != len(physical_arguments):
+        raise ValueError(
+            "physical replay evidence requires heldout breakdown, expert "
+            "layout, transfer evidence, and deadline evidence"
+        )
+    physical_evidence = None
+    if supplied_physical:
+        physical_evidence = {
+            name: _load_json_object(path, name)
+            for name, path in supplied_physical.items()
+        }
+        physical_evidence["sources"] = {
+            name: str(path) for name, path in supplied_physical.items()
+        }
     replay_config = recommendation.get("replay")
     if not isinstance(replay_config, dict):
         raise ValueError("recommendation replay must be an object")
@@ -447,9 +476,19 @@ def _run_replay(args: argparse.Namespace) -> int:
     )
     if args.fit_phase is not None:
         fit_arguments += f" --fit-phase {args.fit_phase}"
+    physical_cli_names = {
+        "heldout_breakdown": "heldout-breakdown",
+        "expert_layout": "expert-layout",
+        "transfer": "transfer-evidence",
+        "deadline": "deadline-evidence",
+    }
+    physical_cli_arguments = "".join(
+        f' --{physical_cli_names[name]} "{path}"'
+        for name, path in supplied_physical.items()
+    )
     command = (
         f"expertflow replay {trace_arguments}{selection_arguments}"
-        f"{fit_arguments} "
+        f"{fit_arguments}{physical_cli_arguments} "
         f'--recommendation "{recommendation_path}" --output "{output}"'
     )
     rendered = render_replay_report(
@@ -460,6 +499,7 @@ def _run_replay(args: argparse.Namespace) -> int:
         recommendation_source=recommendation_path,
         reproduction_command=command,
         max_events=args.max_events,
+        physical_evidence=physical_evidence,
     )
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(rendered, encoding="utf-8")
@@ -571,18 +611,31 @@ def _run_heldout_curve(args: argparse.Namespace) -> int:
     training_phase = args.train_phase or args.phase
     evaluation_phase = args.eval_phase or args.phase
 
-    def selected(sources: list[Path], phase: str | None):
+    def selected_source(source: Path, phase: str | None):
         return [
             event
-            for source in sources
             for event in load_router_events(source)
             if (phase is None or event.phase == phase)
             and (args.max_layer is None or event.layer_id <= args.max_layer)
         ]
 
+    training_events = [
+        event
+        for source in training_sources
+        for event in selected_source(source, training_phase)
+    ]
+    evaluation_groups = tuple(
+        tuple(selected_source(source, evaluation_phase))
+        for source in evaluation_sources
+    )
+    evaluation_events = [
+        event for group in evaluation_groups for event in group
+    ]
+
     report = build_held_out_capacity_curve(
-        selected(training_sources, training_phase),
-        selected(evaluation_sources, evaluation_phase),
+        training_events,
+        evaluation_events,
+        evaluation_groups=evaluation_groups,
         capacities=tuple(args.capacity),
         slot_bytes=args.slot_bytes,
         expert_transfer_ms=args.expert_transfer_ms,

@@ -2,7 +2,7 @@
 
 A hardware-aware routing observatory for running sparse mixture-of-experts models on one local GPU.
 
-ExpertFlow is an OpenAI Build Week project in active development. The real Gemma 4 Q4 baseline, routing probe, recommendation, and causal replay path now work on the development machine. Codex/GPT-5.6 annotations are part of the build workflow, and the live-cache gate remains conditional. See [current status](#current-status) before treating any result as final.
+ExpertFlow is an OpenAI Build Week project in active development. The real Gemma 4 Q4 baseline, routing probe, recommendation, and causal replay path work on the development machine. Codex/GPT-5.6 annotations are part of the build workflow. The current evidence says no-go for a live-cache spike, so `live_cache_enabled=false` remains mandatory. See [current status](#current-status) before treating any result as final.
 
 ## Table of contents
 
@@ -69,11 +69,14 @@ The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 
 | Unmodified real-model baseline | Passed on CPU and bounded 10-layer GPU offload |
 | Token parity comparison | Working; exact measured comparison with first mismatch |
 | Routing callback probe | Passed; 1,350 real events and exact token parity |
-| Stratified GPU telemetry | Five Vulkan prompt pairs pass exact parity; CUDA callback divergence is disclosed |
-| Held-out policy evaluation | Five additional Vulkan prompt pairs pass parity; prefill-trained static-96 reaches 93.28% on decode |
-| Expert-size and transfer curve | Passed; 3.190434 MiB encoded expert and measured pageable/pinned CUDA curves |
-| Machine recommendation | Regenerated from held-out evidence; `CONDITIONAL`, static-96 replay, live cache disabled |
-| Causal replay report | Working; self-contained HTML with measured/estimated labels |
+| Stratified GPU telemetry | 40 Vulkan conversations collected; 39 exact-parity pairs pass and one deterministic training failure is disclosed and excluded |
+| Held-out policy evaluation | Eight untouched domains; prefill-trained static-96 reaches 87.57% on decode versus 86.34% conversation-reset LRU |
+| Expert layout | All 3,840 Q4 layer-expert objects measured; exact aligned slot is 3,346,048 bytes |
+| CUDA transfer microbenchmark | Three idle-GPU trials pooled; aligned pinned slot is 0.234016 ms p50 / 0.234272 ms p95 |
+| Deadline simulator | Cross-backend estimate only; CUDA transfer and Vulkan windows remain separately labeled |
+| Machine recommendation | `CONDITIONAL`, static-96 replay, live cache disabled; practical policy clears only a 9.03% cold-byte reduction |
+| Causal replay report | Working; self-contained HTML includes per-prompt/domain physical evidence and measurement boundaries |
+| Minimal live-cache spike | No-go on current evidence; not started |
 | CPU-only reproduction fixture | Working; eight previously measured events with checked totals |
 | Codex/GPT-5.6 annotations | Active in the build and evidence workflow; no runtime API key required |
 
@@ -83,12 +86,16 @@ The append-only [project log](PROJECT_LOG.md) records commands, failures, decisi
 
 ```text
 expertflow baseline  Run and measure an unmodified llama.cpp baseline
+expertflow collect-pairs  Collect resumable trace-off/trace-on prompt pairs
 expertflow doctor    Record hardware, storage, and toolchain readiness
 expertflow profile   Build a measured locality profile from router JSONL
 expertflow parity    Compare exact token sequences with and without tracing
 expertflow recommend Produce an evidence-bounded machine recommendation
 expertflow replay    Render a standalone causal policy replay report
 expertflow simulate  Compare estimated cache policies under one slot budget
+expertflow heldout-breakdown  Report held-out results by prompt and domain
+expertflow transfer-benchmark Measure pageable and pinned CUDA transfers
+expertflow deadline-eval  Run the backend-labeled deadline simulator
 ```
 
 Run `uv run expertflow <command> --help` for the full option list.
@@ -171,11 +178,11 @@ uv run expertflow recommend `
   --baseline C:\models\expertflow\runs\q4-gpu10-smoke8\manifest.json `
   --profile C:\models\expertflow\runs\q4-probe\profile.json `
   --simulation C:\models\expertflow\runs\q4-probe\simulation.json `
-  --capacity-curve C:\models\expertflow\runs\heldout-q4-vulkan\prefill-train-decode-eval-cpu21.json `
-  --output C:\models\expertflow\runs\q4-probe\recommendation-decode-heldout.json
+  --capacity-curve C:\models\expertflow\runs\physical-feasibility-q4-vulkan\heldout-capacity-decode-p95.json `
+  --output C:\models\expertflow\runs\q4-probe\recommendation-physical-feasibility.json
 ```
 
-The current gate is `CONDITIONAL`: keep live caching disabled until CUDA per-layer transfer deadlines and a same-runtime end-to-end comparison are measured. The decode replay recommendation selects static-96 over the 21 target layers: 6,433.14 MiB projected cache, 800.86 MiB remaining configurable headroom, a 93.28% held-out hit estimate, and 2.65 ms/token serialized transfer without prefetch.
+The recommendation remains `CONDITIONAL`, but the engineering decision is no-go for the live-cache spike. Static-96 projects to 6,433.14 MiB over 21 target layers and leaves 800.86 MiB of configurable headroom. On the expanded held-out decode set, it reaches 87.57% versus 86.34% for conversation-reset LRU. The 9.03% cold-byte reduction misses the practical-policy gate.
 
 ### Measure the CUDA transfer curve
 
@@ -183,11 +190,13 @@ The current gate is `CONDITIONAL`: keep live caching disabled until CUDA per-lay
 uv run expertflow transfer-benchmark `
   --cudart C:\models\expertflow\dependencies\llama-b10002\runtime\cudart64_12.dll `
   --payload-bytes 3345412 `
+  --payload-bytes 3346048 `
   --payload-bytes 26763296 `
+  --single-copy-samples 200 `
   --output C:\models\expertflow\runs\transfer-q4\transfer.json
 ```
 
-The command records pageable-to-pinned staging, pageable-to-GPU copies, and pinned-to-GPU copies with raw batch samples. Transfer-only measurements are not reported as token latency savings.
+The command records pageable-to-pinned staging, pageable-to-GPU copies, pinned-to-GPU copies, single-copy CUDA-event latency, host API-call duration, and sustained batch bandwidth. Transfer-only measurements are not reported as token latency savings.
 
 ### Render the causal replay report
 
@@ -196,12 +205,16 @@ uv run expertflow replay trace-a.jsonl trace-b.jsonl `
   --phase decode --max-layer 20 `
   --fit-trace training-a.jsonl --fit-trace training-b.jsonl `
   --fit-phase prefill `
-  --recommendation C:\models\expertflow\runs\q4-probe\recommendation-decode-heldout.json `
-  --output C:\models\expertflow\runs\q4-probe\report-decode-heldout.html `
+  --recommendation C:\models\expertflow\runs\q4-probe\recommendation-physical-feasibility.json `
+  --heldout-breakdown C:\models\expertflow\runs\physical-feasibility-q4-vulkan\heldout-breakdown-decode-static96-p95.json `
+  --expert-layout C:\models\expertflow\runs\expert-layout-q4\inventory.json `
+  --transfer-evidence C:\models\expertflow\runs\transfer-q4-physical\aggregate.json `
+  --deadline-evidence C:\models\expertflow\runs\physical-feasibility-q4-vulkan\deadline-static96-two-slice-p95.json `
+  --output C:\models\expertflow\runs\q4-probe\report-physical-feasibility.html `
   --max-events 300
 ```
 
-The result is one self-contained HTML file with the gate verdict, measured memory envelope, estimated policy comparison, explicit evidence blockers, and a bounded event timeline. It does not require a web server or model weights to open. The current report replays 735 held-out decode events with a frozen prefill-trained hotset and shows static-96 at 93.28% versus 76.99% for cold-start LRU while preserving the `CONDITIONAL` verdict.
+The result is one self-contained HTML file with the gate verdict, measured memory envelope, exact packed-byte projection, per-prompt/domain policy results, independent CUDA transfer timing, cross-backend deadline boundary, and a bounded event timeline. The current report covers 10,584 held-out decode events and keeps `live_cache_enabled=false` visible. A local HTTP server is useful for judge review, but the file has no scripts or remote assets.
 
 To check the simulator without downloading the model, use the small [replay fixture](examples/replay/README.md):
 
@@ -280,6 +293,11 @@ Codex with GPT-5.6 is also being used to annotate the measured artifacts, explai
 - [Stratified Q4 capacity curve](docs/evidence/q4-capacity-curve.md)
 - [Held-out Q4 routing evidence](docs/evidence/q4-heldout-routing.md)
 - [Decode deadline and oracle evidence](docs/evidence/q4-deadline-oracle.md)
+- [Expanded physical-feasibility routing](docs/evidence/q4-physical-feasibility-routing.md)
+- [Static-96 definition and budget](docs/evidence/q4-static-96.md)
+- [Exhaustive Q4 expert layout](docs/evidence/q4-expert-layout.md)
+- [Measured transfer deadline sensitivity](docs/evidence/q4-deadline-sensitivity.md)
+- [Minimal live-cache go/no-go](docs/evidence/q4-live-cache-go-no-go.md)
 
 ## License
 
