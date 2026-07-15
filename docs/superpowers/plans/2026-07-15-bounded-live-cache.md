@@ -36,13 +36,13 @@
 - Consumes: protected tag, existing replay fixture, physical evidence artifacts, existing native runtimes.
 - Produces: immutable pre-install hashes and exact replay/report reproduction evidence.
 
-- [ ] **Step 1: Capture pre-install hardware, tools, environment, and binary hashes**
+- [x] **Step 1: Capture pre-install hardware, tools, environment, and binary hashes**
 
 Run from `C:\sem4\Expertflow`. Capture start/end ISO timestamps and exit codes. Hash the model; every `.exe` and `.dll` under the pinned CUDA and Vulkan runtime directories; `cmake.exe`, `ninja.exe`, `uv.exe`, `git.exe`, `nvidia-smi.exe`; the active NVIDIA user-mode CUDA/NVML DLLs; and the VS 2026 `cl.exe` located by `vswhere`. Record only build/runtime environment variables (`PATH`, `CUDA_PATH*`, `VS*`, `VSCMD*`, `CC`, `CXX`, `CMAKE_*`, `GGML_*`, `EXPERTFLOW_*`, `HF_HOME`, `UV_CACHE_DIR`); never serialize tokens or secret-valued variables.
 
 Expected: `nvcc` and a PATH-visible `cl` are absent; CMake is 4.3.1, Ninja is 1.13.2, GPU is RTX 5060 Ti, driver is 591.86, and the tag resolves to `d846bdf`.
 
-- [ ] **Step 2: Reproduce the judge fixture from the protected tag**
+- [x] **Step 2: Reproduce the judge fixture from the protected tag**
 
 ```powershell
 git archive --format=zip --output C:\models\expertflow\runs\live-cache-spike\gate1\protected-d846bdf.zip observatory-floor-2026-07-15
@@ -53,21 +53,21 @@ uv run pytest -q
 uv run expertflow simulate examples\replay\trace.jsonl --capacity-per-layer 8 --output replay-simulation.json
 ```
 
-Expected: 87 tests pass; the canonical LF trace hash is `245aac7ffa83f464f33f220c2c7cafbf931671884c48fe2f92d48795ef11df8e`; output totals are 8 events/64 demands, static 26/38 and LRU 19/45; output hash is `54f46ccbf719b37f5cca55cc87d1625b8e8abdfd88f34faadc13042709010162`.
+Expected: 87 tests pass; the canonical LF trace hash is `245aac7ffa83f464f33f220c2c7cafbf931671884c48fe2f92d48795ef11df8e`; output totals are 8 events/64 demands, static 26/38 and LRU 19/45; the path-normalized canonical output hash is `6c658457ea3320f065a47b8931bb5992700c2ba075c6b77a2351072a3589358c`. The raw JSON hash is not a portable identity because `source_trace` is serialized as an absolute path; the historical raw hash `54f46ccbf719b37f5cca55cc87d1625b8e8abdfd88f34faadc13042709010162` remains recorded as historical evidence only.
 
-- [ ] **Step 3: Regenerate the physical Observatory with its embedded command**
+- [x] **Step 3: Regenerate the physical Observatory with its embedded command**
 
 Extract the exact `expertflow replay ...` command from the existing self-contained HTML, prepend `uv run`, and execute it from the protected clean tree using the original output path. Compute SHA-256 afterward.
 
 Expected: `C:\models\expertflow\runs\q4-probe\report-physical-feasibility.html` hashes to `f3dc647d9965d726771632421b8fa5dffddc165d3ebae49f6f10381bbb75a90c` and still says `live_cache_enabled=false`.
 
-- [ ] **Step 4: Verify the held-out selection boundary**
+- [x] **Step 4: Verify the held-out selection boundary**
 
 Assert that all 31 fit conversations in the report/manifest have split `train`, all eight evaluated conversations have split `validation` or `test`, the sets are disjoint, and capacity 96 reconciles to 74,149 hits / 10,523 misses.
 
 Expected: no conversation ID overlap and `fit_scope=held_out_conversation_split`.
 
-- [ ] **Step 5: Write the Gate 1 summary and commit**
+- [x] **Step 5: Write the Gate 1 summary and commit**
 
 ```powershell
 uv run pytest -q
