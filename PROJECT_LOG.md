@@ -572,3 +572,12 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Preserved raw callback traces and generated canonical copies by changing only placeholder request/conversation identifiers. Every shard records tokens, duration, memory snapshots, hashes, domain, split, and process result.
 - Held-out decode adjacent reuse is 39.44%. At 32 slots/layer, training-only static is 49.34%, reset LRU 72.30%, and causal session frequency 71.83%. At 96 slots/layer, training-only static is 92.80% versus 78.49% LRU/session on this small pilot.
 - The 92.80% number is new small-pilot evidence, not restoration of the withdrawn 93.28% result and not a generalization claim. Policy outputs remain estimated over measured routing; cache remains disabled.
+
+### 2026-07-16 - Expanded canonical 84-conversation manifest frozen
+
+- Created isolated branch/worktree `codex/expanded-canonical-collection` from canonical pilot commit `56d2ab4`; predictor, C5 runtime, llama.cpp, protected Observatory, canonical observer, and one-layer cache worktrees remain out of scope.
+- Froze `configs/expanded-canonical-84.json` before expanded trace generation: exactly 84 deterministic conversation IDs, 60 train / 12 validation / 12 sealed test, and six domains with exactly 10 / 2 / 2 conversations each.
+- Recorded unique prompt-template IDs, exact UTF-8 SHA-256 hashes, normalized NFKC/casefold/token hashes, split-qualified task families, public-synthetic source policy, and no-post-result-movement policy. A full pairwise character-similarity scan at threshold 0.72 flagged zero near duplicates.
+- TDD RED first failed because `expertflow.expanded_collection` did not exist, then failed because the frozen manifest did not exist. The GREEN validator rejects stale hashes, exact/normalized duplicates, malformed counts, and task families crossing splits.
+- Added strict shard validation requiring nonempty canonical events, matching conversation identity, eight unique in-range experts, monotonic hook/timestamp order, and every forward containing ordered MoE layers 0 through 29. Added round-robin collection ordering across domains; the test split fails closed unless explicitly unsealed.
+- Focused verification: 9 tests passed. Collection remains cache-disabled and will use the exact pinned `expertflow-canonical-observer-v1` binary/configuration; expanded test traces remain sealed until the predictor family and procedure are frozen.

@@ -1,0 +1,872 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "trace-v2-canonical-expanded-84-v1",
+  "status": "frozen_before_collection",
+  "source_policy": "Public synthetic prompts authored for ExpertFlow; no private conversation data.",
+  "split_policy": "Conversation IDs and 60/12/12 membership frozen before trace generation; no post-result movement.",
+  "deduplication_policy": {
+    "exact": "unique UTF-8 SHA-256",
+    "normalized": "NFKC, casefold, Unicode word tokens, collapsed whitespace, unique SHA-256",
+    "near_duplicate": "task-family isolation plus token similarity review before collection"
+  },
+  "split_counts": {
+    "train": 60,
+    "validation": 12,
+    "test": 12
+  },
+  "per_domain_split_counts": {
+    "train": 10,
+    "validation": 2,
+    "test": 2
+  },
+  "domains": [
+    "general_instruction",
+    "code",
+    "math_reasoning",
+    "translation_multilingual",
+    "structured_output",
+    "topic_shift"
+  ],
+  "conversations": [
+    {
+      "conversation_id": "exp84-tr-general_instruction-01",
+      "split": "train",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-01-v1",
+      "task_family": "train:morning-routine",
+      "prompt": "User: Design a calm 25-minute morning routine for a student who must leave by 7:30. Include a two-minute fallback.",
+      "prompt_sha256": "b8eedb5c8ff6ddfe43f9df37cd0dc692c35055ff206861fb688428ed7b3254ab",
+      "normalized_prompt_sha256": "6011c1060259a6c4b85aa44d28d53dd7a0eff64b97063563a2c441e6ae643b05"
+    },
+    {
+      "conversation_id": "exp84-tr-general_instruction-02",
+      "split": "train",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-02-v1",
+      "task_family": "train:meeting-agenda",
+      "prompt": "User: Turn these goals into a 30-minute meeting agenda: choose a venue, assign outreach, and confirm accessibility.",
+      "prompt_sha256": "5c5337a05d7097d33e117bc7601c62a02f588d10c66434be71521b9ff7b0fb35",
+      "normalized_prompt_sha256": "86e5836329caad106dbbc9e3389a8c214ad26015b18ea33b307e30151b28d3e6"
+    },
+    {
+      "conversation_id": "exp84-tr-general_instruction-03",
+      "split": "train",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-03-v1",
+      "task_family": "train:apology-note",
+      "prompt": "User: Draft a sincere four-sentence apology for returning a borrowed camera late without making excuses.",
+      "prompt_sha256": "f86675f1b8126bfdba3437b808021fe09b6e573d57b83a57f77c2a60aa868575",
+      "normalized_prompt_sha256": "5a580a58c6510f05f1ad2109fe99e9d435dd2334ddcea2da40285769a3568fb1"
+    },
+    {
+      "conversation_id": "exp84-tr-general_instruction-04",
+      "split": "train",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-04-v1",
+      "task_family": "train:decision-checklist",
+      "prompt": "User: Make a checklist for choosing between repairing an old bicycle and buying a reliable used one.",
+      "prompt_sha256": "dc433046772c99b4889cb6240d45a3c3b18f17b24e519ee2780091d9d4869cb7",
+      "normalized_prompt_sha256": "5913985b83fe52eb172eb1b00538104fe93bc307e10e250c4fd63ac1a643a7d4"
+    },
+    {
+      "conversation_id": "exp84-tr-general_instruction-05",
+      "split": "train",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-05-v1",
+      "task_family": "train:concept-explanation",
+      "prompt": "User: Explain why metal feels colder than wood at the same room temperature using a simple analogy.",
+      "prompt_sha256": "6c852f60d488c4fb31f8d51f7ad21da030e8138fca1a935bc34b6060b1df1192",
+      "normalized_prompt_sha256": "e9e0df094680c79e6df72ac744faadf81ef1bd71650194812ecaf8083383fc59"
+    },
+    {
+      "conversation_id": "exp84-tr-general_instruction-06",
+      "split": "train",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-06-v1",
+      "task_family": "train:meal-planning",
+      "prompt": "User: Plan three inexpensive vegetarian lunches that reuse ingredients but do not feel identical.",
+      "prompt_sha256": "b3a49eefb9d56ba63f8cf24b16448ff77206ea7a5356fdc1995ff6c1707377bd",
+      "normalized_prompt_sha256": "4e4a299982968ed602430400c387d00ce19339e2cfd092dc9cf9ca2a5f9f2fd5"
+    },
+    {
+      "conversation_id": "exp84-tr-general_instruction-07",
+      "split": "train",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-07-v1",
+      "task_family": "train:study-plan",
+      "prompt": "User: Build a five-day revision plan for two exams, with retrieval practice and one recovery evening.",
+      "prompt_sha256": "2d0c15f39887485ff70fd192652e070fa7e815d4aa5ecb56dc120c0280a7855e",
+      "normalized_prompt_sha256": "f0c949e82b6fffbae5455b74a691db564fd1aae08ab0ea2c9fe69f1558b6ab42"
+    },
+    {
+      "conversation_id": "exp84-tr-general_instruction-08",
+      "split": "train",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-08-v1",
+      "task_family": "train:boundary-message",
+      "prompt": "User: Write a friendly message declining recurring late-night calls while offering two daytime alternatives.",
+      "prompt_sha256": "50e4adce4e6c69f18f523362ade9a0a5158988acd004c1c73cf3067dc330ca29",
+      "normalized_prompt_sha256": "53aac7d34264ce1ee325e07bee9c645216a8139ac0723365c2bd1e29558af40f"
+    },
+    {
+      "conversation_id": "exp84-tr-general_instruction-09",
+      "split": "train",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-09-v1",
+      "task_family": "train:travel-packing",
+      "prompt": "User: Create a minimal packing list for a rainy two-day train trip with one formal dinner.",
+      "prompt_sha256": "77ee74e204808df7bd54b7c5781ee6ce152d78900243d045645525d5c9bcce93",
+      "normalized_prompt_sha256": "68c5c1905a2d9adc0a0e48e27966b500915a82bbc96008d5f414ed59f9ee0e19"
+    },
+    {
+      "conversation_id": "exp84-tr-general_instruction-10",
+      "split": "train",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-10-v1",
+      "task_family": "train:feedback-rewrite",
+      "prompt": "User: Rewrite this feedback constructively: Your reports are confusing and always arrive too late.",
+      "prompt_sha256": "7ecb2116617bba7448a579cea102c933013379fce05b3d52e369eec822d135e4",
+      "normalized_prompt_sha256": "a6c5b5990390b4bada2486ba1018cd13823126429cd82bd1bc4378b0030736a5"
+    },
+    {
+      "conversation_id": "exp84-va-general_instruction-11",
+      "split": "validation",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-11-v1",
+      "task_family": "validation:event-plan",
+      "prompt": "User: Propose a low-noise indoor activity plan for eight people with mixed mobility needs.",
+      "prompt_sha256": "7909cfbdbf6dd0b5eb9510ee99f9f886aa15837a9f298358835162d8d1443214",
+      "normalized_prompt_sha256": "0b70d9dde2dd9ee2fce3bbb43350e0286c92b65f63ed5b26baf1eed42f7500d3"
+    },
+    {
+      "conversation_id": "exp84-va-general_instruction-12",
+      "split": "validation",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-12-v1",
+      "task_family": "validation:comparison-brief",
+      "prompt": "User: Compare paper and digital note-taking for a field course; give tradeoffs and a recommendation framework.",
+      "prompt_sha256": "6f1c635df1d07c5521a335650b9a4561bc5374f8cbfd88de3b09808bae577ef8",
+      "normalized_prompt_sha256": "3867f608f8f774eb6f59f1201de7be4cd337f1b812cf5aa357e534d0d550a664"
+    },
+    {
+      "conversation_id": "exp84-te-general_instruction-13",
+      "split": "test",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-13-v1",
+      "task_family": "test:care-instructions",
+      "prompt": "User: Give a safe maintenance checklist for a wooden cutting board, including what cleaners to avoid.",
+      "prompt_sha256": "5797560580f5134555e22ceab79672d68c8f067953e97df93885937d1ab6184e",
+      "normalized_prompt_sha256": "58bbf471134568aa61f9156dba6eaee00cadc6ad9ca3069ef1314ae817241eaf"
+    },
+    {
+      "conversation_id": "exp84-te-general_instruction-14",
+      "split": "test",
+      "domain": "general_instruction",
+      "template_id": "tpl-general_instruction-14-v1",
+      "task_family": "test:negotiation-script",
+      "prompt": "User: Draft a concise script for asking a landlord to repair a leaking window before the next storm.",
+      "prompt_sha256": "3ea6778f302c487d2f45f880fe7b6e27abab4b5e391d181e6b0dc5bd3207a1f3",
+      "normalized_prompt_sha256": "e501d6f297584507a7f3abaded61d46328d18a41ec208e333e302fca8752e566"
+    },
+    {
+      "conversation_id": "exp84-tr-code-01",
+      "split": "train",
+      "domain": "code",
+      "template_id": "tpl-code-01-v1",
+      "task_family": "train:python-parser",
+      "prompt": "User: Implement a Python parser for key=value lines that ignores comments and reports malformed line numbers. Include tests.",
+      "prompt_sha256": "983c1613e1b1f2fcd2a1942cc425239755274d40a0ed127bb2bec183ea6e2f03",
+      "normalized_prompt_sha256": "21c3a258d6391765fec769fff029572cff56a8ac2e1e74b63625e2cb6d90083b"
+    },
+    {
+      "conversation_id": "exp84-tr-code-02",
+      "split": "train",
+      "domain": "code",
+      "template_id": "tpl-code-02-v1",
+      "task_family": "train:typescript-retry",
+      "prompt": "User: Write a typed TypeScript retry helper with capped exponential backoff and injected sleep for deterministic tests.",
+      "prompt_sha256": "f593a8151842bba2913f9ea3f744fa268505f69732c8c362edff8f9bc5fb7014",
+      "normalized_prompt_sha256": "d508f1d63bad8ab7110ffc22e28c19a42e5af36a3a5b69754eab7b4082c41661"
+    },
+    {
+      "conversation_id": "exp84-tr-code-03",
+      "split": "train",
+      "domain": "code",
+      "template_id": "tpl-code-03-v1",
+      "task_family": "train:sql-dedup",
+      "prompt": "User: Write PostgreSQL SQL that keeps the newest row per email and explain deterministic tie handling.",
+      "prompt_sha256": "72915421c7edeb7400d7d4d82022889cba12512074a3a8741704fd42ea7c3aa3",
+      "normalized_prompt_sha256": "2f170facd90a04a19a8d98da2fed3f5db1ad0193a4eec6bfdd80293cda45ab1f"
+    },
+    {
+      "conversation_id": "exp84-tr-code-04",
+      "split": "train",
+      "domain": "code",
+      "template_id": "tpl-code-04-v1",
+      "task_family": "train:rust-iterator",
+      "prompt": "User: Implement a Rust iterator that yields fixed-size slices and handles a final short slice without copying.",
+      "prompt_sha256": "3fb3b5c3b8ce363fb3004adca57df4aca640ae96bab5a37b415081db666a64a5",
+      "normalized_prompt_sha256": "70ab760ad0a8eb533abceb6f09bec4fe2b8e6db909bea2b55a3522997e2a8a3f"
+    },
+    {
+      "conversation_id": "exp84-tr-code-05",
+      "split": "train",
+      "domain": "code",
+      "template_id": "tpl-code-05-v1",
+      "task_family": "train:go-worker-pool",
+      "prompt": "User: Sketch a Go worker pool that stops on context cancellation and never leaks result-channel senders.",
+      "prompt_sha256": "54ed26b06a33342bfaa51bed680fb276835c9d5f89ffde12cd60721448a4949b",
+      "normalized_prompt_sha256": "8218d541853cfa4de8334aab3d2b103a61c8619725d26756e8abf9335edc2603"
+    },
+    {
+      "conversation_id": "exp84-tr-code-06",
+      "split": "train",
+      "domain": "code",
+      "template_id": "tpl-code-06-v1",
+      "task_family": "train:javascript-bug",
+      "prompt": "User: Debug a JavaScript closure bug where buttons in a loop all print the final index; show two fixes.",
+      "prompt_sha256": "20e0c54213cc0fc9689d177636d1aba8e73f782d829709cd650538fc1b3880f4",
+      "normalized_prompt_sha256": "c96c5f90aa047dfe49a048ba0e8ee792852ee6805852aed38317e2a8b880b564"
+    },
+    {
+      "conversation_id": "exp84-tr-code-07",
+      "split": "train",
+      "domain": "code",
+      "template_id": "tpl-code-07-v1",
+      "task_family": "train:cache-design",
+      "prompt": "User: Design an LRU cache API with O(1) get and put, then state invariants suitable for property tests.",
+      "prompt_sha256": "1ed6a9db808cb0af6d91be386088643d4fbb033d2068fa8b2d4f32cb1a372215",
+      "normalized_prompt_sha256": "2253fdbe1147997bd9b1ed779f98e704c6a568388909a8f865a472dde5427c82"
+    },
+    {
+      "conversation_id": "exp84-tr-code-08",
+      "split": "train",
+      "domain": "code",
+      "template_id": "tpl-code-08-v1",
+      "task_family": "train:shell-validation",
+      "prompt": "User: Write defensive PowerShell pseudocode that validates an input directory before enumerating JSON files.",
+      "prompt_sha256": "a6972bc483915c6d47af1b5e0238db7acf33f1ced7f74a1df64e1882a2ca253e",
+      "normalized_prompt_sha256": "31ac996689513b20392736ae13422090b8b1c1285517874bdc238edd1f407657"
+    },
+    {
+      "conversation_id": "exp84-tr-code-09",
+      "split": "train",
+      "domain": "code",
+      "template_id": "tpl-code-09-v1",
+      "task_family": "train:regex-review",
+      "prompt": "User: Review a regex-based email validator, explain its limits, and propose a pragmatic application-level contract.",
+      "prompt_sha256": "2420be0a628f58b6643df83483599740fe55d0925f7825297952ebcabc1be5dc",
+      "normalized_prompt_sha256": "02fd7edddea1882f7ec88e4790440fcdeb44dc8d3b68628a44ec1fa1b8a8e94a"
+    },
+    {
+      "conversation_id": "exp84-tr-code-10",
+      "split": "train",
+      "domain": "code",
+      "template_id": "tpl-code-10-v1",
+      "task_family": "train:api-pagination",
+      "prompt": "User: Implement cursor pagination pseudocode that avoids duplicates when rows are inserted between requests.",
+      "prompt_sha256": "ee556ca2f395c47b0cd5114c031b5949855223053fbee91fa77d2a9334c38d9c",
+      "normalized_prompt_sha256": "b525c19e5a5f9d818d2adcb794af3b1874a9db580ca88dfea12a37571938d0ce"
+    },
+    {
+      "conversation_id": "exp84-va-code-11",
+      "split": "validation",
+      "domain": "code",
+      "template_id": "tpl-code-11-v1",
+      "task_family": "validation:cpp-lifetime",
+      "prompt": "User: Explain a dangling string_view bug in C++ and provide a corrected ownership-safe example.",
+      "prompt_sha256": "947e5e49a9d99f508d4e4421542ddc952a9c2990d8430ba3cf97bfb84450b9ac",
+      "normalized_prompt_sha256": "83bf8ee858a306740b9f96ea5fbe41790c24b831264490a38c20af3c19e4be3a"
+    },
+    {
+      "conversation_id": "exp84-va-code-12",
+      "split": "validation",
+      "domain": "code",
+      "template_id": "tpl-code-12-v1",
+      "task_family": "validation:database-transaction",
+      "prompt": "User: Show a transaction-safe inventory decrement that prevents overselling under concurrent requests.",
+      "prompt_sha256": "4ce6d7876d256c1034941cfb88e50b7f751547cd3f5bb56f44ed33af4cde1e3e",
+      "normalized_prompt_sha256": "3a4063a39dc202db32118360559d3e99a688acd3e0fafbf568d333e4e4ddd981"
+    },
+    {
+      "conversation_id": "exp84-te-code-13",
+      "split": "test",
+      "domain": "code",
+      "template_id": "tpl-code-13-v1",
+      "task_family": "test:test-refactor",
+      "prompt": "User: Refactor a brittle test that sleeps for one second into a deterministic event-driven test.",
+      "prompt_sha256": "093040384bdf062893c2135720cc2f6d3426f80cc404b75e9d0a3230c6f71f12",
+      "normalized_prompt_sha256": "aee8add3cb751480b257745f62edab9ff5121d2e9151fed7b82a141b6ca18467"
+    },
+    {
+      "conversation_id": "exp84-te-code-14",
+      "split": "test",
+      "domain": "code",
+      "template_id": "tpl-code-14-v1",
+      "task_family": "test:memory-profile",
+      "prompt": "User: Diagnose a service whose memory rises when request futures time out; list instrumentation and likely ownership bugs.",
+      "prompt_sha256": "c6c811b9d22f4605bfd673728fc24dc6b3d884c45820768c0bec3c3d8c93efe2",
+      "normalized_prompt_sha256": "4ef71449303bf61c9547a7da65333c017f43424e928ee5b3b6837de717005777"
+    },
+    {
+      "conversation_id": "exp84-tr-math_reasoning-01",
+      "split": "train",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-01-v1",
+      "task_family": "train:mixture",
+      "prompt": "User: A 20% solution and a 50% solution make 12 liters at 35%. Find each amount and verify the weighted average.",
+      "prompt_sha256": "6f758e1fba32c71ec44b38f0083d70f75d04f7af0b07cd05281482e839920b55",
+      "normalized_prompt_sha256": "13eaa836d5343601640bfd69b319ee9c886e0e6bba16a05cb681b8bfdc873824"
+    },
+    {
+      "conversation_id": "exp84-tr-math_reasoning-02",
+      "split": "train",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-02-v1",
+      "task_family": "train:combinatorics",
+      "prompt": "User: Count five-character codes with distinct digits where the first digit is nonzero. Explain each factor.",
+      "prompt_sha256": "f20f48576d059654f7911fbf5d386d36aa38ddd2bf68320dd458f039a1eba96a",
+      "normalized_prompt_sha256": "72a3888d783ddde3d0162e799bdbb4ddcc1e47fcc053aae78142d311a8e6547e"
+    },
+    {
+      "conversation_id": "exp84-tr-math_reasoning-03",
+      "split": "train",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-03-v1",
+      "task_family": "train:geometry",
+      "prompt": "User: A right triangle has legs differing by 7 and area 60. Find the legs and reject impossible roots.",
+      "prompt_sha256": "6e72ab11f627340b7f48c1192d90cf3dacc22e1b201a2a66ab3dead326a33412",
+      "normalized_prompt_sha256": "db432fb61411b1c1dfb9e03eb1729c257ff8ff757d182dc5b774b0500a222802"
+    },
+    {
+      "conversation_id": "exp84-tr-math_reasoning-04",
+      "split": "train",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-04-v1",
+      "task_family": "train:probability",
+      "prompt": "User: Two fair dice are rolled until a sum of 7 appears. Find the expected roll count and justify the distribution.",
+      "prompt_sha256": "6f32ceda7847fa90cbd1f051bcc0048597eda8913cf6cd0ebc7492f7bb182f1b",
+      "normalized_prompt_sha256": "5aac7e144b57b594bd2edc9c0c6a281adbdd248b08b158753ef4daf2d2cb460d"
+    },
+    {
+      "conversation_id": "exp84-tr-math_reasoning-05",
+      "split": "train",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-05-v1",
+      "task_family": "train:recurrence",
+      "prompt": "User: Solve T(n)=3T(n/3)+n for powers of three using a recursion tree.",
+      "prompt_sha256": "ccd8db90beaeef02b21c02dd99d969454b8060e0efa9fe9ff5cf876e8d1bbf10",
+      "normalized_prompt_sha256": "b18cb2181b084e171a3e4c930206a05d019fdeb143895d04dc22d1532129beeb"
+    },
+    {
+      "conversation_id": "exp84-tr-math_reasoning-06",
+      "split": "train",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-06-v1",
+      "task_family": "train:number-proof",
+      "prompt": "User: Prove that the square of every odd integer is congruent to 1 modulo 8.",
+      "prompt_sha256": "6d5f32550d6e6cdc16fbf809480b2f9fee426ac816d658becf1579d4a4f5187f",
+      "normalized_prompt_sha256": "4d879defc8c14ca31e0606d478bbca36a3cd8ad81b348a29d078db43ab179a8a"
+    },
+    {
+      "conversation_id": "exp84-tr-math_reasoning-07",
+      "split": "train",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-07-v1",
+      "task_family": "train:optimization",
+      "prompt": "User: A rectangle under y=12-x^2 has its base on the x-axis. Derive the maximum area.",
+      "prompt_sha256": "0edd3f4f4397395e1ea638c58b6083b0c98c1ae8a611acbf3a7eaa1117d31cfc",
+      "normalized_prompt_sha256": "9d108ba938e643fe2ba7e5f395f7a0bb818d3497e9325d69991fef1050c3132a"
+    },
+    {
+      "conversation_id": "exp84-tr-math_reasoning-08",
+      "split": "train",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-08-v1",
+      "task_family": "train:rate-problem",
+      "prompt": "User: A cyclist travels uphill at 12 km/h and returns at 20 km/h. Find the round-trip average speed.",
+      "prompt_sha256": "d366e64e39c2c886b7c01d9c65f427302f04bab35535d9a24b9d2e2c784a74a4",
+      "normalized_prompt_sha256": "553fb8b76d49236441f182cefa007c1abb164d829d8f2531bc51203b565d3a2a"
+    },
+    {
+      "conversation_id": "exp84-tr-math_reasoning-09",
+      "split": "train",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-09-v1",
+      "task_family": "train:logic",
+      "prompt": "User: Determine whether (P implies Q) and (Q implies R) entail (not R implies not P), with a proof.",
+      "prompt_sha256": "498f4e852eaa0f37e435c38883a96519e8de38af8303b5fe28872b13f686500a",
+      "normalized_prompt_sha256": "83a3d797fc8ecfdb98d930b8577b00d42b6e1ea3d86ae820f5dd4ed685842e6e"
+    },
+    {
+      "conversation_id": "exp84-tr-math_reasoning-10",
+      "split": "train",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-10-v1",
+      "task_family": "train:statistics",
+      "prompt": "User: Compare mean and median for incomes 24, 26, 27, 29, and 140; explain which summary is robust.",
+      "prompt_sha256": "1f1202739ea4e0bbb82cc1542731b40906978f8a6f787a8c0784fd000b9f2ed0",
+      "normalized_prompt_sha256": "1417e5ecf650b01f678629d17d397c0532fa8bd58958b3336f9ccac0183a8848"
+    },
+    {
+      "conversation_id": "exp84-va-math_reasoning-11",
+      "split": "validation",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-11-v1",
+      "task_family": "validation:sequence",
+      "prompt": "User: Derive a closed form for the arithmetic sequence with a3=11 and a9=35, then compute a20.",
+      "prompt_sha256": "dd45ea97d56e291a9f629b5d1356b4989a19c3b8229501aafd4fc9ffbdcfd6e9",
+      "normalized_prompt_sha256": "a4657a1585fa591895eb382011e4ec43daee25681b31ce22439eabfb7c728fb7"
+    },
+    {
+      "conversation_id": "exp84-va-math_reasoning-12",
+      "split": "validation",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-12-v1",
+      "task_family": "validation:bayes",
+      "prompt": "User: A test is 95% sensitive and 90% specific for a condition with 2% prevalence. Compute the positive predictive value.",
+      "prompt_sha256": "27f535e1b3ffadaa81127ce7d1cab90a927fd648e9bbd81edbbdf2e8a0bc9941",
+      "normalized_prompt_sha256": "60836206444ccb644eebe2677e02bc7ac76e836fa1f0731bb43657cf85125fec"
+    },
+    {
+      "conversation_id": "exp84-te-math_reasoning-13",
+      "split": "test",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-13-v1",
+      "task_family": "test:graph-reasoning",
+      "prompt": "User: Prove that a tree with n vertices has n-1 edges using induction on a leaf.",
+      "prompt_sha256": "cc6fad897f8e4dd1549ac061067dd295b3316686507bf8950aeca7b27c613e1f",
+      "normalized_prompt_sha256": "fcba5324725eb46c558516dc57a9dbecbac15ccb49b37ac8f1c83c2465e02dde"
+    },
+    {
+      "conversation_id": "exp84-te-math_reasoning-14",
+      "split": "test",
+      "domain": "math_reasoning",
+      "template_id": "tpl-math_reasoning-14-v1",
+      "task_family": "test:constraint-puzzle",
+      "prompt": "User: Seat Ana, Bo, Cy, and Dev in a row if Ana cannot sit beside Bo and Cy must precede Dev. Count arrangements.",
+      "prompt_sha256": "abb1de0c853d601e3134ba2975369826dd864c78d741eca00c6ed294c339d5c7",
+      "normalized_prompt_sha256": "dbf39727792b114cb086396271ecbddf07ac7de5bbbbe2a3dc3401704986de67"
+    },
+    {
+      "conversation_id": "exp84-tr-translation_multilingual-01",
+      "split": "train",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-01-v1",
+      "task_family": "train:urdu-notice",
+      "prompt": "User: Translate into natural Urdu: The library will close early on Friday for electrical maintenance. Add a literal back-translation.",
+      "prompt_sha256": "fd7b7552298f2e85408a054357e4fff39dab299a2d416c16d79899f8d3d54c6a",
+      "normalized_prompt_sha256": "53fd5d8f690e268e41da229698118b5d67a6ec45c2d437e6a53ce57d98e07a60"
+    },
+    {
+      "conversation_id": "exp84-tr-translation_multilingual-02",
+      "split": "train",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-02-v1",
+      "task_family": "train:spanish-register",
+      "prompt": "User: Translate Please send the revised invoice by noon into formal and conversational Spanish; explain the register change.",
+      "prompt_sha256": "e9963f98e7cc037f7e772e148d7e1a6884a0053af3e5d62690545958d32bc940",
+      "normalized_prompt_sha256": "5c16637bf479facee50fc91585934e44c87fb90b0fa4f97c091c3eebc4004d3c"
+    },
+    {
+      "conversation_id": "exp84-tr-translation_multilingual-03",
+      "split": "train",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-03-v1",
+      "task_family": "train:french-instructions",
+      "prompt": "User: Translate Keep this medicine out of children's reach into French, then explain the imperative construction without medical advice.",
+      "prompt_sha256": "d356f8dbe5cdfd36012010fc0e205861e8d6822d70bfcd6d5479df940935f0b5",
+      "normalized_prompt_sha256": "72a3bf89b69b1628814cc861fd1d3eb8b0970ffe6710d8b4b55a71fc44ab0f88"
+    },
+    {
+      "conversation_id": "exp84-tr-translation_multilingual-04",
+      "split": "train",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-04-v1",
+      "task_family": "train:german-ambiguity",
+      "prompt": "User: Translate the German sentence Ich habe sie gestern gesehen into English and list its pronoun ambiguity.",
+      "prompt_sha256": "64bfd864c44f6d7c68f52ded9b48d370f577564f3d21b900fe916ed53974846c",
+      "normalized_prompt_sha256": "364aea1dbe0fb46631e7c82e3951c8d976559aefa4b83e8c09f28aa167458d91"
+    },
+    {
+      "conversation_id": "exp84-tr-translation_multilingual-05",
+      "split": "train",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-05-v1",
+      "task_family": "train:bilingual-summary",
+      "prompt": "User: Explain cache eviction in simple English, then give a two-sentence summary in Roman Urdu.",
+      "prompt_sha256": "03427b5f436b7117c45fb8926ef3838340447517d516fbada4cd1da48157ebdb",
+      "normalized_prompt_sha256": "85f4a3ab04351981a3842c028b997fbdc8fb1d1fe453cada29d065993ee265f4"
+    },
+    {
+      "conversation_id": "exp84-tr-translation_multilingual-06",
+      "split": "train",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-06-v1",
+      "task_family": "train:arabic-tone",
+      "prompt": "User: Translate We appreciate your patience while the system is restored into polite Modern Standard Arabic.",
+      "prompt_sha256": "13aa1215dbdc63151976fe130d204f127ddc1f107c49ed6a15eac0447a9661be",
+      "normalized_prompt_sha256": "dea1de9fb8d1718f761bf3f365b75ed323a0159560571dcc383a5e232b581e4f"
+    },
+    {
+      "conversation_id": "exp84-tr-translation_multilingual-07",
+      "split": "train",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-07-v1",
+      "task_family": "train:japanese-politeness",
+      "prompt": "User: Give polite and casual Japanese versions of Please wait here for five minutes, with romanization.",
+      "prompt_sha256": "a3804d2b1a7a09c0229ca5b482fc7fed6741410c3e6ae16c8ae0bc72a555ea62",
+      "normalized_prompt_sha256": "87a38bba8cf8f90ff2e336d3bab8c6627cc2ea0b09f5c0a046a8936160fa97e0"
+    },
+    {
+      "conversation_id": "exp84-tr-translation_multilingual-08",
+      "split": "train",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-08-v1",
+      "task_family": "train:portuguese-localization",
+      "prompt": "User: Localize Tap Save to keep your changes for Brazilian Portuguese; avoid a word-for-word UI translation.",
+      "prompt_sha256": "db481e6392d282e48a3234947320a97265ff490f6470e505a9a5dc317789fe3b",
+      "normalized_prompt_sha256": "73ca7c3f2cd7c6ee13c6c8b99a2887c05909fc433886eeb741dd83552440bbf6"
+    },
+    {
+      "conversation_id": "exp84-tr-translation_multilingual-09",
+      "split": "train",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-09-v1",
+      "task_family": "train:hindi-code-switch",
+      "prompt": "User: Hindi mein explain karo why backups should be tested, but keep snapshot and restore as English technical terms.",
+      "prompt_sha256": "a940619d015b9677000254e4609f33fdd7cd0c97ee9ab18e04089ff97eba34ee",
+      "normalized_prompt_sha256": "c3980ac4aa8ab466cc4cf170b2b69087d5bb3110b89d0a083ca6cb79a70773ff"
+    },
+    {
+      "conversation_id": "exp84-tr-translation_multilingual-10",
+      "split": "train",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-10-v1",
+      "task_family": "train:italian-backtranslation",
+      "prompt": "User: Translate The meeting was postponed because the train was delayed into Italian and back-translate literally.",
+      "prompt_sha256": "66dff702421bda99860f03c6c69b011c58802f4dadf7addf4eddccd33e94032f",
+      "normalized_prompt_sha256": "806106e61a20626e50f34337593bd94f23484104d1e138ce8909226b2edffa9e"
+    },
+    {
+      "conversation_id": "exp84-va-translation_multilingual-11",
+      "split": "validation",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-11-v1",
+      "task_family": "validation:korean-honorific",
+      "prompt": "User: Translate Could you check the attachment? into business-polite Korean and explain the honorific choice.",
+      "prompt_sha256": "33038f9215c078f158d5debe8811639161cf10c3eefebd192357e9743e6359db",
+      "normalized_prompt_sha256": "f8ac0a265a568bec5aca18b720a0ac87d5e1b8fdeb1b5c43f15b74205d45dd1f"
+    },
+    {
+      "conversation_id": "exp84-va-translation_multilingual-12",
+      "split": "validation",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-12-v1",
+      "task_family": "validation:turkish-contrast",
+      "prompt": "User: Translate Although the room was small, it felt comfortable into Turkish and identify the contrast marker.",
+      "prompt_sha256": "c9c4c47d91ba7ee1f2fde9be8798ead3cbc95da09b5b22dd3c9f1c55bbc9fc62",
+      "normalized_prompt_sha256": "dbaf42d4247cfe9be2ceb05e62ff236c2a89d207a36f2e545f1fbf0ebfe80fe5"
+    },
+    {
+      "conversation_id": "exp84-te-translation_multilingual-13",
+      "split": "test",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-13-v1",
+      "task_family": "test:punjabi-script",
+      "prompt": "User: Translate Please bring your identification card tomorrow into Punjabi in Shahmukhi script, followed by Roman transliteration.",
+      "prompt_sha256": "b6524a762619fcdb168a248c3379671bbdada56c276519ad8d4e224607950812",
+      "normalized_prompt_sha256": "0080a27dfc8527fac5868bb602a4cfd34af48387609b85ced72ab1439ce8f97a"
+    },
+    {
+      "conversation_id": "exp84-te-translation_multilingual-14",
+      "split": "test",
+      "domain": "translation_multilingual",
+      "template_id": "tpl-translation_multilingual-14-v1",
+      "task_family": "test:mixed-support",
+      "prompt": "User: Responde en español: explain why a cache miss raises latency, keeping cache miss and latency in English.",
+      "prompt_sha256": "3e9df438c9e88527d176659d73cbcd43b6a5be1935776a9b957bc9be551965d1",
+      "normalized_prompt_sha256": "3aebdbd60b80dd8e92b22bb4c1983d72517043cc20feed804c55c858eab0f827"
+    },
+    {
+      "conversation_id": "exp84-tr-structured_output-01",
+      "split": "train",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-01-v1",
+      "task_family": "train:incident-json",
+      "prompt": "User: Return only JSON with keys severity, evidence, and next_actions for: login failures rose after a certificate rotation.",
+      "prompt_sha256": "065bd7ccdf775a2231f27be45fa29b46041ad1c57c36748dac3b61e4fd424a96",
+      "normalized_prompt_sha256": "5299dc88c2d154c290e47c7df3a736d51873efd5fea24bc55f3c7a8b1b191132"
+    },
+    {
+      "conversation_id": "exp84-tr-structured_output-02",
+      "split": "train",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-02-v1",
+      "task_family": "train:contact-extraction",
+      "prompt": "User: Extract name, role, email, and deadline as JSON from: Mira Chen, release lead, mira@example.org, needs approval by 18 July.",
+      "prompt_sha256": "bb95a6546cae8bb9dd1b0306a6ce03b2c6913927b0a8a8dc7c6e6994cf74b82f",
+      "normalized_prompt_sha256": "63447798a9e7b9988c4e105fd4fa025f5cc1b22559e2ce8f4be31ca6236d1259"
+    },
+    {
+      "conversation_id": "exp84-tr-structured_output-03",
+      "split": "train",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-03-v1",
+      "task_family": "train:csv-normalization",
+      "prompt": "User: Return CSV with columns item,quantity,unit from: three boxes of clips; 1.5 kilograms of rice; twelve pens.",
+      "prompt_sha256": "4c701c7beb5cc9b31109cbf0593a7e94802e8d6137e632d992456aa79e9cbdc1",
+      "normalized_prompt_sha256": "8369af31e8d7966e7298870b64b639a9f8f42942d877e283031a3d7d3a6dca26"
+    },
+    {
+      "conversation_id": "exp84-tr-structured_output-04",
+      "split": "train",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-04-v1",
+      "task_family": "train:yaml-plan",
+      "prompt": "User: Return valid YAML with owner, tasks, and risks for a two-day documentation sprint led by Sam.",
+      "prompt_sha256": "802b20963d9ca6f07ebf1689eb73c3e2a4b824e4f9011e5d3b1b8cc6167184b6",
+      "normalized_prompt_sha256": "3a26adca9c3fbf474f528c8c88510f180c86f0548d7fcf286f010207c6475941"
+    },
+    {
+      "conversation_id": "exp84-tr-structured_output-05",
+      "split": "train",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-05-v1",
+      "task_family": "train:markdown-table",
+      "prompt": "User: Produce only a Markdown table comparing PNG, JPEG, and WebP by transparency, typical use, and tradeoff.",
+      "prompt_sha256": "2bbd2f485759765c9ecd47f862b39ea2d9e9413f78734823400a8e9a1067661c",
+      "normalized_prompt_sha256": "a2281492fdd936fcd14dbf2c81df21f9d27930dde43635c23246ba4d2a1cdab9"
+    },
+    {
+      "conversation_id": "exp84-tr-structured_output-06",
+      "split": "train",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-06-v1",
+      "task_family": "train:schema-validation",
+      "prompt": "User: Return JSON Schema for an object with required id, optional tags, and a status enum of queued or complete.",
+      "prompt_sha256": "413bac0095390d5c3c379300e2223c1b9f1299f80cbf32852590a91ee98607ca",
+      "normalized_prompt_sha256": "44941bdbc0c69a6beff12fc612fea58a2c4c7cc0002f9e3960a3a2c0ce6f44e1"
+    },
+    {
+      "conversation_id": "exp84-tr-structured_output-07",
+      "split": "train",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-07-v1",
+      "task_family": "train:timeline-extraction",
+      "prompt": "User: Extract an ordered JSON timeline: deploy 09:00, errors 09:06, rollback 09:14, recovery 09:19.",
+      "prompt_sha256": "b273f59b9a9ae2ebeeaac1ef1895f395b70e10148a8804ddb617a85026f3ad5e",
+      "normalized_prompt_sha256": "4341b060a6b23242db9a894620cc537c1e2657e86c3c5cc041e578cd473bdd83"
+    },
+    {
+      "conversation_id": "exp84-tr-structured_output-08",
+      "split": "train",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-08-v1",
+      "task_family": "train:classification-jsonl",
+      "prompt": "User: Return JSONL classifying apple, carrot, and salmon by food_group and plant_based boolean.",
+      "prompt_sha256": "0528e8213decd69d7518986d50528697d9795123ef1f63bda569adcfd07f59d1",
+      "normalized_prompt_sha256": "57dc592dc455856e6a0dfe35bbe8e154a9aff826658b80204be9c3824ffec00a"
+    },
+    {
+      "conversation_id": "exp84-tr-structured_output-09",
+      "split": "train",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-09-v1",
+      "task_family": "train:xml-catalog",
+      "prompt": "User: Return well-formed XML for two books with title and year, using 2021 for Drift and 2024 for Ember.",
+      "prompt_sha256": "a889226e718e6540b73db3e0f4dde917e1b31ddc16f9c50d05c58bc5d8639e3f",
+      "normalized_prompt_sha256": "ec7c54ec8a6aaae8b3ba4747730a92659245006bee297f6a0e0bc63b974642ef"
+    },
+    {
+      "conversation_id": "exp84-tr-structured_output-10",
+      "split": "train",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-10-v1",
+      "task_family": "train:sql-output",
+      "prompt": "User: Return only a parameterized SQL query selecting active orders created after a supplied timestamp.",
+      "prompt_sha256": "84c03a7c0d81703ab2607c394d677189d97b887a24a5518a0ff1e125712d74bd",
+      "normalized_prompt_sha256": "45bccedf001454f76927048019c9e389fc68f0aadf949a4db313710cfe350f15"
+    },
+    {
+      "conversation_id": "exp84-va-structured_output-11",
+      "split": "validation",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-11-v1",
+      "task_family": "validation:risk-matrix",
+      "prompt": "User: Return JSON array entries with risk, likelihood, impact, mitigation for power loss and disk failure.",
+      "prompt_sha256": "3b0051c83de473e3a129cc843a634144659fd45d5addf567a2913852b4b7f8a5",
+      "normalized_prompt_sha256": "fe1077b4a8fee30c037bf59e6054429b9536c18445fa0c972eb75ba4eff287cb"
+    },
+    {
+      "conversation_id": "exp84-va-structured_output-12",
+      "split": "validation",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-12-v1",
+      "task_family": "validation:entity-relations",
+      "prompt": "User: Extract entities and directed relations as JSON from: Noor reports to Ilya, who manages Project Cedar.",
+      "prompt_sha256": "e5775a00f613604b6d5afbb1602137846454791a35f41b90b6be8b886af99ad9",
+      "normalized_prompt_sha256": "a9c99692354b26033875c84245bd716ecf49d56c992b5bf65b1031f9c9f7ba6f"
+    },
+    {
+      "conversation_id": "exp84-te-structured_output-13",
+      "split": "test",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-13-v1",
+      "task_family": "test:calendar-object",
+      "prompt": "User: Return only JSON for an event titled Design Review on 2026-07-20 from 14:00 to 14:45 UTC.",
+      "prompt_sha256": "1fd4b86cc3ef129eb67ce23dc79ebd09ee86c2d72e72516991518e6198c2c620",
+      "normalized_prompt_sha256": "b9552503b787dba515382c207dc80db0bb5d58a27b1bf10de3dc04877031bad2"
+    },
+    {
+      "conversation_id": "exp84-te-structured_output-14",
+      "split": "test",
+      "domain": "structured_output",
+      "template_id": "tpl-structured_output-14-v1",
+      "task_family": "test:nested-inventory",
+      "prompt": "User: Convert warehouse notes into JSON grouped by aisle: A has 4 lamps; B has 2 chairs and 7 cushions.",
+      "prompt_sha256": "b3659597d5ceb8b68fd27e95ac4b3426d8767f606d571095bb7c03398caa81aa",
+      "normalized_prompt_sha256": "162501b8d09df4706cc3d1fbef8d7b141eed2a2dafac97eca0a0f2510b20749c"
+    },
+    {
+      "conversation_id": "exp84-tr-topic_shift-01",
+      "split": "train",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-01-v1",
+      "task_family": "train:garden-to-code",
+      "prompt": "User: Recommend two shade plants. Then switch topics and fix a Python off-by-one loop over a list.",
+      "prompt_sha256": "8b0bd47dff08c7a6df4e490f47867e7a28b7b72fb63aa6cfbba9d9e7ae4999b1",
+      "normalized_prompt_sha256": "d85b96cbe67db5bc89dfe883c65e5cfbda792dabc0604fe3ef2838558b4ded38"
+    },
+    {
+      "conversation_id": "exp84-tr-topic_shift-02",
+      "split": "train",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-02-v1",
+      "task_family": "train:history-to-math",
+      "prompt": "User: Give one fact about the printing press. New topic: solve 5x-9=31 and check it.",
+      "prompt_sha256": "ee18c71fe9ef70f2743ec41ef7abb3a8d559a49d1a63b480016a442c58527cfd",
+      "normalized_prompt_sha256": "3b085c02db60d237b66ac1f0e54e4ac3e69f7c4179b05f4d4fa951dce873e480"
+    },
+    {
+      "conversation_id": "exp84-tr-topic_shift-03",
+      "split": "train",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-03-v1",
+      "task_family": "train:cooking-to-translation",
+      "prompt": "User: Suggest a use for leftover rice. Now translate The window is open into French.",
+      "prompt_sha256": "b812f56ff0265b6d2897153570269ed4baac95441bd33defd321d86ef85a7953",
+      "normalized_prompt_sha256": "8782b730e5dedba0e978c392843f2f45b45d7964ca46dafd5b27e87e878b5ae5"
+    },
+    {
+      "conversation_id": "exp84-tr-topic_shift-04",
+      "split": "train",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-04-v1",
+      "task_family": "train:travel-to-json",
+      "prompt": "User: List two train-trip essentials. Then return JSON with destination Lahore and nights 2.",
+      "prompt_sha256": "21bb1607b6b07d337bbde787e01629b42454281e991159cbd37c380086c8382f",
+      "normalized_prompt_sha256": "988130daa7eb58d145134be1a0c3f44eee80386c360d82824b9a13d959d2e52b"
+    },
+    {
+      "conversation_id": "exp84-tr-topic_shift-05",
+      "split": "train",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-05-v1",
+      "task_family": "train:physics-to-email",
+      "prompt": "User: Explain static electricity briefly. Change topic and draft a subject line for a delayed shipment.",
+      "prompt_sha256": "125437f155d03e0f15cb9737891b78fce2c5ef40affe484007ebea1e096a9da5",
+      "normalized_prompt_sha256": "28e03b353f29ddfbca4a5d775cfe1ae5622ead8c974791ebeccfa6628bf61d96"
+    },
+    {
+      "conversation_id": "exp84-tr-topic_shift-06",
+      "split": "train",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-06-v1",
+      "task_family": "train:music-to-sql",
+      "prompt": "User: Define musical tempo. Next, write SQL counting orders by status.",
+      "prompt_sha256": "f8ccb9ea83331eece50f459bb36de83539d7540f2dc497a3cdb393b1291dcbd6",
+      "normalized_prompt_sha256": "db75f6922f99a958680cda0883f8c0fb80ce6dca02d95a86955baacb6e6bd296"
+    },
+    {
+      "conversation_id": "exp84-tr-topic_shift-07",
+      "split": "train",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-07-v1",
+      "task_family": "train:budget-to-debug",
+      "prompt": "User: Give one tip for tracking cash expenses. Now diagnose a null dereference in pseudocode.",
+      "prompt_sha256": "4af9b293870283c695917e5aba4e3f9ef4fd9318b22a7a359f407df9bcaae1f1",
+      "normalized_prompt_sha256": "999b4a9c6db0c246e94d8890999a48c0470cc4667c1bf7c0bdbee01c9057baa6"
+    },
+    {
+      "conversation_id": "exp84-tr-topic_shift-08",
+      "split": "train",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-08-v1",
+      "task_family": "train:language-to-logic",
+      "prompt": "User: Translate hello into Turkish. Unrelated: determine whether all squares are rectangles.",
+      "prompt_sha256": "6e35f25b274f6e180e0de4a5a3c255c053f1ff5d309cd6e7fc3c9665ca78b603",
+      "normalized_prompt_sha256": "1a7cd9b87f40244f3f20385f76f54f0972a9bfd898ad4149d915a3caf436712d"
+    },
+    {
+      "conversation_id": "exp84-tr-topic_shift-09",
+      "split": "train",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-09-v1",
+      "task_family": "train:weather-to-yaml",
+      "prompt": "User: Explain why fog forms. Then output YAML with city: Quetta and alert: low_visibility.",
+      "prompt_sha256": "164237e8331fcb8b8567ab7846e21e69125b4ee0ab3028e2dc79e984be73d084",
+      "normalized_prompt_sha256": "fa880c78fdc98fc750d8a7731295d0e6bb4fc3f811d34f88cd1597450e00e530"
+    },
+    {
+      "conversation_id": "exp84-tr-topic_shift-10",
+      "split": "train",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-10-v1",
+      "task_family": "train:books-to-probability",
+      "prompt": "User: Recommend a way to organize a bookshelf. Switch topics: find the probability of heads on one fair coin toss.",
+      "prompt_sha256": "eaf2c5b715f1645a356cf976190257cde39c090a7065534f4150156c0c073bdf",
+      "normalized_prompt_sha256": "1902545b8759b2c83b5f5e7ef078d2042c291133ecf7af3d1a1441e45c574a72"
+    },
+    {
+      "conversation_id": "exp84-va-topic_shift-11",
+      "split": "validation",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-11-v1",
+      "task_family": "validation:exercise-to-rust",
+      "prompt": "User: Suggest a gentle desk stretch. New task: explain Rust borrowing in two sentences.",
+      "prompt_sha256": "017eaa0d352f4124870ca571577bdca441491d6a55bf85b7bfffdb44bc548df3",
+      "normalized_prompt_sha256": "fa4d54b49559e9a4e296d4144865976cbd3286c226d5e9708bc1a312b2ba6624"
+    },
+    {
+      "conversation_id": "exp84-va-topic_shift-12",
+      "split": "validation",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-12-v1",
+      "task_family": "validation:astronomy-to-csv",
+      "prompt": "User: State why the Moon has phases. Then return CSV for Mars,2 and Venus,1.",
+      "prompt_sha256": "7f0bf101b203354af5b1a8e48a0641036d081166018b7f78ed67083409dd1156",
+      "normalized_prompt_sha256": "31216188b8e0991d6e3436571943a745092e4aab98f834ffe7f4b1cb0af1527c"
+    },
+    {
+      "conversation_id": "exp84-te-topic_shift-13",
+      "split": "test",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-13-v1",
+      "task_family": "test:repair-to-spanish",
+      "prompt": "User: Give a cautious first step for a squeaky door hinge. Now translate Good evening into Spanish.",
+      "prompt_sha256": "f70a720cf0cc2b2c31d3154e778a6f31dda2d3dbccb257112ce1afea2537e66e",
+      "normalized_prompt_sha256": "03b5eee58e764c238ddb67de07c211ff691aa037b1a260f4c87525ce9b6f55a7"
+    },
+    {
+      "conversation_id": "exp84-te-topic_shift-14",
+      "split": "test",
+      "domain": "topic_shift",
+      "template_id": "tpl-topic_shift-14-v1",
+      "task_family": "test:geography-to-algorithm",
+      "prompt": "User: Name the ocean east of Africa. Abruptly switch and describe binary search invariants.",
+      "prompt_sha256": "8260338c51eed9c3c5e55e4b02226b197b92f1516acb52a080418be046e2f258",
+      "normalized_prompt_sha256": "b57621e226cfab93ef09b438e51c812040148c7416a2e862a912df82e4459e1b"
+    }
+  ]
+}
