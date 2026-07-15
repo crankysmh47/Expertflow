@@ -600,3 +600,17 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - C4 ran all seven deterministic prompts three times. All 71,640 router events, prompt tokens, and generated tokens match the canonical runtime; all 2,388 cache mappings are deterministic excluding duration. The runs contain 6,237 hits, 12,867 misses, and 43,045,416,204 packed bytes transferred. Miss-event host-wall duration is p50 3,303 us / p95 7,783 us; eight-miss p50 is 5,089 us / p95 10,738 us. These are blocking host measurements, not CUDA-event or speedup claims.
 - System-wide GPU peaks were contaminated by unrelated desktop processes and are retained only as diagnostic evidence. Settled GPU-use delta across 21 focused processes has median -2 MiB; no probe remained. Final feature-disabled seven-prompt restoration is exact.
 - Verification passed 89 ExpertFlow tests, the assertion-active probe configuration test, the assertion-active llama planner test, judge replay (SHA-256 `1b1e08dde19b61675deeebad8b6517e06d17fefff5f6809cb615bc4366aaf78`), JSON/JSONL parsing through the comparison scripts, and `git diff --check`. `live_cache_enabled=false` remains the release default. No multilayer, prediction, async stream, MTP, ML, or runtime-speed claim was added.
+
+### 01:46 PKT - C5 architecture specification blocker
+
+- Inspected isolated branches `codex/c5-reactive-cache` at ExpertFlow `9e81124` and llama.cpp `e41f54b0` before modifying runtime code. The worktrees started clean.
+- The approved three-track request names a C5 exact live-cache runtime and the canonical pilot reports a simulated 32-slot reset-LRU result, but no checked-in C5/32-slot runtime specification or validation ladder exists. The committed C4 result explicitly leaves the next stage closed.
+- C4 hard-codes eight slots in planner state, reduced tensor shapes, copy bounds, and event records. A 32-slot reactive cache could either expose one direct 32-slice packed CUDA operand to unchanged `MUL_MAT_ID`, or use 32 resident slices plus an eight-slice execution staging view. Those alternatives have different allocations, transfers, ID mappings, logs, and correctness risks; selecting one without approval would change architecture.
+- Stopped before tests or source changes and reported the blocker. Requested an explicit C5 specification covering the direct/staging choice, deterministic eviction/tie-break semantics, exact allocation and event contracts, and C5 parity/memory progression. No llama.cpp source was modified and the default remains disabled.
+
+### 01:55 PKT - C5 direct 32-slice architecture approved
+
+- Approval resolved the C5 blocker: exactly layer 24 uses one persistent 32-slice packed CUDA operand consumed directly by unchanged `MUL_MAT_ID`; no eight-slice execution staging copy is permitted.
+- Frozen deterministic policy: conversation/runtime reset, lowest-ID free-slot allocation, protected current demands, missing experts processed in authoritative order, and least-recently-used eviction with ascending slot-ID tie-break. Transfers remain blocking and true-router-directed; default remains disabled.
+- Verified both assigned C5 directories are isolated linked worktrees at ExpertFlow `9e81124` and llama.cpp `e41f54b0`. Baseline ExpertFlow verification passed 89 tests in 0.46 seconds before implementation.
+- Added the concise C5 design and TDD execution plan. The conservative 32-slot aligned projection is 107,073,536 bytes (102.113 MiB); it is not a measured allocation.
