@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "gate": "gate3-clean-pinned-runtime",
+  "gate_status": "blocked",
+  "source": {
+    "repository": "https://github.com/ggml-org/llama.cpp.git",
+    "revision": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+    "path": "C:\\models\\expertflow\\dependencies\\llama.cpp-a7312ae-git",
+    "tracked_files": 3167,
+    "tracked_files_byte_matched_to_prior_archive": 3167,
+    "clean": true
+  },
+  "toolchain": {
+    "msvc": "19.39.33523.0",
+    "msvc_toolset": "14.39.33519",
+    "cuda": "12.8.93",
+    "cmake": "4.3.1",
+    "ninja": "1.13.2"
+  },
+  "build": {
+    "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean",
+    "configuration": "Release",
+    "cuda_architectures": "120a-real",
+    "ggml_cuda": true,
+    "ggml_native": false,
+    "llama_build_tests": true,
+    "llama_build_examples": true,
+    "llama_curl": false,
+    "configure_passed": true,
+    "build_passed": true,
+    "built_targets": 634
+  },
+  "ctest": {
+    "expected": 43,
+    "passed": 42,
+    "failed": 1,
+    "failed_tests": ["test-opt"],
+    "jinja_dependency_fixed_in_external_venv": true,
+    "release_test_opt_passed": false,
+    "debug_cpu_test_opt_passed": true
+  },
+  "gate3_validation_started": false,
+  "live_cache_enabled": false,
+  "evidence_root": "C:\\models\\expertflow\\runs\\live-cache-spike\\gate3"
+}

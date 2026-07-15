@@ -158,7 +158,7 @@ Run 87 ExpertFlow tests and commit only summaries/configuration, not installers 
 - Consumes: verified MSVC/CUDA toolchain and exact upstream commit.
 - Produces: clean CUDA binaries, CMake cache, binary hashes, ctest result, and deterministic validation artifacts.
 
-- [ ] **Step 1: Create a verifiable exact source checkout**
+- [x] **Step 1: Create a verifiable exact source checkout**
 
 ```powershell
 git clone --filter=blob:none --no-checkout https://github.com/ggml-org/llama.cpp.git C:\models\expertflow\dependencies\llama.cpp-a7312ae-git
@@ -168,7 +168,7 @@ git -C C:\models\expertflow\dependencies\llama.cpp-a7312ae-git status --short
 
 Expected: detached exact commit, clean status, source tree matches the pinned archive for tracked files.
 
-- [ ] **Step 2: Configure with only SM 120a**
+- [x] **Step 2: Configure with only SM 120a**
 
 From the VS 2022 14.39 developer shell:
 
@@ -190,6 +190,8 @@ ctest --test-dir C:\models\expertflow\builds\llama-a7312ae-cuda128-clean --outpu
 ```
 
 Expected: build and ctest pass. Any source/toolchain failure stops cache work.
+
+**Observed stop (2026-07-15):** The unmodified CUDA Release build completed all 634 targets, but the final full CTest run passed 42/43. `test-opt` has an optimization-sensitive Windows/MSVC Release failure on both CPU and CUDA; the same exact unmodified CPU Debug test passes. Gate 3 remains blocked at this step. See `docs/evidence/live-cache/gate3-clean-llama.md`. Steps 4-6 and all cache work remain unstarted pending an explicit exception.
 
 - [ ] **Step 4: Build the existing router probe against clean libraries**
 
