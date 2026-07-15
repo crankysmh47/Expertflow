@@ -48,7 +48,15 @@
     "started": true,
     "completed_full_matrix": false,
     "model_load_passed": true,
-    "clean_trace_off_on_token_parity": true,
+    "clean_trace_off_on_token_parity": false,
+    "clean_trace_off_on_baseline_prompt_parity": true,
+    "clean_trace_off_on_representative_domains": {
+      "general": true,
+      "code": false,
+      "translation": false
+    },
+    "clean_trace_off_repeat_token_parity": true,
+    "clean_trace_on_repeat_token_parity": true,
     "clean_repeat_router_parity": true,
     "strict_trace_validation_passed": true,
     "expected_router_events": 3030,
@@ -59,11 +67,18 @@
     "prior_runtime_token_id": 171502,
     "prior_runtime_router_parity": false,
     "first_router_set_difference_event": 24,
+    "first_router_set_difference_token_index": 0,
+    "first_router_set_difference_token_id": 2,
+    "first_router_set_difference_layer": 24,
+    "cross_runtime_classification": "benign-build-dependent-near-tie-drift",
+    "cross_runtime_max_probability_drift": 0.0004364327,
+    "reference_rank_8_9_gap": 0.0002393993,
+    "clean_rank_8_9_gap": 0.0000435682,
     "comparable_router_events": 2190,
     "comparable_router_set_differences": 256,
     "cpu_matrix_started": false,
     "train_general_08_matrix_started": false,
-    "stop_reason": "non-waived cross-runtime generated-token and router-selection parity failure"
+    "stop_reason": "non-waived clean-runtime trace-off/on generated-token parity failure in representative code and translation prompts"
   },
   "expertflow_regression": {
     "tests_passed": 87,

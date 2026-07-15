@@ -9,6 +9,7 @@
 #include <cstdio>
 #include <cstring>
 #include <fstream>
+#include <iomanip>
 #include <limits>
 #include <string>
 #include <vector>
@@ -29,13 +30,18 @@ struct options {
     int n_gpu_layers = 0;
     int threads = 12;
     bool trace_enabled = true;
+    std::string capture_tensor;
+    std::string capture_output;
+    int capture_token_index = -1;
 };
 
 void usage(const char * program) {
     std::fprintf(
         stderr,
         "usage: %s -m MODEL --tokens FILE [--trace FILE | --no-trace] "
-        "[-n TOKENS] [-ngl LAYERS] [--threads N] [PROMPT]\n",
+        "[-n TOKENS] [-ngl LAYERS] [--threads N] "
+        "[--capture-tensor NAME --capture-token-index INDEX --capture-output FILE] "
+        "[PROMPT]\n",
         program);
 }
 
@@ -79,6 +85,14 @@ bool parse_options(int argc, char ** argv, options & result) {
             if (!parse_int(argv[++index], result.threads) || result.threads == 0) {
                 return false;
             }
+        } else if (std::strcmp(argument, "--capture-tensor") == 0 && index + 1 < argc) {
+            result.capture_tensor = argv[++index];
+        } else if (std::strcmp(argument, "--capture-token-index") == 0 && index + 1 < argc) {
+            if (!parse_int(argv[++index], result.capture_token_index)) {
+                return false;
+            }
+        } else if (std::strcmp(argument, "--capture-output") == 0 && index + 1 < argc) {
+            result.capture_output = argv[++index];
         } else if (argument[0] == '-') {
             return false;
         } else {
@@ -94,12 +108,23 @@ bool parse_options(int argc, char ** argv, options & result) {
         }
     }
 
+    const bool capture_requested =
+        !result.capture_tensor.empty() ||
+        result.capture_token_index >= 0 ||
+        !result.capture_output.empty();
+    const bool capture_complete =
+        !result.capture_tensor.empty() &&
+        result.capture_token_index >= 0 &&
+        !result.capture_output.empty();
+
     return !result.model_path.empty() && !result.tokens_path.empty() &&
-           (!result.trace_enabled || !result.trace_path.empty());
+           (!result.trace_enabled || !result.trace_path.empty()) &&
+           (!capture_requested || capture_complete);
 }
 
 struct trace_state {
     std::ofstream output;
+    std::ofstream capture_output;
     std::vector<llama_token> batch_tokens;
     std::string phase;
     std::string error;
@@ -111,11 +136,26 @@ struct trace_state {
     std::uint64_t callback_asks = 0;
     std::uint64_t selected_asks = 0;
     std::uint64_t callback_observations = 0;
+    std::string capture_tensor;
+    std::uint64_t capture_token_index = 0;
+    bool capture_enabled = false;
+    bool capture_written = false;
     bool active_forward = false;
 
-    trace_state(const std::string & path, bool enabled) {
+    trace_state(
+        const std::string & path,
+        bool enabled,
+        const std::string & next_capture_tensor,
+        int next_capture_token_index,
+        const std::string & next_capture_path) {
         if (enabled) {
             output.open(path, std::ios::out | std::ios::trunc);
+        }
+        if (!next_capture_tensor.empty()) {
+            capture_tensor = next_capture_tensor;
+            capture_token_index = static_cast<std::uint64_t>(next_capture_token_index);
+            capture_enabled = true;
+            capture_output.open(next_capture_path, std::ios::out | std::ios::trunc);
         }
     }
 
@@ -153,6 +193,12 @@ bool router_trace_callback(ggml_tensor * tensor, bool ask, void * user_data) {
     auto & state = *static_cast<trace_state *>(user_data);
     const char * name = ggml_get_name(tensor);
     const bool selected_experts = starts_with(name, topk_prefix);
+    const bool capture_tensor =
+        state.capture_enabled && state.capture_tensor == name;
+    const bool capture_forward =
+        state.active_forward &&
+        state.capture_token_index >= state.base_token_index &&
+        state.capture_token_index < state.base_token_index + state.batch_tokens.size();
     if (ask) {
         ++state.callback_asks;
         const std::string tensor_name(name);
@@ -166,12 +212,70 @@ bool router_trace_callback(ggml_tensor * tensor, bool ask, void * user_data) {
         if (selected_experts && state.active_forward) {
             ++state.selected_asks;
         }
-        return selected_experts && state.active_forward;
+        return (selected_experts && state.active_forward) ||
+               (capture_tensor && capture_forward);
     }
     ++state.callback_observations;
     if (state.observation_tensor_names.size() < 100) {
         state.observation_tensor_names.emplace_back(name);
     }
+    if (capture_tensor && capture_forward) {
+        const std::uint64_t local_token_index =
+            state.capture_token_index - state.base_token_index;
+        if (!ggml_is_contiguous(tensor) || tensor->ne[0] <= 0 ||
+            tensor->ne[1] != static_cast<std::int64_t>(state.batch_tokens.size()) ||
+            tensor->ne[2] != 1 || tensor->ne[3] != 1 ||
+            (tensor->type != GGML_TYPE_F32 && tensor->type != GGML_TYPE_I32)) {
+            state.error = std::string("unexpected capture tensor contract for ") + name;
+            return false;
+        }
+
+        const std::size_t value_count = static_cast<std::size_t>(tensor->ne[0]);
+        const std::size_t element_size = sizeof(std::uint32_t);
+        const char * capture_type = tensor->type == GGML_TYPE_F32 ? "f32" : "i32";
+        const std::size_t byte_offset =
+            static_cast<std::size_t>(local_token_index) * value_count * element_size;
+        const std::size_t byte_count = value_count * element_size;
+        std::vector<std::uint8_t> bytes(byte_count);
+        ggml_backend_tensor_get(tensor, bytes.data(), byte_offset, byte_count);
+
+        state.capture_output
+            << "{\"schema_version\":\"" << schema_version
+            << "\",\"tensor_name\":\"" << name
+            << "\",\"tensor_type\":\"" << capture_type
+            << "\",\"token_index\":" << state.capture_token_index
+            << ",\"token_id\":" << state.batch_tokens[static_cast<std::size_t>(local_token_index)]
+            << ",\"forward_id\":" << state.forward_id
+            << ",\"dimensions\":[" << tensor->ne[0] << ',' << tensor->ne[1]
+            << ',' << tensor->ne[2] << ',' << tensor->ne[3]
+            << "],\"byte_count\":" << byte_count
+            << ",\"values\":[";
+        if (tensor->type == GGML_TYPE_F32) {
+            const float * values = reinterpret_cast<const float *>(bytes.data());
+            state.capture_output << std::setprecision(std::numeric_limits<float>::max_digits10);
+            for (std::size_t value = 0; value < value_count; ++value) {
+                if (value != 0) {
+                    state.capture_output << ',';
+                }
+                state.capture_output << values[value];
+            }
+        } else {
+            const std::int32_t * values = reinterpret_cast<const std::int32_t *>(bytes.data());
+            for (std::size_t value = 0; value < value_count; ++value) {
+                if (value != 0) {
+                    state.capture_output << ',';
+                }
+                state.capture_output << values[value];
+            }
+        }
+        state.capture_output << "]}\n";
+        if (!state.capture_output) {
+            state.error = "failed to write capture output";
+            return false;
+        }
+        state.capture_written = true;
+    }
+
     if (!selected_experts) {
         return true;
     }
@@ -316,9 +420,19 @@ int main(int argc, char ** argv) {
         return 1;
     }
 
-    trace_state trace(config.trace_path, config.trace_enabled);
+    trace_state trace(
+        config.trace_path,
+        config.trace_enabled,
+        config.capture_tensor,
+        config.capture_token_index,
+        config.capture_output);
     if (config.trace_enabled && !trace.output) {
         std::fprintf(stderr, "unable to open trace output\n");
+        llama_model_free(model);
+        return 1;
+    }
+    if (trace.capture_enabled && !trace.capture_output) {
+        std::fprintf(stderr, "unable to open capture output\n");
         llama_model_free(model);
         return 1;
     }
@@ -410,6 +524,15 @@ int main(int argc, char ** argv) {
         for (const std::string & name : trace.observation_tensor_names) {
             std::fprintf(stderr, "  %s\n", name.c_str());
         }
+        exit_code = 1;
+    }
+    if (trace.capture_enabled && !trace.capture_written) {
+        std::fprintf(
+            stderr,
+            "capture produced zero values for tensor %s at token %llu: %s\n",
+            trace.capture_tensor.c_str(),
+            static_cast<unsigned long long>(trace.capture_token_index),
+            trace.error.c_str());
         exit_code = 1;
     }
 

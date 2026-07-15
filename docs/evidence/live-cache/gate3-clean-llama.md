@@ -1,6 +1,6 @@
 # Gate 3 Clean Pinned llama.cpp
 
-Status: **FAIL-STOP at deterministic inference parity**
+Status: **FAIL-STOP; cross-runtime drift explained, clean trace parity fails representative prompts**
 
 Recorded: 2026-07-15 19:10 PKT
 
@@ -94,15 +94,15 @@ The clean build does not reproduce the previously verified runtime:
 - Prompt token IDs match.
 - Generated token IDs first differ at generated index 35: the reference emits `171502`, while the clean build emits `219220`.
 - The first ordered router difference occurs at event 23. That event contains the same set in a different order.
-- The first actual selected-expert-set difference occurs at event 24: forward 0, prompt token 2, layer 24. The clean set contains expert `117`; the reference set contains expert `113` instead.
+- The first actual selected-expert-set difference occurs at event 24: forward 0, token index 0, token ID 2 (BOS), layer 24. The clean set contains expert `117`; the reference set contains expert `113` instead. The earlier wording “prompt token 2” incorrectly treated token ID 2 as token index 2.
 - Across the 2,190 events that precede generated-token divergence and are therefore directly comparable, 256 expert sets differ.
 - Across all 3,030 events, 1,602 ordered selections and 1,074 selected-expert sets differ, although events after token divergence are not treated as independently causal evidence.
 
-This is a hard Gate 3 failure under the user's explicit requirements. It is not waived by the `test-opt` exception.
+The bounded follow-up audit explains this cross-binary result as build-dependent accumulated floating-point drift at a near-tied rank-8/rank-9 boundary. It is diagnostic rather than evidence that the clean inference runtime is corrupt. The audit nevertheless found a separate non-waived failure: across three representative prompts, clean trace-off/on generated tokens match for general chat but fail for code and translation. See [the divergence audit](gate3-divergence-audit.md).
 
 ## Gate decision
 
-Gate 3 is **FAIL-STOP**, not passed. The matrix stopped immediately after the reproducible baseline GPU failure; CPU cases and `train-general-08` were intentionally not run because they could not reverse the failed required parity check. The 87 ExpertFlow tests and replay fixture still pass, the protected Observatory remains byte-identical, and both the protected checkout and exact llama.cpp source remain clean.
+Gate 3 is **FAIL-STOP**, not passed. Cross-runtime bit identity is no longer the blocking reason. The blocking reason is the clean runtime's representative trace-off/on token-parity failure: both paths are independently repeatable, but code and translation generate different token arrays when the synchronized router-observation callback path is active. The 87 ExpertFlow tests and replay fixture still pass, the protected Observatory remains byte-identical, and both the protected checkout and exact llama.cpp source remain clean.
 
 - Gate 4 live-cache implementation has not started.
 - No one-layer blocking-slot recommendation is issued because the prerequisite Gate 3 pass does not exist.
