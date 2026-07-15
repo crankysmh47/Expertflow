@@ -1,3 +1,4 @@
+import hashlib
 import json
 from pathlib import Path
 
@@ -15,6 +16,12 @@ def test_checked_in_replay_fixture_reproduces_expected_totals() -> None:
     expected = json.loads(
         (FIXTURE_ROOT / "expected.json").read_text(encoding="utf-8")
     )
+    trace_text = (FIXTURE_ROOT / "trace.jsonl").read_text(encoding="utf-8")
+    canonical_trace = ("\n".join(trace_text.splitlines()) + "\n").encode()
+    assert expected["source_trace_hash_normalization"] == "utf-8-lf"
+    assert hashlib.sha256(canonical_trace).hexdigest() == expected[
+        "source_trace_sha256"
+    ]
     events = list(load_router_events(FIXTURE_ROOT / "trace.jsonl"))
 
     report = simulate_policies(

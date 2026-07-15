@@ -1,7 +1,8 @@
 {
   "schema_version": "1.0.0",
   "source_measurement_kind": "previously_measured",
-  "source_trace_sha256": "1b40767674870423e50fa4e0422cefe1ac2d17c86d7e363985c00d538668ad22",
+  "source_trace_sha256": "245aac7ffa83f464f33f220c2c7cafbf931671884c48fe2f92d48795ef11df8e",
+  "source_trace_hash_normalization": "utf-8-lf",
   "selection": "first eight layer_id=0 events in source order",
   "event_count": 8,
   "demand_count": 64,
