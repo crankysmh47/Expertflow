@@ -21,6 +21,12 @@ constexpr const char * topk_prefix = "ffn_moe_topk-";
 constexpr const char * llama_release = "b10002";
 constexpr const char * llama_revision = "a7312ae94f801fc9c6786dc56e38df57b964f697";
 
+enum class trace_mode {
+    full,
+    empty,
+    disabled,
+};
+
 struct options {
     std::string model_path;
     std::string trace_path;
@@ -29,7 +35,7 @@ struct options {
     int n_predict = 16;
     int n_gpu_layers = 0;
     int threads = 12;
-    bool trace_enabled = true;
+    trace_mode mode = trace_mode::full;
     std::string capture_tensor;
     std::string capture_output;
     int capture_token_index = -1;
@@ -39,6 +45,7 @@ void usage(const char * program) {
     std::fprintf(
         stderr,
         "usage: %s -m MODEL --tokens FILE [--trace FILE | --no-trace] "
+        "[--trace-mode full|empty|disabled] "
         "[-n TOKENS] [-ngl LAYERS] [--threads N] "
         "[--capture-tensor NAME --capture-token-index INDEX --capture-output FILE] "
         "[PROMPT]\n",
@@ -61,6 +68,22 @@ bool parse_int(const char * value, int & output) {
     }
 }
 
+bool parse_trace_mode(const char * value, trace_mode & output) {
+    if (std::strcmp(value, "full") == 0) {
+        output = trace_mode::full;
+        return true;
+    }
+    if (std::strcmp(value, "empty") == 0) {
+        output = trace_mode::empty;
+        return true;
+    }
+    if (std::strcmp(value, "disabled") == 0) {
+        output = trace_mode::disabled;
+        return true;
+    }
+    return false;
+}
+
 bool parse_options(int argc, char ** argv, options & result) {
     int index = 1;
     for (; index < argc; ++index) {
@@ -72,7 +95,11 @@ bool parse_options(int argc, char ** argv, options & result) {
         } else if (std::strcmp(argument, "--tokens") == 0 && index + 1 < argc) {
             result.tokens_path = argv[++index];
         } else if (std::strcmp(argument, "--no-trace") == 0) {
-            result.trace_enabled = false;
+            result.mode = trace_mode::disabled;
+        } else if (std::strcmp(argument, "--trace-mode") == 0 && index + 1 < argc) {
+            if (!parse_trace_mode(argv[++index], result.mode)) {
+                return false;
+            }
         } else if (std::strcmp(argument, "-n") == 0 && index + 1 < argc) {
             if (!parse_int(argv[++index], result.n_predict)) {
                 return false;
@@ -116,10 +143,11 @@ bool parse_options(int argc, char ** argv, options & result) {
         !result.capture_tensor.empty() &&
         result.capture_token_index >= 0 &&
         !result.capture_output.empty();
+    const bool full_trace = result.mode == trace_mode::full;
 
     return !result.model_path.empty() && !result.tokens_path.empty() &&
-           (!result.trace_enabled || !result.trace_path.empty()) &&
-           (!capture_requested || capture_complete);
+           (full_trace ? !result.trace_path.empty() : result.trace_path.empty()) &&
+           (!capture_requested || (capture_complete && full_trace));
 }
 
 struct trace_state {
@@ -339,6 +367,10 @@ bool router_trace_callback(ggml_tensor * tensor, bool ask, void * user_data) {
     return true;
 }
 
+bool empty_trace_callback(ggml_tensor *, bool, void *) {
+    return false;
+}
+
 bool write_token_sequence(
     const std::string & path,
     const std::vector<llama_token> & prompt_tokens,
@@ -420,13 +452,14 @@ int main(int argc, char ** argv) {
         return 1;
     }
 
+    const bool full_trace = config.mode == trace_mode::full;
     trace_state trace(
         config.trace_path,
-        config.trace_enabled,
+        full_trace,
         config.capture_tensor,
         config.capture_token_index,
         config.capture_output);
-    if (config.trace_enabled && !trace.output) {
+    if (full_trace && !trace.output) {
         std::fprintf(stderr, "unable to open trace output\n");
         llama_model_free(model);
         return 1;
@@ -442,9 +475,11 @@ int main(int argc, char ** argv) {
     context_params.n_batch = 1;
     context_params.n_ubatch = 1;
     context_params.no_perf = false;
-    if (config.trace_enabled) {
+    if (full_trace) {
         context_params.cb_eval = router_trace_callback;
         context_params.cb_eval_user_data = &trace;
+    } else if (config.mode == trace_mode::empty) {
+        context_params.cb_eval = empty_trace_callback;
     }
 
     llama_context * context = llama_init_from_model(model, context_params);
@@ -464,18 +499,18 @@ int main(int argc, char ** argv) {
     const auto decode_token = [&](
         llama_token & token, const char * phase, std::uint64_t token_index) {
         llama_batch batch = llama_batch_get_one(&token, 1);
-        if (config.trace_enabled) {
+        if (full_trace) {
             trace.begin_forward(batch, phase, token_index);
         }
         const int decode_result = llama_decode(context, batch);
-        if (config.trace_enabled) {
+        if (full_trace) {
             trace.end_forward();
         }
         if (decode_result != 0) {
             std::fprintf(stderr, "decode failed with code %d: %s\n", decode_result, trace.error.c_str());
             return false;
         }
-        if (config.trace_enabled) {
+        if (full_trace) {
             ++trace.forward_id;
         }
         return true;
@@ -509,7 +544,7 @@ int main(int argc, char ** argv) {
         std::fprintf(stderr, "unable to write token sequence\n");
         exit_code = 1;
     }
-    if (config.trace_enabled && trace.hook_order == 0) {
+    if (full_trace && trace.hook_order == 0) {
         std::fprintf(
             stderr,
             "trace produced zero events after %llu callback asks, %llu selected asks, and %llu observations; routing candidates:\n",
