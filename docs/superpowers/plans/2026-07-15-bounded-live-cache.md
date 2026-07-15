@@ -191,9 +191,9 @@ ctest --test-dir C:\models\expertflow\builds\llama-a7312ae-cuda128-clean --outpu
 
 Expected: build and ctest pass. Any source/toolchain failure stops cache work.
 
-**Observed stop (2026-07-15):** The unmodified CUDA Release build completed all 634 targets, but the final full CTest run passed 42/43. `test-opt` has an optimization-sensitive Windows/MSVC Release failure on both CPU and CUDA; the same exact unmodified CPU Debug test passes. Gate 3 remains blocked at this step. See `docs/evidence/live-cache/gate3-clean-llama.md`. Steps 4-6 and all cache work remain unstarted pending an explicit exception.
+**Observed exception (2026-07-15):** The unmodified CUDA Release build completed all 634 targets, but the final full CTest run passed 42/43. `test-opt` has an optimization-sensitive Windows/MSVC Release failure on both CPU and CUDA; the same exact unmodified CPU Debug test passes. The user authorized a narrow exception for that test alone so unmodified inference validation could continue. The failure evidence remains preserved and no inference, tracing, router, memory, or cache-runtime requirement was waived.
 
-- [ ] **Step 4: Build the existing router probe against clean libraries**
+- [x] **Step 4: Build the existing router probe against clean libraries**
 
 Use `scripts\build_router_probe.ps1` with the clean source/build outputs, writing a distinct `gate3-clean-probe` runtime. This adds no change to the llama.cpp checkout.
 
@@ -204,6 +204,8 @@ Expected: probe reports commit `a7312ae...`, trace-off and trace-on token files 
 Run the frozen baseline prompt and `train-general-08` with greedy sampling, 64 generated tokens, one-token decode, and 12 threads. For each CPU and `-ngl 10` case, run trace off/on and record tokens, router events, duration, peak VRAM from sampled `nvidia-smi`, and basic tokens/s.
 
 Expected: prompt/generated parity for trace off/on; router-event parity between repeated instrumented runs; model hash exact; no claim that CPU and CUDA floating-point outputs must match unless measured tokens prove it.
+
+**Observed fail-stop (2026-07-15):** The exact clean runtime passes its own trace-off/on token parity, repeated ordered-router parity, strict schema, causal ordering, and all 3,030 expected baseline GPU routing events. The previously verified reference also passes its own trace-off/on parity. Cross-runtime parity fails: selected expert sets first differ at prompt forward 0/token 2/layer 24, 256 of 2,190 directly comparable expert sets differ, and generated tokens first differ at index 35 (`171502` reference versus `219220` clean). This non-waived failure stops the matrix before CPU and `train-general-08`, closes Gate 4, and leaves all cache work unstarted. See `docs/evidence/live-cache/gate3-clean-llama.md`.
 
 - [ ] **Step 6: Commit the clean build configuration and evidence**
 

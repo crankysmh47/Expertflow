@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "gate": "gate3-clean-pinned-runtime",
-  "gate_status": "blocked",
+  "gate_status": "fail-stop",
   "source": {
     "repository": "https://github.com/ggml-org/llama.cpp.git",
     "revision": "a7312ae94f801fc9c6786dc56e38df57b964f697",
@@ -39,7 +39,41 @@
     "release_test_opt_passed": false,
     "debug_cpu_test_opt_passed": true
   },
-  "gate3_validation_started": false,
+  "exception": {
+    "authorized": true,
+    "scope": "single reproducible Windows/MSVC Release test-opt heisenbug only",
+    "inference_or_router_waiver": false
+  },
+  "inference_validation": {
+    "started": true,
+    "completed_full_matrix": false,
+    "model_load_passed": true,
+    "clean_trace_off_on_token_parity": true,
+    "clean_repeat_router_parity": true,
+    "strict_trace_validation_passed": true,
+    "expected_router_events": 3030,
+    "observed_router_events": 3030,
+    "prior_runtime_token_parity": false,
+    "first_generated_token_mismatch_index": 35,
+    "clean_token_id": 219220,
+    "prior_runtime_token_id": 171502,
+    "prior_runtime_router_parity": false,
+    "first_router_set_difference_event": 24,
+    "comparable_router_events": 2190,
+    "comparable_router_set_differences": 256,
+    "cpu_matrix_started": false,
+    "train_general_08_matrix_started": false,
+    "stop_reason": "non-waived cross-runtime generated-token and router-selection parity failure"
+  },
+  "expertflow_regression": {
+    "tests_passed": 87,
+    "replay_passed": true,
+    "protected_observatory_clean": true,
+    "llama_source_clean": true
+  },
+  "gate3_validation_started": true,
+  "cache_implementation_started": false,
+  "one_layer_spike_recommendation_issued": false,
   "live_cache_enabled": false,
   "evidence_root": "C:\\models\\expertflow\\runs\\live-cache-spike\\gate3"
 }
