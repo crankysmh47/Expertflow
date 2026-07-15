@@ -1,5 +1,7 @@
 # Held-out Q4 routing and recommendation evidence
 
+> **Quarantined historical evidence:** These real-model traces use the callback now labeled `trace_v1_perturbing`. They remain available for provenance but are excluded from final locality and cache-policy claims until recollected with an exactly transparent observer. See `configs/trace-evidence-status.json`.
+
 Date: 2026-07-15 PKT
 
 - **Training workload:** original five parity-safe Vulkan prompt-prefill traces

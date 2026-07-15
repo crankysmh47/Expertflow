@@ -2,7 +2,9 @@
 
 A hardware-aware routing observatory for running sparse mixture-of-experts models on one local GPU.
 
-ExpertFlow is an OpenAI Build Week project in active development. The real Gemma 4 Q4 baseline, routing probe, recommendation, and causal replay path work on the development machine. Codex/GPT-5.6 annotations are part of the build workflow. The current decision is conditional-go for a bounded live-cache correctness spike. `live_cache_enabled=false` remains mandatory for the default release. See [current status](#current-status) before treating any result as final.
+ExpertFlow is an OpenAI Build Week project in active development. The real Gemma 4 Q4 baseline, routing probe, recommendation, and causal replay path run on the development machine. Codex/GPT-5.6 annotations are part of the build workflow. The live-cache gate is closed while the router observer is repaired. `live_cache_enabled=false` remains mandatory for the default release. See [current status](#current-status) before treating any result as final.
+
+> **Evidence quarantine:** The current llama.cpp evaluation callback changes deterministic outputs for code and translation prompts. All real-model traces produced through that callback are labeled `trace_v1_perturbing` and excluded from final locality, cache-policy, deadline, and Gate 4 claims. Historical values remain visible for audit only. The machine-readable boundary is [configs/trace-evidence-status.json](configs/trace-evidence-status.json). Corpus collection and live-cache work are stopped while the observer is repaired.
 
 ## Table of contents
 
@@ -68,15 +70,15 @@ The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 
 | Gemma 4 Q4 artifact | Verified; 14,439,361,440 bytes and pinned SHA-256 |
 | Unmodified real-model baseline | Passed on CPU and bounded 10-layer GPU offload |
 | Token parity comparison | Working; exact measured comparison with first mismatch |
-| Routing callback probe | Passed; 1,350 real events and exact token parity |
-| Stratified GPU telemetry | 40 Vulkan conversations collected; 39 exact-parity pairs pass and one deterministic training failure is disclosed and excluded |
-| Held-out policy evaluation | Eight untouched domains; prefill-trained static-96 reaches 87.57% on decode versus 86.34% conversation-reset LRU |
+| Routing callback probe | Blocked; callback registration changes output for representative code and translation prompts |
+| Stratified GPU telemetry | Quarantined as `trace_v1_perturbing`; retained for audit, excluded from final claims |
+| Held-out policy evaluation | Withdrawn pending a parity-safe replacement corpus |
 | Expert layout | All 3,840 Q4 layer-expert objects measured; exact aligned slot is 3,346,048 bytes |
 | CUDA transfer microbenchmark | Three idle-GPU trials pooled; aligned pinned slot is 0.234016 ms p50 / 0.234272 ms p95 |
 | Deadline simulator | Cross-backend estimate only; CUDA transfer and Vulkan windows remain separately labeled |
-| Machine recommendation | `CONDITIONAL`, static-96 replay, live cache disabled; training-only static-96 earns a bounded proof despite only a 9.03% cold-byte reduction |
+| Machine recommendation | No live-cache recommendation while real-model routing evidence is quarantined; live cache disabled |
 | Causal replay report | Working; self-contained HTML includes per-prompt/domain physical evidence and measurement boundaries |
-| Minimal live-cache spike | Conditional-go under protected, time-boxed gates; no cache code started |
+| Minimal live-cache spike | Closed until a non-perturbing observer passes the new tracing gate; no cache code started |
 | CPU-only reproduction fixture | Working; eight previously measured events with checked totals |
 | Codex/GPT-5.6 annotations | Active in the build and evidence workflow; no runtime API key required |
 
