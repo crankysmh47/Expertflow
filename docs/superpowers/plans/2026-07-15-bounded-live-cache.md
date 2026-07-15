@@ -94,7 +94,7 @@ Expected: 87 tests pass, worktree clean after commit, protected branch unchanged
 
 Download `https://aka.ms/vs/17/release/vs_BuildTools.exe` and `https://developer.download.nvidia.com/compute/cuda/12.8.1/network_installers/cuda_12.8.1_windows_network.exe` into `C:\models\expertflow\installers`. Record resolved URLs, byte sizes, SHA-256, Authenticode signer/status, and download duration before execution.
 
-- [ ] **Step 2: Install VS 2022 Build Tools side by side**
+- [x] **Step 2: Install VS 2022 Build Tools side by side**
 
 ```powershell
 Start-Process C:\models\expertflow\installers\vs_BuildTools.exe -Wait -ArgumentList @(
@@ -109,7 +109,7 @@ Start-Process C:\models\expertflow\installers\vs_BuildTools.exe -Wait -ArgumentL
 
 Expected: VS 2026 remains installed and unchanged; `vswhere -all -products *` lists both installations.
 
-- [ ] **Step 3: Install CUDA toolkit packages without the display driver**
+- [x] **Step 3: Install CUDA toolkit packages without the display driver**
 
 ```powershell
 Start-Process C:\models\expertflow\installers\cuda_12.8.1_windows_network.exe -Wait -ArgumentList @(
@@ -121,7 +121,7 @@ Start-Process C:\models\expertflow\installers\cuda_12.8.1_windows_network.exe -W
 
 Expected: no `Display.Driver` package is selected; driver remains 591.86; `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\bin\nvcc.exe` exists.
 
-- [ ] **Step 4: Verify the exact compiler pair and CMake detection**
+- [x] **Step 4: Verify the exact compiler pair and CMake detection**
 
 ```powershell
 cmd /d /s /c '"C:\BuildTools2022\Common7\Tools\VsDevCmd.bat" -arch=x64 -host_arch=x64 -vcvars_ver=14.39 && cl && nvcc --version && cmake --version && ninja --version'
@@ -129,19 +129,19 @@ cmd /d /s /c '"C:\BuildTools2022\Common7\Tools\VsDevCmd.bat" -arch=x64 -host_arc
 
 Expected: `cl` reports 19.39.x, `nvcc` reports release 12.8, and CMake/Ninja match the recorded baseline. Configure a minimal CMake `LANGUAGES CXX CUDA` project and require `CMAKE_CUDA_COMPILER_VERSION` 12.8.
 
-- [ ] **Step 5: Build and pass NVIDIA deviceQuery**
+- [x] **Step 5: Build and pass NVIDIA deviceQuery**
 
 Clone the official `NVIDIA/cuda-samples` source at its CUDA 12.8 tag/commit, configure only `Samples/1_Utilities/deviceQuery` for SM 120, build with the same developer shell, and run it.
 
 Expected: one RTX 5060 Ti is found, compute capability is 12.0, and the final result is `PASS`.
 
-- [ ] **Step 6: Re-run the standalone transfer measurement**
+- [x] **Step 6: Re-run the standalone transfer measurement**
 
 Run the existing `expertflow transfer-benchmark` configuration for 3,346,048 bytes three times with 200 single-copy samples and pool raw samples. Record GPU idle state and compare p50/p95 against 0.234016/0.234272 ms.
 
 Expected: no silent threshold. A difference is accepted only with raw evidence and a written explanation; a gross regression stops before llama.cpp.
 
-- [ ] **Step 7: Commit Gate 2 evidence**
+- [x] **Step 7: Commit Gate 2 evidence**
 
 Run 87 ExpertFlow tests and commit only summaries/configuration, not installers or build trees, as `docs: verify supported cuda toolchain`.
 
