@@ -90,7 +90,7 @@ Expected: 87 tests pass, worktree clean after commit, protected branch unchanged
 - Consumes: NVIDIA CUDA 12.8.1 network installer and Microsoft VS 2022 Build Tools bootstrapper.
 - Produces: VS 2022 developer shell with MSVC 19.39, CUDA 12.8 `nvcc`, a passing `deviceQuery`, and a repeated transfer curve.
 
-- [ ] **Step 1: Download and hash official installers**
+- [x] **Step 1: Download and hash official installers**
 
 Download `https://aka.ms/vs/17/release/vs_BuildTools.exe` and `https://developer.download.nvidia.com/compute/cuda/12.8.1/network_installers/cuda_12.8.1_windows_network.exe` into `C:\models\expertflow\installers`. Record resolved URLs, byte sizes, SHA-256, Authenticode signer/status, and download duration before execution.
 
