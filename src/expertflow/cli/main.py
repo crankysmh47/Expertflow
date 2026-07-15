@@ -16,6 +16,7 @@ from expertflow.analysis.capacity_curve import (
 from expertflow.analysis.deadline import evaluate_one_layer_oracle
 from expertflow.analysis.profile import summarize_routing
 from expertflow.analysis.replay import replay_policy
+from expertflow.collection import CollectionConfig, collect_trace_pairs
 from expertflow.doctor import collect_doctor_report
 from expertflow.recommendation import build_recommendation
 from expertflow.reporting import render_replay_report
@@ -45,6 +46,19 @@ def build_parser() -> argparse.ArgumentParser:
     baseline.add_argument("--ctx-size", type=int, default=1024)
     baseline.add_argument("--predict", type=int, default=32)
     baseline.add_argument("--threads", type=int, default=12)
+
+    collect = commands.add_parser(
+        "collect-pairs",
+        help="Collect resumable tracing-disabled/tracing-enabled prompt pairs.",
+    )
+    collect.add_argument("--corpus", type=Path, required=True)
+    collect.add_argument("--probe", type=Path, required=True)
+    collect.add_argument("--model", type=Path, required=True)
+    collect.add_argument("--model-sha256", required=True)
+    collect.add_argument("--output-dir", type=Path, required=True)
+    collect.add_argument("--predict", type=int, default=64)
+    collect.add_argument("--gpu-layers", type=int, default=10)
+    collect.add_argument("--threads", type=int, default=12)
 
     doctor = commands.add_parser(
         "doctor", help="Record hardware, storage, and toolchain readiness."
@@ -217,6 +231,30 @@ def _run_doctor(args: argparse.Namespace) -> int:
     output.write_text(rendered, encoding="utf-8")
     print(output)
     return 0
+
+
+def _run_collect_pairs(args: argparse.Namespace) -> int:
+    output_dir = args.output_dir.resolve()
+    report = collect_trace_pairs(
+        args.corpus.resolve(),
+        CollectionConfig(
+            probe=args.probe.resolve(),
+            model=args.model.resolve(),
+            model_sha256=args.model_sha256,
+            output_dir=output_dir,
+            n_predict=args.predict,
+            gpu_layers=args.gpu_layers,
+            threads=args.threads,
+        ),
+    )
+    print(output_dir / "collection-manifest.json")
+    summary = report.get("summary")
+    if not isinstance(summary, dict):
+        raise ValueError("collection report summary must be an object")
+    failed = summary.get("failed")
+    if isinstance(failed, bool) or not isinstance(failed, int):
+        raise ValueError("collection failed count must be an integer")
+    return int(failed > 0)
 
 
 def _run_profile(args: argparse.Namespace) -> int:
@@ -556,6 +594,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "baseline":
         return _run_baseline(args)
+    if args.command == "collect-pairs":
+        return _run_collect_pairs(args)
     if args.command == "doctor":
         return _run_doctor(args)
     if args.command == "profile":

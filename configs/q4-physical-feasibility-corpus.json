@@ -1,0 +1,384 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "expertflow-q4-physical-feasibility-v1",
+  "created_by": "Codex/GPT-5.6",
+  "source_policy": "Public synthetic prompts authored for ExpertFlow; no private conversation data.",
+  "split_policy": "Complete conversations frozen before trace generation.",
+  "split_counts": {
+    "train": 32,
+    "validation": 4,
+    "test": 4
+  },
+  "domain_counts": {
+    "general_chat": 10,
+    "code": 8,
+    "math_reasoning": 6,
+    "translation": 4,
+    "multilingual": 4,
+    "long_context": 4,
+    "structured_output": 2,
+    "topic_shift": 2
+  },
+  "conversations": [
+    {
+      "conversation_id": "train-general-01",
+      "split": "train",
+      "domain": "general_chat",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-general-001",
+      "message_count": 1,
+      "prompt": "User: I have twenty minutes before work and keep skipping breakfast. Suggest a realistic routine using ordinary groceries, with one option I can prepare the night before. Keep the advice practical and avoid medical claims."
+    },
+    {
+      "conversation_id": "train-general-02",
+      "split": "train",
+      "domain": "general_chat",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-general-002",
+      "message_count": 3,
+      "prompt": "User: Help me plan a quiet weekend that costs almost nothing.\nAssistant: Do you prefer staying home or going outside?\nUser: A mix of both, but no crowded places. Give me a Saturday and Sunday schedule."
+    },
+    {
+      "conversation_id": "train-general-03",
+      "split": "train",
+      "domain": "general_chat",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-general-003",
+      "message_count": 5,
+      "prompt": "User: My housemate keeps leaving dishes in the sink.\nAssistant: Have you discussed it directly?\nUser: Once, but I sounded annoyed.\nAssistant: What outcome do you want?\nUser: A fair weekly arrangement. Draft a calm message that does not sound passive-aggressive."
+    },
+    {
+      "conversation_id": "train-general-04",
+      "split": "train",
+      "domain": "general_chat",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-general-004",
+      "message_count": 1,
+      "prompt": "User: Explain why the sky can look pale near the horizon but deep blue overhead. Use an everyday analogy, then give the scientific explanation in no more than five sentences."
+    },
+    {
+      "conversation_id": "train-general-05",
+      "split": "train",
+      "domain": "general_chat",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-general-005",
+      "message_count": 3,
+      "prompt": "User: I need a name for a neighborhood tool-sharing shelf.\nAssistant: Should it sound playful or formal?\nUser: Friendly and memorable. Give twelve names, then select the strongest three and explain the tradeoffs."
+    },
+    {
+      "conversation_id": "train-general-06",
+      "split": "train",
+      "domain": "general_chat",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-general-006",
+      "message_count": 1,
+      "prompt": "User: Compare renting a small apartment near campus with sharing a larger place forty minutes away. Build a decision checklist around cost, commute, privacy, chores, and study time without pretending there is one correct answer."
+    },
+    {
+      "conversation_id": "train-general-07",
+      "split": "train",
+      "domain": "general_chat",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-general-007",
+      "message_count": 4,
+      "prompt": "User: I bought a used desk with a scratched surface.\nAssistant: Is it solid wood, veneer, or laminate?\nUser: Laminate, probably.\nUser: Suggest a low-risk cleanup and cosmetic repair sequence, and tell me what not to sand."
+    },
+    {
+      "conversation_id": "train-general-08",
+      "split": "train",
+      "domain": "general_chat",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-general-008",
+      "message_count": 2,
+      "prompt": "User: Write a short invitation for a community book swap. It should welcome people who have no books to bring and clearly say that taking a book is free.\nUser: Also provide a subject line and a one-sentence social caption."
+    },
+    {
+      "conversation_id": "train-general-09",
+      "split": "train",
+      "domain": "general_chat",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-general-009",
+      "message_count": 1,
+      "prompt": "User: A friend cancelled dinner at the last minute for the third time. Give me two charitable interpretations, two reasons to set a boundary, and a concise reply that leaves room for an honest explanation."
+    },
+    {
+      "conversation_id": "train-code-01",
+      "split": "train",
+      "domain": "code",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-code-001",
+      "message_count": 1,
+      "prompt": "User: Implement a Python function merge_intervals(intervals) that returns sorted non-overlapping intervals. Explain the time complexity and include tests for empty input, touching endpoints, nested intervals, and negative values."
+    },
+    {
+      "conversation_id": "train-code-02",
+      "split": "train",
+      "domain": "code",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-code-002",
+      "message_count": 3,
+      "prompt": "User: My JavaScript fetch wrapper sometimes parses a 204 response as JSON and throws.\nAssistant: Can you show the intended return contract?\nUser: Return null for 204, otherwise parse JSON and throw a useful error for non-2xx responses. Provide a typed TypeScript implementation."
+    },
+    {
+      "conversation_id": "train-code-03",
+      "split": "train",
+      "domain": "code",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-code-003",
+      "message_count": 1,
+      "prompt": "User: Review this SQL pattern conceptually: select a customer and a correlated subquery for their latest order. Rewrite it with a window function, explain tie handling, and list indexes that may help on PostgreSQL."
+    },
+    {
+      "conversation_id": "train-code-04",
+      "split": "train",
+      "domain": "code",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-code-004",
+      "message_count": 2,
+      "prompt": "User: Design a small Rust struct for a bounded retry policy with exponential backoff and a maximum delay.\nUser: Avoid sleeping in the policy itself; return the next Duration so callers can test it deterministically."
+    },
+    {
+      "conversation_id": "train-code-05",
+      "split": "train",
+      "domain": "code",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-code-005",
+      "message_count": 1,
+      "prompt": "User: A breadth-first search over a grid is revisiting cells and using too much memory. Show clear pseudocode that marks cells at enqueue time, supports four-direction movement, and reconstructs the shortest path."
+    },
+    {
+      "conversation_id": "train-code-06",
+      "split": "train",
+      "domain": "code",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-code-006",
+      "message_count": 4,
+      "prompt": "User: I have a Python generator that reads a large log file.\nAssistant: What should it emit?\nUser: Parsed records, but malformed lines should be counted rather than crash the stream.\nUser: Propose an iterator API and demonstrate how the caller retrieves both records and the final error count."
+    },
+    {
+      "conversation_id": "train-code-07",
+      "split": "train",
+      "domain": "code",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-code-007",
+      "message_count": 1,
+      "prompt": "User: Explain a deadlock caused by two threads taking locks A and B in opposite order. Give a minimal corrected example using a global lock ordering rule and describe how a stress test might expose the original bug."
+    },
+    {
+      "conversation_id": "train-math-01",
+      "split": "train",
+      "domain": "math_reasoning",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-math-001",
+      "message_count": 1,
+      "prompt": "User: A tank is filled by pipe A in 6 hours and pipe B in 9 hours, while a drain empties it in 18 hours. Starting empty with all three open, how long does filling take? Show the rate equation and check the result."
+    },
+    {
+      "conversation_id": "train-math-02",
+      "split": "train",
+      "domain": "math_reasoning",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-math-002",
+      "message_count": 1,
+      "prompt": "User: Prove that the sum of the first n odd positive integers is n squared. Give both an induction proof and a geometric explanation, and state the base case explicitly."
+    },
+    {
+      "conversation_id": "train-math-03",
+      "split": "train",
+      "domain": "math_reasoning",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-math-003",
+      "message_count": 3,
+      "prompt": "User: A bag has 4 red, 3 blue, and 2 green marbles. Two are drawn without replacement.\nAssistant: Which event should I compute?\nUser: Find the probability they have different colors, using both a complement method and direct counting."
+    },
+    {
+      "conversation_id": "train-math-04",
+      "split": "train",
+      "domain": "math_reasoning",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-math-004",
+      "message_count": 1,
+      "prompt": "User: Solve the recurrence T(n)=2T(n/2)+n log n for powers of two. Use a recursion-tree argument, then confirm with the Master Theorem and distinguish the logarithm factors carefully."
+    },
+    {
+      "conversation_id": "train-math-05",
+      "split": "train",
+      "domain": "math_reasoning",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-math-005",
+      "message_count": 1,
+      "prompt": "User: A rectangle has perimeter 40 and integer side lengths. Which dimensions maximize area? Derive the continuous optimum, apply the integer constraint, and list the next two best integer pairs."
+    },
+    {
+      "conversation_id": "train-translation-01",
+      "split": "train",
+      "domain": "translation",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-translation-001",
+      "message_count": 1,
+      "prompt": "User: Translate into natural Urdu: Please save your work before restarting the computer, because unsaved changes may be lost. Then give a literal English back-translation and explain one wording choice."
+    },
+    {
+      "conversation_id": "train-translation-02",
+      "split": "train",
+      "domain": "translation",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-translation-002",
+      "message_count": 1,
+      "prompt": "User: Translate this Spanish sentence into English in two registers, formal and conversational: Aunque llegamos tarde, todavía alcanzamos a escuchar la última canción. Note any ambiguity."
+    },
+    {
+      "conversation_id": "train-translation-03",
+      "split": "train",
+      "domain": "translation",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-translation-003",
+      "message_count": 3,
+      "prompt": "User: Translate Keep the receipt in case you need to return the item into French.\nAssistant: Should it address one person formally or informally?\nUser: Give both versions and explain the pronoun and imperative changes."
+    },
+    {
+      "conversation_id": "train-multilingual-01",
+      "split": "train",
+      "domain": "multilingual",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-multilingual-001",
+      "message_count": 2,
+      "prompt": "User: Mujhe cache eviction samajh nahi aa rahi. Explain it in simple English, magar examples Urdu mein dein.\nUser: End with a two-line bilingual summary."
+    },
+    {
+      "conversation_id": "train-multilingual-02",
+      "split": "train",
+      "domain": "multilingual",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-multilingual-002",
+      "message_count": 1,
+      "prompt": "User: Responde en español, but keep technical terms such as cache hit, latency, and bandwidth in English. Explain why a larger cache can still perform poorly when the access pattern changes quickly."
+    },
+    {
+      "conversation_id": "train-multilingual-03",
+      "split": "train",
+      "domain": "multilingual",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-multilingual-003",
+      "message_count": 4,
+      "prompt": "User: Bonjour, I need help writing a polite reminder.\nAssistant: What language should the final note use?\nUser: English first, puis une version française.\nUser: The reminder is about returning a borrowed library book, not money."
+    },
+    {
+      "conversation_id": "train-long-01",
+      "split": "train",
+      "domain": "long_context",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-long-001",
+      "message_count": 1,
+      "prompt": "User: Summarize the following project notes into decisions, unresolved questions, owners, and deadlines. Notes: The team tested three storage layouts. Layout A is simplest but duplicates metadata. Layout B removes duplication but makes recovery depend on a central index. Layout C keeps local indexes and a compact global catalog, but migration tooling is unfinished. Priya prefers C if migration can be demonstrated by Friday. Omar will benchmark recovery on Wednesday. Mei will check whether catalog updates can be made atomic. The launch date is not fixed; the customer asked for a pilot before the end of the month. Security review needs a data-retention answer. No one owns the rollback runbook yet. The group agreed not to optimize compression until recovery behavior is understood."
+    },
+    {
+      "conversation_id": "train-long-02",
+      "split": "train",
+      "domain": "long_context",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-long-002",
+      "message_count": 3,
+      "prompt": "User: I will give you a meeting transcript, then ask for a concise brief.\nAssistant: Ready.\nUser: Transcript: Lina reports that onboarding completion fell from 78 percent to 69 percent after a form redesign. The new form added address verification and an optional company profile. Dev says server errors did not increase. A support review found that many users stop at the address step because the example format is hidden below the fold. Imani proposes moving the example above the field and delaying company profile until after account creation. Dev can ship the copy change tomorrow, but moving profile collection affects analytics. Lina will compare conversion by device because the decline is larger on small screens. The group will run the copy change first, observe for three days, and only then decide on the profile step. Produce a brief with the evidence, decision, experiment, owner, and risk."
+    },
+    {
+      "conversation_id": "train-long-03",
+      "split": "train",
+      "domain": "long_context",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-long-003",
+      "message_count": 1,
+      "prompt": "User: Read this incident timeline and produce a root-cause hypothesis table without overstating certainty. 09:02 deploy 418 begins. 09:07 API p95 rises from 180 ms to 620 ms. 09:09 cache hit rate remains stable at 91 percent. 09:11 database connection wait rises sharply. 09:14 workers begin restarting after health-check timeouts. 09:18 deploy is paused. 09:21 one engineer notices that a new audit query runs once per request. 09:25 feature flag for enhanced audit details is disabled. 09:28 connection wait falls. 09:31 p95 returns to 210 ms. 09:40 deploy 418 is rolled back for safety. Separate observed facts, plausible causal links, counterevidence, and next tests."
+    },
+    {
+      "conversation_id": "train-structured-01",
+      "split": "train",
+      "domain": "structured_output",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-structured-001",
+      "message_count": 1,
+      "prompt": "User: Return only valid JSON matching this shape: {\"risk\":\"low|medium|high\",\"reasons\":[string],\"mitigations\":[{\"owner\":string,\"action\":string}]}. Scenario: a beta service stores temporary image thumbnails for 24 hours, has no deletion retry queue, and is used by fifty internal testers."
+    },
+    {
+      "conversation_id": "train-shift-01",
+      "split": "train",
+      "domain": "topic_shift",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-shift-001",
+      "message_count": 9,
+      "prompt": "User: Suggest three herbs that grow well on a sunny balcony.\nAssistant: Basil, rosemary, and thyme are good candidates.\nUser: Give a weekly watering checklist.\nAssistant: Check soil moisture and adjust for heat rather than watering on a rigid schedule.\nUser: New topic: debug a Python KeyError caused by looking up a missing configuration key.\nAssistant: Use explicit validation or get with a deliberate default and log the missing key.\nUser: Now solve 3x + 7 = 28.\nAssistant: Subtract seven and divide by three, so x is seven.\nUser: Finally translate The cache is full into Urdu and return just the translation."
+    },
+    {
+      "conversation_id": "validation-general-10",
+      "split": "validation",
+      "domain": "general_chat",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-general-010",
+      "message_count": 3,
+      "prompt": "User: I promised to organize a small reunion but two people cannot attend on the same date.\nAssistant: Is remote participation acceptable?\nUser: Yes. Propose a fair way to choose the date, include remote guests, and communicate the decision without making either person feel blamed."
+    },
+    {
+      "conversation_id": "validation-code-08",
+      "split": "validation",
+      "domain": "code",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-code-008",
+      "message_count": 1,
+      "prompt": "User: Write a Go function that reads newline-delimited JSON from an io.Reader, validates that each object has a nonempty id, and streams valid records on a channel while reporting the first decoding error through a separate error channel. Explain cancellation concerns."
+    },
+    {
+      "conversation_id": "validation-math-06",
+      "split": "validation",
+      "domain": "math_reasoning",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-math-006",
+      "message_count": 1,
+      "prompt": "User: Three machines independently fail during a day with probabilities 0.1, 0.2, and 0.3. Compute the probability that exactly one fails and the probability that at least one fails. Show the events rather than only the final decimals."
+    },
+    {
+      "conversation_id": "validation-translation-04",
+      "split": "validation",
+      "domain": "translation",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-translation-004",
+      "message_count": 1,
+      "prompt": "User: Translate into natural German: We postponed the release so the team could verify the backup and practice the rollback. Provide a formal workplace version, then a close English back-translation."
+    },
+    {
+      "conversation_id": "test-multilingual-04",
+      "split": "test",
+      "domain": "multilingual",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-multilingual-004",
+      "message_count": 3,
+      "prompt": "User: Explain pinned memory in Urdu with one English technical sentence.\nAssistant: Should the example use files or GPU transfers?\nUser: GPU transfers. Mantén la respuesta breve and finish with a Spanish caution that faster copies do not guarantee faster end-to-end inference."
+    },
+    {
+      "conversation_id": "test-long-04",
+      "split": "test",
+      "domain": "long_context",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-long-004",
+      "message_count": 1,
+      "prompt": "User: Turn these research notes into a compact comparison table and a recommendation with explicit uncertainty. Trial one used pageable host memory, twenty batches, and showed variable latency after the first run. Trial two used pinned memory, thirty batches, and sustained roughly thirteen GiB per second when the GPU was otherwise idle. Trial three overlapped copies with an unrelated graphics workload and had a much wider tail. None of the trials ran beside model compute. The expert object is about 3.19 MiB, but the future cache slot may need alignment. The current simulator uses Vulkan callback intervals, not CUDA kernel deadlines. The recommendation must distinguish measured transfer facts, cross-backend estimates, and missing live-runtime evidence."
+    },
+    {
+      "conversation_id": "test-structured-02",
+      "split": "test",
+      "domain": "structured_output",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-structured-002",
+      "message_count": 1,
+      "prompt": "User: Output CSV only with columns priority,task,owner,dependency. Convert these notes into rows: measure packed expert bytes is high priority and owned by Ana; transfer benchmark is high priority and owned by Bilal and depends on byte measurement; HTML visual check is medium priority and owned by Chen; live cache is blocked and unassigned and depends on all measurements."
+    },
+    {
+      "conversation_id": "test-shift-02",
+      "split": "test",
+      "domain": "topic_shift",
+      "source_dataset": "expertflow-authored-synthetic-v1",
+      "source_record_id": "efs-shift-002",
+      "message_count": 10,
+      "prompt": "User: Help me write a two-sentence thank-you note for a teacher.\nAssistant: Thank you for making difficult ideas approachable and for encouraging every question. Your patience made a real difference this term.\nUser: Switch topics: compare an array and a linked list for random access.\nAssistant: Arrays provide constant-time indexed access while linked lists require traversal.\nUser: Switch again: what is the derivative of x cubed?\nAssistant: It is 3x squared.\nUser: Ahora responde en español: ¿por qué conviene medir p95?\nAssistant: Porque muestra la cola de latencia que el promedio puede ocultar.\nUser: Final topic: return a JSON object with keys cache_slots and enabled, using values 96 and false.\nAssistant:"
+    }
+  ]
+}
