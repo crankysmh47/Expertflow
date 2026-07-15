@@ -11,6 +11,7 @@
 #include <fstream>
 #include <iomanip>
 #include <limits>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -493,8 +494,33 @@ bool ids_trace_callback(ggml_tensor * tensor, bool ask, void * user_data) {
     return true;
 }
 
+std::string json_escape(const std::string & value) {
+    std::ostringstream escaped;
+    for (const unsigned char byte : value) {
+        switch (byte) {
+            case '"': escaped << "\\\""; break;
+            case '\\': escaped << "\\\\"; break;
+            case '\b': escaped << "\\b"; break;
+            case '\f': escaped << "\\f"; break;
+            case '\n': escaped << "\\n"; break;
+            case '\r': escaped << "\\r"; break;
+            case '\t': escaped << "\\t"; break;
+            default:
+                if (byte < 0x20) {
+                    escaped << "\\u" << std::hex << std::setw(4)
+                            << std::setfill('0') << static_cast<int>(byte)
+                            << std::dec << std::setfill(' ');
+                } else {
+                    escaped << static_cast<char>(byte);
+                }
+        }
+    }
+    return escaped.str();
+}
+
 bool write_token_sequence(
     const std::string & path,
+    const llama_vocab * vocab,
     const std::vector<llama_token> & prompt_tokens,
     const std::vector<llama_token> & generated_tokens) {
     std::ofstream output(path, std::ios::out | std::ios::trunc);
@@ -511,11 +537,28 @@ bool write_token_sequence(
         }
         output << ']';
     };
+    std::string generated_text;
+    for (const llama_token token : generated_tokens) {
+        std::vector<char> piece(32);
+        int32_t length = llama_token_to_piece(
+            vocab, token, piece.data(), static_cast<int32_t>(piece.size()), 0, true);
+        if (length < 0) {
+            piece.resize(static_cast<std::size_t>(-length));
+            length = llama_token_to_piece(
+                vocab, token, piece.data(), static_cast<int32_t>(piece.size()), 0, true);
+        }
+        if (length < 0) {
+            return false;
+        }
+        generated_text.append(piece.data(), static_cast<std::size_t>(length));
+    }
+
     output << "{\n  \"schema_version\": \"" << schema_version << "\",\n";
     output << "  \"prompt_token_ids\": ";
     write_ids(prompt_tokens);
     output << ",\n  \"generated_token_ids\": ";
     write_ids(generated_tokens);
+    output << ",\n  \"generated_text\": \"" << json_escape(generated_text) << "\"";
     output << "\n}\n";
     return static_cast<bool>(output);
 }
@@ -704,7 +747,7 @@ int main(int argc, char ** argv) {
     }
 
     if (exit_code == 0 &&
-        !write_token_sequence(config.tokens_path, prompt_tokens, generated_tokens)) {
+        !write_token_sequence(config.tokens_path, vocab, prompt_tokens, generated_tokens)) {
         std::fprintf(stderr, "unable to write token sequence\n");
         exit_code = 1;
     }

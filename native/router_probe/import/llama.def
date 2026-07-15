@@ -16,5 +16,6 @@ EXPORTS
     llama_sampler_init_greedy
     llama_sampler_sample
     llama_set_n_threads
+    llama_token_to_piece
     llama_tokenize
     llama_vocab_is_eog

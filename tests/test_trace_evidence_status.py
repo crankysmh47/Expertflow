@@ -14,6 +14,13 @@ def test_callback_derived_real_model_evidence_is_quarantined() -> None:
     assert status["trace_generation"]["corpus_collection_enabled"] is False
     assert status["trace_generation"]["eligible_for_final_claims"] is False
 
+    canonical = status["canonical_trace_generation"]
+    assert canonical["label"] == "trace_v2_canonical_segmented"
+    assert canonical["runtime"] == "expertflow-canonical-observer-v1"
+    assert canonical["corpus_collection_enabled"] is True
+    assert canonical["eligible_for_final_claims"] is True
+    assert canonical["smoke_decision"] == "accepted"
+
     roots = {item["id"]: item for item in status["real_model_roots"]}
     assert {
         "q4-baseline",

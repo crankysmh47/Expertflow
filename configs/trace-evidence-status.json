@@ -7,6 +7,15 @@
     "corpus_collection_enabled": false,
     "eligible_for_final_claims": false
   },
+  "canonical_trace_generation": {
+    "label": "trace_v2_canonical_segmented",
+    "runtime": "expertflow-canonical-observer-v1",
+    "corpus_collection_enabled": true,
+    "eligible_for_final_claims": true,
+    "comparison_contract": "observer enabled/cache disabled versus observer enabled/cache enabled",
+    "evidence_root": "C:\\models\\expertflow\\runs\\canonical-observer-smoke",
+    "smoke_decision": "accepted"
+  },
   "real_model_roots": [
     {
       "id": "q4-baseline",

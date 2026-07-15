@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "runtime_id": "expertflow-canonical-observer-v1",
+  "architecture": "graph-segmenting routing telemetry",
+  "source_commit_before_pin": "8c3cef0b5cd8aa5fe86ef66282327cd1534aca0c",
+  "llama_cpp_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+  "binary_path": "C:\\models\\expertflow\\runs\\canonical-observer-smoke\\runtime\\expertflow-router-probe.exe",
+  "binary_sha256": "7ea12e0c44258bb2d75f99b7e180e7ef7cb0c7d3e285ca231fe26ad8c8c4932c",
+  "model_sha256": "4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5",
+  "trace_generation": "trace_v2_canonical_segmented",
+  "cache_enabled": false,
+  "normal_mode": "--trace-mode disabled",
+  "observer_mode": "--trace-mode full --trace TRACE.jsonl",
+  "prompt_template": "<start_of_turn>user\\n{prompt}<end_of_turn>\\n<start_of_turn>model\\n",
+  "decoding": {
+    "sampler": "greedy",
+    "seed": null,
+    "temperature": null,
+    "gpu_layers": 10,
+    "threads": 12,
+    "batch": 1,
+    "microbatch": 1,
+    "context": "prompt_tokens + n_predict + 8"
+  },
+  "toolchain": {
+    "compiler": "g++.exe MSYS2 15.2.0",
+    "cuda": "12.8.93",
+    "driver": "591.86",
+    "gpu": "NVIDIA GeForce RTX 5060 Ti 16311 MiB",
+    "cmake": "4.3.1",
+    "ninja": "1.13.2"
+  },
+  "evidence_root": "C:\\models\\expertflow\\runs\\canonical-observer-smoke",
+  "smoke_summary_sha256": "9fd377e1dae4ba3c6b439b0eadab1b2dc250903c2a16382a50da236a1f23c859",
+  "command_ledger_sha256": "ca08df650994e393cbe1310b2f7b8003b6bc923a4a1f297223da025bbaac8b83"
+}

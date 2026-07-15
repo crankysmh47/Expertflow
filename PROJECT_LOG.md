@@ -558,3 +558,10 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - V2 metadata stopped on its first general run: tokens still matched V0, but layer 24 produced zero records instead of the expected 53. The valid 40-byte output header proves the observer was configured and emitted at teardown; the target boundary was simply not encountered.
 - Applied the mandatory stop rule. V3 was not started. No other layer was tried; no callback, tensor request, synchronization, graph split, CUDA hook, allocator/backend rewrite, cache code, or runtime expansion was attempted. The llama prototype remains uncommitted and isolated for audit.
 - Gate 4 remains closed, `live_cache_enabled=false`, all earlier traces remain quarantined, the `93.28%` claim remains withdrawn, and corpus collection remains stopped.
+### 23:27 PKT - Canonical graph-segmenting observer accepted
+
+- Preserved the failed one-file Observer v2 llama.cpp prototype as stash `bb8ee4522f28dafd1b819747d58f7198d0a3a038`; protected Observatory `d846bdf`, Observer v2 evidence `8c3cef0`, and clean pinned llama.cpp `a7312ae` were not modified.
+- Created isolated branch/worktree `codex/canonical-observer-runtime`, restored the existing Observer v1 callback path, and added only post-generation text serialization needed for objective validation. A rejected batched-prefill attempt was reverted after it produced malformed output; canonical batch and microbatch remain one.
+- Final canonical binary SHA-256 is `7ea12e0c44258bb2d75f99b7e180e7ef7cb0c7d3e285ca231fe26ad8c8c4932c`; Gemma Q4 remains `4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5`.
+- Seven-task smoke: Mode N 6/7, Mode O 7/7, retained successful outcomes 6/7. Final Mode O determinism repeated exactly for tokens and 1,980 routing records excluding timestamps. All processes cleaned up and settled GPU memory returned to baseline.
+- Accepted `expertflow-canonical-observer-v1`; old `trace_v1_perturbing` evidence remains quarantined and new collection is labeled `trace_v2_canonical_segmented`. Cache remains disabled and no speed claim is made.
