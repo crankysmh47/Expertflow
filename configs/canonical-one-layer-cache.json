@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "status": "c4_passed_exact_one_layer_primitive",
+  "status": "c5_passed_exact_one_layer_reactive_cache",
   "live_cache_enabled": false,
   "canonical_expertflow_commit": "56d2ab4cf96ce4b036fc9518b63158491551923a",
   "llama_cpp_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697",
@@ -27,5 +27,26 @@
     "verified_repetitions": 3,
     "verified_cache_events": 2388,
     "verified_router_events": 71640
+  },
+  "c5_reactive": {
+    "layer_id": 24,
+    "physical_slots": 32,
+    "top_k_demand": 8,
+    "policy": "conversation_reset_lru",
+    "free_slot_order": "ascending_slot_id",
+    "eviction_tie_break": "ascending_slot_id",
+    "direct_cuda_operand": true,
+    "staging_operand": false,
+    "measured_arena_allocation_bytes": 107053696,
+    "measured_arena_allocation_mib": 102.0943603515625,
+    "conservative_aligned_projection_bytes": 107073536,
+    "verified_repetitions": 3,
+    "verified_cache_events": 2388,
+    "verified_router_events": 71640,
+    "verified_demands": 19104,
+    "hits": 13353,
+    "blocking_misses": 5751,
+    "packed_bytes_transferred": 19239464412,
+    "passed": true
   }
 }

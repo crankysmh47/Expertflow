@@ -1,6 +1,6 @@
 # Layer-24 C5 Reactive Cache Design
 
-**Status:** Approved for bounded test-first implementation on 2026-07-16.
+**Status:** C5-0 through C5-4 passed on 2026-07-16; default remains disabled.
 
 ## Contract
 
