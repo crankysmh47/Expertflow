@@ -565,3 +565,10 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Final canonical binary SHA-256 is `7ea12e0c44258bb2d75f99b7e180e7ef7cb0c7d3e285ca231fe26ad8c8c4932c`; Gemma Q4 remains `4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5`.
 - Seven-task smoke: Mode N 6/7, Mode O 7/7, retained successful outcomes 6/7. Final Mode O determinism repeated exactly for tokens and 1,980 routing records excluding timestamps. All processes cleaned up and settled GPU memory returned to baseline.
 - Accepted `expertflow-canonical-observer-v1`; old `trace_v1_perturbing` evidence remains quarantined and new collection is labeled `trace_v2_canonical_segmented`. Cache remains disabled and no speed claim is made.
+
+### 23:35 PKT - Canonical multi-domain pilot confirms bounded locality
+
+- Froze 14 public synthetic conversations before collection: seven train and seven validation/test, covering general chat, code, math/reasoning, translation, multilingual, structured output, and topic shift. All 14 observer-enabled/cache-disabled shards passed and produced 50,310 routing events.
+- Preserved raw callback traces and generated canonical copies by changing only placeholder request/conversation identifiers. Every shard records tokens, duration, memory snapshots, hashes, domain, split, and process result.
+- Held-out decode adjacent reuse is 39.44%. At 32 slots/layer, training-only static is 49.34%, reset LRU 72.30%, and causal session frequency 71.83%. At 96 slots/layer, training-only static is 92.80% versus 78.49% LRU/session on this small pilot.
+- The 92.80% number is new small-pilot evidence, not restoration of the withdrawn 93.28% result and not a generalization claim. Policy outputs remain estimated over measured routing; cache remains disabled.
