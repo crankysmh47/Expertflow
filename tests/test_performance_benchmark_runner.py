@@ -35,8 +35,13 @@ def test_validate_manifest_requires_three_domains():
 
 def test_build_environment_removes_inherited_cache_settings():
     result = runner.build_environment(
-        {"PATH": "x", "EXPERTFLOW_LIVE_CACHE": "1"},
+        {
+            "PATH": "x",
+            "EXPERTFLOW_LIVE_CACHE": "1",
+            "EXPERTFLOW_LIVE_CACHE_LAYERS": "0,24",
+        },
         {"CUSTOM": "value"},
     )
     assert "EXPERTFLOW_LIVE_CACHE" not in result
+    assert "EXPERTFLOW_LIVE_CACHE_LAYERS" not in result
     assert result["CUSTOM"] == "value"

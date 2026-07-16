@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "measurement_kind": "measured",
+  "model": "C:\\models\\expertflow\\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\\gemma-4-26B_q4_0-it.gguf",
+  "threads": 12,
+  "n_predict": 64,
+  "ngl": 10,
+  "gpu_sample_interval_ms": 100,
+  "warmups": 1,
+  "repetitions": 3,
+  "layers": [0, 24],
+  "prompts": {
+    "general": "<start_of_turn>user\nExplain in three concise bullet points why reproducible measurements matter when optimizing local AI inference.<end_of_turn>\n<start_of_turn>model\n",
+    "code": "<start_of_turn>user\nWrite a Python function named merge_intervals(intervals) that merges overlapping closed intervals. Return only the function inside one Python code block.<end_of_turn>\n<start_of_turn>model\n",
+    "translation": "<start_of_turn>user\nTranslate this sentence into French while preserving every fact: \"The server restarted after the update, but no user data was lost.\" Return only the translation.<end_of_turn>\n<start_of_turn>model\n"
+  },
+  "modes": {
+    "cache_off": {
+      "executable": "C:\\models\\expertflow\\runs\\multilayer-cache-ramp\\runtime\\expertflow-router-probe.exe",
+      "cwd": "C:\\models\\expertflow\\runs\\multilayer-cache-ramp\\runtime"
+    },
+    "cache_on": {
+      "executable": "C:\\models\\expertflow\\runs\\multilayer-cache-ramp\\runtime\\expertflow-router-probe.exe",
+      "cwd": "C:\\models\\expertflow\\runs\\multilayer-cache-ramp\\runtime"
+    }
+  },
+  "hashes": {
+    "model_sha256": "4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5",
+    "probe_sha256": "caa70a22f27a61bd9abc4324223eed3460513455ccbbeb5a6638b8816964a50a",
+    "ggml_base_sha256": "2c09945cd3484cc24617fecca27fa12b46330dc57117f2cd03de00bd0b1dc6d2",
+    "ggml_cpu_sha256": "e3129c973c4adb4471b6e9b64f66a4a02af6bde151a8de57b78e0ddcc47c30e2",
+    "ggml_cuda_sha256": "fba48f2c70d1107b886c396b1ad2dad600ba3625ab991e1a985dc87d49fa2c4f",
+    "ggml_sha256": "509f43652e7a82566cf947b7ee81f28ab4e768e8f8dc199dec17032b43d0f36c",
+    "llama_sha256": "70bbc2eeb5f2a58764aec2fa6531f24a53998995366b3c28bde34d60a1c9d005",
+    "llama_commit": "bb96d7087a50e5fa9ba3aece72daa39b7a48c7a0"
+  },
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 5060 Ti",
+    "vram_mib": 16311,
+    "driver": "591.86"
+  }
+}
