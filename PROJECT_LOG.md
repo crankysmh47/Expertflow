@@ -882,3 +882,20 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
   exact artifact analysis, and `git diff --check`. All focused processes exited.
   T1 is a successful empirical milestone even though the original
   eviction-coupled transfer policy was rejected.
+
+### 19:35 PKT - T2 two-slot temporal sidecar design frozen
+
+- Authorized a revised bounded T2 that preserves the proven 32-slot reactive
+  LRU and adds physical slots 32 and 33 as dedicated speculative ping-pong
+  storage in one contiguous layer-24 packed tensor.
+- Rejected separate expert tensors, speculative admission into the LRU, kernel
+  changes, new operations, graph restructuring, repacking, and allocator
+  redesign. The unchanged `MUL_MAT_ID` must consume mixed reactive/sidecar
+  physical IDs through the same 34-slice tensor.
+- Frozen one transfer per decode token, the T1 0.5/0.4/0.1 temporal scorer,
+  width 16, exact blocking fallback, no promotion, and deterministic target
+  token parity for sidecar selection.
+- Added explicit state, generation, descriptor, expiry, mixed-planner,
+  measurement, passing, and immediate-stop contracts. Waste rate alone is not
+  failure; measured ready usefulness, blocking reduction, total overhead,
+  exactness, and resource stability decide the result.
