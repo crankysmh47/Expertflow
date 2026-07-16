@@ -9,6 +9,7 @@ EXPORTS
     llama_model_free
     llama_model_get_vocab
     llama_model_load_from_file
+    llama_perf_context
     llama_sampler_chain_add
     llama_sampler_chain_default_params
     llama_sampler_chain_init

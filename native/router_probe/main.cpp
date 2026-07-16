@@ -38,6 +38,7 @@ struct options {
     std::string model_path;
     std::string trace_path;
     std::string tokens_path;
+    std::string performance_path;
     std::string prompt = "Explain in three concise sentences why a cache miss can stall sparse MoE inference.";
     int n_predict = 16;
     int n_gpu_layers = 0;
@@ -51,7 +52,7 @@ struct options {
 void usage(const char * program) {
     std::fprintf(
         stderr,
-        "usage: %s -m MODEL --tokens FILE [--trace FILE | --no-trace] "
+        "usage: %s -m MODEL --tokens FILE --performance FILE [--trace FILE | --no-trace] "
         "[--trace-mode full|empty|counter|metadata|boundary|ids|disabled] "
         "[-n TOKENS] [-ngl LAYERS] [--threads N] "
         "[--capture-tensor NAME --capture-token-index INDEX --capture-output FILE] "
@@ -117,6 +118,8 @@ bool parse_options(int argc, char ** argv, options & result) {
             result.trace_path = argv[++index];
         } else if (std::strcmp(argument, "--tokens") == 0 && index + 1 < argc) {
             result.tokens_path = argv[++index];
+        } else if (std::strcmp(argument, "--performance") == 0 && index + 1 < argc) {
+            result.performance_path = argv[++index];
         } else if (std::strcmp(argument, "--no-trace") == 0) {
             result.mode = trace_mode::disabled;
         } else if (std::strcmp(argument, "--trace-mode") == 0 && index + 1 < argc) {
@@ -169,6 +172,7 @@ bool parse_options(int argc, char ** argv, options & result) {
     const bool full_trace = result.mode == trace_mode::full;
 
     return !result.model_path.empty() && !result.tokens_path.empty() &&
+           !result.performance_path.empty() &&
            (full_trace ? !result.trace_path.empty() : result.trace_path.empty()) &&
            (!capture_requested || (capture_complete && full_trace));
 }
@@ -565,6 +569,44 @@ bool write_token_sequence(
     return static_cast<bool>(output);
 }
 
+bool write_performance(
+    const std::string & path,
+    const llama_perf_context_data & perf,
+    std::size_t prompt_tokens,
+    std::size_t generated_tokens,
+    double prompt_eval_ms,
+    double decode_eval_ms,
+    double end_to_end_ms,
+    double time_to_first_token_ms,
+    const std::vector<double> & decode_token_latencies_ms) {
+    std::ofstream output(path, std::ios::out | std::ios::trunc);
+    if (!output) {
+        return false;
+    }
+    output << std::setprecision(std::numeric_limits<double>::max_digits10)
+        << "{\"schema_version\":\"1.0.0\""
+        << ",\"measurement_kind\":\"measured_host_wall_and_llama_counters\""
+        << ",\"prompt_tokens\":" << prompt_tokens
+        << ",\"generated_tokens\":" << generated_tokens
+        << ",\"prompt_eval_ms\":" << prompt_eval_ms
+        << ",\"decode_eval_ms\":" << decode_eval_ms
+        << ",\"end_to_end_ms\":" << end_to_end_ms
+        << ",\"time_to_first_token_ms\":" << time_to_first_token_ms
+        << ",\"llama_t_p_eval_ms\":" << perf.t_p_eval_ms
+        << ",\"llama_t_eval_ms\":" << perf.t_eval_ms
+        << ",\"llama_n_p_eval\":" << perf.n_p_eval
+        << ",\"llama_n_eval\":" << perf.n_eval
+        << ",\"decode_token_latencies_ms\":[";
+    for (std::size_t index = 0; index < decode_token_latencies_ms.size(); ++index) {
+        if (index != 0) {
+            output << ',';
+        }
+        output << decode_token_latencies_ms[index];
+    }
+    output << "]}\n";
+    return static_cast<bool>(output);
+}
+
 } // namespace
 
 int main(int argc, char ** argv) {
@@ -719,6 +761,7 @@ int main(int argc, char ** argv) {
     llama_sampler_chain_add(sampler, llama_sampler_init_greedy());
 
     std::vector<llama_token> generated_tokens;
+    std::vector<double> decode_token_latencies_ms;
     int exit_code = 0;
 
     const auto decode_token = [&](
@@ -743,15 +786,28 @@ int main(int argc, char ** argv) {
         return true;
     };
 
+    const auto benchmark_started = std::chrono::steady_clock::now();
     for (std::size_t index = 0; index < prompt_tokens.size(); ++index) {
         if (!decode_token(prompt_tokens[index], "prefill", index)) {
             exit_code = 1;
             break;
         }
     }
+    const auto prompt_finished = std::chrono::steady_clock::now();
+    auto first_token_sampled = prompt_finished;
+    auto previous_token_sampled = prompt_finished;
 
     for (int generated = 0; exit_code == 0 && generated < config.n_predict; ++generated) {
         const llama_token token = llama_sampler_sample(sampler, context, -1);
+        const auto token_sampled = std::chrono::steady_clock::now();
+        if (generated == 0) {
+            first_token_sampled = token_sampled;
+        } else {
+            decode_token_latencies_ms.push_back(
+                std::chrono::duration<double, std::milli>(
+                    token_sampled - previous_token_sampled).count());
+        }
+        previous_token_sampled = token_sampled;
         generated_tokens.push_back(token);
         if (llama_vocab_is_eog(vocab, token)) {
             break;
@@ -765,11 +821,36 @@ int main(int argc, char ** argv) {
             break;
         }
     }
+    const auto benchmark_finished = std::chrono::steady_clock::now();
 
     if (exit_code == 0 &&
         !write_token_sequence(config.tokens_path, vocab, prompt_tokens, generated_tokens)) {
         std::fprintf(stderr, "unable to write token sequence\n");
         exit_code = 1;
+    }
+    if (exit_code == 0) {
+        const llama_perf_context_data perf = llama_perf_context(context);
+        const double prompt_eval_ms = std::chrono::duration<double, std::milli>(
+            prompt_finished - benchmark_started).count();
+        const double decode_eval_ms = std::chrono::duration<double, std::milli>(
+            benchmark_finished - prompt_finished).count();
+        const double end_to_end_ms = std::chrono::duration<double, std::milli>(
+            benchmark_finished - benchmark_started).count();
+        const double time_to_first_token_ms = std::chrono::duration<double, std::milli>(
+            first_token_sampled - benchmark_started).count();
+        if (!write_performance(
+                config.performance_path,
+                perf,
+                prompt_tokens.size(),
+                generated_tokens.size(),
+                prompt_eval_ms,
+                decode_eval_ms,
+                end_to_end_ms,
+                time_to_first_token_ms,
+                decode_token_latencies_ms)) {
+            std::fprintf(stderr, "unable to write performance result\n");
+            exit_code = 1;
+        }
     }
     if (full_trace && trace.hook_order == 0) {
         std::fprintf(

@@ -29,10 +29,10 @@
 - Consumes: probe JSON, token JSON, trace JSONL, cache JSONL.
 - Produces: `parse_probe_result`, `summarize_repetitions`, `compare_modes`, and strict reconciliation failures.
 
-- [ ] Write parser/aggregation tests for TPS, p50/p95, sample variance, parity, and cache totals.
-- [ ] Run the focused test and retain the expected missing-module RED result.
-- [ ] Implement the minimum parser and aggregation functions.
-- [ ] Run focused and complete ExpertFlow tests.
+- [x] Write parser/aggregation tests for TPS, p50/p95, sample variance, parity, and cache totals.
+- [x] Run the focused test and retain the expected missing-module RED result.
+- [x] Implement the minimum parser and aggregation functions.
+- [x] Run focused and complete ExpertFlow tests.
 
 ### Task 2: Instrumented immutable-runtime probe
 
@@ -45,10 +45,10 @@
 - Consumes: unchanged runtime DLLs and pinned llama.cpp headers.
 - Produces: one strict JSON result plus token/trace/cache artifacts per run.
 
-- [ ] Write source-contract tests requiring greedy sampling, llama performance counters, first-token wall time, per-token samples, and no llama source mutation.
-- [ ] Run the source-contract test and retain the expected RED result.
-- [ ] Implement the minimal probe and build it against clean, observer, C4, and C5 runtimes.
-- [ ] Run help/smoke verification for every built probe.
+- [x] Write source-contract tests requiring greedy sampling, llama performance counters, first-token wall time, per-token samples, and no llama source mutation.
+- [x] Run the source-contract test and retain the expected RED result.
+- [x] Implement the minimal probe and build it against clean, observer, C4, and C5 runtimes.
+- [x] Run help/smoke verification for every built probe.
 
 ### Task 3: Fixed benchmark runner
 
@@ -60,10 +60,10 @@
 - Consumes: a JSON benchmark manifest listing runtimes, prompts, environment, warmups, and repetitions.
 - Produces: raw run directories, append-only ledger, aggregate JSON, and Markdown report inputs.
 
-- [ ] Write command-construction and manifest-validation RED tests.
-- [ ] Implement strict commands, GPU sampling, hashing, cleanup checks, and append-only ledger.
-- [ ] Empirically scan stock offload and freeze the strongest stable no-OOM value.
-- [ ] Run the complete one-warmup/three-measured five-mode matrix.
+- [x] Write command-construction and manifest-validation RED tests.
+- [x] Implement strict commands, GPU sampling, hashing, cleanup checks, and append-only ledger.
+- [x] Empirically scan stock offload and freeze the strongest stable no-OOM value.
+- [x] Run the complete one-warmup/three-measured five-mode matrix.
 
 ### Task 4: Evidence, gate, and commit
 
@@ -76,7 +76,7 @@
 - Consumes: reconciled aggregate JSON and raw artifacts.
 - Produces: explicit overhead/gain calculations and multi-layer go/no-go.
 
-- [ ] Validate all JSON/JSONL, hashes, counts, cache accounting, parity, and clean process exit.
-- [ ] Render repetition tables, means, variance, requested comparisons, limitations, and gate verdict.
-- [ ] Run full tests and `git diff --check`.
-- [ ] Commit the diagnostic benchmark evidence without any llama.cpp source change.
+- [x] Validate all JSON/JSONL, hashes, counts, cache accounting, parity, and clean process exit.
+- [x] Render repetition tables, means, variance, requested comparisons, limitations, and gate verdict.
+- [x] Run full tests and `git diff --check`.
+- [x] Commit the diagnostic benchmark evidence without any llama.cpp source change.
