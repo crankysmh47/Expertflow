@@ -832,6 +832,15 @@ int main(int argc, char ** argv) {
             }
             return false;
         }
+        if (predictor_phase == LLAMA_EXPERTFLOW_PREDICTOR_PHASE_DECODE &&
+            !llama_expertflow_temporal_set_decode_identity(
+                context, trace.decode_sequence_index)) {
+            std::fprintf(stderr, "unable to set ExpertFlow temporal decode identity\n");
+            if (full_trace) {
+                trace.end_forward();
+            }
+            return false;
+        }
         const int decode_result = llama_decode(context, batch);
         if (full_trace) {
             trace.end_forward();

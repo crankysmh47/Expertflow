@@ -899,3 +899,43 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
   measurement, passing, and immediate-stop contracts. Waste rate alone is not
   failure; measured ready usefulness, blocking reduction, total overhead,
   exactness, and resource stability decide the result.
+
+### 20:55 PKT - T2 exact sidecar completed with no speedup
+
+- Implemented the bounded layer-24 34-slot packed arena: protected reactive
+  slots 0-31 plus dedicated speculative ping-pong slots 32-33. The feature is
+  disabled by default and requires explicit temporal, cache, log, and run
+  configuration. It reuses the existing two-descriptor CUDA transfer service
+  and unchanged `MUL_MAT_ID`; no kernel, graph, operation, placement,
+  quantization, or repacking change was made.
+- Added assertion-active native tests for the sidecar lifecycle and conditional
+  layout, plus source contracts and strict Python analysis. The first full
+  build attempt lacked the VS developer environment and could not resolve
+  Windows SDK headers; rebuilding inside the supported VS 2022 x64 environment
+  passed. The first suite and pytest invocations omitted the repository
+  namespace path, failed before inference/tests, and were corrected with
+  module invocation and `PYTHONPATH=.`.
+- The live smoke produced a ready-useful transfer with exact token/router
+  parity. The complete focused matrix ran general, code, and translation with
+  one warmup plus three measured repetitions per domain. All 12 reactive/T2
+  pairs were exact, and tokens/router projections were deterministic across
+  repetitions.
+- The measured arena allocation is 113,744,640 bytes versus a 113,744,128-byte
+  projection; the 512-byte difference is backend allocation alignment. Mean
+  peak GPU memory increased 10.11 MiB and remained stable across fresh
+  processes.
+- T2 enqueued 15 transfers per measured run. Mean outcomes were 3.67
+  ready-useful, zero late-useful, and 10.33 wasted; sidecar wait was zero.
+  Mean aggregate H2D CUDA-event time was 4.094 ms, staging 4.722 ms, enqueue
+  0.295 ms, and transferred bytes 50,181,180. Host queue-to-ready intervals
+  remain separately labeled and are not overlap or CUDA-latency claims.
+- The result is exact but negative: decode TPS -0.90%, prompt TPS -0.23%,
+  end-to-end time +0.41%, blocking time improved only 0.26%, and reactive miss
+  count changed by 0%. All 33 measured ready-useful sidecar demands were
+  already reactive hits in the paired baseline, so no speculative transfer
+  covered a blocking miss. No speedup is claimed.
+- Final verification passed 176 ExpertFlow tests, native cache/sidecar/temporal
+  tests, deterministic cross-repetition checks, process cleanup, and judge
+  replay at 8 events / 64 demands / 26 static hits / 19 LRU hits. The bounded
+  T2 result stops here; confidence gating, wider concurrency, and multi-layer
+  temporal prediction were not started.

@@ -7,6 +7,7 @@ EXPORTS
     llama_expertflow_predictor_observe_router
     llama_expertflow_temporal_observe_router
     llama_expertflow_temporal_reset
+    llama_expertflow_temporal_set_decode_identity
     llama_free
     llama_init_from_model
     llama_model_default_params
