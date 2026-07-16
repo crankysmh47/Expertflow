@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "model": "C:\\models\\expertflow\\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\\gemma-4-26B_q4_0-it.gguf",
+  "threads": 12,
+  "prompts": {
+    "general": "<start_of_turn>user\nExplain in three concise bullet points why reproducible measurements matter when optimizing local AI inference.<end_of_turn>\n<start_of_turn>model\n",
+    "code": "<start_of_turn>user\nWrite a Python function named merge_intervals(intervals) that merges overlapping closed intervals. Return only the function inside one Python code block.<end_of_turn>\n<start_of_turn>model\n",
+    "translation": "<start_of_turn>user\nTranslate this sentence into French while preserving every fact: \"The server restarted after the update, but no user data was lost.\" Return only the translation.<end_of_turn>\n<start_of_turn>model\n"
+  },
+  "modes": {
+    "combined_cache_off": {
+      "executable": "C:\\models\\expertflow\\builds\\llama-predictive-shadow-integration\\bin\\expertflow-router-probe.exe",
+      "cwd": "C:\\models\\expertflow\\builds\\llama-predictive-shadow-integration\\bin",
+      "ngl": 10,
+      "trace": true,
+      "warmups": 1,
+      "repetitions": 3
+    },
+    "combined_c5_layer24": {
+      "executable": "C:\\models\\expertflow\\builds\\llama-predictive-shadow-integration\\bin\\expertflow-router-probe.exe",
+      "cwd": "C:\\models\\expertflow\\builds\\llama-predictive-shadow-integration\\bin",
+      "ngl": 10,
+      "trace": true,
+      "cache": true,
+      "warmups": 1,
+      "repetitions": 3,
+      "environment": {
+        "EXPERTFLOW_LIVE_CACHE": "1",
+        "EXPERTFLOW_LIVE_CACHE_MODE": "blocking",
+        "EXPERTFLOW_LIVE_CACHE_LAYER": "24"
+      }
+    }
+  }
+}

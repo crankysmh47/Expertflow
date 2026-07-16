@@ -21,6 +21,15 @@ CACHE_ENVIRONMENT_NAMES = (
     "EXPERTFLOW_LIVE_CACHE_LOG",
     "EXPERTFLOW_LIVE_CACHE_LOG_DETAIL",
     "EXPERTFLOW_LIVE_CACHE_FORCE_EVICT",
+    "EXPERTFLOW_PREDICTOR_SHADOW",
+    "EXPERTFLOW_PREDICTOR_ARTIFACT",
+    "EXPERTFLOW_PREDICTOR_SHADOW_LOG",
+    "EXPERTFLOW_PREDICTOR_RUN_ID",
+    "EXPERTFLOW_P2_MODE",
+    "EXPERTFLOW_P2_LOG",
+    "EXPERTFLOW_P2_TRANSFER_PROOF",
+    "EXPERTFLOW_P2_TRANSFER_EXPERT",
+    "EXPERTFLOW_P2_TRANSFER_LOG",
 )
 
 
@@ -40,6 +49,7 @@ def build_command(
     ngl: int,
     threads: int,
     trace: bool,
+    n_predict: int = 64,
 ) -> list[str]:
     command = [
         str(executable), "-m", str(model),
@@ -50,7 +60,7 @@ def build_command(
         command.extend(["--trace", str(output_dir / "trace.jsonl"), "--trace-mode", "full"])
     else:
         command.append("--no-trace")
-    command.extend(["-n", "64", "-ngl", str(ngl), "--threads", str(threads), prompt])
+    command.extend(["-n", str(n_predict), "-ngl", str(ngl), "--threads", str(threads), prompt])
     return command
 
 
@@ -115,7 +125,10 @@ def run_one(
     ended = time.perf_counter()
     after = _gpu_used_mib()
     artifacts = {}
-    for name in ("performance.json", "tokens.json", "trace.jsonl", "cache.jsonl"):
+    for name in (
+        "performance.json", "tokens.json", "trace.jsonl", "cache.jsonl",
+        "shadow.jsonl", "p2.jsonl",
+    ):
         path = output_dir / name
         if path.exists():
             artifacts[name] = {"bytes": path.stat().st_size, "sha256": _sha256(path)}
@@ -159,6 +172,14 @@ def main() -> int:
                 )
                 if mode.get("cache"):
                     environment["EXPERTFLOW_LIVE_CACHE_LOG"] = str(output_dir / "cache.jsonl")
+                if mode.get("predictor"):
+                    environment["EXPERTFLOW_PREDICTOR_SHADOW_LOG"] = str(
+                        output_dir / "shadow.jsonl"
+                    )
+                    environment["EXPERTFLOW_PREDICTOR_RUN_ID"] = (
+                        f"{mode_name}-{domain}-{label}"
+                    )
+                    environment["EXPERTFLOW_P2_LOG"] = str(output_dir / "p2.jsonl")
                 command = build_command(
                     executable=Path(mode["executable"]),
                     model=Path(manifest["model"]),
@@ -167,6 +188,7 @@ def main() -> int:
                     ngl=int(mode["ngl"]),
                     threads=int(manifest.get("threads", 12)),
                     trace=bool(mode.get("trace", False)),
+                    n_predict=int(manifest.get("n_predict", 64)),
                 )
                 event = {
                     "at": datetime.now(timezone.utc).isoformat(),

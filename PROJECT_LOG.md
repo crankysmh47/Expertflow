@@ -745,3 +745,46 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - P1 binary hashes, commands, measurements, failures, and exact artifacts are
   recorded under `C:\models\expertflow\runs\p1-live-shadow`. P2 remains design
   only; no prefetch, copy stream, slot reservation, or cache decision was added.
+
+### 18:35 PKT - P2 proves async transfer but stops on zero ready-useful prefetches
+
+- Created isolated P2 ExpertFlow and llama.cpp worktrees from accepted P1
+  commits `b50ea6a` and `6e7bdffe`. Verified that passing C5 commits
+  `0eb05daf` and `641f5313` are already ancestors, so no merge was required.
+- Locked the bounded P2 design around a common-scheduler policy layer and a
+  CUDA-backend opaque transfer service resolved through registry function
+  pointers. The service uses one dedicated non-blocking stream, fixed
+  descriptors, fixed pinned staging, and CUDA timing/completion events.
+- The fresh baseline initially hit Python 3.12 1-ULP score-validation drift;
+  accepted P1 used Python 3.11. Raw live output was identical and the pinned
+  Python 3.11 rerun passed. A separate benchmark attempt omitted CUDA 12.8 from
+  `PATH` and failed before model load with `0xC0000135`; the corrected run
+  passed. Both attempts are preserved.
+- Pre-change gates passed 139 ExpertFlow tests, native cache/predictor tests,
+  nine exact P1 focused pairs, and nine exact combined C5 cache-off/on pairs.
+- P2.0 transferred and byte-verified one 3,345,412-byte expert into isolated
+  slot 31 without exposing it to execution. Measured staging was 1.0254 ms,
+  host enqueue 22.2 us, CUDA-event H2D 0.306016 ms, and the later reconciliation
+  saw about 70.375 ms of intervening compute with no wait.
+- P2.1 recorded 57 deterministic admission plans with exact tokens, routing,
+  and offline/live predictions, zero slot mutations, and zero predicted copies.
+- P2.2 issued at most one transfer per transition and passed exact
+  reactive-versus-predictive tokens and routing across general, code, and
+  translation with three measured repetitions per mode.
+- Across nine P2.2 runs, 564 transfers moved 1,886,812,368 bytes. Only 228 were
+  useful and all 228 were late; zero were ready and useful. Another 336 were
+  unused, wasting 1,124,058,432 bytes. Exact fallback waited 147.299 ms total.
+- P2.2 reduced mean reactive misses by 12.57% and reactive cache blocking by
+  11.17%, but decode TPS fell 0.91% and end-to-end time increased 0.34% versus
+  identical reactive C5. Staging plus transfer does not fit the observed live
+  layer-23 to layer-24 window.
+- Applied the stop rule before P2.3 concurrency, multi-layer prediction,
+  higher `-ngl`, 64 slots, MTP, or retraining. No speedup is claimed.
+  Experimental runtime source remains isolated and uncommitted; accepted P1
+  and C5 remain the floor and live caching remains disabled by default.
+- Final verification passed 139 ExpertFlow tests, assertion-active native
+  cache and predictor tests, focused runner tests, judge replay at 8 events /
+  64 demands / 26 static hits / 19 LRU hits, and `git diff --check`.
+  Evidence is in `docs/evidence/live-cache/p2-layer24-async-prefetch-result.md`
+  and raw artifacts are under
+  `C:\models\expertflow\runs\p2-layer24-async-prefetch`.

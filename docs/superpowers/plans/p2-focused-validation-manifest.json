@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "model": "C:\\models\\expertflow\\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\\gemma-4-26B_q4_0-it.gguf",
+  "threads": 12,
+  "n_predict": 16,
+  "prompts": {
+    "general": "<start_of_turn>user\nExplain in three concise bullet points why reproducible measurements matter when optimizing local AI inference.<end_of_turn>\n<start_of_turn>model\n",
+    "code": "<start_of_turn>user\nWrite a Python function named merge_intervals(intervals) that merges overlapping closed intervals. Return only the function inside one Python code block.<end_of_turn>\n<start_of_turn>model\n",
+    "translation": "<start_of_turn>user\nTranslate this sentence into French while preserving every fact: \"The server restarted after the update, but no user data was lost.\" Return only the translation.<end_of_turn>\n<start_of_turn>model\n"
+  },
+  "modes": {
+    "reactive": {
+      "executable": "C:\\models\\expertflow\\runs\\p2-layer24-async-prefetch\\runtime-p2\\expertflow-router-probe.exe",
+      "cwd": "C:\\models\\expertflow\\runs\\p2-layer24-async-prefetch\\runtime-p2",
+      "ngl": 10,
+      "trace": true,
+      "cache": true,
+      "warmups": 1,
+      "repetitions": 3,
+      "environment": {
+        "EXPERTFLOW_LIVE_CACHE": "1",
+        "EXPERTFLOW_LIVE_CACHE_MODE": "blocking",
+        "EXPERTFLOW_LIVE_CACHE_LAYER": "24"
+      }
+    },
+    "plan": {
+      "executable": "C:\\models\\expertflow\\runs\\p2-layer24-async-prefetch\\runtime-p2\\expertflow-router-probe.exe",
+      "cwd": "C:\\models\\expertflow\\runs\\p2-layer24-async-prefetch\\runtime-p2",
+      "ngl": 10,
+      "trace": true,
+      "cache": true,
+      "predictor": true,
+      "warmups": 1,
+      "repetitions": 3,
+      "environment": {
+        "EXPERTFLOW_LIVE_CACHE": "1",
+        "EXPERTFLOW_LIVE_CACHE_MODE": "blocking",
+        "EXPERTFLOW_LIVE_CACHE_LAYER": "24",
+        "EXPERTFLOW_PREDICTOR_SHADOW": "1",
+        "EXPERTFLOW_PREDICTOR_ARTIFACT": "C:\\models\\expertflow\\runs\\p1-live-shadow\\predictor-artifact\\expertflow-b2-23-24-v1.bin",
+        "EXPERTFLOW_P2_MODE": "plan"
+      }
+    },
+    "prefetch_one": {
+      "executable": "C:\\models\\expertflow\\runs\\p2-layer24-async-prefetch\\runtime-p2\\expertflow-router-probe.exe",
+      "cwd": "C:\\models\\expertflow\\runs\\p2-layer24-async-prefetch\\runtime-p2",
+      "ngl": 10,
+      "trace": true,
+      "cache": true,
+      "predictor": true,
+      "warmups": 1,
+      "repetitions": 3,
+      "environment": {
+        "EXPERTFLOW_LIVE_CACHE": "1",
+        "EXPERTFLOW_LIVE_CACHE_MODE": "blocking",
+        "EXPERTFLOW_LIVE_CACHE_LAYER": "24",
+        "EXPERTFLOW_PREDICTOR_SHADOW": "1",
+        "EXPERTFLOW_PREDICTOR_ARTIFACT": "C:\\models\\expertflow\\runs\\p1-live-shadow\\predictor-artifact\\expertflow-b2-23-24-v1.bin",
+        "EXPERTFLOW_P2_MODE": "prefetch-one"
+      }
+    }
+  }
+}
