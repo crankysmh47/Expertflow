@@ -635,3 +635,11 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Ran one warmup plus three measured repetitions for general, code, and translation across stock best, matched stock `-ngl 10`, canonical observer/cache-off, C4 eight-slot, and C5 32-slot: 60/60 performance records and 60/60 external measurement records completed in 524.6 seconds.
 - C5 exactly matched cache-off tokens and all ordered router selections. It reduced layer-24 misses 57.33% and aggregate blocking host-wall time 45.45% versus C4, while improving mean decode TPS 9.75% and end-to-end time 5.77% versus observer/cache-off. Blocking durations remain host-wall copy-plus-synchronization measurements, not CUDA-event latency or overlap.
 - Strongest stock remained 98.53 mean decode TPS versus C5 at 27.71; C5 is 71.88% behind. The multi-layer verdict is therefore PASS for the staged two-layer/five-layer/all-layer 32-slot ramp, not a final throughput claim. Default live caching remains disabled.
+
+### 15:24 PKT - Generic multi-layer C5 design and TDD ramp frozen
+
+- Preserved diagnostic commit `c72f578` and made no llama.cpp source modification. Wrote the approved generic multi-layer design and detailed test-first plan before implementation.
+- Confirmed from source and canonical traces that Gemma exposes 30 ordered MoE layers `0..29`, each with top-8 routing. Froze the ramp sets as `[0,24]`, `[0,7,14,21,29]`, then all `0..29`.
+- Selected the five representative layers without consulting the expanded test split. Their train+validation decode LRU-32 rates span 57.80% to 80.00% (`0=57.80`, `7=68.22`, `14=80.00`, `21=74.65`, `29=60.26`), while layer 24 preserves the already verified direct-execution boundary.
+- Chose fixed per-layer contexts, exact `blk.N` tensor parsing and metadata checks, and one consolidated aligned CUDA allocation with per-layer gate/up, down, and scale regions. Default remains disabled; legacy layer-24 configuration remains a regression path.
+- The plan requires separate committed two-layer, five-layer, and all-layer evidence, with exact parity, per-layer event accounting, actual allocation/peak VRAM, blocking time, decode TPS, remaining reserve, KV/state headroom, cleanup, and feature-off restoration at every gate. Prediction, async, MTP/ML, and 64 slots remain out of scope.
