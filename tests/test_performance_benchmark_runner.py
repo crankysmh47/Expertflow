@@ -41,6 +41,7 @@ def test_build_environment_removes_inherited_cache_settings():
             "EXPERTFLOW_LIVE_CACHE_LAYERS": "0,24",
             "EXPERTFLOW_LIVE_CACHE_AUTO_ELIGIBLE": "1",
             "EXPERTFLOW_LIVE_CACHE_NGL": "10",
+            "EXPERTFLOW_LIVE_CACHE_LOG_DETAIL": "aggregate",
         },
         {"CUSTOM": "value"},
     )
@@ -48,4 +49,5 @@ def test_build_environment_removes_inherited_cache_settings():
     assert "EXPERTFLOW_LIVE_CACHE_LAYERS" not in result
     assert "EXPERTFLOW_LIVE_CACHE_AUTO_ELIGIBLE" not in result
     assert "EXPERTFLOW_LIVE_CACHE_NGL" not in result
+    assert "EXPERTFLOW_LIVE_CACHE_LOG_DETAIL" not in result
     assert result["CUSTOM"] == "value"

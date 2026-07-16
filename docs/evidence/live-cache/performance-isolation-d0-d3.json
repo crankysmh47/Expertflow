@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0.0",
+  "measurement_kind": "measured",
+  "experiment": "nine-layer-cache-performance-isolation",
+  "configuration": {
+    "ngl": 10,
+    "eligible_layers": [21, 22, 23, 24, 25, 26, 27, 28, 29],
+    "slots_per_layer": 32,
+    "warmups_per_prompt": 1,
+    "measured_repetitions_per_prompt": 3,
+    "prompt_domains": ["general", "code", "translation"],
+    "requested_generated_tokens": 64
+  },
+  "exactness": {
+    "measured_repetitions": 9,
+    "prompt_tokens_match": true,
+    "generated_tokens_match": true,
+    "ordered_router_selections_match": true,
+    "deterministic": true
+  },
+  "modes": {
+    "d0_cache_disabled": {
+      "prompt_tps_mean": 22.5813403,
+      "decode_tps_mean": 26.8926603,
+      "end_to_end_ms_mean": 4185.3284,
+      "peak_gpu_mib_mean": 6716.22,
+      "blocking_transfer_ms_per_run": 0.0
+    },
+    "d2_reactive_detailed": {
+      "prompt_tps_mean": 13.2122990,
+      "decode_tps_mean": 19.6458624,
+      "end_to_end_ms_mean": 6466.7338,
+      "peak_gpu_mib_mean": 4051.11,
+      "blocking_transfer_ms_per_run": 1837.147,
+      "events": 8235,
+      "expert_demands": 65880,
+      "hits": 46848,
+      "blocking_misses": 19032,
+      "hit_rate": 0.7111,
+      "bytes_transferred": 63669881184
+    },
+    "d3_reactive_aggregate": {
+      "prompt_tps_mean": 13.3362603,
+      "decode_tps_mean": 19.7078129,
+      "end_to_end_ms_mean": 6424.6555,
+      "peak_gpu_mib_mean": 3958.89,
+      "blocking_transfer_ms_per_run": 1822.6631,
+      "events": 8235,
+      "expert_demands": 65880,
+      "hits": 46848,
+      "blocking_misses": 19032,
+      "hit_rate": 0.7111,
+      "bytes_transferred": 63669881184
+    }
+  },
+  "comparisons_percent": {
+    "d2_vs_d0": {
+      "prompt_tps": -41.4902,
+      "decode_tps": -26.9471,
+      "end_to_end_time": 54.5096
+    },
+    "d3_vs_d0": {
+      "prompt_tps": -40.9412,
+      "decode_tps": -26.7168,
+      "end_to_end_time": 53.5042
+    },
+    "d3_vs_d2": {
+      "prompt_tps": 0.9382,
+      "decode_tps": 0.3153,
+      "end_to_end_time": -0.6507
+    }
+  },
+  "cost_attribution": {
+    "d3_end_to_end_increase_ms_per_run": 2239.3271,
+    "d3_blocking_share_of_increase": 0.8139,
+    "diagnostic_residual_ms_per_run": 416.664,
+    "diagnostic_residual_over_d0": 0.0996,
+    "note": "Diagnostic subtraction is not proof of recoverable asynchronous overlap."
+  },
+  "d1_static_feasibility": {
+    "status": "not_run_exactly",
+    "reason": "A fixed 32-expert arena cannot cover the fixed prompts, and exact fallback would require a prohibited graph or kernel execution-path change.",
+    "training_conversations": 7,
+    "prompts": {
+      "general": {
+        "training_static_hit_rate": 0.456217,
+        "static_misses_per_run": 4111,
+        "unique_experts_per_layer_min": 92,
+        "unique_experts_per_layer_max": 110
+      },
+      "code": {
+        "training_static_hit_rate": 0.438458,
+        "static_misses_per_run": 4690,
+        "unique_experts_per_layer_min": 91,
+        "unique_experts_per_layer_max": 107
+      },
+      "translation": {
+        "training_static_hit_rate": 0.520337,
+        "static_misses_per_run": 2901,
+        "unique_experts_per_layer_min": 85,
+        "unique_experts_per_layer_max": 100
+      }
+    }
+  },
+  "artifact_identity": {
+    "manifest_sha256": "51f69c79ba75c366801ebda4bb376775fd45f53273eb4b43b592da15d74e8de3",
+    "d0_d3_root": "C:\\models\\expertflow\\runs\\cuda-eligible-cache\\isolation-d0-d3",
+    "d2_root": "C:\\models\\expertflow\\runs\\cuda-eligible-cache\\all-eligible-ngl10-focused",
+    "d0_d3_file_count": 157,
+    "d0_d3_total_bytes": 24031403,
+    "process_ledger_records": 24
+  },
+  "runtime_defaults": {
+    "live_cache_enabled": false,
+    "speedup_claimed": false
+  }
+}
