@@ -2,9 +2,21 @@
 
 A hardware-aware routing observatory for running sparse mixture-of-experts models on one local GPU.
 
-ExpertFlow is an OpenAI Build Week project in active development. The real Gemma 4 Q4 baseline, routing probe, recommendation, and causal replay path run on the development machine. Codex/GPT-5.6 annotations are part of the build workflow. The live-cache gate is closed while the router observer is repaired. `live_cache_enabled=false` remains mandatory for the default release. See [current status](#current-status) before treating any result as final.
+ExpertFlow is an OpenAI Build Week project built around one practical question:
+before rewriting an inference runtime, is this model's routed expert working set
+actually cacheable on this GPU?
 
-> **Evidence quarantine:** The current llama.cpp evaluation callback changes deterministic outputs for code and translation prompts. All real-model traces produced through that callback are labeled `trace_v1_perturbing` and excluded from final locality, cache-policy, deadline, and Gate 4 claims. Historical values remain visible for audit only. The machine-readable boundary is [configs/trace-evidence-status.json](configs/trace-evidence-status.json). Corpus collection and live-cache work are stopped while the observer is repaired.
+The official submission is the Observatory path. It measures a real Gemma 4
+Q4 model on an RTX 5060 Ti, profiles routing locality, models cache and transfer
+trade-offs, and produces a self-contained causal replay that judges can inspect
+without our model weights or GPU. The runtime research also produced exact
+blocking and asynchronous cache primitives, but the final predictive policy did
+not improve end-to-end throughput. We report that result plainly and ship with
+`live_cache_enabled=false`.
+
+Start with [the submission guide](SUBMISSION.md), open the bundled
+[Observatory report](submission/observatory.html), or run the
+[CPU-only replay fixture](examples/replay/README.md).
 
 ## Table of contents
 
@@ -12,6 +24,7 @@ ExpertFlow is an OpenAI Build Week project in active development. The real Gemma
 - [Quick start](#quick-start)
 - [What is ExpertFlow?](#what-is-expertflow)
 - [Why this approach?](#why-this-approach)
+- [Build Week result](#build-week-result)
 - [Current status](#current-status)
 - [CLI](#cli)
 - [Trace contract](#trace-contract)
@@ -56,7 +69,34 @@ The project starts as an observatory. Live expert movement is gated behind real 
 
 A model file fitting on disk says little about runtime memory. Context state, compute buffers, CUDA libraries, and desktop GPU use all matter. ExpertFlow records those costs instead of inferring them from GGUF size.
 
-The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 names the selected-expert tensor `ffn_moe_topk-{layer}`. The existing evaluation callback can copy that tensor without changing router decisions or graph semantics. If parity or locality fails, the project remains a useful trace profiler and simulator rather than forcing a risky runtime fork.
+The runtime boundary is deliberately small. The canonical observer captures
+already-materialized selected expert IDs without requesting another tensor or
+splitting the GGML graph. Historical evaluation-callback traces remain
+quarantined, while the replacement observer and every later runtime stage are
+held to exact token and router parity.
+
+## Build Week result
+
+The Observatory is the release product.
+
+- The protected submission floor remains reproducible at commit `d846bdf`.
+- Static-96, derived only from training conversations, reached 87.57% on
+  untouched validation/test conversations versus 86.34% for conversation-reset
+  LRU.
+- Every Q4 layer-expert object was measured. The aligned slot size is 3,346,048
+  bytes, and the projected 96-slot cache is 6,433.14 MiB across 21 target
+  layers.
+- The independent pinned CUDA transfer benchmark measured 0.234016 ms p50 and
+  0.234272 ms p95 for one aligned expert-sized copy.
+- The exact one-layer 32-slot reactive cache reduced misses 57.33% and measured
+  layer-24 blocking wall time 45.45% versus the eight-slot version.
+- The final projected-state temporal prefetch prevented real blocking misses
+  on the general prompt, but decode TPS was 1.15% lower overall. It is evidence,
+  not a speedup claim.
+
+The submission bundle and three-minute demo script are under
+[`submission/`](submission/README.md). Runtime experiments are frozen; the
+release now focuses on judge replay, documentation, and the video.
 
 ## Current status
 
@@ -70,15 +110,17 @@ The runtime boundary is deliberately small. In pinned llama.cpp source, Gemma 4 
 | Gemma 4 Q4 artifact | Verified; 14,439,361,440 bytes and pinned SHA-256 |
 | Unmodified real-model baseline | Passed on CPU and bounded 10-layer GPU offload |
 | Token parity comparison | Working; exact measured comparison with first mismatch |
-| Routing callback probe | Blocked; callback registration changes output for representative code and translation prompts |
-| Stratified GPU telemetry | Quarantined as `trace_v1_perturbing`; retained for audit, excluded from final claims |
-| Held-out policy evaluation | Withdrawn pending a parity-safe replacement corpus |
+| Canonical router observer | Passed exact token/router parity and produced replacement traces |
+| Historical callback traces | Quarantined as `trace_v1_perturbing`; retained for audit only |
+| Held-out policy evaluation | Frozen conversation-level splits; results reported by prompt and domain |
 | Expert layout | All 3,840 Q4 layer-expert objects measured; exact aligned slot is 3,346,048 bytes |
 | CUDA transfer microbenchmark | Three idle-GPU trials pooled; aligned pinned slot is 0.234016 ms p50 / 0.234272 ms p95 |
 | Deadline simulator | Cross-backend estimate only; CUDA transfer and Vulkan windows remain separately labeled |
-| Machine recommendation | No live-cache recommendation while real-model routing evidence is quarantined; live cache disabled |
+| Machine recommendation | Observatory verdict is evidence-backed; release live cache remains disabled |
 | Causal replay report | Working; self-contained HTML includes per-prompt/domain physical evidence and measurement boundaries |
-| Minimal live-cache spike | Closed until a non-perturbing observer passes the new tracing gate; no cache code started |
+| Exact live-cache primitive | Layer-24 C5 passed parity; one-layer result improved its matched observer baseline |
+| Multi-layer reactive cache | Exact on CUDA-resident layers, but blocking transfers caused a 26.84% decode regression |
+| Final temporal prefetch | Exact and prevented real misses; decode TPS -1.15%, so no runtime speedup claim |
 | CPU-only reproduction fixture | Working; eight previously measured events with checked totals |
 | Codex/GPT-5.6 annotations | Active in the build and evidence workflow; no runtime API key required |
 

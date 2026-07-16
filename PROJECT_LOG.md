@@ -998,3 +998,31 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
   retuning, multi-layer prefetch, MTP, RL, concurrency, offload, or cache-size
   experiment will be started for this release. Release integration,
   documentation, benchmark curation, and submission assets are the active path.
+
+### 22:28 PKT - Observatory release integration assembled
+
+- Created `codex/build-week-release` from the frozen final runtime evidence.
+  The protected Observatory worktree remains untouched at `d846bdf`, and the
+  final temporal-runtime branch remains preserved at `2235533`.
+- Applied the project selection gate: because the final predictive runtime did
+  not beat the same-runtime reactive baseline, the official submission is the
+  Observatory demo. Runtime milestones are retained as exact engineering and
+  negative-performance evidence, not folded into a speedup story.
+- Replaced the stale README opening and observer-blocked status with the final
+  measured narrative. Added a submission guide, judge bundle, three-minute
+  Observatory script, final scorecard, runtime boundary, and CPU-only
+  verification command.
+- Bundled the protected self-contained Observatory report at
+  `submission/observatory.html`; SHA-256 is
+  `f3dc647d9965d726771632421b8fa5dffddc165d3ebae49f6f10381bbb75a90c`.
+- The judge command passed: replay fixture test, regenerated 8-event / 64-demand
+  simulation, 26 static hits, 19 LRU hits, and bundled-report hash verification.
+- Served the submission over local HTTP and captured
+  `submission/assets/observatory-top.png`. Chrome wrote the 302,888-byte image
+  successfully, but its shell launch did not set `$LASTEXITCODE`; the wrapper
+  therefore reported a false command failure after the artifact had already
+  been written. Visual inspection confirmed clean layout, readable labels, and
+  visible measured/estimated/projected boundaries.
+- Final release verification passed all 179 ExpertFlow tests, the standalone
+  judge verification script, HTML parsing with zero external assets and zero
+  scripts, and `git diff --check`.
