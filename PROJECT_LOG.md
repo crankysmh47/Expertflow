@@ -845,3 +845,40 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
   `40cd90a1bc45f3e65c4293eb41c0646d248bc86dbf7e4223d8efb19804168139`.
   The llama.cpp temporal branch remains clean and no llama/router process
   remained after validation.
+
+### 19:20 PKT - T0 committed; T1 live shadow measured and T2 stopped
+
+- Committed the complete frozen T0 temporal predictor as `afe17d1` on
+  `codex/temporal-layer24-predictor`; it remains unmerged and unpushed.
+- Exported a versioned temporal runtime artifact and implemented an isolated,
+  disabled-by-default T1 shadow path. The first native load failure was a stale
+  filename in the command, not an artifact defect. A later smoke exposed that
+  T1 incorrectly entered the legacy P1 initialization guard; a failing source
+  contract reproduced it, and the guard was narrowed while graph-phase
+  consumption was explicitly enabled for T1.
+- The final focused suite ran general, code, and translation with one warmup
+  plus three measured disabled/enabled pairs per domain. All 12 pairs preserved
+  exact prompt/generated tokens and router traces. All 126 measured
+  transitions reproduced offline candidate IDs, ordering, floating-point
+  scores, session counts, reset generation, and consecutive causal joins.
+- Live predictor p50/p95 latency is 11.8/17.5 us. Lead-time p5/p50/p95 is
+  36.064/38.421/42.864 ms, and all 126 transitions exceed H2D-only,
+  staging-plus-H2D, and the conservative staging/queue/H2D/safety reference.
+  This remains host-wall shadow timing, not a CUDA-overlap claim.
+- The intended one-transfer rule admitted on all 126 transitions but produced
+  only 18 useful/ready predictions versus 108 wasted predictions and seven
+  eviction-regret cases. Useful rate was 28.57% general, 7.14% code, and 4.76%
+  translation. This rejects admission into the protected reactive LRU. A later
+  authorization permits a separate two-slot sidecar experiment where
+  speculative copies cannot evict normal residents; waste must be judged by
+  measured runtime overhead rather than by rate alone.
+- Temporal shadow overhead was negligible within variance: decode TPS +1.44%,
+  prompt TPS -0.41%, end-to-end time -0.01%, and TTFT +0.37%. Native state is
+  1,304 bytes; the artifact object is 131,216 bytes; the fixed 8,192-record
+  store is 6,881,280 bytes. No cache mapping or weight transfer occurred and
+  `live_cache_enabled=false`.
+- Final verification passed 169 tests, the assertion-active native temporal
+  test, judge replay at 8 events / 64 demands / 26 static hits / 19 LRU hits,
+  exact artifact analysis, and `git diff --check`. All focused processes exited.
+  T1 is a successful empirical milestone even though the original
+  eviction-coupled transfer policy was rejected.

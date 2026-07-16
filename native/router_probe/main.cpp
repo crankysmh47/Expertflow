@@ -188,6 +188,7 @@ struct trace_state {
     std::vector<std::string> observation_tensor_names;
     std::uint64_t base_token_index = 0;
     std::uint64_t forward_id = 0;
+    std::uint64_t decode_sequence_index = 0;
     std::uint64_t hook_order = 0;
     std::uint64_t callback_asks = 0;
     std::uint64_t selected_asks = 0;
@@ -400,6 +401,18 @@ bool router_trace_callback(ggml_tensor * tensor, bool ask, void * user_data) {
             state.error =
                 "ExpertFlow predictor rejected router observation for layer " +
                 std::to_string(layer_id);
+            return false;
+        }
+        if (state.phase == "decode" && layer_id == 24 &&
+            !llama_expertflow_temporal_observe_router(
+                state.context,
+                state.forward_id,
+                state.decode_sequence_index,
+                layer_id,
+                expert_ids.data() + token_column * tensor->ne[0],
+                static_cast<std::size_t>(tensor->ne[0]))) {
+            state.error =
+                "ExpertFlow temporal predictor rejected layer-24 decode observation";
             return false;
         }
         state.output
@@ -786,6 +799,12 @@ int main(int argc, char ** argv) {
     }
     trace.context = context;
     llama_set_n_threads(context, config.threads, config.threads);
+    if (!llama_expertflow_temporal_reset(context)) {
+        std::fprintf(stderr, "unable to reset ExpertFlow temporal state\n");
+        llama_free(context);
+        llama_model_free(model);
+        return 1;
+    }
 
     llama_sampler * sampler = llama_sampler_chain_init(llama_sampler_chain_default_params());
     llama_sampler_chain_add(sampler, llama_sampler_init_greedy());
@@ -823,6 +842,9 @@ int main(int argc, char ** argv) {
         }
         if (full_trace) {
             ++trace.forward_id;
+            if (std::strcmp(phase, "decode") == 0) {
+                ++trace.decode_sequence_index;
+            }
         }
         return true;
     };
