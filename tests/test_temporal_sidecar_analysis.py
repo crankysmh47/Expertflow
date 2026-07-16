@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 
 from expertflow.predictor.temporal_sidecar_analysis import (
+    analyze_prevented_misses,
     compare_t2_pair,
     summarize_t2_run,
 )
@@ -140,6 +141,66 @@ def test_pair_comparison_reports_blocking_and_throughput_changes() -> None:
     assert comparison["blocking_time_reduction_percent"] == pytest.approx(
         33.3333333333
     )
+
+
+def test_prevented_miss_analysis_pairs_sidecar_demands_with_reactive_loads(
+    tmp_path: Path,
+) -> None:
+    reactive = tmp_path / "reactive.jsonl"
+    predictive = tmp_path / "predictive.jsonl"
+    common = {
+        "layer_id": 24,
+        "selected": [10, 11, 12, 13, 14, 15, 16, 17],
+    }
+    _write_jsonl(
+        reactive,
+        [
+            {
+                **common,
+                "token_index": 7,
+                "physical_slots": list(range(8)),
+                "loads": [
+                    {"expert": 10, "slot": 0},
+                    {"expert": 11, "slot": 1},
+                ],
+            }
+        ],
+    )
+    _write_jsonl(
+        predictive,
+        [
+            {
+                **common,
+                "token_index": 7,
+                "physical_slots": [32, 1, 2, 3, 4, 5, 6, 7],
+                "loads": [{"expert": 11, "slot": 1}],
+            }
+        ],
+    )
+
+    result = analyze_prevented_misses(reactive, predictive)
+    assert result == {
+        "paired_sidecar_demands": 1,
+        "actual_blocking_misses_prevented": 1,
+        "sidecar_demands_that_were_reactive_hits": 0,
+    }
+
+
+def test_prevented_miss_analysis_rejects_nonidentical_routes(
+    tmp_path: Path,
+) -> None:
+    reactive = tmp_path / "reactive.jsonl"
+    predictive = tmp_path / "predictive.jsonl"
+    _write_jsonl(
+        reactive,
+        [{"layer_id": 24, "token_index": 0, "selected": list(range(8))}],
+    )
+    _write_jsonl(
+        predictive,
+        [{"layer_id": 24, "token_index": 0, "selected": list(range(1, 9))}],
+    )
+    with pytest.raises(ValueError, match="router selections differ"):
+        analyze_prevented_misses(reactive, predictive)
 
 
 def test_cache_demand_accounting_rejects_unexplained_rank(tmp_path: Path) -> None:

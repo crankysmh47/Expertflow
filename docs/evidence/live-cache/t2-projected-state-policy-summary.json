@@ -1,0 +1,3702 @@
+{
+  "domains": {
+    "code": {
+      "comparison": {
+        "blocking_miss_reduction_percent": {
+          "mean": 0.0,
+          "values": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "variance": 0.0
+        },
+        "blocking_time_reduction_percent": {
+          "mean": -0.38145481690299937,
+          "values": [
+            -0.758290092541875,
+            0.5449823065057688,
+            -0.9310566646728919
+          ],
+          "variance": 0.6511763798339104
+        },
+        "decode_tps_percent": {
+          "mean": -0.20459283209007084,
+          "values": [
+            -0.48980468069938177,
+            0.3591722459553251,
+            -0.48314606152615586
+          ],
+          "variance": 0.23838438171997203
+        },
+        "end_to_end_percent": {
+          "mean": 0.08970973447640161,
+          "values": [
+            0.3427899466677705,
+            0.26632515626418835,
+            -0.33998589950275404
+          ],
+          "variance": 0.1399404694384273
+        },
+        "prompt_eval_tps_percent": {
+          "mean": 0.15986633226575872,
+          "values": [
+            0.539404527741655,
+            0.24523784717969382,
+            -0.30504337812407273
+          ],
+          "variance": 0.18373928809927845
+        }
+      },
+      "parity": "exact",
+      "reactive": {
+        "blocking_misses": {
+          "mean": 208.0,
+          "values": [
+            208.0,
+            208.0,
+            208.0
+          ],
+          "variance": 0.0
+        },
+        "cache_events": {
+          "mean": 68.0,
+          "values": [
+            68.0,
+            68.0,
+            68.0
+          ],
+          "variance": 0.0
+        },
+        "decode_eval_ms": {
+          "mean": 570.5635000000001,
+          "values": [
+            566.4388,
+            575.6848,
+            569.5669
+          ],
+          "variance": 22.117037669999885
+        },
+        "decode_tps": {
+          "mean": 28.04371979278899,
+          "values": [
+            28.246652595125898,
+            27.792986717731647,
+            28.091520065509425
+          ],
+          "variance": 0.05316683163208474
+        },
+        "duration_seconds": {
+          "mean": 7.1983305,
+          "values": [
+            7.1843351,
+            7.2149974,
+            7.195659
+          ],
+          "variance": 0.00024039684450999173
+        },
+        "end_to_end_ms": {
+          "mean": 3006.862466666667,
+          "values": [
+            3007.9937,
+            3006.1749,
+            3006.4188
+          ],
+          "variance": 0.9746384433333717
+        },
+        "enqueue_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "expert_demands": {
+          "mean": 544.0,
+          "values": [
+            544.0,
+            544.0,
+            544.0
+          ],
+          "variance": 0.0
+        },
+        "generated_tokens": {
+          "mean": 16.0,
+          "values": [
+            16.0,
+            16.0,
+            16.0
+          ],
+          "variance": 0.0
+        },
+        "gpu_peak_used_mib": {
+          "mean": 6533.333333333333,
+          "values": [
+            6536.0,
+            6532.0,
+            6532.0
+          ],
+          "variance": 5.333333333333333
+        },
+        "h2d_cuda_event_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "late_useful_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "llama_n_eval": {
+          "mean": 15.0,
+          "values": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "variance": 0.0
+        },
+        "llama_n_p_eval": {
+          "mean": 53.0,
+          "values": [
+            53.0,
+            53.0,
+            53.0
+          ],
+          "variance": 0.0
+        },
+        "llama_t_eval_ms": {
+          "mean": 565.7843333333334,
+          "values": [
+            561.789,
+            570.794,
+            564.77
+          ],
+          "variance": 21.044160333333316
+        },
+        "llama_t_p_eval_ms": {
+          "mean": 2436.3963333333336,
+          "values": [
+            2441.645,
+            2430.588,
+            2436.956
+          ],
+          "variance": 30.799232333332192
+        },
+        "prefetch_bytes": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "prefetch_records": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "prefetches_enqueued": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "process_peak_pagefile_bytes": {
+          "mean": 5528778069.333333,
+          "values": [
+            5529227264.0,
+            5528739840.0,
+            5528367104.0
+          ],
+          "variance": 186064917845.33334
+        },
+        "process_peak_working_set_bytes": {
+          "mean": 11570059946.666666,
+          "values": [
+            11570368512.0,
+            11569995776.0,
+            11569815552.0
+          ],
+          "variance": 79529596245.33333
+        },
+        "prompt_eval_ms": {
+          "mean": 2436.2989666666667,
+          "values": [
+            2441.5549,
+            2430.4901,
+            2436.8519
+          ],
+          "variance": 30.836751213333955
+        },
+        "prompt_eval_tps": {
+          "mean": 21.75438415149259,
+          "values": [
+            21.707478295900696,
+            21.806301535645012,
+            21.74937262293207
+          ],
+          "variance": 0.0024603447422753477
+        },
+        "prompt_tokens": {
+          "mean": 53.0,
+          "values": [
+            53.0,
+            53.0,
+            53.0
+          ],
+          "variance": 0.0
+        },
+        "queue_to_ready_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "reactive_blocking_ms": {
+          "mean": 176.88766666666666,
+          "values": [
+            177.109,
+            176.336,
+            177.218
+          ],
+          "variance": 0.23122233333332473
+        },
+        "reactive_bytes_transferred": {
+          "mean": 695845696.0,
+          "values": [
+            695845696.0,
+            695845696.0,
+            695845696.0
+          ],
+          "variance": 0.0
+        },
+        "reactive_hit_rate": {
+          "mean": 0.6176470588235294,
+          "values": [
+            0.6176470588235294,
+            0.6176470588235294,
+            0.6176470588235294
+          ],
+          "variance": 0.0
+        },
+        "reactive_hits": {
+          "mean": 336.0,
+          "values": [
+            336.0,
+            336.0,
+            336.0
+          ],
+          "variance": 0.0
+        },
+        "ready_useful_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_blocking_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_demands": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "staging_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "time_to_first_token_ms": {
+          "mean": 2437.0014666666666,
+          "values": [
+            2442.2462,
+            2431.2119,
+            2437.5463
+          ],
+          "variance": 30.661576643334786
+        },
+        "token_latency_p50_ms": {
+          "mean": 37.74033333333333,
+          "values": [
+            37.3441,
+            38.1543,
+            37.7226
+          ],
+          "variance": 0.16434186333333403
+        },
+        "token_latency_p95_ms": {
+          "mean": 40.510729999999995,
+          "values": [
+            40.748329999999996,
+            40.46668,
+            40.31718
+          ],
+          "variance": 0.04792788249999904
+        },
+        "total_blocking_ms": {
+          "mean": 176.88766666666666,
+          "values": [
+            177.109,
+            176.336,
+            177.218
+          ],
+          "variance": 0.23122233333332473
+        },
+        "wasted_bytes": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "wasted_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        }
+      },
+      "repetitions": 3,
+      "t2": {
+        "actual_blocking_misses_prevented": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "arena_bytes": {
+          "mean": 113744640.0,
+          "values": [
+            113744640.0,
+            113744640.0,
+            113744640.0
+          ],
+          "variance": 0.0
+        },
+        "blocking_misses": {
+          "mean": 208.0,
+          "values": [
+            208.0,
+            208.0,
+            208.0
+          ],
+          "variance": 0.0
+        },
+        "cache_events": {
+          "mean": 68.0,
+          "values": [
+            68.0,
+            68.0,
+            68.0
+          ],
+          "variance": 0.0
+        },
+        "decode_eval_ms": {
+          "mean": 571.7278333333334,
+          "values": [
+            569.2269,
+            573.6245,
+            572.3321
+          ],
+          "variance": 5.108575093333336
+        },
+        "decode_tps": {
+          "mean": 27.985635857869315,
+          "values": [
+            28.108299168574078,
+            27.89281141234379,
+            27.955796992690086
+          ],
+          "variance": 0.012276511677679349
+        },
+        "duration_seconds": {
+          "mean": 7.176253066666667,
+          "values": [
+            7.2214233,
+            7.1944429,
+            7.112893
+          ],
+          "variance": 0.003192859032043343
+        },
+        "end_to_end_ms": {
+          "mean": 3004.1638333333335,
+          "values": [
+            2997.6826,
+            2998.1687,
+            3016.6402
+          ],
+          "variance": 116.80386720332949
+        },
+        "enqueue_ms": {
+          "mean": 0.2672333333333334,
+          "values": [
+            0.2876,
+            0.2857,
+            0.2284
+          ],
+          "variance": 0.0011319233333333342
+        },
+        "expert_demands": {
+          "mean": 544.0,
+          "values": [
+            544.0,
+            544.0,
+            544.0
+          ],
+          "variance": 0.0
+        },
+        "generated_tokens": {
+          "mean": 16.0,
+          "values": [
+            16.0,
+            16.0,
+            16.0
+          ],
+          "variance": 0.0
+        },
+        "gpu_peak_used_mib": {
+          "mean": 6544.0,
+          "values": [
+            6546.0,
+            6542.0,
+            6544.0
+          ],
+          "variance": 4.0
+        },
+        "h2d_cuda_event_ms": {
+          "mean": 3.839242666666667,
+          "values": [
+            3.8150399999999998,
+            3.823552,
+            3.879136
+          ],
+          "variance": 0.0012117220693333383
+        },
+        "late_useful_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "llama_n_eval": {
+          "mean": 15.0,
+          "values": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "variance": 0.0
+        },
+        "llama_n_p_eval": {
+          "mean": 53.0,
+          "values": [
+            53.0,
+            53.0,
+            53.0
+          ],
+          "variance": 0.0
+        },
+        "llama_t_eval_ms": {
+          "mean": 566.8126666666667,
+          "values": [
+            564.251,
+            568.743,
+            567.444
+          ],
+          "variance": 5.3434523333334685
+        },
+        "llama_t_p_eval_ms": {
+          "mean": 2432.5533333333333,
+          "values": [
+            2428.57,
+            2424.68,
+            2444.41
+          ],
+          "variance": 109.21843333333224
+        },
+        "paired_sidecar_demands": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "prefetch_bytes": {
+          "mean": 50181180.0,
+          "values": [
+            50181180.0,
+            50181180.0,
+            50181180.0
+          ],
+          "variance": 0.0
+        },
+        "prefetch_records": {
+          "mean": 15.0,
+          "values": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "variance": 0.0
+        },
+        "prefetches_enqueued": {
+          "mean": 15.0,
+          "values": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "variance": 0.0
+        },
+        "process_peak_pagefile_bytes": {
+          "mean": 5554999296.0,
+          "values": [
+            5555810304.0,
+            5555318784.0,
+            5553868800.0
+          ],
+          "variance": 1018913882112.0
+        },
+        "process_peak_working_set_bytes": {
+          "mean": 11581956096.0,
+          "values": [
+            11582066688.0,
+            11581849600.0,
+            11581952000.0
+          ],
+          "variance": 11794382848.0
+        },
+        "prompt_eval_ms": {
+          "mean": 2432.436,
+          "values": [
+            2428.4557,
+            2424.5442,
+            2444.3081
+          ],
+          "variance": 109.53502687000383
+        },
+        "prompt_eval_tps": {
+          "mean": 21.789125286243387,
+          "values": [
+            21.82456941668732,
+            21.85977884008054,
+            21.683027601962287
+          ],
+          "variance": 0.00875246483127907
+        },
+        "prompt_tokens": {
+          "mean": 53.0,
+          "values": [
+            53.0,
+            53.0,
+            53.0
+          ],
+          "variance": 0.0
+        },
+        "queue_to_ready_ms": {
+          "mean": 543.1036,
+          "values": [
+            542.1166,
+            544.5131,
+            542.6811
+          ],
+          "variance": 1.5696827500000565
+        },
+        "reactive_blocking_ms": {
+          "mean": 177.56499999999997,
+          "values": [
+            178.452,
+            175.375,
+            178.868
+          ],
+          "variance": 3.640338999999992
+        },
+        "reactive_bytes_transferred": {
+          "mean": 695845696.0,
+          "values": [
+            695845696.0,
+            695845696.0,
+            695845696.0
+          ],
+          "variance": 0.0
+        },
+        "reactive_hit_rate": {
+          "mean": 0.6176470588235294,
+          "values": [
+            0.6176470588235294,
+            0.6176470588235294,
+            0.6176470588235294
+          ],
+          "variance": 0.0
+        },
+        "reactive_hits": {
+          "mean": 336.0,
+          "values": [
+            336.0,
+            336.0,
+            336.0
+          ],
+          "variance": 0.0
+        },
+        "ready_useful_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_blocking_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_demands": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_demands_that_were_reactive_hits": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "staging_ms": {
+          "mean": 3.1959666666666666,
+          "values": [
+            3.292,
+            3.1346,
+            3.1613
+          ],
+          "variance": 0.007095023333333318
+        },
+        "time_to_first_token_ms": {
+          "mean": 2433.2058,
+          "values": [
+            2429.2055,
+            2425.3539,
+            2445.058
+          ],
+          "variance": 109.06468926999928
+        },
+        "token_latency_p50_ms": {
+          "mean": 37.64506666666667,
+          "values": [
+            37.5031,
+            37.5484,
+            37.8837
+          ],
+          "variance": 0.04322242333333216
+        },
+        "token_latency_p95_ms": {
+          "mean": 40.93145,
+          "values": [
+            40.89799,
+            40.67662,
+            41.219739999999994
+          ],
+          "variance": 0.07458451229999846
+        },
+        "total_blocking_ms": {
+          "mean": 177.56499999999997,
+          "values": [
+            178.452,
+            175.375,
+            178.868
+          ],
+          "variance": 3.640338999999992
+        },
+        "wasted_bytes": {
+          "mean": 46835768.0,
+          "values": [
+            46835768.0,
+            46835768.0,
+            46835768.0
+          ],
+          "variance": 0.0
+        },
+        "wasted_prefetches": {
+          "mean": 14.0,
+          "values": [
+            14.0,
+            14.0,
+            14.0
+          ],
+          "variance": 0.0
+        }
+      }
+    },
+    "general": {
+      "comparison": {
+        "blocking_miss_reduction_percent": {
+          "mean": 0.6329113924050633,
+          "values": [
+            0.6329113924050633,
+            0.6329113924050633,
+            0.6329113924050633
+          ],
+          "variance": 0.0
+        },
+        "blocking_time_reduction_percent": {
+          "mean": -2.224719188227047,
+          "values": [
+            0.32321381026977297,
+            1.0189237617766265,
+            -8.01629513672754
+          ],
+          "variance": 25.27776705959346
+        },
+        "decode_tps_percent": {
+          "mean": -1.6648471023320688,
+          "values": [
+            0.9128861712907088,
+            -3.729192349443349,
+            -2.178235128843566
+          ],
+          "variance": 5.584898697489153
+        },
+        "end_to_end_percent": {
+          "mean": -1.5548909297816589,
+          "values": [
+            -0.29461286928962804,
+            -0.5959762844819918,
+            -3.7740836355733567
+          ],
+          "variance": 3.7163171760834093
+        },
+        "prompt_eval_tps_percent": {
+          "mean": -1.4472159692873336,
+          "values": [
+            -0.6419052871047785,
+            0.34879060526094585,
+            -4.048533226018168
+          ],
+          "variance": 5.320508190411805
+        }
+      },
+      "parity": "exact",
+      "reactive": {
+        "blocking_misses": {
+          "mean": 158.0,
+          "values": [
+            158.0,
+            158.0,
+            158.0
+          ],
+          "variance": 0.0
+        },
+        "cache_events": {
+          "mean": 57.0,
+          "values": [
+            57.0,
+            57.0,
+            57.0
+          ],
+          "variance": 0.0
+        },
+        "decode_eval_ms": {
+          "mean": 594.3593666666667,
+          "values": [
+            600.3352,
+            588.4298,
+            594.3131
+          ],
+          "variance": 35.43624274333325
+        },
+        "decode_tps": {
+          "mean": 26.921540848784883,
+          "values": [
+            26.651777207133616,
+            27.19100902095713,
+            26.921836318263892
+          ],
+          "variance": 0.0726928027365086
+        },
+        "duration_seconds": {
+          "mean": 6.926702766666668,
+          "values": [
+            6.9744878,
+            6.8266544,
+            6.9789661
+          ],
+          "variance": 0.007512270547223374
+        },
+        "end_to_end_ms": {
+          "mean": 2646.9910666666665,
+          "values": [
+            2648.8999,
+            2632.4873,
+            2659.586
+          ],
+          "variance": 186.31761894333366
+        },
+        "enqueue_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "expert_demands": {
+          "mean": 456.0,
+          "values": [
+            456.0,
+            456.0,
+            456.0
+          ],
+          "variance": 0.0
+        },
+        "generated_tokens": {
+          "mean": 16.0,
+          "values": [
+            16.0,
+            16.0,
+            16.0
+          ],
+          "variance": 0.0
+        },
+        "gpu_peak_used_mib": {
+          "mean": 6536.0,
+          "values": [
+            6536.0,
+            6536.0,
+            6536.0
+          ],
+          "variance": 0.0
+        },
+        "h2d_cuda_event_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "late_useful_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "llama_n_eval": {
+          "mean": 15.0,
+          "values": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "variance": 0.0
+        },
+        "llama_n_p_eval": {
+          "mean": 42.0,
+          "values": [
+            42.0,
+            42.0,
+            42.0
+          ],
+          "variance": 0.0
+        },
+        "llama_t_eval_ms": {
+          "mean": 589.373,
+          "values": [
+            595.226,
+            583.3580000000001,
+            589.535
+          ],
+          "variance": 35.232038999999624
+        },
+        "llama_t_p_eval_ms": {
+          "mean": 2052.7323333333334,
+          "values": [
+            2048.671,
+            2044.162,
+            2065.364
+          ],
+          "variance": 124.75202233333418
+        },
+        "prefetch_bytes": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "prefetch_records": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "prefetches_enqueued": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "process_peak_pagefile_bytes": {
+          "mean": 5528756224.0,
+          "values": [
+            5528952832.0,
+            5528858624.0,
+            5528457216.0
+          ],
+          "variance": 69273124864.0
+        },
+        "process_peak_working_set_bytes": {
+          "mean": 11456472405.333334,
+          "values": [
+            11456589824.0,
+            11456663552.0,
+            11456163840.0
+          ],
+          "variance": 72768378197.33333
+        },
+        "prompt_eval_ms": {
+          "mean": 2052.6317,
+          "values": [
+            2048.5647,
+            2044.0575,
+            2065.2729
+          ],
+          "variance": 124.92866604000052
+        },
+        "prompt_eval_tps": {
+          "mean": 20.461940694503888,
+          "values": [
+            20.502159389937745,
+            20.547367185120773,
+            20.336295508453144
+          ],
+          "variance": 0.012350970769622077
+        },
+        "prompt_tokens": {
+          "mean": 42.0,
+          "values": [
+            42.0,
+            42.0,
+            42.0
+          ],
+          "variance": 0.0
+        },
+        "queue_to_ready_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "reactive_blocking_ms": {
+          "mean": 161.30966666666666,
+          "values": [
+            161.503,
+            160.169,
+            162.257
+          ],
+          "variance": 1.1179693333333227
+        },
+        "reactive_bytes_transferred": {
+          "mean": 528575096.0,
+          "values": [
+            528575096.0,
+            528575096.0,
+            528575096.0
+          ],
+          "variance": 0.0
+        },
+        "reactive_hit_rate": {
+          "mean": 0.6535087719298246,
+          "values": [
+            0.6535087719298246,
+            0.6535087719298246,
+            0.6535087719298246
+          ],
+          "variance": 0.0
+        },
+        "reactive_hits": {
+          "mean": 298.0,
+          "values": [
+            298.0,
+            298.0,
+            298.0
+          ],
+          "variance": 0.0
+        },
+        "ready_useful_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_blocking_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_demands": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "staging_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "time_to_first_token_ms": {
+          "mean": 2053.4427666666666,
+          "values": [
+            2049.4939,
+            2044.9693,
+            2065.8651
+          ],
+          "variance": 120.85377537333358
+        },
+        "token_latency_p50_ms": {
+          "mean": 39.172799999999995,
+          "values": [
+            39.3465,
+            38.9402,
+            39.2317
+          ],
+          "variance": 0.04387183000000024
+        },
+        "token_latency_p95_ms": {
+          "mean": 43.04906333333333,
+          "values": [
+            44.0847,
+            41.66572,
+            43.39677
+          ],
+          "variance": 1.5535410046333296
+        },
+        "total_blocking_ms": {
+          "mean": 161.30966666666666,
+          "values": [
+            161.503,
+            160.169,
+            162.257
+          ],
+          "variance": 1.1179693333333227
+        },
+        "wasted_bytes": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "wasted_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        }
+      },
+      "repetitions": 3,
+      "t2": {
+        "actual_blocking_misses_prevented": {
+          "mean": 3.0,
+          "values": [
+            3.0,
+            3.0,
+            3.0
+          ],
+          "variance": 0.0
+        },
+        "arena_bytes": {
+          "mean": 113744640.0,
+          "values": [
+            113744640.0,
+            113744640.0,
+            113744640.0
+          ],
+          "variance": 0.0
+        },
+        "blocking_misses": {
+          "mean": 157.0,
+          "values": [
+            157.0,
+            157.0,
+            157.0
+          ],
+          "variance": 0.0
+        },
+        "cache_events": {
+          "mean": 57.0,
+          "values": [
+            57.0,
+            57.0,
+            57.0
+          ],
+          "variance": 0.0
+        },
+        "decode_eval_ms": {
+          "mean": 604.5582666666667,
+          "values": [
+            594.9044,
+            611.2235,
+            607.5469
+          ],
+          "variance": 73.27720310333302
+        },
+        "decode_tps": {
+          "mean": 26.469165670240532,
+          "values": [
+            26.895077595660748,
+            26.177003992811144,
+            26.335415422249703
+          ],
+          "variance": 0.1423242714055587
+        },
+        "duration_seconds": {
+          "mean": 7.021794266666666,
+          "values": [
+            6.9944586,
+            7.018343,
+            7.0525812
+          ],
+          "variance": 0.0008534925888933306
+        },
+        "end_to_end_ms": {
+          "mean": 2688.2804,
+          "values": [
+            2656.7039,
+            2648.1763,
+            2759.961
+          ],
+          "variance": 3871.761302709982
+        },
+        "enqueue_ms": {
+          "mean": 0.29936666666666667,
+          "values": [
+            0.3092,
+            0.2901,
+            0.2988
+          ],
+          "variance": 9.144333333333286e-05
+        },
+        "expert_demands": {
+          "mean": 456.0,
+          "values": [
+            456.0,
+            456.0,
+            456.0
+          ],
+          "variance": 0.0
+        },
+        "generated_tokens": {
+          "mean": 16.0,
+          "values": [
+            16.0,
+            16.0,
+            16.0
+          ],
+          "variance": 0.0
+        },
+        "gpu_peak_used_mib": {
+          "mean": 6546.0,
+          "values": [
+            6546.0,
+            6546.0,
+            6546.0
+          ],
+          "variance": 0.0
+        },
+        "h2d_cuda_event_ms": {
+          "mean": 4.4237226666666665,
+          "values": [
+            4.417824,
+            4.433856,
+            4.419488
+          ],
+          "variance": 7.770555733332527e-05
+        },
+        "late_useful_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "llama_n_eval": {
+          "mean": 15.0,
+          "values": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "variance": 0.0
+        },
+        "llama_n_p_eval": {
+          "mean": 42.0,
+          "values": [
+            42.0,
+            42.0,
+            42.0
+          ],
+          "variance": 0.0
+        },
+        "llama_t_eval_ms": {
+          "mean": 599.3886666666667,
+          "values": [
+            589.723,
+            606.0310000000001,
+            602.412
+          ],
+          "variance": 73.34312433333427
+        },
+        "llama_t_p_eval_ms": {
+          "mean": 2083.8196666666668,
+          "values": [
+            2061.889,
+            2037.054,
+            2152.516
+          ],
+          "variance": 3693.583966333332
+        },
+        "paired_sidecar_demands": {
+          "mean": 3.0,
+          "values": [
+            3.0,
+            3.0,
+            3.0
+          ],
+          "variance": 0.0
+        },
+        "prefetch_bytes": {
+          "mean": 50181180.0,
+          "values": [
+            50181180.0,
+            50181180.0,
+            50181180.0
+          ],
+          "variance": 0.0
+        },
+        "prefetch_records": {
+          "mean": 15.0,
+          "values": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "variance": 0.0
+        },
+        "prefetches_enqueued": {
+          "mean": 15.0,
+          "values": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "variance": 0.0
+        },
+        "process_peak_pagefile_bytes": {
+          "mean": 5555646464.0,
+          "values": [
+            5555322880.0,
+            5555544064.0,
+            5556072448.0
+          ],
+          "variance": 148327366656.0
+        },
+        "process_peak_working_set_bytes": {
+          "mean": 11471607125.333334,
+          "values": [
+            11471441920.0,
+            11471663104.0,
+            11471716352.0
+          ],
+          "variance": 21178438997.333332
+        },
+        "prompt_eval_ms": {
+          "mean": 2083.722133333333,
+          "values": [
+            2061.7995,
+            2036.9528,
+            2152.4141
+          ],
+          "variance": 3693.279338623328
+        },
+        "prompt_eval_tps": {
+          "mean": 20.167521081395403,
+          "values": [
+            20.370554944843086,
+            20.619034471490945,
+            19.51297382785218
+          ],
+          "variance": 0.3367595991315198
+        },
+        "prompt_tokens": {
+          "mean": 42.0,
+          "values": [
+            42.0,
+            42.0,
+            42.0
+          ],
+          "variance": 0.0
+        },
+        "queue_to_ready_ms": {
+          "mean": 574.3928333333333,
+          "values": [
+            564.646,
+            581.7015,
+            576.831
+          ],
+          "variance": 77.18101258333385
+        },
+        "reactive_blocking_ms": {
+          "mean": 164.92733333333334,
+          "values": [
+            160.981,
+            158.537,
+            175.264
+          ],
+          "variance": 81.62829233333342
+        },
+        "reactive_bytes_transferred": {
+          "mean": 525229684.0,
+          "values": [
+            525229684.0,
+            525229684.0,
+            525229684.0
+          ],
+          "variance": 0.0
+        },
+        "reactive_hit_rate": {
+          "mean": 0.6491228070175439,
+          "values": [
+            0.6491228070175439,
+            0.6491228070175439,
+            0.6491228070175439
+          ],
+          "variance": 0.0
+        },
+        "reactive_hits": {
+          "mean": 296.0,
+          "values": [
+            296.0,
+            296.0,
+            296.0
+          ],
+          "variance": 0.0
+        },
+        "ready_useful_prefetches": {
+          "mean": 3.0,
+          "values": [
+            3.0,
+            3.0,
+            3.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_blocking_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_demands": {
+          "mean": 3.0,
+          "values": [
+            3.0,
+            3.0,
+            3.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_demands_that_were_reactive_hits": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "staging_ms": {
+          "mean": 6.2002999999999995,
+          "values": [
+            6.0757,
+            6.1791,
+            6.3461
+          ],
+          "variance": 0.018616119999999937
+        },
+        "time_to_first_token_ms": {
+          "mean": 2084.5842,
+          "values": [
+            2062.7648,
+            2037.7838,
+            2153.204
+          ],
+          "variance": 3687.520304280017
+        },
+        "token_latency_p50_ms": {
+          "mean": 39.760866666666665,
+          "values": [
+            39.0103,
+            40.3438,
+            39.9285
+          ],
+          "variance": 0.4656312633333336
+        },
+        "token_latency_p95_ms": {
+          "mean": 44.18793,
+          "values": [
+            43.37321,
+            44.567660000000004,
+            44.62292
+          ],
+          "variance": 0.49858992570000144
+        },
+        "total_blocking_ms": {
+          "mean": 164.92733333333334,
+          "values": [
+            160.981,
+            158.537,
+            175.264
+          ],
+          "variance": 81.62829233333342
+        },
+        "wasted_bytes": {
+          "mean": 36799532.0,
+          "values": [
+            36799532.0,
+            36799532.0,
+            36799532.0
+          ],
+          "variance": 0.0
+        },
+        "wasted_prefetches": {
+          "mean": 11.0,
+          "values": [
+            11.0,
+            11.0,
+            11.0
+          ],
+          "variance": 0.0
+        }
+      }
+    },
+    "translation": {
+      "comparison": {
+        "blocking_miss_reduction_percent": {
+          "mean": 0.0,
+          "values": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "variance": 0.0
+        },
+        "blocking_time_reduction_percent": {
+          "mean": -0.30201413103824,
+          "values": [
+            -0.26500094643195543,
+            -0.38457247484855606,
+            -0.2564689718342084
+          ],
+          "variance": 0.005130108747160918
+        },
+        "decode_tps_percent": {
+          "mean": -1.5950190541766978,
+          "values": [
+            -1.1292583911174285,
+            -2.6722574294126784,
+            -0.9835413419999868
+          ],
+          "variance": 0.8756402524116651
+        },
+        "end_to_end_percent": {
+          "mean": 0.17902049643400555,
+          "values": [
+            -0.23506895273793532,
+            -0.48019996513264157,
+            1.2523304071725936
+          ],
+          "variance": 0.8790179266766702
+        },
+        "prompt_eval_tps_percent": {
+          "mean": 0.5863716610709547,
+          "values": [
+            -0.03300010952469812,
+            0.022138483764976215,
+            1.7699766089725861
+          ],
+          "variance": 1.0514505706404087
+        }
+      },
+      "parity": "exact",
+      "reactive": {
+        "blocking_misses": {
+          "mean": 167.0,
+          "values": [
+            167.0,
+            167.0,
+            167.0
+          ],
+          "variance": 0.0
+        },
+        "cache_events": {
+          "mean": 71.0,
+          "values": [
+            71.0,
+            71.0,
+            71.0
+          ],
+          "variance": 0.0
+        },
+        "decode_eval_ms": {
+          "mean": 559.1720666666666,
+          "values": [
+            561.762,
+            558.2148,
+            557.5394
+          ],
+          "variance": 5.144857293333216
+        },
+        "decode_tps": {
+          "mean": 28.61404583667928,
+          "values": [
+            28.481812582552756,
+            28.66280148788603,
+            28.697523439599067
+          ],
+          "variance": 0.013415628605358802
+        },
+        "duration_seconds": {
+          "mean": 7.254175066666666,
+          "values": [
+            7.1854386,
+            7.1979915,
+            7.3790951
+          ],
+          "variance": 0.011743154870603303
+        },
+        "end_to_end_ms": {
+          "mean": 3096.1596000000004,
+          "values": [
+            3083.6484,
+            3075.6562,
+            3129.1742
+          ],
+          "variance": 833.4416750799992
+        },
+        "enqueue_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "expert_demands": {
+          "mean": 568.0,
+          "values": [
+            568.0,
+            568.0,
+            568.0
+          ],
+          "variance": 0.0
+        },
+        "generated_tokens": {
+          "mean": 16.0,
+          "values": [
+            16.0,
+            16.0,
+            16.0
+          ],
+          "variance": 0.0
+        },
+        "gpu_peak_used_mib": {
+          "mean": 6534.0,
+          "values": [
+            6534.0,
+            6534.0,
+            6534.0
+          ],
+          "variance": 0.0
+        },
+        "h2d_cuda_event_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "late_useful_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "llama_n_eval": {
+          "mean": 15.0,
+          "values": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "variance": 0.0
+        },
+        "llama_n_p_eval": {
+          "mean": 56.0,
+          "values": [
+            56.0,
+            56.0,
+            56.0
+          ],
+          "variance": 0.0
+        },
+        "llama_t_eval_ms": {
+          "mean": 554.2013333333333,
+          "values": [
+            556.835,
+            553.284,
+            552.485
+          ],
+          "variance": 5.361750333333413
+        },
+        "llama_t_p_eval_ms": {
+          "mean": 2537.0886666666665,
+          "values": [
+            2521.986,
+            2517.541,
+            2571.739
+          ],
+          "variance": 905.423706333333
+        },
+        "prefetch_bytes": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "prefetch_records": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "prefetches_enqueued": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "process_peak_pagefile_bytes": {
+          "mean": 5528741205.333333,
+          "values": [
+            5528834048.0,
+            5528584192.0,
+            5528805376.0
+          ],
+          "variance": 18695411029.333332
+        },
+        "process_peak_working_set_bytes": {
+          "mean": 11653554176.0,
+          "values": [
+            11653439488.0,
+            11653615616.0,
+            11653607424.0
+          ],
+          "variance": 9881780224.0
+        },
+        "prompt_eval_ms": {
+          "mean": 2536.9875333333334,
+          "values": [
+            2521.8864,
+            2517.4414,
+            2571.6348
+          ],
+          "variance": 905.2643218533258
+        },
+        "prompt_eval_tps": {
+          "mean": 22.075479616236574,
+          "values": [
+            22.20559974469905,
+            22.244807763946362,
+            21.776031340064307
+          ],
+          "variance": 0.06763626977023067
+        },
+        "prompt_tokens": {
+          "mean": 56.0,
+          "values": [
+            56.0,
+            56.0,
+            56.0
+          ],
+          "variance": 0.0
+        },
+        "queue_to_ready_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "reactive_blocking_ms": {
+          "mean": 152.80966666666666,
+          "values": [
+            153.207,
+            152.377,
+            152.845
+          ],
+          "variance": 0.17316133333332664
+        },
+        "reactive_bytes_transferred": {
+          "mean": 558683804.0,
+          "values": [
+            558683804.0,
+            558683804.0,
+            558683804.0
+          ],
+          "variance": 0.0
+        },
+        "reactive_hit_rate": {
+          "mean": 0.7059859154929576,
+          "values": [
+            0.7059859154929577,
+            0.7059859154929577,
+            0.7059859154929577
+          ],
+          "variance": 0.0
+        },
+        "reactive_hits": {
+          "mean": 401.0,
+          "values": [
+            401.0,
+            401.0,
+            401.0
+          ],
+          "variance": 0.0
+        },
+        "ready_useful_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_blocking_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_demands": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "staging_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "time_to_first_token_ms": {
+          "mean": 2537.7404333333334,
+          "values": [
+            2522.6403,
+            2518.1729,
+            2572.4081
+          ],
+          "variance": 906.374749773336
+        },
+        "token_latency_p50_ms": {
+          "mean": 37.3731,
+          "values": [
+            37.5143,
+            37.1114,
+            37.4936
+          ],
+          "variance": 0.05147228999999904
+        },
+        "token_latency_p95_ms": {
+          "mean": 39.00570666666667,
+          "values": [
+            39.473910000000004,
+            38.908500000000004,
+            38.63471
+          ],
+          "variance": 0.18315101203333528
+        },
+        "total_blocking_ms": {
+          "mean": 152.80966666666666,
+          "values": [
+            153.207,
+            152.377,
+            152.845
+          ],
+          "variance": 0.17316133333332664
+        },
+        "wasted_bytes": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "wasted_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        }
+      },
+      "repetitions": 3,
+      "t2": {
+        "actual_blocking_misses_prevented": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "arena_bytes": {
+          "mean": 113744640.0,
+          "values": [
+            113744640.0,
+            113744640.0,
+            113744640.0
+          ],
+          "variance": 0.0
+        },
+        "blocking_misses": {
+          "mean": 167.0,
+          "values": [
+            167.0,
+            167.0,
+            167.0
+          ],
+          "variance": 0.0
+        },
+        "cache_events": {
+          "mean": 71.0,
+          "values": [
+            71.0,
+            71.0,
+            71.0
+          ],
+          "variance": 0.0
+        },
+        "decode_eval_ms": {
+          "mean": 568.2656666666667,
+          "values": [
+            568.1782,
+            573.5413,
+            563.0775
+          ],
+          "variance": 27.378515423333294
+        },
+        "decode_tps": {
+          "mean": 28.157436134036868,
+          "values": [
+            28.16017932402194,
+            27.896857645648186,
+            28.415271432440473
+          ],
+          "variance": 0.06719385740255038
+        },
+        "duration_seconds": {
+          "mean": 7.253998433333333,
+          "values": [
+            7.233137,
+            7.1833813,
+            7.345477
+          ],
+          "variance": 0.006895153540163331
+        },
+        "end_to_end_ms": {
+          "mean": 3090.4364,
+          "values": [
+            3090.8971,
+            3090.4255,
+            3089.9866
+          ],
+          "variance": 0.2073416699999837
+        },
+        "enqueue_ms": {
+          "mean": 0.2906666666666667,
+          "values": [
+            0.3014,
+            0.3017,
+            0.2689
+          ],
+          "variance": 0.0003553633333333342
+        },
+        "expert_demands": {
+          "mean": 568.0,
+          "values": [
+            568.0,
+            568.0,
+            568.0
+          ],
+          "variance": 0.0
+        },
+        "generated_tokens": {
+          "mean": 16.0,
+          "values": [
+            16.0,
+            16.0,
+            16.0
+          ],
+          "variance": 0.0
+        },
+        "gpu_peak_used_mib": {
+          "mean": 6544.0,
+          "values": [
+            6544.0,
+            6544.0,
+            6544.0
+          ],
+          "variance": 0.0
+        },
+        "h2d_cuda_event_ms": {
+          "mean": 3.8914026666666666,
+          "values": [
+            3.928512,
+            3.9184,
+            3.827296
+          ],
+          "variance": 0.0031078116693333342
+        },
+        "late_useful_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "llama_n_eval": {
+          "mean": 15.0,
+          "values": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "variance": 0.0
+        },
+        "llama_n_p_eval": {
+          "mean": 56.0,
+          "values": [
+            56.0,
+            56.0,
+            56.0
+          ],
+          "variance": 0.0
+        },
+        "llama_t_eval_ms": {
+          "mean": 563.1766666666667,
+          "values": [
+            563.224,
+            568.221,
+            558.085
+          ],
+          "variance": 25.68630433333317
+        },
+        "llama_t_p_eval_ms": {
+          "mean": 2522.284,
+          "values": [
+            2522.827,
+            2516.987,
+            2527.038
+          ],
+          "variance": 25.47678699999975
+        },
+        "paired_sidecar_demands": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "prefetch_bytes": {
+          "mean": 50181180.0,
+          "values": [
+            50181180.0,
+            50181180.0,
+            50181180.0
+          ],
+          "variance": 0.0
+        },
+        "prefetch_records": {
+          "mean": 15.0,
+          "values": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "variance": 0.0
+        },
+        "prefetches_enqueued": {
+          "mean": 15.0,
+          "values": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "variance": 0.0
+        },
+        "process_peak_pagefile_bytes": {
+          "mean": 5555565909.333333,
+          "values": [
+            5555634176.0,
+            5555634176.0,
+            5555429376.0
+          ],
+          "variance": 13981013333.333334
+        },
+        "process_peak_working_set_bytes": {
+          "mean": 11668803584.0,
+          "values": [
+            11668676608.0,
+            11668951040.0,
+            11668783104.0
+          ],
+          "variance": 19142803456.0
+        },
+        "prompt_eval_ms": {
+          "mean": 2522.170733333333,
+          "values": [
+            2522.7189,
+            2516.8842,
+            2526.9091
+          ],
+          "variance": 25.350020023332743
+        },
+        "prompt_eval_tps": {
+          "mean": 22.203155433570135,
+          "values": [
+            22.198271872462684,
+            22.249732427101733,
+            22.161462001145985
+          ],
+          "variance": 0.001965803901419972
+        },
+        "prompt_tokens": {
+          "mean": 56.0,
+          "values": [
+            56.0,
+            56.0,
+            56.0
+          ],
+          "variance": 0.0
+        },
+        "queue_to_ready_ms": {
+          "mean": 538.9836333333333,
+          "values": [
+            539.7388,
+            542.1102,
+            535.1019
+          ],
+          "variance": 12.706774743333193
+        },
+        "reactive_blocking_ms": {
+          "mean": 153.271,
+          "values": [
+            153.613,
+            152.963,
+            153.237
+          ],
+          "variance": 0.10649200000000192
+        },
+        "reactive_bytes_transferred": {
+          "mean": 558683804.0,
+          "values": [
+            558683804.0,
+            558683804.0,
+            558683804.0
+          ],
+          "variance": 0.0
+        },
+        "reactive_hit_rate": {
+          "mean": 0.7059859154929576,
+          "values": [
+            0.7059859154929577,
+            0.7059859154929577,
+            0.7059859154929577
+          ],
+          "variance": 0.0
+        },
+        "reactive_hits": {
+          "mean": 401.0,
+          "values": [
+            401.0,
+            401.0,
+            401.0
+          ],
+          "variance": 0.0
+        },
+        "ready_useful_prefetches": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_blocking_ms": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_demands": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "sidecar_demands_that_were_reactive_hits": {
+          "mean": 0.0,
+          "values": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "variance": 0.0
+        },
+        "staging_ms": {
+          "mean": 4.076566666666667,
+          "values": [
+            4.1263,
+            4.1111,
+            3.9923
+          ],
+          "variance": 0.005383413333333314
+        },
+        "time_to_first_token_ms": {
+          "mean": 2522.9332,
+          "values": [
+            2523.4691,
+            2517.6493,
+            2527.6812
+          ],
+          "variance": 25.375146009999636
+        },
+        "token_latency_p50_ms": {
+          "mean": 37.662366666666664,
+          "values": [
+            38.1092,
+            37.7049,
+            37.173
+          ],
+          "variance": 0.2204744233333331
+        },
+        "token_latency_p95_ms": {
+          "mean": 40.11827,
+          "values": [
+            39.56403,
+            41.22428,
+            39.566500000000005
+          ],
+          "variance": 0.9174451152999962
+        },
+        "total_blocking_ms": {
+          "mean": 153.271,
+          "values": [
+            153.613,
+            152.963,
+            153.237
+          ],
+          "variance": 0.10649200000000192
+        },
+        "wasted_bytes": {
+          "mean": 46835768.0,
+          "values": [
+            46835768.0,
+            46835768.0,
+            46835768.0
+          ],
+          "variance": 0.0
+        },
+        "wasted_prefetches": {
+          "mean": 14.0,
+          "values": [
+            14.0,
+            14.0,
+            14.0
+          ],
+          "variance": 0.0
+        }
+      }
+    }
+  },
+  "measurement_kind": "live_runtime_measured",
+  "model": "Gemma 4 26B A4B Q4_0",
+  "ngl": 10,
+  "overall": {
+    "comparison": {
+      "blocking_miss_reduction_percent": {
+        "mean": 0.2109704641350211,
+        "values": [
+          0.6329113924050633,
+          0.6329113924050633,
+          0.6329113924050633,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "variance": 0.10014420765902901
+      },
+      "blocking_time_reduction_percent": {
+        "mean": -0.9693960453894288,
+        "values": [
+          0.32321381026977297,
+          1.0189237617766265,
+          -8.01629513672754,
+          -0.758290092541875,
+          0.5449823065057688,
+          -0.9310566646728919,
+          -0.26500094643195543,
+          -0.38457247484855606,
+          -0.2564689718342084
+        ],
+        "variance": 7.371109524806473
+      },
+      "decode_tps_percent": {
+        "mean": -1.1548196628662792,
+        "values": [
+          0.9128861712907088,
+          -3.729192349443349,
+          -2.178235128843566,
+          -0.48980468069938177,
+          0.3591722459553251,
+          -0.48314606152615586,
+          -1.1292583911174285,
+          -2.6722574294126784,
+          -0.9835413419999868
+        ],
+        "variance": 2.183543779047106
+      },
+      "end_to_end_percent": {
+        "mean": -0.4287202329570839,
+        "values": [
+          -0.29461286928962804,
+          -0.5959762844819918,
+          -3.7740836355733567,
+          0.3427899466677705,
+          0.26632515626418835,
+          -0.33998589950275404,
+          -0.23506895273793532,
+          -0.48019996513264157,
+          1.2523304071725936
+        ],
+        "variance": 1.8987109669297193
+      },
+      "prompt_eval_tps_percent": {
+        "mean": -0.23365932531687333,
+        "values": [
+          -0.6419052871047785,
+          0.34879060526094585,
+          -4.048533226018168,
+          0.539404527741655,
+          0.24523784717969382,
+          -0.30504337812407273,
+          -0.03300010952469812,
+          0.022138483764976215,
+          1.7699766089725861
+        ],
+        "variance": 2.501436883514204
+      }
+    },
+    "reactive": {
+      "blocking_misses": {
+        "mean": 177.66666666666666,
+        "values": [
+          158.0,
+          158.0,
+          158.0,
+          208.0,
+          208.0,
+          208.0,
+          167.0,
+          167.0,
+          167.0
+        ],
+        "variance": 532.75
+      },
+      "cache_events": {
+        "mean": 65.33333333333333,
+        "values": [
+          57.0,
+          57.0,
+          57.0,
+          68.0,
+          68.0,
+          68.0,
+          71.0,
+          71.0,
+          71.0
+        ],
+        "variance": 40.75
+      },
+      "decode_eval_ms": {
+        "mean": 574.698311111111,
+        "values": [
+          600.3352,
+          588.4298,
+          594.3131,
+          566.4388,
+          575.6848,
+          569.5669,
+          561.762,
+          558.2148,
+          557.5394
+        ],
+        "variance": 257.4437975636111
+      },
+      "decode_tps": {
+        "mean": 27.859768826084384,
+        "values": [
+          26.651777207133616,
+          27.19100902095713,
+          26.921836318263892,
+          28.246652595125898,
+          27.792986717731647,
+          28.091520065509425,
+          28.481812582552756,
+          28.66280148788603,
+          28.697523439599067
+        ],
+        "variance": 0.5909601298376348
+      },
+      "duration_seconds": {
+        "mean": 7.126402777777778,
+        "values": [
+          6.9744878,
+          6.8266544,
+          6.9789661,
+          7.1843351,
+          7.2149974,
+          7.195659,
+          7.1854386,
+          7.1979915,
+          7.3790951
+        ],
+        "variance": 0.027891249116744427
+      },
+      "end_to_end_ms": {
+        "mean": 2916.6710444444443,
+        "values": [
+          2648.8999,
+          2632.4873,
+          2659.586,
+          3007.9937,
+          3006.1749,
+          3006.4188,
+          3083.6484,
+          3075.6562,
+          3129.1742
+        ],
+        "variance": 42659.40522015781
+      },
+      "enqueue_ms": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "expert_demands": {
+        "mean": 522.6666666666666,
+        "values": [
+          456.0,
+          456.0,
+          456.0,
+          544.0,
+          544.0,
+          544.0,
+          568.0,
+          568.0,
+          568.0
+        ],
+        "variance": 2608.0
+      },
+      "generated_tokens": {
+        "mean": 16.0,
+        "values": [
+          16.0,
+          16.0,
+          16.0,
+          16.0,
+          16.0,
+          16.0,
+          16.0,
+          16.0,
+          16.0
+        ],
+        "variance": 0.0
+      },
+      "gpu_peak_used_mib": {
+        "mean": 6534.444444444444,
+        "values": [
+          6536.0,
+          6536.0,
+          6536.0,
+          6536.0,
+          6532.0,
+          6532.0,
+          6534.0,
+          6534.0,
+          6534.0
+        ],
+        "variance": 2.7777777777777777
+      },
+      "h2d_cuda_event_ms": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "late_useful_prefetches": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "llama_n_eval": {
+        "mean": 15.0,
+        "values": [
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0
+        ],
+        "variance": 0.0
+      },
+      "llama_n_p_eval": {
+        "mean": 50.333333333333336,
+        "values": [
+          42.0,
+          42.0,
+          42.0,
+          53.0,
+          53.0,
+          53.0,
+          56.0,
+          56.0,
+          56.0
+        ],
+        "variance": 40.75
+      },
+      "llama_t_eval_ms": {
+        "mean": 569.7862222222222,
+        "values": [
+          595.226,
+          583.3580000000001,
+          589.535,
+          561.789,
+          570.794,
+          564.77,
+          556.835,
+          553.284,
+          552.485
+        ],
+        "variance": 256.3641399444444
+      },
+      "llama_t_p_eval_ms": {
+        "mean": 2342.0724444444445,
+        "values": [
+          2048.671,
+          2044.162,
+          2065.364,
+          2441.645,
+          2430.588,
+          2436.956,
+          2521.986,
+          2517.541,
+          2571.739
+        ],
+        "variance": 49257.5023062778
+      },
+      "prefetch_bytes": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "prefetch_records": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "prefetches_enqueued": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "process_peak_pagefile_bytes": {
+        "mean": 5528758499.555555,
+        "values": [
+          5528952832.0,
+          5528858624.0,
+          5528457216.0,
+          5529227264.0,
+          5528739840.0,
+          5528367104.0,
+          5528834048.0,
+          5528584192.0,
+          5528805376.0
+        ],
+        "variance": 68766080113.77777
+      },
+      "process_peak_working_set_bytes": {
+        "mean": 11560028842.666666,
+        "values": [
+          11456589824.0,
+          11456663552.0,
+          11456163840.0,
+          11570368512.0,
+          11569995776.0,
+          11569815552.0,
+          11653439488.0,
+          11653615616.0,
+          11653607424.0
+        ],
+        "variance": 7339370570842112.0
+      },
+      "prompt_eval_ms": {
+        "mean": 2341.9727333333335,
+        "values": [
+          2048.5647,
+          2044.0575,
+          2065.2729,
+          2441.5549,
+          2430.4901,
+          2436.8519,
+          2521.8864,
+          2517.4414,
+          2571.6348
+        ],
+        "variance": 49257.67396638751
+      },
+      "prompt_eval_tps": {
+        "mean": 21.430601487411018,
+        "values": [
+          20.502159389937745,
+          20.547367185120773,
+          20.336295508453144,
+          21.707478295900696,
+          21.806301535645012,
+          21.74937262293207,
+          22.20559974469905,
+          22.244807763946362,
+          21.776031340064307
+        ],
+        "variance": 0.5677394261878254
+      },
+      "prompt_tokens": {
+        "mean": 50.333333333333336,
+        "values": [
+          42.0,
+          42.0,
+          42.0,
+          53.0,
+          53.0,
+          53.0,
+          56.0,
+          56.0,
+          56.0
+        ],
+        "variance": 40.75
+      },
+      "queue_to_ready_ms": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "reactive_blocking_ms": {
+        "mean": 163.66899999999998,
+        "values": [
+          161.503,
+          160.169,
+          162.257,
+          177.109,
+          176.336,
+          177.218,
+          153.207,
+          152.377,
+          152.845
+        ],
+        "variance": 112.21485925000002
+      },
+      "reactive_bytes_transferred": {
+        "mean": 594368198.6666666,
+        "values": [
+          528575096.0,
+          528575096.0,
+          528575096.0,
+          695845696.0,
+          695845696.0,
+          695845696.0,
+          558683804.0,
+          558683804.0,
+          558683804.0
+        ],
+        "variance": 5962421567351116.0
+      },
+      "reactive_hit_rate": {
+        "mean": 0.6590472487487706,
+        "values": [
+          0.6535087719298246,
+          0.6535087719298246,
+          0.6535087719298246,
+          0.6176470588235294,
+          0.6176470588235294,
+          0.6176470588235294,
+          0.7059859154929577,
+          0.7059859154929577,
+          0.7059859154929577
+        ],
+        "variance": 0.0014804583326407136
+      },
+      "reactive_hits": {
+        "mean": 345.0,
+        "values": [
+          298.0,
+          298.0,
+          298.0,
+          336.0,
+          336.0,
+          336.0,
+          401.0,
+          401.0,
+          401.0
+        ],
+        "variance": 2034.75
+      },
+      "ready_useful_prefetches": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "sidecar_blocking_ms": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "sidecar_demands": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "staging_ms": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "time_to_first_token_ms": {
+        "mean": 2342.728222222222,
+        "values": [
+          2049.4939,
+          2044.9693,
+          2065.8651,
+          2442.2462,
+          2431.2119,
+          2437.5463,
+          2522.6403,
+          2518.1729,
+          2572.4081
+        ],
+        "variance": 49240.703236639456
+      },
+      "token_latency_p50_ms": {
+        "mean": 38.09541111111111,
+        "values": [
+          39.3465,
+          38.9402,
+          39.2317,
+          37.3441,
+          38.1543,
+          37.7226,
+          37.5143,
+          37.1114,
+          37.4936
+        ],
+        "variance": 0.743139141111109
+      },
+      "token_latency_p95_ms": {
+        "mean": 40.85516666666667,
+        "values": [
+          44.0847,
+          41.66572,
+          43.39677,
+          40.748329999999996,
+          40.46668,
+          40.31718,
+          39.473910000000004,
+          38.908500000000004,
+          38.63471
+        ],
+        "variance": 3.5782755346499946
+      },
+      "total_blocking_ms": {
+        "mean": 163.66899999999998,
+        "values": [
+          161.503,
+          160.169,
+          162.257,
+          177.109,
+          176.336,
+          177.218,
+          153.207,
+          152.377,
+          152.845
+        ],
+        "variance": 112.21485925000002
+      },
+      "wasted_bytes": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "wasted_prefetches": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      }
+    },
+    "t2": {
+      "actual_blocking_misses_prevented": {
+        "mean": 1.0,
+        "values": [
+          3.0,
+          3.0,
+          3.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 2.25
+      },
+      "arena_bytes": {
+        "mean": 113744640.0,
+        "values": [
+          113744640.0,
+          113744640.0,
+          113744640.0,
+          113744640.0,
+          113744640.0,
+          113744640.0,
+          113744640.0,
+          113744640.0,
+          113744640.0
+        ],
+        "variance": 0.0
+      },
+      "blocking_misses": {
+        "mean": 177.33333333333334,
+        "values": [
+          157.0,
+          157.0,
+          157.0,
+          208.0,
+          208.0,
+          208.0,
+          167.0,
+          167.0,
+          167.0
+        ],
+        "variance": 547.75
+      },
+      "cache_events": {
+        "mean": 65.33333333333333,
+        "values": [
+          57.0,
+          57.0,
+          57.0,
+          68.0,
+          68.0,
+          68.0,
+          71.0,
+          71.0,
+          71.0
+        ],
+        "variance": 40.75
+      },
+      "decode_eval_ms": {
+        "mean": 581.5172555555556,
+        "values": [
+          594.9044,
+          611.2235,
+          607.5469,
+          569.2269,
+          573.6245,
+          572.3321,
+          568.1782,
+          573.5413,
+          563.0775
+        ],
+        "variance": 327.31316911027807
+      },
+      "decode_tps": {
+        "mean": 27.537412554048906,
+        "values": [
+          26.895077595660748,
+          26.177003992811144,
+          26.335415422249703,
+          28.108299168574078,
+          27.89281141234379,
+          27.955796992690086,
+          28.16017932402194,
+          27.896857645648186,
+          28.415271432440473
+        ],
+        "variance": 0.7028804505945998
+      },
+      "duration_seconds": {
+        "mean": 7.150681922222223,
+        "values": [
+          6.9944586,
+          7.018343,
+          7.0525812,
+          7.2214233,
+          7.1944429,
+          7.112893,
+          7.233137,
+          7.1833813,
+          7.345477
+        ],
+        "variance": 0.013212956034391963
+      },
+      "end_to_end_ms": {
+        "mean": 2927.6268777777777,
+        "values": [
+          2656.7039,
+          2648.1763,
+          2759.961,
+          2997.6826,
+          2998.1687,
+          3016.6402,
+          3090.8971,
+          3090.4255,
+          3089.9866
+        ],
+        "variance": 34616.53657160945
+      },
+      "enqueue_ms": {
+        "mean": 0.28575555555555554,
+        "values": [
+          0.3092,
+          0.2901,
+          0.2988,
+          0.2876,
+          0.2857,
+          0.2284,
+          0.3014,
+          0.3017,
+          0.2689
+        ],
+        "variance": 0.000601852777777778
+      },
+      "expert_demands": {
+        "mean": 522.6666666666666,
+        "values": [
+          456.0,
+          456.0,
+          456.0,
+          544.0,
+          544.0,
+          544.0,
+          568.0,
+          568.0,
+          568.0
+        ],
+        "variance": 2608.0
+      },
+      "generated_tokens": {
+        "mean": 16.0,
+        "values": [
+          16.0,
+          16.0,
+          16.0,
+          16.0,
+          16.0,
+          16.0,
+          16.0,
+          16.0,
+          16.0
+        ],
+        "variance": 0.0
+      },
+      "gpu_peak_used_mib": {
+        "mean": 6544.666666666667,
+        "values": [
+          6546.0,
+          6546.0,
+          6546.0,
+          6546.0,
+          6542.0,
+          6544.0,
+          6544.0,
+          6544.0,
+          6544.0
+        ],
+        "variance": 2.0
+      },
+      "h2d_cuda_event_ms": {
+        "mean": 4.051456,
+        "values": [
+          4.417824,
+          4.433856,
+          4.419488,
+          3.8150399999999998,
+          3.823552,
+          3.879136,
+          3.928512,
+          3.9184,
+          3.827296
+        ],
+        "variance": 0.07956207462400004
+      },
+      "late_useful_prefetches": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "llama_n_eval": {
+        "mean": 15.0,
+        "values": [
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0
+        ],
+        "variance": 0.0
+      },
+      "llama_n_p_eval": {
+        "mean": 50.333333333333336,
+        "values": [
+          42.0,
+          42.0,
+          42.0,
+          53.0,
+          53.0,
+          53.0,
+          56.0,
+          56.0,
+          56.0
+        ],
+        "variance": 40.75
+      },
+      "llama_t_eval_ms": {
+        "mean": 576.4593333333333,
+        "values": [
+          589.723,
+          606.0310000000001,
+          602.412,
+          564.251,
+          568.743,
+          567.444,
+          563.224,
+          568.221,
+          558.085
+        ],
+        "variance": 324.30887225000026
+      },
+      "llama_t_p_eval_ms": {
+        "mean": 2346.219,
+        "values": [
+          2061.889,
+          2037.054,
+          2152.516,
+          2428.57,
+          2424.68,
+          2444.41,
+          2522.827,
+          2516.987,
+          2527.038
+        ],
+        "variance": 41196.78659824999
+      },
+      "paired_sidecar_demands": {
+        "mean": 1.0,
+        "values": [
+          3.0,
+          3.0,
+          3.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 2.25
+      },
+      "prefetch_bytes": {
+        "mean": 50181180.0,
+        "values": [
+          50181180.0,
+          50181180.0,
+          50181180.0,
+          50181180.0,
+          50181180.0,
+          50181180.0,
+          50181180.0,
+          50181180.0,
+          50181180.0
+        ],
+        "variance": 0.0
+      },
+      "prefetch_records": {
+        "mean": 15.0,
+        "values": [
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0
+        ],
+        "variance": 0.0
+      },
+      "prefetches_enqueued": {
+        "mean": 15.0,
+        "values": [
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0
+        ],
+        "variance": 0.0
+      },
+      "process_peak_pagefile_bytes": {
+        "mean": 5555403889.777778,
+        "values": [
+          5555322880.0,
+          5555544064.0,
+          5556072448.0,
+          5555810304.0,
+          5555318784.0,
+          5553868800.0,
+          5555634176.0,
+          5555634176.0,
+          5555429376.0
+        ],
+        "variance": 388601333532.44446
+      },
+      "process_peak_working_set_bytes": {
+        "mean": 11574122268.444445,
+        "values": [
+          11471441920.0,
+          11471663104.0,
+          11471716352.0,
+          11582066688.0,
+          11581849600.0,
+          11581952000.0,
+          11668676608.0,
+          11668951040.0,
+          11668783104.0
+        ],
+        "variance": 7325741130128498.0
+      },
+      "prompt_eval_ms": {
+        "mean": 2346.1096222222222,
+        "values": [
+          2061.7995,
+          2036.9528,
+          2152.4141,
+          2428.4557,
+          2424.5442,
+          2444.3081,
+          2522.7189,
+          2516.8842,
+          2526.9091
+        ],
+        "variance": 41193.398348126924
+      },
+      "prompt_eval_tps": {
+        "mean": 21.386600600402975,
+        "values": [
+          20.370554944843086,
+          20.619034471490945,
+          19.51297382785218,
+          21.82456941668732,
+          21.85977884008054,
+          21.683027601962287,
+          22.198271872462684,
+          22.249732427101733,
+          22.161462001145985
+        ],
+        "variance": 0.9549730139447917
+      },
+      "prompt_tokens": {
+        "mean": 50.333333333333336,
+        "values": [
+          42.0,
+          42.0,
+          42.0,
+          53.0,
+          53.0,
+          53.0,
+          56.0,
+          56.0,
+          56.0
+        ],
+        "variance": 40.75
+      },
+      "queue_to_ready_ms": {
+        "mean": 552.1600222222222,
+        "values": [
+          564.646,
+          581.7015,
+          576.831,
+          542.1166,
+          544.5131,
+          542.6811,
+          539.7388,
+          542.1102,
+          535.1019
+        ],
+        "variance": 304.0895790894448
+      },
+      "reactive_blocking_ms": {
+        "mean": 165.25444444444443,
+        "values": [
+          160.981,
+          158.537,
+          175.264,
+          178.452,
+          175.375,
+          178.868,
+          153.613,
+          152.963,
+          153.237
+        ],
+        "variance": 132.0661760277778
+      },
+      "reactive_bytes_transferred": {
+        "mean": 593253061.3333334,
+        "values": [
+          525229684.0,
+          525229684.0,
+          525229684.0,
+          695845696.0,
+          695845696.0,
+          695845696.0,
+          558683804.0,
+          558683804.0,
+          558683804.0
+        ],
+        "variance": 6130298289097276.0
+      },
+      "reactive_hit_rate": {
+        "mean": 0.657585260444677,
+        "values": [
+          0.6491228070175439,
+          0.6491228070175439,
+          0.6491228070175439,
+          0.6176470588235294,
+          0.6176470588235294,
+          0.6176470588235294,
+          0.7059859154929577,
+          0.7059859154929577,
+          0.7059859154929577
+        ],
+        "variance": 0.0015034861784401859
+      },
+      "reactive_hits": {
+        "mean": 344.3333333333333,
+        "values": [
+          296.0,
+          296.0,
+          296.0,
+          336.0,
+          336.0,
+          336.0,
+          401.0,
+          401.0,
+          401.0
+        ],
+        "variance": 2106.25
+      },
+      "ready_useful_prefetches": {
+        "mean": 1.0,
+        "values": [
+          3.0,
+          3.0,
+          3.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 2.25
+      },
+      "sidecar_blocking_ms": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "sidecar_demands": {
+        "mean": 1.0,
+        "values": [
+          3.0,
+          3.0,
+          3.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 2.25
+      },
+      "sidecar_demands_that_were_reactive_hits": {
+        "mean": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "variance": 0.0
+      },
+      "staging_ms": {
+        "mean": 4.490944444444445,
+        "values": [
+          6.0757,
+          6.1791,
+          6.3461,
+          3.292,
+          3.1346,
+          3.1613,
+          4.1263,
+          4.1111,
+          3.9923
+        ],
+        "variance": 1.796738440277778
+      },
+      "time_to_first_token_ms": {
+        "mean": 2346.9077333333335,
+        "values": [
+          2062.7648,
+          2037.7838,
+          2153.204,
+          2429.2055,
+          2425.3539,
+          2445.058,
+          2523.4691,
+          2517.6493,
+          2527.6812
+        ],
+        "variance": 41172.724047179996
+      },
+      "token_latency_p50_ms": {
+        "mean": 38.3561,
+        "values": [
+          39.0103,
+          40.3438,
+          39.9285,
+          37.5031,
+          37.5484,
+          37.8837,
+          38.1092,
+          37.7049,
+          37.173
+        ],
+        "variance": 1.2924084249999992
+      },
+      "token_latency_p95_ms": {
+        "mean": 41.74588333333333,
+        "values": [
+          43.37321,
+          44.567660000000004,
+          44.62292,
+          40.89799,
+          40.67662,
+          41.219739999999994,
+          39.56403,
+          41.22428,
+          39.566500000000005
+        ],
+        "variance": 3.8511619156249997
+      },
+      "total_blocking_ms": {
+        "mean": 165.25444444444443,
+        "values": [
+          160.981,
+          158.537,
+          175.264,
+          178.452,
+          175.375,
+          178.868,
+          153.613,
+          152.963,
+          153.237
+        ],
+        "variance": 132.0661760277778
+      },
+      "wasted_bytes": {
+        "mean": 43490356.0,
+        "values": [
+          36799532.0,
+          36799532.0,
+          36799532.0,
+          46835768.0,
+          46835768.0,
+          46835768.0,
+          46835768.0,
+          46835768.0,
+          46835768.0
+        ],
+        "variance": 25181508261924.0
+      },
+      "wasted_prefetches": {
+        "mean": 13.0,
+        "values": [
+          11.0,
+          11.0,
+          11.0,
+          14.0,
+          14.0,
+          14.0,
+          14.0,
+          14.0,
+          14.0
+        ],
+        "variance": 2.25
+      }
+    }
+  },
+  "physical_slots": 34,
+  "reactive_slots": 32,
+  "sidecar_slots": 2
+}

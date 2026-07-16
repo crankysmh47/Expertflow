@@ -115,6 +115,63 @@ def summarize_t2_run(
     return result
 
 
+def analyze_prevented_misses(
+    reactive_cache_path: Path,
+    predictive_cache_path: Path,
+) -> dict[str, int]:
+    reactive_events = _jsonl(reactive_cache_path)
+    predictive_events = _jsonl(predictive_cache_path)
+    if len(reactive_events) != len(predictive_events):
+        raise ValueError("cache event counts differ")
+
+    paired_sidecar_demands = 0
+    prevented = 0
+    redundant = 0
+    for reactive, predictive in zip(
+        reactive_events, predictive_events, strict=True
+    ):
+        reactive_identity = (
+            reactive.get("token_index"),
+            reactive.get("layer_id"),
+        )
+        predictive_identity = (
+            predictive.get("token_index"),
+            predictive.get("layer_id"),
+        )
+        if reactive_identity != predictive_identity:
+            raise ValueError("cache event identities differ")
+        reactive_selected = reactive.get(
+            "selected", reactive.get("selected_expert_ids", [])
+        )
+        predictive_selected = predictive.get(
+            "selected", predictive.get("selected_expert_ids", [])
+        )
+        if reactive_selected != predictive_selected:
+            raise ValueError("router selections differ")
+        predictive_physical = predictive.get("physical_slots", [])
+        if len(predictive_physical) != len(predictive_selected):
+            raise ValueError("predictive physical-slot mapping is incomplete")
+        reactive_loads = {
+            int(load["expert"]) for load in reactive.get("loads", [])
+        }
+        for expert_id, slot_id in zip(
+            predictive_selected, predictive_physical, strict=True
+        ):
+            if int(slot_id) < 32:
+                continue
+            paired_sidecar_demands += 1
+            if int(expert_id) in reactive_loads:
+                prevented += 1
+            else:
+                redundant += 1
+
+    return {
+        "paired_sidecar_demands": paired_sidecar_demands,
+        "actual_blocking_misses_prevented": prevented,
+        "sidecar_demands_that_were_reactive_hits": redundant,
+    }
+
+
 def compare_t2_pair(
     reactive: dict[str, Any],
     predictive: dict[str, Any],

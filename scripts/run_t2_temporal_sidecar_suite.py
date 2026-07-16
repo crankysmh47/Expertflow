@@ -10,6 +10,7 @@ import sys
 
 from expertflow.predictor.live_shadow import validate_token_and_router_parity
 from expertflow.predictor.temporal_sidecar_analysis import (
+    analyze_prevented_misses,
     compare_t2_pair,
     summarize_t2_run,
 )
@@ -220,6 +221,12 @@ def main() -> int:
                 pair / "t2/performance.json",
                 pair / "t2/cache.jsonl",
                 pair / "t2/t2.jsonl",
+            )
+            t2_summary.update(
+                analyze_prevented_misses(
+                    pair / "reactive/cache.jsonl",
+                    pair / "t2/cache.jsonl",
+                )
             )
             _add_memory(reactive_summary, pair / "reactive/measurement.json")
             _add_memory(t2_summary, pair / "t2/measurement.json")

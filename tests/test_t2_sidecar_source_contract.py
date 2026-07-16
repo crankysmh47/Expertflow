@@ -39,6 +39,18 @@ def test_t2_keeps_one_packed_operation_and_requires_decode_identity() -> None:
     assert "ggml_backend_sched_expertflow_temporal_set_decode_identity" in backend_h
 
 
+def test_t2_filters_against_projected_post_admission_cache_state() -> None:
+    backend = (LLAMA / "ggml/src/ggml-backend.cpp").read_text(encoding="utf-8")
+    start = backend.index("static bool expertflow_t2_enqueue_pending")
+    end = backend.index(
+        "bool ggml_backend_sched_expertflow_temporal_observe_router", start
+    )
+    enqueue = backend[start:end]
+    assert "expertflow_cache_select_projected_absent_candidate(" in enqueue
+    assert "current_selected" in enqueue
+    assert "for (const expertflow_cache_slot & slot : cache_state.slots)" not in enqueue
+
+
 def test_t2_does_not_modify_cuda_kernels_or_define_a_new_operation() -> None:
     changed = subprocess.run(
         [

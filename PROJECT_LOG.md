@@ -939,3 +939,62 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
   replay at 8 events / 64 demands / 26 static hits / 19 LRU hits. The bounded
   T2 result stops here; confidence gating, wider concurrency, and multi-layer
   temporal prediction were not started.
+
+### 21:38 PKT - Final projected-state policy experiment started
+
+- Froze the last runtime experiment before implementation. It retains the
+  frozen temporal predictor, one transfer per decode token, the 34-slot packed
+  layer-24 arena, protected sidecar slots 32-33, exact reactive fallback, and
+  the disabled-by-default feature gate.
+- Added a pure projected-cache policy that copies the current reactive state,
+  applies the current token's authoritative eight-expert admission/eviction/LRU
+  plan, and chooses the highest-ranked frozen prediction still absent afterward.
+  The live reactive state is not mutated by prediction.
+- Test-first evidence: the native cache test initially failed to compile because
+  the projected-candidate API did not exist; the Python source contract then
+  failed because the live enqueue path still scanned the pre-admission cache.
+  Both are now green after the narrow implementation.
+- The first build command used the conventional Visual Studio installation path
+  and failed before compilation because this machine's supported VS 2022 tools
+  are installed at `C:\BuildTools2022`. Retrying through
+  `C:\BuildTools2022\Common7\Tools\VsDevCmd.bat` built `ggml-base`,
+  `llama-cli`, and the native cache test successfully. The native projected
+  cache test and 10 focused Python policy/source tests pass.
+- Added paired trace analysis that labels each sidecar demand as an actual
+  paired-baseline blocking miss prevented or a redundant prefetch of an expert
+  that the reactive baseline already held. Router/event identity mismatches fail
+  explicitly.
+
+### 22:02 PKT - Projected-state policy measured and runtime frozen
+
+- Completed general, code, and translation with one warmup plus three measured
+  reactive/predictive pairs per domain. All 12 pairs preserved exact prompt and
+  generated tokens and exact router projections. Measured repetitions were
+  deterministic within every domain and mode.
+- The causal filter worked: every general measured run used three ready
+  sidecar experts that were actual blocking misses in the paired reactive
+  baseline. No ready-useful demand was a paired-baseline reactive hit. Code and
+  translation prevented no misses.
+- The performance verdict remains negative. Across nine measured pairs, decode
+  TPS changed -1.15%, prompt TPS -0.23%, end-to-end time +0.43%, and total
+  blocking time -0.97% in the unfavorable direction. Mean peak GPU memory rose
+  10.22 MiB. No speedup is claimed.
+- Predictive runs enqueued 15 transfers each: mean 1 ready-useful, zero late,
+  13 wasted, and one unused at generation end. Mean aggregate H2D CUDA-event
+  time was 4.051 ms, staging 4.491 ms, enqueue 0.286 ms, and transferred bytes
+  50,181,180. The 552.160 ms aggregate queue-to-ready host interval is not a
+  CUDA-event latency or copy/compute-overlap claim.
+- Exact arena allocation remained 113,744,640 bytes. All 24 benchmark
+  processes exited; settled GPU deltas ranged from -4 MiB to +1 MiB without a
+  growth trend.
+- Corrected verification passed 179 ExpertFlow tests, native cache, sidecar,
+  predictor, and temporal tests, the judge replay fixture, cross-repetition
+  token/router determinism, and `git diff --check`.
+- Preserved verification mistakes: the first full pytest command omitted
+  `PYTHONPATH=.`, native predictor/temporal tests were first called without
+  their required artifacts, and raw trace hashes were initially mistaken for a
+  semantic determinism check before using canonical router projections.
+- Runtime R&D is now frozen regardless of outcome. No further predictor,
+  retuning, multi-layer prefetch, MTP, RL, concurrency, offload, or cache-size
+  experiment will be started for this release. Release integration,
+  documentation, benchmark curation, and submission assets are the active path.
