@@ -788,3 +788,60 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
   Evidence is in `docs/evidence/live-cache/p2-layer24-async-prefetch-result.md`
   and raw artifacts are under
   `C:\models\expertflow\runs\p2-layer24-async-prefetch`.
+
+### 19:05 PKT - P2 committed and temporal layer-24 track opened
+
+- Committed the bounded P2 llama.cpp implementation as `d8354b17` and the
+  corresponding ExpertFlow evidence as `0974a32`; both remain unmerged and
+  unpushed, with live caching disabled by default.
+- Accepted the next-token same-layer analysis with two fail-closed
+  qualifications: temporal samples require unambiguous consecutive decode
+  ordering, and temporal selection receives a new lock before its sealed test
+  is opened. Prior adjacent-layer test results are provenance only.
+- Created isolated `codex/temporal-layer24-predictor` branches from the exact P2
+  tips. The P2 branches remain untouched.
+- Audited the frozen 84-conversation corpus. Layer 24 contains 2,594 decode
+  events and 2,510 consecutive-token pairs, with zero forward-ID gaps and zero
+  token-index gaps across all 84 conversations.
+- Added the approved temporal design and TDD plan. T0 remains offline only:
+  layer 24, decode, fixed 60/12/12 identities, T0.0-T0.3, widths 8/12/16, four
+  predeclared combined-score weights, validation-only selection, and one sealed
+  temporal test evaluation. No llama.cpp source modification is authorized in
+  T0.
+
+### 19:45 PKT - T0 temporal layer-24 predictor sealed
+
+- Added separate temporal dataset, policy, metric, shadow, and guarded pipeline
+  modules so the accepted adjacent-layer predictor and its sealed result remain
+  unchanged. Added 21 focused tests covering causal joins, split sealing,
+  deterministic policies, conversation reset, metrics, cache accounting, and
+  one-time test access.
+- Full pre-fit verification passed 159 ExpertFlow tests. The first validation
+  fit failed before lock creation because zero-valued `eviction_regret` was
+  absent from the simulator result. Preserved the failure in the external
+  ledger, added a RED regression test, and fixed the simulator to emit a
+  complete metric schema.
+- The corrected validation fit materialized train/validation only and selected
+  T0.3 combined scoring at weights `0.50/0.40/0.10`, width 16. Validation
+  recall@8/12/16 is 44.31%/58.23%/66.15%; p50/p95 CPU prediction latency is
+  54.2/62.0 us. The lock preserved all frozen identities and
+  `test_opened=false` before test access.
+- Opened the temporal test split exactly once. Over 360 decode pairs, selected
+  recall@8/12/16 is 47.01%/60.52%/67.22%, with 0% exact-set match and 59.0/80.4
+  us p50/p95 CPU latency. Every domain remained positive; recall@16 ranges from
+  62.92% for general instruction to 73.13% for math/reasoning.
+- The all-ready 32-slot simulation covers 110 of 625 reactive misses (17.60%)
+  but records 70 useful versus 355 wasted insertions and 17 eviction-regret
+  events. This is simulated feasibility only, not live transfer, overlap,
+  throughput, or speedup evidence.
+- An intentional second test command failed closed and left test-metrics hash
+  `5a795aefd90ef4c150fe65924e461f652f94cfc303317a11433376f0c5d97178`
+  unchanged. T0 supports T1 shadow only. Any eventual T2 remains capped at one
+  highest-ranked nonresident transfer per token and must prove ready-useful
+  completion plus reduced blocking time.
+- Final verification passed 160 ExpertFlow tests and `git diff --check`. Judge
+  replay reproduced 8 events, 64 demands, 26 static-hotset hits, and 19 LRU
+  hits; its SHA-256 is
+  `40cd90a1bc45f3e65c4293eb41c0646d248bc86dbf7e4223d8efb19804168139`.
+  The llama.cpp temporal branch remains clean and no llama/router process
+  remained after validation.
