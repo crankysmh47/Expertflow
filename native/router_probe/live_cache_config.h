@@ -14,6 +14,9 @@ struct live_cache_config {
     bool valid = false;
     live_cache_mode mode = live_cache_mode::disabled;
     int layer_id = -1;
+    std::array<bool, 30> enabled_layers = {};
+    std::array<int, 30> layer_ids = {};
+    std::size_t layer_count = 0;
     bool force_evict = false;
     std::string log_path;
     std::string error;
@@ -23,8 +26,14 @@ struct live_cache_config {
     }
 };
 
+struct live_cache_override_patterns {
+    std::array<std::string, 90> values;
+    std::size_t count = 0;
+};
+
 using live_cache_environment_getter = std::function<const char *(const char *)>;
 
 live_cache_config live_cache_config_parse(const live_cache_environment_getter & get_environment);
 
-std::array<const char *, 3> live_cache_tensor_override_patterns();
+live_cache_override_patterns live_cache_tensor_override_patterns(
+    const live_cache_config & config);

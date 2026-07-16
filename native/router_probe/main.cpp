@@ -640,12 +640,13 @@ int main(int argc, char ** argv) {
 
     llama_model_params model_params = llama_model_default_params();
     model_params.n_gpu_layers = config.n_gpu_layers;
-    std::array<llama_model_tensor_buft_override, 4> tensor_overrides = {};
+    std::array<llama_model_tensor_buft_override, 91> tensor_overrides = {};
+    live_cache_override_patterns cache_override_patterns;
     if (cache_config.use_tensor_overrides()) {
-        const auto patterns = live_cache_tensor_override_patterns();
-        for (std::size_t index = 0; index < patterns.size(); ++index) {
+        cache_override_patterns = live_cache_tensor_override_patterns(cache_config);
+        for (std::size_t index = 0; index < cache_override_patterns.count; ++index) {
             tensor_overrides[index] = {
-                patterns[index],
+                cache_override_patterns.values[index].c_str(),
                 ggml_backend_cpu_buffer_type(),
             };
         }
