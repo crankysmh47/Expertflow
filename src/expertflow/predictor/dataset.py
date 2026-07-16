@@ -58,6 +58,9 @@ def load_pilot_dataset(
     manifest_path: Path,
     *,
     expected_split_counts: dict[str, int] | None = None,
+    expected_domain_counts: dict[str, dict[str, int]] | None = None,
+    require_unique_prompt_hashes: bool = False,
+    materialize_splits: set[str] | None = None,
 ) -> PilotDataset:
     """Load a canonical manifest and fail closed on any ambiguous adjacent-layer join."""
 
@@ -70,8 +73,14 @@ def load_pilot_dataset(
     if not isinstance(shards, list) or not shards:
         raise ValueError("manifest shards must be a non-empty array")
 
+    materialized = set(SPLITS) if materialize_splits is None else set(materialize_splits)
+    if not materialized or not materialized <= set(SPLITS):
+        raise ValueError("materialized splits must be a non-empty subset of train/validation/test")
+
     split_by_conversation: dict[str, str] = {}
     shard_rows: list[tuple[str, str, str, Path]] = []
+    prompt_hashes: set[str] = set()
+    domain_counts: dict[str, Counter[str]] = defaultdict(Counter)
     for shard in shards:
         if not isinstance(shard, dict) or shard.get("status") != "passed":
             raise ValueError("every predictor shard must be a passed object")
@@ -81,6 +90,13 @@ def load_pilot_dataset(
         trace = shard.get("trace")
         if not isinstance(conversation, str) or split not in SPLITS or not isinstance(domain, str):
             raise ValueError("shard conversation, split, and domain are invalid")
+        prompt_hash = shard.get("prompt_sha256")
+        if require_unique_prompt_hashes:
+            if not isinstance(prompt_hash, str) or not prompt_hash:
+                raise ValueError("prompt hash is required")
+            if prompt_hash in prompt_hashes:
+                raise ValueError(f"duplicate prompt hash {prompt_hash}")
+            prompt_hashes.add(prompt_hash)
         if conversation in split_by_conversation:
             if split_by_conversation[conversation] != split:
                 raise ValueError(f"conversation {conversation} appears in multiple splits")
@@ -88,12 +104,18 @@ def load_pilot_dataset(
         if not isinstance(trace, dict) or not isinstance(trace.get("path"), str):
             raise ValueError("shard trace path is invalid")
         split_by_conversation[conversation] = split
-        shard_rows.append((conversation, split, domain, Path(trace["path"])))
+        domain_counts[split][domain] += 1
+        if split in materialized:
+            shard_rows.append((conversation, split, domain, Path(trace["path"])))
 
     expected = expected_split_counts or {"train": 7, "validation": 4, "test": 3}
     observed = Counter(split_by_conversation.values())
     if dict(observed) != expected:
         raise ValueError(f"frozen split counts {dict(observed)} do not match {expected}")
+    if expected_domain_counts is not None:
+        actual = {split: dict(counts) for split, counts in domain_counts.items()}
+        if actual != expected_domain_counts:
+            raise ValueError(f"frozen domain counts {actual} do not match {expected_domain_counts}")
 
     grouped_by_shard: list[tuple[str, str, str, dict[tuple[int, int, int], dict[int, RouterTraceEvent]]]] = []
     expected_layers: set[int] = set()

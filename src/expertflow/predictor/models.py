@@ -48,25 +48,61 @@ class FrequencyPredictor:
 
 @dataclass(frozen=True, slots=True)
 class TransitionPredictor:
-    transitions: dict[int, dict[int, Counter[int]]]
+    transitions: dict[str, dict[int, dict[int, Counter[int]]]]
     fallback: FrequencyPredictor
+    weighting: str = "raw_count"
+    phase_mode: str = "pooled"
     name: str = "b2_transition"
 
     @classmethod
-    def fit(cls, samples: Iterable[PredictionSample]) -> "TransitionPredictor":
+    def fit(
+        cls,
+        samples: Iterable[PredictionSample],
+        *,
+        weighting: str = "raw_count",
+        phase_mode: str = "pooled",
+    ) -> "TransitionPredictor":
+        if weighting not in {"raw_count", "source_normalized"}:
+            raise ValueError("transition weighting must be raw_count or source_normalized")
+        if phase_mode not in {"pooled", "separate"}:
+            raise ValueError("transition phase mode must be pooled or separate")
         materialized = tuple(samples)
-        transitions: dict[int, dict[int, Counter[int]]] = defaultdict(lambda: defaultdict(Counter))
+        transitions: dict[str, dict[int, dict[int, Counter[int]]]] = defaultdict(
+            lambda: defaultdict(lambda: defaultdict(Counter))
+        )
         for sample in materialized:
+            phase = sample.phase if phase_mode == "separate" else "*"
             for source_expert in sample.source_expert_ids:
-                transitions[sample.target_layer][source_expert].update(sample.target_expert_ids)
-        frozen = {layer: dict(by_source) for layer, by_source in transitions.items()}
-        return cls(frozen, FrequencyPredictor.fit(materialized))
+                transitions[phase][sample.target_layer][source_expert].update(sample.target_expert_ids)
+        frozen = {
+            phase: {
+                layer: dict(by_source)
+                for layer, by_source in by_layer.items()
+            }
+            for phase, by_layer in transitions.items()
+        }
+        return cls(frozen, FrequencyPredictor.fit(materialized), weighting, phase_mode)
+
+    def _scores(self, sample: PredictionSample) -> Counter[int]:
+        scores: Counter[int] = Counter()
+        phase = sample.phase if self.phase_mode == "separate" else "*"
+        by_source = self.transitions.get(phase, {}).get(sample.target_layer, {})
+        for source_expert in sample.source_expert_ids:
+            source_counts = by_source.get(source_expert, Counter())
+            if self.weighting == "raw_count":
+                scores.update(source_counts)
+            else:
+                total = source_counts.total()
+                if total:
+                    for target_expert, count in source_counts.items():
+                        scores[target_expert] += count / total
+        return scores
 
     def rank(self, sample: PredictionSample) -> tuple[int, ...]:
-        scores: Counter[int] = Counter()
-        by_source = self.transitions.get(sample.target_layer, {})
-        for source_expert in sample.source_expert_ids:
-            scores.update(by_source.get(source_expert, Counter()))
+        scores = self._scores(sample)
         if not scores:
             return self.fallback.rank(sample)
         return tuple(sorted(range(128), key=lambda expert: (-scores[expert], expert)))
+
+    def has_support(self, sample: PredictionSample, expert_id: int) -> bool:
+        return self._scores(sample)[expert_id] > 0

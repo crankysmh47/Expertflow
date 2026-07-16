@@ -29,3 +29,4 @@ def test_metrics_include_widths_and_breakdowns() -> None:
     assert result["per_layer"]["1"]["recall_at_8"] == 1.0
     assert result["per_phase"]["decode"]["recall_at_8"] == 0.5
     assert result["per_conversation"]["b"]["mean_overlap_at_8"] == 4.0
+    assert result["per_domain"]["domain"]["sample_count"] == 2

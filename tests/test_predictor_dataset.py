@@ -27,7 +27,7 @@ def _event(conversation: str, token: int, layer: int, *, expert: int | None = No
     }
 
 
-def _manifest(tmp_path: Path, rows: list[tuple[str, str]]) -> Path:
+def _manifest(tmp_path: Path, rows: list[tuple[str, str]], *, domains: dict[str, str] | None = None) -> Path:
     shards = []
     for conversation, split in rows:
         trace = tmp_path / f"{conversation}.jsonl"
@@ -36,7 +36,8 @@ def _manifest(tmp_path: Path, rows: list[tuple[str, str]]) -> Path:
         shards.append({
             "conversation_id": conversation,
             "split": split,
-            "domain": "test-domain",
+            "domain": (domains or {}).get(conversation, "test-domain"),
+            "prompt_sha256": f"prompt-{conversation}",
             "status": "passed",
             "trace": {"path": str(trace)},
         })
@@ -106,3 +107,56 @@ def test_rejects_conversation_in_more_than_one_split(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="multiple splits"):
         load_pilot_dataset(manifest, expected_split_counts={"train": 1, "test": 1})
+
+
+def test_enforces_domain_balance_and_unique_prompt_hashes(tmp_path: Path) -> None:
+    rows = [("train-a", "train"), ("validation-a", "validation"), ("test-a", "test")]
+    manifest = _manifest(tmp_path, rows, domains={conversation: "domain-a" for conversation, _ in rows})
+
+    dataset = load_pilot_dataset(
+        manifest,
+        expected_split_counts={"train": 1, "validation": 1, "test": 1},
+        expected_domain_counts={
+            "train": {"domain-a": 1},
+            "validation": {"domain-a": 1},
+            "test": {"domain-a": 1},
+        },
+        require_unique_prompt_hashes=True,
+    )
+    assert len(dataset.train) == 4
+
+    payload = json.loads(manifest.read_text())
+    payload["shards"][1]["prompt_sha256"] = payload["shards"][0]["prompt_sha256"]
+    manifest.write_text(json.dumps(payload), encoding="utf-8")
+    with pytest.raises(ValueError, match="duplicate prompt hash"):
+        load_pilot_dataset(
+            manifest,
+            expected_split_counts={"train": 1, "validation": 1, "test": 1},
+            require_unique_prompt_hashes=True,
+        )
+
+
+def test_rejects_domain_count_drift(tmp_path: Path) -> None:
+    manifest = _manifest(tmp_path, [("train-a", "train")], domains={"train-a": "domain-a"})
+    with pytest.raises(ValueError, match="domain counts"):
+        load_pilot_dataset(
+            manifest,
+            expected_split_counts={"train": 1},
+            expected_domain_counts={"train": {"domain-b": 1}},
+        )
+
+
+def test_can_validate_sealed_split_identity_without_opening_its_trace(tmp_path: Path) -> None:
+    manifest = _manifest(tmp_path, [("train-a", "train"), ("test-a", "test")])
+    payload = json.loads(manifest.read_text())
+    Path(payload["shards"][1]["trace"]["path"]).unlink()
+
+    dataset = load_pilot_dataset(
+        manifest,
+        expected_split_counts={"train": 1, "test": 1},
+        materialize_splits={"train"},
+    )
+
+    assert len(dataset.train) == 4
+    assert dataset.test == ()
+    assert dataset.conversation_ids["test"] == ("test-a",)

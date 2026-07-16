@@ -23,6 +23,7 @@ def simulate_shadow(
     samples: Iterable[PredictionSample],
     rankings: Sequence[tuple[int, ...]],
     *,
+    admitted_rankings: Sequence[tuple[int, ...]] | Sequence[list[int]] | None = None,
     width: int,
     capacity: int = 32,
     expert_bytes: int = 3_345_412,
@@ -30,6 +31,8 @@ def simulate_shadow(
     rows = tuple(samples)
     if len(rows) != len(rankings):
         raise ValueError("samples and rankings must have identical length")
+    if admitted_rankings is not None and len(rows) != len(admitted_rankings):
+        raise ValueError("samples and admitted rankings must have identical length")
     if width not in {8, 12, 16} and not (1 <= width <= 128):
         raise ValueError("candidate width is invalid")
     if capacity < width:
@@ -40,7 +43,7 @@ def simulate_shadow(
     current_conversation: str | None = None
     totals = defaultdict(int)
 
-    for sample, ranking in zip(rows, rankings, strict=True):
+    for row_index, (sample, ranking) in enumerate(zip(rows, rankings, strict=True)):
         if sample.conversation_id != current_conversation:
             reactive.clear()
             shadow.clear()
@@ -49,11 +52,17 @@ def simulate_shadow(
         layer_reactive = reactive[sample.target_layer]
         layer_shadow = shadow[sample.target_layer]
         pre_speculation = set(layer_shadow)
+        candidates = tuple(
+            ranking[:width] if admitted_rankings is None else admitted_rankings[row_index]
+        )
+        if any(expert not in ranking[:width] for expert in candidates):
+            raise ValueError("admitted candidates must come from the selected ranking prefix")
+        totals["rejected_predicted_candidates"] += width - len(candidates)
         totals["demand_count"] += len(target)
         totals["reactive_demand_hits"] += sum(expert in layer_reactive for expert in target)
 
         inserted: set[int] = set()
-        for expert in ranking[:width]:
+        for expert in candidates:
             if expert in layer_shadow:
                 continue
             victim = None
@@ -71,7 +80,7 @@ def simulate_shadow(
 
         totals["ready_before_demand"] += sum(expert in layer_shadow for expert in target)
         totals["predicted_ready_demands"] += sum(
-            expert in target and expert in ranking[:width] and expert not in pre_speculation
+            expert in target and expert in candidates and expert not in pre_speculation
             for expert in target
         )
         totals["uncovered_blocking_misses"] += sum(expert not in layer_shadow for expert in target)

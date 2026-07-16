@@ -46,11 +46,13 @@ def evaluate_predictions(samples: Iterable[PredictionSample], predictor: Ranker)
         "per_layer": defaultdict(list),
         "per_phase": defaultdict(list),
         "per_conversation": defaultdict(list),
+        "per_domain": defaultdict(list),
     }
     for sample, ranking in rows:
         groups["per_layer"][str(sample.target_layer)].append((sample, ranking))
         groups["per_phase"][sample.phase].append((sample, ranking))
         groups["per_conversation"][sample.conversation_id].append((sample, ranking))
+        groups["per_domain"][sample.domain].append((sample, ranking))
     for name, grouped in groups.items():
         result[name] = {key: _summary(value) for key, value in sorted(grouped.items())}
     return result
