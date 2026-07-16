@@ -151,6 +151,40 @@ static void test_blocking_tensor_overrides_cover_every_configured_layer() {
     assert(patterns.values[5] == "^blk\\.24\\.ffn_down_exps\\.scale$");
 }
 
+static void test_auto_eligible_mode_is_explicit_and_mutually_exclusive() {
+    const live_cache_config automatic = parse({
+        { "EXPERTFLOW_LIVE_CACHE", "1" },
+        { "EXPERTFLOW_LIVE_CACHE_MODE", "blocking" },
+        { "EXPERTFLOW_LIVE_CACHE_AUTO_ELIGIBLE", "1" },
+        { "EXPERTFLOW_LIVE_CACHE_LOG", "C:\\runs\\cache.jsonl" },
+    });
+    assert(automatic.valid);
+    assert(automatic.auto_eligible);
+    assert(automatic.layer_count == 30);
+    for (int layer_id = 0; layer_id < 30; ++layer_id) {
+        assert(automatic.layer_ids[layer_id] == layer_id);
+        assert(automatic.requested_layers[layer_id]);
+    }
+    const auto ngl10 = live_cache_tensor_override_patterns(automatic, 10);
+    assert(ngl10.count == 27);
+    assert(ngl10.values[0] == "^blk\\.21\\.ffn_gate_up_exps\\.weight$");
+    assert(ngl10.values[26] == "^blk\\.29\\.ffn_down_exps\\.scale$");
+
+    assert(!parse({
+        { "EXPERTFLOW_LIVE_CACHE", "1" },
+        { "EXPERTFLOW_LIVE_CACHE_MODE", "blocking" },
+        { "EXPERTFLOW_LIVE_CACHE_AUTO_ELIGIBLE", "1" },
+        { "EXPERTFLOW_LIVE_CACHE_LAYERS", "21,24" },
+        { "EXPERTFLOW_LIVE_CACHE_LOG", "C:\\runs\\cache.jsonl" },
+    }).valid);
+    assert(!parse({
+        { "EXPERTFLOW_LIVE_CACHE", "1" },
+        { "EXPERTFLOW_LIVE_CACHE_MODE", "blocking" },
+        { "EXPERTFLOW_LIVE_CACHE_AUTO_ELIGIBLE", "0" },
+        { "EXPERTFLOW_LIVE_CACHE_LOG", "C:\\runs\\cache.jsonl" },
+    }).valid);
+}
+
 int main() {
     test_unset_environment_is_disabled();
     test_subordinate_variable_without_enable_fails();
@@ -159,5 +193,6 @@ int main() {
     test_force_evict_is_blocking_only();
     test_plural_layer_lists_are_exact_and_ascending();
     test_blocking_tensor_overrides_cover_every_configured_layer();
+    test_auto_eligible_mode_is_explicit_and_mutually_exclusive();
     return 0;
 }

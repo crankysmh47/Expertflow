@@ -635,6 +635,20 @@ int main(int argc, char ** argv) {
         std::fprintf(stderr, "invalid live-cache configuration: %s\n", cache_config.error.c_str());
         return 3;
     }
+    if (cache_config.mode != live_cache_mode::disabled) {
+        const std::string ngl_value = std::to_string(config.n_gpu_layers);
+#ifdef _WIN32
+        if (_putenv_s("EXPERTFLOW_LIVE_CACHE_NGL", ngl_value.c_str()) != 0) {
+            std::fprintf(stderr, "unable to publish live-cache -ngl configuration\n");
+            return 3;
+        }
+#else
+        if (setenv("EXPERTFLOW_LIVE_CACHE_NGL", ngl_value.c_str(), 1) != 0) {
+            std::fprintf(stderr, "unable to publish live-cache -ngl configuration\n");
+            return 3;
+        }
+#endif
+    }
 
     ggml_backend_load_all();
 
@@ -643,7 +657,8 @@ int main(int argc, char ** argv) {
     std::array<llama_model_tensor_buft_override, 91> tensor_overrides = {};
     live_cache_override_patterns cache_override_patterns;
     if (cache_config.use_tensor_overrides()) {
-        cache_override_patterns = live_cache_tensor_override_patterns(cache_config);
+        cache_override_patterns = live_cache_tensor_override_patterns(
+            cache_config, config.n_gpu_layers);
         for (std::size_t index = 0; index < cache_override_patterns.count; ++index) {
             tensor_overrides[index] = {
                 cache_override_patterns.values[index].c_str(),

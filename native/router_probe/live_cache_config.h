@@ -14,6 +14,8 @@ struct live_cache_config {
     bool valid = false;
     live_cache_mode mode = live_cache_mode::disabled;
     int layer_id = -1;
+    bool auto_eligible = false;
+    std::array<bool, 30> requested_layers = {};
     std::array<bool, 30> enabled_layers = {};
     std::array<int, 30> layer_ids = {};
     std::size_t layer_count = 0;
@@ -37,3 +39,7 @@ live_cache_config live_cache_config_parse(const live_cache_environment_getter & 
 
 live_cache_override_patterns live_cache_tensor_override_patterns(
     const live_cache_config & config);
+
+live_cache_override_patterns live_cache_tensor_override_patterns(
+    const live_cache_config & config,
+    int n_gpu_layers);

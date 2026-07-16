@@ -42,6 +42,9 @@ def reconcile_multilayer_events(
         for layer in layers
     }
     cache_selected: list[tuple[int, list[int]]] = []
+    previous_residency: dict[int, dict[int, dict[str, int]]] = {
+        layer: {} for layer in layers
+    }
     for index, event in enumerate(events):
         expected_layer = layers[index % len(layers)]
         layer = int(event["layer_id"])
@@ -59,6 +62,36 @@ def reconcile_multilayer_events(
         transferred = int(event["bytes_transferred"])
         if transferred != misses * PACKED_EXPERT_BYTES:
             raise ValueError("cache bytes do not reconcile with packed misses")
+        mapping_rows = event.get("final_resident_mapping", [])
+        if mapping_rows:
+            if len(mapping_rows) != 32:
+                raise ValueError("resident mapping must contain exactly 32 slots")
+            mapping = {int(row["slot"]): row for row in mapping_rows}
+            if set(mapping) != set(range(32)):
+                raise ValueError("resident mapping slots are incomplete or duplicated")
+            physical_slots = [int(value) for value in event["physical_slots"]]
+            if len(physical_slots) != len(selected):
+                raise ValueError("physical slot count does not match selected experts")
+            for expert, slot in zip(selected, physical_slots):
+                row = mapping.get(slot)
+                if row is None or int(row["expert"]) != expert:
+                    raise ValueError("resident mapping does not match selected expert")
+            prior = previous_residency[layer]
+            for load in event.get("loads", []):
+                slot = int(load["slot"])
+                before = prior.get(
+                    slot,
+                    {"expert": -1, "generation": 0, "last_use_sequence": 0},
+                )
+                after = mapping[slot]
+                if (
+                    int(load["replaced"]) != int(before["expert"])
+                    or int(load["generation_before"]) != int(before["generation"])
+                    or int(load["generation_after"]) != int(after["generation"])
+                    or int(load["expert"]) != int(after["expert"])
+                ):
+                    raise ValueError("resident mapping load generation is stale")
+            previous_residency[layer] = mapping
         stats = per_layer[str(layer)]
         stats["events"] += 1
         stats["expert_demands"] += len(selected)

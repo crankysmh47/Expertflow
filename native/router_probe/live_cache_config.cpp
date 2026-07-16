@@ -6,10 +6,11 @@
 
 namespace {
 
-constexpr std::array<const char *, 5> subordinate_names = {
+constexpr std::array<const char *, 6> subordinate_names = {
     "EXPERTFLOW_LIVE_CACHE_MODE",
     "EXPERTFLOW_LIVE_CACHE_LAYER",
     "EXPERTFLOW_LIVE_CACHE_LAYERS",
+    "EXPERTFLOW_LIVE_CACHE_AUTO_ELIGIBLE",
     "EXPERTFLOW_LIVE_CACHE_LOG",
     "EXPERTFLOW_LIVE_CACHE_FORCE_EVICT",
 };
@@ -48,6 +49,7 @@ bool parse_layer_list(const char * value, live_cache_config & result) {
             return false;
         }
         result.layer_ids[result.layer_count++] = layer_id;
+        result.requested_layers[layer_id] = true;
         result.enabled_layers[layer_id] = true;
         previous = layer_id;
         if (*cursor == '\0') {
@@ -81,17 +83,34 @@ live_cache_config live_cache_config_parse(const live_cache_environment_getter & 
     const char * mode = get_environment("EXPERTFLOW_LIVE_CACHE_MODE");
     const char * layer = get_environment("EXPERTFLOW_LIVE_CACHE_LAYER");
     const char * layers = get_environment("EXPERTFLOW_LIVE_CACHE_LAYERS");
-    if (mode == nullptr || (layer == nullptr) == (layers == nullptr)) {
-        return invalid("enabled live cache requires exactly one singular or plural layer setting");
+    const char * auto_eligible = get_environment("EXPERTFLOW_LIVE_CACHE_AUTO_ELIGIBLE");
+    const int selection_count =
+        (layer != nullptr ? 1 : 0) +
+        (layers != nullptr ? 1 : 0) +
+        (auto_eligible != nullptr ? 1 : 0);
+    if (mode == nullptr || selection_count != 1) {
+        return invalid("enabled live cache requires exactly one singular, plural, or auto-eligible layer setting");
     }
 
     live_cache_config result;
-    if (layer != nullptr) {
+    if (auto_eligible != nullptr) {
+        if (std::strcmp(auto_eligible, "1") != 0) {
+            return invalid("EXPERTFLOW_LIVE_CACHE_AUTO_ELIGIBLE must be exactly 1 when set");
+        }
+        result.auto_eligible = true;
+        result.layer_count = result.layer_ids.size();
+        for (int layer_id = 0; layer_id < 30; ++layer_id) {
+            result.layer_ids[layer_id] = layer_id;
+            result.requested_layers[layer_id] = true;
+            result.enabled_layers[layer_id] = true;
+        }
+    } else if (layer != nullptr) {
         if (std::strcmp(layer, "24") != 0) {
             return invalid("legacy singular live-cache layer must be exactly 24");
         }
         result.layer_id = 24;
         result.layer_ids[0] = 24;
+        result.requested_layers[24] = true;
         result.enabled_layers[24] = true;
         result.layer_count = 1;
     } else if (!parse_layer_list(layers, result)) {
@@ -130,9 +149,27 @@ live_cache_config live_cache_config_parse(const live_cache_environment_getter & 
 
 live_cache_override_patterns live_cache_tensor_override_patterns(
         const live_cache_config & config) {
+    return live_cache_tensor_override_patterns(config, 31);
+}
+
+live_cache_override_patterns live_cache_tensor_override_patterns(
+        const live_cache_config & config,
+        int n_gpu_layers) {
     live_cache_override_patterns patterns;
+    int first_auto_layer = 0;
+    if (config.auto_eligible) {
+        int repeating_gpu_layers = n_gpu_layers > 0 ? n_gpu_layers - 1 : 0;
+        if (repeating_gpu_layers > 30) {
+            repeating_gpu_layers = 30;
+        }
+        first_auto_layer = 30 - repeating_gpu_layers;
+    }
     for (std::size_t index = 0; index < config.layer_count; ++index) {
-        const std::string prefix = "^blk\\." + std::to_string(config.layer_ids[index]) + "\\.";
+        const int layer_id = config.layer_ids[index];
+        if (config.auto_eligible && layer_id < first_auto_layer) {
+            continue;
+        }
+        const std::string prefix = "^blk\\." + std::to_string(layer_id) + "\\.";
         patterns.values[patterns.count++] = prefix + "ffn_gate_up_exps\\.weight$";
         patterns.values[patterns.count++] = prefix + "ffn_down_exps\\.weight$";
         patterns.values[patterns.count++] = prefix + "ffn_down_exps\\.scale$";

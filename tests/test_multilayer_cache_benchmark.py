@@ -92,3 +92,37 @@ def test_rejects_missing_extra_duplicate_or_out_of_order_layers(tmp_path, mutati
     trace.write_text("", encoding="utf-8")
     with pytest.raises(ValueError):
         reconcile_multilayer_events(cache, trace, enabled_layers=(0, 24))
+
+
+def test_rejects_stale_or_cross_layer_resident_mapping(tmp_path):
+    cache = tmp_path / "cache.jsonl"
+    trace = tmp_path / "trace.jsonl"
+    events = []
+    for layer, first_expert in ((21, 10), (24, 40)):
+        selected = list(range(first_expert, first_expert + 8))
+        event = _event(0, layer, selected, 0, 8)
+        event["loads"] = [
+            {
+                "expert": expert,
+                "slot": slot,
+                "replaced": -1,
+                "generation_before": 0,
+                "generation_after": 1,
+            }
+            for slot, expert in enumerate(selected)
+        ]
+        event["final_resident_mapping"] = [
+            {
+                "slot": slot,
+                "expert": selected[slot] if slot < 8 else -1,
+                "generation": 1 if slot < 8 else 0,
+                "last_use_sequence": 1 if slot < 8 else 0,
+            }
+            for slot in range(32)
+        ]
+        events.append(event)
+    events[1]["final_resident_mapping"][0]["expert"] = 10
+    cache.write_text("\n".join(json.dumps(event) for event in events), encoding="utf-8")
+    trace.write_text("", encoding="utf-8")
+    with pytest.raises(ValueError, match="resident mapping"):
+        reconcile_multilayer_events(cache, trace, enabled_layers=(21, 24))
