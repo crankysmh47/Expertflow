@@ -178,6 +178,7 @@ bool parse_options(int argc, char ** argv, options & result) {
 }
 
 struct trace_state {
+    llama_context * context = nullptr;
     std::ofstream output;
     std::ofstream capture_output;
     std::vector<llama_token> batch_tokens;
@@ -389,6 +390,18 @@ bool router_trace_callback(ggml_tensor * tensor, bool ask, void * user_data) {
         tensor, expert_ids.data(), 0, expert_ids.size() * sizeof(expert_ids[0]));
 
     for (std::int64_t token_column = 0; token_column < tensor->ne[1]; ++token_column) {
+        if ((layer_id == 23 || layer_id == 24) &&
+            !llama_expertflow_predictor_observe_router(
+                state.context,
+                state.forward_id,
+                layer_id,
+                expert_ids.data() + token_column * tensor->ne[0],
+                static_cast<std::size_t>(tensor->ne[0]))) {
+            state.error =
+                "ExpertFlow predictor rejected router observation for layer " +
+                std::to_string(layer_id);
+            return false;
+        }
         state.output
             << "{\"schema_version\":\"" << schema_version
             << "\",\"request_id\":\"req-001\""
@@ -771,6 +784,7 @@ int main(int argc, char ** argv) {
         llama_model_free(model);
         return 1;
     }
+    trace.context = context;
     llama_set_n_threads(context, config.threads, config.threads);
 
     llama_sampler * sampler = llama_sampler_chain_init(llama_sampler_chain_default_params());
@@ -787,6 +801,17 @@ int main(int argc, char ** argv) {
         ids.current_token_index = token_index;
         if (full_trace) {
             trace.begin_forward(batch, phase, token_index);
+        }
+        const llama_expertflow_predictor_phase predictor_phase =
+            std::strcmp(phase, "prefill") == 0
+                ? LLAMA_EXPERTFLOW_PREDICTOR_PHASE_PREFILL
+                : LLAMA_EXPERTFLOW_PREDICTOR_PHASE_DECODE;
+        if (!llama_expertflow_predictor_set_phase(context, predictor_phase)) {
+            std::fprintf(stderr, "unable to set ExpertFlow predictor phase\n");
+            if (full_trace) {
+                trace.end_forward();
+            }
+            return false;
         }
         const int decode_result = llama_decode(context, batch);
         if (full_trace) {

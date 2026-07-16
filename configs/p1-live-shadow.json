@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "P1",
+  "mode": "live_shadow",
+  "transition": {
+    "source_layer": 23,
+    "target_layer": 24
+  },
+  "predictor": {
+    "family": "b2_transition",
+    "scoring": "source_normalized",
+    "tables": "phase_separated",
+    "candidate_width": 12,
+    "admission": "observed_support",
+    "tie_break": "ascending_expert_id",
+    "p0_commit": "6bc8eb68f835a3588e97704595139cf5c249faf2",
+    "artifact_path": "C:\\models\\expertflow\\runs\\p1-live-shadow\\predictor-artifact\\expertflow-b2-23-24-v1.bin",
+    "artifact_sha256": "54f898ec25fc4b783953f8c98ffb122073e91741b31b94aef2e285d26063409b"
+  },
+  "runtime": {
+    "llama_base_commit": "b910bc37c91bd12536be7528c4be9d6b0cdebeb3",
+    "gpu_layers": 10,
+    "threads": 12,
+    "batch": 1,
+    "microbatch": 1,
+    "sampler": "greedy",
+    "live_cache_enabled": false,
+    "predictor_shadow_enabled_by_default": false,
+    "probe_sha256": "c2cc7d91ad3c544daa232de81a4119a27cc4a8aaad7c702971b324fc32227fdb",
+    "llama_dll_sha256": "cc01af39da463c796f513327fe991f6077b8c372bc78758301c22f11f495e581",
+    "ggml_base_dll_sha256": "70abb80b23e5e2809e0e5d78c4f5357db4ec362ecbdf80be1c53f30e942a52a6",
+    "ggml_cuda_dll_sha256": "6533db2aa0bcc2503dd5758591aca37ace6c7cfd2a3c3d47109482b9cdab3fa4"
+  },
+  "validation": {
+    "focused_prompts": [
+      "general",
+      "code",
+      "translation"
+    ],
+    "focused_warmups": 1,
+    "focused_measured_repetitions": 3,
+    "smoke_tasks": 7,
+    "n_predict": 16,
+    "aggregate_path": "C:\\models\\expertflow\\runs\\p1-live-shadow\\p1-aggregate.json",
+    "aggregate_sha256": "914cd215ce4946b54fe6b9b7de97ea4430faacea86e3ea446cef9ecd5948ba9d"
+  }
+}

@@ -708,3 +708,40 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - The simulated conversation-reset 32-slot shadow reduces uncovered misses from 60,092 to 36,375, a modeled 39.47% reduction before timing. It records 23,717 ready gain, 6,099 eviction regret, 27,919 useful versus 41,868 wasted insertions, and 93.40 GB useful versus 140.07 GB wasted projected bytes. The model assumes predictions are ready; this is not CUDA latency, transfer overlap, live-cache throughput, or speedup evidence.
 - An intentional second test command failed closed and left the test-metrics SHA-256 unchanged. The original lock serialized a null deduplication field because that policy lives in the separately hashed frozen-corpus definition; the authoritative 47,147-byte corpus file hash is `970681c0126cc5400524e5b4328f0ecaf87c72d346a7fd99896a44224720dbab`. Selection configuration was not changed after test access.
 - No llama.cpp, runtime cache, transfer path, CUDA stream, MTP, or production integration was modified. Evidence is in `docs/evidence/live-cache/expanded-next-layer-predictor.md` and `C:\models\expertflow\runs\expanded-predictor-final`.
+### 17:10 PKT - P1 live-shadow predictor passes the bounded runtime gate
+
+- Preserved frozen P0 commit `6bc8eb68`, source-normalized phase-separated B2
+  scoring, width 12, observed-support admission, and the disclosed single
+  sealed-test procedural exception. The sealed test was not rerun or retuned.
+- Exported the versioned 267,556-byte artifact twice with identical SHA-256
+  `54f898ec25fc4b783953f8c98ffb122073e91741b31b94aef2e285d26063409b`;
+  payload SHA-256 is
+  `8837f31178e1b049f23e6ff2ad1654908055b1d8ae79c19994a33df0a6424f40`.
+- Added a fixed native loader/scorer, one-call explicit phase generation, and
+  8,192-entry deferred record storage. Missing, invalid, contradictory, stale,
+  overflowed, corrupt, mismatched, or incomplete state fails explicitly.
+- The first attempted scheduler-side observation stopped with zero records
+  because CUDA-resident layers 23/24 do not traverse the selective host-weight
+  copy path when cache is disabled. No cache or tensor change occurred. P1 was
+  corrected to reuse the canonical full-trace callback's already-materialized
+  ID arrays through a narrow runtime API. It adds no callback, tensor request,
+  synchronization, cache action, or graph-scheduling decision.
+- Ran the frozen general/code/translation suite with one warmup and three
+  measured repetitions per mode, followed by seven smoke tasks. All 19 pairs
+  passed exact prompt/generated-token parity, exact ordered router parity,
+  exact offline/live candidate and float64 score equivalence, and deterministic
+  cleanup. The 1,101 transitions had zero support failures.
+- Live prefill: 875 transitions, Recall@8 53.77%, Recall@12 66.90%, p50 7.6 us,
+  p95 8.5 us. Live decode: 226 transitions, Recall@8 50.77%, Recall@12 63.00%,
+  p50 7.5 us, p95 8.375 us. These prompt-specific results do not replace the
+  frozen expanded-test metrics.
+- Focused shadow overhead versus matched observer baseline: prompt TPS -0.286%,
+  decode TPS -0.187%, end-to-end +0.272%, and TTFT +0.293%. No speedup is
+  claimed. Peak GPU use was unchanged at 6,680 MiB and settled VRAM delta was
+  zero for every process.
+- Verification passed 139 ExpertFlow tests, assertion-active native predictor
+  and cache tests, and judge replay at 8 events / 64 demands / static 26 hits /
+  LRU 19 hits. No ExpertFlow environment variable or model process remained.
+- P1 binary hashes, commands, measurements, failures, and exact artifacts are
+  recorded under `C:\models\expertflow\runs\p1-live-shadow`. P2 remains design
+  only; no prefetch, copy stream, slot reservation, or cache decision was added.
