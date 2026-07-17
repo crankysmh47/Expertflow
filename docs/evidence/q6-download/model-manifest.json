@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "status": "verified",
+  "repository": "bartowski/google_gemma-4-26B-A4B-it-GGUF",
+  "revision": "fabed3e586120477355eea23b92644540a79ce2f",
+  "filename": "google_gemma-4-26B-A4B-it-Q6_K.gguf",
+  "absolute_path": "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+  "exact_bytes": 22862575520,
+  "sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba",
+  "source_headers": {
+    "x_repo_commit": "fabed3e586120477355eea23b92644540a79ce2f",
+    "x_linked_size": 22862575520,
+    "x_linked_etag": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba"
+  },
+  "disk": {
+    "drive": "C:",
+    "free_before_bytes": 93687873536,
+    "free_before_gib": 87.254,
+    "free_after_bytes": 65190268928,
+    "free_after_gib": 60.713,
+    "minimum_required_gib": 30
+  },
+  "download": {
+    "requested_command": "hf download bartowski/google_gemma-4-26B-A4B-it-GGUF google_gemma-4-26B-A4B-it-Q6_K.gguf --local-dir C:\\models\\gemma-4-26b-a4b-q6",
+    "successful_fallback": "aria2c --continue=true --max-connection-per-server=16 --split=16 --min-split-size=16M --file-allocation=none --dir=C:\\models\\gemma-4-26b-a4b-q6 --out=google_gemma-4-26B-A4B-it-Q6_K.gguf https://huggingface.co/bartowski/google_gemma-4-26B-A4B-it-GGUF/resolve/main/google_gemma-4-26B-A4B-it-Q6_K.gguf?download=true",
+    "completed_local_time": "2026-07-18T04:32:19+05:00",
+    "resume_state_removed_on_success": true,
+    "notes": [
+      "No pre-existing hash-matching local or Hugging Face cache file was found.",
+      "The hf CLI attempt produced no completed bytes and was replaced by the permitted resumable direct download.",
+      "Stale aria2 shim children were reduced to one direct aria2 owner; final integrity was established only by exact size and SHA-256."
+    ]
+  },
+  "verification_command": "Get-FileHash C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf -Algorithm SHA256",
+  "git": {
+    "branch": "codex/q6-download",
+    "base_commit": "71fc4948ee9f305c4e93bfbbea18db07df0d9491",
+    "isolated_worktree": "C:\\models\\expertflow\\worktrees\\q6-download",
+    "merged": false,
+    "pushed": false
+  }
+}
