@@ -1,9 +1,6 @@
-from pathlib import Path
 import subprocess
 
-
-LLAMA = Path(r"C:\models\expertflow\worktrees\llama-p2-layer24-async-prefetch")
-EXPERTFLOW = Path(r"C:\models\expertflow\worktrees\p2-layer24-async-prefetch")
+from tests.source_contract_paths import EXPERTFLOW, LLAMA
 
 
 def test_t2_is_explicit_disabled_by_default_and_layer24_only() -> None:
