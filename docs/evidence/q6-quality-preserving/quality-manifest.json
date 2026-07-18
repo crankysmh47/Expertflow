@@ -1,0 +1,1421 @@
+{
+  "datasets": {
+    "mmlu": {
+      "repository": "cais/mmlu",
+      "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+      "source": {
+        "bytes": 3281851,
+        "path": "C:\\models\\expertflow\\quality-data\\frozen-option1-v1\\mmlu-test.json",
+        "sha256": "a732878ec453dc34b3933f7cf2ffb6fbc558f97c031b8d3882e2ff2f3e4d0e8a"
+      },
+      "split": "test"
+    },
+    "wikitext": {
+      "configuration": "wikitext-2-raw-v1",
+      "repository": "Salesforce/wikitext",
+      "revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+      "source": {
+        "bytes": 1287656,
+        "path": "C:\\models\\expertflow\\quality-data\\frozen-option1-v1\\wikitext-test.txt",
+        "sha256": "bbf94c53a05abe9ee670d3b6343608095822c85e26de37c70b24fc571964574a"
+      },
+      "split": "test"
+    }
+  },
+  "executables": {
+    "llama_cli": {
+      "bytes": 10240,
+      "path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-cli.exe",
+      "sha256": "07ca190fc192efcfb6a40eb5c14c0b8bde1ebe254811e5d2e4e4f23cfd1041cd"
+    },
+    "llama_perplexity": {
+      "bytes": 10240,
+      "path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-perplexity.exe",
+      "sha256": "4867d2463a6e132a63222bc2de36f2f36412f1a906df181d5c13f068d43551cf"
+    }
+  },
+  "manifest_sha256": "4b4a1823e8dd0335e5e788657a8106177af30ac5a660738a8b4f25e3609dca61",
+  "mmlu": {
+    "item_count": 100,
+    "items": [
+      {
+        "answer": 3,
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "question": "Statement 1 | For n > 1, the set {1,2, ..., n-1} is a group under multiplication modulo n. Statement 2 | There is an integer x such that 63x mod 100 = 1.",
+        "row_id": 78,
+        "selection_sha256": "042b70048b7d30436e6d92c79d1e3ef50e7cda5fc452c5b5e2d335c644c786ca",
+        "subject": "abstract_algebra"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "semi group with identity",
+          "commutative semigroups with identity",
+          "group",
+          "abelian group"
+        ],
+        "question": "The set of all nth roots of unity under multiplication of complex numbers form a/an",
+        "row_id": 23,
+        "selection_sha256": "08495021c585d4cd27cac64b75c3e7672db9be385869edddc2c91efb26e8f66a",
+        "subject": "abstract_algebra"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "8",
+          "2",
+          "24",
+          "120"
+        ],
+        "question": "Let p = (1, 2, 5, 4)(2, 3) in S_5 . Find the index of <p> in S_5.",
+        "row_id": 1,
+        "selection_sha256": "0a8b023d6940fadb8a6bd843a20b6128ccaf35f261d6907e8b57c38ff3db4f07",
+        "subject": "abstract_algebra"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "question": "Statement 1 | The image of a group of 6 elements under a homomorphism may have 12 elements. Statement 2 | There is a homomorphism of some group of 6 elements into some group of 12 elements.",
+        "row_id": 28,
+        "selection_sha256": "0b27ffe9fee51d6e9da791bc651ed2a7daa418c583ade98b332b744b56902830",
+        "subject": "abstract_algebra"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "question": "Statement 1 | Every quotient ring of every commutative ring is again a commutative ring. Statement 2 | An ideal N in a ring R with unity 1 is all of R if and only if 1 in N.",
+        "row_id": 62,
+        "selection_sha256": "0bb1d4b1c4e9ac093f27a66719494d0942629ee8015cf483e3ed3cce60b33022",
+        "subject": "abstract_algebra"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "0",
+          "1",
+          "11",
+          "22"
+        ],
+        "question": "Compute the product in the given ring. (20)(-8) in Z_26",
+        "row_id": 36,
+        "selection_sha256": "0e5c48a9fd5a50c05df6be1e446914600bb78b58c08f580e186ce7fff05d8ec4",
+        "subject": "abstract_algebra"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "question": "Let A and B be sets, f: A -> B and g: B -> A be functions such that for all a \\in A, g(f(a)) = a. Statement 1 | The function g must necessarily be injective. Statement 2 | The function g must necessarily be surjective.",
+        "row_id": 84,
+        "selection_sha256": "110927352a7928f3b751db998f6815ae40e0f7c3daf312cbe077cc20e4dd5fcc",
+        "subject": "abstract_algebra"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "question": "Statement 1 | If H and K are subgroups of G and one of H or K is normal subgroup of G, then HK is a subgroup of G. Statement 2 | All groups of order p^2 where p is prime are Abelian.",
+        "row_id": 59,
+        "selection_sha256": "11a0924b9b31f73e37b1392cf6ee784cd29c386eaead966c8275352d0eb738d2",
+        "subject": "abstract_algebra"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "question": "Statement 1 | If H is a subgroup of G and a belongs to G then |aH| = |Ha|. Statement 2 | If H is a subgroup of G and a and b belong to G, then aH and Hb are identical or disjoint.",
+        "row_id": 10,
+        "selection_sha256": "14bd2f45a8d16955d39991d51af5eb1a47fefe73b7ac5e5bcccb41d01f7abe69",
+        "subject": "abstract_algebra"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "0",
+          "4",
+          "2",
+          "6"
+        ],
+        "question": "Find the degree for the given field extension Q(sqrt(2) + sqrt(3)) over Q.",
+        "row_id": 8,
+        "selection_sha256": "160ba6e58ac7a3c6815bb7c503550525347a597d533f260ad4119995f7213254",
+        "subject": "abstract_algebra"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "not accepted by any Turing machine",
+          "accepted by some Turing machine, but by no pushdown automaton",
+          "accepted by some pushdown automaton, but not context-free",
+          "context-free, but not regular"
+        ],
+        "question": "The language {ww | w in (0 + 1)*} is",
+        "row_id": 17,
+        "selection_sha256": "00af74d1515df65826145f131cde6cc2a9fedacb2da05104e87bbd885c63590e",
+        "subject": "college_computer_science"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "n^m",
+          "n!/(n - m)!",
+          "n!",
+          "n!/(m!(n - m)!)"
+        ],
+        "question": "Let A be a finite set with m elements, and let B be a finite set with n elements. The number of distinct functions mapping A into B is",
+        "row_id": 76,
+        "selection_sha256": "02e9ac050c65767cc0494cb133dda27badc7e9fd3238fab3ae501b10afa6276c",
+        "subject": "college_computer_science"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "question": "One approach to handling fuzzy logic data might be to design a computer using ternary (base-3) logic so that data could be stored as \u201ctrue,\u201d \u201cfalse,\u201d and \u201cunknown.\u201d If each ternary logic element is called a flit, how many flits are required to represent at least 256 different values?",
+        "row_id": 88,
+        "selection_sha256": "04e892aaed6bfe002be793fc41665c4398a4e538b9f598b90fe598f8425e5de6",
+        "subject": "college_computer_science"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "I only",
+          "II only",
+          "III only",
+          "I and II only"
+        ],
+        "question": "Let A and B be two sets of words (strings) from \u03a3*, for some alphabet of symbols \u03a3. Suppose that B is a subset of A. Which of the following statements must always be true of A and B ?\nI. If A is finite, then B is finite.\nII. If A is regular, then B is regular.\nIII. If A is context-free, then B is context-free.",
+        "row_id": 14,
+        "selection_sha256": "09ac2dfb644abdb53fbf14e185e298ef7675a9ec3b03de022aeeb844100a3ca9",
+        "subject": "college_computer_science"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "Fast hardware exists to move blocks of pixels efficiently.",
+          "Realistic lighting and shading can be done.",
+          "All line segments can be displayed as straight.",
+          "Polygons can be filled with solid colors and textures."
+        ],
+        "question": "Which of the following is NOT a property of bitmap graphics?",
+        "row_id": 29,
+        "selection_sha256": "09b8c11755cdcfd50ffed84adec43f7d1fba9e39fb0452628108b069af0af11d",
+        "subject": "college_computer_science"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "None",
+          "III only",
+          "I and II only",
+          "I and III only"
+        ],
+        "question": "Let M be a single-tape, deterministic Turing machine with tape alphabet {blank,0,1}, and let C denote the (possibly infinite) computation of M starting with a blank tape. The input to each problem below is M, together with a positive integer n. Which of the following problems is (are) decidable?\nI. The computation C lasts for at least n steps.\nII. The computation C lasts for at least n steps, and M prints a 1 at some point after the nth step.\nIII. M scans at least n distinct tape squares during the computation C.",
+        "row_id": 94,
+        "selection_sha256": "09f37dfc79b150ffc8f8a8d5cba7d2da2b20bcd1a41a8cd07e90a4c4db53cc5a",
+        "subject": "college_computer_science"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "I only",
+          "II only",
+          "I and III only",
+          "I, II, and III"
+        ],
+        "question": "Which of the following considerations applies (apply) to choosing the page size in a paging system?\nI. An advantage of larger pages is that they lead to smaller page tables.\nII. An advantage of smaller pages is that they lead to less waste due to internal fragmentation.\nIII. Normally, the dominant factor in disk access time is not dependent on page length, so longer pages can be used advantageously.",
+        "row_id": 70,
+        "selection_sha256": "0cb4b95d5f154a5fe7ada12ede22b31a1a520c97b00bb8a9f7d3e10ab0deae7c",
+        "subject": "college_computer_science"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "1:4",
+          "1:3.5",
+          "1:1",
+          "1.1:1"
+        ],
+        "question": "In the NoNicks operating system, the time required by a single file-read operation has four nonoverlapping components:\ndisk seek time-25 msec\ndisk latency time-8 msec\ndisk transfer time- 1 msec per 1,000 bytes\noperating system overhead-1 msec per 1,000 bytes + 10 msec\nIn version 1 of the system, the file read retrieved blocks of 1,000 bytes. In version 2, the file read (along with the underlying layout on disk) was modified to retrieve blocks of 4,000 bytes. The ratio of-the time required to read a large file under version 2 to the time required to read the same large file under version 1 is approximately",
+        "row_id": 2,
+        "selection_sha256": "11d2b7c0143e38f962563993dae57974c2654b28e286bc0984ee9f34e0776160",
+        "subject": "college_computer_science"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "Insertion sort",
+          "Quicksort",
+          "Merge sort",
+          "Selection sort"
+        ],
+        "question": "Of the following sorting algorithms, which has a running time that is LEAST dependent on the initial ordering of the input?",
+        "row_id": 36,
+        "selection_sha256": "130061a5d8fbaba0a5db74f685bdf514388641ca2b0d7b0e9dc110af11aadb4e",
+        "subject": "college_computer_science"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "I only",
+          "II only",
+          "III only",
+          "I and II only"
+        ],
+        "question": "Which of the following problems can be solved by a standard greedy algorithm?\nI. Finding a minimum spanning tree in an undirected graph with positive-integer edge weights\nII. Finding a maximum clique in an undirected graph\nIII. Finding a maximum flow from a source node to a sink node in a directed graph with positive-integer edge capacities",
+        "row_id": 86,
+        "selection_sha256": "158d950db1e419649fb90d5dc49e6a2d6cc913a6f1eb750c3f433b3e9cf3b6a1",
+        "subject": "college_computer_science"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "3",
+          "4",
+          "5",
+          "8"
+        ],
+        "question": "If f is a continuously differentiable real-valued function defined on the open interval (-1, 4) such that f(3) = 5 and f'(x) \u2265 -1 for all x, what is the greatest possible value of f(0)?",
+        "row_id": 42,
+        "selection_sha256": "0259bca293e1a61ba9970f9a4166c53754ed3b9387c41026bbf25ec4a783a2b7",
+        "subject": "college_mathematics"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "2",
+          "1",
+          "0",
+          "-1"
+        ],
+        "question": "Let I != A != -I, where I is the identity matrix and A is a real 2 x 2 matrix. If A = A^(-1), then the trace of A is",
+        "row_id": 77,
+        "selection_sha256": "02e41e7a74385c644ee9ad890c3dbece09a99410197a2b1ebb67ff35ad2d16bf",
+        "subject": "college_mathematics"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "I and II only",
+          "III only",
+          "I and III only",
+          "I, II, and III"
+        ],
+        "question": "Let X be a topological space, and let A, B, and C be nonempty subsets of X such that A c B c C; that is, A is a proper subset of B, and B is a proper subset of C. Which of the following statements is (are) true?\nI. If A and C are connected, then B is connected.\nII. If A and C are compact, then B is compact.\nIII. If A and C are Hausdorff, then B is Hausdorff.",
+        "row_id": 18,
+        "selection_sha256": "03c1d1cfa543b5682ddad6b23499b79b163a578ebc526eceea30416ee7f89f7a",
+        "subject": "college_mathematics"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "None",
+          "I only",
+          "II only",
+          "III only"
+        ],
+        "question": "Let V be a finite-dimensional real vector space and let P be a linear transformation of V such that P^2 = P. Which of the following must be true?\nI. P is invertible.\nII. P is diagonalizable.\nIII. P is either the identity transformation or the zero transformation.",
+        "row_id": 8,
+        "selection_sha256": "053d40f7c919bad116fbec7781e6e95479e2adc245de1c1a385d006ebcbc9d54",
+        "subject": "college_mathematics"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "0",
+          "1",
+          "0 or 1",
+          "1, 2, or 3"
+        ],
+        "question": "If U and V are 3-dimensional subspaces of R^5, what are the possible dimensions of U \u2229 V?",
+        "row_id": 95,
+        "selection_sha256": "0dc0b57ba3ed92d708dc1f021803de07f35a4052b95aedc10d38890e2c50637f",
+        "subject": "college_mathematics"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "S(n0 + 1) is not true.",
+          "S(n0 - 1) is not true.",
+          "S(n) is not true for any n <= n0",
+          "S(n) is not true for any n >= n0"
+        ],
+        "question": "S(n) is a statement about positive integers n such that whenever S(k) is true, S(k + 1) must also be true. Furthermore, there exists some positive integer n0 such that S(n0) is not true. Of the following, which is the strongest conclusion that can be drawn?",
+        "row_id": 30,
+        "selection_sha256": "0f891287be535ea4e7f01a9b14dcb9def1e05fee20dd87244ab88fcec8e3be75",
+        "subject": "college_mathematics"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "-1/4",
+          "-1/(4sqrt(2))",
+          "0",
+          "sqrt(2)"
+        ],
+        "question": "Let F be a constant unit force that is parallel to the vector (-1, 0, 1) in xyz-space. What is the work done by F on a particle that moves along the path given by (t, t^2, t^3) between time t=0 and time t=1?",
+        "row_id": 17,
+        "selection_sha256": "11c68981d2ebee377ef5efc64f956c552f832c7d405e2128d0dee3bd06800140",
+        "subject": "college_mathematics"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "|x| \u2265 0",
+          "|x \u00b7 y| \u2264 |x||y|",
+          "|x| = 0 if and only if x = 0",
+          "|x + y| = |x| + |y|"
+        ],
+        "question": "Which of the following is not always true for x, y, z \u2208 R^k?",
+        "row_id": 55,
+        "selection_sha256": "128d4d93ac4198e28ca2aa2e02a77f32418882f774fd83dd8ea8ec0c9ef8ea0b",
+        "subject": "college_mathematics"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "For no such integer n",
+          "For 3, 5, 7, and 11 only",
+          "For 3, 5, 7, 9, and 11 only",
+          "For 4, 6, 8, and 10 only"
+        ],
+        "question": "For which integers n such that 3 <= n <= 11 is there only one group of order n (up to isomorphism)?",
+        "row_id": 32,
+        "selection_sha256": "12e9bf114d061de4e5e95e7cc017b03dd70ae706d8aa4dab5b69a35a42eeded4",
+        "subject": "college_mathematics"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "G is abelian",
+          "G = {e}",
+          "a^3 = e",
+          "a^2 = a"
+        ],
+        "question": "The map x -> axa^2 of a group G into itself is a homomorphism if and only if",
+        "row_id": 89,
+        "selection_sha256": "13021b3d0bba01ff0b0f15ee49ec81f848f74a353d9496cd5139f5a2a07e9fd5",
+        "subject": "college_mathematics"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "Windows 7",
+          "Chrome",
+          "IOS12",
+          "UNIX"
+        ],
+        "question": "Old operating systems like _______ and NT-based systems have buffer-overflow attack a common vulnerability.",
+        "row_id": 63,
+        "selection_sha256": "02d56c19ce6fe3afa814912f8e553b388153d6ccc577142d4b8ab8241e56ba06",
+        "subject": "computer_security"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "question": "Assume that a TLS connection has been established successfully between a client and a server. Establishing the session included checking the server certificate and executing a DiffieHelmann exchange, but the client did not provide a client certificate. Further, assume that the client and server are honest, that the client and server don\u2019t leak their keys, and that the cryptography is good. Which of the following attacks does TLS protect against?\n1. An attacker replacing bytes sent by a client with bytes of the attacker\u2019s own choosing.\n2. An attacker reading the plaintext bytes sent by a client.",
+        "row_id": 44,
+        "selection_sha256": "03009a75662e586116dba621e8b4342807ea621f7b96be2788d2a0ba9dde7a09",
+        "subject": "computer_security"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "Local variables",
+          "Program code",
+          "Dynamically linked libraries",
+          "Global variables"
+        ],
+        "question": "The stack is memory for storing",
+        "row_id": 87,
+        "selection_sha256": "089c3afd6820b47e6cdfd6adb2a042a3846ac5e0b51e45027860b2a531a71c0b",
+        "subject": "computer_security"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "Integrity",
+          "Privacy",
+          "Nonrepudiation",
+          "Both A & C"
+        ],
+        "question": "The AH Protocol provides source authentication and data integrity, but not",
+        "row_id": 13,
+        "selection_sha256": "0bb5a1e64fb4da900c190fcd2f57479086648c33a42b15f4ff9339c038c6fb31",
+        "subject": "computer_security"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "Maltego",
+          "BurpSuit",
+          "Nessus",
+          "Wireshark"
+        ],
+        "question": "Which of the following is a Wireless traffic Sniffing tool?",
+        "row_id": 45,
+        "selection_sha256": "0cc913dd6b4714b5dcbdfce320f1682bdba4c9df659d85d17e08af061d585779",
+        "subject": "computer_security"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          ".Net",
+          "Metasploit",
+          "Zeus",
+          "Ettercap"
+        ],
+        "question": "1. _________ framework made cracking of vulnerabilities easy like point and click.",
+        "row_id": 68,
+        "selection_sha256": "0d7cc95f9b07578facb0aeb8730f53edace2e3d26ecf9e3ca4d3e660de36c66f",
+        "subject": "computer_security"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "question": "Suppose Unix did not provide a way of passing file descriptors between processes, but still allowed inheriting file descriptors from a parent on fork and exec. What aspects of the OKWS design would break without file descriptor passing?\n1. It would be impossible for services to send messages to oklogd.\n2. It would be impossible for services to get a TCP connection to a database proxy.",
+        "row_id": 94,
+        "selection_sha256": "13a06dfb3c2ac41661152e0e018810723838d0ee3318d76faaa4992baa77b6c1",
+        "subject": "computer_security"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "Physical layer",
+          "Application layer",
+          "Data link layer",
+          "Network layer"
+        ],
+        "question": "A proxy rewall lters at the",
+        "row_id": 57,
+        "selection_sha256": "14e27e6f5ad14929f6a3baaaca4fba965cf3bff5c34dafe229277fff984d4e5e",
+        "subject": "computer_security"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "Authentication.",
+          "Deniability.",
+          "Forward secrecy",
+          "Backward secrecy."
+        ],
+        "question": "Suppose that Alice and Bob sent confidential text messages to one another last month through an encrypted messaging system. Alice and Bob are worried that an adversary might compromise one of their computers today, while they are taking the 6.858 final exam, and would then be able to decrypt those messages. Which of the following security properties can address Alice and Bob\u2019s concern?",
+        "row_id": 12,
+        "selection_sha256": "15b387904e68c8fd1bc0c1395ed0e8f3fa853400c8c69d9599e7894fc82e9fa8",
+        "subject": "computer_security"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "It is an anonymous version of a mop sled",
+          "It is a sequence of nops preceding injected shellcode, useful when the return address is unknown",
+          "It is a method of removing zero bytes from shellcode",
+          "It is another name for a branch instruction at the end of sequence of nops"
+        ],
+        "question": "What is a nop sled",
+        "row_id": 74,
+        "selection_sha256": "165823d6ffb21b1207f0cf01f46458897086528c21edbca2b39616de6a000835",
+        "subject": "computer_security"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "first law",
+          "second law",
+          "third law",
+          "law of action\u2013reaction"
+        ],
+        "question": "The fact that the acceleration of free fall is the same for all masses is explained by Newton\u2019s",
+        "row_id": 226,
+        "selection_sha256": "00b80ff494a4c47888a31f815baaf3f77856da0e019dacf434e7c9e1b27889fa",
+        "subject": "conceptual_physics"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "interference",
+          "amplitudes",
+          "variations in brightness",
+          "being composed of photons"
+        ],
+        "question": "A diffraction grating relies on light",
+        "row_id": 111,
+        "selection_sha256": "01623427741c02920378008a7335d401125badad94209dceb4ac72ee2ee6eefc",
+        "subject": "conceptual_physics"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "hydrogen.",
+          "oxygen.",
+          "nitrogen.",
+          "But all have the same speed on average."
+        ],
+        "question": "In a mixture of hydrogen oxygen and nitrogen gases at a given temperature the molecules having the greatest average speed are those of",
+        "row_id": 45,
+        "selection_sha256": "0214b39c34f0ca5557685c3045a32e220d0637784406390419c1ccff103c763a",
+        "subject": "conceptual_physics"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "decreases",
+          "remains unchanged; is conserved",
+          "increases",
+          "may decrease or increase"
+        ],
+        "question": "In both fission and fusion, energy is released while mass",
+        "row_id": 140,
+        "selection_sha256": "021ba144231fbf208233d5f7b42e083498ad6e88bc24aef31e43f92fca0da082",
+        "subject": "conceptual_physics"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "frequency",
+          "period",
+          "wavelength",
+          "amplitude"
+        ],
+        "question": "The loudness of a sound is most closely related to its",
+        "row_id": 58,
+        "selection_sha256": "0251a6b86817e51e830e2ba861bd5e2d9952de61b75f6af3a8392b02c2bdf279",
+        "subject": "conceptual_physics"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "4q.",
+          "8q.",
+          "16q.",
+          "32q."
+        ],
+        "question": "A capacitor loses half its remaining charge every second. If after five seconds its charge is q what was its initial charge?",
+        "row_id": 179,
+        "selection_sha256": "02f07bdb6e9780768ac741c794983071707fbf9b83877a0b78807f2282ac6270",
+        "subject": "conceptual_physics"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "lined up with the Sun",
+          "at right angles to the Sun",
+          "at any angle to the Sun",
+          "lined up during spring"
+        ],
+        "question": "The highest ocean tides occur when Earth and the Moon are",
+        "row_id": 97,
+        "selection_sha256": "031243eb97b4274a7462f5523e6c8016a39f7b5cb07123aeb95b989928bf6651",
+        "subject": "conceptual_physics"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "speed and direction",
+          "intensity",
+          "frequency",
+          "amplitude"
+        ],
+        "question": "Refraction occurs when a wave crosses a boundary and changes",
+        "row_id": 130,
+        "selection_sha256": "04985b963243672ecc717183bd26b4d273eb15d699be3303769a9d87203da82c",
+        "subject": "conceptual_physics"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "forces",
+          "torques",
+          "energies",
+          "All of these"
+        ],
+        "question": "Big brother and little sister can balance on a seesaw because of balanced",
+        "row_id": 76,
+        "selection_sha256": "050d953471e418ce22d3b5f27be323bf6e06533243399b65b38be64d9607cb0e",
+        "subject": "conceptual_physics"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "Alpha",
+          "Beta",
+          "Gamma",
+          "None of these"
+        ],
+        "question": "Which type of radiation from cosmic sources predominates on the inside of high-flying commercial airplanes?",
+        "row_id": 119,
+        "selection_sha256": "0b731fc8561d73aa9ab683ebac7516ed911de046f4765a611f907d5c2547c9f8",
+        "subject": "conceptual_physics"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "30",
+          "140.",
+          "150.",
+          "200."
+        ],
+        "question": "The illumination at a point 5 meters below a lamp in 6 lux. The candle power of the lamp is",
+        "row_id": 108,
+        "selection_sha256": "0218ad8d3da21ed3fcffa3bd5a918c44d9e4b7dd691cdd79bcc486cdb0337d21",
+        "subject": "electrical_engineering"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "collecting of current",
+          "reduce losses",
+          "increase efficiency",
+          "convert AC armature current in to DC"
+        ],
+        "question": "Commutator in DC generator is used for",
+        "row_id": 13,
+        "selection_sha256": "03a2d3f7eec9dc3423cc981c0b6adb46904c1d2cbdf68de5eb316c15f2a20379",
+        "subject": "electrical_engineering"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "Enable the data bus to be used as low order address bus",
+          "To latch data D0-D7 from data bus",
+          "To disable data bus",
+          "To achieve all the functions listed above"
+        ],
+        "question": "Inintel 8085A microprocessor ALE signal is made high to",
+        "row_id": 18,
+        "selection_sha256": "0695ee3afd371922d56b32b473584d1ac5d3e02f5c8fd8b969a39280f1c0e30a",
+        "subject": "electrical_engineering"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "1500 A.",
+          "6000 A.",
+          "2121.32 A.",
+          "4242.64 A."
+        ],
+        "question": "An SCR has half cycle surge current rating of 3000 A for 50 Hz supply. One cycle surge current will be",
+        "row_id": 49,
+        "selection_sha256": "06e5978410354b3499c5b493039f98df070f2235e7f617ac3a1d11e3a0448f20",
+        "subject": "electrical_engineering"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "160 \u00b5F",
+          "10 \u00b5F",
+          "40 \u00b5F",
+          "5 \u00b5F"
+        ],
+        "question": "Four capacitors each of 40 \u00b5F are connected in parallel, the equivalent capacitance of the system will be",
+        "row_id": 84,
+        "selection_sha256": "07f081717bedb0f732c6d9af54b91b1428ce28873baf2d9d2b604134fced1d00",
+        "subject": "electrical_engineering"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "closed winding",
+          "lap winding",
+          "wave winding",
+          "open type winding"
+        ],
+        "question": "Which of the following windings are necessary in case of all dc machines?",
+        "row_id": 23,
+        "selection_sha256": "099a0219003c8c3efb4f651a06b0177ec9c7f509fe6bccbfa44c67de7694398d",
+        "subject": "electrical_engineering"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "3.33 %.",
+          "2.66 %.",
+          "2 %.",
+          "1 %."
+        ],
+        "question": "A 0 - 100 V voltmeter has a guaranteed accuracy of 2 % of full scale reading. The voltage measured by the voltmeter is 75 V. The limiting error is in percentage",
+        "row_id": 129,
+        "selection_sha256": "0a4a72680e55f6d5ed3f320f7bb9a0e73647a015af14f5b8a62474a6200f37cb",
+        "subject": "electrical_engineering"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "Resistance.",
+          "Inductance.",
+          "Capacitance.",
+          "All of the above."
+        ],
+        "question": "Which of the following is the analogous quantity for mass element in force-voltage analogy?",
+        "row_id": 67,
+        "selection_sha256": "0cc07488f639cdddbcf055261edc1e21ba5772673251aebeb16957c3bf719f3a",
+        "subject": "electrical_engineering"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "mass element",
+          "spring element",
+          "dash-pot",
+          "all of the above"
+        ],
+        "question": "By using which of the following elements, mechanical translational systems are obtained?",
+        "row_id": 83,
+        "selection_sha256": "0f1fdaaf7ded3dc2acefd208c7900242b6a90a48bf22b019c77cac31f2235f0c",
+        "subject": "electrical_engineering"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "only series resonant frequency.",
+          "only parallel resonant frequency.",
+          "both series and parallel frequencies.",
+          "neither series nor parallel frequency."
+        ],
+        "question": "A quartz crystal oscillator consists of",
+        "row_id": 116,
+        "selection_sha256": "0f3b9c71b42f43e48dbab3039a24662ecbbac447f9d3f71e7e3bd6590001af2d",
+        "subject": "electrical_engineering"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "Jim Crow.",
+          "spheres of influence.",
+          "Boer division.",
+          "apartheid."
+        ],
+        "question": "This question refers to the following information.\nThe following poem refers to an incident in Sharpeville, South Africa, in 1960. To protest the requirement that they carry papers documenting their identity and residence, black South Africans gathered in front of police stations without their papers. Though other protests ended peacefully, in Sharpeville, police fired into the crowd.\nWhat is important\nabout Sharpeville\nis not that seventy died:\nnor even that they were shot in the back\nretreating, unarmed, defenceless\nand certainty not\nthe heavy caliber slug\nthat tore through a mother's back\nand ripped through the child in her arms\nkilling it\nRemember Sharpeville\nbullet-in-the-back day\nBecause it epitomized oppression\nand the nature of society\nMore clearly than anything else;\nit was the classic event\nNowhere is racial dominance\nmore clearly defined\nnowhere the will to oppress\nmore clearly demonstrated\nWhat the world whispers\napartheid declares with snarling guns\nthe blood the rich lust after\nSouth Africa spills dust\nRemember Sharpeville\nRemember bullet-in-the-back day\nAnd remember the unquenchable will for freedom\nRemember the dead\nand be glad\n\u2014Dennis Brutus, 1973\nThe discriminatory system referred to in the poem was known as",
+        "row_id": 29,
+        "selection_sha256": "0083901d123c3af57602c3938a36014981ea4cfc0b9418049d1f185a3836f369",
+        "subject": "high_school_world_history"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "Meritocratic appointments by rulers to their bureaucracies",
+          "Long-distance contact between Egypt and other lands",
+          "The clan as the basic political unit",
+          "A lack of emphasis on martial ability"
+        ],
+        "question": "This question refers to the following information.\nThis ruler of Syria made me spend many years as commander of his army,\nEvery land to which I turned\nI overcame.\nI destroyed its green fields and its wells,\nI captured its cattle, I took captive its inhabitants, I deprived them of their provisions,\nand I slew [many] people\u2026by my sword, my bow, my marchings, and my good devices.\nThus my excellence was in his heart; he loved me and he knew my valor;\n\u2026he set me at the head of his sons, when he saw the success of my handiwork.\nThere came a champion of Syria\nto defy me in my tent;\na bold man without equal, for he had vanquished all his rivals.\nHe said, \"Let Sanehat fight with me.\"\nHe thought to overcome me; he designed to take my cattle, thus being counseled by his tribe.\nThe Tale of Sanehat, Egyptian poem written during the Middle Kingdom, ca.1800 B.C.E.\nThe text of this passage is best seen as evidence of which of the following in Egyptian society?",
+        "row_id": 17,
+        "selection_sha256": "01ab6dc79eb5e63cd79fb906a971578453dce9455a14cbb3a913de8f96eac25c",
+        "subject": "high_school_world_history"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "He is found everywhere and contained in everything.",
+          "He resides in a form of paradise, like Heaven.",
+          "He is found only inside the hearts of the faithful.",
+          "He is a vengeful God, punishing those who sin."
+        ],
+        "question": "This question refers to the following information.\nHe contains all works and desires and all perfumes and all tastes. He enfolds the whole universe and in silence is loving to all. This is the Spirit that is in my heart, this is Brahman. To him I shall come when I go beyond this life, and to him will come he who has faith and doubts not.\n\u2014The Upanishads, India, c. 1000 BCE\nBased on the quotation, what is true of Brahman?",
+        "row_id": 118,
+        "selection_sha256": "02e2222b20694cc0eb96c5b236e9befdd50462eaeb0de6b9bc5e558e849a9397",
+        "subject": "high_school_world_history"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "A reduction of barriers to trade across international borders",
+          "A secret treaty to maintain the balance of power in Europe",
+          "Reconstruction efforts to rebuild Europe after World War II",
+          "A response to aggression from outside of Western Europe"
+        ],
+        "question": "This question refers to the following information.\n\"Article 1\nThe Parties undertake, as set forth in the Charter of the United Nations, to settle any international dispute in which they may be involved by peaceful means in such a manner that international peace and security and justice are not endangered, and to refrain in their international relations from the threat or use of force in any manner inconsistent with the purposes of the United Nations.\n\"Article 2\nThe Parties will contribute toward the further development of peaceful and friendly international relations by strengthening their free institutions, by bringing about a better understanding of the principles upon which these institutions are founded, and by promoting conditions of stability and well-being. They will seek to eliminate conflict in their international economic policies and will encourage economic collaboration between any or all of them.\n\"Article 3\nIn order more effectively to achieve the objectives of this Treaty, the Parties, separately and jointly, by means of continuous and effective self-help and mutual aid, will maintain and develop their individual and collective capacity to resist armed attack\u2026\n\"Article 5\nThe Parties agree that an armed attack against one or more of them in Europe or North America shall be considered an attack against them all and consequently they agree that, if such an armed attack occurs, each of them, in exercise of the right of individual or collective self-defence recognised by Article 51 of the Charter of the United Nations, will assist the Party or Parties so attacked by taking forthwith, individually and in concert with the other Parties, such action as it deems necessary, including the use of armed force, to restore and maintain the security of the North Atlantic area.\"\nNorth Atlantic Treaty, April 4, 1949\nThe treaty above is most clearly an example of which of the following?",
+        "row_id": 227,
+        "selection_sha256": "07437a2cb502806dde6cee353d17bc9212dbdbddbd286e7c8adcc5360d026530",
+        "subject": "high_school_world_history"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "The ideals of the Russian Revolution were betrayed by the Leninist and Stalinist regimes.",
+          "Lenin and Stalin vastly improved Russian military preparedness.",
+          "Communism has been made to work more efficiently in Russia than in China.",
+          "Despite abuses on the part of Lenin and Stalin, the Soviet regime managed significant achievements."
+        ],
+        "question": "This question refers to the following information.\nLiteracy rates among the Russian-speaking population of late Imperial Russia and the Soviet Union, 1897\u20131955\nLiteracy Rate\n1897  24%\n1917  45%\n1926  56%\n1937  75%\n1939  81.10%\n1955  99.90%\nSource: Census data and Soviet Ministry of Education\nA historian sympathetic to Soviet communism would most likely use the chart as evidence to support which of the following propositions?",
+        "row_id": 133,
+        "selection_sha256": "078b721cdd4317a30642005a55265a808d6c500d13b3f79f09d9d8ef602f3a36",
+        "subject": "high_school_world_history"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "British sale of opium in China",
+          "British exports of tobacco to China",
+          "British introduction of gunpowder to China",
+          "British encouragement of heroin use to China"
+        ],
+        "question": "This question refers to the following information.\nBy what principle of reason then, should these foreigners send in return a poisonous drug? Without meaning to say that the foreigners harbor such destructive intentions in their hearts, we yet positively assert that from their inordinate thirst after gain, they are perfectly careless about the injuries they inflict upon us! And such being the case, we should like to ask what has become of that conscience which heaven has implanted in the breasts of all men? We have heard that in your own country opium is prohibited with the utmost strictness and severity. This is a strong proof that you know full well how hurtful it is to mankind. Since you do not permit it to injure your own country, you ought not to have this injurious drug transferred to another country, and above all others, how much less to the Inner Land! Of the products which China exports to your foreign countries, there is not one which is not beneficial to mankind in some shape or other.\nLin Zexu, Chinese trade commissioner, letter to Queen Victoria, 1839\nWhich of the following most likely prompted the complaint voiced in the passage?",
+        "row_id": 47,
+        "selection_sha256": "094217ff40cd6b4bcec9414362e18ebb99e3c0bc1bddc1b9bb6bec26c636151c",
+        "subject": "high_school_world_history"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "the Song abolished the Confucian civil service exams",
+          "the Song sponsored Buddhism to the detriment of Taoism and Confucianism",
+          "the Song pursued a less expansive foreign policy",
+          "the Song dynasty was originally from outside of China"
+        ],
+        "question": "This question refers to the following information.\nI walk alongside the column, ask what's going on.\nA soldier says simply: \"They call up more every day.\n\"Some of us were sent north to the Yellow River at age fifteen,\nAnd now at forty we're heading off to the garrisons in the west.\nOn our first tour, the village headman had to tie our bandannas for us.\nWhen we came back, our hair was white, but still there's more unrest.\nThe frontier garrisons run with blood, enough to fill an ocean,\nBut the Martial Emperor's territorial ambitions have yet to crest.\nIn the hundred districts east of the mountains, throughout the land of Han,\nThere must be ten thousand villages that brambles now infest.\nEven if wives are strong enough to handle a hoe and plow,\nThe crops grow every which way, the fields are all a mess.\nIt's hardest for the Shanxi men, with their reputations as fighters:\nThey're rounded up like dogs or chickens, every male impressed.\n\"But sir, though it's good of you to ask,\nComplaining isn't part of the soldier's task.\nWe can only shake our heads. Take this winter:\nThe Shanxi troops were never sent home.\nThe District Officers are demanding the land tax,\nBut where will it come from? You can't get blood from a stone!\nI honestly think it's bad luck to bear a son now,\nIt's better to have a daughter: at least she can marry\nAnd live with the neighbors next door.\nBut a son will end up lying on some distant prairie.\"\nDu Fu, \"Ballad of the Army Carts,\" ca. 750 C.E.\nThe succeeding Song dynasty differed from the Tang in that",
+        "row_id": 163,
+        "selection_sha256": "09a6251faec1667b0368e58bd4c08d4f13c280d8cfb3e9ab94933baaa7301da1",
+        "subject": "high_school_world_history"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "He had the Mandate of Heaven.",
+          "He was an absolute monarch.",
+          "He had lost the blessing of the gods.",
+          "He was killed as a result of natural disasters."
+        ],
+        "question": "This question refers to the following information.\nYi Yin sacrificed to the former king, and presented the heir-king reverently before the shrine of his grandfather. . . . Yi Yin then clearly described the virtue of the Meritorious Ancestor for the instruction of the young king.\n\"Oh! of old the former kings of Xia cultivated earnestly their virtue, and then there were no calamities from Heaven. The spirits of the hills and rivers were all in tranquility; and the birds and beasts enjoyed their existence according to their nature. But their descendant did not follow their example, and Heaven sent down calamities, using our ruler, who possessed of its favor. The attack on Xia may be traced to the orgies in Ming Tiao. . . . Our king of Shang brilliantly displayed his sagely prowess; for oppression he substituted his generous gentleness. Now your Majesty is entering on the inheritance of his virtue; all depends on how you commence your reign.\n\"Oh! the former king began with careful attention to the bonds that hold men together. . . . Revere these warnings in your person. . . . The ways of Heaven are not invariable: on the good-doer it sends down all blessings, and on the evil-doer it sends down all miseries. If you not be virtuous, be it in large things or in small, it will bring the ruin of your ancestral temple.\"\n\u2014Excerpted and adapted from the Shu Jing, 6th century BCE, China\nWhat does the phrase below tell us about the ruler?",
+        "row_id": 61,
+        "selection_sha256": "0ce6960276b7395c60c21daacdd7ad4be91687baf927c4a1008744146ca90578",
+        "subject": "high_school_world_history"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "The diffusion of cultural practices throughout South Africa",
+          "Economic boons present in British colonies",
+          "Daily challenges of Afrikaners during the colonial period",
+          "Unforeseen consequences of British imperialism"
+        ],
+        "question": "This question refers to the following information.\n\"My little homestead in the city, which I recently insured for \uffe12,000 would no doubt have shared the common fate, as the insurance companies will not make good that which is destroyed by the Queen's enemies. And although I have a farm of 50 acres close to the town, no doubt the crops and premises would have been destroyed. In fact, this has already partly been the case, and I am now suing the Government for damages done by a contingent of 1,500 natives that have recently encamped not many hundred yards from the place, who have done much damage all around.\"\nLetter from a British citizen to his sister during the Anglo-Zulu War, South Africa, 1879\nA historian researching nineteenth-century conflicts in South Africa would most likely find this letter a useful source for information about which of the following?",
+        "row_id": 59,
+        "selection_sha256": "0d89a5149d38f4954bdb6ef70ab2b296f2ccbbd9cff2355e97d12bcd383de25c",
+        "subject": "high_school_world_history"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "The Mongol invasions of the Middle East",
+          "The Protestant Reformation",
+          "The Age of Discovery",
+          "The Crusades"
+        ],
+        "question": "This question refers to the following information.\n\"From the confines of Jerusalem and the city of Constantinople a horrible tale has gone forth and very frequently has been brought to our ears, namely, that a race from the kingdom of the Persians, an accursed race, a race utterly alienated from God, a generation forsooth which has not directed its heart and has not entrusted its spirit to God, has invaded the lands of those Christians and has depopulated them by the sword, pillage and fire; it has led away a part of the captives into its own country, and a part it has destroyed by cruel tortures; it has either entirely destroyed the churches of God or appropriated them for the rites of its own religion\u2026.The kingdom of the Greeks is now dismembered by them and deprived of territory so vast in extent that it cannot be traversed in a march of two months. On whom therefore is the labor of avenging these wrongs and of recovering this territory incumbent, if not upon you? You, upon whom above other nations God has conferred remarkable glory in arms, great courage, bodily activity, and strength to humble the hairy scalp of those who resist you.\nLet the deeds of your ancestors move you and incite your minds to manly achievements; the glory and greatness of king Charles the Great, and of his son Louis, and of your other kings, who have destroyed the kingdoms of the pagans, and extended in these lands the territory of the holy church. Let the holy sepulchre of the Lord our Savior, which is possessed by unclean nations, especially incite you, and the holy places which are now treated with ignominy and irreverently polluted with their filthiness. Oh, most valiant soldiers and descendants of invincible ancestors, be not degenerate, but recall the valor of your progenitors.\nJerusalem is the navel of the world; the land is fruitful above others, like another paradise of delights. This the Redeemer of the human race has made illustrious by His advent, has beautified by residence, has consecrated by suffering, has redeemed by death, has glorified by burial. This royal city, therefore, situated at the center of the world, is now held captive by His enemies, and is in subjection to those who do not know God, to the worship of the heathens. She seeks therefore and desires to be liberated and does not cease to implore you to come to her aid. From you especially she asks succor, because, as we have already said, God has conferred upon you above all nations great glory in arms. Accordingly undertake this journey for the remission of your sins, with the assurance of the imperishable glory of the kingdom of heaven.\"\nPope Urban II, Speech at the Council of Clermont as recorded by Robert the Monk, 1095 C.E.\nThe speech above is best understood in context of which of the following?",
+        "row_id": 54,
+        "selection_sha256": "12f9ec1a15d12926cdbb4a6d543637cc0a3099e5894e3bd46274e8d19b59736f",
+        "subject": "high_school_world_history"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "question": "Statement 1| The SVM learning algorithm is guaranteed to find the globally optimal hypothesis with respect to its object function. Statement 2| After being mapped into feature space Q through a radial basis kernel function, a Perceptron may be able to achieve better classification performance than in its original space (though we can\u2019t guarantee this).",
+        "row_id": 77,
+        "selection_sha256": "02269cf3f0df7f0f09e2720af223f905f6c30d869d05ad6922efe8653b87e6eb",
+        "subject": "machine_learning"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "question": "Statement 1| Linear regression estimator has the smallest variance among all unbiased estimators. Statement 2| The coefficients \u03b1 assigned to the classifiers assembled by AdaBoost are always non-negative.",
+        "row_id": 0,
+        "selection_sha256": "0835d4b67194ff7fb24449877b7276453d2ae93a42715d029b0c3766268b0402",
+        "subject": "machine_learning"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "Whether kernel function is Gaussian versus triangular versus box-shaped",
+          "Whether we use Euclidian versus L1 versus L\u221e metrics",
+          "The kernel width",
+          "The maximum height of the kernel function"
+        ],
+        "question": "For Kernel Regression, which one of these structural assumptions is the one that most affects the trade-off between underfitting and overfitting:",
+        "row_id": 76,
+        "selection_sha256": "09fdc6c39271ea27af3b4db9ec5f5585b9fa934406e06c9d93ce39ce3a038ed1",
+        "subject": "machine_learning"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "111021",
+          "110010",
+          "111110",
+          "110011"
+        ],
+        "question": "We are training fully connected network with two hidden layers to predict housing prices. Inputs are $100$-dimensional, and have several features such as the number of square feet, the median family income, etc. The first hidden layer has $1000$ activations. The second hidden layer has $10$ activations. The output is a scalar representing the house price. Assuming a vanilla network with affine transformations and with no batch normalization and no learnable parameters in the activation function, how many parameters does this network have?",
+        "row_id": 110,
+        "selection_sha256": "0a4be64c442516d9abe56a613db1125d7420a326b15cf55f91d3b9c1df7652a4",
+        "subject": "machine_learning"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "question": "What is the rank of the following matrix? A = [[1, 1, 1], [1, 1, 1], [1, 1, 1]]",
+        "row_id": 22,
+        "selection_sha256": "0f870f79ce66d847e966ada59e3029846635e7b398870293716b54f7bb2e86e3",
+        "subject": "machine_learning"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "question": "Statement 1| Word2Vec parameters were not initialized using a Restricted Boltzman Machine. Statement 2| The tanh function is a nonlinear activation function.",
+        "row_id": 64,
+        "selection_sha256": "12d1b8d7a22d1ef9485019a5b42176608f716300005aa5b05aa95b99680a1089",
+        "subject": "machine_learning"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "True, True",
+          "False, False",
+          "True, False",
+          "False, True"
+        ],
+        "question": "Statement 1| The kernel density estimator is equivalent to performing kernel regression with the value Yi = 1/n at each point Xi in the original data set. Statement 2| The depth of a learned decision tree can be larger than the number of training examples used to create the tree.",
+        "row_id": 37,
+        "selection_sha256": "15308e58a5c0cf9ef391f247d040ad2f8402546b379cdec11a18d6b26591e0cb",
+        "subject": "machine_learning"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "For two dimensional data points, the separating hyperplane learnt by a linear SVM will be a straight line.",
+          "In theory, a Gaussian kernel SVM cannot model any complex separating hyperplane.",
+          "For every kernel function used in a SVM, one can obtain an equivalent closed form basis expansion.",
+          "Overfitting in an SVM is not a function of number of support vectors."
+        ],
+        "question": "Which of the following is/are true regarding an SVM?",
+        "row_id": 40,
+        "selection_sha256": "154bcb7db4a82399df7dd2772167115c59caed81e9c986cd1ee8c83afceb7782",
+        "subject": "machine_learning"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "anomaly detection",
+          "one-class detection",
+          "train-test mismatch robustness",
+          "background detection"
+        ],
+        "question": "Another term for out-of-distribution detection is?",
+        "row_id": 47,
+        "selection_sha256": "157e581f1fbc2f388af740d1003f7c01e44cc6185ede5927dafd2dbad0e88a8f",
+        "subject": "machine_learning"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "To save computing time during testing",
+          "To save space for storing the Decision Tree",
+          "To make the training set error smaller",
+          "To avoid overfitting the training set"
+        ],
+        "question": "Which one of the following is the main reason for pruning a Decision Tree?",
+        "row_id": 36,
+        "selection_sha256": "18f3f4b4b660b516c13fe80b59b42f826f538ead088c5d06d2ae066f01f47676",
+        "subject": "machine_learning"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "Wrong, Wrong",
+          "Wrong, Not wrong",
+          "Not wrong, Wrong",
+          "Not wrong, Not wrong"
+        ],
+        "question": "For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I pushed a man out of the way of a train at the train station. Scenario 2 | I tossed my sunroof toward my daughter since she asked to go for a drive.",
+        "row_id": 381,
+        "selection_sha256": "006c410cc9a715be5f48c1939093590d03a224d835976f248bb0204e64743f67",
+        "subject": "moral_scenarios"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "Wrong, Wrong",
+          "Wrong, Not wrong",
+          "Not wrong, Wrong",
+          "Not wrong, Not wrong"
+        ],
+        "question": "For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I placed my mobile phone in its new case. Scenario 2 | While my parents were fast asleep, I mowed their yard.",
+        "row_id": 752,
+        "selection_sha256": "00cd07187251b58cd43757f388f7bc49194ff91ee46321333b5a73920b1276f1",
+        "subject": "moral_scenarios"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "Wrong, Wrong",
+          "Wrong, Not wrong",
+          "Not wrong, Wrong",
+          "Not wrong, Not wrong"
+        ],
+        "question": "For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I got all of her little kids addicted to my chocolate brownies. Scenario 2 | I buried her up to her neck on the beach.",
+        "row_id": 567,
+        "selection_sha256": "014e60d04c108cdffcd4edf20976c310c20bcfdcede9c5f0c0df5709fbd6126c",
+        "subject": "moral_scenarios"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "Wrong, Wrong",
+          "Wrong, Not wrong",
+          "Not wrong, Wrong",
+          "Not wrong, Not wrong"
+        ],
+        "question": "For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I was sure to not put out the wet floor sign after mopping. Scenario 2 | I was talking to the child firmly.",
+        "row_id": 441,
+        "selection_sha256": "01b2ff223638a0e7b60efc9211afdd47d45744db71ba728891657f928fcb4dbd",
+        "subject": "moral_scenarios"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "Wrong, Wrong",
+          "Wrong, Not wrong",
+          "Not wrong, Wrong",
+          "Not wrong, Not wrong"
+        ],
+        "question": "For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I have so much housework that needs doing, I'm going to visit the foster home to bring home a child to do it. Scenario 2 | I took food away from my son as a punishment for skipping school.",
+        "row_id": 738,
+        "selection_sha256": "027ed007c132b337b56b3fa6515e5d6bac7e20bd25c654a1c1ad7b59876cf13a",
+        "subject": "moral_scenarios"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "Wrong, Wrong",
+          "Wrong, Not wrong",
+          "Not wrong, Wrong",
+          "Not wrong, Not wrong"
+        ],
+        "question": "For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I left twenty dollars on a random stranger's car and felt good about it. Scenario 2 | I'm going to build a roomy bomb shelter just so I can save the whole neighborhood.",
+        "row_id": 176,
+        "selection_sha256": "0344cedc0091132122dd70253182fda66b6595f611c6e4f836dc40abf59d7ac0",
+        "subject": "moral_scenarios"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "Wrong, Wrong",
+          "Wrong, Not wrong",
+          "Not wrong, Wrong",
+          "Not wrong, Not wrong"
+        ],
+        "question": "For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | I gave the animal two pain pills when I saw he was hurting. Scenario 2 | I gave my teething infant a biscuit to chew on.",
+        "row_id": 529,
+        "selection_sha256": "03e35c43c5bccefe40b328ec6856dcafc0cfa0b6841c6e814c74e0de6b08981f",
+        "subject": "moral_scenarios"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "Wrong, Wrong",
+          "Wrong, Not wrong",
+          "Not wrong, Wrong",
+          "Not wrong, Not wrong"
+        ],
+        "question": "For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | As my parents left for vacation, I put on a movie. Scenario 2 | I took off my hat at the playground and waved at the kids.",
+        "row_id": 150,
+        "selection_sha256": "03f77e24f657d372b69e494ce036085b25d002737ca993be810c448747446edb",
+        "subject": "moral_scenarios"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "Wrong, Wrong",
+          "Wrong, Not wrong",
+          "Not wrong, Wrong",
+          "Not wrong, Not wrong"
+        ],
+        "question": "For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | While my parents were fast asleep, I cooked coke. Scenario 2 | I invited my student to the lighthouse for a romantic evening.",
+        "row_id": 132,
+        "selection_sha256": "041ef3a0affb7266344421797d23f3b25672b46fbaadde4c45fd679d1fd0fc87",
+        "subject": "moral_scenarios"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "Wrong, Wrong",
+          "Wrong, Not wrong",
+          "Not wrong, Wrong",
+          "Not wrong, Not wrong"
+        ],
+        "question": "For which of these two scenarios does the main character (who uses I/me/my) do something clearly morally wrong, according to ordinary moral standards in the US as of 2020? Scenario 1 | To qualify for the carpool lane, I drive with my blow-up doll. Scenario 2 | I bought a shirt from Walmart.",
+        "row_id": 855,
+        "selection_sha256": "04971c34f211616fdd93777b0a9f5bcd7e951875301dcf8d501c1a6319a10aa7",
+        "subject": "moral_scenarios"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "Yes, the court will enforce the judgment because the limitation in the original note is voidable, due to the mortgagors' breach of the mortgage terms.",
+          "Yes, the court will enforce the judgment because advance notice to the mortgagors is all that is required to disregard a limitation in an original note.",
+          "No, the court will preclude the entrance of the deficiency judgment because the limitation clause is still enforceable and is supported by public policy generally against deficiency judgments.",
+          "No, the judgment will not be enforced because deficiency judgments have been declared unconstitutional by the Supreme Court of the United States."
+        ],
+        "question": "A major bank foreclosed on a consumer mortgage. After the property was sold at sheriff's sale for $50,000, the bank sent the consumer due notice of a deficiency still owing of $10,000. The original note, however, had limited bank's recourse to $50,000 or higher. There was no response and the bank entered a deficiency judgment for $10,000. When it started execution proceedings to collect the $10,000, the defendants entered a defense, arguing that the bank was limited to recourse of $50,000 or higher. The judgment for $10,000 was therefore void and unenforceable. Will the court allow enforcement of the deficiency judgment for $10,000?",
+        "row_id": 232,
+        "selection_sha256": "0004d7d8bc43de58e6bed9432fc9463037b430ab62ffad1c03278d542c98f385",
+        "subject": "professional_law"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "No the seller must return the down payment because the minor has declared his disaffirmance of the contract.",
+          "The seller cannot keep the down payment and cannot obtain any other benefit from the transaction.",
+          "The seller can sue the minor for misrepresentation and fraud in not revealing his age prior to buying the car.",
+          "The seller can obtain only the reasonable value of the use of the car in a restitution action."
+        ],
+        "question": "A 15 year-old minor who looks older than his years purchased a car from a private seller. The minor paid $2000 down and agreed to pay the remaining $4000 in installments over the next two years. The minor had to have the car for work because he had no other means of support. The minor later crashed the car in an accident. He disaffirmed the contract, returned the damaged car, and demanded his down payment back. Does the seller have a right to obtain any consideration in this matter?",
+        "row_id": 1137,
+        "selection_sha256": "00184e0b03e15a9b34960d51d2f97d5423e543bb7077c946c968d8438eedcdd4",
+        "subject": "professional_law"
+      },
+      {
+        "answer": 2,
+        "choices": [
+          "issue an injunction against the neighbor to prevent the further use of the road to haul sand.",
+          "refuse to grant the caterer's prayer for relief because the servient owner continues to have the right to use his own land.",
+          "issue an injunction against the neighbor unless it can be shown that the neighbor's use did not unreasonably interfere with the caterer's right of access.",
+          "dismiss the cause of action because the caterer's only remedy would be monetary damages."
+        ],
+        "question": "A caterer owned a summer cottage on the lake. In order to facilitate the access to the cottage, which is located on a knoll above the lake, the caterer entered into an agreement with a neighbor, an adjoining land owner, whereby the neighbor, in writing, granted the caterer a right-of-way over a strip of land 30 feet in width and a quarter of a mile in length along the eastern margin of the neighbor's property. Without notifying the neighbor, the caterer proceeded with his plan to improve the roadbed by having the road asphalted in order to make it more accessible for motor vehicle traffic. Several years later, the neighbor started a sand business, which required him to do heavy hauling that subsequently destroyed the asphalted surface on the road. In an action by the caterer to enjoin the neighbor's use of the road in transporting sand, the court will most likely",
+        "row_id": 993,
+        "selection_sha256": "0020927826271c507a10ef517449402e3f73e3ed54c92ba229bf46a6e5848487",
+        "subject": "professional_law"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "No, because the state also acquired fee simple title by adverse possession after 11 continuous, uninterrupted years of possession.",
+          "No, because the original transfer was legally conducted and the landowner received fair market value, thereby allowing a presumption of fee simple title in the agency.",
+          "Yes, eminent domain is restricted to taking property that is urgently needed for a public use and the failure to use it for that purpose defeated fee simple ownership in the agency.",
+          "Yes, because every eminent domain taking implies a fee simple determinable aspect to the governmental acquisition."
+        ],
+        "question": "A state education agency, following all statutory requirements, obtained a parcel of land through eminent domain. The landowner accepted the award of fair market value and did not appeal. For the next 15 years, the agency held the property but did not implement an educational use for it. In year 16, the agency abandoned the intended education use and sold it at a properly advertised auction under state law. The original landowner appealed, arguing that the agency only took a fee simple determinable and when it ceased its intended educational use, superior fee simple title reverted back to the original owner. Will the appellate court likely rule that the landowner can assert rights to stop the attempted transfer?",
+        "row_id": 1076,
+        "selection_sha256": "0030633e53b61b41fa350af680480fd5f26e6dae2526556a5bfe130b82a49735",
+        "subject": "professional_law"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "Bill can bind the partnership by his act.",
+          "silent partners are investors only and cannot bind the partnership.",
+          "unless his name is in the partnership name, third persons are \"on notice\" that he is unauthorized to contract for the partnership.",
+          "Bill, as a silent partner, is not authorized to purchase and, therefore, the sale may be set aside."
+        ],
+        "question": "Pete Smith is the active partner and Bill Jones is the silent partner in a general partnership known as \"Pete Smith Plumbing.\" After six years of being uninvolved in the management of the partnership business, Bill purchases 100 toilets for the business. Pete is incensed because it will probably take years to use up the inventory of so many toilets and seeks your advice. The best advice is",
+        "row_id": 1306,
+        "selection_sha256": "006aace9e848830281a8935d72b0ff2d87ca5889cd95dbfa475bacf44d5ee83f",
+        "subject": "professional_law"
+      },
+      {
+        "answer": 3,
+        "choices": [
+          "excluded, because bad acts may not be proved by extrinsic evidence.",
+          "excluded, because it is improper character evidence.",
+          "admitted as probative evidence of the candidate's character for veracity.",
+          "admitted as relevant evidence of the candidate's character as a thief."
+        ],
+        "question": "Two weeks before an election, a local newspaper published an article implying that one of the mayoral candidates was a thief. The candidate subsequently lost the election and sued the newspaper for defamation. The newspaper defended on the grounds of truth. At trial, the candidate took the stand and testified that he was not a thief. Thereafter, the newspaper called a witness to testify that three years ago the candidate committed a larceny while employed at his former job. Upon objection by the candidate's attorney, the witness's testimony should be",
+        "row_id": 1048,
+        "selection_sha256": "00987ecd3df863a612e608a8b40f1c57ad86d74651ae9a69de7f7e8b51ef6030",
+        "subject": "professional_law"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "Yes, because under the anti-lapse statute, the granddaughter's interest passes to her son.",
+          "Yes, because rules relating to lapse of class gifts do not apply to specific devises.",
+          "No, because intestate succession is inapplicable to devolution of title to specific devisees.",
+          "No, because the granddaughter predeceased the widow, title to the apartment building passes to the friend and assistant under the residuary clause of the will."
+        ],
+        "question": "A widow was the owner in fee simple of an apartment building. The widow drafted a will by which she devised the apartment building to her granddaughter with residue to her friend and her assistant. One year later, the granddaughter died intestate and was survived by her son who was her sole heir at law. This jurisdiction has the following statute in effect:\"If a devisee of a grandparent or lineal descendant of a grandparent dies at the time of execution of the will or fails to survive the testator, the issue of the deceased person shall take the decedent's share under the will. \"The widow then died and her will was admitted to probate. A dispute arose among the friend, the assistant, and the son regarding ownership of the apartment building. Is the son entitled to any share or interest in the apartment building?",
+        "row_id": 818,
+        "selection_sha256": "00dda2f4862319824f929b862377b5d105e34b60a9ed250f74baf7b6e1ee9e5a",
+        "subject": "professional_law"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "admissible, for the purpose of rebutting the contention that the defendant was a peaceable person.",
+          "admissible, for the purpose of repudiating the defendant's claim of self-defense.",
+          "inadmissible, because the victim's character cannot be proved by the brother-in-law's testimony.",
+          "inadmissible, because the defendant did not directly attack the victim's character."
+        ],
+        "question": "A defendant was charged with killing a victim during a barroom fight. The defendant claimed that he acted in self-defense when he was attacked by the victim. At trial, the defendant called a witness who testified that he witnessed the altercation and that the victim was the aggressor. The witness further testified that he has known the defendant for 10 years and that the defendant is a peaceable man who was acting reasonably in self-defense. The prosecution then offered the testimony of the victim's brother-in-law, who proposed to testify that the victim was a peaceable and law-abiding person. Upon objection by the defendant's attorney, the brother-in-law's proposed testimony is",
+        "row_id": 772,
+        "selection_sha256": "0100fc180dfc948dee63ff9bf10f48fd61a74e4c6619320b0ef20fa1d315ae76",
+        "subject": "professional_law"
+      },
+      {
+        "answer": 1,
+        "choices": [
+          "only if the manufacturer had been a party to the former proceeding.",
+          "whether or not the manufacturer had been a party to the former proceeding.",
+          "if this exception has been held incompatible with the confrontation clause of the Sixth Amendment.",
+          "if the manufacturer had an opportunity to cross-examine the expert at the former preceding."
+        ],
+        "question": "A driver was severely injured when his car burst into flames after he was rear-ended in a minor auto accident. The driver filed suit against the manufacturer. To prove negligent design by the manufacturer, the driver offers the portion of the transcript from a prior trial in which an expert witness testified that in his opinion the car was unsafe as designed. The testimony could qualify under the hearsay exception for former testimony",
+        "row_id": 989,
+        "selection_sha256": "010c6cdb181213fb850d68c61c668b406606b273c638da6353b0a1fb9cb41726",
+        "subject": "professional_law"
+      },
+      {
+        "answer": 0,
+        "choices": [
+          "granted, because the statement is hearsay not within any recognized exception.",
+          "granted, because the questioning of the witness was leading.",
+          "denied, because the defendant's attorney did not object at the grand jury hearing that the witness's testimony was hearsay.",
+          "denied, because the defendant's attorney did not object at the grand jury hearing that the questioning of the witness was leading."
+        ],
+        "question": "A defendant was arrested and charged with involuntary manslaughter for causing a vehicular homicide. A grand jury was convened, and various witnesses were subpoenaed. At the grand jury, a witness was asked the following question by the prosecuting attorney: \"Is it not true that 20 minutes after the accident you told the police that the defendant's car went through the red light?\" He answered, \"Yes. \"The defendant was also subpoenaed to appear before the grand jury. The defendant was represented by counsel at the grand jury hearing. During questioning he was shown the witness's statement from his testimony. No objection was made to the introduction of the witness's statement. At the defendant's trial, the prosecuting attorney seeks to introduce into evidence the witness's statement from the deposition taken at the grand jury hearing. The defendant's attorney objects to this proffer of evidence. The objection at trial will be",
+        "row_id": 667,
+        "selection_sha256": "015f8d4eae6928f8a9da428ed3fd4284976ccdfc9b56900fb4dd5158614b4af0",
+        "subject": "professional_law"
+      }
+    ],
+    "selection_salt": "expertflow-option1-v1"
+  },
+  "model": {
+    "bytes": 14439361440,
+    "path": "C:\\models\\expertflow\\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\\gemma-4-26B_q4_0-it.gguf",
+    "sha256": "4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5"
+  },
+  "runtime": {
+    "batch_size": 512,
+    "build_type": "Release",
+    "cmake_generator": "Ninja",
+    "compiler": "MSVC 19.39.33523.0 / v143 14.39.33519",
+    "ctx_size": 2048,
+    "cuda": "12.8.93",
+    "cuda_architectures": "120a-real",
+    "feature_disabled": "LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER absent",
+    "feature_flag": "LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER=0",
+    "llama_patch_commit": "29857466d39cc532cefc1633ac14e521849541fe",
+    "llama_upstream": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+    "ngl": 10,
+    "seed": 42,
+    "temperature": 0,
+    "threads": 12,
+    "ubatch_size": 1
+  },
+  "runtime_artifacts": {
+    "ggml-base.dll": {
+      "bytes": 644096,
+      "path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\ggml-base.dll",
+      "sha256": "3a3f1fb8d974d1dbf635000334a9944eebef2e361ed273afa20fae3128b4212f"
+    },
+    "ggml-cpu.dll": {
+      "bytes": 881664,
+      "path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\ggml-cpu.dll",
+      "sha256": "2f9dd707d504a5da7fb6084fbd1ba7d6807a7ba6db8933acbbbf2782ec06ad9d"
+    },
+    "ggml-cuda.dll": {
+      "bytes": 32615424,
+      "path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\ggml-cuda.dll",
+      "sha256": "dada58f4e85c628b80b92f782c7ed26b8276729855b8db7392b799ff19ee93ca"
+    },
+    "ggml.dll": {
+      "bytes": 56832,
+      "path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\ggml.dll",
+      "sha256": "3e58a16ba149d1ac07a2652dec270ce34f3fa0a5ca8eccfbfdb45502f1a47a0f"
+    },
+    "llama-cli-impl.dll": {
+      "bytes": 1646592,
+      "path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-cli-impl.dll",
+      "sha256": "7b722e0f6f27fe7182da99f67aacd29f8f982f0332974738b1afd80391ec57d0"
+    },
+    "llama-common.dll": {
+      "bytes": 9191936,
+      "path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-common.dll",
+      "sha256": "69aa99d019a6dda8eedfd955b97ad58e876b01c3c735ae27920642d64a80a66e"
+    },
+    "llama-perplexity-impl.dll": {
+      "bytes": 345600,
+      "path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-perplexity-impl.dll",
+      "sha256": "3ee22e2e9f79003e55a53aaf8f4a60154d107770ba66d4e3113ce6be14337684"
+    },
+    "llama.dll": {
+      "bytes": 2220544,
+      "path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama.dll",
+      "sha256": "153fbf6615d6144823989ad76135a7f4438a2e989014933877f80d6b1bc3b915"
+    }
+  },
+  "schema_version": 1,
+  "thresholds": {
+    "distinct_2_delta_pp_min": -5.0,
+    "mmlu_accuracy_delta_pp_min": -1.0,
+    "perplexity_relative_max": 0.005,
+    "repeated_4gram_delta_pp_max": 5.0
+  },
+  "wikitext": {
+    "chunk_count": 4,
+    "chunk_tokens": 2048,
+    "token_count": 8192
+  }
+}

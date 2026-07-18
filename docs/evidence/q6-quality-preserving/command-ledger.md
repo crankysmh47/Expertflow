@@ -24,3 +24,18 @@
 - Export command: `uv run --extra quality python scripts/prepare_quality_data.py --wikitext-parquet C:\models\expertflow\quality-data\wikitext-b08601e\wikitext-2-raw-v1\test-00000-of-00001.parquet --mmlu-root C:\models\expertflow\quality-data\mmlu-c30699e --output-dir C:\models\expertflow\quality-data\frozen-option1-v1`.
 - Exported WikiText: 4,358 source rows, 2,891 non-empty rows, 1,287,656 bytes, SHA-256 `bbf94c53a05abe9ee670d3b6343608095822c85e26de37c70b24fc571964574a`.
 - Exported MMLU: 3,558 rows across ten subjects, 3,281,851 bytes, SHA-256 `a732878ec453dc34b3933f7cf2ffb6fbc558f97c031b8d3882e2ff2f3e4d0e8a`.
+
+## 2026-07-18 - Q1 static CUDA island
+
+- Created llama.cpp worktree `C:\models\expertflow\worktrees\llama-q6-quality-preserving` on branch `codex/q6-quality-preserving-llama` at exact upstream `a7312ae94f801fc9c6786dc56e38df57b964f697`.
+- TDD red: `tests/test_q6_quality_static_source_contract.py` -> 3 failed and 1 passed against pristine source.
+- Restored only `src/llama-context.cpp` and `ggml/src/ggml-backend.cpp`; excluded all historical diagnostic bypasses.
+- TDD green: source contract -> 4 passed in 0.05 seconds.
+- Release CUDA build used MSVC `19.39.33523.0`, v143 `14.39.33519`, CUDA `12.8.93`, Ninja, and `CMAKE_CUDA_ARCHITECTURES=120a-real`; full build completed in 325.4 seconds.
+- Built `llama-cli`, `llama-perplexity`, and `llama-tokenize`. `llama-cli.exe` SHA-256: `07ca190fc192efcfb6a40eb5c14c0b8bde1ebe254811e5d2e4e4f23cfd1041cd`. `llama-perplexity.exe` SHA-256: `4867d2463a6e132a63222bc2de36f2f36412f1a906df181d5c13f068d43551cf`.
+- Pristine and patched-feature-disabled detached smokes used the same Q4 model, `-ngl 10`, context 512, greedy seed 42, and eight generated tokens. Their normalized generated segments matched exactly.
+- Feature-enabled detached smoke completed and returned GPU memory to its pre-run level. Runtime log proved the complete persistent layer-0 bundle: gate/up `285,474,816` bytes, down `142,737,408` bytes, scale `512` bytes; total `428,212,736` bytes (`408.375488 MiB`).
+- Isolated llama.cpp commit: `29857466d39cc532cefc1633ac14e521849541fe feat: restore disabled static CUDA expert island`.
+- Frozen Q4 model identity: 14,439,361,440 bytes, SHA-256 `4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5`.
+- Frozen quality manifest SHA-256: `4b4a1823e8dd0335e5e788657a8106177af30ac5a660738a8b4f25e3609dca61`.
+- Focused manifest, dataset, analysis, and evidence suite -> 17 passed; source-contract module skipped in that invocation because `EXPERTFLOW_LLAMA_SOURCE` was absent. Its explicit environment-enabled invocation passed 4/4 above.

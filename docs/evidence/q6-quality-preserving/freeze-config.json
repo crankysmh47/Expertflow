@@ -1,0 +1,39 @@
+{
+  "output_path": "C:\\models\\expertflow\\worktrees\\q6-quality-preserving\\docs\\evidence\\q6-quality-preserving\\quality-manifest.json",
+  "wikitext_revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+  "mmlu_revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+  "wikitext_source": "C:\\models\\expertflow\\quality-data\\frozen-option1-v1\\wikitext-test.txt",
+  "mmlu_source": "C:\\models\\expertflow\\quality-data\\frozen-option1-v1\\mmlu-test.json",
+  "model_path": "C:\\models\\expertflow\\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\\gemma-4-26B_q4_0-it.gguf",
+  "llama_cli_path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-cli.exe",
+  "llama_perplexity_path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-perplexity.exe",
+  "runtime_artifact_paths": [
+    "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\ggml.dll",
+    "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\ggml-base.dll",
+    "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\ggml-cpu.dll",
+    "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\ggml-cuda.dll",
+    "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama.dll",
+    "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-cli-impl.dll",
+    "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-common.dll",
+    "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-perplexity-impl.dll"
+  ],
+  "wikitext_token_count": 8192,
+  "runtime": {
+    "llama_upstream": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+    "llama_patch_commit": "29857466d39cc532cefc1633ac14e521849541fe",
+    "feature_flag": "LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER=0",
+    "feature_disabled": "LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER absent",
+    "cmake_generator": "Ninja",
+    "build_type": "Release",
+    "compiler": "MSVC 19.39.33523.0 / v143 14.39.33519",
+    "cuda": "12.8.93",
+    "cuda_architectures": "120a-real",
+    "ngl": 10,
+    "ctx_size": 2048,
+    "batch_size": 512,
+    "ubatch_size": 1,
+    "threads": 12,
+    "seed": 42,
+    "temperature": 0
+  }
+}

@@ -72,6 +72,7 @@ def test_freeze_manifest_is_stable_and_content_addressed(tmp_path: Path):
     assert manifest["mmlu"]["selection_salt"] == "expertflow-option1-v1"
     assert manifest["wikitext"]["token_count"] == 8192
     assert manifest["manifest_sha256"] == canonical_manifest_hash(manifest)
+    assert manifest["runtime_artifacts"] == {}
 
 
 def test_select_mmlu_items_is_order_independent():

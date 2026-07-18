@@ -39,6 +39,7 @@ class FreezeConfig:
     wikitext_token_count: int
     mmlu_rows_by_subject: Mapping[str, Sequence[Mapping[str, Any]]]
     runtime: Mapping[str, Any]
+    runtime_artifact_paths: Sequence[Path] = ()
 
 
 def freeze_config_from_json(path: Path) -> FreezeConfig:
@@ -57,6 +58,7 @@ def freeze_config_from_json(path: Path) -> FreezeConfig:
         wikitext_token_count=int(data["wikitext_token_count"]),
         mmlu_rows_by_subject=rows,
         runtime=dict(data["runtime"]),
+        runtime_artifact_paths=tuple(Path(item) for item in data.get("runtime_artifact_paths", [])),
     )
 
 
@@ -156,6 +158,9 @@ def freeze_manifest(config: FreezeConfig) -> dict[str, Any]:
         raise ValueError("WikiText evaluation must contain exactly 8192 tokens")
 
     items = select_mmlu_items(config.mmlu_rows_by_subject)
+    artifact_names = [path.name for path in config.runtime_artifact_paths]
+    if len(artifact_names) != len(set(artifact_names)):
+        raise ValueError("runtime artifact filenames must be unique")
     manifest: dict[str, Any] = {
         "schema_version": 1,
         "datasets": {
@@ -176,6 +181,9 @@ def freeze_manifest(config: FreezeConfig) -> dict[str, Any]:
         "executables": {
             "llama_cli": _file_identity(config.llama_cli_path),
             "llama_perplexity": _file_identity(config.llama_perplexity_path),
+        },
+        "runtime_artifacts": {
+            path.name: _file_identity(path) for path in sorted(config.runtime_artifact_paths)
         },
         "model": _file_identity(config.model_path),
         "runtime": dict(config.runtime),
