@@ -4,7 +4,8 @@ param(
     [Parameter(Mandatory=$true)][string]$Output,
     [int[]]$Contexts = @(2048, 8192, 16384, 32768),
     [int[]]$GpuLayers = @(99, 20, 10),
-    [int]$GeneratedTokens = 8
+    [int]$GeneratedTokens = 8,
+    [string[]]$ExtraArgs = @()
 )
 
 $ErrorActionPreference = 'Stop'
@@ -21,11 +22,14 @@ foreach ($context in $Contexts) {
         $stderr = Join-Path $runRoot "$name.stderr.log"
         $baseline = [int]((nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits).Trim())
         $watch = [Diagnostics.Stopwatch]::StartNew()
-        $proc = Start-Process -FilePath $Runtime -WorkingDirectory (Split-Path $Runtime -Parent) -ArgumentList @(
+        $runtimeArgs = @(
             '-m', $Model, '-p', 'Caching.', '-n', "$GeneratedTokens",
             '-c', "$context", '-ngl', "$ngl", '--threads', '12', '--seed', '42', '--temp', '0',
             '--no-display-prompt', '--single-turn'
-        ) -RedirectStandardOutput $stdout -RedirectStandardError $stderr -PassThru -NoNewWindow
+        )
+        $runtimeArgs += $ExtraArgs
+        $proc = Start-Process -FilePath $Runtime -WorkingDirectory (Split-Path $Runtime -Parent) -ArgumentList $runtimeArgs `
+            -RedirectStandardOutput $stdout -RedirectStandardError $stderr -PassThru -NoNewWindow
         $peakSystem = $baseline
         $peakProcessBytes = 0L
         while (-not $proc.HasExited) {
@@ -68,6 +72,7 @@ $result = [ordered]@{
     contexts = $Contexts
     gpu_layers = $GpuLayers
     generated_tokens = $GeneratedTokens
+    extra_args = $ExtraArgs
     safety_margin_mib = 256
     rows = $rows
 }
