@@ -7,8 +7,9 @@ def test_q1b_static_island_list_is_bounded_and_backward_compatible():
     context = (LLAMA / "src/llama-context.cpp").read_text(encoding="utf-8")
     backend = (LLAMA / "ggml/src/ggml-backend.cpp").read_text(encoding="utf-8")
 
-    assert "EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS 4" in backend
-    assert "EXPERTFLOW_STATIC_ISLAND_MAX_SHADOWS 16" in backend
+    assert "EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS 12" in backend
+    assert "EXPERTFLOW_STATIC_ISLAND_MAX_SHADOWS 48" in backend
+    assert "EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS 12" in context
     assert "expertflow_static_island_layers[EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS]" in backend
     assert "expertflow_static_island_has_layer" in context
     assert "expertflow_static_island_layer = -1" in backend
