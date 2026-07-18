@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "held_out_perplexity": {
+    "corpus": "WikiText-103 raw validation",
+    "corpus_path": "C:\\models\\expertflow\\quality-data\\q1b-heldout\\wikitext-103-validation.txt",
+    "corpus_sha256": "8ef749789ca0693435d20b3f81d5638c19edcebc5a68586dcf09bdf47ef9542f",
+    "scored_tokens": 8184,
+    "chunks": 8,
+    "context": 2048,
+    "batch": 512,
+    "microbatch": 1,
+    "seed": 42,
+    "cuda_graphs_disabled": true,
+    "off": {
+      "mean_nll": 9.68636124490159,
+      "perplexity": 16096.56613850225,
+      "nll_sha256": "3dba09d9d0bcab062482b6e0c3619c2358e29aa35ab03be311bc8c10734d3aa0"
+    },
+    "on": {
+      "layers": [0, 1, 15, 20],
+      "mean_nll": 9.612071026108596,
+      "perplexity": 14944.08765638083,
+      "nll_sha256": "60ea942a821001120c1319a04c3c7424d45a6e9f6400850804c771b077039e1d"
+    },
+    "relative_perplexity_change_pct": -7.159778503097944,
+    "paired_bootstrap": {
+      "block_size_tokens": 128,
+      "block_count": 64,
+      "samples": 10000,
+      "seed": 20260718,
+      "confidence_interval_95_pct": [-11.449895572370776, -2.5887130367680817]
+    },
+    "point_threshold_pct": 1.0,
+    "upper_bound_threshold_pct": 1.0,
+    "gate_pass": true
+  },
+  "mmlu": {
+    "protocol": "frozen Q1b 100-item zero-shot subset, temperature 0, seed 42, cache_prompt false, grammar A-D",
+    "manifest": "docs/evidence/q6-quality-preserving/quality-manifest.json",
+    "off_correct": 49,
+    "on_correct": 52,
+    "total": 100,
+    "off_accuracy_pct": 49.0,
+    "on_accuracy_pct": 52.0,
+    "delta_percentage_points": 3.0,
+    "decline_threshold_percentage_points": -1.0,
+    "changed_predictions": 15,
+    "changed_prediction_indices": [2, 10, 17, 28, 30, 39, 42, 49, 55, 56, 75, 79, 90, 93, 94],
+    "changed_predictions_repeated": 15,
+    "changed_predictions_exactly_deterministic": 15,
+    "off_results_sha256": "9bccec39c6f0ef1e06d44b44445b56741dc5d3ca86490d99d38fb7d49ef825f8",
+    "on_results_sha256": "c06aecc15bb7a3e372153ffa46fe6e4c1accd2e3527b7d713c573b26d2e08190",
+    "gate_pass": true
+  },
+  "overall_quality_gate_pass": true
+}

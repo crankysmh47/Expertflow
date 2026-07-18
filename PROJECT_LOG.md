@@ -1026,3 +1026,13 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Final release verification passed all 179 ExpertFlow tests, the standalone
   judge verification script, HTML parsing with zero external assets and zero
   scripts, and `git diff --check`.
+
+### 04:05 PKT - Bounded Q6 selected-static experiment stopped on product performance
+
+- Isolated ExpertFlow and llama.cpp worktrees from the verified Q1b state. The prior Q1 failure, Q1b pass, protected Observatory, and all existing runtime branches remain untouched.
+- Added a disabled diagnostic scheduler-split profiler. At stock-equivalent Q6 `-ngl 99 --cpu-moe`, selected layers `[0,1,15,20]` remained CPU expert splits despite 31/31 layer assignment to CUDA; together they accounted for 9.44% of synchronized diagnostic time, passing the 5% physical-plausibility gate.
+- Reused the proven full-capacity static-island implementation without new runtime architecture. Q6 copied complete Q6_K gate/up, Q8_0 down, and F32 scale bundles for 128 experts. Four layers allocated exactly 2,743,732,224 shadow bytes and completed stable repeated execution and teardown.
+- Quarantined a complete initial performance batch after discovering it used the build-default CUDA graph setting, contrary to the approved graph-disabled static protocol. Corrected the harness test-first and reran every pair; no ordinary slow run was excluded.
+- The authoritative ten-pair result was 19.95 OFF versus 21.44 ON decode TPS: +7.53% paired mean with a `[+4.66%, +10.42%]` bootstrap 95% interval. Peak process-owned VRAM was 3,094.656 MiB OFF and 5,720.762 MiB ON. ON remained below the frozen strongest-stock 22.967 TPS result.
+- Held-out WikiText-103 validation improved from 16,096.566 to 14,944.088 PPL (-7.16%, upper 95% bound -2.59%). Frozen MMLU improved from 49/100 to 52/100; all 15 changed answers repeated exactly in ON mode.
+- Applied the product gate: even optimistic linear scaling over the maximum 15 additional full arenas allowed by measured peak VRAM and a 256 MiB reserve reaches only 27.0275 TPS, below 28.709, and no additional low-sensitivity layer set is verified. Froze the runtime path with `Q6 PERFORMANCE STOP`; reactive caching and further architecture work remain closed.

@@ -1,0 +1,40 @@
+{
+  "pair_count": 10,
+  "off": {
+    "decode_tps_mean": 19.95,
+    "decode_tps_median": 20.25,
+    "decode_tps_sample_sd": 0.5948856099191578,
+    "prompt_tps_mean": 19.330000000000002,
+    "wall_seconds_mean": 34.5733536,
+    "process_owned_peak_mib": 3094.656
+  },
+  "on": {
+    "decode_tps_mean": 21.439999999999998,
+    "decode_tps_median": 21.4,
+    "decode_tps_sample_sd": 0.882169044017201,
+    "prompt_tps_mean": 20.96,
+    "wall_seconds_mean": 35.2084495,
+    "process_owned_peak_mib": 5720.762
+  },
+  "paired_improvement_pct_values": [
+    8.823529411764719,
+    13.725490196078427,
+    10.471204188481664,
+    2.450980392156854,
+    14.814814814814813,
+    3.9024390243902474,
+    0.4975124378109319,
+    3.0303030303030276,
+    10.256410256410264,
+    7.352941176470584
+  ],
+  "paired_improvement_pct_mean": 7.532562492868153,
+  "paired_improvement_pct_median": 8.088235294117652,
+  "paired_improvement_pct_sample_sd": 4.920477800454719,
+  "paired_bootstrap_95_pct": [
+    4.656997417024396,
+    10.418026759115435
+  ],
+  "bootstrap_samples": 100000,
+  "bootstrap_seed": 20260719
+}

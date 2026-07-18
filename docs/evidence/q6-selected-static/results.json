@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0.0",
+  "experiment": "bounded Q6 selected-layer static CUDA islands",
+  "selected_layers": [0, 1, 15, 20],
+  "verdict": "Q6 PERFORMANCE STOP",
+  "gates": {
+    "selected_bottleneck_share_at_least_5pct": true,
+    "static_placement_exact_and_stable": true,
+    "mean_matched_improvement_between_5_and_10pct": true,
+    "paired_confidence_interval_excludes_zero": true,
+    "held_out_perplexity": true,
+    "mmlu": true,
+    "credible_quantified_path_to_28_709_tps": false
+  },
+  "performance": {
+    "protocol": {
+      "pairs": 10,
+      "cold_processes": 20,
+      "order": ["OFF/ON", "ON/OFF", "OFF/ON", "ON/OFF", "OFF/ON", "ON/OFF", "OFF/ON", "ON/OFF", "OFF/ON", "ON/OFF"],
+      "generated_tokens_per_run": 512,
+      "prompt_tokens_per_run": 18,
+      "context": 2048,
+      "ngl": 99,
+      "cpu_moe": true,
+      "threads": 12,
+      "seed": 42,
+      "temperature": 0,
+      "ignore_eos": true,
+      "cuda_graphs_disabled": true,
+      "raw_sha256": "22d8a5ecebb5a0759af0f96b0cf903629b3b3fda711cfb91bcc41f8e837ce491"
+    },
+    "off": {
+      "decode_tps_values": [20.4, 20.4, 19.1, 20.4, 18.9, 20.5, 20.1, 19.8, 19.5, 20.4],
+      "decode_tps_mean": 19.95,
+      "decode_tps_median": 20.25,
+      "decode_tps_sample_sd": 0.5948856099191578,
+      "prompt_tps_mean": 19.33,
+      "end_to_end_wall_seconds_mean": 34.5733536,
+      "process_owned_peak_vram_mib": 3094.656,
+      "deterministic_response_hash_count": 1
+    },
+    "on": {
+      "decode_tps_values": [22.2, 23.2, 21.1, 20.9, 21.7, 21.3, 20.2, 20.4, 21.5, 21.9],
+      "decode_tps_mean": 21.44,
+      "decode_tps_median": 21.4,
+      "decode_tps_sample_sd": 0.882169044017201,
+      "prompt_tps_mean": 20.96,
+      "end_to_end_wall_seconds_mean": 35.2084495,
+      "process_owned_peak_vram_mib": 5720.762,
+      "deterministic_response_hash_count": 1
+    },
+    "paired_improvement_pct_values": [8.823529411764719, 13.725490196078427, 10.471204188481664, 2.450980392156854, 14.814814814814813, 3.9024390243902474, 0.4975124378109319, 3.0303030303030276, 10.256410256410264, 7.352941176470584],
+    "paired_improvement_pct_mean": 7.532562492868153,
+    "paired_improvement_pct_median": 8.088235294117652,
+    "paired_improvement_pct_sample_sd": 4.920477800454719,
+    "paired_bootstrap_95_pct": [4.656997417024396, 10.418026759115435],
+    "bootstrap_samples": 100000,
+    "bootstrap_seed": 20260719
+  },
+  "streaming_latency_diagnostic": {
+    "pair_count": 1,
+    "interface": "llama-server streaming",
+    "not_mixed_with_cli_throughput": true,
+    "off": {
+      "ttft_ms": 281.4549,
+      "token_latency_p50_ms": 47.6656,
+      "token_latency_p95_ms": 54.6064,
+      "token_latency_p99_ms": 78.89424,
+      "decode_tps": 20.45231002650132
+    },
+    "on": {
+      "ttft_ms": 342.409,
+      "token_latency_p50_ms": 45.0357,
+      "token_latency_p95_ms": 52.72605,
+      "token_latency_p99_ms": 69.26061,
+      "decode_tps": 21.608273402730777
+    },
+    "raw_sha256": "d63187a60bf158d1dd7a13540f71fb4e2d744f37828d64aae6e9aca355c0c376"
+  },
+  "comparison_to_frozen_product_targets": {
+    "strongest_fair_stock_decode_tps": 22.967,
+    "product_target_decode_tps": 28.709,
+    "selected_static_on_vs_strongest_stock_pct": -6.648669830626542,
+    "remaining_gain_required_from_selected_static_on_pct": 33.90391791044776,
+    "exact_arena_bytes_per_added_full_layer": 685933056,
+    "max_additional_full_layers_under_measured_peak_and_256_mib_margin": 15,
+    "optimistic_linear_tps_with_15_equivalent_added_layers": 27.0275,
+    "additional_low_sensitivity_layers_verified": 0,
+    "conclusion": "Even an optimistic linear extrapolation across the maximum memory-feasible additional layers remains below 28.709 TPS, and no additional Q1b low-sensitivity layers are verified. Reaching target therefore lacks the quantified credible path required for Q6 CONDITIONAL PASS."
+  },
+  "quality": {
+    "reference_perplexity": 16096.56613850225,
+    "candidate_perplexity": 14944.08765638083,
+    "relative_change_pct": -7.159778503097944,
+    "bootstrap_95_pct": [-11.449895572370776, -2.5887130367680817],
+    "mmlu_off": 49,
+    "mmlu_on": 52,
+    "mmlu_total": 100,
+    "pass": true
+  },
+  "stop_action": "Freeze the Q6 static path, do not begin reactive caching, reduced-capacity work, prediction, additional layer selection, scheduler changes, or kernel work. Return to the protected release/Observatory submission floor."
+}

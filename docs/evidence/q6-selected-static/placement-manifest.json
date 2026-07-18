@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "measurement_kind": "q6_selected_static_placement",
+  "selected_layers": [0, 1, 15, 20],
+  "runtime": {
+    "llama_branch": "codex/q6-selected-static-llama",
+    "llama_commit": "d8e387fce4dce15dcfeff95230cbf8a6daf9c9b2",
+    "upstream_q1b_commit": "38dce264",
+    "configuration": ["-ngl", "99", "--cpu-moe"],
+    "cuda_graphs_disabled_for_authoritative_runs": true,
+    "feature_environment": "LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER=0,1,15,20"
+  },
+  "model": {
+    "path": "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+    "bytes": 22862575520,
+    "sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba"
+  },
+  "stock_placement": {
+    "authoritative_expert_tensor_backend": "CPU_Mapped",
+    "selected_expert_matmul_backend": "CPU",
+    "router_topk_backend": "CUDA0",
+    "selected_expert_activation_backend": "CPU",
+    "output_boundary_backend": "CUDA0",
+    "note": "31/31 CUDA layer assignment does not place --cpu-moe expert tensors or their selected expert operations on CUDA."
+  },
+  "static_placement": {
+    "source_backend": "CPU_Mapped",
+    "shadow_backend": "CUDA0",
+    "expert_count_per_layer": 128,
+    "identity_mapping": true,
+    "persistent": true,
+    "preloaded_once": true,
+    "dynamic_loading": false,
+    "eviction": false,
+    "prediction": false,
+    "hidden_full_expert_duplicate": false,
+    "components": [
+      {
+        "name": "ffn_gate_up_exps.weight",
+        "type": "Q6_K",
+        "shape": [2816, 1408, 128],
+        "expert_axis": 2,
+        "bytes_per_expert": 3252480,
+        "bytes_per_layer": 416317440
+      },
+      {
+        "name": "ffn_down_exps.weight",
+        "type": "Q8_0",
+        "shape": [704, 2816, 128],
+        "expert_axis": 2,
+        "bytes_per_expert": 2106368,
+        "bytes_per_layer": 269615104
+      },
+      {
+        "name": "ffn_down_exps.scale",
+        "type": "F32",
+        "shape": [128],
+        "expert_axis": 0,
+        "bytes_per_expert": 4,
+        "bytes_per_layer": 512
+      }
+    ],
+    "complete_bundle_bytes_per_expert": 5358852,
+    "complete_bundle_bytes_per_layer": 685933056,
+    "exact_four_layer_shadow_bytes": 2743732224,
+    "ownership_and_teardown": "passed bounded repeated cold-process proof",
+    "source_contract": "exact packed source bytes copied without repacking"
+  }
+}
