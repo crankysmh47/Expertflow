@@ -21,6 +21,10 @@ predictor = [
   "numpy>=1.26,<3",
   "torch>=2.7,<3",
 ]
+quality = [
+    "huggingface-hub>=0.36,<1",
+    "pyarrow>=20,<22",
+]
 
 [tool.pytest.ini_options]
 addopts = "-ra"
