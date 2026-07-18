@@ -1,0 +1,94 @@
+{
+  "artifacts": {},
+  "command": [
+    "C:\\models\\expertflow\\builds\\llama-q1b-noninferiority\\bin\\llama-cli.exe",
+    "-m",
+    "C:\\models\\expertflow\\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\\gemma-4-26B_q4_0-it.gguf",
+    "-ngl",
+    "10",
+    "-c",
+    "512",
+    "-b",
+    "512",
+    "-ub",
+    "1",
+    "--threads",
+    "12",
+    "--seed",
+    "42",
+    "--temp",
+    "0",
+    "--ignore-eos",
+    "-n",
+    "128",
+    "--no-warmup",
+    "--no-display-prompt",
+    "--simple-io",
+    "--single-turn",
+    "-p",
+    "Explain in one sentence why reproducible measurements matter."
+  ],
+  "cwd": "C:\\models\\expertflow\\builds\\llama-q1b-noninferiority\\bin",
+  "duration_seconds": 11.5629487,
+  "ended_at": "2026-07-18T19:24:56.406072+00:00",
+  "executable": {
+    "bytes": 10240,
+    "exists": true,
+    "path": "C:\\models\\expertflow\\builds\\llama-q1b-noninferiority\\bin\\llama-cli.exe",
+    "sha256": "39e1cbcdc9c5cdba73340357fae4e4b6d52218caef31af3292b4e6a841a0ad9b"
+  },
+  "measurement_kind": "measured",
+  "memory": {
+    "gpu_after_immediate": {
+      "0": {
+        "free_mib": 14086,
+        "total_mib": 16311,
+        "used_mib": 1965
+      }
+    },
+    "gpu_after_settled": {
+      "0": {
+        "free_mib": 14086,
+        "total_mib": 16311,
+        "used_mib": 1965
+      }
+    },
+    "gpu_before": {
+      "0": {
+        "free_mib": 14086,
+        "total_mib": 16311,
+        "used_mib": 1965
+      }
+    },
+    "gpu_peak_used_mib": {
+      "0": 8329
+    },
+    "process_gpu_peak_mib": 0,
+    "process_peak": {
+      "peak_pagefile_bytes": 7595888640,
+      "peak_working_set_bytes": 12754173952,
+      "private_bytes": 7595888640,
+      "working_set_bytes": 12744060928
+    }
+  },
+  "return_code": 0,
+  "sample_count": 64,
+  "sample_errors": [],
+  "sample_interval_seconds": 0.1,
+  "schema_version": "1.0.0",
+  "settle_seconds": 1.0,
+  "started_at": "2026-07-18T19:24:44.843102+00:00",
+  "status": "passed",
+  "stderr": {
+    "bytes": 0,
+    "exists": true,
+    "path": "C:\\models\\expertflow\\worktrees\\q1b-noninferiority\\docs\\evidence\\q1b-noninferiority\\performance\\layers-0-1-15-20-r3\\stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 1598,
+    "exists": true,
+    "path": "C:\\models\\expertflow\\worktrees\\q1b-noninferiority\\docs\\evidence\\q1b-noninferiority\\performance\\layers-0-1-15-20-r3\\stdout.log",
+    "sha256": "9a3a2275b29a8cd1da49042904196a0fa235320f663eeb957ae13088e9e263c8"
+  }
+}

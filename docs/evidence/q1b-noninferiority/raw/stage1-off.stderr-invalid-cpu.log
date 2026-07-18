@@ -1,0 +1,7 @@
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions
+0.01.218.559 W load: override 'tokenizer.ggml.add_bos_token' to 'true' for Gemma4
+0.01.281.483 W load: control-looking token:     50 '<|tool_response>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.01.281.991 W load: control-looking token:    212 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.01.336.802 W load: special_eog_ids contains '<|tool_response>', removing '</s>' token from EOG list

@@ -1,0 +1,4514 @@
+{
+  "protocol": {
+    "shot_count": 0,
+    "choice_constraint": "root ::= [ABCD]",
+    "temperature": 0.0,
+    "seed": 42,
+    "cache_prompt": false
+  },
+  "correct": 42,
+  "total": 100,
+  "accuracy": 0.42,
+  "items": [
+    {
+      "index": 0,
+      "subject": "abstract_algebra",
+      "row_id": 78,
+      "selection_sha256": "042b70048b7d30436e6d92c79d1e3ef50e7cda5fc452c5b5e2d335c644c786ca",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 99,
+        "prompt_ms": 4002.18,
+        "prompt_per_token_ms": 40.4260606060606,
+        "prompt_per_second": 24.736518597364437,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.054509499999767
+    },
+    {
+      "index": 1,
+      "subject": "abstract_algebra",
+      "row_id": 23,
+      "selection_sha256": "08495021c585d4cd27cac64b75c3e7672db9be385869edddc2c91efb26e8f66a",
+      "answer": 3,
+      "prediction": 2,
+      "correct": false,
+      "content": "C",
+      "tokens": [
+        236780
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236780,
+          "token": "C",
+          "bytes": [
+            67
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236780,
+              "token": "C",
+              "bytes": [
+                67
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 63,
+        "prompt_ms": 2337.524,
+        "prompt_per_token_ms": 37.10355555555555,
+        "prompt_per_second": 26.95159493549585,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.356375299999854
+    },
+    {
+      "index": 2,
+      "subject": "abstract_algebra",
+      "row_id": 1,
+      "selection_sha256": "0a8b023d6940fadb8a6bd843a20b6128ccaf35f261d6907e8b57c38ff3db4f07",
+      "answer": 2,
+      "prediction": 0,
+      "correct": false,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 81,
+        "prompt_ms": 2917.52,
+        "prompt_per_token_ms": 36.01876543209877,
+        "prompt_per_second": 27.763305821382545,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.9234734999990906
+    },
+    {
+      "index": 3,
+      "subject": "abstract_algebra",
+      "row_id": 28,
+      "selection_sha256": "0b27ffe9fee51d6e9da791bc651ed2a7daa418c583ade98b332b744b56902830",
+      "answer": 3,
+      "prediction": 2,
+      "correct": false,
+      "content": "C",
+      "tokens": [
+        236780
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236780,
+          "token": "C",
+          "bytes": [
+            67
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236780,
+              "token": "C",
+              "bytes": [
+                67
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 92,
+        "prompt_ms": 3261.061,
+        "prompt_per_token_ms": 35.44631521739131,
+        "prompt_per_second": 28.21167711980855,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.2793595000002824
+    },
+    {
+      "index": 4,
+      "subject": "abstract_algebra",
+      "row_id": 62,
+      "selection_sha256": "0bb1d4b1c4e9ac093f27a66719494d0942629ee8015cf483e3ed3cce60b33022",
+      "answer": 2,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 90,
+        "prompt_ms": 3160.201,
+        "prompt_per_token_ms": 35.113344444444444,
+        "prompt_per_second": 28.47920116473604,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.178260399999999
+    },
+    {
+      "index": 5,
+      "subject": "abstract_algebra",
+      "row_id": 36,
+      "selection_sha256": "0e5c48a9fd5a50c05df6be1e446914600bb78b58c08f580e186ce7fff05d8ec4",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 62,
+        "prompt_ms": 2231.053,
+        "prompt_per_token_ms": 35.984725806451614,
+        "prompt_per_second": 27.789568423520198,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.2489810999995825
+    },
+    {
+      "index": 6,
+      "subject": "abstract_algebra",
+      "row_id": 84,
+      "selection_sha256": "110927352a7928f3b751db998f6815ae40e0f7c3daf312cbe077cc20e4dd5fcc",
+      "answer": 3,
+      "prediction": 2,
+      "correct": false,
+      "content": "C",
+      "tokens": [
+        236780
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236780,
+          "token": "C",
+          "bytes": [
+            67
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236780,
+              "token": "C",
+              "bytes": [
+                67
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 107,
+        "prompt_ms": 3721.713,
+        "prompt_per_token_ms": 34.78236448598131,
+        "prompt_per_second": 28.75020185597331,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.738447300000189
+    },
+    {
+      "index": 7,
+      "subject": "abstract_algebra",
+      "row_id": 59,
+      "selection_sha256": "11a0924b9b31f73e37b1392cf6ee784cd29c386eaead966c8275352d0eb738d2",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 95,
+        "prompt_ms": 3417.103,
+        "prompt_per_token_ms": 35.9695052631579,
+        "prompt_per_second": 27.8013276158196,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.425429599999916
+    },
+    {
+      "index": 8,
+      "subject": "abstract_algebra",
+      "row_id": 10,
+      "selection_sha256": "14bd2f45a8d16955d39991d51af5eb1a47fefe73b7ac5e5bcccb41d01f7abe69",
+      "answer": 2,
+      "prediction": 0,
+      "correct": false,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 99,
+        "prompt_ms": 3548.907,
+        "prompt_per_token_ms": 35.847545454545454,
+        "prompt_per_second": 27.89591274158494,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.5660747999991145
+    },
+    {
+      "index": 9,
+      "subject": "abstract_algebra",
+      "row_id": 8,
+      "selection_sha256": "160ba6e58ac7a3c6815bb7c503550525347a597d533f260ad4119995f7213254",
+      "answer": 1,
+      "prediction": 1,
+      "correct": true,
+      "content": "B",
+      "tokens": [
+        236799
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236799,
+          "token": "B",
+          "bytes": [
+            66
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236799,
+              "token": "B",
+              "bytes": [
+                66
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 63,
+        "prompt_ms": 2224.3,
+        "prompt_per_token_ms": 35.30634920634921,
+        "prompt_per_second": 28.323517511127093,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.2332249999999476
+    },
+    {
+      "index": 10,
+      "subject": "college_computer_science",
+      "row_id": 17,
+      "selection_sha256": "00af74d1515df65826145f131cde6cc2a9fedacb2da05104e87bbd885c63590e",
+      "answer": 1,
+      "prediction": 1,
+      "correct": true,
+      "content": "B",
+      "tokens": [
+        236799
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236799,
+          "token": "B",
+          "bytes": [
+            66
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236799,
+              "token": "B",
+              "bytes": [
+                66
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 85,
+        "prompt_ms": 2989.287,
+        "prompt_per_token_ms": 35.16808235294118,
+        "prompt_per_second": 28.434874269349184,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.007558400000562
+    },
+    {
+      "index": 11,
+      "subject": "college_computer_science",
+      "row_id": 76,
+      "selection_sha256": "02e9ac050c65767cc0494cb133dda27badc7e9fd3238fab3ae501b10afa6276c",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 86,
+        "prompt_ms": 2998.733,
+        "prompt_per_token_ms": 34.86898837209303,
+        "prompt_per_second": 28.67877867085866,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.015501800000493
+    },
+    {
+      "index": 12,
+      "subject": "college_computer_science",
+      "row_id": 88,
+      "selection_sha256": "04e892aaed6bfe002be793fc41665c4398a4e538b9f598b90fe598f8425e5de6",
+      "answer": 2,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 107,
+        "prompt_ms": 3753.83,
+        "prompt_per_token_ms": 35.08252336448598,
+        "prompt_per_second": 28.504221022262595,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.7611618999999337
+    },
+    {
+      "index": 13,
+      "subject": "college_computer_science",
+      "row_id": 14,
+      "selection_sha256": "09ac2dfb644abdb53fbf14e185e298ef7675a9ec3b03de022aeeb844100a3ca9",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 131,
+        "prompt_ms": 4597.66,
+        "prompt_per_token_ms": 35.09664122137404,
+        "prompt_per_second": 28.492755010157342,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.606431099999099
+    },
+    {
+      "index": 14,
+      "subject": "college_computer_science",
+      "row_id": 29,
+      "selection_sha256": "09b8c11755cdcfd50ffed84adec43f7d1fba9e39fb0452628108b069af0af11d",
+      "answer": 2,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 83,
+        "prompt_ms": 2889.387,
+        "prompt_per_token_ms": 34.81189156626506,
+        "prompt_per_second": 28.725816237146496,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.908974899999521
+    },
+    {
+      "index": 15,
+      "subject": "college_computer_science",
+      "row_id": 94,
+      "selection_sha256": "09f37dfc79b150ffc8f8a8d5cba7d2da2b20bcd1a41a8cd07e90a4c4db53cc5a",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 167,
+        "prompt_ms": 5884.825,
+        "prompt_per_token_ms": 35.238473053892214,
+        "prompt_per_second": 28.378074114353442,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 5.89255840000078
+    },
+    {
+      "index": 16,
+      "subject": "college_computer_science",
+      "row_id": 70,
+      "selection_sha256": "0cb4b95d5f154a5fe7ada12ede22b31a1a520c97b00bb8a9f7d3e10ab0deae7c",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 131,
+        "prompt_ms": 4658.149,
+        "prompt_per_token_ms": 35.5583893129771,
+        "prompt_per_second": 28.122758632237822,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.673836399999345
+    },
+    {
+      "index": 17,
+      "subject": "college_computer_science",
+      "row_id": 2,
+      "selection_sha256": "11d2b7c0143e38f962563993dae57974c2654b28e286bc0984ee9f34e0776160",
+      "answer": 1,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 219,
+        "prompt_ms": 7776.908,
+        "prompt_per_token_ms": 35.51099543378996,
+        "prompt_per_second": 28.160291982366253,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 7.7886601999998675
+    },
+    {
+      "index": 18,
+      "subject": "college_computer_science",
+      "row_id": 36,
+      "selection_sha256": "130061a5d8fbaba0a5db74f685bdf514388641ca2b0d7b0e9dc110af11aadb4e",
+      "answer": 2,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 66,
+        "prompt_ms": 2539.555,
+        "prompt_per_token_ms": 38.47810606060606,
+        "prompt_per_second": 25.98880512530739,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.553099900000234
+    },
+    {
+      "index": 19,
+      "subject": "college_computer_science",
+      "row_id": 86,
+      "selection_sha256": "158d950db1e419649fb90d5dc49e6a2d6cc913a6f1eb750c3f433b3e9cf3b6a1",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 111,
+        "prompt_ms": 4070.058,
+        "prompt_per_token_ms": 36.66718918918919,
+        "prompt_per_second": 27.272338625149814,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.076553599999897
+    },
+    {
+      "index": 20,
+      "subject": "college_mathematics",
+      "row_id": 42,
+      "selection_sha256": "0259bca293e1a61ba9970f9a4166c53754ed3b9387c41026bbf25ec4a783a2b7",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 94,
+        "prompt_ms": 3592.273,
+        "prompt_per_token_ms": 38.21567021276596,
+        "prompt_per_second": 26.16727626213264,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.6130102000006445
+    },
+    {
+      "index": 21,
+      "subject": "college_mathematics",
+      "row_id": 77,
+      "selection_sha256": "02e41e7a74385c644ee9ad890c3dbece09a99410197a2b1ebb67ff35ad2d16bf",
+      "answer": 2,
+      "prediction": 0,
+      "correct": false,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 80,
+        "prompt_ms": 3047.469,
+        "prompt_per_token_ms": 38.0933625,
+        "prompt_per_second": 26.251292465977507,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.0555122000005213
+    },
+    {
+      "index": 22,
+      "subject": "college_mathematics",
+      "row_id": 18,
+      "selection_sha256": "03c1d1cfa543b5682ddad6b23499b79b163a578ebc526eceea30416ee7f89f7a",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 153,
+        "prompt_ms": 5597.697,
+        "prompt_per_token_ms": 36.586254901960785,
+        "prompt_per_second": 27.332669131608945,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 5.61481300000014
+    },
+    {
+      "index": 23,
+      "subject": "college_mathematics",
+      "row_id": 8,
+      "selection_sha256": "053d40f7c919bad116fbec7781e6e95479e2adc245de1c1a385d006ebcbc9d54",
+      "answer": 2,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 103,
+        "prompt_ms": 3650.501,
+        "prompt_per_token_ms": 35.4417572815534,
+        "prompt_per_second": 28.215305241664087,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.662477300000319
+    },
+    {
+      "index": 24,
+      "subject": "college_mathematics",
+      "row_id": 95,
+      "selection_sha256": "0dc0b57ba3ed92d708dc1f021803de07f35a4052b95aedc10d38890e2c50637f",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 77,
+        "prompt_ms": 2710.259,
+        "prompt_per_token_ms": 35.19816883116883,
+        "prompt_per_second": 28.410568879210437,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.718481099998826
+    },
+    {
+      "index": 25,
+      "subject": "college_mathematics",
+      "row_id": 30,
+      "selection_sha256": "0f891287be535ea4e7f01a9b14dcb9def1e05fee20dd87244ab88fcec8e3be75",
+      "answer": 2,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 150,
+        "prompt_ms": 5269.641,
+        "prompt_per_token_ms": 35.130939999999995,
+        "prompt_per_second": 28.464937175037164,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 5.276488800000152
+    },
+    {
+      "index": 26,
+      "subject": "college_mathematics",
+      "row_id": 17,
+      "selection_sha256": "11c68981d2ebee377ef5efc64f956c552f832c7d405e2128d0dee3bd06800140",
+      "answer": 2,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 117,
+        "prompt_ms": 4107.031,
+        "prompt_per_token_ms": 35.10282905982906,
+        "prompt_per_second": 28.487732378937487,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.11906160000035
+    },
+    {
+      "index": 27,
+      "subject": "college_mathematics",
+      "row_id": 55,
+      "selection_sha256": "128d4d93ac4198e28ca2aa2e02a77f32418882f774fd83dd8ea8ec0c9ef8ea0b",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 96,
+        "prompt_ms": 3375.989,
+        "prompt_per_token_ms": 35.166552083333336,
+        "prompt_per_second": 28.436111610553233,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.3863810999991983
+    },
+    {
+      "index": 28,
+      "subject": "college_mathematics",
+      "row_id": 32,
+      "selection_sha256": "12e9bf114d061de4e5e95e7cc017b03dd70ae706d8aa4dab5b69a35a42eeded4",
+      "answer": 1,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 113,
+        "prompt_ms": 3932.617,
+        "prompt_per_token_ms": 34.801920353982304,
+        "prompt_per_second": 28.734046564921012,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.942031299999144
+    },
+    {
+      "index": 29,
+      "subject": "college_mathematics",
+      "row_id": 89,
+      "selection_sha256": "13021b3d0bba01ff0b0f15ee49ec81f848f74a353d9496cd5139f5a2a07e9fd5",
+      "answer": 2,
+      "prediction": 1,
+      "correct": false,
+      "content": "B",
+      "tokens": [
+        236799
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236799,
+          "token": "B",
+          "bytes": [
+            66
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236799,
+              "token": "B",
+              "bytes": [
+                66
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 72,
+        "prompt_ms": 2503.867,
+        "prompt_per_token_ms": 34.77593055555556,
+        "prompt_per_second": 28.755520960178796,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.5127453000004607
+    },
+    {
+      "index": 30,
+      "subject": "computer_security",
+      "row_id": 63,
+      "selection_sha256": "02d56c19ce6fe3afa814912f8e553b388153d6ccc577142d4b8ab8241e56ba06",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 60,
+        "prompt_ms": 2152.505,
+        "prompt_per_token_ms": 35.875083333333336,
+        "prompt_per_second": 27.874499710802066,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.1591934000007313
+    },
+    {
+      "index": 31,
+      "subject": "computer_security",
+      "row_id": 44,
+      "selection_sha256": "03009a75662e586116dba621e8b4342807ea621f7b96be2788d2a0ba9dde7a09",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 163,
+        "prompt_ms": 5762.441,
+        "prompt_per_token_ms": 35.352398773006136,
+        "prompt_per_second": 28.286623672155603,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 5.770716500001072
+    },
+    {
+      "index": 32,
+      "subject": "computer_security",
+      "row_id": 87,
+      "selection_sha256": "089c3afd6820b47e6cdfd6adb2a042a3846ac5e0b51e45027860b2a531a71c0b",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 49,
+        "prompt_ms": 1735.088,
+        "prompt_per_token_ms": 35.40995918367347,
+        "prompt_per_second": 28.240642549542155,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 1.7664855999992142
+    },
+    {
+      "index": 33,
+      "subject": "computer_security",
+      "row_id": 13,
+      "selection_sha256": "0bb5a1e64fb4da900c190fcd2f57479086648c33a42b15f4ff9339c038c6fb31",
+      "answer": 1,
+      "prediction": 2,
+      "correct": false,
+      "content": "C",
+      "tokens": [
+        236780
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236780,
+          "token": "C",
+          "bytes": [
+            67
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236780,
+              "token": "C",
+              "bytes": [
+                67
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 55,
+        "prompt_ms": 1971.94,
+        "prompt_per_token_ms": 35.85345454545455,
+        "prompt_per_second": 27.89131515157662,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 1.9778205000002345
+    },
+    {
+      "index": 34,
+      "subject": "computer_security",
+      "row_id": 45,
+      "selection_sha256": "0cc913dd6b4714b5dcbdfce320f1682bdba4c9df659d85d17e08af061d585779",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 56,
+        "prompt_ms": 1966.647,
+        "prompt_per_token_ms": 35.118696428571425,
+        "prompt_per_second": 28.47486101979664,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 1.9838620000009541
+    },
+    {
+      "index": 35,
+      "subject": "computer_security",
+      "row_id": 68,
+      "selection_sha256": "0d7cc95f9b07578facb0aeb8730f53edace2e3d26ecf9e3ca4d3e660de36c66f",
+      "answer": 1,
+      "prediction": 1,
+      "correct": true,
+      "content": "B",
+      "tokens": [
+        236799
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236799,
+          "token": "B",
+          "bytes": [
+            66
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236799,
+              "token": "B",
+              "bytes": [
+                66
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 58,
+        "prompt_ms": 2020.76,
+        "prompt_per_token_ms": 34.84068965517241,
+        "prompt_per_second": 28.70207248757893,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.0382559999998193
+    },
+    {
+      "index": 36,
+      "subject": "computer_security",
+      "row_id": 94,
+      "selection_sha256": "13a06dfb3c2ac41661152e0e018810723838d0ee3318d76faaa4992baa77b6c1",
+      "answer": 1,
+      "prediction": 1,
+      "correct": true,
+      "content": "B",
+      "tokens": [
+        236799
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236799,
+          "token": "B",
+          "bytes": [
+            66
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236799,
+              "token": "B",
+              "bytes": [
+                66
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 123,
+        "prompt_ms": 4547.281,
+        "prompt_per_token_ms": 36.96976422764227,
+        "prompt_per_second": 27.04913111813411,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.555349300000671
+    },
+    {
+      "index": 37,
+      "subject": "computer_security",
+      "row_id": 57,
+      "selection_sha256": "14e27e6f5ad14929f6a3baaaca4fba965cf3bff5c34dafe229277fff984d4e5e",
+      "answer": 1,
+      "prediction": 1,
+      "correct": true,
+      "content": "B",
+      "tokens": [
+        236799
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236799,
+          "token": "B",
+          "bytes": [
+            66
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236799,
+              "token": "B",
+              "bytes": [
+                66
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 50,
+        "prompt_ms": 1870.473,
+        "prompt_per_token_ms": 37.409459999999996,
+        "prompt_per_second": 26.731206491620036,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 1.8932787000012468
+    },
+    {
+      "index": 38,
+      "subject": "computer_security",
+      "row_id": 12,
+      "selection_sha256": "15b387904e68c8fd1bc0c1395ed0e8f3fa853400c8c69d9599e7894fc82e9fa8",
+      "answer": 2,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 119,
+        "prompt_ms": 4345.323,
+        "prompt_per_token_ms": 36.51531932773109,
+        "prompt_per_second": 27.38576625949325,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.352764999999636
+    },
+    {
+      "index": 39,
+      "subject": "computer_security",
+      "row_id": 74,
+      "selection_sha256": "165823d6ffb21b1207f0cf01f46458897086528c21edbca2b39616de6a000835",
+      "answer": 1,
+      "prediction": 0,
+      "correct": false,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 93,
+        "prompt_ms": 3324.553,
+        "prompt_per_token_ms": 35.74788172043011,
+        "prompt_per_second": 27.97368548493587,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.3480561999986094
+    },
+    {
+      "index": 40,
+      "subject": "conceptual_physics",
+      "row_id": 226,
+      "selection_sha256": "00b80ff494a4c47888a31f815baaf3f77856da0e019dacf434e7c9e1b27889fa",
+      "answer": 1,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 64,
+        "prompt_ms": 2354.84,
+        "prompt_per_token_ms": 36.794375,
+        "prompt_per_second": 27.17806729968915,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.36961379999957
+    },
+    {
+      "index": 41,
+      "subject": "conceptual_physics",
+      "row_id": 111,
+      "selection_sha256": "01623427741c02920378008a7335d401125badad94209dceb4ac72ee2ee6eefc",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 48,
+        "prompt_ms": 1789.853,
+        "prompt_per_token_ms": 37.288604166666666,
+        "prompt_per_second": 26.817844817423556,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 1.8123804999995627
+    },
+    {
+      "index": 42,
+      "subject": "conceptual_physics",
+      "row_id": 45,
+      "selection_sha256": "0214b39c34f0ca5557685c3045a32e220d0637784406390419c1ccff103c763a",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 71,
+        "prompt_ms": 2525.095,
+        "prompt_per_token_ms": 35.56471830985915,
+        "prompt_per_second": 28.117753985493614,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.532810700000482
+    },
+    {
+      "index": 43,
+      "subject": "conceptual_physics",
+      "row_id": 140,
+      "selection_sha256": "021ba144231fbf208233d5f7b42e083498ad6e88bc24aef31e43f92fca0da082",
+      "answer": 0,
+      "prediction": 1,
+      "correct": false,
+      "content": "B",
+      "tokens": [
+        236799
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236799,
+          "token": "B",
+          "bytes": [
+            66
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236799,
+              "token": "B",
+              "bytes": [
+                66
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 55,
+        "prompt_ms": 1973.271,
+        "prompt_per_token_ms": 35.87765454545455,
+        "prompt_per_second": 27.87250205369663,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 1.9827797999987524
+    },
+    {
+      "index": 44,
+      "subject": "conceptual_physics",
+      "row_id": 58,
+      "selection_sha256": "0251a6b86817e51e830e2ba861bd5e2d9952de61b75f6af3a8392b02c2bdf279",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 48,
+        "prompt_ms": 1689.098,
+        "prompt_per_token_ms": 35.18954166666666,
+        "prompt_per_second": 28.417534092160434,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 1.6995771000001696
+    },
+    {
+      "index": 45,
+      "subject": "conceptual_physics",
+      "row_id": 179,
+      "selection_sha256": "02f07bdb6e9780768ac741c794983071707fbf9b83877a0b78807f2282ac6270",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 75,
+        "prompt_ms": 2640.323,
+        "prompt_per_token_ms": 35.20430666666667,
+        "prompt_per_second": 28.40561552507023,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.650300799999968
+    },
+    {
+      "index": 46,
+      "subject": "conceptual_physics",
+      "row_id": 97,
+      "selection_sha256": "031243eb97b4274a7462f5523e6c8016a39f7b5cb07123aeb95b989928bf6651",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 65,
+        "prompt_ms": 2269.322,
+        "prompt_per_token_ms": 34.912646153846154,
+        "prompt_per_second": 28.642916254282113,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.2820303999997122
+    },
+    {
+      "index": 47,
+      "subject": "conceptual_physics",
+      "row_id": 130,
+      "selection_sha256": "04985b963243672ecc717183bd26b4d273eb15d699be3303769a9d87203da82c",
+      "answer": 0,
+      "prediction": 0,
+      "correct": true,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 50,
+        "prompt_ms": 1767.226,
+        "prompt_per_token_ms": 35.34452,
+        "prompt_per_second": 28.292929144319967,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 1.7845539000009012
+    },
+    {
+      "index": 48,
+      "subject": "conceptual_physics",
+      "row_id": 76,
+      "selection_sha256": "050d953471e418ce22d3b5f27be323bf6e06533243399b65b38be64d9607cb0e",
+      "answer": 1,
+      "prediction": 1,
+      "correct": true,
+      "content": "B",
+      "tokens": [
+        236799
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236799,
+          "token": "B",
+          "bytes": [
+            66
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236799,
+              "token": "B",
+              "bytes": [
+                66
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 54,
+        "prompt_ms": 1890.657,
+        "prompt_per_token_ms": 35.012166666666666,
+        "prompt_per_second": 28.561500049982627,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 1.898155400000178
+    },
+    {
+      "index": 49,
+      "subject": "conceptual_physics",
+      "row_id": 119,
+      "selection_sha256": "0b731fc8561d73aa9ab683ebac7516ed911de046f4765a611f907d5c2547c9f8",
+      "answer": 2,
+      "prediction": 1,
+      "correct": false,
+      "content": "B",
+      "tokens": [
+        236799
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236799,
+          "token": "B",
+          "bytes": [
+            66
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236799,
+              "token": "B",
+              "bytes": [
+                66
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 58,
+        "prompt_ms": 2047.056,
+        "prompt_per_token_ms": 35.29406896551724,
+        "prompt_per_second": 28.33337241384701,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.0574336999998195
+    },
+    {
+      "index": 50,
+      "subject": "electrical_engineering",
+      "row_id": 108,
+      "selection_sha256": "0218ad8d3da21ed3fcffa3bd5a918c44d9e4b7dd691cdd79bcc486cdb0337d21",
+      "answer": 2,
+      "prediction": 2,
+      "correct": true,
+      "content": "C",
+      "tokens": [
+        236780
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236780,
+          "token": "C",
+          "bytes": [
+            67
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236780,
+              "token": "C",
+              "bytes": [
+                67
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 74,
+        "prompt_ms": 2618.61,
+        "prompt_per_token_ms": 35.38662162162162,
+        "prompt_per_second": 28.259267321212395,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.6437903999994887
+    },
+    {
+      "index": 51,
+      "subject": "electrical_engineering",
+      "row_id": 13,
+      "selection_sha256": "03a2d3f7eec9dc3423cc981c0b6adb46904c1d2cbdf68de5eb316c15f2a20379",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 56,
+        "prompt_ms": 1957.786,
+        "prompt_per_token_ms": 34.96046428571429,
+        "prompt_per_second": 28.603739121640462,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 1.9666696999993292
+    },
+    {
+      "index": 52,
+      "subject": "electrical_engineering",
+      "row_id": 18,
+      "selection_sha256": "0695ee3afd371922d56b32b473584d1ac5d3e02f5c8fd8b969a39280f1c0e30a",
+      "answer": 0,
+      "prediction": 0,
+      "correct": true,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 82,
+        "prompt_ms": 2825.159,
+        "prompt_per_token_ms": 34.45315853658537,
+        "prompt_per_second": 29.024915057878157,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.835936799998308
+    },
+    {
+      "index": 53,
+      "subject": "electrical_engineering",
+      "row_id": 49,
+      "selection_sha256": "06e5978410354b3499c5b493039f98df070f2235e7f617ac3a1d11e3a0448f20",
+      "answer": 2,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 95,
+        "prompt_ms": 3320.439,
+        "prompt_per_token_ms": 34.95198947368421,
+        "prompt_per_second": 28.610674672836936,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.330268100000467
+    },
+    {
+      "index": 54,
+      "subject": "electrical_engineering",
+      "row_id": 84,
+      "selection_sha256": "07f081717bedb0f732c6d9af54b91b1428ce28873baf2d9d2b604134fced1d00",
+      "answer": 0,
+      "prediction": 0,
+      "correct": true,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 75,
+        "prompt_ms": 2662.166,
+        "prompt_per_token_ms": 35.49554666666667,
+        "prompt_per_second": 28.172548218255358,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.68162940000002
+    },
+    {
+      "index": 55,
+      "subject": "electrical_engineering",
+      "row_id": 23,
+      "selection_sha256": "099a0219003c8c3efb4f651a06b0177ec9c7f509fe6bccbfa44c67de7694398d",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 56,
+        "prompt_ms": 1985.473,
+        "prompt_per_token_ms": 35.454875,
+        "prompt_per_second": 28.20486604451433,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.0066251999996894
+    },
+    {
+      "index": 56,
+      "subject": "electrical_engineering",
+      "row_id": 129,
+      "selection_sha256": "0a4a72680e55f6d5ed3f320f7bb9a0e73647a015af14f5b8a62474a6200f37cb",
+      "answer": 1,
+      "prediction": 1,
+      "correct": true,
+      "content": "B",
+      "tokens": [
+        236799
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236799,
+          "token": "B",
+          "bytes": [
+            66
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236799,
+              "token": "B",
+              "bytes": [
+                66
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 92,
+        "prompt_ms": 3250.554,
+        "prompt_per_token_ms": 35.332108695652174,
+        "prompt_per_second": 28.302867757311525,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.2575094000003446
+    },
+    {
+      "index": 57,
+      "subject": "electrical_engineering",
+      "row_id": 67,
+      "selection_sha256": "0cc07488f639cdddbcf055261edc1e21ba5772673251aebeb16957c3bf719f3a",
+      "answer": 1,
+      "prediction": 2,
+      "correct": false,
+      "content": "C",
+      "tokens": [
+        236780
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236780,
+          "token": "C",
+          "bytes": [
+            67
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236780,
+              "token": "C",
+              "bytes": [
+                67
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 63,
+        "prompt_ms": 2240.591,
+        "prompt_per_token_ms": 35.56493650793651,
+        "prompt_per_second": 28.117581477386995,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.2639051000005566
+    },
+    {
+      "index": 58,
+      "subject": "electrical_engineering",
+      "row_id": 83,
+      "selection_sha256": "0f1fdaaf7ded3dc2acefd208c7900242b6a90a48bf22b019c77cac31f2235f0c",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 58,
+        "prompt_ms": 2041.235,
+        "prompt_per_token_ms": 35.193706896551724,
+        "prompt_per_second": 28.41417083285364,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.059135100000276
+    },
+    {
+      "index": 59,
+      "subject": "electrical_engineering",
+      "row_id": 116,
+      "selection_sha256": "0f3b9c71b42f43e48dbab3039a24662ecbbac447f9d3f71e7e3bd6590001af2d",
+      "answer": 2,
+      "prediction": 2,
+      "correct": true,
+      "content": "C",
+      "tokens": [
+        236780
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236780,
+          "token": "C",
+          "bytes": [
+            67
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236780,
+              "token": "C",
+              "bytes": [
+                67
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 61,
+        "prompt_ms": 2124.534,
+        "prompt_per_token_ms": 34.828426229508196,
+        "prompt_per_second": 28.71217876484914,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.132126700000299
+    },
+    {
+      "index": 60,
+      "subject": "high_school_world_history",
+      "row_id": 29,
+      "selection_sha256": "0083901d123c3af57602c3938a36014981ea4cfc0b9418049d1f185a3836f369",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 322,
+        "prompt_ms": 11438.746,
+        "prompt_per_token_ms": 35.524055900621114,
+        "prompt_per_second": 28.149938813223063,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 11.44790230000035
+    },
+    {
+      "index": 61,
+      "subject": "high_school_world_history",
+      "row_id": 17,
+      "selection_sha256": "01ab6dc79eb5e63cd79fb906a971578453dce9455a14cbb3a913de8f96eac25c",
+      "answer": 1,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 310,
+        "prompt_ms": 11046.589,
+        "prompt_per_token_ms": 35.63415806451613,
+        "prompt_per_second": 28.062961335847653,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 11.079252199999246
+    },
+    {
+      "index": 62,
+      "subject": "high_school_world_history",
+      "row_id": 118,
+      "selection_sha256": "02e2222b20694cc0eb96c5b236e9befdd50462eaeb0de6b9bc5e558e849a9397",
+      "answer": 0,
+      "prediction": 0,
+      "correct": true,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 180,
+        "prompt_ms": 6331.853,
+        "prompt_per_token_ms": 35.17696111111111,
+        "prompt_per_second": 28.427697231758223,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 6.360660800000915
+    },
+    {
+      "index": 63,
+      "subject": "high_school_world_history",
+      "row_id": 227,
+      "selection_sha256": "07437a2cb502806dde6cee353d17bc9212dbdbddbd286e7c8adcc5360d026530",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 434,
+        "prompt_ms": 15375.582,
+        "prompt_per_token_ms": 35.42760829493088,
+        "prompt_per_second": 28.226573797336577,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 15.395030499999848
+    },
+    {
+      "index": 64,
+      "subject": "high_school_world_history",
+      "row_id": 133,
+      "selection_sha256": "078b721cdd4317a30642005a55265a808d6c500d13b3f79f09d9d8ef602f3a36",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 224,
+        "prompt_ms": 7983.514,
+        "prompt_per_token_ms": 35.6406875,
+        "prompt_per_second": 28.057820152880048,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 8.03538859999935
+    },
+    {
+      "index": 65,
+      "subject": "high_school_world_history",
+      "row_id": 47,
+      "selection_sha256": "094217ff40cd6b4bcec9414362e18ebb99e3c0bc1bddc1b9bb6bec26c636151c",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 288,
+        "prompt_ms": 10144.676,
+        "prompt_per_token_ms": 35.22456944444444,
+        "prompt_per_second": 28.389275320374946,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 10.172510899999907
+    },
+    {
+      "index": 66,
+      "subject": "high_school_world_history",
+      "row_id": 163,
+      "selection_sha256": "09a6251faec1667b0368e58bd4c08d4f13c280d8cfb3e9ab94933baaa7301da1",
+      "answer": 2,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 464,
+        "prompt_ms": 16682.042,
+        "prompt_per_token_ms": 35.95267672413793,
+        "prompt_per_second": 27.814340714404146,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 16.709980100000394
+    },
+    {
+      "index": 67,
+      "subject": "high_school_world_history",
+      "row_id": 61,
+      "selection_sha256": "0ce6960276b7395c60c21daacdd7ad4be91687baf927c4a1008744146ca90578",
+      "answer": 0,
+      "prediction": 2,
+      "correct": false,
+      "content": "C",
+      "tokens": [
+        236780
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236780,
+          "token": "C",
+          "bytes": [
+            67
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236780,
+              "token": "C",
+              "bytes": [
+                67
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 379,
+        "prompt_ms": 13483.445,
+        "prompt_per_token_ms": 35.57637203166227,
+        "prompt_per_second": 28.108543476834,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 13.523031299999275
+    },
+    {
+      "index": 68,
+      "subject": "high_school_world_history",
+      "row_id": 59,
+      "selection_sha256": "0d89a5149d38f4954bdb6ef70ab2b296f2ccbbd9cff2355e97d12bcd383de25c",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 254,
+        "prompt_ms": 8970.919,
+        "prompt_per_token_ms": 35.31857874015748,
+        "prompt_per_second": 28.31371011152815,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 9.015499200000704
+    },
+    {
+      "index": 69,
+      "subject": "high_school_world_history",
+      "row_id": 54,
+      "selection_sha256": "12f9ec1a15d12926cdbb4a6d543637cc0a3099e5894e3bd46274e8d19b59736f",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 633,
+        "prompt_ms": 22818.265,
+        "prompt_per_token_ms": 36.04781200631911,
+        "prompt_per_second": 27.740934729261845,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 22.85277649999989
+    },
+    {
+      "index": 70,
+      "subject": "machine_learning",
+      "row_id": 77,
+      "selection_sha256": "02269cf3f0df7f0f09e2720af223f905f6c30d869d05ad6922efe8653b87e6eb",
+      "answer": 0,
+      "prediction": 0,
+      "correct": true,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 111,
+        "prompt_ms": 3914.249,
+        "prompt_per_token_ms": 35.2635045045045,
+        "prompt_per_second": 28.357930218542563,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.9639282999996794
+    },
+    {
+      "index": 71,
+      "subject": "machine_learning",
+      "row_id": 0,
+      "selection_sha256": "0835d4b67194ff7fb24449877b7276453d2ae93a42715d029b0c3766268b0402",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 82,
+        "prompt_ms": 2872.166,
+        "prompt_per_token_ms": 35.02641463414634,
+        "prompt_per_second": 28.549881866159545,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.882859400000598
+    },
+    {
+      "index": 72,
+      "subject": "machine_learning",
+      "row_id": 76,
+      "selection_sha256": "09fdc6c39271ea27af3b4db9ec5f5585b9fa934406e06c9d93ce39ce3a038ed1",
+      "answer": 2,
+      "prediction": 1,
+      "correct": false,
+      "content": "B",
+      "tokens": [
+        236799
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236799,
+          "token": "B",
+          "bytes": [
+            66
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236799,
+              "token": "B",
+              "bytes": [
+                66
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 93,
+        "prompt_ms": 3238.891,
+        "prompt_per_token_ms": 34.82678494623656,
+        "prompt_per_second": 28.71353188483342,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.2490873000006104
+    },
+    {
+      "index": 73,
+      "subject": "machine_learning",
+      "row_id": 110,
+      "selection_sha256": "0a4be64c442516d9abe56a613db1125d7420a326b15cf55f91d3b9c1df7652a4",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 168,
+        "prompt_ms": 6067.07,
+        "prompt_per_token_ms": 36.1135119047619,
+        "prompt_per_second": 27.69046673270623,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 6.078435700001137
+    },
+    {
+      "index": 74,
+      "subject": "machine_learning",
+      "row_id": 22,
+      "selection_sha256": "0f870f79ce66d847e966ada59e3029846635e7b398870293716b54f7bb2e86e3",
+      "answer": 1,
+      "prediction": 0,
+      "correct": false,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 79,
+        "prompt_ms": 2832.291,
+        "prompt_per_token_ms": 35.85178481012658,
+        "prompt_per_second": 27.892614141696598,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.8517277000009926
+    },
+    {
+      "index": 75,
+      "subject": "machine_learning",
+      "row_id": 64,
+      "selection_sha256": "12d1b8d7a22d1ef9485019a5b42176608f716300005aa5b05aa95b99680a1089",
+      "answer": 0,
+      "prediction": 0,
+      "correct": true,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 77,
+        "prompt_ms": 2848.847,
+        "prompt_per_token_ms": 36.99801298701299,
+        "prompt_per_second": 27.02847853886151,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.865417700000762
+    },
+    {
+      "index": 76,
+      "subject": "machine_learning",
+      "row_id": 37,
+      "selection_sha256": "15308e58a5c0cf9ef391f247d040ad2f8402546b379cdec11a18d6b26591e0cb",
+      "answer": 1,
+      "prediction": 2,
+      "correct": false,
+      "content": "C",
+      "tokens": [
+        236780
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236780,
+          "token": "C",
+          "bytes": [
+            67
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236780,
+              "token": "C",
+              "bytes": [
+                67
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 104,
+        "prompt_ms": 3719.791,
+        "prompt_per_token_ms": 35.76722115384616,
+        "prompt_per_second": 27.958560037378444,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 3.7398619999985385
+    },
+    {
+      "index": 77,
+      "subject": "machine_learning",
+      "row_id": 40,
+      "selection_sha256": "154bcb7db4a82399df7dd2772167115c59caed81e9c986cd1ee8c83afceb7782",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 113,
+        "prompt_ms": 4094.464,
+        "prompt_per_token_ms": 36.23419469026549,
+        "prompt_per_second": 27.59823996498687,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.111213000000134
+    },
+    {
+      "index": 78,
+      "subject": "machine_learning",
+      "row_id": 47,
+      "selection_sha256": "157e581f1fbc2f388af740d1003f7c01e44cc6185ede5927dafd2dbad0e88a8f",
+      "answer": 0,
+      "prediction": 0,
+      "correct": true,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 57,
+        "prompt_ms": 2109.89,
+        "prompt_per_token_ms": 37.015614035087715,
+        "prompt_per_second": 27.015626407063877,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.1227139999991778
+    },
+    {
+      "index": 79,
+      "subject": "machine_learning",
+      "row_id": 36,
+      "selection_sha256": "18f3f4b4b660b516c13fe80b59b42f826f538ead088c5d06d2ae066f01f47676",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 75,
+        "prompt_ms": 2691.568,
+        "prompt_per_token_ms": 35.887573333333336,
+        "prompt_per_second": 27.864798511499615,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 2.6993168000008154
+    },
+    {
+      "index": 80,
+      "subject": "moral_scenarios",
+      "row_id": 381,
+      "selection_sha256": "006c410cc9a715be5f48c1939093590d03a224d835976f248bb0204e64743f67",
+      "answer": 2,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 130,
+        "prompt_ms": 4578.499,
+        "prompt_per_token_ms": 35.21922307692307,
+        "prompt_per_second": 28.393584884478518,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.597276399999828
+    },
+    {
+      "index": 81,
+      "subject": "moral_scenarios",
+      "row_id": 752,
+      "selection_sha256": "00cd07187251b58cd43757f388f7bc49194ff91ee46321333b5a73920b1276f1",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 121,
+        "prompt_ms": 4272.294,
+        "prompt_per_token_ms": 35.308214876033055,
+        "prompt_per_second": 28.322020909609687,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.296044700000493
+    },
+    {
+      "index": 82,
+      "subject": "moral_scenarios",
+      "row_id": 567,
+      "selection_sha256": "014e60d04c108cdffcd4edf20976c310c20bcfdcede9c5f0c0df5709fbd6126c",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 122,
+        "prompt_ms": 4442.523,
+        "prompt_per_token_ms": 36.414122950819674,
+        "prompt_per_second": 27.461872454008677,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.44453539999995
+    },
+    {
+      "index": 83,
+      "subject": "moral_scenarios",
+      "row_id": 441,
+      "selection_sha256": "01b2ff223638a0e7b60efc9211afdd47d45744db71ba728891657f928fcb4dbd",
+      "answer": 1,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 121,
+        "prompt_ms": 4247.776,
+        "prompt_per_token_ms": 35.105586776859504,
+        "prompt_per_second": 28.485494527018375,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.249810599998455
+    },
+    {
+      "index": 84,
+      "subject": "moral_scenarios",
+      "row_id": 738,
+      "selection_sha256": "027ed007c132b337b56b3fa6515e5d6bac7e20bd25c654a1c1ad7b59876cf13a",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 139,
+        "prompt_ms": 4946.493,
+        "prompt_per_token_ms": 35.58628057553957,
+        "prompt_per_second": 28.100717013043383,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.959232100000008
+    },
+    {
+      "index": 85,
+      "subject": "moral_scenarios",
+      "row_id": 176,
+      "selection_sha256": "0344cedc0091132122dd70253182fda66b6595f611c6e4f836dc40abf59d7ac0",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 134,
+        "prompt_ms": 4758.744,
+        "prompt_per_token_ms": 35.513014925373135,
+        "prompt_per_second": 28.158690612480942,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.772193700000571
+    },
+    {
+      "index": 86,
+      "subject": "moral_scenarios",
+      "row_id": 529,
+      "selection_sha256": "03e35c43c5bccefe40b328ec6856dcafc0cfa0b6841c6e814c74e0de6b08981f",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 123,
+        "prompt_ms": 4289.227,
+        "prompt_per_token_ms": 34.871764227642274,
+        "prompt_per_second": 28.676495788168825,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.312895000000935
+    },
+    {
+      "index": 87,
+      "subject": "moral_scenarios",
+      "row_id": 150,
+      "selection_sha256": "03f77e24f657d372b69e494ce036085b25d002737ca993be810c448747446edb",
+      "answer": 3,
+      "prediction": 3,
+      "correct": true,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 125,
+        "prompt_ms": 4332.665,
+        "prompt_per_token_ms": 34.661319999999996,
+        "prompt_per_second": 28.85060349692395,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.334850200000801
+    },
+    {
+      "index": 88,
+      "subject": "moral_scenarios",
+      "row_id": 132,
+      "selection_sha256": "041ef3a0affb7266344421797d23f3b25672b46fbaadde4c45fd679d1fd0fc87",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 121,
+        "prompt_ms": 4288.137,
+        "prompt_per_token_ms": 35.439148760330575,
+        "prompt_per_second": 28.217382047262017,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.299748199999158
+    },
+    {
+      "index": 89,
+      "subject": "moral_scenarios",
+      "row_id": 855,
+      "selection_sha256": "04971c34f211616fdd93777b0a9f5bcd7e951875301dcf8d501c1a6319a10aa7",
+      "answer": 1,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 122,
+        "prompt_ms": 4346.071,
+        "prompt_per_token_ms": 35.62353278688524,
+        "prompt_per_second": 28.071331554408566,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 4.348623899999438
+    },
+    {
+      "index": 90,
+      "subject": "professional_law",
+      "row_id": 232,
+      "selection_sha256": "0004d7d8bc43de58e6bed9432fc9463037b430ab62ffad1c03278d542c98f385",
+      "answer": 2,
+      "prediction": 0,
+      "correct": false,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 318,
+        "prompt_ms": 11239.237,
+        "prompt_per_token_ms": 35.34351257861635,
+        "prompt_per_second": 28.293735597888006,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 11.267589899998711
+    },
+    {
+      "index": 91,
+      "subject": "professional_law",
+      "row_id": 1137,
+      "selection_sha256": "00184e0b03e15a9b34960d51d2f97d5423e543bb7077c946c968d8438eedcdd4",
+      "answer": 3,
+      "prediction": 0,
+      "correct": false,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 223,
+        "prompt_ms": 7854.763,
+        "prompt_per_token_ms": 35.223152466367715,
+        "prompt_per_second": 28.39041738114823,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 7.894665399999212
+    },
+    {
+      "index": 92,
+      "subject": "professional_law",
+      "row_id": 993,
+      "selection_sha256": "0020927826271c507a10ef517449402e3f73e3ed54c92ba229bf46a6e5848487",
+      "answer": 2,
+      "prediction": 0,
+      "correct": false,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 312,
+        "prompt_ms": 11107.636,
+        "prompt_per_token_ms": 35.60139743589744,
+        "prompt_per_second": 28.08878504841174,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 11.12962250000055
+    },
+    {
+      "index": 93,
+      "subject": "professional_law",
+      "row_id": 1076,
+      "selection_sha256": "0030633e53b61b41fa350af680480fd5f26e6dae2526556a5bfe130b82a49735",
+      "answer": 1,
+      "prediction": 0,
+      "correct": false,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 274,
+        "prompt_ms": 9637.333,
+        "prompt_per_token_ms": 35.172748175182484,
+        "prompt_per_second": 28.431102256194734,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 9.666704000001118
+    },
+    {
+      "index": 94,
+      "subject": "professional_law",
+      "row_id": 1306,
+      "selection_sha256": "006aace9e848830281a8935d72b0ff2d87ca5889cd95dbfa475bacf44d5ee83f",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 180,
+        "prompt_ms": 6395.673,
+        "prompt_per_token_ms": 35.53151666666667,
+        "prompt_per_second": 28.144028001431593,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 6.437790800000585
+    },
+    {
+      "index": 95,
+      "subject": "professional_law",
+      "row_id": 1048,
+      "selection_sha256": "00987ecd3df863a612e608a8b40f1c57ad86d74651ae9a69de7f7e8b51ef6030",
+      "answer": 3,
+      "prediction": 0,
+      "correct": false,
+      "content": "A",
+      "tokens": [
+        236776
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236776,
+          "token": "A",
+          "bytes": [
+            65
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236776,
+              "token": "A",
+              "bytes": [
+                65
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 185,
+        "prompt_ms": 6489.459,
+        "prompt_per_token_ms": 35.078156756756755,
+        "prompt_per_second": 28.507769291708293,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 6.508079600000201
+    },
+    {
+      "index": 96,
+      "subject": "professional_law",
+      "row_id": 818,
+      "selection_sha256": "00dda2f4862319824f929b862377b5d105e34b60a9ed250f74baf7b6e1ee9e5a",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 277,
+        "prompt_ms": 9870.076,
+        "prompt_per_token_ms": 35.63204332129963,
+        "prompt_per_second": 28.064626857989747,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 9.898838199998863
+    },
+    {
+      "index": 97,
+      "subject": "professional_law",
+      "row_id": 772,
+      "selection_sha256": "0100fc180dfc948dee63ff9bf10f48fd61a74e4c6619320b0ef20fa1d315ae76",
+      "answer": 1,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 251,
+        "prompt_ms": 8919.088,
+        "prompt_per_token_ms": 35.53421513944223,
+        "prompt_per_second": 28.14189074039857,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 8.953844499999832
+    },
+    {
+      "index": 98,
+      "subject": "professional_law",
+      "row_id": 989,
+      "selection_sha256": "010c6cdb181213fb850d68c61c668b406606b273c638da6353b0a1fb9cb41726",
+      "answer": 1,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 172,
+        "prompt_ms": 6015.978,
+        "prompt_per_token_ms": 34.976616279069766,
+        "prompt_per_second": 28.590530085050176,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 6.049647699999696
+    },
+    {
+      "index": 99,
+      "subject": "professional_law",
+      "row_id": 667,
+      "selection_sha256": "015f8d4eae6928f8a9da428ed3fd4284976ccdfc9b56900fb4dd5158614b4af0",
+      "answer": 0,
+      "prediction": 3,
+      "correct": false,
+      "content": "D",
+      "tokens": [
+        236796
+      ],
+      "completion_probabilities": [
+        {
+          "id": 236796,
+          "token": "D",
+          "bytes": [
+            68
+          ],
+          "prob": 1.0,
+          "top_probs": [
+            {
+              "id": 236796,
+              "token": "D",
+              "bytes": [
+                68
+              ],
+              "prob": 1.0
+            }
+          ]
+        }
+      ],
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 290,
+        "prompt_ms": 10366.498,
+        "prompt_per_token_ms": 35.746544827586206,
+        "prompt_per_second": 27.974731678914136,
+        "predicted_n": 1,
+        "predicted_ms": 0.001,
+        "predicted_per_token_ms": 0.001,
+        "predicted_per_second": 1000000.0
+      },
+      "wall_seconds": 10.383416200000283
+    }
+  ]
+}

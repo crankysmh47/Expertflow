@@ -1,0 +1,44 @@
+# Q1b append-only command and decision ledger
+
+## 2026-07-18
+
+- Created isolated ExpertFlow branch/worktree `codex/q1b-noninferiority` at `c9bb1657b87eede44b2a065b076937a1c09146a5`.
+- Created isolated llama.cpp branch/worktree `codex/q1b-noninferiority-llama` at `29857466d39cc532cefc1633ac14e521849541fe`.
+- Baseline: `uv sync --frozen --extra dev --extra predictor --extra quality`; full suite `196 passed, 3 skipped`.
+- Added a measurement-only `LLAMA_EXPERTFLOW_NLL_FILE` JSONL sidecar in `tools/perplexity/perplexity.cpp`. It records the already-computed target-token NLL after decode and does not touch static-island sources, graph execution, logits, CUDA scheduling, or placement.
+- TDD source contract: initial `1 failed, 1 passed`; after implementation `2 passed`.
+- Fresh CUDA Release build: MSVC v143 14.39, CUDA 12.8, Ninja, architecture `120a-real`. `llama-perplexity.exe` SHA-256 `7e29894f7ccfa78658bf000a2453bb6ac8a4c0918356857ec06320d2da53f8ca`.
+- Tiny-model validation at context 32, two chunks: exit 0, exactly 30 ordered NLL records, numeric values, binary unchanged.
+- Added paired contiguous-block bootstrap analyzer test-first. RED: module missing. GREEN: `3 passed`.
+- First 26B launch was stopped and quarantined before scoring because CUDA dynamic-backend discovery failed without CUDA 12.8 on `PATH`; stderr explicitly reported CPU-only. No result from this launch is accepted.
+- Verified backend discovery after prepending `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\bin` to `PATH`: `CUDA0: NVIDIA GeForce RTX 5060 Ti`.
+- Retried Stage 1 feature-off with CUDA, four 2,048-token chunks, `-ngl 10`, batch 512, ubatch 1, 12 threads, no warmup, exact NLL sidecar enabled. Heavy process launched hidden with file-only output.
+- Stage 1 feature-off reproduced frozen Q1 exactly: final PPL `1176.7406`, 4,092 exact NLL records, clean exit.
+- Before candidate completion, froze independent Stage 2 input: `Salesforce/wikitext`, `wikitext-103-raw-v1`, validation split, revision `b08601e04326c79dfdd32d625aee71d232d685c3`. The immutable parquet SHA-256 is `204929b7ff9d6184953f867dedb860e40aa69c078fc1e54b3baaa8fb28511c4c`; deterministic text export SHA-256 is `8ef749789ca0693435d20b3f81d5638c19edcebc5a68586dcf09bdf47ef9542f`.
+- Launched identical Stage 1 feature-on run with only `LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER=0` added.
+- Stage 1 feature-on reproduced frozen Q1 exactly: final PPL `1183.6406`, 4,092 exact paired records, clean exit. Paired point change `+0.586368%`; 10,000-sample, seed-`20260718`, within-chunk 128-token block bootstrap 95% interval `[-2.519473%, +3.989427%]`. The original Q1 `+0.5%` failure remains official.
+- Launched Stage 2 reference on the frozen WikiText-103 validation export: eight 2,048-token chunks; otherwise identical runtime and NLL capture settings.
+- Stage 2 reference completed cleanly: final PPL `735.7794`, exactly 8,184 scored-token NLL records.
+- Launched identical Stage 2 candidate with only `LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER=0` added.
+- Stage 2 candidate completed cleanly: final PPL `726.0783`, exactly 8,184 paired records. Point change `-1.318473%`; paired-bootstrap 95% interval `[-3.201713%, +0.567533%]`. Both predeclared `+1.0%` gates pass, authorizing MMLU.
+- Froze zero-shot MMLU prompt and constrained single-token `A-D` scoring test-first (`6 passed`). Each request uses temperature 0, seed 42, prompt cache disabled, one token, grammar `root ::= [ABCD]`.
+- MMLU reference server: matched Q4 runtime, `-ngl 10`, context 2048, parallel 1. Result `42/100` (`42.0%`), all responses valid, clean shutdown and VRAM return.
+- Launched matched layer-0 static-island MMLU candidate with the same frozen 100 items and request payloads.
+- MMLU candidate `41/100` (`41.0%`), exact decline `-1.0 pp`; boundary-safe inclusive gate passes. A second 100-item candidate pass produced the identical score, prediction, generated token ID, and content for every item. Candidate is deterministic.
+- Layer sensitivity frozen to `[0, 15, 20]`: layer 0 early, layer 15 midpoint, layer 20 the latest CPU-resident routed layer at matched `-ngl 10`. This avoids changing `--cpu-moe`, backend placement, or testing a late layer whose expert bank is already CUDA resident.
+- Fixed an analyzer-only numeric-boundary bug test-first: `(0.41 - 0.42) * 100` is represented as `-1.0000000000000009`; the same `1e-12` inclusive-gate epsilon used elsewhere now prevents a false MMLU failure. Measurements were unchanged.
+- Layer 15 held-out PPL `742.2477`, change `+0.879114%`, descriptive bootstrap interval `[-0.200134%, +2.029527%]`; individual point gate passes.
+- Layer 20 held-out PPL `737.3266`, change `+0.210279%`, descriptive bootstrap interval `[-0.636199%, +1.056609%]`; individual point gate passes.
+- Added bounded comma-separated static-island configuration support test-first: maximum four unique layers and 16 preallocated shadow descriptors; single-layer flag behavior remains compatible and disabled by default. RED `2 failed`; GREEN old/new source contracts `6 passed`.
+- Rebuilt matched llama binaries. Post-extension disabled run matched the frozen reference bit-for-bit for 2,046 token-level JSONL records.
+- Two-layer `[0,15]`: exact arena `856,425,472` bytes; PPL `712.9249`; change `-3.106161%`; bootstrap interval `[-4.871687%, -1.317143%]`; pass.
+- Four-layer `[0,1,15,20]`: exact arena `1,712,850,944` bytes; PPL `710.7986`; change `-3.395148%`; bootstrap interval `[-6.030083%, -0.826444%]`; pass. Peak observed PPL-run system GPU use `8,386 MiB`, no OOM or growth.
+- Current router-probe source failed to compile against the intentionally frozen Q1 llama headers because it expects later predictor/temporal APIs. No runtime source was changed. Built the exact canonical-observer-compatible historical probe from detached ExpertFlow commit `42a6b21`; binary SHA-256 is recorded in per-run measurement manifests.
+- Ran off, individual-layer, two-layer, and three full four-layer repetitions over the fixed seven-prompt canonical suite with full router traces. All processes passed and cleaned up. Four-layer repetitions were exact for prompt tokens, generated tokens, and normalized router events.
+- First llama-cli performance attempt produced valid timing but exited `130` because EOF reached interactive mode. Preserved as `off-r1-invalid-interactive-eof`; reran all modes with `--single-turn`, yielding clean exit 0.
+- Matched CLI decode TPS: off `26.8, 27.1, 27.3` (mean `27.0667`, variance `0.0633`); four-layer `27.4, 26.9, 27.3` (mean `27.2`, variance `0.0700`); relative `+0.4926%`, not a speedup claim.
+- Four-layer off/on generation agreement `4/7`; router set/order overlap `57.84%/34.56%`. This is deterministic behavioral sensitivity, not exact off/on identity.
+- `compute-sanitizer` was not present; sanitizer status is `not_run`.
+- JSON validation passed for every Q1b JSON artifact and all 16,368 required independent NLL records.
+- First full-suite invocation exported the Q1 llama path globally and therefore activated seven later-branch T1/T2 source contracts; result `217 passed, 7 failed`. The failures require APIs intentionally absent from the frozen Q1 branch and are preserved as an invocation-scope failure.
+- Correct repository suite without cross-branch override: `208 passed, 5 expected source-contract skips`. Focused Q1b/Q1 static source contracts against the isolated llama worktree: `8 passed`.

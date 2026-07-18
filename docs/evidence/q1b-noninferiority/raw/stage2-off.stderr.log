@@ -1,0 +1,10 @@
+0.01.303.422 W load: override 'tokenizer.ggml.add_bos_token' to 'true' for Gemma4
+0.01.362.625 W load: control-looking token:     50 '<|tool_response>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.01.363.200 W load: control-looking token:    212 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.01.412.886 W load: special_eog_ids contains '<|tool_response>', removing '</s>' token from EOG list
+0.03.882.887 I 
+0.03.882.933 I system_info: n_threads = 12 (n_threads_batch = 12) / 16 | CUDA : ARCHS = 1200 | USE_GRAPHS = 1 | BLACKWELL_NATIVE_FP4 = 1 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 | 
+0.03.883.236 I perplexity: tokenizing the input ..
+0.04.290.054 I perplexity: tokenization took 406.81 ms
+0.04.290.204 I perplexity: calculating perplexity over 8 chunks, n_ctx=2048, batch_size=512, n_seq=1
+1.23.020.392 I perplexity: 78.73 seconds per pass - ETA 10.07.746.068 I Final estimate: PPL = 735.7794 +/- 41.01825

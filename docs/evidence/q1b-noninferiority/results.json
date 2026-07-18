@@ -1,0 +1,112 @@
+{
+  "claim_limits": {
+    "credible_path_to_beat_q6_22_967_tps": false,
+    "q6_applicability": "unresolved; the preserved Q6 placement blocker was not modified in Q1b",
+    "reason": "The +0.49% decode-TPS change is smaller than run-to-run dispersion and is not a meaningful speedup.",
+    "runtime_speedup_claim": false
+  },
+  "independent_perplexity": {
+    "bootstrap_95pct": {
+      "lower": -0.032017128842818716,
+      "upper": 0.005675330127158739
+    },
+    "bootstrap_standard_error": 0.0095138839920053,
+    "candidate_perplexity": 726.0783309952122,
+    "gate_pass": true,
+    "reference_perplexity": 735.7793803612769,
+    "relative_change": -0.013184725781933583,
+    "tokens": 8184
+  },
+  "mmlu": {
+    "candidate_correct": 41,
+    "candidate_deterministic": true,
+    "delta_percentage_points": -1.0000000000000009,
+    "gate_pass": true,
+    "reference_correct": 42,
+    "total": 100
+  },
+  "official_q1_preserved": {
+    "candidate_perplexity": 1183.6406,
+    "original_threshold": 0.005,
+    "reference_perplexity": 1176.7406,
+    "relative_change": 0.00586365,
+    "result": "FAIL"
+  },
+  "scaling": [
+    {
+      "arena_bytes": 428212736,
+      "decode_tps": 27.2,
+      "layers": [
+        0
+      ],
+      "perplexity": 726.0783309952122,
+      "relative_change": -0.013184725781933583
+    },
+    {
+      "arena_bytes": 856425472,
+      "bootstrap_95pct": {
+        "lower": -0.04871686748796333,
+        "upper": -0.01317143113428912
+      },
+      "decode_tps": 26.6,
+      "gate_pass": true,
+      "layers": [
+        0,
+        15
+      ],
+      "perplexity": 712.9248914570102,
+      "relative_change": -0.031061605576721996
+    },
+    {
+      "arena_bytes": 1712850944,
+      "bootstrap_95pct": {
+        "lower": -0.060300826967531404,
+        "upper": -0.008264435759859008
+      },
+      "decode_tps": 27.2,
+      "decode_tps_relative_change": 0.004926108374384119,
+      "decode_tps_values": [
+        27.4,
+        26.9,
+        27.3
+      ],
+      "decode_tps_variance": 0.07000000000000021,
+      "gate_pass": true,
+      "generated_token_agreement_rate": 0.5714285714285714,
+      "layers": [
+        0,
+        1,
+        15,
+        20
+      ],
+      "peak_system_gpu_used_mib": [
+        8329,
+        8329,
+        8329
+      ],
+      "perplexity": 710.7985834149436,
+      "prompt_tps": 25.900000000000002,
+      "relative_change": -0.03395147732200283,
+      "router_order_overlap_rate": 0.34564489112227803,
+      "router_topk_set_overlap_rate": 0.5783500837520938,
+      "three_repetition_determinism": true
+    }
+  ],
+  "stability": {
+    "all_generation_processes_passed": true,
+    "nan_or_cuda_error_observed": false,
+    "persistent_gpu_growth_observed": false,
+    "three_repetition_determinism": true
+  },
+  "stage1_reproduction": {
+    "bootstrap_95pct": {
+      "lower": -0.025194733731688755,
+      "upper": 0.03989427396400948
+    },
+    "candidate_perplexity": 1183.6406388510723,
+    "reference_perplexity": 1176.7406100118255,
+    "relative_change": 0.00586367869056391,
+    "tokens": 4092
+  },
+  "verdict": "Q1B PASS"
+}
