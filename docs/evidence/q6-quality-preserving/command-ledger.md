@@ -39,3 +39,17 @@
 - Frozen Q4 model identity: 14,439,361,440 bytes, SHA-256 `4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5`.
 - Frozen quality manifest SHA-256: `4b4a1823e8dd0335e5e788657a8106177af30ac5a660738a8b4f25e3609dca61`.
 - Focused manifest, dataset, analysis, and evidence suite -> 17 passed; source-contract module skipped in that invocation because `EXPERTFLOW_LLAMA_SOURCE` was absent. Its explicit environment-enabled invocation passed 4/4 above.
+
+## 2026-07-18 - Q1 scored quality STOP
+
+- Built `llama-server` before scored work so the frozen runtime identity could cover the planned MMLU path. No scored candidate result had been inspected. Added `llama-server.exe` and `llama-server-impl.dll` to the runtime artifacts and regenerated the manifest once before scoring.
+- The superseding frozen manifest SHA-256 is `294ccc4e6ef9da9d80ee15ac89d989d6d1eaa44e28bc0a043ab219d436a18719`. The earlier `4b4a...` value above is retained as append-only history and was never used for a scored comparison.
+- Pre-score determinism: three fresh feature-on router-probe runs completed in 6.0117, 6.0154, and 6.0089 seconds. Each contained 6 prompt tokens, 16 generated tokens, and 630 router events. Prompt tokens, generated tokens, and normalized router events were exact across all three.
+- Feature-off WikiText command: matched `llama-perplexity`, `--chunks 4`, `-c 2048`, `-ngl 10`, `--threads 12`, `--batch-size 512`, `--ubatch-size 1`, `--no-warmup`; static-island flag absent.
+- Feature-off reported sequence: `1072.9325, 1411.4224, 1433.1798, 1176.7406`; final `1176.7406 +/- 92.49670`. Raw output SHA-256 `cbc0e6bca59c9f0f4abc40ac34c5949b3d96c281a92b0b4ac4ef15ab2e0b2a1b`.
+- Feature-on used the identical command with only `LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER=0`. Reported sequence: `1046.0991, 1388.2249, 1429.3230, 1183.6406`; final `1183.6406 +/- 93.22685`. Raw output SHA-256 `55117c344c20d0761fec0522c8269e816f3d6c4d727af71e4a24c46a8ae665a6`.
+- Calculated relative change: `(1183.6406 / 1176.7406) - 1 = 0.0058636542`, or `+0.586365%`. Frozen maximum: `+0.500000%`. Result: FAIL by 0.086365 percentage points.
+- Stop rule applied immediately. MMLU, six-prompt long generation, reactive Q4, Q6 expansion, and prediction were not run. No threshold was changed and no repeat was selected after observing the failure.
+- Focused final evidence validation with `EXPERTFLOW_LLAMA_SOURCE` set -> 22 passed in 1.38 seconds.
+- First full-suite invocation used only the `quality` extra and failed during collection with five repository-root import errors (`scripts`/`tests` not found). This was an invocation/environment failure; no test body ran.
+- Corrected reproducible command: `$env:PYTHONPATH="$PWD;$PWD\src"; uv run --extra dev --extra predictor --extra quality pytest -q` -> 196 passed, 3 expected source-contract skips in 4.15 seconds.

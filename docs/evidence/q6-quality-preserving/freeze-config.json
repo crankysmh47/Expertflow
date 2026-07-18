@@ -15,7 +15,9 @@
     "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama.dll",
     "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-cli-impl.dll",
     "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-common.dll",
-    "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-perplexity-impl.dll"
+    "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-perplexity-impl.dll",
+    "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-server.exe",
+    "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-server-impl.dll"
   ],
   "wikitext_token_count": 8192,
   "runtime": {

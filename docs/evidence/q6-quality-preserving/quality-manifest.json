@@ -34,7 +34,7 @@
       "sha256": "4867d2463a6e132a63222bc2de36f2f36412f1a906df181d5c13f068d43551cf"
     }
   },
-  "manifest_sha256": "4b4a1823e8dd0335e5e788657a8106177af30ac5a660738a8b4f25e3609dca61",
+  "manifest_sha256": "294ccc4e6ef9da9d80ee15ac89d989d6d1eaa44e28bc0a043ab219d436a18719",
   "mmlu": {
     "item_count": 100,
     "items": [
@@ -1399,6 +1399,16 @@
       "bytes": 345600,
       "path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-perplexity-impl.dll",
       "sha256": "3ee22e2e9f79003e55a53aaf8f4a60154d107770ba66d4e3113ce6be14337684"
+    },
+    "llama-server-impl.dll": {
+      "bytes": 13061120,
+      "path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-server-impl.dll",
+      "sha256": "b47be063bc8511a1da6f71991d09a60d63520dba2c5248d2142157857d3424ac"
+    },
+    "llama-server.exe": {
+      "bytes": 10240,
+      "path": "C:\\models\\expertflow\\builds\\llama-q6-quality-preserving\\bin\\llama-server.exe",
+      "sha256": "dcc0d5aaddda00ba86b2f92fa847a7c18a619f65e0e47d641c0dcca46a5f4276"
     },
     "llama.dll": {
       "bytes": 2220544,

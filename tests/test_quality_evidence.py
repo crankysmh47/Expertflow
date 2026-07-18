@@ -8,6 +8,7 @@ from expertflow.quality.manifest import canonical_manifest_hash
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "docs/evidence/q6-quality-preserving/quality-manifest.json"
+RESULTS = ROOT / "docs/evidence/q6-quality-preserving/q1-quality-results.json"
 
 
 def test_quality_manifest_is_frozen_and_complete() -> None:
@@ -31,3 +32,21 @@ def test_quality_manifest_pins_runtime_identity() -> None:
     for identity in (*data["executables"].values(), data["model"]):
         assert identity["bytes"] > 0
         assert len(identity["sha256"]) == 64
+
+
+def test_q1_stop_is_derived_from_frozen_perplexity_gate() -> None:
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    result = json.loads(RESULTS.read_text(encoding="utf-8"))
+    perplexity = result["perplexity"]
+
+    expected = perplexity["candidate_final"] / perplexity["reference_final"] - 1.0
+    assert result["manifest_sha256"] == manifest["manifest_sha256"]
+    assert perplexity["relative_change"] == expected
+    assert expected > manifest["thresholds"]["perplexity_relative_max"]
+    assert perplexity["pass"] is False
+    assert result["decision"] == "OPTION 1 Q1 STOP"
+    assert result["claims"] == {
+        "quality_preserving": False,
+        "runtime_speedup": False,
+        "q1_pass": False,
+    }
