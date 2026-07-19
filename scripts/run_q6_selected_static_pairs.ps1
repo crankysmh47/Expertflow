@@ -3,14 +3,18 @@ param(
     [Parameter(Mandatory=$true)][string]$Model,
     [Parameter(Mandatory=$true)][string]$Output,
     [int]$Pairs = 10,
-    [int]$GeneratedTokens = 512
+    [int]$GeneratedTokens = 512,
+    [string]$StaticLayers = '0,1,15,20',
+    [string]$BaselineLayers = '',
+    [ValidateSet('on','off')][string]$CudaGraphs = 'off',
+    [ValidateSet('on','off')][string]$BaselineCudaGraphs = 'off',
+    [switch]$StaticPrecompute,
+    [switch]$BaselineStaticPrecompute
 )
 
 $ErrorActionPreference = 'Stop'
 $cudaBin = 'C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\bin'
 $env:PATH = "$cudaBin;$(Split-Path $Runtime -Parent);$env:PATH"
-$env:GGML_CUDA_DISABLE_GRAPHS = '1'
-$staticLayers = '0,1,15,20'
 $rows = @()
 New-Item -ItemType Directory -Force -Path $Output | Out-Null
 
@@ -35,8 +39,21 @@ for ($pair = 1; $pair -le $Pairs; $pair++) {
         $stderr = Join-Path $runDir 'stderr.log'
         Remove-Item Env:LLAMA_EXPERTFLOW_SPLIT_PROFILE -ErrorAction SilentlyContinue
         Remove-Item Env:GGML_SCHED_DEBUG -ErrorAction SilentlyContinue
+        $runCudaGraphs = $(if ($mode -eq 'on') { $CudaGraphs } else { $BaselineCudaGraphs })
+        if ($runCudaGraphs -eq 'off') {
+            $env:GGML_CUDA_DISABLE_GRAPHS = '1'
+        } else {
+            Remove-Item Env:GGML_CUDA_DISABLE_GRAPHS -ErrorAction SilentlyContinue
+        }
+        if (($mode -eq 'on' -and $StaticPrecompute) -or ($mode -eq 'off' -and $BaselineStaticPrecompute)) {
+            $env:LLAMA_EXPERTFLOW_STATIC_PRECOMPUTE = '1'
+        } else {
+            Remove-Item Env:LLAMA_EXPERTFLOW_STATIC_PRECOMPUTE -ErrorAction SilentlyContinue
+        }
         if ($mode -eq 'on') {
-            $env:LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER = $staticLayers
+            $env:LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER = $StaticLayers
+        } elseif ($BaselineLayers) {
+            $env:LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER = $BaselineLayers
         } else {
             Remove-Item Env:LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER -ErrorAction SilentlyContinue
         }
@@ -83,7 +100,9 @@ for ($pair = 1; $pair -le $Pairs; $pair++) {
             order = $order
             mode = $mode
             command = @($Runtime) + $arguments
-            static_layers = $(if ($mode -eq 'on') { $staticLayers } else { $null })
+            static_layers = $(if ($mode -eq 'on') { $StaticLayers } elseif ($BaselineLayers) { $BaselineLayers } else { $null })
+            cuda_graphs = $runCudaGraphs
+            static_precompute = [bool](($mode -eq 'on' -and $StaticPrecompute) -or ($mode -eq 'off' -and $BaselineStaticPrecompute))
             exit_code = $proc.ExitCode
             valid = $summary.Success
             prompt_tps = $(if ($summary.Success) { [double]$summary.Groups[1].Value } else { $null })
