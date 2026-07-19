@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0.0",
+  "status": "not_run",
+  "reason": "The terminal NO CACHE OPPORTUNITY gate stopped work before a cached runtime existed; context or concurrency comparisons would not demonstrate a cached-product benefit.",
+  "stock": null,
+  "static_expertflow": null,
+  "cached_expertflow": null
+}

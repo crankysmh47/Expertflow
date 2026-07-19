@@ -19,3 +19,25 @@ python scripts/run_q1b_mmlu.py --manifest docs/evidence/q6-quality-preserving/qu
 ```
 
 The 14 OFF/ON changed items were selected by original manifest index `[9,17,30,39,49,61,62,75,79,86,92,93,94,95]`, written to a no-BOM subset manifest, and rerun with the identical ON server environment. Each repeated item matched selection hash, prediction, token IDs, and content.
+
+## Q6 routing and simulation
+
+```powershell
+$env:PYTHONPATH="$PWD\src"
+python scripts\collect_q6_routing_workloads.py `
+  --ppl-corpus C:\models\expertflow\quality-data\q1b-heldout\wikitext-103-validation.txt `
+  --mmlu-manifest docs\evidence\q6-quality-preserving\quality-manifest.json `
+  --conversation-corpus C:\models\expertflow\worktrees\expanded-canonical-collection\configs\expanded-canonical-84.json `
+  --runtime C:\models\expertflow\runs\canonical-observer-smoke\runtime `
+  --model C:\models\gemma-4-26b-a4b-q6\google_gemma-4-26B-A4B-it-Q6_K.gguf `
+  --root C:\models\expertflow\runs\q6-predictive-final\stage2-traces\canonical-q6-r2
+
+python scripts\analyze_q6_routing_workloads.py `
+  --manifest C:\models\expertflow\runs\q6-predictive-final\stage2-traces\canonical-q6-r2\collection-manifest.json `
+  --output docs\evidence\q6-predictive-final\routing-locality.json
+
+python scripts\simulate_q6_hybrid.py `
+  --locality docs\evidence\q6-predictive-final\routing-locality.json `
+  --profile docs\evidence\q6-placement-final\layer-profile.json `
+  --output docs\evidence\q6-predictive-final\cache-simulation.json
+```
