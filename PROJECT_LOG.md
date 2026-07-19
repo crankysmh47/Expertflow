@@ -1044,3 +1044,9 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Authoritative ten-pair result: 22.28 stock versus 28.13 ExpertFlow decode TPS; paired +26.47%, 95% `[+23.46%, +29.83%]`; 10,966.801 MiB process-owned peak. One deterministic response hash per mode.
 - Frozen held-out PPL: 15,310.277 stock versus 14,863.951 ExpertFlow, point change -2.92%, but paired 95% upper bound +2.25% exceeded the +1.0% mandatory limit. Stopped before MMLU, latency, product commands, dynamic caching, or prediction. Verdict: `QUALITY STOP`.
 - Final verification: clean-checkout suite `216 passed, 6 skipped`; applicable static-placement source contracts `4 passed`. A diagnostic all-contract run produced seven expected failures because T1/T2 contracts target a different temporal-cache llama fork; no temporal code was merged into this isolated branch.
+
+# 2026-07-19 — Bounded Q6 predictive follow-up
+
+- Created isolated branches/worktrees from ExpertFlow `db3b5c5` and llama.cpp `451224ab`; baseline `216 passed, 6 skipped`. Stage 0 reconstructed the 28.13 TPS champion as twelve full static identity shadows totaling 8,231,196,672 bytes, with cache/predictor paths absent and disabled.
+- Fixed 100-item MMLU, exact final graph-enabled control: OFF `49/100`, ON `50/100`, delta `+1.0` percentage point. Fourteen predictions changed: five improvements, four regressions, five neither. All fourteen ON changes repeated with exact identity, prediction, token IDs, and content. No CUDA/NaN errors or persistent process/GPU growth; interpretation `MMLU SUPPORTIVE`.
+- Preserved three harness/protocol failures: reserved PowerShell PID variable before OFF inference; post-result OFF monitoring failure after valid output; UTF-8 BOM in the first changed-item subset manifest before repeat inference. Each was corrected without altering model/runtime/request settings.

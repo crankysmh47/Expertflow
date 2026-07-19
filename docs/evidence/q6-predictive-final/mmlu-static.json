@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "interpretation": "MMLU SUPPORTIVE",
+  "protocol": {
+    "manifest": "docs/evidence/q6-quality-preserving/quality-manifest.json",
+    "items": 100,
+    "shot_count": 0,
+    "temperature": 0.0,
+    "seed": 42,
+    "cache_prompt": false,
+    "grammar": "root ::= [ABCD]",
+    "model_sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba",
+    "context": 2048,
+    "batch": 2048,
+    "ubatch": 512,
+    "threads": 12,
+    "ngl": 99,
+    "cpu_moe": true,
+    "cuda_graphs": "on"
+  },
+  "off": {
+    "correct": 49,
+    "total": 100,
+    "accuracy": 0.49,
+    "results_sha256": "36474d96f494d346a894787c795c4a8a329ea1e8d4ed1d49b05037f81d301ed3",
+    "server_log_sha256": "2d8ae99fd1ef7f2d722c7259fe46f5f6683724c69384f38269da0ba4007da041"
+  },
+  "on": {
+    "correct": 50,
+    "total": 100,
+    "accuracy": 0.50,
+    "delta_percentage_points": 1.0,
+    "results_sha256": "15d21d4e6c86999e19147b0e8011023f430ed667800761c6e3c02096ba7dbc84",
+    "server_log_sha256": "f8373ae47f7468cca7c93e0aaab366dd4600da522b439dc7feec78d14d40d457",
+    "layers": [0,1,2,3,4,5,6,7,8,9,15,20]
+  },
+  "changes": {
+    "count": 14,
+    "improvements": 5,
+    "regressions": 4,
+    "changed_neither": 5,
+    "items": [
+      {"index":9,"subject":"abstract_algebra","row_id":8,"selection_sha256":"160ba6e58ac7a3c6815bb7c503550525347a597d533f260ad4119995f7213254","answer":1,"off_prediction":1,"on_prediction":3,"classification":"regression","on_repeat_exact":true},
+      {"index":17,"subject":"college_computer_science","row_id":2,"selection_sha256":"11d2b7c0143e38f962563993dae57974c2654b28e286bc0984ee9f34e0776160","answer":1,"off_prediction":0,"on_prediction":2,"classification":"changed_neither","on_repeat_exact":true},
+      {"index":30,"subject":"computer_security","row_id":63,"selection_sha256":"02d56c19ce6fe3afa814912f8e553b388153d6ccc577142d4b8ab8241e56ba06","answer":3,"off_prediction":3,"on_prediction":0,"classification":"regression","on_repeat_exact":true},
+      {"index":39,"subject":"computer_security","row_id":74,"selection_sha256":"165823d6ffb21b1207f0cf01f46458897086528c21edbca2b39616de6a000835","answer":1,"off_prediction":0,"on_prediction":3,"classification":"changed_neither","on_repeat_exact":true},
+      {"index":49,"subject":"conceptual_physics","row_id":119,"selection_sha256":"0b731fc8561d73aa9ab683ebac7516ed911de046f4765a611f907d5c2547c9f8","answer":2,"off_prediction":0,"on_prediction":3,"classification":"changed_neither","on_repeat_exact":true},
+      {"index":61,"subject":"high_school_world_history","row_id":17,"selection_sha256":"01ab6dc79eb5e63cd79fb906a971578453dce9455a14cbb3a913de8f96eac25c","answer":1,"off_prediction":0,"on_prediction":3,"classification":"changed_neither","on_repeat_exact":true},
+      {"index":62,"subject":"high_school_world_history","row_id":118,"selection_sha256":"02e2222b20694cc0eb96c5b236e9befdd50462eaeb0de6b9bc5e558e849a9397","answer":0,"off_prediction":2,"on_prediction":0,"classification":"improvement","on_repeat_exact":true},
+      {"index":75,"subject":"machine_learning","row_id":64,"selection_sha256":"12d1b8d7a22d1ef9485019a5b42176608f716300005aa5b05aa95b99680a1089","answer":0,"off_prediction":3,"on_prediction":0,"classification":"improvement","on_repeat_exact":true},
+      {"index":79,"subject":"machine_learning","row_id":36,"selection_sha256":"18f3f4b4b660b516c13fe80b59b42f826f538ead088c5d06d2ae066f01f47676","answer":3,"off_prediction":0,"on_prediction":3,"classification":"improvement","on_repeat_exact":true},
+      {"index":86,"subject":"moral_scenarios","row_id":529,"selection_sha256":"03e35c43c5bccefe40b328ec6856dcafc0cfa0b6841c6e814c74e0de6b08981f","answer":3,"off_prediction":3,"on_prediction":0,"classification":"regression","on_repeat_exact":true},
+      {"index":92,"subject":"professional_law","row_id":993,"selection_sha256":"0020927826271c507a10ef517449402e3f73e3ed54c92ba229bf46a6e5848487","answer":2,"off_prediction":3,"on_prediction":2,"classification":"improvement","on_repeat_exact":true},
+      {"index":93,"subject":"professional_law","row_id":1076,"selection_sha256":"0030633e53b61b41fa350af680480fd5f26e6dae2526556a5bfe130b82a49735","answer":1,"off_prediction":3,"on_prediction":2,"classification":"changed_neither","on_repeat_exact":true},
+      {"index":94,"subject":"professional_law","row_id":1306,"selection_sha256":"006aace9e848830281a8935d72b0ff2d87ca5889cd95dbfa475bacf44d5ee83f","answer":0,"off_prediction":0,"on_prediction":2,"classification":"regression","on_repeat_exact":true},
+      {"index":95,"subject":"professional_law","row_id":1048,"selection_sha256":"00987ecd3df863a612e608a8b40f1c57ad86d74651ae9a69de7f7e8b51ef6030","answer":3,"off_prediction":2,"on_prediction":3,"classification":"improvement","on_repeat_exact":true}
+    ]
+  },
+  "repeat": {
+    "changed_items": 14,
+    "all_identity_prediction_token_content_exact": true,
+    "results_sha256": "b6e3d6a45fceb5040014329711820b260a3178f80a65ae8ebebb3c22255e33ac",
+    "manifest_sha256": "470d1aa376ab09ee1a3e3a698d5b7691aeec0f697a7d1c01fb17d2776ac115f1",
+    "server_log_sha256": "7e8a05c85d2ded7dfad896c87ee4c8d94d7e5905b691798f54942bf685d0b380"
+  },
+  "stability": {
+    "cuda_errors": 0,
+    "nan_events": 0,
+    "persistent_processes_after_cleanup": 0,
+    "on_gpu_dedicated_delta_mib_during_requests": 24.0,
+    "repeat_gpu_dedicated_delta_mib_during_requests": 18.0,
+    "persistent_gpu_growth_after_process_exit": false,
+    "note": "Host working-set growth is mmap page residency while evaluating the corpus; all server processes exited and GPU allocation returned to the application baseline."
+  },
+  "failed_approaches": [
+    "The first OFF monitoring wrapper used PowerShell's reserved PID variable name and failed after model load; no results were produced.",
+    "The corrected OFF wrapper completed all 100 items and wrote valid results, then failed in post-run monitoring; the server was explicitly stopped and the result retained.",
+    "The first changed-item repeat manifest had a PowerShell UTF-8 BOM and was rejected before inference; it was rewritten without a BOM and the successful repeat used hash 470d1aa3...115f1."
+  ],
+  "gate": {
+    "minimum_delta_percentage_points": -1.0,
+    "pass": true,
+    "label": "MMLU SUPPORTIVE"
+  }
+}
