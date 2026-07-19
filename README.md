@@ -1,358 +1,190 @@
-# ExpertFlow Local
+# ExpertFlow
 
-A hardware-aware routing observatory for running sparse mixture-of-experts models on one local GPU.
+Profile-guided CUDA placement for quantized Mixture-of-Experts models.
 
-ExpertFlow is an OpenAI Build Week project built around one practical question:
-before rewriting an inference runtime, is this model's routed expert working set
-actually cacheable on this GPU?
+**PRODUCT RELEASE:** verified Gemma 4 26B A4B Q6_K profile for Windows and NVIDIA CUDA.
 
-The official submission is the Observatory path. It measures a real Gemma 4
-Q4 model on an RTX 5060 Ti, profiles routing locality, models cache and transfer
-trade-offs, and produces a self-contained causal replay that judges can inspect
-without our model weights or GPU. The runtime research also produced exact
-blocking and asynchronous cache primitives, but the final predictive policy did
-not improve end-to-end throughput. We report that result plainly and ship with
-`live_cache_enabled=false`.
-
-Start with [the submission guide](SUBMISSION.md), open the bundled
-[Observatory report](submission/observatory.html), or run the
-[CPU-only replay fixture](examples/replay/README.md).
-
-## Table of contents
-
-- [Installation](#installation)
-- [Quick start](#quick-start)
-- [What is ExpertFlow?](#what-is-expertflow)
-- [Why this approach?](#why-this-approach)
-- [Build Week result](#build-week-result)
-- [Current status](#current-status)
-- [CLI](#cli)
-- [Trace contract](#trace-contract)
-- [Architecture](#architecture)
-- [OpenAI Build Week integration](#openai-build-week-integration)
-- [Further reading](#further-reading)
-- [License](#license)
-- [Development](#development)
+ExpertFlow's Build Week product release targets one verified case: Gemma 4 26B A4B Q6_K on a 16 GB NVIDIA GPU. It profiles routed-expert cost, selects complete expert banks that fit the VRAM budget, and writes a reproducible deployment manifest. The runtime feature is off unless a deployment enables it.
 
 ## Installation
 
-You need Python 3.11 or newer and [uv](https://docs.astral.sh/uv/). The analysis commands are CPU-only. A compatible NVIDIA GPU and the pinned llama.cpp runtime are needed only for the real baseline.
+Requirements for the model-free replay:
+
+- Windows, Linux, or macOS
+- Python 3.11 or newer
+- [uv](https://docs.astral.sh/uv/)
+
+Clone the repository and create the pinned environment:
 
 ```powershell
 git clone https://github.com/crankysmh47/Expertflow.git
 cd Expertflow
 uv sync --extra dev
-uv run pytest
 ```
 
-Model weights, runtime binaries, source archives, and generated runs stay outside Git. On the development machine they live under `C:\models\expertflow`.
+Live Q6 inference additionally needs an NVIDIA CUDA system, the compatible ExpertFlow llama.cpp build, and a user-supplied `google_gemma-4-26B-A4B-it-Q6_K.gguf`. The model is not distributed with this repository.
 
 ## Quick start
 
-Check the machine and write a JSON report:
+Replay the committed result without a GPU or GGUF:
 
 ```powershell
-uv run expertflow doctor `
-  --artifact-root C:\models\expertflow `
-  --output C:\models\expertflow\runs\preflight\doctor.json
+uv run expertflow demo --replay
 ```
 
-You should get GPU memory, system RAM, disk space, Python/platform details, and resolved tool paths. Missing tools such as `nvcc` appear as `null`; the command does not quietly change the runtime plan.
+This verifies the evidence hashes and prints the stock/ExpertFlow comparison, quality status, layer plan, VRAM result, and caching decision. It is evidence replay, not a live benchmark.
 
-## What is ExpertFlow?
+Open the offline product report:
 
-Sparse MoE models select a small set of experts for each token and layer. That saves compute, but the full expert set can still be awkward to place on a 16 GB GPU. ExpertFlow records the router's actual selections, measures locality, compares cache policies under a fixed slot budget, and produces machine-specific evidence for a residency decision.
+```powershell
+Start-Process docs/evidence/product-release/dashboard.html
+```
 
-The project starts as an observatory. Live expert movement is gated behind real routing traces, deterministic output parity, and a measured benefit over reactive and LRU baselines.
+## What ExpertFlow does
 
-## Why this approach?
+Gemma's routed expert tensors are large enough to dominate CPU time, but whole-layer GPU offload is an awkward fit for a 16 GB card. ExpertFlow profiles those expert banks separately from the rest of each transformer block. For the winning Q6 deployment, it keeps the normal CPU sources and creates full static CUDA identity shadows for layers `0–9`, `15`, and `20`.
 
-A model file fitting on disk says little about runtime memory. Context state, compute buffers, CUDA libraries, and desktop GPU use all matter. ExpertFlow records those costs instead of inferring them from GGUF size.
+There is no runtime cache in this release. Every selected layer has all 128 experts resident, so there is no eviction, prediction, or per-token H2D transfer. A bounded predictive-cache study found no worthwhile cache operating point on this hardware.
 
-The runtime boundary is deliberately small. The canonical observer captures
-already-materialized selected expert IDs without requesting another tensor or
-splitting the GGML graph. Historical evaluation-callback traces remain
-quarantined, while the replacement observer and every later runtime stage are
-held to exact token and router parity.
+## Verified result
 
-## Build Week result
+The main claim comes from ten matched 512-token runs:
 
-The Observatory is the release product.
+| Result | Stock | ExpertFlow |
+|---|---:|---:|
+| Decode TPS | 22.967 | 28.13 |
+| Relative change | — | +22.48% |
+| Peak process-owned VRAM | 3,098.656 MiB | 10,966.801 MiB |
+| Static expert layers | none | 12 |
 
-- The protected submission floor remains reproducible at commit `d846bdf`.
-- Static-96, derived only from training conversations, reached 87.57% on
-  untouched validation/test conversations versus 86.34% for conversation-reset
-  LRU.
-- Every Q4 layer-expert object was measured. The aligned slot size is 3,346,048
-  bytes, and the projected 96-slot cache is 6,433.14 MiB across 21 target
-  layers.
-- The independent pinned CUDA transfer benchmark measured 0.234016 ms p50 and
-  0.234272 ms p95 for one aligned expert-sized copy.
-- The exact one-layer 32-slot reactive cache reduced misses 57.33% and measured
-  layer-24 blocking wall time 45.45% versus the eight-slot version.
-- The final projected-state temporal prefetch prevented real blocking misses
-  on the general prompt, but decode TPS was 1.15% lower overall. It is evidence,
-  not a speedup claim.
+Quality is mixed but fully disclosed. The perplexity point estimate improved by 2.92%, and MMLU moved from 49/100 to 50/100. The 95% perplexity upper bound was +2.25%, so the conservative +1% confidence requirement did not pass.
 
-The submission bundle and three-minute demo script are under
-[`submission/`](submission/README.md). Runtime experiments are frozen; the
-release now focuses on judge replay, documentation, and the video.
+The product stage added two separate live server profiles:
 
-## Current status
+| Profile | Measured result | Caveat |
+|---|---:|---|
+| Four-slot throughput | 35.67 aggregate generated TPS | Five cold-server repetitions; concurrent outputs were not deterministic across all runs |
+| Context | 262,144 allocated tokens | 417 tokens were processed; the full allocation was not filled |
 
-| Area | Status |
-| --- | --- |
-| Hardware doctor | Working; writes measured JSON |
-| Strict router-event schema | Working; malformed records fail with record numbers |
-| Locality profile | Working; measured concentration and reuse metrics |
-| Policy simulation | Working; reactive, static-hotset, and LRU results labeled estimated |
-| Pinned llama.cpp CUDA runtime | Verified; release `b10002`, CUDA 12.4, RTX 5060 Ti visible |
-| Gemma 4 Q4 artifact | Verified; 14,439,361,440 bytes and pinned SHA-256 |
-| Unmodified real-model baseline | Passed on CPU and bounded 10-layer GPU offload |
-| Token parity comparison | Working; exact measured comparison with first mismatch |
-| Canonical router observer | Passed exact token/router parity and produced replacement traces |
-| Historical callback traces | Quarantined as `trace_v1_perturbing`; retained for audit only |
-| Held-out policy evaluation | Frozen conversation-level splits; results reported by prompt and domain |
-| Expert layout | All 3,840 Q4 layer-expert objects measured; exact aligned slot is 3,346,048 bytes |
-| CUDA transfer microbenchmark | Three idle-GPU trials pooled; aligned pinned slot is 0.234016 ms p50 / 0.234272 ms p95 |
-| Deadline simulator | Cross-backend estimate only; CUDA transfer and Vulkan windows remain separately labeled |
-| Machine recommendation | Observatory verdict is evidence-backed; release live cache remains disabled |
-| Causal replay report | Working; self-contained HTML includes per-prompt/domain physical evidence and measurement boundaries |
-| Exact live-cache primitive | Layer-24 C5 passed parity; one-layer result improved its matched observer baseline |
-| Multi-layer reactive cache | Exact on CUDA-resident layers, but blocking transfers caused a 26.84% decode regression |
-| Final temporal prefetch | Exact and prevented real misses; decode TPS -1.15%, so no runtime speedup claim |
-| CPU-only reproduction fixture | Working; eight previously measured events with checked totals |
-| Codex/GPT-5.6 annotations | Active in the build and evidence workflow; no runtime API key required |
-
-The append-only [project log](PROJECT_LOG.md) records commands, failures, decisions, hashes, and test results as the work moves.
+Do not compare 35.67 aggregate server TPS with 28.13 single-request CLI TPS as though they were the same protocol.
 
 ## CLI
 
-```text
-expertflow baseline  Run and measure an unmodified llama.cpp baseline
-expertflow collect-pairs  Collect resumable trace-off/trace-on prompt pairs
-expertflow doctor    Record hardware, storage, and toolchain readiness
-expertflow profile   Build a measured locality profile from router JSONL
-expertflow parity    Compare exact token sequences with and without tracing
-expertflow recommend Produce an evidence-bounded machine recommendation
-expertflow replay    Render a standalone causal policy replay report
-expertflow simulate  Compare estimated cache policies under one slot budget
-expertflow heldout-breakdown  Report held-out results by prompt and domain
-expertflow transfer-benchmark Measure pageable and pinned CUDA transfers
-expertflow deadline-eval  Run the backend-labeled deadline simulator
-```
+### `expertflow doctor`
 
-Run `uv run expertflow <command> --help` for the full option list.
-
-### Fetch the pinned Q4 model
-
-The fetcher uses the exact Hugging Face revision in `configs/model-artifacts.toml`, resumes partial transfers, and verifies byte length plus SHA-256 before returning success.
+Inspect Windows, NVIDIA GPU/VRAM, driver, CUDA runtime, model, and binary hashes:
 
 ```powershell
-uv run expertflow-fetch-q4 --destination C:\models\expertflow
+uv run expertflow doctor `
+  --model $env:EXPERTFLOW_MODEL_PATH `
+  --runtime $env:EXPERTFLOW_LLAMA_CLI `
+  --server $env:EXPERTFLOW_LLAMA_SERVER
 ```
 
-Expected verified path:
+### `expertflow profile <model>`
 
-```text
-C:\models\expertflow\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\gemma-4-26B_q4_0-it.gguf
-```
-
-### Run the measured baseline
-
-The official runtime artifacts and hashes are pinned in `configs/runtime-artifacts.toml`. Once those files and the Q4 model are present, run:
+Show the committed measured Q6 profile and a live model-path/hash check:
 
 ```powershell
-uv run expertflow baseline `
-  --runtime C:\models\expertflow\dependencies\llama-b10002\runtime\llama-cli.exe `
-  --model C:\models\expertflow\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\gemma-4-26B_q4_0-it.gguf `
-  --model-sha256 4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5 `
-  --prompt-file configs\baseline-prompt.txt `
-  --output-dir C:\models\expertflow\runs\q4-auto `
-  --gpu-layers auto --ctx-size 1024 --predict 32 --threads 12
+uv run expertflow profile $env:EXPERTFLOW_MODEL_PATH
 ```
 
-The run directory contains `manifest.json`, `stdout.txt`, `stderr.txt`, and `llama.log`. The manifest records the exact command, model identity, elapsed time, process memory, and sampled GPU memory.
+### `expertflow optimize <model> --goal ...`
 
-### Build the routing probe
-
-The separate probe links to the same verified b10002 CUDA DLLs as the baseline. Its build tree stays outside Git:
+Write one of the measured deployment profiles:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts\build_router_probe.ps1 `
-  -LlamaCppSource C:\models\expertflow\dependencies\llama.cpp-a7312ae94f801fc9c6786dc56e38df57b964f697
+uv run expertflow optimize $env:EXPERTFLOW_MODEL_PATH --goal latency --output deployment.json
+uv run expertflow optimize $env:EXPERTFLOW_MODEL_PATH --goal throughput --output deployment.json
+uv run expertflow optimize $env:EXPERTFLOW_MODEL_PATH --goal context --output deployment.json
+uv run expertflow optimize $env:EXPERTFLOW_MODEL_PATH --goal agentic --output deployment.json
 ```
 
-Build provenance and the callback boundary are recorded in [router probe evidence](docs/evidence/router-probe-build.md).
+### `expertflow run <deployment.json>`
 
-The first real Q4 measurements, token parity, and conditional live-cache verdict are in [Q4 baseline evidence](docs/evidence/q4-baseline-result.md).
-
-### Profile a router trace
+Launch the reproducible single-request command:
 
 ```powershell
-uv run expertflow profile C:\models\expertflow\runs\trace.jsonl `
-  --static-budget 1 --static-budget 2 --static-budget 4 `
-  --output C:\models\expertflow\runs\profile.json
+uv run expertflow run deployments/max-performance.json
 ```
 
-Profile output is labeled `measured` because it summarizes observed router events. It includes expert concentration, static hit curves, adjacent-token reuse, and mean reuse distance by layer.
+Use `--dry-run` to inspect the command without loading the model.
 
-Compare the deterministic probe's tracing-disabled and tracing-enabled token artifacts with:
+### `expertflow serve <deployment.json>`
+
+Launch llama-server and print the base URL, health URL, context, slots, placement, and expected peak VRAM:
 
 ```powershell
-uv run expertflow parity baseline-tokens.json instrumented-tokens.json `
-  --output C:\models\expertflow\runs\parity.json
+uv run expertflow serve deployments/max-agentic.json
 ```
 
-### Compare cache policies
+### `expertflow compare <deployment.json>`
+
+Print the recorded stock comparison and quality status:
 
 ```powershell
-uv run expertflow simulate C:\models\expertflow\runs\trace.jsonl `
-  --capacity-per-layer 4 `
-  --output C:\models\expertflow\runs\simulation.json
+uv run expertflow compare deployments/max-performance.json
 ```
 
-Simulation output is labeled `estimated`. The current policies are reactive, trace-derived static hotset, and online per-layer LRU. Slot capacity must be at least the router top-k.
+### `expertflow demo --replay`
 
-### Produce a machine-specific recommendation
+Verify and replay the committed evidence on an ordinary machine:
 
 ```powershell
-uv run expertflow recommend `
-  --doctor C:\models\expertflow\runs\preflight\doctor.json `
-  --baseline C:\models\expertflow\runs\q4-gpu10-smoke8\manifest.json `
-  --profile C:\models\expertflow\runs\q4-probe\profile.json `
-  --simulation C:\models\expertflow\runs\q4-probe\simulation.json `
-  --capacity-curve C:\models\expertflow\runs\physical-feasibility-q4-vulkan\heldout-capacity-decode-p95.json `
-  --output C:\models\expertflow\runs\q4-probe\recommendation-physical-feasibility.json
+uv run expertflow demo --replay
 ```
 
-The recommendation remains `CONDITIONAL`, and the engineering decision now permits only a bounded live-cache correctness spike. Static-96 projects to 6,433.14 MiB over 21 target layers and leaves 800.86 MiB of configurable headroom. Its residents were selected from 31 parity-safe training conversations and evaluated on eight untouched validation/test conversations. It reaches 87.57% versus 86.34% for conversation-reset LRU. The 9.03% cold-byte reduction is enough to justify the physical proof, but remains below the 20% expansion target.
+## Environment
 
-### Measure the CUDA transfer curve
+Copy `.env.example` into your shell configuration or set these variables directly:
+
+| Variable | Purpose |
+|---|---|
+| `EXPERTFLOW_MODEL_PATH` | User-supplied Q6_K GGUF |
+| `EXPERTFLOW_LLAMA_CLI` | Compatible `llama-cli.exe` |
+| `EXPERTFLOW_LLAMA_SERVER` | Compatible `llama-server.exe` |
+| `EXPERTFLOW_BASE_URL` | OpenAI-compatible base URL; default is `http://127.0.0.1:8080/v1` |
+
+Verify the model before live inference:
 
 ```powershell
-uv run expertflow transfer-benchmark `
-  --cudart C:\models\expertflow\dependencies\llama-b10002\runtime\cudart64_12.dll `
-  --payload-bytes 3345412 `
-  --payload-bytes 3346048 `
-  --payload-bytes 26763296 `
-  --single-copy-samples 200 `
-  --output C:\models\expertflow\runs\transfer-q4\transfer.json
+Get-FileHash $env:EXPERTFLOW_MODEL_PATH -Algorithm SHA256
 ```
 
-The command records pageable-to-pinned staging, pageable-to-GPU copies, pinned-to-GPU copies, single-copy CUDA-event latency, host API-call duration, and sustained batch bandwidth. Transfer-only measurements are not reported as token latency savings.
-
-### Render the causal replay report
-
-```powershell
-uv run expertflow replay trace-a.jsonl trace-b.jsonl `
-  --phase decode --max-layer 20 `
-  --fit-trace training-a.jsonl --fit-trace training-b.jsonl `
-  --fit-phase prefill `
-  --recommendation C:\models\expertflow\runs\q4-probe\recommendation-physical-feasibility.json `
-  --heldout-breakdown C:\models\expertflow\runs\physical-feasibility-q4-vulkan\heldout-breakdown-decode-static96-p95.json `
-  --expert-layout C:\models\expertflow\runs\expert-layout-q4\inventory.json `
-  --transfer-evidence C:\models\expertflow\runs\transfer-q4-physical\aggregate.json `
-  --deadline-evidence C:\models\expertflow\runs\physical-feasibility-q4-vulkan\deadline-static96-two-slice-p95.json `
-  --output C:\models\expertflow\runs\q4-probe\report-physical-feasibility.html `
-  --max-events 300
-```
-
-The result is one self-contained HTML file with the gate verdict, measured memory envelope, exact packed-byte projection, per-prompt/domain policy results, independent CUDA transfer timing, cross-backend deadline boundary, and a bounded event timeline. The current report covers 10,584 held-out decode events and keeps `live_cache_enabled=false` visible. A local HTTP server is useful for judge review, but the file has no scripts or remote assets.
-
-To check the simulator without downloading the model, use the small [replay fixture](examples/replay/README.md):
-
-```powershell
-uv run expertflow simulate examples\replay\trace.jsonl `
-  --capacity-per-layer 8 `
-  --output replay-simulation.json
-```
-
-Those eight previously measured events produce 26 static-hotset hits and 19 LRU hits out of 64 expert demands. The outcomes are still estimates; the fixture does not claim live transfer savings.
-
-## Trace contract
-
-Router traces use strict JSONL. One record represents one token/layer decision from the authoritative router:
-
-```json
-{
-  "schema_version": "1.0.0",
-  "request_id": "req-001",
-  "conversation_id": "conv-001",
-  "turn_index": 0,
-  "phase": "decode",
-  "forward_id": 12,
-  "hook_order": 41,
-  "token_index": 20,
-  "token_id": 42,
-  "layer_id": 7,
-  "selected_expert_ids": [2, 9],
-  "selected_expert_weights": [0.75, 0.25],
-  "observed_at_ns": 123456789
-}
-```
-
-Unknown fields, unsupported schema versions, duplicate experts, invalid ranges, and mismatched weight arrays fail visibly. Raw prompt text is not part of the routing record.
-
-## Architecture
+Expected SHA-256:
 
 ```text
-Gemma 4 router callback
-        |
-        v
-strict JSONL trace ----> measured locality profile
-        |                         |
-        v                         v
-reactive/static/LRU simulator -> machine recommendation
-        |
-        v
-causal replay report -> Codex/GPT-5.6 evidence annotations
+089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba
 ```
 
-The repository keeps reviewable code and manifests. Large or generated material stays under the external artifact root.
+## Agentic example
 
-```text
-configs/             pinned model/runtime identities and baseline prompt
-docs/evidence/       compact runtime and routing-source evidence
-docs/superpowers/    approved design and execution plan
-src/expertflow/      CLI, validation, analysis, simulation, measurement
-tests/               CPU-fast unit and CLI integration tests
-PROJECT_LOG.md       chronological execution record
+Start the measured four-slot profile:
+
+```powershell
+./scripts/start_expertflow.ps1 -Deployment deployments/max-agentic.json
+Invoke-RestMethod http://127.0.0.1:8080/health
+uv run python examples/openai_client.py
+uv run python examples/agentic_session.py
+./scripts/stop_expertflow.ps1
 ```
 
-## OpenAI Build Week integration
+The examples work with clients that accept a configurable OpenAI-compatible base URL. They do not claim compatibility with tools that force a specific provider.
 
-Codex is being used to evaluate the plan, inspect the machine, implement the project, run tests, and maintain `PROJECT_LOG.md`. The final submission will include the required Codex session identifier from `/feedback`.
+## Reproducible build
 
-Codex with GPT-5.6 is also being used to annotate the measured artifacts, explain failed gates, and prepare the judge-facing narrative. ExpertFlow does not require an OpenAI API key at runtime; deterministic local code remains responsible for every metric and verdict.
+The release package contains the pinned upstream SHA, ExpertFlow patch series, build flags, compiler/CUDA versions, binary hashes, and setup scripts. Start with `submission/judge-test-guide.md` for the three judge paths.
 
-## Further reading
+## Tests
 
-- [Approved Q4 Observatory design](docs/superpowers/specs/2026-07-14-expertflow-q4-observatory-design.md)
-- [Stage 0 execution plan](docs/superpowers/plans/2026-07-14-stage0-q4-baseline.md)
-- [Pinned llama.cpp baseline evidence](docs/evidence/llama-baseline.md)
-- [Gemma 4 routing source map](docs/evidence/gemma4-routing-source-map.md)
-- [Stratified Q4 routing evidence](docs/evidence/stratified-q4-routing.md)
-- [Q4 expert-size and transfer evidence](docs/evidence/q4-expert-transfer.md)
-- [Stratified Q4 capacity curve](docs/evidence/q4-capacity-curve.md)
-- [Held-out Q4 routing evidence](docs/evidence/q4-heldout-routing.md)
-- [Decode deadline and oracle evidence](docs/evidence/q4-deadline-oracle.md)
-- [Expanded physical-feasibility routing](docs/evidence/q4-physical-feasibility-routing.md)
-- [Static-96 definition and budget](docs/evidence/q4-static-96.md)
-- [Exhaustive Q4 expert layout](docs/evidence/q4-expert-layout.md)
-- [Measured transfer deadline sensitivity](docs/evidence/q4-deadline-sensitivity.md)
-- [Minimal live-cache go/no-go](docs/evidence/q4-live-cache-go-no-go.md)
+```powershell
+uv sync --all-extras
+$env:PYTHONPATH = "$PWD;$PWD\src"
+uv run python -m pytest -q
+```
+
+Historical T1/T2 temporal source-contract tests target a different preserved llama.cpp branch. The release verification records that exclusion instead of pointing those tests at the static Q6 branch.
 
 ## License
 
-This hackathon prototype does not have a repository license yet. Do not assume redistribution rights for the code, model weights, or third-party runtime artifacts.
-
-## Development
-
-Run the complete test suite before committing:
-
-```powershell
-uv run pytest -q
-```
-
-Generated caches, builds, model files, runtime binaries, and run artifacts are ignored by Git. Keep measured evidence outside the repository and commit only compact manifests or reports needed for review.
+MIT. See `LICENSE` and `THIRD_PARTY_NOTICES.md`.
