@@ -16,3 +16,5 @@ The release path deliberately uses environment variables and placeholders instea
 | Context doubling | 8K through 512K allocated context, stock and ExpertFlow | All points allocated and processed 385 prompt plus 32 decode tokens. |
 | Context boundary | 1M allocation | Stock passed; ExpertFlow failed explicitly during layer-20 static-shadow CUDA allocation. |
 | Context binary search | 768K and 896K passed; 960K failed; 928K passed | Passing/failing bracket is 950,272/983,040 allocated tokens. Product profile capped at the 262,144-token model training context with 675.418 MiB measured reserve. |
+| Agentic demo attempt 1 | One coding, two parallel workers, long repository-analysis prompt | Server passed first three requests; example client omitted `reasoning_content`, and the long prompt exceeded the measured 2,048-token slot share. Server stopped cleanly. |
+| Agentic demo attempt 2 | Corrected response field and bounded repository prompt | Coding request, two parallel workers, and repository analysis all completed through the local OpenAI-compatible endpoint; server stopped cleanly. |

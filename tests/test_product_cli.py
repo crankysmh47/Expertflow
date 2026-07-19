@@ -68,10 +68,11 @@ def test_runtime_command_preserves_manifest_order_and_environment(tmp_path: Path
     assert environment["LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER"] == "0,1,2,3,4,5,6,7,8,9,15,20"
 
 
-def test_unmeasured_profile_fails_instead_of_projecting(tmp_path: Path, capsys) -> None:
+def test_measured_throughput_profile_is_not_a_projection(tmp_path: Path, capsys) -> None:
     output = tmp_path / "throughput.json"
-    assert main(["optimize", "model.gguf", "--goal", "throughput", "--output", str(output)]) == 2
+    assert main(["optimize", "model.gguf", "--goal", "throughput", "--output", str(output)]) == 0
     report = _last_json(capsys)
-    assert report["status"] == "failure"
-    assert report["reason"] == "measured throughput profile is not available"
-    assert not output.exists()
+    deployment = json.loads(output.read_text(encoding="utf-8"))
+    assert report["status"] == "pass"
+    assert deployment["measurement_status"] == "measured"
+    assert deployment["measured"]["aggregate_generated_tps"] == 35.66992607360984
