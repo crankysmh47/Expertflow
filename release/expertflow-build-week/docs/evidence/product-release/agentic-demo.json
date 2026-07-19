@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "measurement_kind": "live_agentic_workflow",
+  "status": "pass",
+  "deployment": "deployments/max-agentic.json",
+  "base_url": "http://127.0.0.1:8080/v1",
+  "requests": [
+    {"kind": "interactive_coding", "completed": true},
+    {"kind": "parallel_worker", "worker": 1, "completed": true},
+    {"kind": "parallel_worker", "worker": 2, "completed": true},
+    {"kind": "bounded_repository_analysis", "completed": true, "within_measured_per_slot_context": true}
+  ],
+  "server_profile": {"parallel_slots": 4, "total_context": 8192, "context_per_slot": 2048},
+  "first_attempt": {"status": "failed_example", "reason": "client ignored reasoning_content and the demonstration prompt exceeded the measured per-slot context", "runtime_changed": false},
+  "cleanup": {"server_stopped": true, "pid_file_removed": true},
+  "output": "docs/evidence/product-release/agentic-demo.log"
+}

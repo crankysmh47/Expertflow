@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "status": "pass",
+  "applicable_tests": {
+    "passed": 259,
+    "failed": 0,
+    "excluded_modules": [
+      "tests/test_t1_temporal_source_contract.py",
+      "tests/test_t2_sidecar_source_contract.py"
+    ],
+    "reason": "Historical temporal-cache source contracts target a different preserved llama.cpp branch."
+  },
+  "cli_smoke": {
+    "doctor_live": "pass",
+    "profile": "pass",
+    "optimize_goals": ["latency", "throughput", "context", "agentic"],
+    "run_dry_run": "pass",
+    "serve_dry_run": "pass",
+    "compare": "pass",
+    "demo_replay": "pass"
+  },
+  "release": {
+    "directory": "release/expertflow-build-week",
+    "archive": "release/expertflow-build-week.zip",
+    "archive_sha256": "5b1ea945994f4e069b8a6687b71dae8165d3d78be8c567275a5fe1cc260346f7",
+    "deterministic_rebuild": true,
+    "verified_files": 97,
+    "clean_archive_setup_and_replay": "pass",
+    "model_included": false,
+    "private_path_scan": "pass",
+    "credential_scan": "pass"
+  },
+  "dashboard": {
+    "offline_load": "pass",
+    "visual_inspection": "pass",
+    "panels": 11,
+    "browser_console_errors": 0
+  },
+  "frozen_disclosures": {
+    "strict_ppl_confidence_gate_pass": false,
+    "parallel_output_deterministic": false,
+    "full_context_filled": false,
+    "predictive_cache_verdict": "NO CACHE OPPORTUNITY"
+  }
+}

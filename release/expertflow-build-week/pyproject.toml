@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "expertflow-local"
+version = "0.1.0"
+description = "Hardware-aware routing observatory for local sparse MoE inference"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+expertflow = "expertflow.cli.main:main"
+expertflow-fetch-q4 = "expertflow.cli.fetch_q4:main"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.4,<9",
+]
+predictor = [
+  "numpy>=1.26,<3",
+  "torch>=2.7,<3",
+]
+quality = [
+    "huggingface-hub>=0.36,<1",
+    "pyarrow>=20,<22",
+]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/expertflow"]

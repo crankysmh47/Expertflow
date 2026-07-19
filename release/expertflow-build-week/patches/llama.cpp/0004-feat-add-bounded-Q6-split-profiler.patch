@@ -1,0 +1,218 @@
+From d8e387fce4dce15dcfeff95230cbf8a6daf9c9b2 Mon Sep 17 00:00:00 2001
+From: crankysmh47 <annankhan741@gmail.com>
+Date: Sun, 19 Jul 2026 02:17:15 +0500
+Subject: [PATCH 4/6] feat: add bounded Q6 split profiler
+
+Assisted-by: OpenAI Codex
+
+diff --git a/ggml/src/ggml-backend.cpp b/ggml/src/ggml-backend.cpp
+index d6314b06920a569bbaa8d6b25f0909766bfc5285..1ab7c980507f9d969c565bdf44d20a1e449ac145 100644
+--- a/ggml/src/ggml-backend.cpp
++++ b/ggml/src/ggml-backend.cpp
+@@ -773,6 +773,7 @@ struct ggml_backend_sched_split {
+ 
+ #define EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS 4
+ #define EXPERTFLOW_STATIC_ISLAND_MAX_SHADOWS 16
++#define EXPERTFLOW_SPLIT_PROFILE_MAX_RECORDS 256
+ 
+ struct expertflow_static_island_shadow {
+     struct ggml_tensor * source;
+@@ -782,6 +783,21 @@ struct expertflow_static_island_shadow {
+     bool loaded;
+ };
+ 
++struct expertflow_split_profile_record {
++    char backend[32];
++    char first_node[GGML_MAX_NAME];
++    char last_node[GGML_MAX_NAME];
++    enum ggml_op first_op;
++    int split_id;
++    int n_nodes;
++    int64_t calls;
++    int64_t decode_calls;
++    int64_t input_boundary_us;
++    int64_t compute_submit_us;
++    int64_t completion_us;
++    int64_t total_us;
++};
++
+ struct ggml_backend_sched {
+     bool is_reset; // true if the scheduler has been reset since the last graph split
+     bool is_alloc;
+@@ -830,6 +846,11 @@ struct ggml_backend_sched {
+     int expertflow_static_island_n_shadows;
+     struct expertflow_static_island_shadow expertflow_static_island_shadows[EXPERTFLOW_STATIC_ISLAND_MAX_SHADOWS];
+ 
++    bool expertflow_split_profile_enabled;
++    char expertflow_split_profile_path[1024];
++    int expertflow_split_profile_n_records;
++    struct expertflow_split_profile_record expertflow_split_profile_records[EXPERTFLOW_SPLIT_PROFILE_MAX_RECORDS];
++
+     char * context_buffer;
+     size_t context_buffer_size;
+ 
+@@ -849,6 +870,88 @@ struct ggml_backend_sched {
+ #define tensor_id_copy(id, backend_id, copy_id) sched->hv_tensor_copies[(id) * sched->n_backends * sched->n_copies + (backend_id) * sched->n_copies + (copy_id)]
+ #define tensor_copy(tensor, backend_id, copy_id) tensor_id_copy(hash_id(tensor), backend_id, copy_id)
+ 
++static void expertflow_json_write_string(FILE * file, const char * value) {
++    fputc('"', file);
++    for (const unsigned char * p = (const unsigned char *) value; *p != '\0'; ++p) {
++        if (*p == '"' || *p == '\\') {
++            fputc('\\', file);
++            fputc(*p, file);
++        } else if (*p >= 0x20) {
++            fputc(*p, file);
++        }
++    }
++    fputc('"', file);
++}
++
++static void expertflow_split_profile_record(
++        ggml_backend_sched_t sched,
++        int split_id,
++        ggml_backend_t backend,
++        const struct ggml_cgraph * graph,
++        int64_t input_boundary_us,
++        int64_t compute_submit_us,
++        int64_t completion_us,
++        int64_t total_us) {
++    if (split_id >= EXPERTFLOW_SPLIT_PROFILE_MAX_RECORDS) {
++        GGML_ABORT("ExpertFlow split profile capacity exceeded: %d\n", split_id);
++    }
++
++    struct expertflow_split_profile_record * record = &sched->expertflow_split_profile_records[split_id];
++    if (record->calls == 0) {
++        record->split_id = split_id;
++        record->n_nodes = graph->n_nodes;
++        snprintf(record->backend, sizeof(record->backend), "%s", ggml_backend_name(backend));
++        if (graph->n_nodes > 0) {
++            record->first_op = graph->nodes[0]->op;
++            snprintf(record->first_node, sizeof(record->first_node), "%s", graph->nodes[0]->name);
++            snprintf(record->last_node, sizeof(record->last_node), "%s", graph->nodes[graph->n_nodes - 1]->name);
++        }
++        sched->expertflow_split_profile_n_records = std::max(sched->expertflow_split_profile_n_records, split_id + 1);
++    }
++
++    record->calls++;
++    if (graph->n_nodes > 0 && graph->nodes[graph->n_nodes - 1]->ne[1] == 1) {
++        record->decode_calls++;
++    }
++    record->input_boundary_us += input_boundary_us;
++    record->compute_submit_us += compute_submit_us;
++    record->completion_us += completion_us;
++    record->total_us += total_us;
++}
++
++static void expertflow_split_profile_write(ggml_backend_sched_t sched) {
++    if (!sched->expertflow_split_profile_enabled) {
++        return;
++    }
++    FILE * file = fopen(sched->expertflow_split_profile_path, "wb");
++    if (file == nullptr) {
++        GGML_LOG_ERROR("failed to open ExpertFlow split profile: %s\n", sched->expertflow_split_profile_path);
++        return;
++    }
++    fprintf(file, "{\"schema_version\":\"1.0.0\",\"diagnostic_synchronization\":true,\"records\":[");
++    for (int i = 0; i < sched->expertflow_split_profile_n_records; ++i) {
++        const struct expertflow_split_profile_record * record = &sched->expertflow_split_profile_records[i];
++        if (i > 0) {
++            fputc(',', file);
++        }
++        fprintf(file, "{\"split_id\":%d,\"backend\":", record->split_id);
++        expertflow_json_write_string(file, record->backend);
++        fprintf(file, ",\"first_node\":");
++        expertflow_json_write_string(file, record->first_node);
++        fprintf(file, ",\"last_node\":");
++        expertflow_json_write_string(file, record->last_node);
++        fprintf(file,
++                ",\"first_op\":\"%s\",\"n_nodes\":%d,\"calls\":%lld,\"decode_calls\":%lld"
++                ",\"input_boundary_us\":%lld,\"compute_submit_us\":%lld,\"completion_us\":%lld,\"total_us\":%lld}",
++                ggml_op_name(record->first_op), record->n_nodes,
++                (long long) record->calls, (long long) record->decode_calls,
++                (long long) record->input_boundary_us, (long long) record->compute_submit_us,
++                (long long) record->completion_us, (long long) record->total_us);
++    }
++    fputs("]}\n", file);
++    fclose(file);
++}
++
+ static bool expertflow_static_island_input(const ggml_backend_sched_t sched, const struct ggml_tensor * tensor) {
+     if (sched->expertflow_static_island_n_layers == 0 || tensor == nullptr) {
+         return false;
+@@ -1657,6 +1760,7 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
+         struct ggml_backend_sched_split * split = &splits[split_id];
+         int split_backend_id = split->backend_id;
+         ggml_backend_t split_backend = sched->backends[split_backend_id];
++        const int64_t profile_split_start_us = sched->expertflow_split_profile_enabled ? ggml_time_us() : 0;
+ 
+         // copy the input tensors to the split backend
+         for (int input_id = 0; input_id < split->n_inputs; input_id++) {
+@@ -1786,11 +1890,19 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
+             }
+         }
+ 
++        const int64_t profile_compute_start_us = sched->expertflow_split_profile_enabled ? ggml_time_us() : 0;
++        int64_t profile_submit_end_us = profile_compute_start_us;
++        int64_t profile_complete_end_us = profile_compute_start_us;
+         if (!sched->callback_eval) {
+             enum ggml_status ec = ggml_backend_graph_compute_async(split_backend, &split->graph);
+             if (ec != GGML_STATUS_SUCCESS) {
+                 return ec;
+             }
++            if (sched->expertflow_split_profile_enabled) {
++                profile_submit_end_us = ggml_time_us();
++                ggml_backend_synchronize(split_backend);
++                profile_complete_end_us = ggml_time_us();
++            }
+         } else {
+             // similar to ggml_backend_compare_graph_backend
+             for (int j0 = 0; j0 < split->graph.n_nodes; j0++) {
+@@ -1823,6 +1935,19 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
+ 
+                 j0 = j1;
+             }
++            if (sched->expertflow_split_profile_enabled) {
++                profile_submit_end_us = ggml_time_us();
++                profile_complete_end_us = profile_submit_end_us;
++            }
++        }
++
++        if (sched->expertflow_split_profile_enabled) {
++            expertflow_split_profile_record(
++                sched, split_id, split_backend, &split->graph,
++                profile_compute_start_us - profile_split_start_us,
++                profile_submit_end_us - profile_compute_start_us,
++                profile_complete_end_us - profile_submit_end_us,
++                profile_complete_end_us - profile_split_start_us);
+         }
+ 
+         // record the event of this copy
+@@ -1849,6 +1974,16 @@ ggml_backend_sched_t ggml_backend_sched_new(
+ 
+     struct ggml_backend_sched * sched = (ggml_backend_sched *) calloc(1, sizeof(struct ggml_backend_sched));
+ 
++    const char * expertflow_split_profile_path = getenv("LLAMA_EXPERTFLOW_SPLIT_PROFILE");
++    if (expertflow_split_profile_path != nullptr && expertflow_split_profile_path[0] != '\0') {
++        if (strlen(expertflow_split_profile_path) >= sizeof(sched->expertflow_split_profile_path)) {
++            GGML_ABORT("LLAMA_EXPERTFLOW_SPLIT_PROFILE path is too long\n");
++        }
++        sched->expertflow_split_profile_enabled = true;
++        snprintf(sched->expertflow_split_profile_path, sizeof(sched->expertflow_split_profile_path), "%s", expertflow_split_profile_path);
++        GGML_LOG_INFO("ExpertFlow diagnostic split profiling enabled: %s\n", sched->expertflow_split_profile_path);
++    }
++
+     sched->expertflow_static_island_layer = -1;
+     const char * expertflow_static_layer = getenv("LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER");
+     if (expertflow_static_layer != nullptr && expertflow_static_layer[0] != '\0') {
+@@ -1942,6 +2077,7 @@ void ggml_backend_sched_free(ggml_backend_sched_t sched) {
+     if (sched == NULL) {
+         return;
+     }
++    expertflow_split_profile_write(sched);
+     for (int b = 0; b < sched->n_backends; b++) {
+         for (int c = 0; c < sched->n_copies; c++) {
+             ggml_backend_event_free(sched->events[b][c]);
+-- 
+2.52.0.windows.1
+

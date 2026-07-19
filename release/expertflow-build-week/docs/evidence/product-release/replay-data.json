@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "classification": "measured_recorded_evidence",
+  "model": {"filename": "google_gemma-4-26B-A4B-it-Q6_K.gguf", "bytes": 22862575520, "sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba"},
+  "performance": {"expertflow_decode_tps": 28.13, "strongest_stock_decode_tps": 22.967, "improvement_pct": 22.480080114947533, "peak_process_owned_mib": 10966.801, "matched_pairs": 10, "generated_tokens_per_run": 512},
+  "placement": {"mode": "full_static_identity_shadow", "layers": [0,1,2,3,4,5,6,7,8,9,15,20], "experts_per_layer": 128, "total_shadow_bytes": 8231196672, "cache": false, "prediction": false},
+  "quality": {"mmlu_off": 49, "mmlu_on": 50, "changed_on_answers_repeated_exactly": 14, "ppl_point_change_pct": -2.9152085407372328, "ppl_95_upper_pct": 2.2529372655983686, "strict_ppl_gate_pass": false},
+  "cache_strategy": {"classification": "simulation_from_measured_q6_routing_and_measured_q4_cache_cost", "verdict": "NO CACHE OPPORTUNITY"},
+  "live_product_profiles": {"throughput": {"parallel_slots": 4, "aggregate_generated_tps": 35.66992607360984, "stock_tps": 24.523066488797543, "repetitions": 5, "concurrent_output_deterministic": false}, "context": {"allocated_context": 262144, "processed_tokens": 417, "full_context_filled": false}},
+  "original_source_hashes": {
+    "q6_static_state": "cd0fddf01f8bd4c5c4b19d85da1f37d7f9f4b46013a73cc3335fded98371fcd1",
+    "q6_results": "a02c4e2726cbce4052f447f1903aba82fc36a2b7ce0d846ee01d9277c08cc967",
+    "mmlu_static": "1493b1758cd66d7853ace07e1703b8d2bd1e3a3bcac839d82f8261f935b142ec",
+    "quality_results": "9464ed4f401410493fd6d570ab758f9686bdee1cfa82c69d3bf481419e629f68",
+    "cache_simulation": "e6755811c88b38da8ef8933f22784c36c42681b48a96c0e2875048476128ffec",
+    "placement_manifest": "2914398d75dc4825ab34649dcd1cad24f55e5785c4b627482ac83fa0affb0aca"
+  }
+}

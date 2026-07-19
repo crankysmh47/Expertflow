@@ -1,0 +1,38 @@
+From e85d6718adadc3c0ceb8eb2c633e431a0ec1d35e Mon Sep 17 00:00:00 2001
+From: crankysmh47 <annankhan741@gmail.com>
+Date: Sun, 19 Jul 2026 04:52:44 +0500
+Subject: [PATCH 5/6] feat: expand bounded static island capacity
+
+Assisted-by: OpenAI Codex
+
+diff --git a/ggml/src/ggml-backend.cpp b/ggml/src/ggml-backend.cpp
+index 1ab7c980507f9d969c565bdf44d20a1e449ac145..25d0f9754ecc79a6278aba49b1ec65f1cbb6b536 100644
+--- a/ggml/src/ggml-backend.cpp
++++ b/ggml/src/ggml-backend.cpp
+@@ -771,8 +771,8 @@ struct ggml_backend_sched_split {
+     struct ggml_cgraph graph;
+ };
+ 
+-#define EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS 4
+-#define EXPERTFLOW_STATIC_ISLAND_MAX_SHADOWS 16
++#define EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS 12
++#define EXPERTFLOW_STATIC_ISLAND_MAX_SHADOWS 48
+ #define EXPERTFLOW_SPLIT_PROFILE_MAX_RECORDS 256
+ 
+ struct expertflow_static_island_shadow {
+diff --git a/src/llama-context.cpp b/src/llama-context.cpp
+index 7733c30cc166439ad026a2cd585334ce7fa6ebde..3e02e65e154537d1654e193b281ead314376367c 100644
+--- a/src/llama-context.cpp
++++ b/src/llama-context.cpp
+@@ -23,7 +23,7 @@
+ // llama_context
+ //
+ 
+-#define EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS 4
++#define EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS 12
+ 
+ static int expertflow_static_island_layers(int layers[EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS]) {
+     const char * value = getenv("LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER");
+-- 
+2.52.0.windows.1
+

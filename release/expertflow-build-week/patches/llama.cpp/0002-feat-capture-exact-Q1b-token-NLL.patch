@@ -1,0 +1,98 @@
+From b43505ea451107b2daec827846e6015b007e14ff Mon Sep 17 00:00:00 2001
+From: crankysmh47 <annankhan741@gmail.com>
+Date: Sun, 19 Jul 2026 00:34:05 +0500
+Subject: [PATCH 2/6] feat: capture exact Q1b token NLL
+
+
+diff --git a/tools/perplexity/perplexity.cpp b/tools/perplexity/perplexity.cpp
+index 92f88306c74101fb4d0b496d368055d489258eb1..89cba23dfd1a39adafd15dcf1da733cdb5c92948 100644
+--- a/tools/perplexity/perplexity.cpp
++++ b/tools/perplexity/perplexity.cpp
+@@ -11,9 +11,11 @@
+ #include <clocale>
+ #include <cmath>
+ #include <cstdio>
++#include <cstdlib>
+ #include <cstring>
+ #include <ctime>
+ #include <fstream>
++#include <iomanip>
+ #include <mutex>
+ #include <random>
+ #include <sstream>
+@@ -108,11 +110,12 @@ static double log_softmax(int n_vocab, const float * logits, uint16_t * log_prob
+ 
+ static void process_logits(
+     int n_vocab, const float * logits, const int * tokens, int n_token, std::vector<std::thread> & workers,
+-    double & nll, double & nll2, float * logit_history, float * prob_history
++    double & nll, double & nll2, float * logit_history, float * prob_history, double * token_nll_history
+ ) {
+     std::mutex mutex;
+     int counter = 0;
+-    auto compute = [&mutex, &counter, &nll, &nll2, logit_history, prob_history, n_vocab, logits, tokens, n_token] () {
++    auto compute = [&mutex, &counter, &nll, &nll2, logit_history, prob_history, token_nll_history,
++                    n_vocab, logits, tokens, n_token] () {
+         double local_nll  = 0;
+         double local_nll2 = 0;
+         while (true) {
+@@ -130,6 +133,7 @@ static void process_logits(
+ 
+             logit_history[i] = results.logit;
+             prob_history[i]  = results.prob;
++            token_nll_history[i] = v;
+         }
+     };
+     for (auto & w : workers) {
+@@ -469,6 +473,21 @@ static results_perplexity perplexity(llama_context * ctx, const common_params &
+         logits_stream.write(reinterpret_cast<const char *>(&n_ctx), sizeof(n_ctx));
+     }
+ 
++    std::ofstream nll_stream;
++    const char * nll_path = getenv("LLAMA_EXPERTFLOW_NLL_FILE");
++    if (nll_path != nullptr && nll_path[0] != '\0') {
++        if (!params.logits_file.empty()) {
++            LOG_ERR("%s: LLAMA_EXPERTFLOW_NLL_FILE cannot be combined with --save-all-logits\n", __func__);
++            return {};
++        }
++        nll_stream.open(nll_path, std::ios::out | std::ios::trunc);
++        if (!nll_stream.is_open()) {
++            LOG_ERR("%s: failed to open %s for writing\n", __func__, nll_path);
++            return {};
++        }
++        nll_stream << std::setprecision(17);
++    }
++
+     auto tim1 = std::chrono::high_resolution_clock::now();
+     LOG_INF("%s: tokenizing the input ..\n", __func__);
+ 
+@@ -490,6 +509,8 @@ static results_perplexity perplexity(llama_context * ctx, const common_params &
+     std::vector<float> prob_history;
+     prob_history.resize(tokens.size());
+ 
++    std::vector<double> token_nll_history(n_ctx);
++
+     const int n_chunk_max = tokens.size() / n_ctx;
+ 
+     const int n_chunk = params.n_chunks < 0 ? n_chunk_max : std::min(params.n_chunks, n_chunk_max);
+@@ -624,7 +645,17 @@ static results_perplexity perplexity(llama_context * ctx, const common_params &
+                         tokens_data, n_ctx - 1 - first,
+                         workers, nll, nll2,
+                         logit_history.data() + start + seq*n_ctx + first,
+-                        prob_history.data()  + start + seq*n_ctx + first);
++                        prob_history.data()  + start + seq*n_ctx + first,
++                        token_nll_history.data());
++                if (nll_stream.is_open()) {
++                    for (int k = 0; k < n_ctx - 1 - first; ++k) {
++                        nll_stream << R"({"token_index":)" << start + seq*n_ctx + first + k + 1
++                                   << R"(,"chunk_index":)" << i + seq
++                                   << R"(,"position":)" << first + k + 1
++                                   << R"(,"token_id":)" << tokens_data[k + 1]
++                                   << R"(,"nll":)" << token_nll_history[k] << "}\n";
++                    }
++                }
+             }
+             count += n_ctx - first - 1;
+ 
+-- 
+2.52.0.windows.1
+

@@ -1,0 +1,183 @@
+From 38dce264ca783646d7a2f268984d35d82e81d865 Mon Sep 17 00:00:00 2001
+From: crankysmh47 <annankhan741@gmail.com>
+Date: Sun, 19 Jul 2026 00:34:05 +0500
+Subject: [PATCH 3/6] feat: bound static islands to four layers
+
+
+diff --git a/ggml/src/ggml-backend.cpp b/ggml/src/ggml-backend.cpp
+index 1cfb99b8ee4db538fe5daf96031559ad41ed65ad..d6314b06920a569bbaa8d6b25f0909766bfc5285 100644
+--- a/ggml/src/ggml-backend.cpp
++++ b/ggml/src/ggml-backend.cpp
+@@ -771,7 +771,8 @@ struct ggml_backend_sched_split {
+     struct ggml_cgraph graph;
+ };
+ 
+-#define EXPERTFLOW_STATIC_ISLAND_MAX_SHADOWS 8
++#define EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS 4
++#define EXPERTFLOW_STATIC_ISLAND_MAX_SHADOWS 16
+ 
+ struct expertflow_static_island_shadow {
+     struct ggml_tensor * source;
+@@ -824,6 +825,8 @@ struct ggml_backend_sched {
+     void * callback_eval_user_data;
+ 
+     int expertflow_static_island_layer;
++    int expertflow_static_island_n_layers;
++    int expertflow_static_island_layers[EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS];
+     int expertflow_static_island_n_shadows;
+     struct expertflow_static_island_shadow expertflow_static_island_shadows[EXPERTFLOW_STATIC_ISLAND_MAX_SHADOWS];
+ 
+@@ -847,14 +850,19 @@ struct ggml_backend_sched {
+ #define tensor_copy(tensor, backend_id, copy_id) tensor_id_copy(hash_id(tensor), backend_id, copy_id)
+ 
+ static bool expertflow_static_island_input(const ggml_backend_sched_t sched, const struct ggml_tensor * tensor) {
+-    if (sched->expertflow_static_island_layer < 0 || tensor == nullptr) {
++    if (sched->expertflow_static_island_n_layers == 0 || tensor == nullptr) {
+         return false;
+     }
+ 
+-    char prefix[64];
+-    snprintf(prefix, sizeof(prefix), "blk.%d.ffn_", sched->expertflow_static_island_layer);
+-    const size_t prefix_len = strlen(prefix);
+-    return strncmp(tensor->name, prefix, prefix_len) == 0 && strstr(tensor->name + prefix_len, "_exps.") != nullptr;
++    for (int i = 0; i < sched->expertflow_static_island_n_layers; ++i) {
++        char prefix[64];
++        snprintf(prefix, sizeof(prefix), "blk.%d.ffn_", sched->expertflow_static_island_layers[i]);
++        const size_t prefix_len = strlen(prefix);
++        if (strncmp(tensor->name, prefix, prefix_len) == 0 && strstr(tensor->name + prefix_len, "_exps.") != nullptr) {
++            return true;
++        }
++    }
++    return false;
+ }
+ 
+ static struct expertflow_static_island_shadow * expertflow_static_island_find_shadow(
+@@ -1844,13 +1852,32 @@ ggml_backend_sched_t ggml_backend_sched_new(
+     sched->expertflow_static_island_layer = -1;
+     const char * expertflow_static_layer = getenv("LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER");
+     if (expertflow_static_layer != nullptr && expertflow_static_layer[0] != '\0') {
+-        char * end = nullptr;
+-        const long layer = strtol(expertflow_static_layer, &end, 10);
+-        if (end == expertflow_static_layer || *end != '\0' || layer < 0 || layer > INT_MAX) {
+-            GGML_ABORT("invalid LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER: %s\n", expertflow_static_layer);
++        const char * cursor = expertflow_static_layer;
++        while (*cursor != '\0') {
++            if (sched->expertflow_static_island_n_layers >= EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS) {
++                GGML_ABORT("too many LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER entries: %s\n", expertflow_static_layer);
++            }
++            char * end = nullptr;
++            const long layer = strtol(cursor, &end, 10);
++            if (end == cursor || layer < 0 || layer > INT_MAX || (*end != '\0' && *end != ',')) {
++                GGML_ABORT("invalid LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER: %s\n", expertflow_static_layer);
++            }
++            for (int i = 0; i < sched->expertflow_static_island_n_layers; ++i) {
++                if (sched->expertflow_static_island_layers[i] == layer) {
++                    GGML_ABORT("duplicate LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER entry: %ld\n", layer);
++                }
++            }
++            sched->expertflow_static_island_layers[sched->expertflow_static_island_n_layers++] = (int) layer;
++            if (*end == '\0') {
++                break;
++            }
++            cursor = end + 1;
++            if (*cursor == '\0') {
++                GGML_ABORT("invalid LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER: %s\n", expertflow_static_layer);
++            }
+         }
+-        sched->expertflow_static_island_layer = (int) layer;
+-        GGML_LOG_INFO("ExpertFlow static island enabled for layer %d\n", sched->expertflow_static_island_layer);
++        sched->expertflow_static_island_layer = sched->expertflow_static_island_layers[0];
++        GGML_LOG_INFO("ExpertFlow static island enabled for %d layer(s)\n", sched->expertflow_static_island_n_layers);
+     } else {
+         GGML_LOG_DEBUG("EXPERTFLOW_STATIC_ISLAND disabled\n");
+     }
+diff --git a/src/llama-context.cpp b/src/llama-context.cpp
+index 924a10e6359c655c537d5d1e28fb22aac741fa9b..7733c30cc166439ad026a2cd585334ce7fa6ebde 100644
+--- a/src/llama-context.cpp
++++ b/src/llama-context.cpp
+@@ -23,19 +23,55 @@
+ // llama_context
+ //
+ 
+-static int expertflow_static_island_layer() {
++#define EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS 4
++
++static int expertflow_static_island_layers(int layers[EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS]) {
+     const char * value = getenv("LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER");
+     if (value == nullptr || value[0] == '\0') {
+-        return -1;
++        return 0;
+     }
+ 
+-    char * end = nullptr;
+-    const long layer = strtol(value, &end, 10);
+-    if (end == value || *end != '\0' || layer < 0 || layer > INT32_MAX) {
+-        LLAMA_LOG_ERROR("invalid LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER: %s\n", value);
+-        return -1;
++    int count = 0;
++    const char * cursor = value;
++    while (*cursor != '\0') {
++        if (count >= EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS) {
++            LLAMA_LOG_ERROR("too many LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER entries: %s\n", value);
++            return 0;
++        }
++        char * end = nullptr;
++        const long layer = strtol(cursor, &end, 10);
++        if (end == cursor || layer < 0 || layer > INT32_MAX || (*end != '\0' && *end != ',')) {
++            LLAMA_LOG_ERROR("invalid LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER: %s\n", value);
++            return 0;
++        }
++        for (int i = 0; i < count; ++i) {
++            if (layers[i] == layer) {
++                LLAMA_LOG_ERROR("duplicate LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER entry: %ld\n", layer);
++                return 0;
++            }
++        }
++        layers[count++] = (int) layer;
++        if (*end == '\0') {
++            break;
++        }
++        cursor = end + 1;
++        if (*cursor == '\0') {
++            LLAMA_LOG_ERROR("invalid LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER: %s\n", value);
++            return 0;
++        }
++    }
++    return count;
++}
++
++static bool expertflow_static_island_has_layer(int target_layer) {
++    int layers[EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS];
++    const int count = expertflow_static_island_layers(layers);
++    for (int i = 0; i < count; ++i) {
++        if (layers[i] == target_layer) {
++            return true;
++        }
+     }
+-    return (int) layer;
++    return false;
+ }
+ 
+ static void expertflow_static_island_assign_chain(
+@@ -2536,8 +2572,7 @@ llm_graph_cb llama_context::graph_get_cb() const {
+             }
+         }
+ 
+-        const int static_island_layer = expertflow_static_island_layer();
+-        if (static_island_layer >= 0) {
++        if (expertflow_static_island_has_layer(il)) {
+             ggml_backend_t gpu_backend = nullptr;
+             for (const auto & backend : backends) {
+                 if (ggml_backend_dev_type(ggml_backend_get_device(backend.get())) == GGML_BACKEND_DEVICE_TYPE_GPU) {
+@@ -2546,7 +2581,7 @@ llm_graph_cb llama_context::graph_get_cb() const {
+                 }
+             }
+             expertflow_static_island_assign(
+-                sched.get(), gpu_backend, backend_cpu, cur, name, il, static_island_layer);
++                sched.get(), gpu_backend, backend_cpu, cur, name, il, il);
+         }
+     };
+ }
+-- 
+2.52.0.windows.1
+

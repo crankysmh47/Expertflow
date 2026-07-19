@@ -34,6 +34,15 @@ def test_compare_reports_frozen_stock_and_expertflow(capsys) -> None:
     assert report["quality"]["strict_ppl_gate_pass"] is False
 
 
+def test_compare_accepts_release_max_performance_manifest(capsys) -> None:
+    deployment = ROOT / "deployments/max-performance.json"
+    assert main(["compare", str(deployment)]) == 0
+    report = _last_json(capsys)
+    assert report["stock"]["decode_tps"] == 22.967
+    assert report["expertflow"]["decode_tps"] == 28.13
+    assert report["evidence_source"] == deployment.resolve().as_posix()
+
+
 def test_optimize_latency_writes_portable_deployment(tmp_path: Path, capsys) -> None:
     output = tmp_path / "deployment.json"
     assert main(["optimize", "model.gguf", "--goal", "latency", "--output", str(output)]) == 0
