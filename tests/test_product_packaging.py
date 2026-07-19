@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.build_product_release import audit_tree, file_manifest
+from scripts.build_product_release import audit_tree, file_manifest, normalize_text_tree
 
 
 def test_release_audit_rejects_model_private_path_and_credentials(tmp_path: Path) -> None:
@@ -34,3 +34,36 @@ def test_release_builder_is_allowlist_based() -> None:
     assert "shutil.copytree(ROOT" not in source
     assert '"__pycache__"' in source
     assert '"*.pyc"' in source
+    for portable_asset in (
+        "JUDGES.md",
+        "docs/BENCHMARKING.md",
+        "docs/assets",
+        "evidence/release-scorecard.json",
+        "scripts/judge-replay.sh",
+        "scripts/verify-release.ps1",
+        "submission/demo-video-script-final.md",
+    ):
+        assert portable_asset in source
+    assert ".zip.sha256" in source
+
+
+def test_release_text_normalization_is_checkout_independent(tmp_path: Path) -> None:
+    text_file = tmp_path / "guide.md"
+    binary_file = tmp_path / "asset.png"
+    text_file.write_bytes(b"one\r\ntwo\r\n")
+    binary_file.write_bytes(b"\x89PNG\r\n")
+    normalize_text_tree(tmp_path)
+    assert text_file.read_bytes() == b"one\ntwo\n"
+    assert binary_file.read_bytes() == b"\x89PNG\r\n"
+
+
+def test_release_setup_uses_frozen_lockfile() -> None:
+    setup = (Path(__file__).parents[1] / "scripts/setup_release.ps1").read_text(encoding="utf-8")
+    assert "uv sync --frozen" in setup
+    assert "uv sync --extra dev" not in setup
+
+
+def test_git_attributes_pin_release_text_line_endings() -> None:
+    attributes = (Path(__file__).parents[1] / ".gitattributes").read_text(encoding="utf-8")
+    for pattern in ("*.html", "*.patch", "*.toml", "*.lock", "*.ps1", "*.cpp", "LICENSE"):
+        assert f"{pattern} text eol=lf" in attributes

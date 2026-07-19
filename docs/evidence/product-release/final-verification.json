@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "pass",
   "applicable_tests": {
-    "passed": 259,
+    "passed": 272,
     "failed": 0,
     "excluded_modules": [
       "tests/test_t1_temporal_source_contract.py",
@@ -12,6 +12,7 @@
   },
   "cli_smoke": {
     "doctor_live": "pass",
+    "doctor_structured_replay_only": "pass",
     "profile": "pass",
     "optimize_goals": ["latency", "throughput", "context", "agentic"],
     "run_dry_run": "pass",
@@ -22,13 +23,23 @@
   "release": {
     "directory": "release/expertflow-build-week",
     "archive": "release/expertflow-build-week.zip",
-    "archive_sha256": "5b1ea945994f4e069b8a6687b71dae8165d3d78be8c567275a5fe1cc260346f7",
+    "archive_sha256": "b33a438a3fcde3180f6e699cbf37e587d3022d332bed7152afe16e84f4c6c77f",
     "deterministic_rebuild": true,
-    "verified_files": 97,
+    "verified_files": 118,
     "clean_archive_setup_and_replay": "pass",
     "model_included": false,
     "private_path_scan": "pass",
-    "credential_scan": "pass"
+    "credential_scan": "pass",
+    "external_sha256_manifest": "pass",
+    "path_with_spaces_wrappers": "pass",
+    "stable_lf_normalization": "pass"
+  },
+  "replay_ci": {
+    "workflow": ".github/workflows/replay.yml",
+    "windows": "local-equivalent-pass; remote-pending-unpushed",
+    "ubuntu": "configured; remote-pending-unpushed",
+    "macos": "configured; remote-pending-unpushed",
+    "cuda_claim": false
   },
   "dashboard": {
     "offline_load": "pass",

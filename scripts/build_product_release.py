@@ -14,8 +14,9 @@ DEFAULT_OUTPUT = ROOT / "release" / "expertflow-build-week"
 ZIP_EPOCH = (2026, 7, 19, 0, 0, 0)
 UPSTREAM = "a7312ae94f801fc9c6786dc56e38df57b964f697"
 LLAMA_COMMIT = "451224ab4d12a616dc3e16e8c8063f4b331f531c"
+EXTERNAL_SHA_SUFFIX = ".zip.sha256"
 ALLOWLIST = (
-    ("README.md", "README.md"), ("LICENSE", "LICENSE"),
+    ("README.md", "README.md"), ("JUDGES.md", "JUDGES.md"), ("LICENSE", "LICENSE"),
     ("THIRD_PARTY_NOTICES.md", "THIRD_PARTY_NOTICES.md"),
     ("pyproject.toml", "pyproject.toml"), ("uv.lock", "uv.lock"),
     (".env.example", ".env.example"), ("src/expertflow", "src/expertflow"),
@@ -26,6 +27,13 @@ ALLOWLIST = (
     ("scripts/setup_release.ps1", "scripts/setup_release.ps1"),
     ("scripts/build_release_runtime.ps1", "scripts/build_release_runtime.ps1"),
     ("scripts/verify_release.py", "scripts/verify_release.py"),
+    ("scripts/judge-replay.ps1", "scripts/judge-replay.ps1"),
+    ("scripts/judge-replay.sh", "scripts/judge-replay.sh"),
+    ("scripts/live-demo.ps1", "scripts/live-demo.ps1"),
+    ("scripts/verify-release.ps1", "scripts/verify-release.ps1"),
+    ("scripts/verify-release.sh", "scripts/verify-release.sh"),
+    ("docs/BENCHMARKING.md", "docs/BENCHMARKING.md"),
+    ("docs/assets", "docs/assets"),
     ("docs/product-reproduction.md", "docs/product-reproduction.md"),
     ("docs/product-troubleshooting.md", "docs/product-troubleshooting.md"),
     ("docs/evidence/product-release/release-state.json", "docs/evidence/product-release/release-state.json"),
@@ -35,6 +43,8 @@ ALLOWLIST = (
     ("docs/evidence/product-release/context-profile.json", "docs/evidence/product-release/context-profile.json"),
     ("docs/evidence/product-release/agentic-demo.json", "docs/evidence/product-release/agentic-demo.json"),
     ("docs/evidence/product-release/benchmark-report.md", "docs/evidence/product-release/benchmark-report.md"),
+    ("docs/evidence/product-release/release-scorecard.json", "docs/evidence/product-release/release-scorecard.json"),
+    ("docs/evidence/product-release/release-scorecard.json", "evidence/release-scorecard.json"),
     ("docs/evidence/product-release/dashboard.html", "dashboard.html"),
     ("submission/final-devpost-draft.md", "submission/final-devpost-draft.md"),
     ("submission/demo-video-script.md", "submission/demo-video-script.md"),
@@ -42,6 +52,10 @@ ALLOWLIST = (
     ("submission/judge-test-guide.md", "submission/judge-test-guide.md"),
     ("submission/architecture.md", "submission/architecture.md"),
     ("submission/claims-ledger.md", "submission/claims-ledger.md"),
+    ("submission/demo-video-script-final.md", "submission/demo-video-script-final.md"),
+    ("submission/demo-video-shot-list-final.md", "submission/demo-video-shot-list-final.md"),
+    ("submission/demo-video-fallback-plan.md", "submission/demo-video-fallback-plan.md"),
+    ("submission/demo-video-assets", "submission/demo-video-assets"),
 )
 
 
@@ -96,6 +110,18 @@ def _copy_allowlist(output: Path) -> None:
             shutil.copy2(source, destination)
 
 
+def normalize_text_tree(root: Path) -> None:
+    binary_suffixes = {".dll", ".exe", ".jpg", ".jpeg", ".png", ".webp", ".zip"}
+    for path in sorted(item for item in root.rglob("*") if item.is_file()):
+        if path.suffix.lower() in binary_suffixes:
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
+        path.write_text(text.replace("\r\n", "\n").replace("\r", "\n"), encoding="utf-8", newline="\n")
+
+
 def _write_runtime_package(output: Path, llama_repo: Path) -> None:
     patches = output / "patches" / "llama.cpp"
     patches.mkdir(parents=True)
@@ -138,12 +164,16 @@ def build(output: Path, llama_repo: Path) -> tuple[Path, Path]:
     output.mkdir(parents=True)
     _copy_allowlist(output)
     _write_runtime_package(output, llama_repo.resolve())
+    normalize_text_tree(output)
     errors = audit_tree(output)
     if errors:
         raise ValueError("release audit failed:\n" + "\n".join(errors))
     rows = file_manifest(output)
     (output / "SHA256SUMS.json").write_text(json.dumps({"schema_version": "1.0.0", "files": rows}, indent=2) + "\n", encoding="utf-8")
     archive = _write_zip(output)
+    archive.with_name(output.name + EXTERNAL_SHA_SUFFIX).write_text(
+        f"{_digest(archive)}  {archive.name}\n", encoding="ascii"
+    )
     return output, archive
 
 

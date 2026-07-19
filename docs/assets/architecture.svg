@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="390" viewBox="0 0 1200 390" role="img" aria-labelledby="t d">
+  <title id="t">Stock and ExpertFlow execution paths</title><desc id="d">Stock crosses the CPU boundary for expert math. ExpertFlow keeps selected expert banks on CUDA.</desc>
+  <rect width="1200" height="390" rx="28" fill="#08111f"/><style>text{font-family:Segoe UI,Arial,sans-serif}.h{font-weight:700;font-size:25px}.n{font-size:19px}.s{font-size:15px}</style>
+  <text x="55" y="58" class="h" fill="#ffb86b">STOCK</text><text x="55" y="225" class="h" fill="#5eead4">EXPERTFLOW</text>
+  <g fill="#142338" stroke="#36506d" stroke-width="2"><rect x="55" y="82" width="235" height="70" rx="14"/><rect x="380" y="82" width="285" height="70" rx="14"/><rect x="760" y="82" width="250" height="70" rx="14"/><rect x="55" y="250" width="235" height="70" rx="14"/><rect x="380" y="250" width="285" height="70" rx="14"/><rect x="760" y="250" width="250" height="70" rx="14"/></g>
+  <g class="n" fill="#e7eef8" text-anchor="middle"><text x="172" y="124">Router on GPU</text><text x="522" y="124">Expert matmuls on CPU</text><text x="885" y="113">Copy result</text><text x="885" y="137">back to GPU</text><text x="172" y="292">Router on GPU</text><text x="522" y="282">Selected expert banks</text><text x="522" y="306">on GPU</text><text x="885" y="282">Output stays</text><text x="885" y="306">near CUDA</text></g>
+  <g stroke-width="4" fill="none"><path d="M290 117H375" stroke="#ffb86b"/><path d="M665 117H755" stroke="#ffb86b"/><path d="M290 285H375" stroke="#5eead4"/><path d="M665 285H755" stroke="#5eead4"/></g>
+  <text x="1055" y="119" class="s" fill="#ffb86b">CPU boundary</text><text x="1055" y="285" class="s" fill="#5eead4">persistent CUDA</text>
+</svg>

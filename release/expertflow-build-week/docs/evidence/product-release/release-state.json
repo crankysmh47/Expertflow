@@ -51,6 +51,7 @@
     "kind": "simulation_from_measured_q6_routing_and_measured_q4_cache_cost"
   },
   "evidence": [
-    {"path": "docs/evidence/product-release/replay-data.json", "sha256": "0c94a0f276de67b6dbd4c6c274ef3d354341d127745291f8d73369e9541179d1"}
+    {"path": "docs/evidence/product-release/replay-data.json", "sha256": "3cece2a5993ad9e2a82e52e2643544296af3f435e3835a1fe2e3061fea123302", "hash_kind": "canonical_json_sha256"},
+    {"path": "docs/evidence/product-release/release-scorecard.json", "sha256": "58f1c95ff059bfae7ceac3aa4f2343513b098a8ab0e6ccb061050dc21f0466dd", "hash_kind": "canonical_json_sha256"}
   ]
 }

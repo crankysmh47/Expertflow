@@ -25,3 +25,11 @@ The release path deliberately uses environment variables and placeholders instea
 | Live doctor | Verified Q6 GGUF, llama CLI/server, NVIDIA GPU/driver, and CUDA runtime | All checks passed; model and both binary hashes matched the frozen release state. |
 | Archive | Two consecutive allowlisted builds | Byte-identical ZIPs; SHA-256 `5b1ea945994f4e069b8a6687b71dae8165d3d78be8c567275a5fe1cc260346f7`. |
 | Clean archive replay | Extracted ZIP in a new temporary directory; `verify_release.py`; `setup_release.ps1` | 97 files verified and the model-free evidence replay passed from the extracted package. |
+| Polish isolation | `git worktree add ... codex/final-polish f8b88bd` | New unmerged, unpushed worktree created from the frozen release commit. |
+| Clean-checkout baseline | `uv sync --frozen`; applicable tests | Found two replay failures caused only by CRLF conversion of hashed JSON; canonical JSON hashing fixed the portability contract. |
+| Claims validation | Scorecard, README, dashboard, judge guide, Devpost, and claims-ledger tests | Headline metrics, classifications, layer set, model hash, context caveat, quality caveat, and concurrency caveat agree. |
+| Doctor | Verified live paths plus mocked replay-only platform | 12/12 live checks passed; unsupported environments return structured exit 10, missing verified-live prerequisites return exit 20, and ordinary failures have corrective commands without tracebacks. |
+| Portable scripts | PowerShell and shell wrapper tests from extracted path containing spaces | Both release-verification wrappers passed; repository replay wrappers passed. |
+| Visual inspection | Local SVG and packaged dashboard over loopback HTTP | Architecture visual rendered cleanly; dashboard showed 11 panels, 30 layer cells, exact metrics, no overflow, and zero page console errors. |
+| Final tests | Full applicable suite | 272 passed; only the two documented historical temporal-branch source-contract modules were excluded. |
+| Final archive | Two normalized, sorted, fixed-timestamp builds | Identical SHA-256 `b33a438a3fcde3180f6e699cbf37e587d3022d332bed7152afe16e84f4c6c77f`; 118 files in the internal manifest. |

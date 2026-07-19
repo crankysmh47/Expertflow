@@ -17,7 +17,7 @@ def test_offline_dashboard_contains_required_panels_and_claim_labels() -> None:
         "50/100",
         "+2.25%",
         "NO CACHE OPPORTUNITY",
-        "35.67",
+        "35.6699",
         "262,144",
         "Measured recorded evidence",
         "Live benchmark",
@@ -44,5 +44,5 @@ def test_judge_docs_and_readme_expose_all_product_commands() -> None:
     guide = (ROOT / "submission/judge-test-guide.md").read_text(encoding="utf-8")
     for command in ("doctor", "profile", "optimize", "run", "serve", "compare", "demo --replay"):
         assert f"expertflow {command}" in readme or f"expertflow {command}" in guide
-    assert "PRODUCT RELEASE" in readme
+    assert "A placement compiler for quantized MoE models." in readme
     assert "GGUF is not included" in guide

@@ -2,6 +2,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from expertflow.product.commands import sha256_canonical_json
+
 
 ROOT = Path(__file__).parents[1]
 EVIDENCE = ROOT / "docs/evidence/product-release"
@@ -35,7 +37,16 @@ def test_release_state_evidence_hashes_match_committed_files() -> None:
     for item in state["evidence"]:
         path = ROOT / item["path"]
         assert path.is_file(), item["path"]
-        assert hashlib.sha256(path.read_bytes()).hexdigest() == item["sha256"]
+        assert sha256_canonical_json(path) == item["sha256"]
+
+
+def test_canonical_json_hash_ignores_checkout_line_endings(tmp_path: Path) -> None:
+    lf = tmp_path / "lf.json"
+    crlf = tmp_path / "crlf.json"
+    payload = '{\n  "value": 1\n}\n'
+    lf.write_bytes(payload.encode("utf-8"))
+    crlf.write_bytes(payload.replace("\n", "\r\n").encode("utf-8"))
+    assert sha256_canonical_json(lf) == sha256_canonical_json(crlf)
 
 
 def test_immutable_deployment_has_no_private_absolute_paths() -> None:

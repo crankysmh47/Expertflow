@@ -1061,3 +1061,12 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Bounded the context product profile at the model's 262,144-token training context: allocation passed with 675.418 MiB reserve, but only 417 tokens were processed. The allocation frontier separately bracketed ExpertFlow at 950,272 passing and 983,040 failing tokens.
 - Packaged a clean, model-free release with the pinned llama.cpp patch series, build metadata, manifests, setup/build scripts, evidence replay, judge docs, and SHA-256 inventory. The archive excludes the GGUF, credentials, private paths, caches, and large raw logs.
 - Final applicable suite: 259 passed. Live doctor matched the model and both runtime hashes; a fresh extracted archive verified 97 files and replayed successfully. Release ZIP SHA-256: `5b1ea945994f4e069b8a6687b71dae8165d3d78be8c567275a5fe1cc260346f7`.
+
+# 2026-07-19 — Deterministic release polish
+
+- Created `codex/final-polish` from frozen release commit `f8b88bd`; runtime code, placement, measurements, and model artifacts remained untouched.
+- Found and fixed a clean-checkout replay defect caused by Windows line-ending conversion. Evidence hashes now use canonical JSON, while the release builder normalizes text to LF before hashing and archiving.
+- Added the release scorecard, judge-first README, benchmark provenance, three-path judge guide, local SVGs, portable replay/verification wrappers, cross-platform replay CI, and a timed demo-video package. The required `/feedback` Session ID remains an explicit manual placeholder.
+- Enhanced `expertflow doctor` with structured pass/replay-only/failure exits and checks for platform, Python/uv, GPU/driver/VRAM, CUDA runtime, model size/hash, binary identity, free disk, writable evidence path, port, and deployment schema. The verified live system passed 12/12 checks.
+- Final applicable suite: 272 passed. Both PowerShell and shell wrappers passed from a ZIP extracted under a path containing spaces. The offline dashboard rendered 11 panels and 30 layer cells with no overflow or page console errors.
+- Two clean builds produced identical archives. Polished ZIP SHA-256: `b33a438a3fcde3180f6e699cbf37e587d3022d332bed7152afe16e84f4c6c77f`; the internal manifest verifies 118 files.

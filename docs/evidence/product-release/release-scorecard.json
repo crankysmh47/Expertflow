@@ -1,0 +1,101 @@
+{
+  "commands": {
+    "agentic_profile": "uv run expertflow optimize <model> --goal agentic --output deployment.json",
+    "live": "uv run expertflow run deployments/max-performance.json --model <path>",
+    "replay": "uv run expertflow demo --replay",
+    "setup": "uv sync --frozen"
+  },
+  "hardware": {
+    "classification": "measured",
+    "gpu": "NVIDIA GeForce RTX 5060 Ti",
+    "gpu_memory_mib": 16311,
+    "operating_system": "Windows 11 x64"
+  },
+  "metrics": {
+    "cache_decision": {
+      "classification": "simulated",
+      "runtime_cache_shipped": false,
+      "verdict": "NO CACHE OPPORTUNITY"
+    },
+    "context": {
+      "allocated_tokens": 262144,
+      "classification": "measured",
+      "full_context_processed": false,
+      "processed_tokens": 417,
+      "reserve_mib": 675.418
+    },
+    "placement": {
+      "classification": "measured",
+      "experts_per_layer": 128,
+      "layers": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20],
+      "mode": "full_static_identity_shadow"
+    },
+    "quality": {
+      "classification": "measured",
+      "mmlu_off": 49,
+      "mmlu_on": 50,
+      "ppl_95_upper_pct": 2.25,
+      "ppl_point_change_pct": -2.92,
+      "strict_ppl_gate_pass": false
+    },
+    "single_stream": {
+      "classification": "measured",
+      "decode_tokens_per_run": 512,
+      "expertflow_decode_tps": 28.13,
+      "improvement_pct": 22.48,
+      "matched_pairs": 10,
+      "peak_process_owned_vram_mib": 10966.801,
+      "stock_decode_tps": 22.967
+    },
+    "throughput": {
+      "aggregate_generated_tps": 35.6699,
+      "classification": "measured",
+      "completed_requests": 20,
+      "concurrent_outputs_deterministic": false,
+      "parallel_slots": 4,
+      "requested_requests": 20,
+      "stock_aggregate_generated_tps": 24.5231
+    }
+  },
+  "model": {
+    "bytes": 22862575520,
+    "filename": "google_gemma-4-26B-A4B-it-Q6_K.gguf",
+    "name": "Gemma 4 26B A4B IT Q6_K",
+    "sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba"
+  },
+  "runtime": {
+    "binary_identity": {
+      "llama_cli_sha256": "5d68046dcd26e2fd018aaeaad5f99cdb7d88eca6fc10935925f1d660f7009407",
+      "llama_server_sha256": "22ecc4f64f91dcbe3a1cfe7d9d4617e43467ea7f3c6fa1ba2c6ad8d07e89334e"
+    },
+    "build": {
+      "compiler": "MSVC v143 14.39.33519",
+      "cuda": "12.8.93",
+      "driver": "591.86",
+      "generator": "Ninja"
+    },
+    "commits": {
+      "expertflow_release_base": "f8b88bd92934f9bd42088eda1a2f4baa7ed7b0c1",
+      "llama_cpp_expertflow": "451224ab4d12a616dc3e16e8c8063f4b331f531c",
+      "llama_cpp_upstream": "a7312ae94f801fc9c6786dc56e38df57b964f697"
+    }
+  },
+  "schema_version": "1.0.0",
+  "starting_release": {
+    "archive_sha256": "5b1ea945994f4e069b8a6687b71dae8165d3d78be8c567275a5fe1cc260346f7",
+    "commit": "f8b88bd92934f9bd42088eda1a2f4baa7ed7b0c1",
+    "packaged_files": 97,
+    "tests_passed": 259
+  },
+  "support": {
+    "evidence_replay": ["Windows x64", "Linux x64", "macOS"],
+    "live": {
+      "AMD Vulkan or ROCm": "replay only",
+      "CPU only": "replay only",
+      "Linux NVIDIA": "experimental, unverified",
+      "macOS Metal": "replay only",
+      "other Windows NVIDIA": "compatible, unverified",
+      "Windows 11 x64 with NVIDIA CUDA on RTX 5060 Ti 16 GB": "verified"
+    }
+  }
+}

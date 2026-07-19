@@ -315,17 +315,20 @@ def _run_baseline(args: argparse.Namespace) -> int:
 
 
 def _run_doctor(args: argparse.Namespace) -> int:
-    report = doctor_report(args.model, args.runtime, args.server)
+    model = _resolve_product_path(args.model, "EXPERTFLOW_MODEL_PATH")
+    runtime = _resolve_product_path(args.runtime, "EXPERTFLOW_LLAMA_CLI")
+    server = _resolve_product_path(args.server, "EXPERTFLOW_LLAMA_SERVER")
+    report = doctor_report(model, runtime, server)
     rendered = json.dumps(report, indent=2, sort_keys=True) + "\n"
     if args.output is None:
         print(rendered, end="")
-        return 0
+        return int(report["exit_code"])
 
     output = args.output.resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(rendered, encoding="utf-8")
     print(output)
-    return 0
+    return int(report["exit_code"])
 
 
 def _run_collect_pairs(args: argparse.Namespace) -> int:
