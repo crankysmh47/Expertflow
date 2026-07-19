@@ -1,0 +1,31 @@
+{
+  "protocol": {
+    "corpus": "C:\\models\\expertflow\\quality-data\\q1b-heldout\\wikitext-103-validation.txt",
+    "corpus_sha256": "8ef749789ca0693435d20b3f81d5638c19edcebc5a68586dcf09bdf47ef9542f",
+    "chunks": 8,
+    "context": 2048,
+    "batch": 512,
+    "ubatch": 1,
+    "scored_tokens": 8184,
+    "bootstrap_blocks": 64,
+    "bootstrap_samples": 10000,
+    "seed": 20260719,
+    "cuda_graphs": "on"
+  },
+  "perplexity": {
+    "stock_mean_nll": 9.636279597231015,
+    "stock_ppl": 15310.277244859108,
+    "expertflow_mean_nll": 9.606694146664815,
+    "expertflow_ppl": 14863.950735006441,
+    "relative_change_pct": -2.9152085407372328,
+    "paired_bootstrap_95_pct": [-8.030848917138528, 2.2529372655983686],
+    "point_gate_pass": true,
+    "upper_bound_gate_pass": false,
+    "gate_pass": false
+  },
+  "mmlu": {
+    "status": "not_run",
+    "reason": "Terminal PPL upper-bound gate failed; the bounded sprint stopped before further GPU evaluation."
+  },
+  "verdict": "QUALITY STOP"
+}

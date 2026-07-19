@@ -5,24 +5,40 @@
   "initial_layers": [0, 1, 15, 20],
   "strongest_stock_tps": 22.967,
   "product_threshold_tps": 23.5,
-  "preferred_threshold_tps": 24.0,
   "shadow_bytes_per_layer": 685933056,
   "profile": {
     "repetitions": 3,
-    "diagnostic_synchronization": true,
     "profile_total_us_samples": [8949214, 10713618, 9759040],
     "profile_total_us_median": 9759040,
     "remaining_unselected_profile_share_pct": 64.42048603141292,
     "ranked_unselected_layers": [2, 3, 4, 6, 7, 8, 5, 9, 13, 10, 14, 11, 16, 12, 19, 17, 25, 18, 22, 23, 29, 28, 21, 27, 26, 24],
-    "raw": [
-      {"path": "C:\\models\\expertflow\\runs\\q6-placement-final\\stage1-profiles\\run-1\\split-profile.json", "sha256": "05816d078603e4a1d95cbf8b9219b976d0926100ca6ea242c4afa4de627b4048"},
-      {"path": "C:\\models\\expertflow\\runs\\q6-placement-final\\stage1-profiles\\run-2\\split-profile.json", "sha256": "ce340df1ec83509d53ce30239f462d5f34cc7fc2236eb19f018346e4956f7cc2"},
-      {"path": "C:\\models\\expertflow\\runs\\q6-placement-final\\stage1-profiles\\run-3\\split-profile.json", "sha256": "ca330f78e08ead8247f2279b4a20d9ce83cc1132ec427e9e454c19dff73f0f70"}
-    ],
-    "stage1_gate": "PASS",
-    "gate_reason": "64.42% of synchronized profiled time remains in unselected CPU expert splits, materially more than required to plausibly close the 1.527 TPS stock gap."
+    "stage1_gate": "PASS"
   },
-  "candidate_sets": [],
-  "tuning_trials": [],
-  "terminal_verdict": null
+  "candidate_sets": [
+    {"layers": [0,1,2,3,15,20], "baseline_tps": 19.8, "candidate_tps": 21.0, "increment_tps": 1.2, "peak_mib": 7032.770, "decision": "retain"},
+    {"layers": [0,1,2,3,4,6,15,20], "baseline_tps": 20.4, "candidate_tps": 20.85, "increment_tps": 0.45, "peak_mib": 8338.781, "decision": "retain"},
+    {"layers": [0,1,2,3,4,6,7,8,15,20], "baseline_tps": 21.85, "candidate_tps": 22.6, "increment_tps": 0.75, "peak_mib": 9650.789, "decision": "retain"},
+    {"layers": [0,1,2,3,4,5,6,7,8,9,15,20], "baseline_tps": 22.5, "candidate_tps": 23.5, "increment_tps": 1.0, "peak_mib": 10962.801, "decision": "retain_and_stop_expansion"}
+  ],
+  "tuning_trials": [
+    {"name": "precomputed_membership", "baseline_tps": 25.5, "candidate_tps": 25.65, "mean_change_pct": 0.5920890748031593, "decision": "retain"},
+    {"name": "expertflow_cuda_graphs", "baseline": "off", "candidate": "on", "baseline_tps": 25.6, "candidate_tps": 27.45, "mean_change_pct": 7.226562499999989, "decision": "retain"},
+    {"name": "stock_cuda_graphs", "baseline": "off", "candidate": "on", "baseline_tps": 21.0, "candidate_tps": 22.0, "mean_change_pct": 4.764280369169372, "decision": "retain"}
+  ],
+  "authoritative": {
+    "pairs": 10,
+    "stock_mean_tps": 22.28,
+    "expertflow_mean_tps": 28.13,
+    "paired_change_pct": 26.4740557645802,
+    "paired_bootstrap_95_pct": [23.455919097522607, 29.827062894084648],
+    "performance_gate": "PASS"
+  },
+  "quality": {
+    "ppl_relative_change_pct": -2.9152085407372328,
+    "ppl_bootstrap_95_pct": [-8.030848917138528, 2.2529372655983686],
+    "ppl_upper_bound_limit_pct": 1.0,
+    "ppl_gate": "FAIL",
+    "mmlu": "not_run_after_terminal_ppl_gate"
+  },
+  "terminal_verdict": "QUALITY STOP"
 }
