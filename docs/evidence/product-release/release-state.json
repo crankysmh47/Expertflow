@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "status": "RELEASE STATE VALID",
+  "source": {
+    "expertflow_commit": "b24eb1f5ed21e3ef5ecc4a53a45af97ff34460eb",
+    "product_result_commit": "db3b5c5ea2857cbdc4bff319cb7e47fa410c889b",
+    "llama_commit": "451224ab4d12a616dc3e16e8c8063f4b331f531c",
+    "llama_upstream_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697"
+  },
+  "model": {
+    "filename": "google_gemma-4-26B-A4B-it-Q6_K.gguf",
+    "bytes": 22862575520,
+    "sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba"
+  },
+  "runtime": {
+    "llama_cli_sha256": "5d68046dcd26e2fd018aaeaad5f99cdb7d88eca6fc10935925f1d660f7009407",
+    "llama_server_sha256": "22ecc4f64f91dcbe3a1cfe7d9d4617e43467ea7f3c6fa1ba2c6ad8d07e89334e",
+    "build_type": "Release",
+    "compiler": "MSVC v143 14.39.33519",
+    "cuda": "12.8.93",
+    "driver": "591.86",
+    "gpu": "NVIDIA GeForce RTX 5060 Ti",
+    "build_flags": ["GGML_CUDA=ON", "CMAKE_BUILD_TYPE=Release"]
+  },
+  "placement": {
+    "mode": "full_static_identity_shadow",
+    "layers": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20],
+    "experts_per_layer": 128,
+    "shadow_bytes_per_layer": 685933056,
+    "total_shadow_bytes": 8231196672,
+    "reactive_cache": false,
+    "eviction": false,
+    "prediction": false
+  },
+  "performance": {
+    "expertflow_decode_tps": 28.13,
+    "strongest_stock_decode_tps": 22.967,
+    "improvement_pct": 22.480080114947533,
+    "peak_process_owned_mib": 10966.801
+  },
+  "quality": {
+    "mmlu_off": 49,
+    "mmlu_on": 50,
+    "mmlu_changed_on_repeat_exact": 14,
+    "ppl_point_change_pct": -2.9152085407372328,
+    "ppl_95_upper_pct": 2.2529372655983686,
+    "strict_ppl_gate_pass": false
+  },
+  "cache_strategy": {
+    "verdict": "NO CACHE OPPORTUNITY",
+    "kind": "simulation_from_measured_q6_routing_and_measured_q4_cache_cost"
+  },
+  "evidence": [
+    {"path": "docs/evidence/q6-predictive-final/static-state.json", "sha256": "cd0fddf01f8bd4c5c4b19d85da1f37d7f9f4b46013a73cc3335fded98371fcd1"},
+    {"path": "docs/evidence/q6-placement-final/results.json", "sha256": "a02c4e2726cbce4052f447f1903aba82fc36a2b7ce0d846ee01d9277c08cc967"},
+    {"path": "docs/evidence/q6-predictive-final/mmlu-static.json", "sha256": "1493b1758cd66d7853ace07e1703b8d2bd1e3a3bcac839d82f8261f935b142ec"},
+    {"path": "docs/evidence/q6-placement-final/quality-results.json", "sha256": "9464ed4f401410493fd6d570ab758f9686bdee1cfa82c69d3bf481419e629f68"},
+    {"path": "docs/evidence/q6-predictive-final/cache-simulation.json", "sha256": "e6755811c88b38da8ef8933f22784c36c42681b48a96c0e2875048476128ffec"},
+    {"path": "docs/evidence/q6-placement-final/placement-manifest.json", "sha256": "2914398d75dc4825ab34649dcd1cad24f55e5785c4b627482ac83fa0affb0aca"}
+  ]
+}
