@@ -9,3 +9,10 @@
 | Reconstruction | Committed Q6 result, MMLU, PPL, placement, and cache-simulation evidence | `RELEASE STATE VALID`; no expensive benchmark rerun. |
 
 The release path deliberately uses environment variables and placeholders instead of the private absolute paths preserved in historical raw evidence.
+
+| Batching smoke | Stock and ExpertFlow, one slot, one cold server each | Harness passed; result treated only as smoke. |
+| Batching sweep | Slots 1, 2, and 4; three cold servers per mode/slot; 128 generated tokens per request | Four slots selected; no request failure or OOM. |
+| Batching final | Four slots; five cold servers per mode; four simultaneous 128-token requests | ExpertFlow 35.6699 aggregate TPS versus stock 24.5231 (+45.4546%); 11,996.8125 MiB peak; 20/20 requests; concurrent outputs were not deterministic across repetitions. |
+| Context doubling | 8K through 512K allocated context, stock and ExpertFlow | All points allocated and processed 385 prompt plus 32 decode tokens. |
+| Context boundary | 1M allocation | Stock passed; ExpertFlow failed explicitly during layer-20 static-shadow CUDA allocation. |
+| Context binary search | 768K and 896K passed; 960K failed; 928K passed | Passing/failing bracket is 950,272/983,040 allocated tokens. Product profile capped at the 262,144-token model training context with 675.418 MiB measured reserve. |
