@@ -32,6 +32,19 @@ from expertflow.runtime.cuda_transfer import (
 from expertflow.runtime.measurement import run_measured_baseline
 from expertflow.trace.io import load_router_events
 from expertflow.trace.parity import compare_token_sequences
+from expertflow.product.commands import (
+    DEFAULT_DEPLOYMENT,
+    build_runtime_command,
+    compare_report,
+    doctor_report,
+    load_json,
+    optimize_deployment,
+    profile_report,
+    replay_report,
+    sha256_file,
+)
+import os
+import subprocess
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -73,15 +86,18 @@ def build_parser() -> argparse.ArgumentParser:
     doctor.add_argument(
         "--artifact-root",
         type=Path,
-        default=Path(r"C:\models\expertflow"),
+        default=Path.cwd(),
     )
     doctor.add_argument("--output", type=Path)
+    doctor.add_argument("--model", type=Path)
+    doctor.add_argument("--runtime", type=Path)
+    doctor.add_argument("--server", type=Path)
 
     profile = commands.add_parser(
         "profile", help="Create a measured locality profile from a router trace."
     )
     profile.add_argument("trace", type=Path)
-    profile.add_argument("--output", type=Path, required=True)
+    profile.add_argument("--output", type=Path)
     profile.add_argument(
         "--static-budget",
         type=int,
@@ -244,6 +260,31 @@ def build_parser() -> argparse.ArgumentParser:
     deadline.add_argument("--transfer-source", type=Path)
     deadline.add_argument("--window-source", type=Path)
     deadline.add_argument("--output", type=Path, required=True)
+
+    optimize = commands.add_parser("optimize", help="Create a measured deployment manifest.")
+    optimize.add_argument("model", type=Path)
+    optimize.add_argument("--goal", choices=("latency", "throughput", "context", "agentic"), required=True)
+    optimize.add_argument("--output", type=Path, required=True)
+
+    run = commands.add_parser("run", help="Launch inference from a deployment manifest.")
+    run.add_argument("deployment", type=Path)
+    run.add_argument("--runtime", type=Path)
+    run.add_argument("--model", type=Path)
+    run.add_argument("--dry-run", action="store_true")
+
+    serve = commands.add_parser("serve", help="Launch an OpenAI-compatible llama-server deployment.")
+    serve.add_argument("deployment", type=Path)
+    serve.add_argument("--server", type=Path)
+    serve.add_argument("--model", type=Path)
+    serve.add_argument("--host", default="127.0.0.1")
+    serve.add_argument("--port", type=int, default=8080)
+    serve.add_argument("--dry-run", action="store_true")
+
+    compare = commands.add_parser("compare", help="Compare stock and ExpertFlow recorded evidence.")
+    compare.add_argument("deployment", type=Path, nargs="?", default=DEFAULT_DEPLOYMENT)
+
+    demo = commands.add_parser("demo", help="Replay the committed product evidence.")
+    demo.add_argument("--replay", action="store_true", required=True)
     return parser
 
 
@@ -274,7 +315,7 @@ def _run_baseline(args: argparse.Namespace) -> int:
 
 
 def _run_doctor(args: argparse.Namespace) -> int:
-    report = collect_doctor_report(args.artifact_root)
+    report = doctor_report(args.model, args.runtime, args.server)
     rendered = json.dumps(report, indent=2, sort_keys=True) + "\n"
     if args.output is None:
         print(rendered, end="")
@@ -312,6 +353,9 @@ def _run_collect_pairs(args: argparse.Namespace) -> int:
 
 
 def _run_profile(args: argparse.Namespace) -> int:
+    if args.output is None or args.trace.suffix.lower() == ".gguf":
+        print(json.dumps(profile_report(args.trace), indent=2, sort_keys=True))
+        return 0
     budgets = tuple(args.static_budget or (1, 2, 4, 8))
     source = args.trace.resolve()
     profile = summarize_routing(
@@ -331,6 +375,55 @@ def _run_profile(args: argparse.Namespace) -> int:
     )
     print(output)
     return 0
+
+
+def _resolve_product_path(explicit: Path | None, env_name: str, fallback: str | None = None) -> Path | None:
+    if explicit is not None:
+        return explicit
+    value = os.environ.get(env_name) or fallback
+    return Path(value) if value else None
+
+
+def _run_optimize(args: argparse.Namespace) -> int:
+    code, report, deployment = optimize_deployment(args.model, args.goal)
+    if deployment is not None:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(deployment, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        report["output"] = str(args.output)
+    print(json.dumps(report, indent=2, sort_keys=True))
+    return code
+
+
+def _run_product_inference(args: argparse.Namespace) -> int:
+    deployment = load_json(args.deployment)
+    runtime = _resolve_product_path(args.runtime, "EXPERTFLOW_LLAMA_CLI")
+    model = _resolve_product_path(args.model, "EXPERTFLOW_MODEL_PATH", deployment.get("model", {}).get("path"))
+    if runtime is None or model is None:
+        print(json.dumps({"status": "failure", "reason": "runtime and model paths are required"}, indent=2))
+        return 2
+    command, environment = build_runtime_command(deployment, runtime=runtime, model=model)
+    report = {"status": "pass" if args.dry_run else "running", "command": command, "selected_expert_layers": deployment["placement"]["static_expert_layers"]}
+    print(json.dumps(report, indent=2))
+    if args.dry_run:
+        return 0
+    return subprocess.run(command, env=environment, check=False).returncode
+
+
+def _run_product_server(args: argparse.Namespace) -> int:
+    deployment = load_json(args.deployment)
+    server = _resolve_product_path(args.server, "EXPERTFLOW_LLAMA_SERVER")
+    model = _resolve_product_path(args.model, "EXPERTFLOW_MODEL_PATH", deployment.get("model", {}).get("path"))
+    if server is None or model is None:
+        print(json.dumps({"status": "failure", "reason": "server and model paths are required"}, indent=2))
+        return 2
+    base = f"http://{args.host}:{args.port}"
+    command = [str(server), "-m", str(model), "--host", args.host, "--port", str(args.port), "-c", str(deployment.get("context", 2048)), "-np", str(deployment.get("parallel_slots", 1)), "-ngl", "99", "--cpu-moe"]
+    environment = os.environ.copy()
+    environment.update({str(k): str(v) for k, v in deployment["environment"].items()})
+    print(json.dumps({"status": "pass" if args.dry_run else "running", "base_url": base + "/v1", "health_url": base + "/health", "model": deployment["id"], "context": deployment.get("context", 2048), "parallel_slots": deployment.get("parallel_slots", 1), "selected_expert_layers": deployment["placement"]["static_expert_layers"], "expected_peak_vram_mib": deployment["expected_peak_vram_mib"], "command": command}, indent=2))
+    if args.dry_run:
+        return 0
+    return subprocess.run(command, env=environment, check=False).returncode
 
 
 def _run_parity(args: argparse.Namespace) -> int:
@@ -829,6 +922,19 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_heldout_breakdown(args)
     if args.command == "deadline-eval":
         return _run_deadline_eval(args)
+    if args.command == "optimize":
+        return _run_optimize(args)
+    if args.command == "run":
+        return _run_product_inference(args)
+    if args.command == "serve":
+        return _run_product_server(args)
+    if args.command == "compare":
+        print(json.dumps(compare_report(args.deployment), indent=2, sort_keys=True))
+        return 0
+    if args.command == "demo":
+        report = replay_report()
+        print(json.dumps(report, indent=2, sort_keys=True))
+        return 0 if report["status"] == "pass" else 2
     raise AssertionError(f"unhandled command: {args.command}")
 
 
