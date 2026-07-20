@@ -8,6 +8,12 @@ We also tested the uncomfortable part: quality. MMLU moved from 49/100 to 50/100
 
 Predictive caching looked attractive early on, then lost the measurement argument. A bounded simulation combined measured Q6 routing with measured Q4 cache costs and found no candidate that saved enough memory without giving back too much throughput. The product therefore ships full static residency on this GPU.
 
+## Built with Codex and GPT-5.6
+
+GPT-5.6 guided the entire ideation and project progression. The original plan centered on predictive expert caching, but each stage was treated as a bounded experiment with explicit correctness, memory, and performance gates. GPT-5.6 helped interpret the failures and reshape the product around what the measurements supported.
+
+Codex with GPT-5.6-sol managed the engineering workflow end to end: isolated worktrees, llama.cpp investigation, runtime instrumentation, tests, benchmark design, trace and measurement collection, cache and placement experiments, failure isolation, implementation tweaks, evidence packaging, judge replay, and release polish. I chose the problem, set the scientific gates, approved scope changes, and made the final product calls. Codex handled the implementation loop and kept every decision tied to reproducible evidence.
+
 The release wraps the result in a small CLI. Judges can replay and hash-check the evidence without a GPU, inspect a compatible Windows/CUDA system, generate a deployment, run the benchmark, start an OpenAI-compatible server, or compare recorded results. A five-repetition live server test measured 35.6699 aggregate generated TPS with four slots versus 24.5231 stock. All 20/20 requests completed, but concurrent outputs were not fully deterministic. A bounded context test allocated the model's 262,144-token training context, though only 417 tokens were processed, so it is not a filled-context claim.
 
 ExpertFlow is intentionally narrow. It is a working deployment optimizer for this verified Gemma Q6 case, with a manifest interface that can support more models after they earn their own evidence.

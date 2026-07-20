@@ -118,6 +118,7 @@ def test_archive_extracts_and_verifies_from_path_with_spaces(tmp_path: Path) -> 
 
 def test_local_visual_and_video_assets_exist() -> None:
     required = [
+        "docs/assets/expertflow-logo.png",
         "docs/assets/architecture.svg",
         "docs/assets/placement-map.svg",
         "docs/assets/result.svg",
@@ -129,10 +130,29 @@ def test_local_visual_and_video_assets_exist() -> None:
         "submission/demo-video-assets/title.svg",
         "submission/demo-video-assets/architecture.svg",
         "submission/demo-video-assets/result.svg",
+        "submission/demo-video-assets/codex-workflow.svg",
+        "submission/demo-video-assets/limitations.svg",
         "submission/demo-video-assets/final-summary.svg",
     ]
     for relative in required:
         assert (ROOT / relative).is_file(), relative
+
+
+def test_visual_identity_and_codex_attribution_are_explicit() -> None:
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    assert "docs/assets/expertflow-logo.png" in readme
+    assert "GPT-5.6-sol" in readme
+    assert "managed the engineering workflow" in readme
+
+    svg_paths = [
+        *sorted((ROOT / "docs/assets").glob("*.svg")),
+        *sorted((ROOT / "submission/demo-video-assets").glob("*.svg")),
+    ]
+    for path in svg_paths:
+        svg = path.read_text(encoding="utf-8").lower()
+        assert "viewbox=" in svg, path
+        assert "<title" in svg, path
+        assert any(color in svg for color in ("#0b3d20", "#101311", "#d6a84a")), path
 
 
 def test_doctor_reports_replay_only_with_actionable_cross_platform_status(monkeypatch) -> None:

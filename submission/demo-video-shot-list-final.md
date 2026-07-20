@@ -1,14 +1,17 @@
 # Final demo shot list
 
-| Time | Shot | Source |
+| Time | Shot | Exact source |
 |---:|---|---|
-| 0:00 | Product title | `demo-video-assets/title.svg` |
-| 0:15 | Stock versus ExpertFlow path | `demo-video-assets/architecture.svg` |
-| 0:40 | Terminal replay commands and verified JSON | Clean repository checkout |
-| 1:05 | Result card and placement map | `demo-video-assets/result.svg`, `docs/assets/placement-map.svg` |
-| 1:30 | Agentic profile command and local `/v1` response | Recorded live run if available; otherwise committed replay evidence |
-| 1:50 | Codex task ledger and tests | `docs/evidence/product-release/command-ledger.md` |
-| 2:15 | Trust box | README limitations section |
-| 2:38 | Final summary | `demo-video-assets/final-summary.svg` |
+| 0:00 | Branded opening frame | `submission/demo-video-assets/title.svg` |
+| 0:15 | Stock CPU boundary versus ExpertFlow CUDA route | `submission/demo-video-assets/architecture.svg` |
+| 0:40 | GPT-5.6 ideation and Codex engineering loop | `submission/demo-video-assets/codex-workflow.svg` |
+| 0:58 | Append-only command ledger and passing tests | `docs/evidence/product-release/command-ledger.md`; terminal capture |
+| 1:15 | Evidence replay | clean terminal in repository root |
+| 1:42 | Measured result hold | `submission/demo-video-assets/result.svg` |
+| 1:47 | Rejected cache route | `docs/assets/cache-decision.svg` |
+| 2:02 | Selected complete Q6 banks | `docs/assets/placement-map.svg` |
+| 2:15 | Offline dashboard and product ports | `release/expertflow-build-week/dashboard.html`; `docs/assets/profile-cards.svg` |
+| 2:34 | Honest evidence boundaries | `submission/demo-video-assets/limitations.svg` |
+| 2:44 | Closing frame | `submission/demo-video-assets/final-summary.svg` |
 
-Record at 1920×1080, 30 fps. Keep terminal text at 18 pt or larger. No music or third-party logos.
+Record at 1920×1080 and 30 fps. Keep terminal text at 20 pt or larger. Use your natural voice; no webcam is required. Motion should come from slow crops, trace reveals, and short crossfades rather than generic card animations.

@@ -1,50 +1,61 @@
-# ExpertFlow demo script (2:45)
+# ExpertFlow demo script (2:50)
 
-## 0:00–0:15 — The problem
+This is a relaxed voiceover over the supplied circuit-board frames, terminal replay, and dashboard. No webcam is required.
+
+## 0:00-0:15 — The problem
 
 On screen: `demo-video-assets/title.svg`.
 
-"This is ExpertFlow, a placement compiler for quantized mixture-of-experts models. A model can say its layers are on CUDA while the expensive expert matmuls still run on CPU."
+"I wanted to run the high-quality Q6 version of Gemma 4 26B on my 16-gig GPU. It technically fit, but a lot of the expensive expert computation was still happening on the CPU. So I used Codex to investigate what the runtime was actually doing."
 
-## 0:15–0:40 — The product
+## 0:15-0:40 — The hidden boundary
 
 On screen: `demo-video-assets/architecture.svg`.
 
-"Stock execution crosses the CPU boundary for routed experts. ExpertFlow profiles that hidden work and keeps the most valuable complete Q6 expert banks on CUDA."
+"The problem was a little deceptive. llama.cpp could report GPU-offloaded layers while their routed expert matmuls still crossed back to the CPU. ExpertFlow measures that hidden work and places complete packed Q6 expert banks where they remove the most CPU cost."
 
-## 0:40–1:05 — Replay
+## 0:40-1:15 — Codex and GPT-5.6
+
+On screen: `demo-video-assets/codex-workflow.svg`, then a short capture of the command ledger and passing tests.
+
+"GPT-5.6 was involved from the first idea through the final product direction. Codex with GPT-5.6-sol managed the engineering workflow: isolated worktrees, llama.cpp instrumentation, tests, traces, benchmarks, implementation changes, and release packaging."
+
+"I set the evidence gates and decided which directions to approve. When an experiment failed, Codex preserved the result, isolated the cause, and helped design the next bounded test instead of forcing the original idea."
+
+## 1:15-1:47 — Replay the result
+
+On screen: a clean terminal.
 
 ```console
 uv sync --frozen
 uv run expertflow demo --replay
 ```
 
-"This model-free replay verifies the evidence hash. The live result was 28.13 TPS versus 22.967 stock, 22.48% faster on a 16 GB RTX 5060 Ti."
+"This judge replay needs no model or GPU. It verifies the committed evidence. The live result was 28.13 decode TPS versus 22.967 stock: 22.48 percent faster on a 16-gig RTX 5060 Ti."
 
-## 1:05–1:30 — Placement and novelty
+Hold on `demo-video-assets/result.svg` for three seconds.
 
-On screen: `demo-video-assets/result.svg`, then the README placement map.
+## 1:47-2:15 — How the product changed
 
-"The optimizer selected complete 128-expert banks at layers 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, and 20. It preserves packed Q6 data and does not ship a reactive cache."
+On screen: `docs/assets/cache-decision.svg`, then `docs/assets/placement-map.svg`.
 
-## 1:30–1:50 — Agentic workflow
+"The original idea was a predictive expert cache. We built observer paths, reactive caches, and temporal predictor experiments. Some were exact but slower; others reached clear architectural stop conditions. The numbers said prediction would not win on this machine."
 
-```console
-uv run expertflow optimize <model> --goal agentic --output deployment.json
-uv run expertflow serve deployment.json
-```
+"So the product changed. ExpertFlow selected complete 128-expert banks for layers zero through nine, fifteen, and twenty and kept them resident on CUDA."
 
-"The measured four-slot server completed 20 out of 20 requests at 35.6699 aggregate TPS through an OpenAI-compatible local endpoint."
+## 2:15-2:34 — What ships
 
-## 1:50–2:15 — Codex and GPT-5.6
+On screen: the offline dashboard, then `docs/assets/profile-cards.svg`.
 
-"Codex built isolated worktrees, instrumentation, tests, placement code, benchmark harnesses, the CLI, and this evidence package. I set the scientific gates and rejected misleading comparisons. GPT-5.6 helped scope bounded experiments, interpret failures, and turn the frozen result into a product workflow."
+"The release now has a small CLI for evidence replay, system inspection, deployment generation, live inference, benchmarking, and an OpenAI-compatible local server. The headline result comes from ten matched 512-token runs."
 
-## 2:15–2:38 — Honest limits
+## 2:34-2:44 — Evidence boundaries
 
-"The strict PPL confidence gate was not met. MMLU moved from 49 to 50. Concurrent outputs were not fully deterministic. The 262,144-token context was allocated, but the bounded run processed 417 tokens. Predictive caching was simulated and rejected, not shipped."
+On screen: `demo-video-assets/limitations.svg`.
 
-## 2:38–2:45 — Close
+"The strict perplexity confidence gate was not met, the large context was allocated but not filled, and live acceleration is verified on one Windows and NVIDIA setup. Those limits ship with the result."
+
+## 2:44-2:50 — Close
 
 On screen: `demo-video-assets/final-summary.svg`.
 

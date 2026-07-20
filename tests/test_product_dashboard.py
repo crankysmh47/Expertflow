@@ -27,6 +27,9 @@ def test_offline_dashboard_contains_required_panels_and_claim_labels() -> None:
     assert "26.35 TPS" not in html
     assert "<script src=" not in html
     assert "http://" not in html and "https://" not in html
+    assert "--pcb:#0b3d20" in html.lower()
+    assert "--gold:#d6a84a" in html.lower()
+    assert "Codex + GPT-5.6 workflow" in html
 
 
 def test_submission_claims_ledger_classifies_every_claim() -> None:
