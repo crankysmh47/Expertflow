@@ -1,0 +1,697 @@
+{
+  "schema_version": "1.0.0",
+  "measurement_kind": "live_continuous_batching",
+  "runs": [
+    {
+      "mode": "stock",
+      "parallel_slots": 4,
+      "repetition": 1,
+      "command": [
+        "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-server.exe",
+        "-m",
+        "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8121",
+        "-c",
+        "8192",
+        "-np",
+        "4",
+        "-ngl",
+        "99",
+        "--threads",
+        "12",
+        "--cpu-moe",
+        "--metrics",
+        "--cont-batching"
+      ],
+      "generated_tokens": 512,
+      "wall_seconds": 22.529734600000666,
+      "aggregate_generated_tps": 22.72552291849833,
+      "per_request_tps": [
+        7.514725780317676,
+        7.633422990271798,
+        7.51434197288931,
+        7.5150399139621875
+      ],
+      "prompt_tps": [
+        2.5749423166939946,
+        14.522967710359742,
+        3.311355742626714,
+        2.9422468210402277
+      ],
+      "request_latency_seconds": [
+        22.475376999995206,
+        22.528765400005796,
+        22.474703599997156,
+        22.474632899997232
+      ],
+      "ttft_seconds": [
+        5.441580899998371,
+        5.7601627000040025,
+        5.441109100000176,
+        5.441269299997657
+      ],
+      "peak_process_owned_vram_mib": 4130.66796875,
+      "completed_requests": 4,
+      "errors": 0,
+      "error_messages": [],
+      "response_sha256": [
+        "ebfc6126b8aec35b760c6a2745187f6d1a1d0a83a742a9830c2e980992a1061f",
+        "73df9e6ad6ddb489850d785591accc7f37eb8efa3ecbf620e8a89210d36c9ac4",
+        "10bce43fa12f8364530ce914e2c3594a8c174ceac0aaa0fc0bffb92903cbea5e",
+        "9ed2009e1b04929f32f18e4b2fb0211f9fd2fac5d9313a7395915ebafbe6fd41"
+      ]
+    },
+    {
+      "mode": "expertflow",
+      "parallel_slots": 4,
+      "repetition": 1,
+      "command": [
+        "C:\\models\\expertflow\\builds\\llama-q6-placement-final\\bin\\llama-server.exe",
+        "-m",
+        "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8122",
+        "-c",
+        "8192",
+        "-np",
+        "4",
+        "-ngl",
+        "99",
+        "--threads",
+        "12",
+        "--cpu-moe",
+        "--metrics",
+        "--cont-batching"
+      ],
+      "generated_tokens": 512,
+      "wall_seconds": 16.47759380000207,
+      "aggregate_generated_tps": 31.07249797600519,
+      "per_request_tps": [
+        10.471727603531232,
+        10.472813149795101,
+        10.472162823151105,
+        10.631834120130588
+      ],
+      "prompt_tps": [
+        3.329352379131429,
+        4.753817612656563,
+        4.279571063347399,
+        17.19137981237758
+      ],
+      "request_latency_seconds": [
+        16.432565900002373,
+        16.4327731999947,
+        16.432189299994207,
+        16.476522299999488
+      ],
+      "ttft_seconds": [
+        4.209450100002869,
+        4.210172499995679,
+        4.20911519999936,
+        4.437064500001725
+      ],
+      "peak_process_owned_vram_mib": 11996.8125,
+      "completed_requests": 4,
+      "errors": 0,
+      "error_messages": [],
+      "response_sha256": [
+        "58d64a03cd4949ff9298480278e2517c3842db1a558d3cd6f6568e48ad25cf67",
+        "23a08523a87f7bc8d83b812e922266d7cf816dfb072f4b86592b7f073a8fdf96",
+        "11753d5954fd6d0ffed33f8da067eac3d05cf0ed555e22d5dc8cf5ec20405dd1",
+        "5d3601bdf6a184796f339741d81a26511413ed438844352cf7908014e4e950c4"
+      ]
+    },
+    {
+      "mode": "stock",
+      "parallel_slots": 4,
+      "repetition": 2,
+      "command": [
+        "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-server.exe",
+        "-m",
+        "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8121",
+        "-c",
+        "8192",
+        "-np",
+        "4",
+        "-ngl",
+        "99",
+        "--threads",
+        "12",
+        "--cpu-moe",
+        "--metrics",
+        "--cont-batching"
+      ],
+      "generated_tokens": 512,
+      "wall_seconds": 27.092200400002184,
+      "aggregate_generated_tps": 18.8984280508998,
+      "per_request_tps": [
+        6.8820734138729485,
+        6.882675123753725,
+        6.882476022367618,
+        6.88295899267465
+      ],
+      "prompt_tps": [
+        1.6492902161748246,
+        2.3554726167475284,
+        2.120148335000398,
+        1.8841288989103613
+      ],
+      "request_latency_seconds": [
+        27.09138830000302,
+        27.091398299999128,
+        27.090823800004728,
+        27.091022599997814
+      ],
+      "ttft_seconds": [
+        8.493238099996233,
+        8.493541600000754,
+        8.492729500001587,
+        8.494116299996676
+      ],
+      "peak_process_owned_vram_mib": 4130.66796875,
+      "completed_requests": 4,
+      "errors": 0,
+      "error_messages": [],
+      "response_sha256": [
+        "7516491a0fde1f62c8ab0a7b997d196dbcf09f6970747a071a66643f2b2937e1",
+        "1c9d4dd73c3d6223813215faa36bc57e4f33dd8a1c35deb6df81f3aa4d815689",
+        "11753d5954fd6d0ffed33f8da067eac3d05cf0ed555e22d5dc8cf5ec20405dd1",
+        "6cfd0f018c3403631daffae93a6d7b642e4df7286d037f2fa02ea8d060fa436f"
+      ]
+    },
+    {
+      "mode": "expertflow",
+      "parallel_slots": 4,
+      "repetition": 2,
+      "command": [
+        "C:\\models\\expertflow\\builds\\llama-q6-placement-final\\bin\\llama-server.exe",
+        "-m",
+        "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8122",
+        "-c",
+        "8192",
+        "-np",
+        "4",
+        "-ngl",
+        "99",
+        "--threads",
+        "12",
+        "--cpu-moe",
+        "--metrics",
+        "--cont-batching"
+      ],
+      "generated_tokens": 512,
+      "wall_seconds": 20.311720099998638,
+      "aggregate_generated_tps": 25.207121675531276,
+      "per_request_tps": [
+        10.382356223833218,
+        10.381950330478567,
+        10.382060642751751,
+        10.382684666997289
+      ],
+      "prompt_tps": [
+        1.7545869288788212,
+        2.5071243071091893,
+        2.256110958545089,
+        2.005050722770659
+      ],
+      "request_latency_seconds": [
+        20.31123170000501,
+        20.3110078000027,
+        20.310781000000134,
+        20.31050729999697
+      ],
+      "ttft_seconds": [
+        7.984407100004319,
+        7.984178799997608,
+        7.983936899996479,
+        7.983781099996122
+      ],
+      "peak_process_owned_vram_mib": 11996.8125,
+      "completed_requests": 4,
+      "errors": 0,
+      "error_messages": [],
+      "response_sha256": [
+        "328885901140017229f7437bd84bfb1ed7da569dcb87df845aac72faed9f0335",
+        "e433062f3a30831c3d0d48bd4f2a73e694f6c89fc5b8de6f50c636e6c868673a",
+        "11753d5954fd6d0ffed33f8da067eac3d05cf0ed555e22d5dc8cf5ec20405dd1",
+        "1f7d095ffe8a191a5aa0321319cc58f8f68821f941350bf773f1980f63c8ab4c"
+      ]
+    },
+    {
+      "mode": "stock",
+      "parallel_slots": 4,
+      "repetition": 3,
+      "command": [
+        "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-server.exe",
+        "-m",
+        "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8121",
+        "-c",
+        "8192",
+        "-np",
+        "4",
+        "-ngl",
+        "99",
+        "--threads",
+        "12",
+        "--cpu-moe",
+        "--metrics",
+        "--cont-batching"
+      ],
+      "generated_tokens": 512,
+      "wall_seconds": 24.71277050000208,
+      "aggregate_generated_tps": 20.718033212826416,
+      "per_request_tps": [
+        7.817671381984738,
+        7.8178652390593255,
+        7.817493290239401,
+        7.817297541917968
+      ],
+      "prompt_tps": [
+        1.6799583370332414,
+        2.399721344357493,
+        2.1601444704621846,
+        1.9204436993122893
+      ],
+      "request_latency_seconds": [
+        24.712191099999472,
+        24.71175100000255,
+        24.711426000001666,
+        24.711268000006385
+      ],
+      "ttft_seconds": [
+        8.33822639999562,
+        8.338463000000047,
+        8.337331800001266,
+        8.337223400005314
+      ],
+      "peak_process_owned_vram_mib": 4130.66796875,
+      "completed_requests": 4,
+      "errors": 0,
+      "error_messages": [],
+      "response_sha256": [
+        "7516491a0fde1f62c8ab0a7b997d196dbcf09f6970747a071a66643f2b2937e1",
+        "108bf61fde5bdc2a81c0865d7f5e85a7a72c26781781ca5fd39692353f3e3fbc",
+        "11753d5954fd6d0ffed33f8da067eac3d05cf0ed555e22d5dc8cf5ec20405dd1",
+        "19672e304c0419f7dd83bd39371871e3b84acc89ab3845fe630d0c38d031fc7a"
+      ]
+    },
+    {
+      "mode": "expertflow",
+      "parallel_slots": 4,
+      "repetition": 3,
+      "command": [
+        "C:\\models\\expertflow\\builds\\llama-q6-placement-final\\bin\\llama-server.exe",
+        "-m",
+        "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8122",
+        "-c",
+        "8192",
+        "-np",
+        "4",
+        "-ngl",
+        "99",
+        "--threads",
+        "12",
+        "--cpu-moe",
+        "--metrics",
+        "--cont-batching"
+      ],
+      "generated_tokens": 512,
+      "wall_seconds": 13.221335100002761,
+      "aggregate_generated_tps": 38.72528728206073,
+      "per_request_tps": [
+        11.901983446944584,
+        11.902216964583186,
+        11.902544568752678,
+        11.90240068632218
+      ],
+      "prompt_tps": [
+        5.690654400867581,
+        8.1276033729554,
+        7.3118538149191075,
+        6.500674648140827
+      ],
+      "request_latency_seconds": [
+        13.22086069999932,
+        13.220542600000044,
+        13.220459500000288,
+        13.220331800002896
+      ],
+      "ttft_seconds": [
+        2.4665182000026107,
+        2.466463400000066,
+        2.466218800000206,
+        2.4660364000010304
+      ],
+      "peak_process_owned_vram_mib": 11996.8125,
+      "completed_requests": 4,
+      "errors": 0,
+      "error_messages": [],
+      "response_sha256": [
+        "328885901140017229f7437bd84bfb1ed7da569dcb87df845aac72faed9f0335",
+        "51671a1daf99663d3e6ed7e8da884acd65fe798ed06a83dd4c757193a198e954",
+        "11753d5954fd6d0ffed33f8da067eac3d05cf0ed555e22d5dc8cf5ec20405dd1",
+        "0bf3dfedec38996c0c19476a3115e229a8c6e6ec81ef25dc6cd5e9aff1592090"
+      ]
+    },
+    {
+      "mode": "stock",
+      "parallel_slots": 4,
+      "repetition": 4,
+      "command": [
+        "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-server.exe",
+        "-m",
+        "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8121",
+        "-c",
+        "8192",
+        "-np",
+        "4",
+        "-ngl",
+        "99",
+        "--threads",
+        "12",
+        "--cpu-moe",
+        "--metrics",
+        "--cont-batching"
+      ],
+      "generated_tokens": 512,
+      "wall_seconds": 18.137579100002768,
+      "aggregate_generated_tps": 28.228684609839792,
+      "per_request_tps": [
+        8.79001042783659,
+        8.789861334443787,
+        8.790047249250854,
+        8.78967542750097
+      ],
+      "prompt_tps": [
+        3.9179897578150604,
+        5.598025912142342,
+        5.040020563283898,
+        4.479198044382134
+      ],
+      "request_latency_seconds": [
+        18.136930200002098,
+        18.13700979999703,
+        18.13674020000326,
+        18.13637580000068
+      ],
+      "ttft_seconds": [
+        3.574486400000751,
+        3.573809800000163,
+        3.572483900003135,
+        3.5726978999955463
+      ],
+      "peak_process_owned_vram_mib": 4130.66796875,
+      "completed_requests": 4,
+      "errors": 0,
+      "error_messages": [],
+      "response_sha256": [
+        "7516491a0fde1f62c8ab0a7b997d196dbcf09f6970747a071a66643f2b2937e1",
+        "8af1e2b69bc1d0113ceb92939103eabe59982f394e56f5a08ed96b20f1c56b13",
+        "11753d5954fd6d0ffed33f8da067eac3d05cf0ed555e22d5dc8cf5ec20405dd1",
+        "6cfd0f018c3403631daffae93a6d7b642e4df7286d037f2fa02ea8d060fa436f"
+      ]
+    },
+    {
+      "mode": "expertflow",
+      "parallel_slots": 4,
+      "repetition": 4,
+      "command": [
+        "C:\\models\\expertflow\\builds\\llama-q6-placement-final\\bin\\llama-server.exe",
+        "-m",
+        "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8122",
+        "-c",
+        "8192",
+        "-np",
+        "4",
+        "-ngl",
+        "99",
+        "--threads",
+        "12",
+        "--cpu-moe",
+        "--metrics",
+        "--cont-batching"
+      ],
+      "generated_tokens": 512,
+      "wall_seconds": 11.405493300000671,
+      "aggregate_generated_tps": 44.89064931544608,
+      "per_request_tps": [
+        12.5783283460589,
+        12.777077922207559,
+        12.778393015250513,
+        12.775900818286466
+      ],
+      "prompt_tps": [
+        12.066344207982404,
+        18.902269595510333,
+        16.989723105268325,
+        15.140102725596993
+      ],
+      "request_latency_seconds": [
+        11.33802740000101,
+        11.404554000000644,
+        11.404560499999207,
+        11.403896199997689
+      ],
+      "ttft_seconds": [
+        1.161764900003618,
+        1.3862267000004067,
+        1.387336600004346,
+        1.3846143999980995
+      ],
+      "peak_process_owned_vram_mib": 11996.8125,
+      "completed_requests": 4,
+      "errors": 0,
+      "error_messages": [],
+      "response_sha256": [
+        "73233cfd91e408ffc420e17cd4bfa2ba2d16697ab6e0a11cdfc9dc0ef93fea85",
+        "1256eba7cccd08eb157d7ccc144fcbdf3745ea65bda7ebdd3a72b707aba955d0",
+        "9bd65c2d8bc86c04cfd93762dced4a5c11c311e95023052a8fbec0ed274b7fa6",
+        "7ce4b082bc19713e36e2b167d9130b8acc301119a943a3523d5222d4735505f9"
+      ]
+    },
+    {
+      "mode": "stock",
+      "parallel_slots": 4,
+      "repetition": 5,
+      "command": [
+        "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-server.exe",
+        "-m",
+        "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8121",
+        "-c",
+        "8192",
+        "-np",
+        "4",
+        "-ngl",
+        "99",
+        "--threads",
+        "12",
+        "--cpu-moe",
+        "--metrics",
+        "--cont-batching"
+      ],
+      "generated_tokens": 512,
+      "wall_seconds": 15.977699299997767,
+      "aggregate_generated_tps": 32.04466365192338,
+      "per_request_tps": [
+        8.999353452700381,
+        9.121434801694306,
+        9.121037666251398,
+        9.120662661745689
+      ],
+      "prompt_tps": [
+        8.427429597855099,
+        13.815799471960144,
+        12.442273037386958,
+        11.066774844390771
+      ],
+      "request_latency_seconds": [
+        15.898627399998077,
+        15.976902900001733,
+        15.976518200004648,
+        15.97621269999945
+      ],
+      "ttft_seconds": [
+        1.6626546999978018,
+        1.9438742999991518,
+        1.9428034000011394,
+        1.9417285000017728
+      ],
+      "peak_process_owned_vram_mib": 4130.66796875,
+      "completed_requests": 4,
+      "errors": 0,
+      "error_messages": [],
+      "response_sha256": [
+        "d221ccaefadb17125a21456844ae3644a7d919d51d3e51d831f60e911001ae62",
+        "dd16dacdc8cf1376b3ebc539117e443579421c61bde3f90367cedde046c0bf34",
+        "732de9a110d1d66885f07756a278986e09e849452395cc5567dbc3932af3bcb2",
+        "50b534b82297ef700f6984a08b5bb7208d855151483e2dfd43de3c9d37af3a21"
+      ]
+    },
+    {
+      "mode": "expertflow",
+      "parallel_slots": 4,
+      "repetition": 5,
+      "command": [
+        "C:\\models\\expertflow\\builds\\llama-q6-placement-final\\bin\\llama-server.exe",
+        "-m",
+        "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8122",
+        "-c",
+        "8192",
+        "-np",
+        "4",
+        "-ngl",
+        "99",
+        "--threads",
+        "12",
+        "--cpu-moe",
+        "--metrics",
+        "--cont-batching"
+      ],
+      "generated_tokens": 512,
+      "wall_seconds": 13.314584000007017,
+      "aggregate_generated_tps": 38.45407411900591,
+      "per_request_tps": [
+        11.855351375943195,
+        11.857677484882851,
+        11.855993765229277,
+        11.8567888870023
+      ],
+      "prompt_tps": [
+        5.576673888459353,
+        7.957212477068307,
+        7.167414068678162,
+        6.368508996713053
+      ],
+      "request_latency_seconds": [
+        13.314121299998078,
+        13.313861499998893,
+        13.313585899995815,
+        13.313325800001621
+      ],
+      "ttft_seconds": [
+        2.517191399994772,
+        2.5185800999970525,
+        2.516785699997854,
+        2.5170848999987356
+      ],
+      "peak_process_owned_vram_mib": 11996.8125,
+      "completed_requests": 4,
+      "errors": 0,
+      "error_messages": [],
+      "response_sha256": [
+        "328885901140017229f7437bd84bfb1ed7da569dcb87df845aac72faed9f0335",
+        "51671a1daf99663d3e6ed7e8da884acd65fe798ed06a83dd4c757193a198e954",
+        "11753d5954fd6d0ffed33f8da067eac3d05cf0ed555e22d5dc8cf5ec20405dd1",
+        "0bf3dfedec38996c0c19476a3115e229a8c6e6ec81ef25dc6cd5e9aff1592090"
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "mode": "expertflow",
+      "parallel_slots": 4,
+      "repetitions": 5,
+      "aggregate_generated_tps_values": [
+        31.07249797600519,
+        25.207121675531276,
+        38.72528728206073,
+        44.89064931544608,
+        38.45407411900591
+      ],
+      "aggregate_generated_tps_mean": 35.66992607360984,
+      "aggregate_generated_tps_sample_variance": 58.17876763510628,
+      "per_request_tps_mean": 11.476112342106626,
+      "prompt_tps_mean": 7.793801454348829,
+      "median_request_latency_seconds": 13.313723699997354,
+      "p95_request_latency_seconds": 20.3110078000027,
+      "median_ttft_seconds": 2.517138149996754,
+      "p95_ttft_seconds": 7.984178799997608,
+      "peak_process_owned_vram_mib": 11996.8125,
+      "completed_requests": 20,
+      "error_count": 0
+    },
+    {
+      "mode": "stock",
+      "parallel_slots": 4,
+      "repetitions": 5,
+      "aggregate_generated_tps_values": [
+        22.72552291849833,
+        18.8984280508998,
+        20.718033212826416,
+        28.228684609839792,
+        32.04466365192338
+      ],
+      "aggregate_generated_tps_mean": 24.523066488797543,
+      "aggregate_generated_tps_sample_variance": 29.913007054696923,
+      "per_request_tps_mean": 8.025006234236766,
+      "prompt_tps_mean": 5.215416586896771,
+      "median_request_latency_seconds": 22.47504029999618,
+      "p95_request_latency_seconds": 27.09138830000302,
+      "median_ttft_seconds": 5.441425099998014,
+      "p95_ttft_seconds": 8.493541600000754,
+      "peak_process_owned_vram_mib": 4130.66796875,
+      "completed_requests": 20,
+      "error_count": 0
+    }
+  ],
+  "selected": {
+    "mode": "expertflow",
+    "parallel_slots": 4,
+    "repetitions": 5,
+    "aggregate_generated_tps_values": [
+      31.07249797600519,
+      25.207121675531276,
+      38.72528728206073,
+      44.89064931544608,
+      38.45407411900591
+    ],
+    "aggregate_generated_tps_mean": 35.66992607360984,
+    "aggregate_generated_tps_sample_variance": 58.17876763510628,
+    "per_request_tps_mean": 11.476112342106626,
+    "prompt_tps_mean": 7.793801454348829,
+    "median_request_latency_seconds": 13.313723699997354,
+    "p95_request_latency_seconds": 20.3110078000027,
+    "median_ttft_seconds": 2.517138149996754,
+    "p95_ttft_seconds": 7.984178799997608,
+    "peak_process_owned_vram_mib": 11996.8125,
+    "completed_requests": 20,
+    "error_count": 0
+  }
+}

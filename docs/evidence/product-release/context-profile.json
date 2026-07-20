@@ -1,0 +1,32 @@
+﻿{
+    "schema_version":  "1.0.0",
+    "measurement_kind":  "live_context_profile",
+    "status":  "measured",
+    "allocated_context":  262144,
+    "processed_tokens":  417,
+    "prompt_tokens":  385,
+    "generated_tokens":  32,
+    "prompt_tps":  88.9990267898629,
+    "decode_tps":  30.23820143177884,
+    "ttft_seconds":  4.343269400000281,
+    "peak_process_owned_vram_mib":  15635.58203125,
+    "vram_margin_mib":  675.41796875,
+    "model_training_context":  262144,
+    "static_expert_layers":  [
+                                 0,
+                                 1,
+                                 2,
+                                 3,
+                                 4,
+                                 5,
+                                 6,
+                                 7,
+                                 8,
+                                 9,
+                                 15,
+                                 20
+                             ],
+    "highest_passing_allocated_context":  950272,
+    "first_failing_allocated_context":  983040,
+    "notice":  "Profile is capped at the model training context. The full allocated context was not filled during this bounded test."
+}

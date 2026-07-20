@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "measurement_kind": "measured_frozen_q1_quality_gate",
+  "manifest_sha256": "294ccc4e6ef9da9d80ee15ac89d989d6d1eaa44e28bc0a043ab219d436a18719",
+  "decision": "OPTION 1 Q1 STOP",
+  "stop_gate": "perplexity_relative_change",
+  "perplexity": {
+    "dataset": "Salesforce/wikitext",
+    "dataset_revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+    "configuration": "wikitext-2-raw-v1",
+    "split": "test",
+    "chunk_tokens": 2048,
+    "chunk_count": 4,
+    "reference_reported_sequence": [1072.9325, 1411.4224, 1433.1798, 1176.7406],
+    "candidate_reported_sequence": [1046.0991, 1388.2249, 1429.3230, 1183.6406],
+    "reference_final": 1176.7406,
+    "candidate_final": 1183.6406,
+    "absolute_change": 6.9,
+    "relative_change": 0.005863654232716842,
+    "relative_change_percent": 0.5863654232716842,
+    "maximum_relative_change": 0.005,
+    "maximum_candidate_value": 1182.624303,
+    "pass": false
+  },
+  "raw_artifacts": {
+    "reference_output_sha256": "cbc0e6bca59c9f0f4abc40ac34c5949b3d96c281a92b0b4ac4ef15ab2e0b2a1b",
+    "candidate_output_sha256": "55117c344c20d0761fec0522c8269e816f3d6c4d727af71e4a24c46a8ae665a6"
+  },
+  "completed_gates": {
+    "static_runtime_smoke": true,
+    "candidate_self_determinism": true,
+    "complete_router_events": true,
+    "clean_teardown": true,
+    "perplexity": false
+  },
+  "not_run_after_stop": [
+    "mmlu_100_item_accuracy",
+    "six_prompt_long_generation",
+    "cross_mode_router_overlap_report",
+    "reactive_q4_cache"
+  ],
+  "claims": {
+    "quality_preserving": false,
+    "runtime_speedup": false,
+    "q1_pass": false
+  }
+}

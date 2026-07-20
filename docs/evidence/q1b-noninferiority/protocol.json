@@ -1,0 +1,75 @@
+{
+  "study": "Q1b bounded quality non-inferiority and layer sensitivity",
+  "frozen_at": "2026-07-18T22:03:00+05:00",
+  "official_q1_result_preserved": {
+    "reference_perplexity": 1176.7406,
+    "candidate_perplexity": 1183.6406,
+    "relative_change": 0.00586365,
+    "original_threshold": 0.005,
+    "result": "FAIL"
+  },
+  "runtime": {
+    "model_path": "C:\\models\\expertflow\\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\\gemma-4-26B_q4_0-it.gguf",
+    "model_bytes": 14439361440,
+    "model_sha256": "4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5",
+    "llama_upstream": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+    "static_island_commit": "29857466d39cc532cefc1633ac14e521849541fe",
+    "measurement_binary_sha256": "7e29894f7ccfa78658bf000a2453bb6ac8a4c0918356857ec06320d2da53f8ca",
+    "measurement_impl_sha256": "78dc3af1d7e98e8b2bc5014b9e04546edc54217d59277044090f6f5b5b180b27",
+    "feature_off": "LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER absent",
+    "feature_on_stage1": "LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER=0",
+    "nll_sidecar": "LLAMA_EXPERTFLOW_NLL_FILE",
+    "ngl": 10,
+    "context": 2048,
+    "chunks_stage1": 4,
+    "chunks_stage2": 8,
+    "batch": 512,
+    "ubatch": 1,
+    "threads": 12,
+    "no_warmup": true
+  },
+  "stage1_corpus": {
+    "repository": "Salesforce/wikitext",
+    "configuration": "wikitext-2-raw-v1",
+    "split": "test",
+    "revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+    "path": "C:\\models\\expertflow\\quality-data\\frozen-option1-v1\\wikitext-test.txt",
+    "sha256": "bbf94c53a05abe9ee670d3b6343608095822c85e26de37c70b24fc571964574a"
+  },
+  "stage2_corpus": {
+    "repository": "Salesforce/wikitext",
+    "configuration": "wikitext-103-raw-v1",
+    "split": "validation",
+    "revision": "b08601e04326c79dfdd32d625aee71d232d685c3",
+    "source_path": "C:\\models\\expertflow\\quality-data\\q1b-heldout\\source\\wikitext-103-raw-v1\\validation-00000-of-00001.parquet",
+    "source_bytes": 657209,
+    "source_sha256": "204929b7ff9d6184953f867dedb860e40aa69c078fc1e54b3baaa8fb28511c4c",
+    "export_path": "C:\\models\\expertflow\\quality-data\\q1b-heldout\\wikitext-103-validation.txt",
+    "export_bytes": 1144248,
+    "export_sha256": "8ef749789ca0693435d20b3f81d5638c19edcebc5a68586dcf09bdf47ef9542f",
+    "source_rows": 3760,
+    "nonempty_rows": 2461,
+    "status": "frozen before Stage 1 candidate completion"
+  },
+  "paired_bootstrap": {
+    "block_size_tokens_within_chunk": 128,
+    "samples": 10000,
+    "seed": 20260718,
+    "confidence_interval": 0.95,
+    "point_threshold": 0.01,
+    "upper_bound_threshold": 0.01
+  },
+  "mmlu": {
+    "repository": "cais/mmlu",
+    "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+    "path": "C:\\models\\expertflow\\quality-data\\frozen-option1-v1\\mmlu-test.json",
+    "sha256": "a732878ec453dc34b3933f7cf2ffb6fbc558f97c031b8d3882e2ff2f3e4d0e8a",
+    "item_count": 100,
+    "decline_threshold_percentage_points": 1.0
+  },
+  "layer_sensitivity": {
+    "layers": [0, 15, 20],
+    "selection_rule": "early, midpoint, and latest CPU-resident routed layer at matched -ngl 10; avoids changing MoE placement or duplicating an already CUDA-resident control"
+  },
+  "scaling_widths": [1, 2, 4]
+}

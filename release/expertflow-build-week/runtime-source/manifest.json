@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "upstream_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+  "expertflow_llama_commit": "451224ab4d12a616dc3e16e8c8063f4b331f531c",
+  "ggml_backend_cpp_sha256": "3dc8577149dbc0dd1e152b2337553f93494bdb8b59b7ffcab8cfbbdb4280187c",
+  "build": {
+    "compiler": "MSVC v143 14.39.33519",
+    "cuda": "12.8.93",
+    "generator": "Ninja",
+    "flags": [
+      "GGML_CUDA=ON",
+      "CMAKE_BUILD_TYPE=Release"
+    ]
+  },
+  "expected_binaries": {
+    "llama_cli_sha256": "5d68046dcd26e2fd018aaeaad5f99cdb7d88eca6fc10935925f1d660f7009407",
+    "llama_server_sha256": "22ecc4f64f91dcbe3a1cfe7d9d4617e43467ea7f3c6fa1ba2c6ad8d07e89334e"
+  }
+}

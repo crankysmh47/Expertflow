@@ -1,0 +1,33 @@
+name: model-free replay
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  replay:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Frozen setup
+        run: uv sync --frozen
+      - name: CLI and replay
+        shell: pwsh
+        run: |
+          uv run expertflow --help
+          uv run expertflow doctor --output doctor.json
+          if ($LASTEXITCODE -notin @(0, 10, 20)) { exit $LASTEXITCODE }
+          uv run expertflow demo --replay
+      - name: Portable release checks
+        run: uv run pytest -q tests/test_final_polish.py tests/test_product_release_state.py tests/test_product_dashboard.py tests/test_product_deployments.py tests/test_product_packaging.py
+      - name: Archive hash manifest
+        run: uv run python release/expertflow-build-week/scripts/verify_release.py
+
+# This matrix proves model-free portability only. It does not claim CUDA acceleration.

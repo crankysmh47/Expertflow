@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "branch": "codex/q6-runtime-final",
+  "base_commit": "33bc3f5",
+  "stage0_commit": "34cf11d",
+  "verdict": "NARROW PLACEMENT STOP",
+  "stage0": {
+    "status": "PASS",
+    "fair_stock_mode": "pristine MSVC --cpu-moe -ngl 99",
+    "cold_repetitions": 3,
+    "generated_tokens_per_run": 512,
+    "decode_tps": [23.3, 22.8, 22.8],
+    "mean_decode_tps": 22.966667,
+    "sample_variance_decode_tps": 0.083333,
+    "mean_prompt_tps": 27.633333,
+    "mean_ttft_ms": 651.493333,
+    "mean_wall_seconds": 29.387,
+    "peak_process_vram_mib": 3098.656,
+    "product_target_decode_tps": 28.708333,
+    "exact_response_sha256": "ebaed9f65a4f60c5157e36d423a6cfa07ce2cc5f0937b9ae48580ac50be28f14"
+  },
+  "stage1": {
+    "status": "FAIL_STOP",
+    "model": "gemma-4-26B_q4_0-it.gguf",
+    "ngl": 10,
+    "layer": 0,
+    "slots": 128,
+    "authoritative_experts_backend": "CPU",
+    "expert_operations_backend": "CUDA",
+    "shadow_components": [
+      {"name": "blk.0.ffn_gate_up_exps.weight", "bytes": 285474816},
+      {"name": "blk.0.ffn_down_exps.weight", "bytes": 142737408},
+      {"name": "blk.0.ffn_down_exps.scale", "bytes": 512}
+    ],
+    "total_shadow_bytes": 428212736,
+    "total_shadow_mib": 408.375488,
+    "repetitions_per_modified_mode": 3,
+    "events_per_run": 960,
+    "layer0_events_per_run": 32,
+    "disabled_matches_pristine": true,
+    "enabled_deterministic": true,
+    "prompt_token_parity": true,
+    "generated_token_parity": false,
+    "router_parity": false,
+    "first_generated_divergence": {"index": 1, "reference": 236770, "candidate": 236796},
+    "first_router_divergence": {
+      "event_index": 13,
+      "phase": "prefill",
+      "token_index": 0,
+      "layer_id": 13,
+      "reference": [126, 109, 25, 111, 27, 6, 23, 127],
+      "candidate": [126, 109, 25, 111, 27, 6, 127, 23]
+    },
+    "implementation_2": {
+      "status": "REJECTED_STOP_CONDITION",
+      "reason": "The existing scheduler has no public explicit graph-copy operation that changes the measured CPU-versus-CUDA numerical result; proceeding requires a new operation, replacement kernel, or broad scheduler change."
+    },
+    "raw_log_root": "C:\\models\\expertflow\\runs\\q6-runtime-final\\stage1",
+    "abandoned_llama_diff_git_hash": "2b0038f553add4d8a59b9acc094e9b94a9d014bd",
+    "diagnostic_binary_sha256": "36b083b6091c3079f8d8e45208aba629073d60db6582bd547e2ff8fab79b4c40"
+  },
+  "not_run": ["stage2", "stage3", "stage4", "stage5", "stage6", "stage7"]
+}

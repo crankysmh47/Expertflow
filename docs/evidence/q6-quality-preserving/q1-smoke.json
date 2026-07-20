@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "measurement_kind": "measured_static_q4_runtime",
+  "status": "PASS",
+  "feature": {
+    "flag": "LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER=0",
+    "layer": 0,
+    "disabled_by_default": true,
+    "llama_commit": "29857466d39cc532cefc1633ac14e521849541fe"
+  },
+  "bundle": {
+    "gate_up_bytes": 285474816,
+    "down_bytes": 142737408,
+    "scale_bytes": 512,
+    "total_bytes": 428212736,
+    "total_mib": 408.37548828125,
+    "all_components_preloaded": true
+  },
+  "disabled_equivalence": {
+    "pristine_exit_code": 0,
+    "patched_disabled_exit_code": 0,
+    "normalized_generated_segment_exact": true
+  },
+  "candidate_determinism": {
+    "fresh_process_repetitions": 3,
+    "durations_seconds": [6.0117139, 6.0154424, 6.0088813],
+    "prompt_tokens_per_run": 6,
+    "generated_tokens_per_run": 16,
+    "router_events_per_run": 630,
+    "prompt_token_parity": true,
+    "generated_token_parity": true,
+    "router_event_parity": true,
+    "clean_exit_codes": [0, 0, 0]
+  },
+  "cleanup": {
+    "surviving_llama_processes": 0,
+    "post_run_system_gpu_used_mib": 1865,
+    "process_owned_peak_vram_measured": false,
+    "note": "WDDM did not expose per-process VRAM; system GPU use returned to its pre-run range."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "token_count": 8184,
+  "block_size": 128,
+  "block_count": 64,
+  "bootstrap_samples": 10000,
+  "bootstrap_seed": 20260718,
+  "reference_mean_nll": 6.600930318849466,
+  "candidate_mean_nll": 6.5663891033338615,
+  "relative_perplexity_change": -0.03395147732200283,
+  "bootstrap_standard_error": 0.013267025291008509,
+  "bootstrap_95pct": {
+    "lower": -0.060300826967531404,
+    "upper": -0.008264435759859008
+  },
+  "threshold": 0.01,
+  "point_gate_pass": true,
+  "upper_bound_gate_pass": true,
+  "gate_pass": true
+}

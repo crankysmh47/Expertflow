@@ -1,0 +1,303 @@
+{
+  "paired_items": 100,
+  "reference_correct": 42,
+  "candidate_correct": 41,
+  "candidate_repeat_correct": 41,
+  "accuracy_delta_percentage_points": -1.0000000000000009,
+  "prediction_changes_reference_to_candidate": [
+    1,
+    2,
+    3,
+    4,
+    13,
+    14,
+    21,
+    29,
+    35,
+    37,
+    41,
+    50,
+    54,
+    61,
+    62,
+    63,
+    66,
+    70,
+    72,
+    76,
+    90,
+    93,
+    94
+  ],
+  "candidate_repeat_changes": [],
+  "candidate_deterministic": true,
+  "subjects": {
+    "abstract_algebra": {
+      "total": 10,
+      "reference_correct": 3,
+      "candidate_correct": 5,
+      "reference_accuracy": 0.3,
+      "candidate_accuracy": 0.5,
+      "delta_percentage_points": 20.0
+    },
+    "college_computer_science": {
+      "total": 10,
+      "reference_correct": 3,
+      "candidate_correct": 4,
+      "reference_accuracy": 0.3,
+      "candidate_accuracy": 0.4,
+      "delta_percentage_points": 10.000000000000004
+    },
+    "college_mathematics": {
+      "total": 10,
+      "reference_correct": 4,
+      "candidate_correct": 4,
+      "reference_accuracy": 0.4,
+      "candidate_accuracy": 0.4,
+      "delta_percentage_points": 0.0
+    },
+    "computer_security": {
+      "total": 10,
+      "reference_correct": 5,
+      "candidate_correct": 3,
+      "reference_accuracy": 0.5,
+      "candidate_accuracy": 0.3,
+      "delta_percentage_points": -20.0
+    },
+    "conceptual_physics": {
+      "total": 10,
+      "reference_correct": 4,
+      "candidate_correct": 4,
+      "reference_accuracy": 0.4,
+      "candidate_accuracy": 0.4,
+      "delta_percentage_points": 0.0
+    },
+    "electrical_engineering": {
+      "total": 10,
+      "reference_correct": 7,
+      "candidate_correct": 5,
+      "reference_accuracy": 0.7,
+      "candidate_accuracy": 0.5,
+      "delta_percentage_points": -19.999999999999996
+    },
+    "high_school_world_history": {
+      "total": 10,
+      "reference_correct": 6,
+      "candidate_correct": 5,
+      "reference_accuracy": 0.6,
+      "candidate_accuracy": 0.5,
+      "delta_percentage_points": -9.999999999999998
+    },
+    "machine_learning": {
+      "total": 10,
+      "reference_correct": 5,
+      "candidate_correct": 4,
+      "reference_accuracy": 0.5,
+      "candidate_accuracy": 0.4,
+      "delta_percentage_points": -9.999999999999998
+    },
+    "moral_scenarios": {
+      "total": 10,
+      "reference_correct": 5,
+      "candidate_correct": 5,
+      "reference_accuracy": 0.5,
+      "candidate_accuracy": 0.5,
+      "delta_percentage_points": 0.0
+    },
+    "professional_law": {
+      "total": 10,
+      "reference_correct": 0,
+      "candidate_correct": 2,
+      "reference_accuracy": 0.0,
+      "candidate_accuracy": 0.2,
+      "delta_percentage_points": 20.0
+    }
+  },
+  "disagreements": [
+    {
+      "index": 1,
+      "subject": "abstract_algebra",
+      "row_id": 23,
+      "answer": 3,
+      "reference_prediction": 2,
+      "candidate_prediction": 3
+    },
+    {
+      "index": 2,
+      "subject": "abstract_algebra",
+      "row_id": 1,
+      "answer": 2,
+      "reference_prediction": 0,
+      "candidate_prediction": 1
+    },
+    {
+      "index": 3,
+      "subject": "abstract_algebra",
+      "row_id": 28,
+      "answer": 3,
+      "reference_prediction": 2,
+      "candidate_prediction": 3
+    },
+    {
+      "index": 4,
+      "subject": "abstract_algebra",
+      "row_id": 62,
+      "answer": 2,
+      "reference_prediction": 3,
+      "candidate_prediction": 0
+    },
+    {
+      "index": 13,
+      "subject": "college_computer_science",
+      "row_id": 14,
+      "answer": 0,
+      "reference_prediction": 3,
+      "candidate_prediction": 0
+    },
+    {
+      "index": 14,
+      "subject": "college_computer_science",
+      "row_id": 29,
+      "answer": 2,
+      "reference_prediction": 3,
+      "candidate_prediction": 0
+    },
+    {
+      "index": 21,
+      "subject": "college_mathematics",
+      "row_id": 77,
+      "answer": 2,
+      "reference_prediction": 0,
+      "candidate_prediction": 3
+    },
+    {
+      "index": 29,
+      "subject": "college_mathematics",
+      "row_id": 89,
+      "answer": 2,
+      "reference_prediction": 1,
+      "candidate_prediction": 3
+    },
+    {
+      "index": 35,
+      "subject": "computer_security",
+      "row_id": 68,
+      "answer": 1,
+      "reference_prediction": 1,
+      "candidate_prediction": 0
+    },
+    {
+      "index": 37,
+      "subject": "computer_security",
+      "row_id": 57,
+      "answer": 1,
+      "reference_prediction": 1,
+      "candidate_prediction": 3
+    },
+    {
+      "index": 41,
+      "subject": "conceptual_physics",
+      "row_id": 111,
+      "answer": 0,
+      "reference_prediction": 3,
+      "candidate_prediction": 2
+    },
+    {
+      "index": 50,
+      "subject": "electrical_engineering",
+      "row_id": 108,
+      "answer": 2,
+      "reference_prediction": 2,
+      "candidate_prediction": 3
+    },
+    {
+      "index": 54,
+      "subject": "electrical_engineering",
+      "row_id": 84,
+      "answer": 0,
+      "reference_prediction": 0,
+      "candidate_prediction": 3
+    },
+    {
+      "index": 61,
+      "subject": "high_school_world_history",
+      "row_id": 17,
+      "answer": 1,
+      "reference_prediction": 3,
+      "candidate_prediction": 2
+    },
+    {
+      "index": 62,
+      "subject": "high_school_world_history",
+      "row_id": 118,
+      "answer": 0,
+      "reference_prediction": 0,
+      "candidate_prediction": 3
+    },
+    {
+      "index": 63,
+      "subject": "high_school_world_history",
+      "row_id": 227,
+      "answer": 3,
+      "reference_prediction": 3,
+      "candidate_prediction": 2
+    },
+    {
+      "index": 66,
+      "subject": "high_school_world_history",
+      "row_id": 163,
+      "answer": 2,
+      "reference_prediction": 3,
+      "candidate_prediction": 2
+    },
+    {
+      "index": 70,
+      "subject": "machine_learning",
+      "row_id": 77,
+      "answer": 0,
+      "reference_prediction": 0,
+      "candidate_prediction": 3
+    },
+    {
+      "index": 72,
+      "subject": "machine_learning",
+      "row_id": 76,
+      "answer": 2,
+      "reference_prediction": 1,
+      "candidate_prediction": 3
+    },
+    {
+      "index": 76,
+      "subject": "machine_learning",
+      "row_id": 37,
+      "answer": 1,
+      "reference_prediction": 2,
+      "candidate_prediction": 0
+    },
+    {
+      "index": 90,
+      "subject": "professional_law",
+      "row_id": 232,
+      "answer": 2,
+      "reference_prediction": 0,
+      "candidate_prediction": 3
+    },
+    {
+      "index": 93,
+      "subject": "professional_law",
+      "row_id": 1076,
+      "answer": 1,
+      "reference_prediction": 0,
+      "candidate_prediction": 1
+    },
+    {
+      "index": 94,
+      "subject": "professional_law",
+      "row_id": 1306,
+      "answer": 0,
+      "reference_prediction": 3,
+      "candidate_prediction": 0
+    }
+  ],
+  "gate_pass": true
+}

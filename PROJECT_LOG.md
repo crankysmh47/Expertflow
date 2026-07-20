@@ -1026,3 +1026,47 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Final release verification passed all 179 ExpertFlow tests, the standalone
   judge verification script, HTML parsing with zero external assets and zero
   scripts, and `git diff --check`.
+
+### 04:05 PKT - Bounded Q6 selected-static experiment stopped on product performance
+
+- Isolated ExpertFlow and llama.cpp worktrees from the verified Q1b state. The prior Q1 failure, Q1b pass, protected Observatory, and all existing runtime branches remain untouched.
+- Added a disabled diagnostic scheduler-split profiler. At stock-equivalent Q6 `-ngl 99 --cpu-moe`, selected layers `[0,1,15,20]` remained CPU expert splits despite 31/31 layer assignment to CUDA; together they accounted for 9.44% of synchronized diagnostic time, passing the 5% physical-plausibility gate.
+- Reused the proven full-capacity static-island implementation without new runtime architecture. Q6 copied complete Q6_K gate/up, Q8_0 down, and F32 scale bundles for 128 experts. Four layers allocated exactly 2,743,732,224 shadow bytes and completed stable repeated execution and teardown.
+- Quarantined a complete initial performance batch after discovering it used the build-default CUDA graph setting, contrary to the approved graph-disabled static protocol. Corrected the harness test-first and reran every pair; no ordinary slow run was excluded.
+- The authoritative ten-pair result was 19.95 OFF versus 21.44 ON decode TPS: +7.53% paired mean with a `[+4.66%, +10.42%]` bootstrap 95% interval. Peak process-owned VRAM was 3,094.656 MiB OFF and 5,720.762 MiB ON. ON remained below the frozen strongest-stock 22.967 TPS result.
+- Held-out WikiText-103 validation improved from 16,096.566 to 14,944.088 PPL (-7.16%, upper 95% bound -2.59%). Frozen MMLU improved from 49/100 to 52/100; all 15 changed answers repeated exactly in ON mode.
+- Applied the product gate: even optimistic linear scaling over the maximum 15 additional full arenas allowed by measured peak VRAM and a 256 MiB reserve reaches only 27.0275 TPS, below 28.709, and no additional low-sensitivity layer set is verified. Froze the runtime path with `Q6 PERFORMANCE STOP`; reactive caching and further architecture work remain closed.
+# 2026-07-19 — Final bounded Q6 placement sprint
+
+- Created isolated `codex/q6-placement-final` and `codex/q6-placement-final-llama` worktrees from the verified selected-static milestones; no merge or push.
+- Three fresh diagnostic profiles left 64.42% of measured split time in unselected CPU expert paths. Greedy full-shadow expansion retained pairs `[2,3]`, `[4,6]`, `[7,8]`, and `[5,9]`, stopping at twelve selected layers when the 23.5 TPS smoke threshold was reached.
+- Expanded only the bounded static capacity (12 layers/48 shadow tensors). Precomputed selected-layer membership was retained after a +0.15 TPS two-pair mean improvement. CUDA graphs improved the two-pair ExpertFlow mean from 25.60 to 27.45 TPS and stock from 21.0 to 22.0 TPS.
+- Authoritative ten-pair result: 22.28 stock versus 28.13 ExpertFlow decode TPS; paired +26.47%, 95% `[+23.46%, +29.83%]`; 10,966.801 MiB process-owned peak. One deterministic response hash per mode.
+- Frozen held-out PPL: 15,310.277 stock versus 14,863.951 ExpertFlow, point change -2.92%, but paired 95% upper bound +2.25% exceeded the +1.0% mandatory limit. Stopped before MMLU, latency, product commands, dynamic caching, or prediction. Verdict: `QUALITY STOP`.
+- Final verification: clean-checkout suite `216 passed, 6 skipped`; applicable static-placement source contracts `4 passed`. A diagnostic all-contract run produced seven expected failures because T1/T2 contracts target a different temporal-cache llama fork; no temporal code was merged into this isolated branch.
+
+# 2026-07-19 — Bounded Q6 predictive follow-up
+
+- Created isolated branches/worktrees from ExpertFlow `db3b5c5` and llama.cpp `451224ab`; baseline `216 passed, 6 skipped`. Stage 0 reconstructed the 28.13 TPS champion as twelve full static identity shadows totaling 8,231,196,672 bytes, with cache/predictor paths absent and disabled.
+- Fixed 100-item MMLU, exact final graph-enabled control: OFF `49/100`, ON `50/100`, delta `+1.0` percentage point. Fourteen predictions changed: five improvements, four regressions, five neither. All fourteen ON changes repeated with exact identity, prediction, token IDs, and content. No CUDA/NaN errors or persistent process/GPU growth; interpretation `MMLU SUPPORTIVE`.
+- Preserved three harness/protocol failures: reserved PowerShell PID variable before OFF inference; post-result OFF monitoring failure after valid output; UTF-8 BOM in the first changed-item subset manifest before repeat inference. Each was corrected without altering model/runtime/request settings.
+- Collected fresh cache-disabled Q6 canonical routing evidence: 127 shards, 655,740 strict events across one 512-token run, eight held-out-corpus windows, all 100 MMLU items, and 18 representative conversations. Every shard covered 30 layers with top-8 routing; raw manifest SHA-256 `bd8bec76...affff0`.
+- The first collector command included unsupported generic llama CLI flags and exited before model inference; a test-first command-contract fix removed them and the successful resumable root is `canonical-q6-r2`.
+- Simulated 10+2, 8+4, and 6+6 static/cache placements at 112 and 96 slots. The first >=500 MiB candidate (8 static + 4 cached/96) frees 654.16 MiB but projects 26.35 TPS/93.66% retention. The 6+6/96 case frees 981.24 MiB and can add one full layer, but reaches only an optimistic 25.83 TPS. No candidate reaches both 500 MiB and 26.72 TPS; runtime implementation, prediction, policy tuning, context/concurrency, and cached-product packaging stopped. Verdict `NO CACHE OPPORTUNITY`.
+
+# 2026-07-19 — Q6 hackathon product release
+
+- Productized the frozen twelve-layer static Q6 result as a small JSON CLI, four measured deployment profiles, an OpenAI-compatible local-agent example, and an offline eleven-panel judge dashboard. The 28.13 TPS / +22.48% single-request claim and the unmet strict PPL confidence gate remain unchanged and explicit.
+- Measured a four-slot server profile at 35.6699 aggregate generated TPS over five cold-server repetitions with 20/20 requests completed. Concurrent response hashes were not deterministic, so this is throughput evidence rather than an exactness claim.
+- Bounded the context product profile at the model's 262,144-token training context: allocation passed with 675.418 MiB reserve, but only 417 tokens were processed. The allocation frontier separately bracketed ExpertFlow at 950,272 passing and 983,040 failing tokens.
+- Packaged a clean, model-free release with the pinned llama.cpp patch series, build metadata, manifests, setup/build scripts, evidence replay, judge docs, and SHA-256 inventory. The archive excludes the GGUF, credentials, private paths, caches, and large raw logs.
+- Final applicable suite: 259 passed. Live doctor matched the model and both runtime hashes; a fresh extracted archive verified 97 files and replayed successfully. Release ZIP SHA-256: `5b1ea945994f4e069b8a6687b71dae8165d3d78be8c567275a5fe1cc260346f7`.
+
+# 2026-07-19 — Deterministic release polish
+
+- Created `codex/final-polish` from frozen release commit `f8b88bd`; runtime code, placement, measurements, and model artifacts remained untouched.
+- Found and fixed a clean-checkout replay defect caused by Windows line-ending conversion. Evidence hashes now use canonical JSON, while the release builder normalizes text to LF before hashing and archiving.
+- Added the release scorecard, judge-first README, benchmark provenance, three-path judge guide, local SVGs, portable replay/verification wrappers, cross-platform replay CI, and a timed demo-video package. The required `/feedback` Session ID remains an explicit manual placeholder.
+- Enhanced `expertflow doctor` with structured pass/replay-only/failure exits and checks for platform, Python/uv, GPU/driver/VRAM, CUDA runtime, model size/hash, binary identity, free disk, writable evidence path, port, and deployment schema. The verified live system passed 12/12 checks.
+- Final applicable suite: 272 passed. Both PowerShell and shell wrappers passed from a ZIP extracted under a path containing spaces. The offline dashboard rendered 11 panels and 30 layer cells with no overflow or page console errors.
+- Two clean builds produced identical archives. Polished ZIP SHA-256: `b33a438a3fcde3180f6e699cbf37e587d3022d332bed7152afe16e84f4c6c77f`; the internal manifest verifies 118 files.

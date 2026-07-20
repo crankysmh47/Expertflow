@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "verdict": "NO CACHE OPPORTUNITY",
+  "static": {
+    "layers": [0,1,2,3,4,5,6,7,8,9,15,20],
+    "decode_tps": 28.13,
+    "peak_mib": 10966.801,
+    "strongest_stock_tps": 22.967,
+    "improvement_over_stock_pct": 22.480080114947533
+  },
+  "quality": {
+    "ppl_point_change_pct": -2.9152085407372328,
+    "ppl_bootstrap_95_upper_pct": 2.2529372655983686,
+    "strict_ppl_gate_pass": false,
+    "mmlu_off": 49,
+    "mmlu_on": 50,
+    "mmlu_total": 100,
+    "mmlu_delta_percentage_points": 1.0,
+    "mmlu_interpretation": "MMLU SUPPORTIVE",
+    "changed_answer_count": 14,
+    "changed_answer_repeat_exact": true
+  },
+  "routing": {
+    "model": "Q6_K",
+    "shards": 127,
+    "events": 655740,
+    "layer_count": 30,
+    "top_k": 8,
+    "families": {
+      "performance_512": {"shards":1,"events":16170},
+      "heldout_ppl": {"shards":8,"events":118500},
+      "fixed_mmlu": {"shards":100,"events":477210},
+      "representative_conversation": {"shards":18,"events":43860}
+    },
+    "collection_manifest_sha256": "bd8bec76325abb45d31b47cb2b15aae6764ffd0d3aed4c8544d6362ad1affff0",
+    "command_ledger_sha256": "b4191c786d39eea9895b067160d7abdd548ca51237e84dacbf234c4ee5ef2034"
+  },
+  "simulation": {
+    "first_memory_passing_candidate": {
+      "static_layers": [0,1,2,3,4,6,7,8],
+      "cached_layers": [20,15,9,5],
+      "slots_per_cached_layer": 96,
+      "freed_mib": 654.15673828125,
+      "projected_tps": 26.346308341969255,
+      "retained_static_tps_pct": 93.65911248478228,
+      "gate_pass": false
+    },
+    "largest_saving_candidate": {
+      "static_layers": [0,1,2,3,4,6],
+      "cached_layers": [20,15,9,5,8,7],
+      "slots_per_cached_layer": 96,
+      "freed_mib": 981.235107421875,
+      "projected_tps": 25.50107492066918,
+      "optimistic_tps_with_one_added_static_layer": 25.831414037454824,
+      "gate_pass": false
+    },
+    "selected_runtime_candidates": 0,
+    "reactive_runtime_run": false,
+    "predictive_runtime_run": false
+  }
+}

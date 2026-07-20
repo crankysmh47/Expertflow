@@ -1,0 +1,319 @@
+From 29857466d39cc532cefc1633ac14e521849541fe Mon Sep 17 00:00:00 2001
+From: crankysmh47 <annankhan741@gmail.com>
+Date: Sat, 18 Jul 2026 20:47:02 +0500
+Subject: [PATCH 1/6] feat: restore disabled static CUDA expert island
+
+
+diff --git a/ggml/src/ggml-backend.cpp b/ggml/src/ggml-backend.cpp
+index 87615921c09be5ef8c4996faa70fb3f49c385031..1cfb99b8ee4db538fe5daf96031559ad41ed65ad 100644
+--- a/ggml/src/ggml-backend.cpp
++++ b/ggml/src/ggml-backend.cpp
+@@ -771,6 +771,16 @@ struct ggml_backend_sched_split {
+     struct ggml_cgraph graph;
+ };
+ 
++#define EXPERTFLOW_STATIC_ISLAND_MAX_SHADOWS 8
++
++struct expertflow_static_island_shadow {
++    struct ggml_tensor * source;
++    struct ggml_tensor * shadow;
++    struct ggml_context * ctx;
++    ggml_backend_buffer_t buffer;
++    bool loaded;
++};
++
+ struct ggml_backend_sched {
+     bool is_reset; // true if the scheduler has been reset since the last graph split
+     bool is_alloc;
+@@ -813,6 +823,10 @@ struct ggml_backend_sched {
+     ggml_backend_sched_eval_callback callback_eval;
+     void * callback_eval_user_data;
+ 
++    int expertflow_static_island_layer;
++    int expertflow_static_island_n_shadows;
++    struct expertflow_static_island_shadow expertflow_static_island_shadows[EXPERTFLOW_STATIC_ISLAND_MAX_SHADOWS];
++
+     char * context_buffer;
+     size_t context_buffer_size;
+ 
+@@ -832,6 +846,86 @@ struct ggml_backend_sched {
+ #define tensor_id_copy(id, backend_id, copy_id) sched->hv_tensor_copies[(id) * sched->n_backends * sched->n_copies + (backend_id) * sched->n_copies + (copy_id)]
+ #define tensor_copy(tensor, backend_id, copy_id) tensor_id_copy(hash_id(tensor), backend_id, copy_id)
+ 
++static bool expertflow_static_island_input(const ggml_backend_sched_t sched, const struct ggml_tensor * tensor) {
++    if (sched->expertflow_static_island_layer < 0 || tensor == nullptr) {
++        return false;
++    }
++
++    char prefix[64];
++    snprintf(prefix, sizeof(prefix), "blk.%d.ffn_", sched->expertflow_static_island_layer);
++    const size_t prefix_len = strlen(prefix);
++    return strncmp(tensor->name, prefix, prefix_len) == 0 && strstr(tensor->name + prefix_len, "_exps.") != nullptr;
++}
++
++static struct expertflow_static_island_shadow * expertflow_static_island_find_shadow(
++        ggml_backend_sched_t sched,
++        const struct ggml_tensor * source) {
++    for (int i = 0; i < sched->expertflow_static_island_n_shadows; ++i) {
++        if (sched->expertflow_static_island_shadows[i].source == source) {
++            return &sched->expertflow_static_island_shadows[i];
++        }
++    }
++    return nullptr;
++}
++
++static struct ggml_tensor * expertflow_static_island_get_shadow(
++        ggml_backend_sched_t sched,
++        struct ggml_tensor * source,
++        int backend_id) {
++    struct expertflow_static_island_shadow * existing = expertflow_static_island_find_shadow(sched, source);
++    if (existing != nullptr) {
++        return existing->shadow;
++    }
++
++    if (sched->expertflow_static_island_n_shadows >= EXPERTFLOW_STATIC_ISLAND_MAX_SHADOWS) {
++        GGML_ABORT("ExpertFlow static island exceeded %d shadow tensors\n", EXPERTFLOW_STATIC_ISLAND_MAX_SHADOWS);
++    }
++
++    struct expertflow_static_island_shadow * entry =
++        &sched->expertflow_static_island_shadows[sched->expertflow_static_island_n_shadows++];
++    struct ggml_init_params params = {
++        /* .mem_size   = */ 2 * ggml_tensor_overhead(),
++        /* .mem_buffer = */ nullptr,
++        /* .no_alloc   = */ true,
++    };
++    entry->ctx = ggml_init(params);
++    if (entry->ctx == nullptr) {
++        GGML_ABORT("ExpertFlow static island failed to allocate shadow metadata\n");
++    }
++    entry->source = source;
++    entry->shadow = ggml_dup_tensor_layout(entry->ctx, source);
++    ggml_format_name(entry->shadow, "EXPERTFLOW_STATIC#%s", source->name);
++    entry->buffer = ggml_backend_alloc_ctx_tensors_from_buft(entry->ctx, sched->bufts[backend_id]);
++    if (entry->buffer == nullptr) {
++        GGML_ABORT("ExpertFlow static island failed to allocate CUDA shadow for %s\n", source->name);
++    }
++    ggml_backend_buffer_set_usage(entry->buffer, GGML_BACKEND_BUFFER_USAGE_WEIGHTS);
++    entry->loaded = false;
++    return entry->shadow;
++}
++
++static bool expertflow_static_island_preload(
++        ggml_backend_sched_t sched,
++        ggml_backend_t backend,
++        struct ggml_tensor * source,
++        struct ggml_tensor * shadow) {
++    struct expertflow_static_island_shadow * entry = expertflow_static_island_find_shadow(sched, source);
++    if (entry == nullptr || entry->shadow != shadow) {
++        GGML_ABORT("ExpertFlow static island shadow mapping is stale for %s\n", source->name);
++    }
++    if (entry->loaded) {
++        return true;
++    }
++    if (source->data == nullptr || ggml_nbytes(source) != ggml_nbytes(shadow)) {
++        GGML_ABORT("ExpertFlow static island source contract failed for %s\n", source->name);
++    }
++
++    ggml_backend_tensor_set_async(backend, shadow, source->data, 0, ggml_nbytes(source));
++    entry->loaded = true;
++    GGML_LOG_INFO("ExpertFlow static island preloaded %s: %zu bytes\n", source->name, ggml_nbytes(source));
++    return true;
++}
++
+ // returns the priority of the backend, lower id is higher priority
+ static int ggml_backend_sched_backend_id(ggml_backend_sched_t sched, ggml_backend_t backend) {
+     for (int i = 0; i < sched->n_backends; i++) {
+@@ -1354,8 +1448,13 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
+                     if (tensor_id_copy(src_id, cur_backend_id, 0) == NULL) {
+                         ggml_backend_t backend = sched->backends[cur_backend_id];
+                         for (int c = 0; c < sched->n_copies; c++) {
+-                            struct ggml_tensor * tensor_copy = ggml_dup_tensor_layout(sched->ctx, src);
+-                            ggml_format_name(tensor_copy, "%s#%s#%d", ggml_backend_name(backend), src->name, c);
++                            struct ggml_tensor * tensor_copy;
++                            if (expertflow_static_island_input(sched, src)) {
++                                tensor_copy = expertflow_static_island_get_shadow(sched, src, cur_backend_id);
++                            } else {
++                                tensor_copy = ggml_dup_tensor_layout(sched->ctx, src);
++                                ggml_format_name(tensor_copy, "%s#%s#%d", ggml_backend_name(backend), src->name, c);
++                            }
+                             if (sched->n_copies > 1) {
+                                 ggml_set_input(tensor_copy);
+                                 ggml_set_output(tensor_copy); // prevent ggml-alloc from overwriting the tensor
+@@ -1573,9 +1672,13 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
+                     ggml_backend_synchronize(split_backend);
+                 }
+ 
++                // Static-island shadows are persistent scheduler-owned operands. Populate each complete tensor once.
++                if (expertflow_static_island_input(sched, input)) {
++                    expertflow_static_island_preload(sched, split_backend, input, input_cpy);
+                 // when offloading MoE weights, we can reduce the amount of data copied by copying only the experts that are used
+-                ggml_tensor * node = split->graph.nodes[0];
+-                if (split->graph.n_nodes > 0 &&
++                } else {
++                    ggml_tensor * node = split->graph.nodes[0];
++                    if (split->graph.n_nodes > 0 &&
+                     ggml_backend_buffer_get_usage(input->buffer) == GGML_BACKEND_BUFFER_USAGE_WEIGHTS &&
+                     ggml_backend_buffer_is_host(input->buffer) && (
+                     (node->src[0] == input_cpy && node->op == GGML_OP_MUL_MAT_ID)
+@@ -1658,7 +1761,7 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
+                         last_id = id;
+                     }
+                     copy_experts(first_id, last_id);
+-                } else {
++                    } else {
+                     // try async copy, but if not possible, we can still use a sync copy without synchronizing the dst backend, since we handle the synchronization here with multiple copies and events
+                     // TODO: add public function to facilitate this, since applications do not have direct access to the backend interface
+                     if (!split_backend->iface.cpy_tensor_async || !split_backend->iface.cpy_tensor_async(input_backend, split_backend, input, input_cpy)) {
+@@ -1670,6 +1773,7 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
+                         }
+                         ggml_backend_tensor_copy(input, input_cpy);
+                     }
++                    }
+                 }
+             }
+         }
+@@ -1737,6 +1841,20 @@ ggml_backend_sched_t ggml_backend_sched_new(
+ 
+     struct ggml_backend_sched * sched = (ggml_backend_sched *) calloc(1, sizeof(struct ggml_backend_sched));
+ 
++    sched->expertflow_static_island_layer = -1;
++    const char * expertflow_static_layer = getenv("LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER");
++    if (expertflow_static_layer != nullptr && expertflow_static_layer[0] != '\0') {
++        char * end = nullptr;
++        const long layer = strtol(expertflow_static_layer, &end, 10);
++        if (end == expertflow_static_layer || *end != '\0' || layer < 0 || layer > INT_MAX) {
++            GGML_ABORT("invalid LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER: %s\n", expertflow_static_layer);
++        }
++        sched->expertflow_static_island_layer = (int) layer;
++        GGML_LOG_INFO("ExpertFlow static island enabled for layer %d\n", sched->expertflow_static_island_layer);
++    } else {
++        GGML_LOG_DEBUG("EXPERTFLOW_STATIC_ISLAND disabled\n");
++    }
++
+     const char * GGML_SCHED_DEBUG = getenv("GGML_SCHED_DEBUG");
+     sched->debug = GGML_SCHED_DEBUG ? atoi(GGML_SCHED_DEBUG) : 0;
+ 
+@@ -1802,6 +1920,10 @@ void ggml_backend_sched_free(ggml_backend_sched_t sched) {
+             ggml_backend_event_free(sched->events[b][c]);
+         }
+     }
++    for (int i = 0; i < sched->expertflow_static_island_n_shadows; ++i) {
++        ggml_backend_buffer_free(sched->expertflow_static_island_shadows[i].buffer);
++        ggml_free(sched->expertflow_static_island_shadows[i].ctx);
++    }
+     ggml_gallocr_free(sched->galloc);
+     ggml_free(sched->ctx);
+     ggml_hash_set_free(&sched->hash_set);
+diff --git a/src/llama-context.cpp b/src/llama-context.cpp
+index 3a469bc90bd90fbdf3d924afa696d4b61fcd1d00..924a10e6359c655c537d5d1e28fb22aac741fa9b 100644
+--- a/src/llama-context.cpp
++++ b/src/llama-context.cpp
+@@ -23,6 +23,85 @@
+ // llama_context
+ //
+ 
++static int expertflow_static_island_layer() {
++    const char * value = getenv("LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER");
++    if (value == nullptr || value[0] == '\0') {
++        return -1;
++    }
++
++    char * end = nullptr;
++    const long layer = strtol(value, &end, 10);
++    if (end == value || *end != '\0' || layer < 0 || layer > INT32_MAX) {
++        LLAMA_LOG_ERROR("invalid LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER: %s\n", value);
++        return -1;
++    }
++    return (int) layer;
++}
++
++static void expertflow_static_island_assign_chain(
++        ggml_backend_sched_t sched,
++        ggml_backend_t       backend,
++        ggml_tensor *        tensor,
++        int                  depth) {
++    if (tensor == nullptr || depth > 8) {
++        return;
++    }
++
++    switch (tensor->op) {
++        case GGML_OP_MUL_MAT_ID:
++            ggml_backend_sched_set_tensor_backend(sched, tensor, backend);
++            return;
++        case GGML_OP_MUL:
++            ggml_backend_sched_set_tensor_backend(sched, tensor, backend);
++            expertflow_static_island_assign_chain(sched, backend, tensor->src[0], depth + 1);
++            return;
++        case GGML_OP_GLU:
++            ggml_backend_sched_set_tensor_backend(sched, tensor, backend);
++            expertflow_static_island_assign_chain(sched, backend, tensor->src[0], depth + 1);
++            expertflow_static_island_assign_chain(sched, backend, tensor->src[1], depth + 1);
++            return;
++        case GGML_OP_GET_ROWS:
++        case GGML_OP_REPEAT:
++        case GGML_OP_RESHAPE:
++        case GGML_OP_VIEW:
++            ggml_backend_sched_set_tensor_backend(sched, tensor, backend);
++            expertflow_static_island_assign_chain(sched, backend, tensor->src[0], depth + 1);
++            return;
++        default:
++            return;
++    }
++}
++
++static void expertflow_static_island_assign(
++        ggml_backend_sched_t sched,
++        ggml_backend_t       backend,
++        ggml_backend_t       original_backend,
++        ggml_tensor *        tensor,
++        const char *         name,
++        int                  layer,
++        int                  target_layer) {
++    if (target_layer < 0 || layer != target_layer || backend == nullptr) {
++        return;
++    }
++
++    if (strcmp(name, "ffn_moe_weighted") == 0 || strcmp(name, "ffn_moe_out") == 0) {
++        ggml_backend_sched_set_tensor_backend(sched, tensor, original_backend);
++        return;
++    }
++
++    const bool is_expert_node =
++        strcmp(name, "ffn_moe_gate_up") == 0 ||
++        strcmp(name, "ffn_moe_up")      == 0 ||
++        strcmp(name, "ffn_moe_gate")    == 0 ||
++        strcmp(name, "ffn_moe_geglu")   == 0 ||
++        strcmp(name, "ffn_moe_swiglu")  == 0 ||
++        strcmp(name, "ffn_moe_reglu")   == 0 ||
++        strcmp(name, "ffn_moe_down")    == 0;
++    if (is_expert_node) {
++        expertflow_static_island_assign_chain(sched, backend, tensor, 0);
++    }
++}
++
+ static llm_graph_type ctx_type_to_graph_type(llama_context_type ctx_type) {
+     switch (ctx_type) {
+         case LLAMA_CONTEXT_TYPE_DEFAULT: return LLM_GRAPH_TYPE_DEFAULT;
+@@ -2456,6 +2535,19 @@ llm_graph_cb llama_context::graph_get_cb() const {
+                 }
+             }
+         }
++
++        const int static_island_layer = expertflow_static_island_layer();
++        if (static_island_layer >= 0) {
++            ggml_backend_t gpu_backend = nullptr;
++            for (const auto & backend : backends) {
++                if (ggml_backend_dev_type(ggml_backend_get_device(backend.get())) == GGML_BACKEND_DEVICE_TYPE_GPU) {
++                    gpu_backend = backend.get();
++                    break;
++                }
++            }
++            expertflow_static_island_assign(
++                sched.get(), gpu_backend, backend_cpu, cur, name, il, static_island_layer);
++        }
+     };
+ }
+ 
+-- 
+2.52.0.windows.1
+

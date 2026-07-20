@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "verdict": "QUALITY STOP",
+  "performance": {
+    "matched_pairs": 10,
+    "generated_tokens_per_run": 512,
+    "stock_mean_decode_tps": 22.28,
+    "stock_median_decode_tps": 22.5,
+    "stock_decode_tps_sd": 0.9919677414109793,
+    "expertflow_mean_decode_tps": 28.13,
+    "expertflow_median_decode_tps": 28.15,
+    "expertflow_decode_tps_sd": 0.21108186931983428,
+    "paired_improvement_pct": 26.4740557645802,
+    "paired_bootstrap_95_pct": [23.455919097522607, 29.827062894084648],
+    "strongest_frozen_stock_tps": 22.967,
+    "improvement_vs_strongest_frozen_stock_pct": 22.480080114947533,
+    "stock_prompt_tps": 17.11,
+    "expertflow_prompt_tps": 22.23,
+    "performance_gate_pass": true
+  },
+  "memory": {
+    "gpu_total_mib": 16311,
+    "expertflow_peak_process_owned_mib": 10966.801,
+    "remaining_mib": 5344.199,
+    "required_margin_mib": 256,
+    "gate_pass": true
+  },
+  "determinism": {
+    "stock_unique_response_hashes": 1,
+    "expertflow_unique_response_hashes": 1,
+    "gate_pass": true,
+    "cross_backend_bit_identity_required": false
+  },
+  "quality": {
+    "ppl_relative_change_pct": -2.9152085407372328,
+    "ppl_bootstrap_95_upper_pct": 2.2529372655983686,
+    "required_upper_pct": 1.0,
+    "ppl_gate_pass": false,
+    "mmlu_status": "not_run_after_terminal_ppl_gate"
+  },
+  "raw_artifacts": {
+    "performance_raw_sha256": "ac5ef1d6d6ba95221f5d67fa77714672e533d39d645a84e63e462966bd5e8bdf",
+    "performance_summary_sha256": "9ce97a42214032e12c0bf0b2d49b49c795e3a370a6cc6377f5f1031a54e34686",
+    "stock_nll_sha256": "04774b1e651c4370759199a99acf0d907711edd263682c286679ff5a43ed478f",
+    "expertflow_nll_sha256": "02e68fe952a4ecd75f2521a1971f7901032bca23cd66ecf74b5dd3bc3462dac1"
+  }
+}

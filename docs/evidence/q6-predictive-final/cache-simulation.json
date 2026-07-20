@@ -1,0 +1,345 @@
+{
+  "assumptions": {
+    "intrinsic_overhead_fraction_per_cached_layer": 0.011066666666666666,
+    "metadata_reserve_mib": 16.0,
+    "note": "Q6 misses are measured from routing traces. Transfer and intrinsic-remap costs are conservative cross-quantization projections from the existing exact Q4 live cache, not Q6 runtime measurements.",
+    "q4_live_effective_copy_mib_s": 4768.7,
+    "q4_measured_intrinsic_overhead_fraction_nine_layers": 0.0996,
+    "q6_bundle_bytes": 5358852,
+    "scaled_q6_transfer_ms_per_miss": 1.0716965877120108
+  },
+  "cache_order_lowest_profile_value_first": [
+    20,
+    15,
+    9,
+    5,
+    8,
+    7,
+    6,
+    4,
+    3,
+    2,
+    0,
+    1
+  ],
+  "candidates": [
+    {
+      "additional_full_layers_enabled": 0,
+      "beats_static_with_added_layer": false,
+      "blocking_ms_per_token": 0.40760259829492057,
+      "cached_layers": [
+        20,
+        15
+      ],
+      "candidate_gate_pass": false,
+      "capacity": 112,
+      "freed_bytes": 171483264,
+      "freed_mib": 163.5391845703125,
+      "h2d_mib_per_token": 1.9437345104889876,
+      "hit_rate_by_cached_layer": {
+        "15": 0.9751855287569573,
+        "20": 0.9772727272727273
+      },
+      "intrinsic_overhead_ms_per_token": 0.7868230833037089,
+      "memory_gate_pass": false,
+      "misses_per_token": 0.38033395176252316,
+      "optimistic_added_layer": null,
+      "optimistic_total_tps_with_one_added_layer": 27.215578487068512,
+      "projected_peak_mib": 10819.261815429687,
+      "projected_tps": 27.215578487068512,
+      "retained_tps_fraction": 0.9674930141154822,
+      "scheduler_metadata_reserve_mib": 16.0,
+      "static_layers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "throughput_gate_pass": true
+    },
+    {
+      "additional_full_layers_enabled": 0,
+      "beats_static_with_added_layer": false,
+      "blocking_ms_per_token": 0.823158418019986,
+      "cached_layers": [
+        20,
+        15,
+        9,
+        5
+      ],
+      "candidate_gate_pass": false,
+      "capacity": 112,
+      "freed_bytes": 342966528,
+      "freed_mib": 327.078369140625,
+      "h2d_mib_per_token": 3.925395548011907,
+      "hit_rate_by_cached_layer": {
+        "15": 0.9751855287569573,
+        "20": 0.9772727272727273,
+        "5": 0.9763450834879406,
+        "9": 0.9751855287569573
+      },
+      "intrinsic_overhead_ms_per_token": 1.5736461666074177,
+      "memory_gate_pass": false,
+      "misses_per_token": 0.7680890538033395,
+      "optimistic_added_layer": null,
+      "optimistic_total_tps_with_one_added_layer": 26.35321084163016,
+      "projected_peak_mib": 10655.722630859374,
+      "projected_tps": 26.35321084163016,
+      "retained_tps_fraction": 0.9368365034351283,
+      "scheduler_metadata_reserve_mib": 16.0,
+      "static_layers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "throughput_gate_pass": false
+    },
+    {
+      "additional_full_layers_enabled": 0,
+      "beats_static_with_added_layer": false,
+      "blocking_ms_per_token": 1.2725154288231666,
+      "cached_layers": [
+        20,
+        15,
+        9,
+        5,
+        8,
+        7
+      ],
+      "candidate_gate_pass": false,
+      "capacity": 112,
+      "freed_bytes": 514449792,
+      "freed_mib": 490.6175537109375,
+      "h2d_mib_per_token": 6.068244325429034,
+      "hit_rate_by_cached_layer": {
+        "15": 0.9751855287569573,
+        "20": 0.9772727272727273,
+        "5": 0.9763450834879406,
+        "7": 0.9735621521335807,
+        "8": 0.974025974025974,
+        "9": 0.9751855287569573
+      },
+      "intrinsic_overhead_ms_per_token": 2.3604692499111266,
+      "memory_gate_pass": false,
+      "misses_per_token": 1.1873840445269015,
+      "optimistic_added_layer": null,
+      "optimistic_total_tps_with_one_added_layer": 25.521779790748994,
+      "projected_peak_mib": 10492.183446289062,
+      "projected_tps": 25.521779790748994,
+      "retained_tps_fraction": 0.9072797650461782,
+      "scheduler_metadata_reserve_mib": 16.0,
+      "static_layers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "throughput_gate_pass": false
+    },
+    {
+      "additional_full_layers_enabled": 0,
+      "beats_static_with_added_layer": false,
+      "blocking_ms_per_token": 0.41157920900999306,
+      "cached_layers": [
+        20,
+        15
+      ],
+      "candidate_gate_pass": false,
+      "capacity": 96,
+      "freed_bytes": 342966528,
+      "freed_mib": 327.078369140625,
+      "h2d_mib_per_token": 1.9626977740059537,
+      "hit_rate_by_cached_layer": {
+        "15": 0.974721706864564,
+        "20": 0.9772727272727273
+      },
+      "intrinsic_overhead_ms_per_token": 0.7868230833037089,
+      "memory_gate_pass": false,
+      "misses_per_token": 0.3840445269016698,
+      "optimistic_added_layer": null,
+      "optimistic_total_tps_with_one_added_layer": 27.212633379111466,
+      "projected_peak_mib": 10655.722630859374,
+      "projected_tps": 27.212633379111466,
+      "retained_tps_fraction": 0.9673883177785804,
+      "scheduler_metadata_reserve_mib": 16.0,
+      "static_layers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "throughput_gate_pass": true
+    },
+    {
+      "additional_full_layers_enabled": 0,
+      "beats_static_with_added_layer": false,
+      "blocking_ms_per_token": 0.833099944807667,
+      "cached_layers": [
+        20,
+        15,
+        9,
+        5
+      ],
+      "candidate_gate_pass": false,
+      "capacity": 96,
+      "freed_bytes": 685933056,
+      "freed_mib": 654.15673828125,
+      "h2d_mib_per_token": 3.9728037068043216,
+      "hit_rate_by_cached_layer": {
+        "15": 0.974721706864564,
+        "20": 0.9772727272727273,
+        "5": 0.976113172541744,
+        "9": 0.974721706864564
+      },
+      "intrinsic_overhead_ms_per_token": 1.5736461666074177,
+      "memory_gate_pass": true,
+      "misses_per_token": 0.7773654916512059,
+      "optimistic_added_layer": null,
+      "optimistic_total_tps_with_one_added_layer": 26.346308341969255,
+      "projected_peak_mib": 10328.64426171875,
+      "projected_tps": 26.346308341969255,
+      "retained_tps_fraction": 0.9365911248478228,
+      "scheduler_metadata_reserve_mib": 16.0,
+      "static_layers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "throughput_gate_pass": false
+    },
+    {
+      "additional_full_layers_enabled": 1,
+      "beats_static_with_added_layer": false,
+      "blocking_ms_per_token": 1.3043283145437459,
+      "cached_layers": [
+        20,
+        15,
+        9,
+        5,
+        8,
+        7
+      ],
+      "candidate_gate_pass": false,
+      "capacity": 96,
+      "freed_bytes": 1028899584,
+      "freed_mib": 981.235107421875,
+      "h2d_mib_per_token": 6.219950433564761,
+      "hit_rate_by_cached_layer": {
+        "15": 0.974721706864564,
+        "20": 0.9772727272727273,
+        "5": 0.976113172541744,
+        "7": 0.9730983302411874,
+        "8": 0.9719387755102041,
+        "9": 0.974721706864564
+      },
+      "intrinsic_overhead_ms_per_token": 2.3604692499111266,
+      "memory_gate_pass": true,
+      "misses_per_token": 1.217068645640074,
+      "optimistic_added_layer": 13,
+      "optimistic_total_tps_with_one_added_layer": 25.831414037454824,
+      "projected_peak_mib": 10001.565892578124,
+      "projected_tps": 25.50107492066918,
+      "retained_tps_fraction": 0.9065437227397505,
+      "scheduler_metadata_reserve_mib": 16.0,
+      "static_layers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "throughput_gate_pass": false
+    }
+  ],
+  "gate": {
+    "any_candidate_pass": false,
+    "minimum_freed_mib": 500.0,
+    "minimum_retained_tps": 26.72,
+    "verdict": "NO CACHE OPPORTUNITY"
+  },
+  "measurement_kind": "simulation_from_measured_q6_routing_and_measured_q4_cache_cost",
+  "placement_classification": {
+    "CACHEABLE": [
+      20,
+      15,
+      9,
+      5,
+      8,
+      7
+    ],
+    "CPU": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      19,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "STATIC": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6
+    ],
+    "rule": "Keep the six highest measured CPU expert-time layers static; treat the six lower-value selected layers as cache candidates ordered by profile value. All unselected layers remain CPU because no simulated hybrid passed admission."
+  },
+  "schema_version": "1.0.0",
+  "selected_runtime_candidates": [],
+  "static_champion": {
+    "decode_tps": 28.13,
+    "layers": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      15,
+      20
+    ],
+    "peak_mib": 10966.801
+  }
+}

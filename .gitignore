@@ -3,6 +3,9 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 *.py[cod]
+.expertflow-server.pid
+expertflow-server.stdout.log
+expertflow-server.stderr.log
 
 # Generated project outputs
 artifacts/

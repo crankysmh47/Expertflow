@@ -1,0 +1,1094 @@
+{
+  "best4_three_repetition_determinism": true,
+  "generation": {
+    "layer0": {
+      "all_processes_passed": true,
+      "duration_seconds": {
+        "mean": 9.006185628571428,
+        "values": [
+          7.1265171,
+          13.4035191,
+          10.3706077,
+          7.5275863,
+          7.4781099,
+          9.2943116,
+          7.8426477
+        ],
+        "variance": 5.11490858643105
+      },
+      "generated_token_agreement_rate": 0.8571428571428571,
+      "peak_system_gpu_used_mib": 7093,
+      "router_order_overlap_rate": 0.46867671691792295,
+      "router_set_overlap_rate": 0.7087102177554438,
+      "tasks": {
+        "arithmetic_components": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 1980,
+            "candidate_events": 1980,
+            "order_matches": 1009,
+            "order_overlap_rate": 0.5095959595959596,
+            "reference_events": 1980,
+            "set_matches": 1602,
+            "set_overlap_rate": 0.8090909090909091
+          },
+          "status": "passed"
+        },
+        "python_merge_intervals": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 6840,
+            "candidate_events": 6900,
+            "order_matches": 2300,
+            "order_overlap_rate": 0.3362573099415205,
+            "reference_events": 6840,
+            "set_matches": 3267,
+            "set_overlap_rate": 0.4776315789473684
+          },
+          "status": "passed"
+        },
+        "python_palindrome": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 4350,
+            "candidate_events": 4350,
+            "order_matches": 2663,
+            "order_overlap_rate": 0.612183908045977,
+            "reference_events": 4350,
+            "set_matches": 3687,
+            "set_overlap_rate": 0.8475862068965517
+          },
+          "status": "passed"
+        },
+        "reasoning_request_rate": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2310,
+            "candidate_events": 2310,
+            "order_matches": 977,
+            "order_overlap_rate": 0.42294372294372296,
+            "reference_events": 2310,
+            "set_matches": 1712,
+            "set_overlap_rate": 0.7411255411255411
+          },
+          "status": "passed"
+        },
+        "reproducibility_bullets": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2250,
+            "candidate_events": 2250,
+            "order_matches": 1208,
+            "order_overlap_rate": 0.5368888888888889,
+            "reference_events": 2250,
+            "set_matches": 1809,
+            "set_overlap_rate": 0.804
+          },
+          "status": "passed"
+        },
+        "structured_json": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 3630,
+            "candidate_events": 3630,
+            "order_matches": 1672,
+            "order_overlap_rate": 0.46060606060606063,
+            "reference_events": 3630,
+            "set_matches": 2813,
+            "set_overlap_rate": 0.774931129476584
+          },
+          "status": "passed"
+        },
+        "translation_french": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2520,
+            "candidate_events": 2520,
+            "order_matches": 1363,
+            "order_overlap_rate": 0.5408730158730158,
+            "reference_events": 2520,
+            "set_matches": 2034,
+            "set_overlap_rate": 0.8071428571428572
+          },
+          "status": "passed"
+        }
+      }
+    },
+    "layer15": {
+      "all_processes_passed": true,
+      "duration_seconds": {
+        "mean": 9.027289571428572,
+        "values": [
+          7.1156742,
+          13.6421638,
+          10.0512071,
+          7.4860072,
+          7.4824035,
+          9.5683821,
+          7.8451891
+        ],
+        "variance": 5.408685258388086
+      },
+      "generated_token_agreement_rate": 0.7142857142857143,
+      "peak_system_gpu_used_mib": 7093,
+      "router_order_overlap_rate": 0.6385259631490787,
+      "router_set_overlap_rate": 0.7763400335008375,
+      "tasks": {
+        "arithmetic_components": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 1980,
+            "candidate_events": 1980,
+            "order_matches": 1504,
+            "order_overlap_rate": 0.7595959595959596,
+            "reference_events": 1980,
+            "set_matches": 1796,
+            "set_overlap_rate": 0.907070707070707
+          },
+          "status": "passed"
+        },
+        "python_merge_intervals": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 6840,
+            "candidate_events": 6870,
+            "order_matches": 2065,
+            "order_overlap_rate": 0.3019005847953216,
+            "reference_events": 6840,
+            "set_matches": 2950,
+            "set_overlap_rate": 0.43128654970760233
+          },
+          "status": "passed"
+        },
+        "python_palindrome": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 4350,
+            "candidate_events": 4350,
+            "order_matches": 3569,
+            "order_overlap_rate": 0.8204597701149425,
+            "reference_events": 4350,
+            "set_matches": 4091,
+            "set_overlap_rate": 0.9404597701149425
+          },
+          "status": "passed"
+        },
+        "reasoning_request_rate": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2310,
+            "candidate_events": 2310,
+            "order_matches": 1799,
+            "order_overlap_rate": 0.7787878787878788,
+            "reference_events": 2310,
+            "set_matches": 2142,
+            "set_overlap_rate": 0.9272727272727272
+          },
+          "status": "passed"
+        },
+        "reproducibility_bullets": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2250,
+            "candidate_events": 2250,
+            "order_matches": 1433,
+            "order_overlap_rate": 0.6368888888888888,
+            "reference_events": 2250,
+            "set_matches": 1884,
+            "set_overlap_rate": 0.8373333333333334
+          },
+          "status": "passed"
+        },
+        "structured_json": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 3630,
+            "candidate_events": 3630,
+            "order_matches": 2856,
+            "order_overlap_rate": 0.7867768595041322,
+            "reference_events": 3630,
+            "set_matches": 3331,
+            "set_overlap_rate": 0.9176308539944904
+          },
+          "status": "passed"
+        },
+        "translation_french": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2520,
+            "candidate_events": 2520,
+            "order_matches": 2022,
+            "order_overlap_rate": 0.8023809523809524,
+            "reference_events": 2520,
+            "set_matches": 2345,
+            "set_overlap_rate": 0.9305555555555556
+          },
+          "status": "passed"
+        }
+      }
+    },
+    "layer20": {
+      "all_processes_passed": true,
+      "duration_seconds": {
+        "mean": 9.045909585714286,
+        "values": [
+          7.1627288,
+          13.3140554,
+          10.0397492,
+          7.8365601,
+          7.4824924,
+          9.3149437,
+          8.1708375
+        ],
+        "variance": 4.58268095460696
+      },
+      "generated_token_agreement_rate": 0.7142857142857143,
+      "peak_system_gpu_used_mib": 7093,
+      "router_order_overlap_rate": 0.6749162479061976,
+      "router_set_overlap_rate": 0.7865159128978224,
+      "tasks": {
+        "arithmetic_components": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 1980,
+            "candidate_events": 1980,
+            "order_matches": 1653,
+            "order_overlap_rate": 0.8348484848484848,
+            "reference_events": 1980,
+            "set_matches": 1863,
+            "set_overlap_rate": 0.9409090909090909
+          },
+          "status": "passed"
+        },
+        "python_merge_intervals": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 6840,
+            "candidate_events": 6870,
+            "order_matches": 2134,
+            "order_overlap_rate": 0.31198830409356726,
+            "reference_events": 6840,
+            "set_matches": 2942,
+            "set_overlap_rate": 0.4301169590643275
+          },
+          "status": "passed"
+        },
+        "python_palindrome": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 4350,
+            "candidate_events": 4350,
+            "order_matches": 3751,
+            "order_overlap_rate": 0.8622988505747127,
+            "reference_events": 4350,
+            "set_matches": 4140,
+            "set_overlap_rate": 0.9517241379310345
+          },
+          "status": "passed"
+        },
+        "reasoning_request_rate": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2310,
+            "candidate_events": 2310,
+            "order_matches": 1934,
+            "order_overlap_rate": 0.8372294372294372,
+            "reference_events": 2310,
+            "set_matches": 2177,
+            "set_overlap_rate": 0.9424242424242424
+          },
+          "status": "passed"
+        },
+        "reproducibility_bullets": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2250,
+            "candidate_events": 2250,
+            "order_matches": 1502,
+            "order_overlap_rate": 0.6675555555555556,
+            "reference_events": 2250,
+            "set_matches": 1900,
+            "set_overlap_rate": 0.8444444444444444
+          },
+          "status": "passed"
+        },
+        "structured_json": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 3630,
+            "candidate_events": 3630,
+            "order_matches": 3012,
+            "order_overlap_rate": 0.8297520661157025,
+            "reference_events": 3630,
+            "set_matches": 3397,
+            "set_overlap_rate": 0.9358126721763086
+          },
+          "status": "passed"
+        },
+        "translation_french": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2520,
+            "candidate_events": 2520,
+            "order_matches": 2131,
+            "order_overlap_rate": 0.8456349206349206,
+            "reference_events": 2520,
+            "set_matches": 2363,
+            "set_overlap_rate": 0.9376984126984127
+          },
+          "status": "passed"
+        }
+      }
+    },
+    "layers-0-1-15-20-r1": {
+      "all_processes_passed": true,
+      "duration_seconds": {
+        "mean": 9.417953757142856,
+        "values": [
+          7.7625582,
+          13.9150149,
+          10.2474353,
+          7.8276002,
+          8.1266202,
+          9.6063367,
+          8.4401108
+        ],
+        "variance": 4.806727462943022
+      },
+      "generated_token_agreement_rate": 0.5714285714285714,
+      "peak_system_gpu_used_mib": 8329,
+      "router_order_overlap_rate": 0.34564489112227803,
+      "router_set_overlap_rate": 0.5783500837520938,
+      "tasks": {
+        "arithmetic_components": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 1980,
+            "candidate_events": 1980,
+            "order_matches": 919,
+            "order_overlap_rate": 0.46414141414141413,
+            "reference_events": 1980,
+            "set_matches": 1558,
+            "set_overlap_rate": 0.7868686868686868
+          },
+          "status": "passed"
+        },
+        "python_merge_intervals": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 6840,
+            "candidate_events": 6870,
+            "order_matches": 1542,
+            "order_overlap_rate": 0.22543859649122808,
+            "reference_events": 6840,
+            "set_matches": 2681,
+            "set_overlap_rate": 0.3919590643274854
+          },
+          "status": "passed"
+        },
+        "python_palindrome": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 4200,
+            "candidate_events": 4200,
+            "order_matches": 887,
+            "order_overlap_rate": 0.20390804597701148,
+            "reference_events": 4350,
+            "set_matches": 1381,
+            "set_overlap_rate": 0.3174712643678161
+          },
+          "status": "passed"
+        },
+        "reasoning_request_rate": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2310,
+            "candidate_events": 2310,
+            "order_matches": 966,
+            "order_overlap_rate": 0.41818181818181815,
+            "reference_events": 2310,
+            "set_matches": 1716,
+            "set_overlap_rate": 0.7428571428571429
+          },
+          "status": "passed"
+        },
+        "reproducibility_bullets": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2250,
+            "candidate_events": 2250,
+            "order_matches": 907,
+            "order_overlap_rate": 0.4031111111111111,
+            "reference_events": 2250,
+            "set_matches": 1645,
+            "set_overlap_rate": 0.7311111111111112
+          },
+          "status": "passed"
+        },
+        "structured_json": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 3630,
+            "candidate_events": 3630,
+            "order_matches": 1653,
+            "order_overlap_rate": 0.4553719008264463,
+            "reference_events": 3630,
+            "set_matches": 2789,
+            "set_overlap_rate": 0.7683195592286501
+          },
+          "status": "passed"
+        },
+        "translation_french": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2520,
+            "candidate_events": 2520,
+            "order_matches": 1380,
+            "order_overlap_rate": 0.5476190476190477,
+            "reference_events": 2520,
+            "set_matches": 2041,
+            "set_overlap_rate": 0.8099206349206349
+          },
+          "status": "passed"
+        }
+      }
+    },
+    "layers-0-1-15-20-r2": {
+      "all_processes_passed": true,
+      "duration_seconds": {
+        "mean": 9.3194411,
+        "values": [
+          7.4530147,
+          13.9272382,
+          10.241122,
+          8.1189134,
+          7.7952817,
+          9.5805483,
+          8.1199694
+        ],
+        "variance": 5.139345877813093
+      },
+      "generated_token_agreement_rate": 0.5714285714285714,
+      "peak_system_gpu_used_mib": 8329,
+      "router_order_overlap_rate": 0.34564489112227803,
+      "router_set_overlap_rate": 0.5783500837520938,
+      "tasks": {
+        "arithmetic_components": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 1980,
+            "candidate_events": 1980,
+            "order_matches": 919,
+            "order_overlap_rate": 0.46414141414141413,
+            "reference_events": 1980,
+            "set_matches": 1558,
+            "set_overlap_rate": 0.7868686868686868
+          },
+          "status": "passed"
+        },
+        "python_merge_intervals": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 6840,
+            "candidate_events": 6870,
+            "order_matches": 1542,
+            "order_overlap_rate": 0.22543859649122808,
+            "reference_events": 6840,
+            "set_matches": 2681,
+            "set_overlap_rate": 0.3919590643274854
+          },
+          "status": "passed"
+        },
+        "python_palindrome": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 4200,
+            "candidate_events": 4200,
+            "order_matches": 887,
+            "order_overlap_rate": 0.20390804597701148,
+            "reference_events": 4350,
+            "set_matches": 1381,
+            "set_overlap_rate": 0.3174712643678161
+          },
+          "status": "passed"
+        },
+        "reasoning_request_rate": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2310,
+            "candidate_events": 2310,
+            "order_matches": 966,
+            "order_overlap_rate": 0.41818181818181815,
+            "reference_events": 2310,
+            "set_matches": 1716,
+            "set_overlap_rate": 0.7428571428571429
+          },
+          "status": "passed"
+        },
+        "reproducibility_bullets": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2250,
+            "candidate_events": 2250,
+            "order_matches": 907,
+            "order_overlap_rate": 0.4031111111111111,
+            "reference_events": 2250,
+            "set_matches": 1645,
+            "set_overlap_rate": 0.7311111111111112
+          },
+          "status": "passed"
+        },
+        "structured_json": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 3630,
+            "candidate_events": 3630,
+            "order_matches": 1653,
+            "order_overlap_rate": 0.4553719008264463,
+            "reference_events": 3630,
+            "set_matches": 2789,
+            "set_overlap_rate": 0.7683195592286501
+          },
+          "status": "passed"
+        },
+        "translation_french": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2520,
+            "candidate_events": 2520,
+            "order_matches": 1380,
+            "order_overlap_rate": 0.5476190476190477,
+            "reference_events": 2520,
+            "set_matches": 2041,
+            "set_overlap_rate": 0.8099206349206349
+          },
+          "status": "passed"
+        }
+      }
+    },
+    "layers-0-1-15-20-r3": {
+      "all_processes_passed": true,
+      "duration_seconds": {
+        "mean": 9.376490414285714,
+        "values": [
+          7.4635197,
+          13.8721744,
+          10.6274318,
+          8.1499062,
+          7.7893563,
+          9.604189,
+          8.1288555
+        ],
+        "variance": 5.177904810060146
+      },
+      "generated_token_agreement_rate": 0.5714285714285714,
+      "peak_system_gpu_used_mib": 8329,
+      "router_order_overlap_rate": 0.34564489112227803,
+      "router_set_overlap_rate": 0.5783500837520938,
+      "tasks": {
+        "arithmetic_components": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 1980,
+            "candidate_events": 1980,
+            "order_matches": 919,
+            "order_overlap_rate": 0.46414141414141413,
+            "reference_events": 1980,
+            "set_matches": 1558,
+            "set_overlap_rate": 0.7868686868686868
+          },
+          "status": "passed"
+        },
+        "python_merge_intervals": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 6840,
+            "candidate_events": 6870,
+            "order_matches": 1542,
+            "order_overlap_rate": 0.22543859649122808,
+            "reference_events": 6840,
+            "set_matches": 2681,
+            "set_overlap_rate": 0.3919590643274854
+          },
+          "status": "passed"
+        },
+        "python_palindrome": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 4200,
+            "candidate_events": 4200,
+            "order_matches": 887,
+            "order_overlap_rate": 0.20390804597701148,
+            "reference_events": 4350,
+            "set_matches": 1381,
+            "set_overlap_rate": 0.3174712643678161
+          },
+          "status": "passed"
+        },
+        "reasoning_request_rate": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2310,
+            "candidate_events": 2310,
+            "order_matches": 966,
+            "order_overlap_rate": 0.41818181818181815,
+            "reference_events": 2310,
+            "set_matches": 1716,
+            "set_overlap_rate": 0.7428571428571429
+          },
+          "status": "passed"
+        },
+        "reproducibility_bullets": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2250,
+            "candidate_events": 2250,
+            "order_matches": 907,
+            "order_overlap_rate": 0.4031111111111111,
+            "reference_events": 2250,
+            "set_matches": 1645,
+            "set_overlap_rate": 0.7311111111111112
+          },
+          "status": "passed"
+        },
+        "structured_json": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 3630,
+            "candidate_events": 3630,
+            "order_matches": 1653,
+            "order_overlap_rate": 0.4553719008264463,
+            "reference_events": 3630,
+            "set_matches": 2789,
+            "set_overlap_rate": 0.7683195592286501
+          },
+          "status": "passed"
+        },
+        "translation_french": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2520,
+            "candidate_events": 2520,
+            "order_matches": 1380,
+            "order_overlap_rate": 0.5476190476190477,
+            "reference_events": 2520,
+            "set_matches": 2041,
+            "set_overlap_rate": 0.8099206349206349
+          },
+          "status": "passed"
+        }
+      }
+    },
+    "layers-0-15": {
+      "all_processes_passed": true,
+      "duration_seconds": {
+        "mean": 9.16908312857143,
+        "values": [
+          7.4594761,
+          13.6365804,
+          10.0045561,
+          7.8398348,
+          7.490501,
+          9.5892618,
+          8.1633717
+        ],
+        "variance": 4.891974637200372
+      },
+      "generated_token_agreement_rate": 0.5714285714285714,
+      "peak_system_gpu_used_mib": 7505,
+      "router_order_overlap_rate": 0.38513400335008374,
+      "router_set_overlap_rate": 0.606574539363484,
+      "tasks": {
+        "arithmetic_components": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 1980,
+            "candidate_events": 1980,
+            "order_matches": 1020,
+            "order_overlap_rate": 0.5151515151515151,
+            "reference_events": 1980,
+            "set_matches": 1623,
+            "set_overlap_rate": 0.8196969696969697
+          },
+          "status": "passed"
+        },
+        "python_merge_intervals": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 6840,
+            "candidate_events": 6900,
+            "order_matches": 2312,
+            "order_overlap_rate": 0.33801169590643276,
+            "reference_events": 6840,
+            "set_matches": 3271,
+            "set_overlap_rate": 0.4782163742690059
+          },
+          "status": "passed"
+        },
+        "python_palindrome": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 4230,
+            "candidate_events": 4230,
+            "order_matches": 902,
+            "order_overlap_rate": 0.20735632183908045,
+            "reference_events": 4350,
+            "set_matches": 1414,
+            "set_overlap_rate": 0.3250574712643678
+          },
+          "status": "passed"
+        },
+        "reasoning_request_rate": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2310,
+            "candidate_events": 2310,
+            "order_matches": 983,
+            "order_overlap_rate": 0.42554112554112555,
+            "reference_events": 2310,
+            "set_matches": 1711,
+            "set_overlap_rate": 0.7406926406926407
+          },
+          "status": "passed"
+        },
+        "reproducibility_bullets": {
+          "generated_tokens_exact": false,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2250,
+            "candidate_events": 2250,
+            "order_matches": 944,
+            "order_overlap_rate": 0.41955555555555557,
+            "reference_events": 2250,
+            "set_matches": 1636,
+            "set_overlap_rate": 0.7271111111111112
+          },
+          "status": "passed"
+        },
+        "structured_json": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 3630,
+            "candidate_events": 3630,
+            "order_matches": 1664,
+            "order_overlap_rate": 0.4584022038567493,
+            "reference_events": 3630,
+            "set_matches": 2782,
+            "set_overlap_rate": 0.7663911845730027
+          },
+          "status": "passed"
+        },
+        "translation_french": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2520,
+            "candidate_events": 2520,
+            "order_matches": 1372,
+            "order_overlap_rate": 0.5444444444444444,
+            "reference_events": 2520,
+            "set_matches": 2048,
+            "set_overlap_rate": 0.8126984126984127
+          },
+          "status": "passed"
+        }
+      }
+    },
+    "off": {
+      "all_processes_passed": true,
+      "duration_seconds": {
+        "mean": 8.957597142857143,
+        "values": [
+          7.1432458,
+          13.315744,
+          10.4520275,
+          7.5255412,
+          7.4549611,
+          8.9866595,
+          7.8250009
+        ],
+        "variance": 5.01849251446741
+      },
+      "generated_token_agreement_rate": 1.0,
+      "peak_system_gpu_used_mib": 6681,
+      "router_order_overlap_rate": 1.0,
+      "router_set_overlap_rate": 1.0,
+      "tasks": {
+        "arithmetic_components": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 1980,
+            "candidate_events": 1980,
+            "order_matches": 1980,
+            "order_overlap_rate": 1.0,
+            "reference_events": 1980,
+            "set_matches": 1980,
+            "set_overlap_rate": 1.0
+          },
+          "status": "passed"
+        },
+        "python_merge_intervals": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 6840,
+            "candidate_events": 6840,
+            "order_matches": 6840,
+            "order_overlap_rate": 1.0,
+            "reference_events": 6840,
+            "set_matches": 6840,
+            "set_overlap_rate": 1.0
+          },
+          "status": "passed"
+        },
+        "python_palindrome": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 4350,
+            "candidate_events": 4350,
+            "order_matches": 4350,
+            "order_overlap_rate": 1.0,
+            "reference_events": 4350,
+            "set_matches": 4350,
+            "set_overlap_rate": 1.0
+          },
+          "status": "passed"
+        },
+        "reasoning_request_rate": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2310,
+            "candidate_events": 2310,
+            "order_matches": 2310,
+            "order_overlap_rate": 1.0,
+            "reference_events": 2310,
+            "set_matches": 2310,
+            "set_overlap_rate": 1.0
+          },
+          "status": "passed"
+        },
+        "reproducibility_bullets": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2250,
+            "candidate_events": 2250,
+            "order_matches": 2250,
+            "order_overlap_rate": 1.0,
+            "reference_events": 2250,
+            "set_matches": 2250,
+            "set_overlap_rate": 1.0
+          },
+          "status": "passed"
+        },
+        "structured_json": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 3630,
+            "candidate_events": 3630,
+            "order_matches": 3630,
+            "order_overlap_rate": 1.0,
+            "reference_events": 3630,
+            "set_matches": 3630,
+            "set_overlap_rate": 1.0
+          },
+          "status": "passed"
+        },
+        "translation_french": {
+          "generated_tokens_exact": true,
+          "prompt_tokens_exact": true,
+          "routing": {
+            "aligned_events": 2520,
+            "candidate_events": 2520,
+            "order_matches": 2520,
+            "order_overlap_rate": 1.0,
+            "reference_events": 2520,
+            "set_matches": 2520,
+            "set_overlap_rate": 1.0
+          },
+          "status": "passed"
+        }
+      }
+    }
+  },
+  "performance": {
+    "best4_decode_relative_change": 0.004926108374384119,
+    "layer0": {
+      "decode_tps": {
+        "mean": 27.2,
+        "values": [
+          27.2
+        ],
+        "variance": null
+      },
+      "peak_system_gpu_used_mib": [
+        7093
+      ],
+      "prompt_tps": {
+        "mean": 24.5,
+        "values": [
+          24.5
+        ],
+        "variance": null
+      }
+    },
+    "layer15": {
+      "decode_tps": {
+        "mean": 26.2,
+        "values": [
+          26.2
+        ],
+        "variance": null
+      },
+      "peak_system_gpu_used_mib": [
+        7093
+      ],
+      "prompt_tps": {
+        "mean": 22.9,
+        "values": [
+          22.9
+        ],
+        "variance": null
+      }
+    },
+    "layer20": {
+      "decode_tps": {
+        "mean": 26.8,
+        "values": [
+          26.8
+        ],
+        "variance": null
+      },
+      "peak_system_gpu_used_mib": [
+        7093
+      ],
+      "prompt_tps": {
+        "mean": 24.9,
+        "values": [
+          24.9
+        ],
+        "variance": null
+      }
+    },
+    "layers-0-1-15-20": {
+      "decode_tps": {
+        "mean": 27.2,
+        "values": [
+          27.4,
+          26.9,
+          27.3
+        ],
+        "variance": 0.07000000000000021
+      },
+      "peak_system_gpu_used_mib": [
+        8329,
+        8329,
+        8329
+      ],
+      "prompt_tps": {
+        "mean": 25.900000000000002,
+        "values": [
+          25.9,
+          25.8,
+          26.0
+        ],
+        "variance": 0.009999999999999929
+      }
+    },
+    "layers-0-15": {
+      "decode_tps": {
+        "mean": 26.6,
+        "values": [
+          26.6
+        ],
+        "variance": null
+      },
+      "peak_system_gpu_used_mib": [
+        7505
+      ],
+      "prompt_tps": {
+        "mean": 24.5,
+        "values": [
+          24.5
+        ],
+        "variance": null
+      }
+    },
+    "off": {
+      "decode_tps": {
+        "mean": 27.066666666666666,
+        "values": [
+          26.8,
+          27.1,
+          27.3
+        ],
+        "variance": 0.06333333333333335
+      },
+      "peak_system_gpu_used_mib": [
+        6681,
+        6681,
+        6681
+      ],
+      "prompt_tps": {
+        "mean": 24.066666666666666,
+        "values": [
+          24.1,
+          24.3,
+          23.8
+        ],
+        "variance": 0.06333333333333335
+      }
+    }
+  }
+}

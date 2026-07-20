@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "final-sprint-stage0",
+  "measurement_date": "2026-07-17",
+  "verdict": "STOP",
+  "gate": {
+    "stock_maximum_stable_context_tokens_measured_lower_bound": 917504,
+    "required_1_5x_context_tokens": 1376256,
+    "smaller_gpu_fallback_predefined": false,
+    "safety_margin_mib": 256,
+    "reason": "Both whole-model arenas reduce, rather than increase, the measured stock context capacity; no predefined smaller-GPU fallback exists."
+  },
+  "runtime_package": {
+    "upstream_sha": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+    "final_sha": "9039ea21e493619da5991dfb699a94a60bb3a28c",
+    "source_archive": {
+      "path": "C:/models/expertflow/runs/final-sprint-stage0/runtime-package/llama-cpp-9039ea21-source.zip",
+      "bytes": 37207260,
+      "sha256": "4c6bf0d09bb178f5b7d0234de08a309437cd6afde6ad2139a9fec5a152300144"
+    },
+    "ggml_backend_archive": {
+      "path": "C:/models/expertflow/runs/final-sprint-stage0/runtime-package/ggml-backend-9039ea21.zip",
+      "bytes": 34132,
+      "sha256": "369704fa06c69d1a7e6e5494320b71d38096f61dc06ae8a31905452d7a036bda",
+      "git_blob": "24719e608a46c0406281ec697457076f84e86aba"
+    },
+    "patch_count": 12,
+    "patch_directory": "C:/models/expertflow/runs/final-sprint-stage0/runtime-package/patches",
+    "patches": [
+      {"name": "0001-feat-add-exact-layer-24-blocking-expert-cache.patch", "sha256": "4fec225c3315d88545e15581345cd8ed0ddf4258c6005a898ed30d1cff3ec4a8"},
+      {"name": "0002-feat-add-exact-32-slot-reactive-expert-cache.patch", "sha256": "13b09659b00e79576bff0a1771fdee893897026efd4676cd19eeee77247a1b2d"},
+      {"name": "0003-feat-generalize-expert-cache-layer-metadata.patch", "sha256": "8e894eece4c7914a1bb16ebb4e71e9b2f608759a59e0950630414007d8bc0456"},
+      {"name": "0004-feat-plan-consolidated-per-layer-cache-arena.patch", "sha256": "49d91366b6f0fe7f01e99256385e109f1acb9d16614400feb63b1204ddeff6c1"},
+      {"name": "0005-feat-add-generic-multilayer-cache-runtime.patch", "sha256": "4fc0fe5c0b3677154adb6e22a2c4fd0d8b57ee370abd6c301c892fc2c4b6826d"},
+      {"name": "0006-ggml-restrict-expert-cache-to-cuda-resident-layers.patch", "sha256": "d9e835c7fc448e81dfe98eced9927a4612554e25e9bbe7a59946807c21fc3372"},
+      {"name": "0007-ggml-add-aggregate-expert-cache-telemetry.patch", "sha256": "3c32cf6734435a210765955ab8afbefff6a27c86972c6746a1801d8817b6c5af"},
+      {"name": "0008-ggml-add-ExpertFlow-predictor-shadow-telemetry.patch", "sha256": "5f468d00cc0401f7b71bf9be9b705359eeb7b69c466ebbd16fc2ddd4dc66376c"},
+      {"name": "0009-ggml-add-bounded-ExpertFlow-async-prefetch-primitive.patch", "sha256": "f523b743b0cdbbeda544c2a588a21d54e15e8f062a810475b7fc75f3c9cbb1a6"},
+      {"name": "0010-feat-add-temporal-layer24-live-shadow.patch", "sha256": "5061804454c99c963fa01167d59aadcbf68118fd21b1d9152a9f07d24f5dcce3"},
+      {"name": "0011-ggml-add-temporal-expert-sidecar.patch", "sha256": "1377cd3ea6eaf406c1f54499e6f0fbd665272d241b262e9428006a41125e4190"},
+      {"name": "0012-ggml-filter-temporal-prefetch-by-projected-cache-sta.patch", "sha256": "fab457994e6aa922e951589f9dae0b4385a4abe9183add4469b2d8b8cb9ed37e"}
+    ],
+    "build": {
+      "generator": "Ninja",
+      "type": "Release",
+      "ggml_cuda": true,
+      "cuda_architectures": "120a-real",
+      "msvc": "19.39.33523",
+      "cuda": "12.8.93",
+      "driver": "591.86",
+      "gpu": "NVIDIA GeForce RTX 5060 Ti",
+      "gpu_total_mib": 16311,
+      "modified_llama_cli_sha256": "110fdcd28351dde5a70f4fd392b8c9e2a4fb0ab8dbfc9e17b73f5f29b91d8a76",
+      "stock_llama_cli_sha256": "56d5cbe8fc5782595a280345e5e2f70bc1bcc79c94130e1b73bb4eb3cdeacd0f"
+    }
+  },
+  "model": {
+    "repository": "google/gemma-4-26B-A4B-it",
+    "revision": "21bfe2a8c89118c9a1a2aa242934fc4d1c0fff15",
+    "gguf": "gemma-4-26B_q4_0-it.gguf",
+    "bytes": 14439361440,
+    "sha256": "4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5",
+    "expert_layers": 30,
+    "experts_per_layer": 128
+  },
+  "canonical_exactness_reference": {
+    "mode": "observer_cache_off_ngl10",
+    "seed": 42,
+    "domains": {
+      "general": {"tokens_sha256": "cc39221861c166c56692f17768bdc6dda3cb99f93454d2b85332d40a6dce1a73", "router_trace_sha256": "767963bf95c28ed6f9abd17c3dd1e181b96964c77418780e9c6c98c47dfb9a50"},
+      "code": {"tokens_sha256": "d21a3c894bd691b3ad18b9fce92332d95995e55644605b13e82af4229b5becb1", "router_trace_sha256": "f41d1763e0cc2b052f2c95f49f6291d908cf7f7c20a45c0121b674a128133eef"},
+      "translation": {"tokens_sha256": "069186d6c1e92e85c4773d7fff4fa3eca12a2884f679b32c42005540173da869", "router_trace_sha256": "60ff2a6aa9f70a7c7aaf94d8f5e4e6c472ad0f6114d88e9bcbd75ad638c465d4"}
+    }
+  },
+  "bundle_audit": {
+    "layers_audited": 30,
+    "objects_audited": 3840,
+    "components": [
+      {"name": "gate_up_weight", "type": "Q4_0", "bytes_per_expert": 2230272},
+      {"name": "down_weight", "type": "Q4_0", "bytes_per_expert": 1115136},
+      {"name": "down_scale", "type": "F32", "bytes_per_expert": 4}
+    ],
+    "packed_expert_bytes": 3345412,
+    "remap_consistent": true,
+    "remap_site_count": 1,
+    "hidden_cuda_duplicate_in_current_enabled_path": false,
+    "whole_model_hidden_duplicate_status": "projected_only_until_R1"
+  },
+  "kv_fit": {
+    "placement_ngl": 10,
+    "points": 9,
+    "context_range_tokens": [2048, 262144],
+    "ols_bytes_per_token": 12160.500462703307,
+    "ols_kib_per_token": 11.875488733108698,
+    "upper_95_kib_per_token": 12.638502979847383,
+    "conservative_kib_per_token": 13.0,
+    "r_squared": 0.9948600363747504
+  },
+  "stock_frontier": [
+    {"context": 2048, "best_ngl": 99, "decode_tps": 97.3, "process_peak_mib": 13886.695},
+    {"context": 8192, "best_ngl": 99, "decode_tps": 97.8, "process_peak_mib": 13886.695},
+    {"context": 16384, "best_ngl": 99, "decode_tps": 95.8, "process_peak_mib": 13886.695},
+    {"context": 32768, "best_ngl": 20, "decode_tps": 40.8, "process_peak_mib": 10276.773},
+    {"context": 65536, "best_ngl": 20, "decode_tps": 41.3, "process_peak_mib": 10282.68},
+    {"context": 98304, "best_ngl": 20, "decode_tps": 37.4, "process_peak_mib": 11348.906},
+    {"context": 131072, "best_ngl": 20, "decode_tps": 41.0, "process_peak_mib": 12020.973},
+    {"context": 917504, "best_tested_ngl": 10, "decode_tps": 13.9, "process_peak_mib": 15598.27, "within_256_mib_margin": true}
+  ],
+  "arena_estimates": {
+    "full_expert_bytes": 12846382080,
+    "nonexpert_fixed_estimate_mib": 1374.3,
+    "fragmentation_bytes": 15360,
+    "device_staging_bytes": 0,
+    "device_mapping_bytes": 0,
+    "scheduler_buffers": "included_in_stock_fixed_estimate",
+    "slots_112": {"arena_bytes": 11240599680, "arena_mib": 10719.8712, "gross_savings_mib": 1531.3934, "projected_max_context_tokens": 312000},
+    "slots_96": {"arena_bytes": 9634801920, "arena_mib": 9188.4631, "gross_savings_mib": 3062.8015, "projected_max_context_tokens": 432000}
+  },
+  "raw_results": [
+    "C:/models/expertflow/runs/final-sprint-stage0/stock-frontier-v2.json",
+    "C:/models/expertflow/runs/final-sprint-stage0/stock-frontier-high.json",
+    "C:/models/expertflow/runs/final-sprint-stage0/stock-frontier-extension.json",
+    "C:/models/expertflow/runs/final-sprint-stage0/stock-frontier-limit.json",
+    "C:/models/expertflow/runs/final-sprint-stage0/stock-frontier-boundary.json"
+  ]
+}

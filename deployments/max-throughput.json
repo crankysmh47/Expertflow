@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "id": "gemma4-26b-q6-max-throughput",
+  "goal": "throughput",
+  "measurement_status": "measured",
+  "model": {"filename": "google_gemma-4-26B-A4B-it-Q6_K.gguf", "sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba", "path_env": "EXPERTFLOW_MODEL_PATH"},
+  "runtime": {"binary_env": "EXPERTFLOW_LLAMA_CLI", "server_env": "EXPERTFLOW_LLAMA_SERVER", "llama_commit": "451224ab4d12a616dc3e16e8c8063f4b331f531c", "cli_sha256": "5d68046dcd26e2fd018aaeaad5f99cdb7d88eca6fc10935925f1d660f7009407", "server_sha256": "22ecc4f64f91dcbe3a1cfe7d9d4617e43467ea7f3c6fa1ba2c6ad8d07e89334e"},
+  "placement": {"mode": "full_static_identity_shadow", "static_expert_layers": [0,1,2,3,4,5,6,7,8,9,15,20], "experts_per_layer": 128},
+  "context": 8192,
+  "parallel_slots": 4,
+  "arguments": ["-p","Caching.","-n","512","-c","2048","-ngl","99","--threads","12","--seed","42","--temp","0","--ignore-eos","--verbose","--cpu-moe","--no-display-prompt","--single-turn"],
+  "environment": {"LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER": "0,1,2,3,4,5,6,7,8,9,15,20", "LLAMA_EXPERTFLOW_STATIC_PRECOMPUTE": "1"},
+  "expected_peak_vram_mib": 11996.8125,
+  "measured": {"aggregate_generated_tps": 35.66992607360984, "stock_aggregate_generated_tps": 24.523066488797543, "improvement_pct": 45.4545910475932, "repetitions": 5, "completed_requests": 20, "errors": 0},
+  "quality": {"mmlu": "49/100 OFF to 50/100 ON", "ppl_point_change_pct": -2.9152085407372328, "ppl_95_upper_pct": 2.2529372655983686, "strict_ppl_gate_pass": false, "concurrent_output_deterministic": false},
+  "evidence_files": ["docs/evidence/product-release/throughput-profile.json", "docs/evidence/product-release/batching-results.json"],
+  "reproduction_command": "expertflow serve deployments/max-throughput.json"
+}

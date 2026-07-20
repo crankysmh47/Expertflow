@@ -1,0 +1,58 @@
+From 451224ab4d12a616dc3e16e8c8063f4b331f531c Mon Sep 17 00:00:00 2001
+From: crankysmh47 <annankhan741@gmail.com>
+Date: Sun, 19 Jul 2026 05:23:24 +0500
+Subject: [PATCH 6/6] perf: precompute static layer membership
+
+
+diff --git a/src/llama-context.cpp b/src/llama-context.cpp
+index 3e02e65e154537d1654e193b281ead314376367c..39446b377f5f82068727c9508d3f44bdc4f8b275 100644
+--- a/src/llama-context.cpp
++++ b/src/llama-context.cpp
+@@ -192,6 +192,18 @@ llama_context::llama_context(
+ 
+     const auto & hparams = model.hparams;
+ 
++    expertflow_static_island_precompute = getenv("LLAMA_EXPERTFLOW_STATIC_PRECOMPUTE") != nullptr;
++    if (expertflow_static_island_precompute) {
++        expertflow_static_island_layer_mask.resize(hparams.n_layer(), false);
++        int layers[EXPERTFLOW_STATIC_ISLAND_MAX_LAYERS];
++        const int n_static_layers = expertflow_static_island_layers(layers);
++        for (int i = 0; i < n_static_layers; ++i) {
++            if (layers[i] < (int) expertflow_static_island_layer_mask.size()) {
++                expertflow_static_island_layer_mask[layers[i]] = true;
++            }
++        }
++    }
++
+     cparams.n_seq_max = std::max(1u, params.n_seq_max);
+     if (cparams.n_seq_max > LLAMA_MAX_SEQ) {
+         throw std::runtime_error("n_seq_max must be <= " + std::to_string(LLAMA_MAX_SEQ));
+@@ -2572,7 +2584,10 @@ llm_graph_cb llama_context::graph_get_cb() const {
+             }
+         }
+ 
+-        if (expertflow_static_island_has_layer(il)) {
++        const bool expertflow_static_selected = expertflow_static_island_precompute
++            ? il >= 0 && il < (int) expertflow_static_island_layer_mask.size() && expertflow_static_island_layer_mask[il]
++            : expertflow_static_island_has_layer(il);
++        if (expertflow_static_selected) {
+             ggml_backend_t gpu_backend = nullptr;
+             for (const auto & backend : backends) {
+                 if (ggml_backend_dev_type(ggml_backend_get_device(backend.get())) == GGML_BACKEND_DEVICE_TYPE_GPU) {
+diff --git a/src/llama-context.h b/src/llama-context.h
+index bf91daa8b562aa66d15b08ca559b6baa09ab7855..3f560af2d720f7379bbf2728689fab5eaa665090 100644
+--- a/src/llama-context.h
++++ b/src/llama-context.h
+@@ -281,6 +281,9 @@ private:
+ 
+     llama_cparams cparams;
+ 
++    std::vector<bool> expertflow_static_island_layer_mask;
++    bool expertflow_static_island_precompute = false;
++
+     llama_adapter_cvec_ptr  cvec;
+     llama_adapter_loras_ptr loras;
+ 
+-- 
+2.52.0.windows.1
+

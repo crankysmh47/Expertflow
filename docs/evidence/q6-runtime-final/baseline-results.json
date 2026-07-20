@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "model_sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba",
+  "workload": {
+    "prompt": "Caching.",
+    "context": 2048,
+    "generated_tokens": 512,
+    "ignore_eos": true,
+    "seed": 42,
+    "temperature": 0,
+    "threads": 12,
+    "ngl": 99
+  },
+  "matched_msvc_modes": [
+    {
+      "mode": "pristine_full_cuda_intent",
+      "source_sha": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+      "expertflow_enabled": false,
+      "cpu_moe": false,
+      "prompt_tps": 13.8,
+      "decode_tps": 6.4,
+      "ttft_ms": 1305.55,
+      "wall_seconds": 140.133,
+      "process_owned_peak_mib": 14588.004,
+      "cpu_mapped_model_mib": 577.50,
+      "cuda_model_mib": 21788.44,
+      "graph_splits": 2,
+      "response_sha256": "2aa83308ce8230fe93f591299f0a19185b2160c4b4cbcf3d799bcbab2884fe22"
+    },
+    {
+      "mode": "patched_disabled_full_cuda_intent",
+      "source_sha": "b910bc37c91bd12536be7528c4be9d6b0cdebeb3",
+      "expertflow_enabled": false,
+      "cpu_moe": false,
+      "prompt_tps": 13.9,
+      "decode_tps": 6.4,
+      "ttft_ms": 1297.30,
+      "wall_seconds": 131.086,
+      "process_owned_peak_mib": 14606.023,
+      "cpu_mapped_model_mib": 577.50,
+      "cuda_model_mib": 21788.44,
+      "graph_splits": 2,
+      "response_sha256": "2aa83308ce8230fe93f591299f0a19185b2160c4b4cbcf3d799bcbab2884fe22",
+      "disabled_mode_exactly_matches_pristine": true
+    },
+    {
+      "mode": "patched_disabled_cpu_moe",
+      "source_sha": "b910bc37c91bd12536be7528c4be9d6b0cdebeb3",
+      "expertflow_enabled": false,
+      "cpu_moe": true,
+      "prompt_tps": 28.0,
+      "decode_tps": 23.0,
+      "ttft_ms": 642.83,
+      "wall_seconds": 31.080,
+      "process_owned_peak_mib": 3098.656,
+      "cpu_mapped_model_mib": 21783.63,
+      "cuda_model_mib": 2163.72,
+      "graph_splits": 62,
+      "response_sha256": "ebaed9f65a4f60c5157e36d423a6cfa07ce2cc5f0937b9ae48580ac50be28f14"
+    }
+  ],
+  "fair_stock_baseline": {
+    "mode": "pristine_msvc_cpu_moe",
+    "source_sha": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+    "compiler": "MSVC 19.39.33523.0",
+    "cuda": "12.8.93",
+    "highest_stable_ngl": 99,
+    "response_sha256": "ebaed9f65a4f60c5157e36d423a6cfa07ce2cc5f0937b9ae48580ac50be28f14",
+    "repetitions": [
+      {"prompt_tps": 27.6, "decode_tps": 23.3, "ttft_ms": 651.40, "wall_seconds": 29.861, "process_owned_peak_mib": 3098.656},
+      {"prompt_tps": 27.4, "decode_tps": 22.8, "ttft_ms": 657.45, "wall_seconds": 29.163, "process_owned_peak_mib": 3098.656},
+      {"prompt_tps": 27.9, "decode_tps": 22.8, "ttft_ms": 645.63, "wall_seconds": 29.137, "process_owned_peak_mib": 3098.656}
+    ],
+    "mean_prompt_tps": 27.633333,
+    "mean_decode_tps": 22.966667,
+    "decode_tps_sample_variance": 0.083333,
+    "mean_ttft_ms": 651.493333,
+    "mean_wall_seconds": 29.387,
+    "peak_process_owned_mib": 3098.656,
+    "process_owned_margin_to_16311_mib": 13212.344,
+    "product_target_decode_tps_1_25x": 28.708333,
+    "exact_across_repetitions": true,
+    "stable_512_tokens": true
+  },
+  "excluded_packaged_clang_diagnostics": {
+    "reason": "Different compiler made token/performance comparison unsuitable for disabled-mode equivalence.",
+    "full_cuda_decode_tps": 5.8,
+    "cpu_moe_decode_tps": 22.7
+  },
+  "raw_logs": "C:/models/expertflow/runs/q6-runtime-final/stage0"
+}

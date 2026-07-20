@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "measurement_kind": "diagnostic_synchronized_scheduler_split_profile",
+  "performance_claim_eligible": false,
+  "raw_profile": {
+    "path": "C:\\models\\expertflow\\runs\\q6-selected-static\\stage1-profile\\split-profile.json",
+    "sha256": "119a00a72a403b824bfd4f778cfc596a5a5c12e853dd4eab79e53950a7f90563",
+    "split_count": 62,
+    "total_calls": 132,
+    "generated_tokens": 128,
+    "diagnostic_synchronization": true
+  },
+  "all_splits_us": {
+    "input_boundary": 760596,
+    "compute_submit_and_wait": 11091240,
+    "completion": 1232452,
+    "total": 13084288
+  },
+  "selected_layers": [
+    {
+      "layer": 0,
+      "split_id": 2,
+      "backend": "CPU",
+      "first_op": "MUL_MAT_ID",
+      "input_boundary_us": 9828,
+      "compute_submit_and_wait_us": 481983,
+      "completion_us": 7,
+      "total_us": 491818,
+      "diagnostic_total_share_pct": 3.758844
+    },
+    {
+      "layer": 1,
+      "split_id": 4,
+      "backend": "CPU",
+      "first_op": "MUL_MAT_ID",
+      "input_boundary_us": 9887,
+      "compute_submit_and_wait_us": 351893,
+      "completion_us": 10,
+      "total_us": 361790,
+      "diagnostic_total_share_pct": 2.765072
+    },
+    {
+      "layer": 15,
+      "split_id": 32,
+      "backend": "CPU",
+      "first_op": "MUL_MAT_ID",
+      "input_boundary_us": 9382,
+      "compute_submit_and_wait_us": 202415,
+      "completion_us": 20,
+      "total_us": 211817,
+      "diagnostic_total_share_pct": 1.618865
+    },
+    {
+      "layer": 20,
+      "split_id": 42,
+      "backend": "CPU",
+      "first_op": "MUL_MAT_ID",
+      "input_boundary_us": 9585,
+      "compute_submit_and_wait_us": 159921,
+      "completion_us": 11,
+      "total_us": 169517,
+      "diagnostic_total_share_pct": 1.295577
+    }
+  ],
+  "selected_total_us": 1234942,
+  "selected_compute_submit_and_wait_us": 1196212,
+  "selected_diagnostic_total_share_pct": 9.438357,
+  "selected_diagnostic_compute_share_pct": 9.142349,
+  "five_percent_physical_plausibility_gate": "pass",
+  "placement_conclusion": "The selected four routed-expert CPU splits contain enough measured diagnostic wall time for a five-percent decode improvement to be physically plausible. Throughput must be established separately because the profiler synchronizes every split."
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "status": "not_run",
+  "predictor_integration_admitted": false,
+  "reason": "Reactive caching was not admitted by the Stage 3 feasibility gate.",
+  "existing_predictor": {
+    "availability_for_q6": false,
+    "reason": "Frozen predictor artifacts were trained and validated on Q4 canonical traces; this task prohibited retraining and did not authorize interpreting Q4 recall as Q6 evidence."
+  },
+  "ready_useful": null,
+  "late_useful": null,
+  "redundant_hit": null,
+  "incorrect": null,
+  "eviction_causing": null,
+  "demand_misses_prevented": null,
+  "blocked_time_prevented": null
+}

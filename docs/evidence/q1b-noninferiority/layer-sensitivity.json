@@ -1,0 +1,72 @@
+{
+  "layers": [
+    {
+      "benefit_cost_ratio_tps_pct_per_ppl_pp": null,
+      "bootstrap_95pct": {
+        "lower": -0.032017128842818716,
+        "upper": 0.005675330127158739
+      },
+      "bundle_bytes": 428212736,
+      "decode_tps": 27.2,
+      "decode_tps_relative_change": 0.004926108374384119,
+      "generated_token_agreement_rate": 0.8571428571428571,
+      "individual_point_gate_pass": true,
+      "layer": 0,
+      "peak_system_gpu_used_mib": 7093,
+      "perplexity": 726.0783309952122,
+      "perplexity_relative_change": -0.013184725781933583,
+      "router_order_overlap_rate": 0.46867671691792295,
+      "router_topk_set_overlap_rate": 0.7087102177554438
+    },
+    {
+      "benefit_cost_ratio_tps_pct_per_ppl_pp": -3.6422683486581686,
+      "bootstrap_95pct": {
+        "lower": -0.002001336801531837,
+        "upper": 0.02029526725941866
+      },
+      "bundle_bytes": 428212736,
+      "decode_tps": 26.2,
+      "decode_tps_relative_change": -0.03201970443349755,
+      "generated_token_agreement_rate": 0.7142857142857143,
+      "individual_point_gate_pass": true,
+      "layer": 15,
+      "peak_system_gpu_used_mib": 7093,
+      "perplexity": 742.2477226227993,
+      "perplexity_relative_change": 0.008791143696288547,
+      "router_order_overlap_rate": 0.6385259631490787,
+      "router_topk_set_overlap_rate": 0.7763400335008375
+    },
+    {
+      "benefit_cost_ratio_tps_pct_per_ppl_pp": -4.685299151099365,
+      "bootstrap_95pct": {
+        "lower": -0.0063619940897706,
+        "upper": 0.01056609206026645
+      },
+      "bundle_bytes": 428212736,
+      "decode_tps": 26.8,
+      "decode_tps_relative_change": -0.009852216748768461,
+      "generated_token_agreement_rate": 0.7142857142857143,
+      "individual_point_gate_pass": true,
+      "layer": 20,
+      "peak_system_gpu_used_mib": 7093,
+      "perplexity": 737.3265724830212,
+      "perplexity_relative_change": 0.002102793531648182,
+      "router_order_overlap_rate": 0.6749162479061976,
+      "router_topk_set_overlap_rate": 0.7865159128978224
+    }
+  ],
+  "measurement_kind": "measured",
+  "ranking": [
+    0,
+    15,
+    20
+  ],
+  "ranking_note": "Layer 0 is dominant because quality improved and TPS increased. Layers 15 and 20 have negative measured speed benefit; their ratios are descriptive, not evidence of acceleration.",
+  "ratio_units": "decode TPS percent change per positive perplexity percentage-point regression; undefined when quality improves",
+  "reference_decode_tps": 27.066666666666666,
+  "reference_perplexity": 735.7793803612769,
+  "sanitizer": {
+    "reason": "compute-sanitizer was not installed on the supported Windows CUDA toolchain",
+    "status": "not_run"
+  }
+}
