@@ -66,3 +66,18 @@ def test_video_slideshow_uses_judge_reproduction_instead_of_a_weakness_reel() ->
     assert "JUDGE REPRODUCTION" in html
     assert "Replay the evidence. Run the live pair. Rebuild the pinned runtime." in html
     assert "Evidence limitations" not in html
+
+
+def test_final_video_script_is_personal_and_centers_the_live_matched_run() -> None:
+    script = (ROOT / "submission/demo-video-script-final.md").read_text(encoding="utf-8")
+    for text in (
+        "I've always tried to get the most out of the hardware I own.",
+        ".\\scripts\\live-tps-demo.ps1 -Mode Demo",
+        "fresh matched stock and ExpertFlow processes",
+        "one live rehearsal",
+        "authoritative ten-pair result",
+        "28.13 TPS",
+        "22.967 TPS",
+    ):
+        assert text in script
+    assert "No webcam is needed" in script
