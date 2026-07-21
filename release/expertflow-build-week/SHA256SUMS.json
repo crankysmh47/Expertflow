@@ -8,8 +8,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 4516,
-      "sha256": "10444a3c4b0cf2f6af58d635f26414143b293ae2624959966a9876372b5adb7a"
+      "bytes": 4604,
+      "sha256": "85ab965a6329ff0f7670a2dd184d984f7923f414a7fc6b5b6c601857d879a42a"
     },
     {
       "path": "JUDGES.md",
@@ -23,8 +23,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 9037,
-      "sha256": "a7639bc3170407d55b60ed2d2abdd546370f2ad245af1ffc4a7211377b0b387c"
+      "bytes": 9020,
+      "sha256": "0deab790bd58f405567116af68c7d995509dc69bf34ffb3da9d955129d1a2838"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -35,6 +35,16 @@
       "path": "dashboard.html",
       "bytes": 19342,
       "sha256": "936e5bf940015cb730fcc624701bccfb55b3c45aa53b69f05fb94ff77d5e7967"
+    },
+    {
+      "path": "deployments/.vercel/README.txt",
+      "bytes": 520,
+      "sha256": "f5d1ed0f5032ae128931f46459b5faa1af6319fc2dfb3e7a5fe54a84bf93dbd6"
+    },
+    {
+      "path": "deployments/.vercel/project.json",
+      "bytes": 116,
+      "sha256": "d20f321449953ebf718e192f31bef9691c6569b6355fc19de96ac45af824af44"
     },
     {
       "path": "deployments/max-agentic.json",

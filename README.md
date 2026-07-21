@@ -47,7 +47,7 @@ For the complete product model, component boundaries, runtime data flow, and evi
 
 - [Repository](https://github.com/crankysmh47/Expertflow)
 - [Product architecture](docs/PRODUCT.md)
-- [Live dashboard source](docs/evidence/product-release/dashboard.html)
+- [Live dashboard](https://expertflow-zeta.vercel.app)
 - [Deployment guide](DEPLOYMENT.md)
 
 ## How does it work?

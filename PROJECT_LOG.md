@@ -1100,3 +1100,8 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 
 - Replaced six mismatched README diagram/card embeds with two browser-rendered captures of the shipped dashboard: the measured hero and the wider result-to-execution-boundary narrative. The underlying SVGs remain available to the architecture guide.
 - Added a compact judge-links block for the repository, product architecture, dashboard source, and Vercel deployment guide. Added deterministic source contracts for the gallery and made dashboard hash navigation restore the requested revealed section.
+
+## Vercel production deployment
+
+- Published the self-contained dashboard to `https://expertflow-zeta.vercel.app`. The first ready deployment emitted no static files and correctly failed live verification with 404 responses.
+- Added an explicit `public/index.html` artifact and `outputDirectory: public`; then corrected the clean-URL `/dashboard` alias to rewrite to `/` instead of `/index.html`. Final external verification returned HTTP 200 for both routes with the 28.13 TPS and placement content present.

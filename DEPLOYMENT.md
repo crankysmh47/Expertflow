@@ -13,6 +13,8 @@ The GGUF is not included. The model is needed only for live inference and benchm
 
 The dashboard is dependency-free HTML, CSS, and JavaScript. `vercel.json` routes both `/` and `/dashboard` to the self-contained release dashboard.
 
+Production dashboard: [expertflow-zeta.vercel.app](https://expertflow-zeta.vercel.app)
+
 ### GitHub import
 
 1. Open <https://vercel.com/new>.

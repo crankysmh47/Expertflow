@@ -8,10 +8,16 @@ ROOT = Path(__file__).parents[1]
 def test_vercel_routes_root_and_dashboard_to_the_static_observatory() -> None:
     config = json.loads((ROOT / "vercel.json").read_text(encoding="utf-8"))
     rewrites = {(item["source"], item["destination"]) for item in config["rewrites"]}
-    target = "/docs/evidence/product-release/dashboard.html"
-    assert ("/", target) in rewrites
-    assert ("/dashboard", target) in rewrites
+    assert ("/dashboard", "/") in rewrites
+    assert all(source != "/" for source, _ in rewrites)
+    assert config["outputDirectory"] == "public"
     assert config["cleanUrls"] is True
+
+
+def test_vercel_public_artifact_matches_dashboard_source() -> None:
+    source = (ROOT / "docs/evidence/product-release/dashboard.html").read_bytes()
+    deployed = (ROOT / "public/index.html").read_bytes()
+    assert deployed == source
 
 
 def test_deployment_guide_covers_public_replay_and_live_hardware_paths() -> None:

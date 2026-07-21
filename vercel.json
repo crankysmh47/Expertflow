@@ -1,14 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
+  "outputDirectory": "public",
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/docs/evidence/product-release/dashboard.html"
-    },
-    {
       "source": "/dashboard",
-      "destination": "/docs/evidence/product-release/dashboard.html"
+      "destination": "/"
     }
   ],
   "headers": [
