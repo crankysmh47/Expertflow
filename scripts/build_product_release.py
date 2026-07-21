@@ -30,6 +30,7 @@ ALLOWLIST = (
     ("scripts/judge-replay.ps1", "scripts/judge-replay.ps1"),
     ("scripts/judge-replay.sh", "scripts/judge-replay.sh"),
     ("scripts/live-demo.ps1", "scripts/live-demo.ps1"),
+    ("scripts/live-tps-demo.ps1", "scripts/live-tps-demo.ps1"),
     ("scripts/verify-release.ps1", "scripts/verify-release.ps1"),
     ("scripts/verify-release.sh", "scripts/verify-release.sh"),
     ("docs/BENCHMARKING.md", "docs/BENCHMARKING.md"),

@@ -14,7 +14,7 @@ def test_video_slideshow_contains_every_visual_and_fit_contract() -> None:
         "../docs/assets/cache-decision.svg",
         "../docs/assets/placement-map.svg",
         "../docs/assets/profile-cards.svg",
-        "demo-video-assets/limitations.svg",
+        "demo-video-assets/reproduction.svg",
         "demo-video-assets/final-summary.svg",
     ):
         assert asset in html
@@ -44,3 +44,25 @@ def test_video_slideshow_has_replayable_accessible_motion() -> None:
     assert "hydrateSvg" in html
     assert "DOMParser" in html
     assert "fetch(object.data)" in html
+
+
+def test_video_slideshow_uses_background_circuit_flow_without_foreground_flashes() -> None:
+    html = (ROOT / "submission/demo-video-slideshow.html").read_text(encoding="utf-8")
+    assert "circuit-field" in html
+    assert "trace-flow" in html
+    assert "flow-through" in html
+    assert "node-glow" in html
+    assert "trace-copper" in html
+    assert "via-ring" in html
+    assert "pcb-chip" in html
+    assert "pcb-grain" in html
+    assert "room-scan" not in html
+    assert "@keyframes scan" not in html
+    assert "#f4f2e918" not in html
+
+
+def test_video_slideshow_uses_judge_reproduction_instead_of_a_weakness_reel() -> None:
+    html = (ROOT / "submission/demo-video-slideshow.html").read_text(encoding="utf-8")
+    assert "JUDGE REPRODUCTION" in html
+    assert "Replay the evidence. Run the live pair. Rebuild the pinned runtime." in html
+    assert "Evidence limitations" not in html

@@ -8,8 +8,8 @@
     },
     {
       "path": "JUDGES.md",
-      "bytes": 2459,
-      "sha256": "ce1fa4a04a763524d653f7d2bff0f120f62e0ab5d428ce1c2326e56ee1ad0ad2"
+      "bytes": 2771,
+      "sha256": "2478882e941dc9a686ab8da81a8f3805f34324f98f67da411d0a183085a39313"
     },
     {
       "path": "LICENSE",
@@ -18,8 +18,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8333,
-      "sha256": "f87c79c98ed13da6d4dee197fabeb743eb39683876d41c6a8d9cde46a1d617cf"
+      "bytes": 8558,
+      "sha256": "258ac51fd664d876fe63ac165e9b6858b307233980c1a77ae97601bf6bd2e844"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -215,6 +215,11 @@
       "path": "scripts/live-demo.ps1",
       "bytes": 891,
       "sha256": "1c3ae7304a1bb7da1d8496fe4d91c143df33fbfb31a039b27fd90f88202c7431"
+    },
+    {
+      "path": "scripts/live-tps-demo.ps1",
+      "bytes": 4656,
+      "sha256": "481e3f29ad9bcd195aab2627aad0f940d2b662fef915d5580fc5a7f87cbfbf2e"
     },
     {
       "path": "scripts/setup_release.ps1",
@@ -562,6 +567,11 @@
       "sha256": "26bb9a8f60aa6c714199672b605e4da40ce063c108cfa65625dedd4e5dd7e2a0"
     },
     {
+      "path": "submission/demo-video-assets/reproduction.svg",
+      "bytes": 3004,
+      "sha256": "fcd91c1845968959e9ef570cb86606907f783fd24edae6d17ce9bb04612cad8b"
+    },
+    {
       "path": "submission/demo-video-assets/result.svg",
       "bytes": 1773,
       "sha256": "f1e4fc2a527d3363e5b8aae978662c8a48903f680aa2b88881772d580ebb3fe8"
@@ -578,8 +588,8 @@
     },
     {
       "path": "submission/demo-video-script-final.md",
-      "bytes": 3169,
-      "sha256": "7bde08bb4de757139c89a37065c6e75f1629b5758536010d3e2657143c1746ea"
+      "bytes": 5572,
+      "sha256": "62937ec0e5607d234952b124ea771500cd8b71e39f4d7eee2e1652265b433260"
     },
     {
       "path": "submission/demo-video-script.md",
@@ -588,13 +598,13 @@
     },
     {
       "path": "submission/demo-video-shot-list-final.md",
-      "bytes": 1397,
-      "sha256": "15a5edcaeee400675274dd80c27ed3834d796abc7a4e6f2eecd4a1485e46ee55"
+      "bytes": 2067,
+      "sha256": "b474aa942ff03e88b1404115ca3e6217799e7ae7104e8a19b0ba282ddf905b66"
     },
     {
       "path": "submission/demo-video-slideshow.html",
-      "bytes": 22240,
-      "sha256": "4cd6d7d525c3695eb0a9fd16b14cf2ad872bd2bc1c2133e9c74b20d60cf1c804"
+      "bytes": 25260,
+      "sha256": "02104d927259178310b25de0398db4099510c2943778076d7aeca9dbcd4c13eb"
     },
     {
       "path": "submission/final-devpost-draft.md",
@@ -603,8 +613,8 @@
     },
     {
       "path": "submission/judge-test-guide.md",
-      "bytes": 1754,
-      "sha256": "ac08d54c9389ab08c64757dc2dad17ed71fe8ed62136e9dc4321e315eb50cd69"
+      "bytes": 1965,
+      "sha256": "0ff96a1ada58dd966ecefb05f0f47b99ebd102c44fec9a435c8d5f6e18d66f4a"
     },
     {
       "path": "uv.lock",

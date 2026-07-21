@@ -132,6 +132,7 @@ def test_local_visual_and_video_assets_exist() -> None:
         "submission/demo-video-assets/result.svg",
         "submission/demo-video-assets/codex-workflow.svg",
         "submission/demo-video-assets/limitations.svg",
+        "submission/demo-video-assets/reproduction.svg",
         "submission/demo-video-assets/final-summary.svg",
     ]
     for relative in required:

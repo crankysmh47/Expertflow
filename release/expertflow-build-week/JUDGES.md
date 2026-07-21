@@ -24,9 +24,12 @@ $env:EXPERTFLOW_MODEL_PATH = "C:\path\to\google_gemma-4-26B-A4B-it-Q6_K.gguf"
 $env:EXPERTFLOW_LLAMA_CLI = "C:\path\to\llama-cli.exe"
 $env:EXPERTFLOW_LLAMA_SERVER = "C:\path\to\llama-server.exe"
 uv run expertflow doctor
+./scripts/live-tps-demo.ps1 -Mode Demo
 uv run expertflow run deployments/max-performance.json --model $env:EXPERTFLOW_MODEL_PATH
 uv run expertflow compare deployments/max-performance.json
 ```
+
+The demo command verifies the model and runtime hashes, runs one fresh matched stock/ExpertFlow pair, prints both TPS results, and saves raw plus summarized evidence. Use `-Mode Judge` for three matched pairs; the headline result remains the committed ten-pair benchmark.
 
 The expected model SHA-256 is `089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba`.
 

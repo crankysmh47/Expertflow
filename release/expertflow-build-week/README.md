@@ -88,11 +88,14 @@ $env:EXPERTFLOW_LLAMA_CLI = "C:\path\to\llama-cli.exe"
 $env:EXPERTFLOW_LLAMA_SERVER = "C:\path\to\llama-server.exe"
 
 uv run expertflow doctor --model $env:EXPERTFLOW_MODEL_PATH --runtime $env:EXPERTFLOW_LLAMA_CLI --server $env:EXPERTFLOW_LLAMA_SERVER
+./scripts/live-tps-demo.ps1 -Mode Demo
 uv run expertflow profile $env:EXPERTFLOW_MODEL_PATH
 uv run expertflow optimize $env:EXPERTFLOW_MODEL_PATH --goal max-performance --output deployment.json
 uv run expertflow run deployment.json --model $env:EXPERTFLOW_MODEL_PATH
 uv run expertflow compare deployment.json
 ```
+
+`live-tps-demo.ps1` performs a fresh matched stock/ExpertFlow pair and saves the raw evidence. It is the fastest live judge path; the headline claim still comes from ten matched pairs.
 
 The expected model SHA-256 is `089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba`.
 

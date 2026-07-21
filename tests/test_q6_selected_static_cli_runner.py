@@ -30,3 +30,18 @@ def test_cli_pair_runner_freezes_fair_stock_contract() -> None:
     assert "Remove-Item Env:LLAMA_EXPERTFLOW_STATIC_PRECOMPUTE" in source
     assert "cuda_graphs = $runCudaGraphs" in source
     assert "static_precompute =" in source
+    assert "[RUN $pair/$Pairs]" in source
+    assert "[RESULT $mode]" in source
+
+
+def test_live_tps_demo_exposes_recording_and_judge_modes() -> None:
+    source = Path("scripts/live-tps-demo.ps1").read_text(encoding="utf-8")
+
+    assert "[ValidateSet('Demo','Judge')]" in source
+    assert "GeneratedTokens = 512" in source
+    assert "if ($Mode -eq 'Demo') { 1 } else { 3 }" in source
+    assert "run_q6_selected_static_pairs.ps1" in source
+    assert "analyze_q6_selected_static.py" in source
+    assert "uv run expertflow demo --replay" in source
+    assert "ONE-PAIR REHEARSAL" in source
+    assert "AUTHORITATIVE TEN-PAIR RESULT" in source

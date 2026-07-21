@@ -1,62 +1,105 @@
-# ExpertFlow demo script (2:50)
+# ExpertFlow final demo script (2:59)
 
-This is a relaxed voiceover over the supplied circuit-board frames, terminal replay, and dashboard. No webcam is required.
+No webcam is needed. Record the live benchmark and slideshow as separate captures, then edit them together. Speak naturally; the wording below is a guide, not something to rush through mechanically.
 
-## 0:00-0:15 — The problem
+## Before recording: prove the live path
 
-On screen: `demo-video-assets/title.svg`.
+Set the exact model and runtime once:
 
-"I wanted to run the high-quality Q6 version of Gemma 4 26B on my 16-gig GPU. It technically fit, but a lot of the expensive expert computation was still happening on the CPU. So I used Codex to investigate what the runtime was actually doing."
-
-## 0:15-0:40 — The hidden boundary
-
-On screen: `demo-video-assets/architecture.svg`.
-
-"The problem was a little deceptive. llama.cpp could report GPU-offloaded layers while their routed expert matmuls still crossed back to the CPU. ExpertFlow measures that hidden work and places complete packed Q6 expert banks where they remove the most CPU cost."
-
-## 0:40-1:15 — Codex and GPT-5.6
-
-On screen: `demo-video-assets/codex-workflow.svg`, then a short capture of the command ledger and passing tests.
-
-"GPT-5.6 was involved from the first idea through the final product direction. Codex with GPT-5.6-sol managed the engineering workflow: isolated worktrees, llama.cpp instrumentation, tests, traces, benchmarks, implementation changes, and release packaging."
-
-"I set the evidence gates and decided which directions to approve. When an experiment failed, Codex preserved the result, isolated the cause, and helped design the next bounded test instead of forcing the original idea."
-
-## 1:15-1:47 — Replay the result
-
-On screen: a clean terminal.
-
-```console
-uv sync --frozen
-uv run expertflow demo --replay
+```powershell
+$env:EXPERTFLOW_MODEL_PATH = 'C:\models\gemma-4-26b-a4b-q6\google_gemma-4-26B-A4B-it-Q6_K.gguf'
+$env:EXPERTFLOW_LLAMA_CLI = 'C:\models\expertflow\builds\llama-q6-placement-final\bin\llama-cli.exe'
 ```
 
-"This judge replay needs no model or GPU. It verifies the committed evidence. The live result was 28.13 decode TPS versus 22.967 stock: 22.48 percent faster on a 16-gig RTX 5060 Ti."
+Run the complete recording rehearsal:
 
-Hold on `demo-video-assets/result.svg` for three seconds.
+```powershell
+.\scripts\live-tps-demo.ps1 -Mode Demo
+```
 
-## 1:47-2:15 — How the product changed
+The verified 2026-07-22 rehearsal completed in 146.8 seconds including model hashing. It measured stock at `15.50 TPS`, ExpertFlow at `20.10 TPS`, and a one-pair uplift of `29.68%`. Treat that only as a live rehearsal. The authoritative claim remains ten matched 512-token pairs: `28.13 TPS` versus `22.967 TPS`, or `+22.48%`.
 
-On screen: `docs/assets/cache-decision.svg`, then `docs/assets/placement-map.svg`.
+Record the entire terminal run once. In the final edit, keep only four short excerpts:
 
-"The original idea was a predictive expert cache. We built observer paths, reactive caches, and temporal predictor experiments. Some were exact but slower; others reached clear architectural stop conditions. The numbers said prediction would not win on this machine."
+1. The verified model/runtime preflight.
+2. `[RESULT off]` for stock.
+3. `[RESULT on]` for ExpertFlow.
+4. The final `LIVE RESULT` table and evidence path.
 
-"So the product changed. ExpertFlow selected complete 128-expert banks for layers zero through nine, fifteen, and twenty and kept them resident on CUDA."
+Then serve the deck and open it at 1920×1080:
 
-## 2:15-2:34 — What ships
+```powershell
+py -m http.server 8767 --bind 127.0.0.1
+```
 
-On screen: the offline dashboard, then `docs/assets/profile-cards.svg`.
+Open `http://127.0.0.1:8767/submission/demo-video-slideshow.html`. Use Arrow Down or Page Down once per scene. Press `REPLAY` before capturing a scene again.
 
-"The release now has a small CLI for evidence replay, system inspection, deployment generation, live inference, benchmarking, and an OpenAI-compatible local server. The headline result comes from ten matched 512-token runs."
+## Final timed narration
 
-## 2:34-2:44 — Evidence boundaries
+### 0:00–0:12 — Opening
 
-On screen: `demo-video-assets/limitations.svg`.
+On screen: slideshow scene 1.
 
-"The strict perplexity confidence gate was not met, the large context was allocated but not filled, and live acceleration is verified on one Windows and NVIDIA setup. Those limits ship with the result."
+> I wanted to run the high-quality Q6 version of Gemma 4 26B on a sixteen-gig GPU, without CPU-offloaded experts dragging generation down. ExpertFlow is what came out of investigating that bottleneck with Codex.
 
-## 2:44-2:50 — Close
+### 0:12–0:30 — The hidden boundary
 
-On screen: `demo-video-assets/final-summary.svg`.
+On screen: scene 2.
 
-"ExpertFlow puts VRAM where it removes the most CPU work. Replay it in under two minutes."
+> Gemma's router was already choosing the right experts. The problem happened afterward: llama.cpp could report GPU-offloaded layers while routed expert matmuls still crossed back to the CPU. This was not an intelligence problem. It was a placement problem.
+
+### 0:30–0:55 — GPT-5.6 and Codex
+
+On screen: scene 3. Briefly cut to the append-only project log or passing test output near the end.
+
+> GPT-5.6 helped frame the hypotheses from the first idea. Codex with GPT-5.6-sol managed the engineering loop: isolated worktrees, llama.cpp instrumentation, traces, cache and predictor prototypes, parity and memory tests, quality gates, documentation, and release packaging. Most importantly, it did not protect the original idea when the measurements disagreed.
+
+### 0:55–1:22 — Live TPS proof
+
+On screen: the four edited terminal excerpts from the real `live-tps-demo.ps1` capture.
+
+> This is the live path on the same sixteen-gig GPU. One command verifies the model and runtime, launches fresh matched stock and ExpertFlow processes with identical settings, and saves the raw evidence. This single rehearsal measured fifteen-point-five stock and twenty-point-one ExpertFlow. That is useful live proof, but it is not the headline benchmark.
+
+### 1:22–1:31 — Authoritative result
+
+On screen: scene 4.
+
+> The authoritative result is ten matched five-hundred-and-twelve-token pairs: twenty-eight-point-one-three TPS versus twenty-two-point-nine-six-seven stock, a twenty-two-point-four-eight percent improvement.
+
+### 1:31–1:52 — The evidence changed the product
+
+On screen: scene 5.
+
+> The original idea was a predictive expert cache. We measured reactive LRU caching, routing prediction, and asynchronous sidecars. Some experiments were exact, but transfer and bookkeeping costs erased the gain. Codex preserved those failures, and the evidence changed the product instead of being hidden.
+
+### 1:52–2:14 — The placement compiler
+
+On screen: scene 6.
+
+> ExpertFlow now treats placement as compilation. It profiles the model and hardware, accounts for complete packed expert banks and a VRAM reserve, scores CPU relief per byte, validates quality, and emits the plan before graph construction. On this machine it selected twelve complete Q6 banks. That is one hardware-specific compiler output, not a universal set of magic layers.
+
+### 2:14–2:34 — What judges can run
+
+On screen: scene 7. Briefly show `uv run expertflow demo --replay` in a terminal overlay.
+
+> Judges can replay the evidence without a model or GPU, inspect a compatible system with doctor, generate a deployment with optimize, run locally, or serve an OpenAI-compatible API. The live command and the full ten-pair reproduction path are both included.
+
+### 2:34–2:47 — Three ways to verify
+
+On screen: scene 8.
+
+> Judges get three proof paths: replay the hashed evidence on any machine, run the live matched TPS command on a compatible GPU, or rebuild the pinned llama.cpp patch series from source. The result is inspectable from the headline number down to the exact command.
+
+### 2:47–2:59 — Close
+
+On screen: scene 9.
+
+> ExpertFlow compiles placement for the machine so you can keep the high-quality model you wanted. And GPT-5.6 with Codex turned every failed hypothesis into the next measured decision.
+
+## Recording rules
+
+- Record at 1920×1080, 30 fps, with terminal text at 22 pt or larger.
+- Do not show the 146-second live run uncut. Keep the edited terminal proof to 27 seconds.
+- Do not call the live one-pair uplift the benchmark result.
+- Do not claim cross-mode token parity, a passed strict PPL gate, or general performance on other GPUs.
+- Keep the voice relaxed. Pause briefly after the live table and the `+22.48%` result.

@@ -1,19 +1,46 @@
-# Final demo shot list
+# Final ExpertFlow recording checklist
 
-Open `submission/demo-video-slideshow.html` for a single scrollable, keyboard-navigable view of every frame.
+## Capture A — live TPS rehearsal
 
-| Time | Shot | Exact source |
-|---:|---|---|
-| 0:00 | Branded opening frame | `submission/demo-video-assets/title.svg` |
-| 0:15 | Stock CPU boundary versus ExpertFlow CUDA route | `submission/demo-video-assets/architecture.svg` |
-| 0:40 | GPT-5.6 ideation and Codex engineering loop | `submission/demo-video-assets/codex-workflow.svg` |
-| 0:58 | Append-only command ledger and passing tests | `docs/evidence/product-release/command-ledger.md`; terminal capture |
-| 1:15 | Evidence replay | clean terminal in repository root |
-| 1:42 | Measured result hold | `submission/demo-video-assets/result.svg` |
-| 1:47 | Rejected cache route | `docs/assets/cache-decision.svg` |
-| 2:02 | Selected complete Q6 banks | `docs/assets/placement-map.svg` |
-| 2:15 | Offline dashboard and product ports | `release/expertflow-build-week/dashboard.html`; `docs/assets/profile-cards.svg` |
-| 2:34 | Honest evidence boundaries | `submission/demo-video-assets/limitations.svg` |
-| 2:44 | Closing frame | `submission/demo-video-assets/final-summary.svg` |
+1. Close unrelated GPU-heavy applications.
+2. Open Windows Terminal in the repository at 1920×1080 with 22 pt text.
+3. Run `.\scripts\live-tps-demo.ps1 -Mode Demo`.
+4. Preserve the whole recording, then extract these four shots:
 
-Record at 1920×1080 and 30 fps. Keep terminal text at 20 pt or larger. Use your natural voice; no webcam is required. Motion should come from slow crops, trace reveals, and short crossfades rather than generic card animations.
+| Final time | Keep from capture | Duration |
+|---:|---|---:|
+| 0:55 | Verified identity and matched configuration | 4 s |
+| 0:59 | Stock result line | 5 s |
+| 1:04 | ExpertFlow result line | 5 s |
+| 1:09 | `LIVE RESULT` table and evidence path | 13 s |
+
+The verified rehearsal artifact is `C:\models\expertflow\runs\live-demo\final-rehearsal-20260722\summary.json`.
+
+## Capture B — animated deck
+
+Open `submission/demo-video-slideshow.html` through the local server. Capture every scene for at least two seconds longer than its final slot so cuts have room.
+
+| Final time | Scene | Exact visual |
+|---:|---:|---|
+| 0:00 | 1 | Branded placement-compiler opening |
+| 0:12 | 2 | Stock CPU boundary versus CUDA-resident route |
+| 0:30 | 3 | GPT-5.6 ideation and Codex engineering loop |
+| 1:22 | 4 | Authoritative ten-pair result |
+| 1:31 | 5 | Rejected predictive-cache branch |
+| 1:52 | 6 | Hardware-specific compiled Q6 placement |
+| 2:14 | 7 | Replay, optimize/place, and serve workflow |
+| 2:34 | 8 | Replay, live run, and pinned-source reproduction |
+| 2:47 | 9 | Closing frame |
+
+## Capture C — two brief proof inserts
+
+- During scene 3, show the end of `PROJECT_LOG.md` or `uv run pytest -q` for two to three seconds.
+- During scene 7, show `uv run expertflow demo --replay` completing with `status=pass` for two to three seconds.
+
+## Edit
+
+- Use straight cuts between terminal and deck. The deck already contains motion; do not add white flashes, zoom bursts, or template transitions.
+- Keep the routed circuitry visible around every slide.
+- Use only the ExpertFlow green/gold palette for titles or subtitles.
+- Add one small subtitle under the live table: `ONE MATCHED LIVE REHEARSAL — AUTHORITATIVE RESULT: TEN PAIRS`.
+- End at or before 2:59.

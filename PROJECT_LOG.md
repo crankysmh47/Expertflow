@@ -1076,4 +1076,11 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Reframed the submission around ExpertFlow as an evidence-driven placement compiler. The twelve-layer Q6 static layout is described as one hardware-specific emitted plan, not a hand-picked universal optimum.
 - Rebuilt the nine-scene offline slideshow with routed-circuit motion, active progress/navigation, per-scene entrances, replay, keyboard control, reduced-motion support, and contained SVG fallbacks. No benchmark value or evidence boundary changed.
 - Browser acceptance passed at 1280×720 and 412×915 with nine slides, one active state, working replay/keyboard navigation, and no horizontal overflow.
+
+### 00:48 PKT — Final live-proof and cinematic deck completed
+
+- Added `scripts/live-tps-demo.ps1` as the bounded judge-visible TPS path. It verifies the expected Q6 model and release-runtime hashes, runs fresh matched stock and ExpertFlow processes, prints per-mode progress and results, and preserves raw plus summarized evidence. The analyzer now represents one-pair sample deviation as `null` instead of failing.
+- The final rehearsal completed in 146.8 seconds including identity hashing: stock `15.50` decode TPS versus ExpertFlow `20.10` decode TPS (`+29.68%`) for one matched 512-token pair, with both processes cleaning up. This is explicitly labeled rehearsal evidence; the authoritative claim remains ten matched pairs at `28.13` versus `22.967` TPS (`+22.48%`).
+- Rebuilt the deck background as a physical PCB field with 180 paired copper routes, 207 drilled vias, 27 component footprints, per-slide solder-mask grain, and trace-bound signal animation. Browser inspection at 1280×720 found nine fields, no horizontal overflow, and no white foreground pseudo-element flashes.
+- Replaced the video weakness reel with three concrete verification paths: hash-checked offline replay, a live matched TPS pair, and the pinned clean-source rebuild. Formal README and judge evidence qualifications remain intact.
 - Applicable suite: 265 passed, 4 environment-skipped source-contract tests. Rebuilt release ZIP SHA-256: `0198cba6ac493b86b27fd08ab0ee62fe61e37130cf93300e68f698539a2afefe`.

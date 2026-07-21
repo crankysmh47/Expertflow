@@ -63,6 +63,10 @@ for ($pair = 1; $pair -le $Pairs; $pair++) {
             '-ngl', '99', '--threads', '12', '--seed', '42', '--temp', '0',
             '--ignore-eos', '--verbose', '--cpu-moe', '--no-display-prompt', '--single-turn'
         )
+        $label = $(if ($mode -eq 'on') { 'EXPERTFLOW' } else { 'STOCK' })
+        Write-Host ""
+        Write-Host "[RUN $pair/$Pairs] $label - $GeneratedTokens decode tokens" -ForegroundColor $(if ($mode -eq 'on') { 'Green' } else { 'DarkYellow' })
+        Write-Host "  CUDA graphs: $runCudaGraphs | static layers: $(if ($mode -eq 'on') { $StaticLayers } else { 'none' })"
         $watch = [Diagnostics.Stopwatch]::StartNew()
         $proc = Start-Process -FilePath $Runtime -WorkingDirectory (Split-Path $Runtime -Parent) `
             -ArgumentList $arguments -RedirectStandardOutput $stdout -RedirectStandardError $stderr `
@@ -130,6 +134,11 @@ for ($pair = 1; $pair -le $Pairs; $pair++) {
         }
         $row | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $runDir 'measurement.json') -Encoding utf8
         $rows += $row
+        if ($row.valid) {
+            Write-Host ("[RESULT $mode] decode {0:N2} TPS | prompt {1:N2} TPS | wall {2:N2}s | peak {3:N3} MiB" -f $row.decode_tps, $row.prompt_tps, $row.wall_seconds, $row.process_owned_peak_mib) -ForegroundColor $(if ($mode -eq 'on') { 'Green' } else { 'DarkYellow' })
+        } else {
+            Write-Host "[RESULT $mode] FAILED - inspect $stderr" -ForegroundColor Red
+        }
     }
 }
 

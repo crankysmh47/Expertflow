@@ -22,9 +22,12 @@ $env:EXPERTFLOW_LLAMA_CLI = "C:\path\to\llama-cli.exe"
 $env:EXPERTFLOW_LLAMA_SERVER = "C:\path\to\llama-server.exe"
 
 uv run expertflow doctor --model $env:EXPERTFLOW_MODEL_PATH --runtime $env:EXPERTFLOW_LLAMA_CLI --server $env:EXPERTFLOW_LLAMA_SERVER
+./scripts/live-tps-demo.ps1 -Mode Demo
 uv run expertflow run deployments/max-performance.json
 uv run expertflow compare deployments/max-performance.json
 ```
+
+The live TPS command runs one fresh matched pair and writes its evidence directory. It is a quick judge-visible check, not a replacement for the committed ten-pair result.
 
 Model SHA-256 must equal `089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba`.
 
@@ -41,4 +44,3 @@ uv run expertflow serve deployments/max-agentic.json --dry-run
 ```
 
 If a live result differs, preserve the logs and compare model, binary, driver, context, batch, threads, CUDA graph setting, and environment variables before interpreting it.
-

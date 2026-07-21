@@ -20,14 +20,18 @@ def percentile(values: list[float], fraction: float) -> float:
     return ordered[low] + (ordered[high] - ordered[low]) * (position - low)
 
 
-def mode_summary(rows: list[dict[str, Any]]) -> dict[str, float]:
+def sample_sd(values: list[float]) -> float | None:
+    return statistics.stdev(values) if len(values) > 1 else None
+
+
+def mode_summary(rows: list[dict[str, Any]]) -> dict[str, float | None]:
     decode = [float(row["decode_tps"]) for row in rows]
     prompt = [float(row["prompt_tps"]) for row in rows]
     wall = [float(row["wall_seconds"]) for row in rows]
     return {
         "decode_tps_mean": statistics.mean(decode),
         "decode_tps_median": statistics.median(decode),
-        "decode_tps_sample_sd": statistics.stdev(decode),
+        "decode_tps_sample_sd": sample_sd(decode),
         "prompt_tps_mean": statistics.mean(prompt),
         "wall_seconds_mean": statistics.mean(wall),
         "process_owned_peak_mib": max(float(row["process_owned_peak_mib"]) for row in rows),
@@ -57,7 +61,7 @@ def summarize(
         "paired_improvement_pct_values": paired,
         "paired_improvement_pct_mean": statistics.mean(paired),
         "paired_improvement_pct_median": statistics.median(paired),
-        "paired_improvement_pct_sample_sd": statistics.stdev(paired),
+        "paired_improvement_pct_sample_sd": sample_sd(paired),
         "paired_bootstrap_95_pct": [percentile(resamples, 0.025), percentile(resamples, 0.975)],
         "bootstrap_samples": bootstrap_samples,
         "bootstrap_seed": seed,
