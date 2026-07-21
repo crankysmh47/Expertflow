@@ -17,7 +17,6 @@ uv run expertflow demo --replay
 
 The replay needs no GGUF, CUDA installation, or NVIDIA GPU. It verifies the committed evidence and reconstructs the measured result in about a minute.
 
-![ExpertFlow dashboard showing the measured 28.13 TPS Q6 result](docs/assets/dashboard-hero.png)
 
 ## Why does this exist?
 
