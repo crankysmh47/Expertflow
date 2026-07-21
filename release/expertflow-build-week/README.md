@@ -17,25 +17,21 @@ uv run expertflow demo --replay
 
 The replay needs no GGUF, CUDA installation, or NVIDIA GPU. It verifies the committed evidence and reconstructs the measured result in about a minute.
 
+![ExpertFlow dashboard showing the measured 28.13 TPS Q6 result](docs/assets/dashboard-hero.png)
+
 ## Why does this exist?
 
 Gemma 4 26B A4B is sparse, but its expert banks still have to live somewhere. Stock llama.cpp can keep that routed-expert work on CPU, which fits but creates a bottleneck. Whole-layer CUDA offload is too coarse for this memory budget.
 
 The usual layer count also hides the interesting part: a layer can appear GPU-offloaded while its expert matmuls still execute on CPU. ExpertFlow profiles those operations separately and places the complete expert banks that remove the most CPU work per byte of VRAM.
 
-![Stock and ExpertFlow execution paths](docs/assets/architecture.svg)
-
 ## What measurable difference does it make?
 
 On Gemma 4 26B A4B IT Q6_K, ExpertFlow measured **28.13 decode TPS**. The strongest fair stock Q6 configuration reached **22.967 TPS**. That is a **22.48% improvement** on the same 16 GB RTX 5060 Ti.
 
-![ExpertFlow measured Q6 result](docs/assets/result.svg)
-
 The matched protocol used ten 512-token runs. Peak process-owned VRAM was **10,966.801 MiB**.
 
 The winning placement keeps complete 128-expert Q6 banks for layers `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20]` on CUDA.
-
-![Selected expert-bank layers](docs/assets/placement-map.svg)
 
 ## Can I see it immediately?
 
@@ -47,15 +43,22 @@ The redesigned narrative dashboard is also available at `docs/evidence/product-r
 
 For the complete product model, component boundaries, runtime data flow, and evidence-backed architecture, read the [Product and Architecture Guide](docs/PRODUCT.md).
 
+### Links for judges
+
+- [Repository](https://github.com/crankysmh47/Expertflow)
+- [Product architecture](docs/PRODUCT.md)
+- [Live dashboard source](docs/evidence/product-release/dashboard.html)
+- [Deployment guide](DEPLOYMENT.md)
+
 ## How does it work?
 
 ExpertFlow reads measured routing and backend-placement evidence, ranks complete expert banks by CPU relief per byte of VRAM, and emits a deployment manifest. The Q6 runtime establishes placement before graph construction. Selected packed operands remain on CUDA with identity logical-to-physical mapping.
 
 There is no eviction, reactive loading, repacking, prediction, or per-token transfer in the shipped configuration.
 
-That last sentence matters because the project did not begin with static placement.
+![ExpertFlow dashboard showing the measured result and CPU-to-GPU execution boundary](docs/assets/dashboard-architecture.png)
 
-![Why full residency won](docs/assets/cache-decision.svg)
+That last sentence matters because the project did not begin with static placement.
 
 We tested observer paths, reactive caches, temporal prediction, and asynchronous sidecar transfers. Some experiments preserved exact outputs but ran slower. Others reached clean architectural stop conditions. A bounded cache simulation combining measured Q6 routing with measured transfer costs found `NO CACHE OPPORTUNITY` on this GPU. The evidence favored complete static residency, so that is what ExpertFlow ships.
 
@@ -77,8 +80,6 @@ Codex with GPT-5.6-sol managed the engineering workflow end to end. That include
 - handling the small tweaks and verification work needed to keep the project shippable.
 
 The human role stayed explicit. I chose the problem, set the scientific gates, approved or rejected scope changes, and made the final product calls. Codex handled the implementation loop and kept the evidence organized enough for those decisions to be made from measurements rather than intuition.
-
-![Codex and GPT-5.6 engineering workflow](submission/demo-video-assets/codex-workflow.svg)
 
 Primary `/feedback` Session ID: **UNRESOLVED — ADD THE REQUIRED SESSION ID BEFORE SUBMISSION.**
 
@@ -112,8 +113,6 @@ uv run python examples/agentic_session.py
 ```
 
 The measured four-slot profile completed 20/20 requests at **35.6699 aggregate generated TPS**, compared with 24.5231 stock. This is a concurrent server-throughput measurement, not the single-stream 28.13 TPS protocol.
-
-![ExpertFlow product interfaces](docs/assets/profile-cards.svg)
 
 ## What are the limitations?
 

@@ -41,6 +41,7 @@ and docs/BENCHMARKING.md</pre><a class="copy" href="https://github.com/crankysmh
 const selected=new Set([0,1,2,3,4,5,6,7,8,9,15,20]);document.getElementById('layers').innerHTML=Array.from({length:30},(_,i)=>`<div class="layer ${selected.has(i)?'on':''}" title="Layer ${i}: ${selected.has(i)?'CUDA-resident expert bank':'stock placement'}">${i}</div>`).join('');
 document.querySelectorAll('[data-copy]').forEach(button=>button.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(button.dataset.copy);button.textContent='COPIED'}catch(_){button.textContent='SELECT COMMAND ABOVE'}}));
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>entry.target.classList.toggle('seen',entry.isIntersecting)),{threshold:.12});document.querySelectorAll('.reveal').forEach(node=>observer.observe(node));
+if(location.hash){requestAnimationFrame(()=>{const target=document.querySelector(location.hash);target?.classList.add('seen');target?.scrollIntoView({block:'start',behavior:'instant'})})}
 </script>
 </body>
 </html>

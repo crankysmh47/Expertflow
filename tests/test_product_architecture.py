@@ -43,3 +43,17 @@ def test_product_guide_is_linked_and_packaged() -> None:
     assert "docs/PRODUCT.md" in readme
     assert 'href="https://github.com/crankysmh47/Expertflow/blob/main/docs/PRODUCT.md"' in dashboard
     assert '("docs/PRODUCT.md", "docs/PRODUCT.md")' in builder
+
+
+def test_readme_uses_dashboard_gallery_instead_of_retired_visual_cards() -> None:
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    for asset in ("dashboard-hero.png", "dashboard-architecture.png"):
+        assert f"docs/assets/{asset}" in readme
+        assert (ROOT / "docs/assets" / asset).exists()
+    for retired in (
+        "architecture.svg", "result.svg", "placement-map.svg", "cache-decision.svg",
+        "profile-cards.svg", "submission/demo-video-assets/codex-workflow.svg",
+    ):
+        assert retired not in readme
+    for label in ("Repository", "Product architecture", "Live dashboard", "Deployment guide"):
+        assert label in readme

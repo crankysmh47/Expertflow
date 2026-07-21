@@ -23,8 +23,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8989,
-      "sha256": "d9ddfb75e4878a068db4d51adb87e65bfe96829ae572a6e3986c2c6c3112d3e6"
+      "bytes": 9037,
+      "sha256": "a7639bc3170407d55b60ed2d2abdd546370f2ad245af1ffc4a7211377b0b387c"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -33,8 +33,8 @@
     },
     {
       "path": "dashboard.html",
-      "bytes": 19154,
-      "sha256": "dffaa56595c7865f07f84cccbd379626a7338f5694d9eb932d87696ea99332b0"
+      "bytes": 19342,
+      "sha256": "936e5bf940015cb730fcc624701bccfb55b3c45aa53b69f05fb94ff77d5e7967"
     },
     {
       "path": "deployments/max-agentic.json",
@@ -75,6 +75,16 @@
       "path": "docs/assets/cache-decision.svg",
       "bytes": 1941,
       "sha256": "417bb916764c60c7a06ddfa06df69e23274ba42038414546ae5cf2a1e49be955"
+    },
+    {
+      "path": "docs/assets/dashboard-architecture.png",
+      "bytes": 948505,
+      "sha256": "39091032a397155d8ac42518fbcfc32ac13db02af2e3a9592386944983353f3e"
+    },
+    {
+      "path": "docs/assets/dashboard-hero.png",
+      "bytes": 483546,
+      "sha256": "ee18808d6aafc96c6ff3c86864685e9528f1eace44bbd81ccf4932828d938e29"
     },
     {
       "path": "docs/assets/expertflow-logo.png",

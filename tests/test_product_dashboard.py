@@ -52,6 +52,12 @@ def test_dashboard_is_a_narrative_hardware_console_with_runnable_proof_paths() -
     assert html.index("28.13") < html.index("Quality evidence")
 
 
+def test_dashboard_restores_deep_link_after_reveal_setup() -> None:
+    html = (ROOT / "docs/evidence/product-release/dashboard.html").read_text(encoding="utf-8")
+    assert "location.hash" in html
+    assert "scrollIntoView" in html
+
+
 def test_submission_claims_ledger_classifies_every_claim() -> None:
     ledger = (ROOT / "submission/claims-ledger.md").read_text(encoding="utf-8")
     assert "| Claim | Class |" in ledger

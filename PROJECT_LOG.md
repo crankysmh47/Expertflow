@@ -1095,3 +1095,8 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 
 - Added `docs/PRODUCT.md` as the canonical bridge between the submission README and detailed evidence. It documents the product pipeline, stock/runtime boundary, complete packed expert-bank invariant, identity-mapped static CUDA shadows, emitted twelve-layer Q6 plan, measured result, cache-to-placement decision, CLI surfaces, reproduction paths, support boundary, and GPT-5.6/Codex workflow.
 - Linked the guide from README and the narrative dashboard, added it to the deterministic release allowlist, and protected the integration with source-contract tests. The dashboard uses the canonical GitHub URL so the link survives source hosting and release-root packaging. Final applicable suite: 275 passed, 4 external-source-contract skips; release verified 126 files with ZIP SHA-256 `aefab5ec377415a8a88f5b2e0817abae09fd36261cdaeef3e033c102bd921935`.
+
+## README dashboard gallery
+
+- Replaced six mismatched README diagram/card embeds with two browser-rendered captures of the shipped dashboard: the measured hero and the wider result-to-execution-boundary narrative. The underlying SVGs remain available to the architecture guide.
+- Added a compact judge-links block for the repository, product architecture, dashboard source, and Vercel deployment guide. Added deterministic source contracts for the gallery and made dashboard hash navigation restore the requested revealed section.
