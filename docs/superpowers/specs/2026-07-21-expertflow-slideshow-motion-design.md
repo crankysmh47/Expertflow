@@ -31,7 +31,8 @@ Turn the submission slideshow into a cinematic, offline recording surface that p
 - CSS and small vanilla JavaScript only; no network dependencies.
 - An `IntersectionObserver` makes one slide active at a time and restarts its entrance sequence when revisited.
 - SVGs load as same-origin objects so the page can apply controlled element-level reveals without rewriting source artwork.
-- Motion vocabulary: routed trace draws, masked signal sweeps, chip activation, shallow camera pushes, staggered evidence reveals, and one-shot number emphasis.
+- Motion vocabulary: full-canvas routed circuitry, luminous packets flowing along those traces, node activation, shallow camera movement, staggered evidence reveals, and one-shot number emphasis.
+- Foreground white/cream sweeps are prohibited. Illumination must remain attached to the background circuit routes and nodes.
 - Each slide uses a distinct sequence, but all motion follows the PCB/carbon/gold identity.
 - No generic bouncing, continuous glitching, spinning, or template-style transitions.
 - Navigation remains native scroll-snap plus keyboard control. A replay control restarts the current slide.
