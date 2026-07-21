@@ -1070,3 +1070,10 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Enhanced `expertflow doctor` with structured pass/replay-only/failure exits and checks for platform, Python/uv, GPU/driver/VRAM, CUDA runtime, model size/hash, binary identity, free disk, writable evidence path, port, and deployment schema. The verified live system passed 12/12 checks.
 - Final applicable suite: 272 passed. Both PowerShell and shell wrappers passed from a ZIP extracted under a path containing spaces. The offline dashboard rendered 11 panels and 30 layer cells with no overflow or page console errors.
 - Two clean builds produced identical archives. Polished ZIP SHA-256: `b33a438a3fcde3180f6e699cbf37e587d3022d332bed7152afe16e84f4c6c77f`; the internal manifest verifies 118 files.
+
+# 2026-07-21 — Submission narrative and cinematic deck
+
+- Reframed the submission around ExpertFlow as an evidence-driven placement compiler. The twelve-layer Q6 static layout is described as one hardware-specific emitted plan, not a hand-picked universal optimum.
+- Rebuilt the nine-scene offline slideshow with routed-circuit motion, active progress/navigation, per-scene entrances, replay, keyboard control, reduced-motion support, and contained SVG fallbacks. No benchmark value or evidence boundary changed.
+- Browser acceptance passed at 1280×720 and 412×915 with nine slides, one active state, working replay/keyboard navigation, and no horizontal overflow.
+- Applicable suite: 265 passed, 4 environment-skipped source-contract tests. Rebuilt release ZIP SHA-256: `0198cba6ac493b86b27fd08ab0ee62fe61e37130cf93300e68f698539a2afefe`.

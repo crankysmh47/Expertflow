@@ -3,36 +3,161 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ExpertFlow video deck</title>
+<meta name="theme-color" content="#101311">
+<title>ExpertFlow — cinematic demo deck</title>
 <style>
-:root{--carbon:#101311;--pcb:#0b3d20;--trace:#4fbf68;--signal:#8cf59b;--gold:#d6a84a;--cream:#f4f2e9;--muted:#9fb9a5}
-*{box-sizing:border-box}html{scroll-snap-type:y mandatory;scroll-behavior:smooth;background:var(--carbon)}body{margin:0;color:var(--cream);font-family:Segoe UI,Arial,sans-serif;background:var(--carbon)}
-.slide{position:relative;min-height:100vh;padding:4vh 5vw;display:grid;place-items:center;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;background:radial-gradient(circle at 85% 10%,#12572b 0,transparent 32%),linear-gradient(135deg,var(--carbon),var(--pcb))}
-.frame{width:min(100%,1920px);height:min(82vh,1080px);display:flex;align-items:center;justify-content:center}.frame img{display:block;width:100%;height:100%;object-fit:contain}
-.caption{position:absolute;left:5vw;bottom:2.2vh;font:700 12px/1.2 Consolas,monospace;letter-spacing:.12em;color:var(--gold)}.count{position:absolute;right:5vw;bottom:2.2vh;font:12px Consolas,monospace;color:var(--muted)}
-nav{position:fixed;z-index:5;right:18px;top:50%;transform:translateY(-50%);display:grid;gap:9px;padding:11px 8px;background:#101311cc;border:1px solid #356c45}nav a{width:9px;height:9px;border:1px solid var(--trace);background:transparent}nav a:hover,nav a:focus{background:var(--gold);outline:none}
-.hint{position:fixed;z-index:5;left:18px;top:18px;padding:8px 10px;background:#101311cc;border-left:3px solid var(--gold);font:12px Consolas,monospace;color:var(--muted)}
-@media(max-width:700px){.slide{padding:3vh 3vw}.frame{height:75vh}nav{right:7px}.hint{display:none}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+:root{--carbon:#101311;--pcb:#0b3d20;--pcb2:#12572b;--trace:#4fbf68;--signal:#8cf59b;--gold:#d6a84a;--cream:#f4f2e9;--muted:#9fb9a5;--red:#bf665e;--ease:cubic-bezier(.2,.72,.18,1)}
+*{box-sizing:border-box}html{scroll-snap-type:y mandatory;scroll-behavior:smooth;background:var(--carbon)}body{margin:0;color:var(--cream);font-family:Segoe UI,Arial,sans-serif;background:var(--carbon);overflow-x:hidden}
+button,a{font:inherit}.slide{--accent:var(--signal);position:relative;isolation:isolate;min-height:100vh;padding:12vh 5vw 7vh;display:grid;place-items:center;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;background:radial-gradient(circle at 83% 11%,#12572b 0,transparent 31%),radial-gradient(circle at 8% 92%,#0b3d20 0,transparent 37%),linear-gradient(135deg,var(--carbon),#0a2415 62%,var(--pcb))}
+.slide:nth-child(4),.slide:nth-child(6),.slide:nth-child(9){--accent:var(--gold)}.slide:nth-child(5),.slide:nth-child(8){--accent:var(--red)}
+.slide::before{content:"";position:absolute;z-index:-3;inset:-12%;opacity:.17;background-image:linear-gradient(90deg,transparent 49.7%,var(--trace) 50%,transparent 50.3%),linear-gradient(0deg,transparent 49.7%,var(--trace) 50%,transparent 50.3%);background-size:72px 72px;transform:perspective(700px) rotateX(57deg) translateY(18%);transform-origin:center bottom}
+.slide::after{content:"";position:absolute;z-index:-2;width:42vw;height:180vh;left:-50vw;top:-40vh;background:linear-gradient(90deg,transparent,#8cf59b10 42%,#8cf59b33 50%,#d6a84a10 58%,transparent);transform:skewX(-16deg);pointer-events:none}
+.circuit{position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.34}.circuit i{position:absolute;display:block;height:1px;background:linear-gradient(90deg,transparent,var(--trace),var(--signal),transparent);box-shadow:0 0 9px #8cf59b99;transform-origin:left}.circuit i::after{content:"";position:absolute;right:12%;top:-3px;width:7px;height:7px;border-radius:50%;background:var(--signal);box-shadow:0 0 13px var(--signal)}.circuit i:nth-child(1){width:35vw;left:-5vw;top:22%;transform:rotate(17deg)}.circuit i:nth-child(2){width:28vw;right:-7vw;top:65%;transform:rotate(194deg)}.circuit i:nth-child(3){width:24vw;left:11vw;bottom:8%;transform:rotate(-13deg)}
+.story{position:absolute;z-index:3;top:3.4vh;left:5vw;right:5vw;display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;pointer-events:none}.story-copy{max-width:920px}.eyebrow{display:block;margin-bottom:.35rem;font:700 clamp(10px,1vw,13px)/1.2 Consolas,monospace;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}.thesis{margin:0;font-size:clamp(16px,1.75vw,27px);line-height:1.14;font-weight:750;letter-spacing:-.025em;text-wrap:balance}.scene-id{flex:none;padding:.52rem .7rem;border:1px solid color-mix(in srgb,var(--accent),transparent 35%);background:#101311b8;font:700 11px/1 Consolas,monospace;letter-spacing:.13em;color:var(--accent)}
+.frame{position:relative;width:min(100%,1920px);height:min(74vh,970px);display:flex;align-items:center;justify-content:center;border:1px solid #4fbf6845;background:linear-gradient(145deg,#08120dcc,#10131188);box-shadow:0 34px 90px #0008,inset 0 0 0 1px #8cf59b08;overflow:hidden;transform-origin:center}.frame::before,.frame::after{content:"";position:absolute;z-index:2;pointer-events:none}.frame::before{inset:0;background:linear-gradient(90deg,var(--accent),var(--accent)) top left/48px 2px no-repeat,linear-gradient(180deg,var(--accent),var(--accent)) top left/2px 48px no-repeat,linear-gradient(270deg,var(--accent),var(--accent)) bottom right/48px 2px no-repeat,linear-gradient(0deg,var(--accent),var(--accent)) bottom right/2px 48px no-repeat;opacity:.72}.frame::after{top:0;bottom:0;left:-30%;width:18%;background:linear-gradient(90deg,transparent,#f4f2e918,transparent);transform:skewX(-16deg);opacity:0}.frame object,.frame svg.inline-art{display:block;width:100%;height:100%;object-fit:contain;border:0;pointer-events:none}.frame svg.inline-art{position:absolute;inset:0}.fallback{padding:2rem;color:var(--muted);font:14px Consolas,monospace}
+.caption{position:absolute;z-index:4;left:5vw;bottom:2.15vh;font:700 11px/1.2 Consolas,monospace;letter-spacing:.15em;color:var(--gold)}.count{position:absolute;z-index:4;right:5vw;bottom:2.15vh;font:12px Consolas,monospace;color:var(--muted)}
+.controls{position:fixed;z-index:20;left:18px;top:18px;display:flex;gap:8px}.hint,.replay{padding:8px 10px;background:#101311df;border:1px solid #356c45;font:11px/1 Consolas,monospace;letter-spacing:.08em;color:var(--muted);backdrop-filter:blur(9px)}.hint{border-left:3px solid var(--gold)}.replay{cursor:pointer;color:var(--cream)}.replay:hover,.replay:focus-visible{border-color:var(--gold);color:var(--gold);outline:none}
+nav{position:fixed;z-index:20;right:18px;top:50%;transform:translateY(-50%);display:grid;gap:10px;padding:12px 8px;background:#101311d8;border:1px solid #356c45;backdrop-filter:blur(9px)}nav a{position:relative;width:9px;height:9px;border:1px solid var(--trace);background:transparent;transition:background .25s,transform .25s,box-shadow .25s}nav a:hover,nav a:focus-visible{background:var(--gold);outline:none}nav a[aria-current="step"]{background:var(--signal);border-color:var(--signal);transform:scale(1.55);box-shadow:0 0 12px #8cf59bcc}
+.progress{position:fixed;z-index:19;left:0;bottom:0;width:100%;height:2px;background:#1d3123}.progress span{display:block;width:11.111%;height:100%;background:linear-gradient(90deg,var(--trace),var(--signal),var(--gold));box-shadow:0 0 12px var(--signal);transform-origin:left;transition:width .7s var(--ease)}
+.motion-ready .story-copy,.motion-ready .scene-id,.motion-ready .caption,.motion-ready .count{opacity:0;transform:translateY(12px)}.motion-ready .frame{opacity:0;filter:blur(10px) saturate(.6);transform:translateY(18px) scale(.965)}.motion-ready .circuit i{opacity:0;transform:scaleX(0)}
+.motion-ready .slide.is-active .story-copy{animation:copy-in .75s var(--ease) .08s forwards}.motion-ready .slide.is-active .scene-id{animation:chip-in .62s var(--ease) .2s forwards}.motion-ready .slide.is-active .frame{animation:frame-in 1.15s var(--ease) .15s forwards}.motion-ready .slide.is-active .frame::after{animation:scan 1.05s var(--ease) 1.05s forwards}.motion-ready .slide.is-active .caption{animation:copy-in .6s var(--ease) .72s forwards}.motion-ready .slide.is-active .count{animation:copy-in .6s var(--ease) .84s forwards}.motion-ready .slide.is-active .circuit i{animation:route-in 1.1s var(--ease) forwards}.motion-ready .slide.is-active .circuit i:nth-child(1){animation-delay:.05s}.motion-ready .slide.is-active .circuit i:nth-child(2){animation-delay:.28s}.motion-ready .slide.is-active .circuit i:nth-child(3){animation-delay:.48s}.motion-ready .slide.is-active::after{animation:room-scan 1.4s var(--ease) .35s forwards}.motion-ready .slide.is-active::before{animation:grid-settle 7s ease-out forwards}
+.motion-ready .slide[data-scene="boundary"].is-active .frame{animation-name:frame-in-left}.motion-ready .slide[data-scene="workflow"].is-active .frame{animation-name:frame-in-right}.motion-ready .slide[data-scene="result"].is-active .frame{animation-name:result-in}.motion-ready .slide[data-scene="decision"].is-active .frame{animation-name:decision-in}.motion-ready .slide[data-scene="placement"].is-active .frame{animation-name:map-in}.motion-ready .slide[data-scene="closing"].is-active .frame{animation-name:closing-in}
+@keyframes copy-in{to{opacity:1;transform:none}}@keyframes chip-in{0%{opacity:0;transform:translateY(12px) scale(.92)}55%{box-shadow:0 0 0 0 #8cf59b00}100%{opacity:1;transform:none;box-shadow:0 0 22px #8cf59b18}}@keyframes frame-in{to{opacity:1;filter:none;transform:none}}@keyframes frame-in-left{0%{opacity:0;filter:blur(10px);transform:translateX(-38px) scale(.98)}100%{opacity:1;filter:none;transform:none}}@keyframes frame-in-right{0%{opacity:0;filter:blur(10px);transform:translateX(38px) scale(.98)}100%{opacity:1;filter:none;transform:none}}@keyframes result-in{0%{opacity:0;filter:blur(14px) saturate(.5);transform:scale(.92)}72%{opacity:1;filter:none;transform:scale(1.012)}100%{opacity:1;filter:none;transform:none}}@keyframes decision-in{0%{opacity:0;filter:grayscale(1) blur(8px);transform:translateY(20px)}100%{opacity:1;filter:none;transform:none}}@keyframes map-in{0%{opacity:0;filter:blur(12px);transform:perspective(800px) rotateX(5deg) scale(.96)}100%{opacity:1;filter:none;transform:none}}@keyframes closing-in{0%{opacity:0;filter:blur(18px);transform:scale(1.07)}100%{opacity:1;filter:none;transform:none}}@keyframes scan{0%{left:-30%;opacity:0}20%{opacity:1}100%{left:115%;opacity:0}}@keyframes room-scan{0%{left:-50vw;opacity:0}20%{opacity:1}100%{left:125vw;opacity:0}}@keyframes route-in{0%{opacity:0;transform:scaleX(0)}100%{opacity:.82;transform:scaleX(1)}}@keyframes grid-settle{0%{background-position:0 55px,0 55px;opacity:.06}100%{background-position:0 0,0 0;opacity:.17}}
+@media(max-width:700px){.slide{padding:14vh 3vw 7vh}.story{left:3vw;right:3vw;top:3vh}.thesis{font-size:clamp(14px,4.4vw,20px)}.scene-id{display:none}.frame{height:69vh}.caption{left:3vw}.count{right:3vw}nav{right:7px}.hint{display:none}.controls{left:9px;top:9px}.replay{padding:7px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.motion-ready .slide *,.motion-ready .slide::before,.motion-ready .slide::after{animation:none!important;transition:none!important}.motion-ready .story-copy,.motion-ready .scene-id,.motion-ready .caption,.motion-ready .count,.motion-ready .frame,.motion-ready .circuit i{opacity:1!important;filter:none!important;transform:none!important}.frame::after{display:none}}
 </style>
 </head>
 <body>
-<div class="hint">SCROLL / ↑ ↓ / PAGE UP PAGE DOWN</div>
-<nav aria-label="Slides"><a href="#s1" aria-label="Title"></a><a href="#s2" aria-label="Architecture"></a><a href="#s3" aria-label="Codex workflow"></a><a href="#s4" aria-label="Result"></a><a href="#s5" aria-label="Cache decision"></a><a href="#s6" aria-label="Placement"></a><a href="#s7" aria-label="Product"></a><a href="#s8" aria-label="Limitations"></a><a href="#s9" aria-label="Closing"></a></nav>
+<div class="controls"><span class="hint">SCROLL / ↑ ↓ / PAGE / SPACE</span><button class="replay" id="replay-current" type="button" aria-label="Replay current slide animation">↻ REPLAY</button></div>
+<nav aria-label="Slides"><a href="#s1" aria-label="Opening" aria-current="step"></a><a href="#s2" aria-label="Architecture"></a><a href="#s3" aria-label="Codex workflow"></a><a href="#s4" aria-label="Result"></a><a href="#s5" aria-label="Evidence decision"></a><a href="#s6" aria-label="Compiled placement"></a><a href="#s7" aria-label="Product"></a><a href="#s8" aria-label="Limitations"></a><a href="#s9" aria-label="Closing"></a></nav>
+<div class="progress" aria-hidden="true"><span></span></div>
 <main>
-  <section class="slide" id="s1"><div class="frame"><img src="demo-video-assets/title.svg" alt="ExpertFlow title"></div><span class="caption">OPENING / 0:00</span><span class="count">01 / 09</span></section>
-  <section class="slide" id="s2"><div class="frame"><img src="demo-video-assets/architecture.svg" alt="Stock and ExpertFlow architecture"></div><span class="caption">THE HIDDEN CPU BOUNDARY / 0:15</span><span class="count">02 / 09</span></section>
-  <section class="slide" id="s3"><div class="frame"><img src="demo-video-assets/codex-workflow.svg" alt="Codex and GPT-5.6 engineering workflow"></div><span class="caption">CODEX + GPT-5.6 / 0:40</span><span class="count">03 / 09</span></section>
-  <section class="slide" id="s4"><div class="frame"><img src="demo-video-assets/result.svg" alt="Measured ExpertFlow result"></div><span class="caption">MEASURED RESULT / 1:42</span><span class="count">04 / 09</span></section>
-  <section class="slide" id="s5"><div class="frame"><img src="../docs/assets/cache-decision.svg" alt="Why static residency won"></div><span class="caption">THE MEASUREMENTS CHANGED THE PRODUCT / 1:47</span><span class="count">05 / 09</span></section>
-  <section class="slide" id="s6"><div class="frame"><img src="../docs/assets/placement-map.svg" alt="Selected complete Q6 expert banks"></div><span class="caption">PLACEMENT BOARD / 2:02</span><span class="count">06 / 09</span></section>
-  <section class="slide" id="s7"><div class="frame"><img src="../docs/assets/profile-cards.svg" alt="Replay, placement, and serving interfaces"></div><span class="caption">PRODUCT SURFACE / 2:15</span><span class="count">07 / 09</span></section>
-  <section class="slide" id="s8"><div class="frame"><img src="demo-video-assets/limitations.svg" alt="Evidence limitations"></div><span class="caption">EVIDENCE BOUNDARIES / 2:34</span><span class="count">08 / 09</span></section>
-  <section class="slide" id="s9"><div class="frame"><img src="demo-video-assets/final-summary.svg" alt="ExpertFlow closing frame"></div><span class="caption">CLOSING / 2:44</span><span class="count">09 / 09</span></section>
+  <section class="slide is-active" id="s1" data-scene="opening"><div class="circuit"><i></i><i></i><i></i></div><header class="story"><div class="story-copy"><span class="eyebrow">EXPERTFLOW</span><h1 class="thesis">A placement compiler for quantized MoE models.</h1></div><span class="scene-id">01 / THESIS</span></header><div class="frame"><object type="image/svg+xml" data="demo-video-assets/title.svg" aria-label="ExpertFlow title"><span class="fallback">ExpertFlow — 28.13 TPS, 22.48% faster than stock.</span></object></div><span class="caption">THE MODEL YOU WANT / 0:00</span><span class="count">01 / 09</span></section>
+  <section class="slide" id="s2" data-scene="boundary"><div class="circuit"><i></i><i></i><i></i></div><header class="story"><div class="story-copy"><span class="eyebrow">THE CONSTRAINT</span><h2 class="thesis">The router was right. The selected expert work still crossed the CPU/GPU boundary.</h2></div><span class="scene-id">02 / PROFILE</span></header><div class="frame"><object type="image/svg+xml" data="demo-video-assets/architecture.svg" aria-label="Stock and ExpertFlow architecture"><span class="fallback">Stock crosses backends; ExpertFlow keeps selected expert banks near CUDA.</span></object></div><span class="caption">THE HIDDEN CPU BOUNDARY / 0:15</span><span class="count">02 / 09</span></section>
+  <section class="slide" id="s3" data-scene="workflow"><div class="circuit"><i></i><i></i><i></i></div><header class="story"><div class="story-copy"><span class="eyebrow">THE ENGINEERING LOOP</span><h2 class="thesis">GPT-5.6 formed hypotheses. Codex instrumented, tested, rejected, and shipped.</h2></div><span class="scene-id">03 / CODEX</span></header><div class="frame"><object type="image/svg+xml" data="demo-video-assets/codex-workflow.svg" aria-label="Codex and GPT-5.6 engineering workflow"><span class="fallback">Ideate → experiment → verify → decide → ship.</span></object></div><span class="caption">CODEX + GPT-5.6 / 0:40</span><span class="count">03 / 09</span></section>
+  <section class="slide" id="s4" data-scene="result"><div class="circuit"><i></i><i></i><i></i></div><header class="story"><div class="story-copy"><span class="eyebrow">THE MEASURED OUTCOME</span><h2 class="thesis">A compiled Q6 placement beat the strongest fair stock configuration.</h2></div><span class="scene-id">04 / MEASURE</span></header><div class="frame"><object type="image/svg+xml" data="demo-video-assets/result.svg" aria-label="Measured ExpertFlow result"><span class="fallback">28.13 decode TPS — 22.48% faster than stock.</span></object></div><span class="caption">TEN MATCHED 512-TOKEN RUNS / 1:42</span><span class="count">04 / 09</span></section>
+  <section class="slide" id="s5" data-scene="decision"><div class="circuit"><i></i><i></i><i></i></div><header class="story"><div class="story-copy"><span class="eyebrow">THE REVERSAL</span><h2 class="thesis">Caching looked clever. Measurement revealed a placement problem instead.</h2></div><span class="scene-id">05 / REJECT</span></header><div class="frame"><object type="image/svg+xml" data="../docs/assets/cache-decision.svg" aria-label="The evidence changed the product"><span class="fallback">The evidence changed the product: cache prediction stopped, compiled placement continued.</span></object></div><span class="caption">THE EVIDENCE CHANGED THE PRODUCT / 1:47</span><span class="count">05 / 09</span></section>
+  <section class="slide" id="s6" data-scene="placement"><div class="circuit"><i></i><i></i><i></i></div><header class="story"><div class="story-copy"><span class="eyebrow">COMPILER OUTPUT / THIS GPU</span><h2 class="thesis">The 12-bank layout is a hardware-specific emitted plan—not a universal hand-picked answer.</h2></div><span class="scene-id">06 / EMIT</span></header><div class="frame"><object type="image/svg+xml" data="../docs/assets/placement-map.svg" aria-label="Hardware-specific compiled Q6 placement"><span class="fallback">Compiled placement: complete Q6 expert banks at layers 0–9, 15, and 20.</span></object></div><span class="caption">PROFILE → SCORE → RESERVE → VALIDATE → EMIT / 2:02</span><span class="count">06 / 09</span></section>
+  <section class="slide" id="s7" data-scene="product"><div class="circuit"><i></i><i></i><i></i></div><header class="story"><div class="story-copy"><span class="eyebrow">THE PRODUCT</span><h2 class="thesis">Replay the proof. Optimize for the machine. Run or serve the compiled plan.</h2></div><span class="scene-id">07 / RUN</span></header><div class="frame"><object type="image/svg+xml" data="../docs/assets/profile-cards.svg" aria-label="Replay, placement, and serving interfaces"><span class="fallback">Replay → optimize → run and serve.</span></object></div><span class="caption">ONE MEASURED WORKFLOW / 2:15</span><span class="count">07 / 09</span></section>
+  <section class="slide" id="s8" data-scene="limits"><div class="circuit"><i></i><i></i><i></i></div><header class="story"><div class="story-copy"><span class="eyebrow">EVIDENCE, NOT THEATRE</span><h2 class="thesis">One model and GPU, exact measured claims, failed ideas preserved.</h2></div><span class="scene-id">08 / BOUNDS</span></header><div class="frame"><object type="image/svg+xml" data="demo-video-assets/limitations.svg" aria-label="Evidence limitations"><span class="fallback">Measured boundaries and limitations.</span></object></div><span class="caption">WHAT THIS RESULT DOES—AND DOES NOT—CLAIM / 2:34</span><span class="count">08 / 09</span></section>
+  <section class="slide" id="s9" data-scene="closing"><div class="circuit"><i></i><i></i><i></i></div><header class="story"><div class="story-copy"><span class="eyebrow">EXPERTFLOW</span><h2 class="thesis">Static residency is one compiled policy. The product is the placement compiler.</h2></div><span class="scene-id">09 / SHIP</span></header><div class="frame"><object type="image/svg+xml" data="demo-video-assets/final-summary.svg" aria-label="ExpertFlow closing frame"><span class="fallback">Run the high-quality model you want.</span></object></div><span class="caption">MEASURE. COMPILE. RUN. / 2:44</span><span class="count">09 / 09</span></section>
 </main>
 <script>
+document.documentElement.classList.add('motion-ready');
 const slides=[...document.querySelectorAll('.slide')];
-addEventListener('keydown',event=>{if(!['ArrowDown','ArrowUp','PageDown','PageUp',' '].includes(event.key))return;event.preventDefault();const current=slides.reduce((best,slide,i)=>Math.abs(slide.getBoundingClientRect().top)<Math.abs(slides[best].getBoundingClientRect().top)?i:best,0);const forward=['ArrowDown','PageDown',' '].includes(event.key);slides[Math.max(0,Math.min(slides.length-1,current+(forward?1:-1)))].scrollIntoView();});
+const dots=[...document.querySelectorAll('nav a')];
+const progress=document.querySelector('.progress span');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+let activeIndex=0;
+
+function prepareSvgRoot(root,index){
+  if(!root||root.dataset.efMotion==='ready')return;
+  root.dataset.efMotion='ready';
+  const style=root.ownerDocument.createElementNS(root.namespaceURI,'style');
+  style.textContent=`
+    .ef-copy,.ef-node,.ef-wire{transform-box:fill-box;transform-origin:center;will-change:transform,opacity}
+    .ef-copy{opacity:0;transform:translateY(13px);transition:opacity .58s cubic-bezier(.2,.72,.18,1),transform .72s cubic-bezier(.2,.72,.18,1);transition-delay:var(--ef-delay)}
+    .ef-node{opacity:.12;transform:scale(.94);transition:opacity .55s ease,transform .75s cubic-bezier(.2,.72,.18,1),filter .7s ease;transition-delay:var(--ef-delay)}
+    .ef-wire{stroke-dasharray:var(--ef-length);stroke-dashoffset:var(--ef-length);opacity:.15;transition:stroke-dashoffset 1.25s cubic-bezier(.2,.72,.18,1),opacity .4s ease;transition-delay:var(--ef-delay)}
+    svg.ef-playing .ef-copy{opacity:1;transform:none}
+    svg.ef-playing .ef-node{opacity:1;transform:none;filter:drop-shadow(0 0 3px #8cf59b2b)}
+    svg.ef-playing .ef-wire{stroke-dashoffset:0;opacity:1}
+    @media(prefers-reduced-motion:reduce){.ef-copy,.ef-node,.ef-wire{opacity:1!important;transform:none!important;transition:none!important;stroke-dashoffset:0!important;filter:none!important}}
+  `;
+  root.prepend(style);
+  const lines=[...root.querySelectorAll('path,line,polyline')].filter(node=>!node.closest('defs'));
+  lines.forEach((node,i)=>{
+    let length=900;
+    try{length=Math.max(8,Math.ceil(node.getTotalLength()))}catch(_error){}
+    node.classList.add('ef-wire');
+    node.style.setProperty('--ef-length',`${length}px`);
+    node.style.setProperty('--ef-delay',`${140+(i%12)*48}ms`);
+  });
+  [...root.querySelectorAll('rect,circle,ellipse,polygon')].filter(node=>!node.closest('defs')).forEach((node,i)=>{
+    node.classList.add('ef-node');
+    node.style.setProperty('--ef-delay',`${90+(i%14)*54}ms`);
+  });
+  [...root.querySelectorAll('text')].forEach((node,i)=>{
+    node.classList.add('ef-copy');
+    node.style.setProperty('--ef-delay',`${260+(i%16)*62}ms`);
+  });
+  root.dataset.scene=slides[index].dataset.scene;
+  if(slides[index].classList.contains('is-active'))restartSvg(slides[index]);
+}
+
+async function hydrateSvg(object,index){
+  const frame=object.closest('.frame');
+  if(!frame||frame.dataset.hydrating)return;
+  frame.dataset.hydrating='true';
+  try{
+    const response=await fetch(object.data);
+    if(!response.ok)throw new Error(`SVG ${response.status}`);
+    const parsed=new DOMParser().parseFromString(await response.text(),'image/svg+xml');
+    if(parsed.querySelector('parsererror'))throw new Error('Invalid SVG');
+    const svg=document.importNode(parsed.documentElement,true);
+    svg.classList.add('inline-art');
+    svg.setAttribute('aria-hidden','true');
+    svg.setAttribute('focusable','false');
+    frame.insertBefore(svg,object);
+    object.hidden=true;
+    prepareSvgRoot(svg,index);
+  }catch(_error){
+    frame.dataset.hydrating='failed';
+  }
+}
+
+function installSvgMotion(object,index){
+  const root=object.contentDocument?.documentElement;
+  if(root)prepareSvgRoot(root,index);
+  else hydrateSvg(object,index);
+}
+
+function restartSvg(slide){
+  const object=slide.querySelector('object');
+  const root=slide.querySelector('svg.inline-art')||object?.contentDocument?.documentElement;
+  if(!root)return;
+  root.classList.remove('ef-playing');
+  void root.getBoundingClientRect();
+  root.classList.add('ef-playing');
+}
+
+function restartSlide(slide){
+  if(reduced.matches)return;
+  slide.classList.remove('is-active');
+  void slide.offsetWidth;
+  slide.classList.add('is-active');
+  restartSvg(slide);
+}
+
+function setActiveSlide(index,replay=false){
+  if(index<0||index>=slides.length)return;
+  const changed=index!==activeIndex;
+  activeIndex=index;
+  slides.forEach((slide,i)=>slide.classList.toggle('is-active',i===index));
+  dots.forEach((dot,i)=>i===index?dot.setAttribute('aria-current','step'):dot.removeAttribute('aria-current'));
+  progress.style.width=`${((index+1)/slides.length)*100}%`;
+  if(changed||replay)restartSlide(slides[index]);
+}
+
+document.querySelectorAll('.frame object').forEach((object,index)=>{
+  object.addEventListener('load',()=>installSvgMotion(object,index),{once:true});
+  if(object.contentDocument)installSvgMotion(object,index);
+});
+
+const observer=new IntersectionObserver(entries=>{
+  const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+  if(visible)setActiveSlide(slides.indexOf(visible.target));
+},{threshold:[.55,.72]});
+slides.forEach(slide=>observer.observe(slide));
+
+addEventListener('keydown',event=>{
+  if(!['ArrowDown','ArrowUp','PageDown','PageUp',' '].includes(event.key))return;
+  event.preventDefault();
+  const forward=['ArrowDown','PageDown',' '].includes(event.key);
+  slides[Math.max(0,Math.min(slides.length-1,activeIndex+(forward?1:-1)))].scrollIntoView({behavior:reduced.matches?'auto':'smooth'});
+});
+document.getElementById('replay-current').addEventListener('click',()=>setActiveSlide(activeIndex,true));
+setActiveSlide(0,true);
 </script>
 </body>
 </html>
