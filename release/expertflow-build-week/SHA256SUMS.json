@@ -588,8 +588,13 @@
     },
     {
       "path": "submission/demo-video-shot-list-final.md",
-      "bytes": 1287,
-      "sha256": "eaba006e231469778d3cf25b26255d017671a2bcea2fc1809e25a8afb44a0b93"
+      "bytes": 1397,
+      "sha256": "15a5edcaeee400675274dd80c27ed3834d796abc7a4e6f2eecd4a1485e46ee55"
+    },
+    {
+      "path": "submission/demo-video-slideshow.html",
+      "bytes": 4963,
+      "sha256": "cf603ecceca20f1ea4fab85f5c81f235c5a8cc9e7e6f1cdcea1168c4fc0205df"
     },
     {
       "path": "submission/final-devpost-draft.md",

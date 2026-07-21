@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ExpertFlow video deck</title>
+<style>
+:root{--carbon:#101311;--pcb:#0b3d20;--trace:#4fbf68;--signal:#8cf59b;--gold:#d6a84a;--cream:#f4f2e9;--muted:#9fb9a5}
+*{box-sizing:border-box}html{scroll-snap-type:y mandatory;scroll-behavior:smooth;background:var(--carbon)}body{margin:0;color:var(--cream);font-family:Segoe UI,Arial,sans-serif;background:var(--carbon)}
+.slide{position:relative;min-height:100vh;padding:4vh 5vw;display:grid;place-items:center;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;background:radial-gradient(circle at 85% 10%,#12572b 0,transparent 32%),linear-gradient(135deg,var(--carbon),var(--pcb))}
+.frame{width:min(100%,1920px);height:min(82vh,1080px);display:flex;align-items:center;justify-content:center}.frame img{display:block;width:100%;height:100%;object-fit:contain}
+.caption{position:absolute;left:5vw;bottom:2.2vh;font:700 12px/1.2 Consolas,monospace;letter-spacing:.12em;color:var(--gold)}.count{position:absolute;right:5vw;bottom:2.2vh;font:12px Consolas,monospace;color:var(--muted)}
+nav{position:fixed;z-index:5;right:18px;top:50%;transform:translateY(-50%);display:grid;gap:9px;padding:11px 8px;background:#101311cc;border:1px solid #356c45}nav a{width:9px;height:9px;border:1px solid var(--trace);background:transparent}nav a:hover,nav a:focus{background:var(--gold);outline:none}
+.hint{position:fixed;z-index:5;left:18px;top:18px;padding:8px 10px;background:#101311cc;border-left:3px solid var(--gold);font:12px Consolas,monospace;color:var(--muted)}
+@media(max-width:700px){.slide{padding:3vh 3vw}.frame{height:75vh}nav{right:7px}.hint{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="hint">SCROLL / ↑ ↓ / PAGE UP PAGE DOWN</div>
+<nav aria-label="Slides"><a href="#s1" aria-label="Title"></a><a href="#s2" aria-label="Architecture"></a><a href="#s3" aria-label="Codex workflow"></a><a href="#s4" aria-label="Result"></a><a href="#s5" aria-label="Cache decision"></a><a href="#s6" aria-label="Placement"></a><a href="#s7" aria-label="Product"></a><a href="#s8" aria-label="Limitations"></a><a href="#s9" aria-label="Closing"></a></nav>
+<main>
+  <section class="slide" id="s1"><div class="frame"><img src="demo-video-assets/title.svg" alt="ExpertFlow title"></div><span class="caption">OPENING / 0:00</span><span class="count">01 / 09</span></section>
+  <section class="slide" id="s2"><div class="frame"><img src="demo-video-assets/architecture.svg" alt="Stock and ExpertFlow architecture"></div><span class="caption">THE HIDDEN CPU BOUNDARY / 0:15</span><span class="count">02 / 09</span></section>
+  <section class="slide" id="s3"><div class="frame"><img src="demo-video-assets/codex-workflow.svg" alt="Codex and GPT-5.6 engineering workflow"></div><span class="caption">CODEX + GPT-5.6 / 0:40</span><span class="count">03 / 09</span></section>
+  <section class="slide" id="s4"><div class="frame"><img src="demo-video-assets/result.svg" alt="Measured ExpertFlow result"></div><span class="caption">MEASURED RESULT / 1:42</span><span class="count">04 / 09</span></section>
+  <section class="slide" id="s5"><div class="frame"><img src="../docs/assets/cache-decision.svg" alt="Why static residency won"></div><span class="caption">THE MEASUREMENTS CHANGED THE PRODUCT / 1:47</span><span class="count">05 / 09</span></section>
+  <section class="slide" id="s6"><div class="frame"><img src="../docs/assets/placement-map.svg" alt="Selected complete Q6 expert banks"></div><span class="caption">PLACEMENT BOARD / 2:02</span><span class="count">06 / 09</span></section>
+  <section class="slide" id="s7"><div class="frame"><img src="../docs/assets/profile-cards.svg" alt="Replay, placement, and serving interfaces"></div><span class="caption">PRODUCT SURFACE / 2:15</span><span class="count">07 / 09</span></section>
+  <section class="slide" id="s8"><div class="frame"><img src="demo-video-assets/limitations.svg" alt="Evidence limitations"></div><span class="caption">EVIDENCE BOUNDARIES / 2:34</span><span class="count">08 / 09</span></section>
+  <section class="slide" id="s9"><div class="frame"><img src="demo-video-assets/final-summary.svg" alt="ExpertFlow closing frame"></div><span class="caption">CLOSING / 2:44</span><span class="count">09 / 09</span></section>
+</main>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+addEventListener('keydown',event=>{if(!['ArrowDown','ArrowUp','PageDown','PageUp',' '].includes(event.key))return;event.preventDefault();const current=slides.reduce((best,slide,i)=>Math.abs(slide.getBoundingClientRect().top)<Math.abs(slides[best].getBoundingClientRect().top)?i:best,0);const forward=['ArrowDown','PageDown',' '].includes(event.key);slides[Math.max(0,Math.min(slides.length-1,current+(forward?1:-1)))].scrollIntoView();});
+</script>
+</body>
+</html>

@@ -55,6 +55,7 @@ ALLOWLIST = (
     ("submission/demo-video-script-final.md", "submission/demo-video-script-final.md"),
     ("submission/demo-video-shot-list-final.md", "submission/demo-video-shot-list-final.md"),
     ("submission/demo-video-fallback-plan.md", "submission/demo-video-fallback-plan.md"),
+    ("submission/demo-video-slideshow.html", "submission/demo-video-slideshow.html"),
     ("submission/demo-video-assets", "submission/demo-video-assets"),
 )
 

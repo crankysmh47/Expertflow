@@ -1,5 +1,7 @@
 # Final demo shot list
 
+Open `submission/demo-video-slideshow.html` for a single scrollable, keyboard-navigable view of every frame.
+
 | Time | Shot | Exact source |
 |---:|---|---|
 | 0:00 | Branded opening frame | `submission/demo-video-assets/title.svg` |
