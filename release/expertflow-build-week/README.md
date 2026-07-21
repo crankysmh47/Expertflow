@@ -45,6 +45,8 @@ For a visual replay, open `release/expertflow-build-week/dashboard.html`. Judges
 
 The redesigned narrative dashboard is also available at `docs/evidence/product-release/dashboard.html`. See [DEPLOYMENT.md](DEPLOYMENT.md) for Vercel deployment, local dashboard hosting, evidence replay, compatible NVIDIA setup, and pinned-runtime instructions.
 
+For the complete product model, component boundaries, runtime data flow, and evidence-backed architecture, read the [Product and Architecture Guide](docs/PRODUCT.md).
+
 ## How does it work?
 
 ExpertFlow reads measured routing and backend-placement evidence, ranks complete expert banks by CPU relief per byte of VRAM, and emits a deployment manifest. The Q6 runtime establishes placement before graph construction. Selected packed operands remain on CUDA with identity logical-to-physical mapping.

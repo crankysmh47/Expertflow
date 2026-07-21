@@ -35,6 +35,7 @@ ALLOWLIST = (
     ("scripts/verify-release.ps1", "scripts/verify-release.ps1"),
     ("scripts/verify-release.sh", "scripts/verify-release.sh"),
     ("docs/BENCHMARKING.md", "docs/BENCHMARKING.md"),
+    ("docs/PRODUCT.md", "docs/PRODUCT.md"),
     ("docs/assets", "docs/assets"),
     ("docs/product-reproduction.md", "docs/product-reproduction.md"),
     ("docs/product-troubleshooting.md", "docs/product-troubleshooting.md"),
