@@ -1084,3 +1084,9 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Rebuilt the deck background as a physical PCB field with 180 paired copper routes, 207 drilled vias, 27 component footprints, per-slide solder-mask grain, and trace-bound signal animation. Browser inspection at 1280×720 found nine fields, no horizontal overflow, and no white foreground pseudo-element flashes.
 - Replaced the video weakness reel with three concrete verification paths: hash-checked offline replay, a live matched TPS pair, and the pinned clean-source rebuild. Formal README and judge evidence qualifications remain intact.
 - Applicable suite: 265 passed, 4 environment-skipped source-contract tests. Rebuilt release ZIP SHA-256: `0198cba6ac493b86b27fd08ab0ee62fe61e37130cf93300e68f698539a2afefe`.
+
+# 2026-07-22 - Final narrative dashboard and deployment package
+
+- Replaced the card-heavy dashboard with a responsive PCB-console narrative: motivation, measured 28.13 TPS result, stock-versus-ExpertFlow execution boundary, three judge proof paths, the 30-layer placement map, evidence-driven cache-to-placement pivot, and the GPT-5.6/Codex workflow.
+- Added static Vercel routing and a deployment guide covering hosted import, local serving, evidence replay, compatible live hardware, and pinned-runtime reproduction. Production publication was attempted but stopped because the machine's stored Vercel credential was invalid.
+- Browser-rendered the dashboard at 1440x1000 and Chrome's 500x915 minimum responsive viewport; corrected mojibaked typography and narrow-layout clipping. Focused contracts passed 22/22; final applicable suite passed 273 tests with four external-source-contract skips. Release ZIP SHA-256: `94b46ffbfe46e22fa2860cd5441f147a7c976f4d417fb6226ebba019c60afe03`.

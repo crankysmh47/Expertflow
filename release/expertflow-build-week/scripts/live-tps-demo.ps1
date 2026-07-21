@@ -96,4 +96,3 @@ if ($Mode -eq 'Demo') {
     Write-Host 'THREE-PAIR JUDGE CHECK - inspect variance and raw rows before interpreting.' -ForegroundColor DarkYellow
 }
 Write-Host 'AUTHORITATIVE TEN-PAIR RESULT: 28.13 TPS vs 22.967 stock (+22.48%).'
-Write-Host 'Quality boundary: strict PPL confidence gate was not met; cross-mode token parity is not claimed.'

@@ -18,6 +18,7 @@ EXTERNAL_SHA_SUFFIX = ".zip.sha256"
 ALLOWLIST = (
     ("README.md", "README.md"), ("JUDGES.md", "JUDGES.md"), ("LICENSE", "LICENSE"),
     ("THIRD_PARTY_NOTICES.md", "THIRD_PARTY_NOTICES.md"),
+    ("DEPLOYMENT.md", "DEPLOYMENT.md"),
     ("pyproject.toml", "pyproject.toml"), ("uv.lock", "uv.lock"),
     (".env.example", ".env.example"), ("src/expertflow", "src/expertflow"),
     ("deployments", "deployments"), ("examples/openai_client.py", "examples/openai_client.py"),

@@ -7,6 +7,11 @@
       "sha256": "a6c6378e65a6c0367ee4f1fda9dbc51632d4df66e30160e1f3cfb8d4c88d53ca"
     },
     {
+      "path": "DEPLOYMENT.md",
+      "bytes": 4516,
+      "sha256": "10444a3c4b0cf2f6af58d635f26414143b293ae2624959966a9876372b5adb7a"
+    },
+    {
       "path": "JUDGES.md",
       "bytes": 2771,
       "sha256": "2478882e941dc9a686ab8da81a8f3805f34324f98f67da411d0a183085a39313"
@@ -18,8 +23,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8558,
-      "sha256": "258ac51fd664d876fe63ac165e9b6858b307233980c1a77ae97601bf6bd2e844"
+      "bytes": 8821,
+      "sha256": "ffb2c2d543efc41d6debdfafe9ac6a18cefad9928dab4db769d495a1f98a13f2"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -28,8 +33,8 @@
     },
     {
       "path": "dashboard.html",
-      "bytes": 11982,
-      "sha256": "5e0732b5bda0a4a99ebbb89343b31e2e7cfe49d400e7cec61b92c1f2a7001359"
+      "bytes": 19022,
+      "sha256": "839a42c9ac800238170d328d8d524ae57466c19a814ff2c427a34de6bfd1dd79"
     },
     {
       "path": "deployments/max-agentic.json",
@@ -218,8 +223,8 @@
     },
     {
       "path": "scripts/live-tps-demo.ps1",
-      "bytes": 4656,
-      "sha256": "481e3f29ad9bcd195aab2627aad0f940d2b662fef915d5580fc5a7f87cbfbf2e"
+      "bytes": 4545,
+      "sha256": "ac8fa3dfd39c0235e2b27ffb794dba5a1d8059c08115aee047838904c1a6c143"
     },
     {
       "path": "scripts/setup_release.ps1",
@@ -588,8 +593,8 @@
     },
     {
       "path": "submission/demo-video-script-final.md",
-      "bytes": 5572,
-      "sha256": "62937ec0e5607d234952b124ea771500cd8b71e39f4d7eee2e1652265b433260"
+      "bytes": 5078,
+      "sha256": "3ff45259ae475f7fc322df0d986bba61ad674c56abb414b0c8d74e826ed90f1b"
     },
     {
       "path": "submission/demo-video-script.md",
@@ -598,8 +603,8 @@
     },
     {
       "path": "submission/demo-video-shot-list-final.md",
-      "bytes": 2067,
-      "sha256": "b474aa942ff03e88b1404115ca3e6217799e7ae7104e8a19b0ba282ddf905b66"
+      "bytes": 2183,
+      "sha256": "baa1e3619969ee8e06a3a846810898dc0a4e20d2429bbc8901189529d647201e"
     },
     {
       "path": "submission/demo-video-slideshow.html",

@@ -26,10 +26,30 @@ def test_offline_dashboard_contains_required_panels_and_claim_labels() -> None:
         assert text in html
     assert "26.35 TPS" not in html
     assert "<script src=" not in html
-    assert "http://" not in html and "https://" not in html
+    assert 'src="http://' not in html and 'src="https://' not in html
     assert "--pcb:#0b3d20" in html.lower()
     assert "--gold:#d6a84a" in html.lower()
     assert "Codex + GPT-5.6 workflow" in html
+
+
+def test_dashboard_is_a_narrative_hardware_console_with_runnable_proof_paths() -> None:
+    html = (ROOT / "docs/evidence/product-release/dashboard.html").read_text(encoding="utf-8")
+    for text in (
+        'class="circuit-board"',
+        'id="story"',
+        'id="proof-actions"',
+        'id="placement"',
+        'id="evidence-drawer"',
+        "PLACEMENT,",
+        "COMPILED.",
+        "Run the live matched test",
+        ".\\scripts\\live-tps-demo.ps1 -Mode Demo",
+        "https://github.com/crankysmh47/Expertflow",
+        "Replay → Live → Rebuild",
+        "prefers-reduced-motion: reduce",
+    ):
+        assert text in html
+    assert html.index("28.13") < html.index("Quality evidence")
 
 
 def test_submission_claims_ledger_classifies_every_claim() -> None:
