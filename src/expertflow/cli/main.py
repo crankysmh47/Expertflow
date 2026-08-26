@@ -19,6 +19,7 @@ from expertflow.analysis.heldout_breakdown import (
     load_collection_breakdown_inputs,
 )
 from expertflow.analysis.profile import summarize_routing
+from expertflow.analysis.prefetch_sim import simulate_concurrent_prefetch
 from expertflow.analysis.replay import replay_policy
 from expertflow.collection import CollectionConfig, collect_trace_pairs
 from expertflow.doctor import collect_doctor_report
@@ -28,6 +29,7 @@ from expertflow.runtime.baseline import BaselineRunConfig
 from expertflow.runtime.cuda_transfer import (
     aggregate_cuda_transfer_trials,
     benchmark_cuda_transfers,
+    benchmark_mover,
 )
 from expertflow.runtime.measurement import run_measured_baseline
 from expertflow.trace.io import load_router_events
@@ -148,6 +150,22 @@ def build_parser() -> argparse.ArgumentParser:
     simulate.add_argument("--capacity-per-layer", type=int, required=True)
     simulate.add_argument("--output", type=Path, required=True)
 
+    prefetch_sim = commands.add_parser(
+        "prefetch-sim",
+        help="Estimate bounded next-step prefetch over interleaved traces.",
+    )
+    prefetch_sim.add_argument("trace", type=Path, nargs="+")
+    prefetch_sim.add_argument(
+        "--prediction",
+        choices=("none", "oracle", "frequency"),
+        default="oracle",
+    )
+    prefetch_sim.add_argument("--capacity-per-layer", type=int, required=True)
+    prefetch_sim.add_argument("--max-transfers-per-step", type=int, default=8)
+    prefetch_sim.add_argument("--expert-transfer-ms", type=float, required=True)
+    prefetch_sim.add_argument("--slot-bytes", type=int, required=True)
+    prefetch_sim.add_argument("--output", type=Path, required=True)
+
     transfer = commands.add_parser(
         "transfer-benchmark",
         help="Measure CUDA host-to-device transfer latency.",
@@ -169,6 +187,33 @@ def build_parser() -> argparse.ArgumentParser:
     )
     transfer_aggregate.add_argument("trial", type=Path, nargs="+")
     transfer_aggregate.add_argument("--output", type=Path, required=True)
+
+    mover = commands.add_parser(
+        "mover-benchmark",
+        help="Measure contiguous batching, queue depth, and ready latency.",
+    )
+    mover.add_argument("--cudart", type=Path, required=True)
+    mover.add_argument(
+        "--slot-bytes", type=int, action="append", required=True
+    )
+    mover.add_argument(
+        "--slot-count", type=int, action="append", required=True
+    )
+    mover.add_argument(
+        "--queue-depth", type=int, action="append", required=True
+    )
+    mover.add_argument("--batches", type=int, default=30)
+    mover.add_argument("--warmup-copies", type=int, default=10)
+    mover.add_argument("--ready-samples", type=int, default=200)
+    mover.add_argument("--background-bytes", type=int, default=0)
+    mover.add_argument("--background-copies", type=int, default=0)
+    mover.add_argument(
+        "--staging-mode",
+        choices=("pageable", "pinned", "pinned_wc"),
+        default="pinned",
+    )
+    mover.add_argument("--device", type=int, default=0)
+    mover.add_argument("--output", type=Path, required=True)
 
     curve = commands.add_parser(
         "capacity-curve",
@@ -625,6 +670,57 @@ def _run_simulate(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_prefetch_sim(args: argparse.Namespace) -> int:
+    sources = [path.resolve() for path in args.trace]
+    conversations = []
+    conversation_ids: list[str] = []
+    try:
+        for source in sources:
+            events = list(load_router_events(source))
+            if not events:
+                raise ValueError(f"trace {source} contains no router events")
+            source_ids = {event.conversation_id for event in events}
+            if len(source_ids) != 1:
+                raise ValueError(
+                    f"trace {source} must contain exactly one conversation_id"
+                )
+            conversation_id = source_ids.pop()
+            if conversation_id in conversation_ids:
+                raise ValueError(
+                    f"conversation_id {conversation_id!r} appears in multiple traces"
+                )
+            conversation_ids.append(conversation_id)
+            conversations.append(events)
+        simulation = simulate_concurrent_prefetch(
+            conversations,
+            prediction=args.prediction,
+            capacity_per_layer=args.capacity_per_layer,
+            max_transfers_per_step=args.max_transfers_per_step,
+            expert_transfer_ms=args.expert_transfer_ms,
+            slot_bytes=args.slot_bytes,
+        )
+    except ValueError as error:
+        print(
+            json.dumps(
+                {"status": "failure", "reason": str(error)}, indent=2
+            )
+        )
+        return 2
+    report = {
+        "schema_version": "1.0.0",
+        "measurement_kind": simulation.measurement_kind,
+        "source_traces": [str(source) for source in sources],
+        "simulation": asdict(simulation),
+    }
+    output = args.output.resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(
+        json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    print(output)
+    return 0
+
+
 def _run_transfer_benchmark(args: argparse.Namespace) -> int:
     report = benchmark_cuda_transfers(
         args.cudart.resolve(),
@@ -650,6 +746,30 @@ def _run_transfer_aggregate(args: argparse.Namespace) -> int:
     report = aggregate_cuda_transfer_trials(
         [_load_json_object(path, "transfer trial") for path in sources],
         source_paths=tuple(str(path) for path in sources),
+    )
+    output = args.output.resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(
+        json.dumps(report, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    print(output)
+    return 0
+
+
+def _run_mover_benchmark(args: argparse.Namespace) -> int:
+    report = benchmark_mover(
+        args.cudart.resolve(),
+        slot_bytes_values=tuple(args.slot_bytes),
+        slot_counts=tuple(args.slot_count),
+        queue_depths=tuple(args.queue_depth),
+        batches=args.batches,
+        warmup_copies=args.warmup_copies,
+        ready_samples=args.ready_samples,
+        background_bytes=args.background_bytes,
+        background_copies=args.background_copies,
+        staging_mode=args.staging_mode,
+        device=args.device,
     )
     output = args.output.resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -913,10 +1033,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_replay(args)
     if args.command == "simulate":
         return _run_simulate(args)
+    if args.command == "prefetch-sim":
+        return _run_prefetch_sim(args)
     if args.command == "transfer-benchmark":
         return _run_transfer_benchmark(args)
     if args.command == "transfer-aggregate":
         return _run_transfer_aggregate(args)
+    if args.command == "mover-benchmark":
+        return _run_mover_benchmark(args)
     if args.command == "capacity-curve":
         return _run_capacity_curve(args)
     if args.command == "heldout-curve":
