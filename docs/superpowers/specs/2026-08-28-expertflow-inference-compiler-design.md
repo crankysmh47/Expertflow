@@ -85,6 +85,36 @@ The ExpertFlow llama.cpp fork consumes this declarative plan through a stable
 runtime interface. The compiler does not generate or rewrite C++ source for
 individual models.
 
+### 3.3 Fork governance
+
+The runtime fork is maintained as a small, reviewable patch stack over an exact
+upstream llama.cpp base commit. Each ExpertFlow release records the upstream
+base, ordered patch identities, build configuration, exported interface, and
+compatible compiler-plan schema.
+
+Upstream synchronization occurs only at explicit integration milestones, never
+implicitly during plan compilation or measurement. A candidate upstream update
+is evaluated in an isolated branch through this sequence:
+
+1. reproduce the old upstream stock baseline and accepted ExpertFlow plan;
+2. build and test the new unmodified upstream revision;
+3. rebase or reapply each ExpertFlow patch independently;
+4. run feature-off equivalence, native contracts, plan compatibility, exactness,
+   performance, memory, and cleanup gates;
+5. promote the new base only after the compatibility matrix passes.
+
+New upstream mechanisms such as MTP are first validated on unmodified upstream,
+then integrated through the smallest stable hook needed by the plan interface.
+Where practical, generally useful hooks are proposed upstream to reduce fork
+divergence. Failed upstream updates remain quarantined; the current supported
+base continues to receive reproducibility support.
+
+The project tracks patch-stack size, touched subsystems, unresolved upstream
+conflicts, and time since the last evaluated upstream base. If the fork can no
+longer be rebased without broad scheduler, graph, allocator, or kernel rewrites,
+the release stops and requires a new runtime-architecture decision rather than
+quietly accumulating divergence.
+
 ## 4. Intermediate representations
 
 ### 4.1 ModelIR
@@ -272,6 +302,14 @@ must be measured first. A production TurboQuant pass requires compatible GPU
 kernels and actual compressed GPU storage; a Python or CPU reference
 implementation is insufficient.
 
+This separation is a deliberate product invariant, not a temporary limitation.
+Any KV representation that changes stored numerical values, including Q8 or Q4,
+is approximate even when a finite evaluation corpus produces identical tokens.
+Token parity is a required regression signal but cannot prove numerical
+equivalence for unseen contexts. Exact requests retain the baseline KV datatype
+and numerical path. Users may create named approximate profiles with explicit
+quality budgets, but the compiler never silently softens an exact request.
+
 ## 8. Measurement database and cost model
 
 Measurements are keyed by:
@@ -294,6 +332,34 @@ The cost model proposes and prunes candidates; it does not declare winners.
 Its estimates include VRAM, transfer bytes, execution time, expected hits,
 speculative verifier cost, and constraint risk. Only measured finalists may be
 selected.
+
+### 8.1 Calibration and feedback loop
+
+The cost model begins with analytical byte accounting and conservative priors
+from compatible measurements. It is calibrated separately for each complete
+measurement key; observations from a different model, quant, runtime build,
+GPU, CUDA identity, or workload may initialize a prior but may not be treated
+as calibrated evidence.
+
+After each measured candidate, the compiler records prediction residuals for
+TPS, latency, memory, transfer cost, and pass-specific counters. It updates the
+local calibrated model, uncertainty bounds, and candidate ranking before the
+next measurement batch. Model versions and calibration inputs are immutable
+plan provenance so a search can be replayed.
+
+Finite measurement budgets include an exploration quota. The compiler must
+measure:
+
+- the predicted winner;
+- boundary candidates near hard constraints;
+- at least one diverse or uncertainty-maximizing candidate per active pass;
+- periodic sentinel candidates that the cost model ranked below the finalist.
+
+Unknown or high-uncertainty regions may be deprioritized but not eliminated by
+an unsupported point estimate. If sentinel residuals exceed a declared error
+threshold, pruning is suspended, the affected search region is widened, and
+the compiler either recalibrates or emits an inconclusive result. Small search
+spaces use exhaustive measurement instead of a cost model.
 
 ## 9. Model-family adapters
 
@@ -362,6 +428,19 @@ stops and requests recompilation.
 - clean-checkout plan replay.
 
 ## 12. Development phases
+
+Phases 0 through 3 are the required compiler spine and the only sequential
+critical path. After Phase 3, the compiler is a usable static-placement
+product. Phases 4 through 8 are independent optimization tracks with declared
+prerequisites, budgets, and stop rules; a no-go or stalled track emits an
+evidence-backed rejection and does not block unrelated later tracks. For
+example, CUDA autotuning may reject every candidate without preventing KV
+experiments or a new model adapter.
+
+The Phase 9 product commands and plan cache begin incrementally after Phase 3.
+Joint cross-pass search is added only for passes that independently produced a
+valid winner. This prevents one research-grade optimization from delaying the
+entire compiler.
 
 ### Phase 0: clean compiler baseline
 
