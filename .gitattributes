@@ -6,6 +6,8 @@
 *.svg text eol=lf
 *.html text eol=lf
 *.patch text eol=lf
+# Blank context lines in this unified patch require a literal leading space.
+release/expertflow-build-week/patches/llama.cpp/0007-feat-phase-aware-diagnostic-profile.patch whitespace=-blank-at-eol
 *.toml text eol=lf
 *.lock text eol=lf
 *.csv text eol=lf
