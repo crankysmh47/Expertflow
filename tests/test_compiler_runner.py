@@ -90,7 +90,8 @@ def test_compute_idle_uses_engine_activity_not_graphics_process_listing():
 
 @pytest.mark.parametrize('mode,memory_good,expected', [
     ('ok', True, 'measured'), ('malformed', True, 'validation_stop'),
-    ('timeout', True, 'environment_blocked'), ('trickle', True, 'environment_blocked'), ('ok', False, 'environment_blocked')])
+    ('timeout', True, 'environment_blocked'), ('trickle', True, 'environment_blocked'), ('ok', False, 'environment_blocked'),
+    ('optional_failure', True, 'measured')])
 def test_owned_real_child_health_completion_failure_and_cleanup(tmp_path, tiny_child, mode, memory_good, expected):
     from dataclasses import replace
     from expertflow.compiler.plan import PlanIdentities
@@ -107,6 +108,11 @@ def test_owned_real_child_health_completion_failure_and_cleanup(tmp_path, tiny_c
                          if owned and owned[0].poll() is None else
                          {'pid':pid,'state':'absent','counter_available':True,'dedicated_bytes':0})
     store = EvidenceStore(tmp_path / 'store.sqlite3')
+    if mode == 'optional_failure':
+        from expertflow.compiler.diagnostics import DiagnosticSampler
+        def broken(pid): raise AttributeError('unsupported optional sensor')
+        sample.check_idle = lambda: {'fixture_idle': True}
+        sample = DiagnosticSampler(sample, gpu_reader=broken, cpu_reader=broken)
     runner = ServerMeasurementRunner(store, process_factory=factory(tiny_child, mode, owned),
                                       memory_sampler=sample, sample_interval=0.02)
     started = time.perf_counter()
@@ -122,6 +128,9 @@ def test_owned_real_child_health_completion_failure_and_cleanup(tmp_path, tiny_c
         row = store.verify_measurement(outcome.measurement_id)
         assert row['decode_tps'] == 30
         assert row['completion_wall_ms'] > 0
+        phases=json.loads((tmp_path/'run/phase-timing.json').read_text())
+        assert phases['load_health_ms'] > 0 and phases['tokenize_ms'] > 0
+        assert phases['teardown_ms'] >= 0
     else:
         assert outcome.reason and (tmp_path / 'run' / 'failure.json').exists()
 

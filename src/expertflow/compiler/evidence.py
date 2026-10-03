@@ -201,6 +201,18 @@ class EvidenceStore:
     def verify_artifacts(self, mid):
         self._verify_artifacts(self.measurement(mid))
 
+    def prime_model(self, model):
+        """Verify weights before a timed experiment, retaining the normal stat guard."""
+        path = Path(model.identity.path)
+        stat = path.stat()
+        verification = (model.identity, stat.st_mtime_ns, stat.st_ctime_ns)
+        if stat.st_size != model.identity.size_bytes:
+            raise ValueError('model artifact size mismatch')
+        if verification not in self._model_verifications:
+            if file_sha256(path) != model.identity.sha256:
+                raise ValueError('model artifact hash mismatch')
+            self._model_verifications.add(verification)
+
     def verify_measurement(self, mid, _seen=frozenset()):
         if mid in _seen:
             raise ValueError('comparison evidence cycle')
@@ -247,15 +259,7 @@ class EvidenceStore:
                               'moe_layers': tuple(MoELayerIR(**layer) for layer in raw_model['moe_layers'])})
             if canonical_sha256(model) != i.model_sha256:
                 raise ValueError('model snapshot hash mismatch')
-            model_path = Path(model.identity.path)
-            stat = model_path.stat()
-            verification = (model.identity, stat.st_mtime_ns, stat.st_ctime_ns)
-            if stat.st_size != model.identity.size_bytes:
-                raise ValueError('model artifact size mismatch')
-            if verification not in self._model_verifications:
-                if file_sha256(model_path) != model.identity.sha256:
-                    raise ValueError('model artifact hash mismatch')
-                self._model_verifications.add(verification)
+            self.prime_model(model)
             argv = launch['argv']
             port = int(argv[argv.index('--port') + 1])
             expected = lower_launch(candidate, model.identity, binding, port, '.', inherited={'PATH': ''})

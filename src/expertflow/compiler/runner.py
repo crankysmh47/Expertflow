@@ -349,6 +349,7 @@ class ServerMeasurementRunner:
         request_completed = False
         forced_kill = False
         child_exit = None
+        phases = {'load_health_ms': None, 'tokenize_ms': None, 'teardown_ms': None}
         # Reserve an available loopback port; any racing foreign bind makes our
         # child fail, rather than giving permission to stop that foreign PID.
         with socket.socket() as port_socket:
@@ -400,6 +401,7 @@ class ServerMeasurementRunner:
             if hasattr(self.memory_sampler, 'check_idle'):
                 _write(output_dir / 'idle-compute.json', self.memory_sampler.check_idle())
             with (output_dir / 'stdout.log').open('wb') as stdout, (output_dir / 'stderr.log').open('wb') as stderr:
+                load_started = time.perf_counter()
                 process = self.process_factory(list(launch.argv), env=launch.environment,
                     stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr,
                     creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0)
@@ -417,6 +419,7 @@ class ServerMeasurementRunner:
                         if not _owns_port(process.pid, port):
                             raise OSError('owned server is not listening yet')
                         self.http_request(port, '/health', timeout=min(1, max(0.01, deadline - time.monotonic())))
+                        phases['load_health_ms'] = (time.perf_counter() - load_started) * 1000
                         break
                     except (OSError, urllib.error.URLError):
                         if time.monotonic() >= deadline:
@@ -426,8 +429,10 @@ class ServerMeasurementRunner:
                 sample_once()
                 tokenize_request = {'content': w.prompt, 'add_special': True}
                 _write(output_dir / 'tokenize-request.json', tokenize_request)
+                tokenize_started = time.perf_counter()
                 tokenize = self.http_request(port, '/tokenize', tokenize_request,
                                              timeout=w.completion_timeout_seconds)
+                phases['tokenize_ms'] = (time.perf_counter() - tokenize_started) * 1000
                 _write(output_dir / 'tokenize.json', tokenize)
                 request = {**launch.request, 'prompt': tokenize.get('tokens')}
                 _write(output_dir / 'request.json', request)
@@ -447,6 +452,7 @@ class ServerMeasurementRunner:
         except Exception as error:
             status, reason = 'environment_blocked', str(error)
         finally:
+            teardown_started = time.perf_counter()
             stop.set()
             if monitor:
                 monitor.join(timeout=10)
@@ -479,6 +485,8 @@ class ServerMeasurementRunner:
                                                 'teardown_reading': teardown_reading,
                                                 'sample_interval_seconds': self.sample_interval})
             cleanup = process is not None and process.poll() is not None and not forced_kill and settled
+            phases['teardown_ms'] = (time.perf_counter() - teardown_started) * 1000
+            _write(output_dir / 'phase-timing.json', phases)
             _write(output_dir / 'process.json', {'pid': process.pid if process else None,
                 'exited': cleanup, 'exit_code': 0 if request_completed and cleanup else child_exit,
                 'child_exit_code': child_exit, 'cleanup': cleanup,
@@ -498,7 +506,7 @@ class ServerMeasurementRunner:
                     from .schema import require_number
                     require_number(milliseconds, 'native predicted_ms', 0.000001)
                     artifacts = []
-                    for role in ('launch', 'request', 'tokenize-request', 'tokenize', 'completion', 'memory', 'process', 'run-start', 'completion-wall'):
+                    for role in ('launch', 'request', 'tokenize-request', 'tokenize', 'completion', 'memory', 'process', 'run-start', 'completion-wall', 'phase-timing'):
                         p = (output_dir / f'{role}.json').resolve()
                         artifacts.append(EvidenceArtifact(role, ArtifactIdentity(str(p), p.stat().st_size, file_sha256(p))))
                     record = MeasurementRecord(MeasurementKey.from_candidate(candidate), candidate.candidate_id,
