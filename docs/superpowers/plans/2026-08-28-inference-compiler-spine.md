@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build the Phase 0–3 ExpertFlow compiler spine that inspects a Gemma 4 GGUF inventory, models the machine and workload with typed IRs, searches and records a strongest-stock floor, compiles measured static-MoE placement candidates, and emits a sealed, explainable execution plan for the pinned ExpertFlow llama.cpp runtime.
+**Goal:** Build the Phase 0–3 ExpertFlow compiler spine that inspects a Gemma 4 GGUF inventory, models the machine and workload with typed IRs, measures a strongest-stock floor, tests bounded static-MoE candidates, and emits an explainable exact execution plan or an explicit stock fallback for the pinned llama.cpp runtime.
 
-**Architecture:** Add a focused `expertflow.compiler` package around existing artifact, baseline, benchmark, Q6 inventory, and placement modules. The package uses immutable typed IRs, a dependency-checked pass manager, append-only evidence, measured candidate selection, and a strict plan validator; existing research and product commands remain compatible. This plan stops after the required static-placement compiler product—CUDA autotuning, KV/TurboQuant, extra model adapters, MTP, and dynamic caching remain independent later plans.
+**Architecture:** Add a focused `expertflow.compiler` package around existing artifact, benchmark, Q6 inventory, and placement modules, with a native server measurement runner. The package uses immutable typed IRs, a dependency-checked pass manager, append-only evidence, measured candidate selection, and a strict plan validator; existing research and product commands remain compatible. This plan stops after the exact Phase 3 compiler product, including a valid stock fallback—CUDA autotuning, KV/TurboQuant, extra model adapters, MTP, and dynamic caching remain independent later plans.
 
 **Tech Stack:** Python 3.11+, standard-library dataclasses/enums/protocols/JSON/hashlib/sqlite3, pytest 8.4, uv, GGUF metadata exported by the pinned llama.cpp `gguf-py`, Windows 11 x64, one NVIDIA RTX 5060 Ti, CUDA 12.8, pinned ExpertFlow llama.cpp fork.
 
@@ -24,6 +24,188 @@
 - Preserve all unrelated working-tree changes and historical evidence. Stage only files named by the active task.
 - Heavy model processes run sequentially with hidden windows, file-only logs, explicit exit codes, cleanup checks, and no ordinary-run exclusion.
 - Stop at the first task exit-gate failure; record the failure rather than weakening a gate.
+- Work in the existing `ef-v2` checkout, as requested. Preserve the pre-existing `PROJECT_LOG.md` change and untracked files; do not stage them wholesale.
+
+## Review corrections and binding contracts (2026-10-03)
+
+These contracts replace conflicting historical instructions below. Execution order
+is **Task 1 -> Task 0 -> Tasks 2–11**. Task 0 is an early feasibility gate: do not
+build the remaining abstractions while a required external artifact is unavailable.
+The user authorized repairing this plan and starting execution without another
+planning approval round.
+
+### Exactness and historical evidence
+
+- The twelve-layer 28.13 TPS result is **historical CLI performance evidence**,
+  not a passing exact plan. `docs/evidence/q6-placement-final/run-pairs.csv` contains
+  different OFF and ON response hashes. `results.json` says cross-backend bit
+  identity was not required; the strict PPL upper bound was +2.2529%, above +1%.
+- The compiler retains that candidate for a diagnostic reproduction and rejects
+  it from exact sealing unless fresh token evidence passes. Matching text on one
+  prompt cannot erase the recorded numerical-path/quality limitation.
+- An exact static pass must preserve the supported numerical-path contract and
+  exact input/generated token IDs against pristine stock for every frozen case.
+  CPU-to-CUDA expert matmul substitutions have no blanket exact exemption.
+  Static candidates without that contract are rejected as `numerical_path_change`.
+  Approximate implementation and quality-budget changes need a separate plan.
+- Returning the measured exact stock floor with `STATIC-NO-GO` is a correct
+  compiler result. The plan must not require an ineligible static winner to pass.
+- Historical reports without raw token IDs are report-only; recorded replay may
+  reconstruct diagnostics but cannot create a sealed exact execution plan.
+
+### Workload and measurement boundary
+
+- The product workload is a **single native server completion** at context 4096,
+  using the exact UTF-8 bytes of `configs/baseline-prompt.txt`, concurrency one,
+  seed 42, temperature zero, `ignore_eos=true`, no prompt caching, 512 tokens,
+  F16 K/V, default graphs, batch 2048, microbatch 512, and 12 threads.
+- Keep a separate `gemma4-q6-historical-cli.json`: literal `Caching.`, context
+  2048, 512 generated tokens, `--ignore-eos --cpu-moe --single-turn`, graphs on,
+  and the recorded twelve-layer/precompute settings. Historical CLI TPS is never
+  imported under the server workload key and is never an absolute product gate.
+- Server decode TPS is `timings.predicted_n * 1000 / timings.predicted_ms`.
+  Preserve prompt TPS and whole-request wall time separately. Reject nonfinite
+  timings, incomplete responses, token-count mismatch, or fewer than 512 IDs.
+- Tokenize the prompt through `/tokenize` with `add_special=true`, preserve the
+  returned ID array, then send that array as `/completion.prompt`. Set
+  `return_tokens=true`, `stream=false`, `cache_prompt=false`, and the frozen
+  sampler fields; save the native response `tokens` and `timings`. Missing token
+  support is `ENVIRONMENT-BLOCKED`; never retokenize response text as a substitute.
+- All candidates use the same complete workload key, including runtime interface,
+  prompt bytes/IDs, sampler, graph, K/V, batch and microbatch settings. Pristine
+  and fork measurements have separate runtime identities and an explicit paired
+  comparison relation; do not demand identical runtime hashes between them.
+
+### Runtime identities, runner, and lowering
+
+- `configs/compiler/runtime-fork.json` pins the existing six patches and fork
+  binaries. Pin pristine stock separately in `runtime-stock.json`: base commit
+  `a7312ae94f801fc9c6786dc56e38df57b964f697`, the same MSVC/CUDA build, no patches.
+- `launcher_abi=1.0.0` describes the Python launcher format; the existing C++
+  runtime does **not** consume `ExecutionPlan` JSON. Host-side validation resolves
+  and verifies the plan, then `lower_launch()` emits argv, a sanitized environment,
+  and the completion payload. Do not invent a native execution-plan ABI.
+- For every resolved runtime directory, hash the executable and every loaded
+  companion DLL in that directory; record the CUDA DLL path/hash and exact build
+  flags. An executable hash alone cannot establish a compatible runtime build.
+- Add `compiler/runner.py` with `ServerMeasurementRunner.measure(candidate,
+  output_dir)` and `measure_pairs(stock, candidate, pairs=10)`. Do not route new
+  measurements through `run_measured_baseline`: it lacks the native completion
+  protocol, environment injection, token evidence, and fail-closed WDDM memory.
+- `lower_launch(settings, executable, model, port)` emits `-m MODEL -ngl N -c C
+  -b B -ub UB -t T -tb T -np 1 --host 127.0.0.1 --port PORT --cache-type-k f16
+  --cache-type-v f16`, adding `--cpu-moe` for CPU-expert candidates.
+- Clear inherited `LLAMA_EXPERTFLOW_*`, `EXPERTFLOW_*`, `GGML_SCHED_DEBUG`, and
+  `GGML_CUDA_DISABLE_GRAPHS`; set only plan-declared controls. Static lowering
+  sets `LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER` to comma-separated layer IDs and
+  `LLAMA_EXPERTFLOW_STATIC_PRECOMPUTE=1`. Graphs off sets the disable variable;
+  graphs on removes it. Record argv and all effective runtime controls.
+- Launch hidden, with file logs, a claimed loopback port and an owned PID. Health
+  timeout is 180 s; completion timeout is 300 s; teardown waits 30 s then kills
+  only that owned child. `finally` handles request, sampler, and monitor failures.
+  Persist failure evidence before returning a structured error.
+- Sample process-owned VRAM every 200 ms. On Windows, use the established
+  `GPU Process Memory` counter for the owned PID; `[N/A]`, failed counters, zero
+  valid samples, and unsupported ownership accounting are unknown, never zero.
+  Also check device-free reserve, idle-compute preflight, and settled teardown.
+- Exact startup equivalence compares pristine CPU-MoE and fork feature-off tokens
+  with identical settings. Native source contracts are mandatory when their pinned
+  source tree is supplied; old predictive/cache contracts stay outside this fork.
+
+### Candidate budgets, sealing, and final confirmation
+
+- Stock matrix is the product of `gpu_layers=(auto,all,99)` and
+  `cpu_moe=(false,true)`, with graphs on and all other product settings fixed.
+  Keep resolved-placement duplicates as diagnostics but measure one representative.
+  In particular, never omit `99 --cpu-moe`. CUDA autotuning remains deferred.
+- Runtime capabilities include `max_static_layers=12`, `max_static_shadows=48`,
+  supported component layouts, and static feature-off behavior. Enforce these
+  before allocating or measuring; fitting VRAM does not override a runtime limit.
+- Static bytes include actual aligned allocations plus measured non-expert,
+  KV, graph/scratch, and reserve costs. Reject already-resident expert banks from
+  duplicate placement. Generate at most 12 greedy prefixes plus static-off and
+  the historical candidate, deduplicate, and measure at most four eligible finalists.
+- Initial search: one discarded warmup plus three retained repetitions per stock
+  candidate; coefficient of variation above 10% is `INCONCLUSIVE`, without deleting
+  slow ordinary runs. Final exact static winner: ten alternating stock/candidate
+  cold-process pairs, all retained, fresh token/memory/cleanup gates.
+- Select static only when the paired mean improvement is positive and the lower
+  95% paired-bootstrap bound is >0% (10,000 resamples, seed 20261003). Report
+  uncertainty and select stock on inconclusive/non-improving results.
+- Re-run **the selected plan**, rather than just the historical twelve-layer set,
+  from its sealed file after fresh identity checks. Its measured mean TPS must be
+  within 2% of its own confirmation mean; for stock fallback confirm ten ordinary
+  stock runs and one additional sealed replay. No hard-coded 28.13 TPS threshold.
+- `ExecutionPlan` embeds the complete frozen workload, explicit argv/environment
+  settings, verified measurement IDs, applicable validations, and a resolvable
+  measured fallback payload. `seal_candidate(candidate, store, identities,
+  fallback)` reads and verifies evidence; caller-supplied booleans alone cannot seal.
+- `validate --plan ... --workload FILE --evidence-db FILE` checks workload identity,
+  evidence/artifact hashes, all live identities and launcher ABI before replay.
+
+---
+
+### Task 0: Early evidence audit and external-artifact preflight
+
+**Run after Task 1, before Task 2.**
+
+**Files:**
+- Create: `src/expertflow/compiler/preflight.py`
+- Create: `scripts/compiler_preflight.py`
+- Create: `tests/test_compiler_preflight.py`
+- Create after execution: `docs/evidence/compiler-phase3/preflight.json`
+
+**Interfaces:** `audit_historical_evidence(root) -> dict`,
+`verify_external_artifacts(model, stock_dir, fork_dir, runtime_manifests) -> dict`,
+`run_preflight(root, model, stock_dir, fork_dir) -> dict`.
+The report distinguishes `READY`, `ENVIRONMENT-BLOCKED`, `IDENTITY-STOP` and
+historical static rejection; historical rejection alone does not block stock.
+
+- [ ] **Step 1: Write failing tests**
+
+```python
+def test_historical_static_is_report_only(repo_root):
+    result = audit_historical_evidence(repo_root)
+    assert result['exact_plan_eligible'] is False
+    assert result['cross_mode_response_identity'] is False
+    assert result['strict_quality_gate_pass'] is False
+
+def test_missing_model_blocks_before_hashing_large_files(tmp_path):
+    result = run_preflight(repo_root(), tmp_path / 'missing.gguf', stock_dir(), fork_dir())
+    assert result['status'] == 'ENVIRONMENT-BLOCKED'
+    assert 'model' in result['missing_artifacts']
+```
+
+Also exercise malformed/empty CSV, changing historical summaries, matching
+responses without token-ID evidence, model-size/hash mismatch, runtime hash
+mismatch, failed patch verification, atomic JSON output and CLI exit codes.
+
+- [ ] **Step 2: Run RED**: `uv run --extra dev --extra quality pytest -q tests/test_compiler_preflight.py`.
+Expected: import failure before the module exists.
+- [ ] **Step 3: Implement**: read the committed manifests and actual CSV rows;
+check 10 rows per mode, finite TPS and one stable response hash per mode. Preserve
+each historical input hash and measured mean. Never promote those rows into
+token-ID evidence. Verify model using `ArtifactSpec`/`verify_artifact`, every patch
+against its pinned hash, pristine/fork executable hashes, and dependency hashes.
+Inspect all required paths before expensive hashes; report missing paths together.
+- [ ] **Step 4: Run GREEN** with the same test command, then `uv run --extra dev --extra quality pytest -q`.
+Expected: all applicable CPU tests pass; external source skips are reported.
+- [ ] **Step 5: Run live artifact preflight**:
+
+```powershell
+uv run --extra dev --extra quality python scripts/compiler_preflight.py --model C:/models/gemma-4-26b-a4b-q6/google_gemma-4-26B-A4B-it-Q6_K.gguf --stock-dir C:/models/expertflow/builds/llama-a7312ae-cuda128-clean/bin --fork-dir C:/models/expertflow/builds/llama-q6-placement-final/bin --output docs/evidence/compiler-phase3/preflight.json
+```
+
+Expected: exit 0 (`READY`), exit 3 (`ENVIRONMENT-BLOCKED`), or exit 2
+(`IDENTITY-STOP`). On missing model, search local drives and Hugging Face cache;
+if absent and recovery is authorized, recover repository
+`bartowski/google_gemma-4-26B-A4B-it-GGUF` at revision
+`fabed3e586120477355eea23b92644540a79ce2f`, filename
+`google_gemma-4-26B-A4B-it-Q6_K.gguf`, 22,862,575,520 bytes, SHA-256
+`089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba`.
+Never substitute another quant/revision. A failed recovery is a recorded blocker.
+- [ ] **Step 6: Commit** only this task's files and report. Start Task 2 only on
+`READY`; preserve the execution ledger and recovery evidence otherwise.
 
 ---
 
@@ -32,6 +214,8 @@
 Create the following focused modules:
 
 - `src/expertflow/compiler/schema.py`: immutable IR and identity types plus canonical serialization.
+- `src/expertflow/compiler/reference.py`: validated frozen workload and runtime manifests.
+- `src/expertflow/compiler/runner.py`: native server measurement, exact token capture, memory and process cleanup.
 - `src/expertflow/compiler/adapters/base.py`: model descriptor, adapter protocol, and registry.
 - `src/expertflow/compiler/adapters/gemma4.py`: Gemma 4 inventory normalization only.
 - `src/expertflow/compiler/plan.py`: candidate/execution-plan types, validation, sealing, and loading.
@@ -59,8 +243,12 @@ Do not move or rewrite existing `expertflow.analysis`, `expertflow.runtime`, or 
 **Files:**
 - Modify: `pyproject.toml`
 - Modify: `uv.lock`
+- Create: `src/expertflow/compiler/__init__.py`
+- Create: `src/expertflow/compiler/reference.py`
 - Create: `configs/compiler/gemma4-q6-single-request.json`
+- Create: `configs/compiler/gemma4-q6-historical-cli.json`
 - Create: `configs/compiler/runtime-fork.json`
+- Create: `configs/compiler/runtime-stock.json`
 - Create: `tests/test_compiler_reference_config.py`
 
 **Interfaces:**
@@ -89,10 +277,13 @@ def test_reference_workload_is_single_request_exact_q6() -> None:
     assert value["prompt_file"] == "configs/baseline-prompt.txt"
 
 
-def test_quality_extra_pins_a_local_pandas_build() -> None:
-    document = Path("pyproject.toml").read_text(encoding="utf-8")
-    quality = document.split("quality = [", 1)[1].split("]", 1)[0]
-    assert 'pandas>=' in quality
+def test_workload_identity_changes_when_prompt_changes(tmp_path) -> None:
+    from expertflow.compiler.reference import load_reference_workload
+    root = reference_fixture(tmp_path)
+    before = load_reference_workload(root, root / 'workload.json')
+    (root / 'prompt.txt').write_text('Different prompt.', encoding='utf-8')
+    after = load_reference_workload(root, root / 'workload.json')
+    assert before.sha256 != after.sha256
 
 
 def test_runtime_fork_manifest_pins_reproducible_patch_stack() -> None:
@@ -100,7 +291,7 @@ def test_runtime_fork_manifest_pins_reproducible_patch_stack() -> None:
         Path("configs/compiler/runtime-fork.json").read_text(encoding="utf-8")
     )
     assert value["schema_version"] == "1.0.0"
-    assert value["execution_plan_abi"] == "1.0.0"
+    assert value["launcher_abi"] == "1.0.0"
     assert value["upstream_commit"] == "a7312ae94f801fc9c6786dc56e38df57b964f697"
     assert value["expertflow_commit"] == "451224ab4d12a616dc3e16e8c8063f4b331f531c"
     assert [patch["path"] for patch in value["patches"]] == [
@@ -124,6 +315,10 @@ def test_runtime_fork_manifest_pins_reproducible_patch_stack() -> None:
 Run: `uv run pytest -q tests/test_compiler_reference_config.py`
 
 Expected: FAIL because the config is absent and `quality` does not declare pandas.
+Also exercise nonfinite sampler settings, approximate KV inside an exact request,
+unsupported interface, missing/empty prompt, invalid repetition counts, reserve,
+model-family capabilities and runtime patch/binary hash fields. Add pandas import
+verification to the environment commands, rather than grepping dependency text.
 
 - [ ] **Step 3: Add the exact reference configuration and dependency**
 
@@ -135,27 +330,42 @@ Create `configs/compiler/gemma4-q6-single-request.json` exactly:
   "objective": "decode_tps",
   "concurrency": 1,
   "policy": "exact",
+  "runtime_interface": "server_completion",
   "prompt_file": "configs/baseline-prompt.txt",
   "context_size": 4096,
   "predict_tokens": 512,
   "threads": 12,
   "seed": 42,
   "temperature": 0.0,
+  "ignore_eos": true,
+  "cache_prompt": false,
+  "kv_type_k": "f16",
+  "kv_type_v": "f16",
+  "cuda_graphs": "on",
+  "batch_size": 2048,
+  "microbatch_size": 512,
   "warmup_runs": 1,
   "measured_runs": 3,
-  "minimum_vram_reserve_mib": 256
+  "minimum_vram_reserve_mib": 256,
+  "maximum_cv_pct": 10.0,
+  "confirmation_pairs": 10,
+  "bootstrap_samples": 10000,
+  "bootstrap_seed": 20261003,
+  "replay_tolerance_pct": 2.0,
+  "health_timeout_seconds": 180,
+  "completion_timeout_seconds": 300
 }
 ```
 
-Create `configs/compiler/runtime-fork.json` exactly. This is the compiler/runtime
-compatibility boundary: changing the ABI, upstream base, patch order, build
+Create `configs/compiler/runtime-fork.json` exactly. This is the launcher/runtime
+compatibility boundary: changing the launcher ABI, upstream base, patch order, build
 identity, or binary hashes requires an explicit manifest change and rerunning the
 Phase 3 gate.
 
 ```json
 {
   "schema_version": "1.0.0",
-  "execution_plan_abi": "1.0.0",
+  "launcher_abi": "1.0.0",
   "upstream_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697",
   "expertflow_commit": "451224ab4d12a616dc3e16e8c8063f4b331f531c",
   "patches": [
@@ -170,8 +380,10 @@ Phase 3 gate.
     "generator": "Ninja",
     "configuration": "Release",
     "compiler": "MSVC v143 14.39.33519",
-    "cuda": "12.8.93"
+    "cuda": "12.8.93",
+    "flags": ["GGML_CUDA=ON", "CMAKE_BUILD_TYPE=Release"]
   },
+  "capabilities": {"max_static_layers": 12, "max_static_shadows": 48},
   "binaries": {
     "llama-cli.exe": "5d68046dcd26e2fd018aaeaad5f99cdb7d88eca6fc10935925f1d660f7009407",
     "llama-server.exe": "22ecc4f64f91dcbe3a1cfe7d9d4617e43467ea7f3c6fa1ba2c6ad8d07e89334e"
@@ -180,21 +392,43 @@ Phase 3 gate.
 ```
 
 Add `"pandas>=2.2,<3"` to `[project.optional-dependencies].quality`, then run `uv lock`.
+Set pytest `pythonpath = [".", "src"]`: existing tests import both `scripts`
+and `tests.source_contract_paths`; the entry-point pytest launcher otherwise
+cannot collect them in a clean uv environment. Use `uv run --extra dev --extra
+quality` for every test command below (the shorter commands assume those extras
+were already synced). Pin the reference interpreter with `uv sync --python 3.11`.
+
+Create the historical workload from the binding contract above with
+`runtime_interface=historical_cli`, literal `prompt=Caching.`, context 2048 and
+the twelve static layers. It has a different canonical workload hash.
+Create `runtime-stock.json` with schema/launcher ABI `1.0.0`, upstream/expertflow
+commit equal to the pristine base, no patches, zero static capabilities, the same
+build flags, and binaries:
+`llama-cli.exe=56d5cbe8fc5782595a280345e5e2f70bc1bcc79c94130e1b73bb4eb3cdeacd0f`,
+`llama-server.exe=0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428`.
+These local pristine hashes must be verified in Task 0, not assumed compatible
+because they were copied here.
+
+Implement `load_reference_workload(root, path) -> ReferenceWorkload(payload,
+sha256)` by resolving prompt bytes, rejecting invalid fields, and hashing canonical
+JSON with `allow_nan=False`. Implement `load_runtime_manifest(path) -> dict` with
+strict SHA-256, commit, launcher-ABI, patch-order and capability checks. These
+small boundaries are consumed by Task 0 and later converted into Task 2 IRs.
 
 - [ ] **Step 4: Verify the isolated quality environment and tests**
 
-Run: `uv sync --frozen --extra quality`
+Run: `uv sync --frozen --extra dev --extra quality`
 
 Run: `uv run python -c "import numpy,pandas,pyarrow; print(numpy.__version__, pandas.__version__, pyarrow.__version__)"`
 
-Run: `uv run pytest -q tests/test_quality_dataset.py tests/test_compiler_reference_config.py`
+Run: `uv run --extra dev --extra quality pytest -q tests/test_quality_dataset.py tests/test_compiler_reference_config.py`
 
 Expected: imports succeed and both test files pass.
 
 - [ ] **Step 5: Commit only Phase 0 environment files**
 
 ```powershell
-git add pyproject.toml uv.lock configs/compiler/gemma4-q6-single-request.json configs/compiler/runtime-fork.json tests/test_compiler_reference_config.py
+git add pyproject.toml uv.lock configs/compiler src/expertflow/compiler/__init__.py src/expertflow/compiler/reference.py tests/test_compiler_reference_config.py
 git commit -m "build: stabilize compiler reference environment"
 ```
 
@@ -203,7 +437,7 @@ git commit -m "build: stabilize compiler reference environment"
 ### Task 2: Typed identities and compiler IRs
 
 **Files:**
-- Create: `src/expertflow/compiler/__init__.py`
+- Modify: `src/expertflow/compiler/__init__.py`
 - Create: `src/expertflow/compiler/schema.py`
 - Create: `tests/test_compiler_schema.py`
 
@@ -333,7 +567,7 @@ def test_only_measured_passing_candidate_can_be_sealed() -> None:
         measurement_ids=("m-1", "m-2", "m-3"),
         validation={"exact_tokens": True, "memory": True, "cleanup": True},
     )
-    sealed = seal_candidate(candidate, fallback_id="stock-1")
+    sealed = seal_candidate(candidate, store_fixture(), identities_fixture(), fallback_fixture())
     assert sealed.schema_version == "1.0.0"
     assert sealed.plan_sha256 == canonical_sha256(sealed.without_hash())
 
@@ -343,7 +577,7 @@ def test_only_measured_passing_candidate_can_be_sealed() -> None:
 )
 def test_unmeasured_or_rejected_candidate_cannot_be_sealed(status) -> None:
     with pytest.raises(ValueError, match="measured passing candidate"):
-        seal_candidate(candidate_fixture(status=status), fallback_id="stock-1")
+        seal_candidate(candidate_fixture(status=status), store_fixture(), identities_fixture(), fallback_fixture())
 ```
 
 Also test identity mismatch, missing evidence, exact plan containing approximate settings, unsupported schema, tampered plan hash, and fallback incompatibility.
@@ -356,7 +590,7 @@ Expected: import fails because `expertflow.compiler.plan` is absent.
 
 - [ ] **Step 3: Implement minimal plan types and fail-closed validation**
 
-`CandidatePlan` must carry model/hardware/workload/runtime hashes, status, settings, estimates, measurement IDs, rejection reasons, and validation results. `ExecutionPlan` adds compiler version, fallback ID, canonical hash, and sealed timestamp. Serialize enums as strings and tuples as arrays.
+`CandidatePlan` must carry model/hardware/workload/runtime hashes, status, settings, estimates, measurement IDs, rejection reasons, and validation results. `ExecutionPlan` adds compiler version, a complete measured fallback payload (or null for stock), canonical hash, and sealed timestamp. Serialize enums as strings and tuples as arrays. Sealing resolves records from the evidence store, checks candidate settings/identities, numerical-path eligibility and all required validations, verifies raw artifact hashes, and includes the full frozen workload. Tests must reject fabricated IDs, caller-only passing flags, foreign-candidate evidence and an unresolvable fallback.
 
 - [ ] **Step 4: Run focused plan/schema tests**
 
@@ -623,10 +857,12 @@ git commit -m "feat: calibrate compiler candidate selection"
 
 **Files:**
 - Create: `src/expertflow/compiler/stock.py`
+- Create: `src/expertflow/compiler/runner.py`
 - Create: `tests/test_compiler_stock.py`
+- Create: `tests/test_compiler_runner.py`
 
 **Interfaces:**
-- Consumes: `HardwareIR`, `WorkloadIR`, runtime/model identities, `run_measured_baseline`, and performance-probe JSON parsed by `expertflow.benchmark.performance.parse_probe_result`.
+- Consumes: `HardwareIR`, `WorkloadIR`, pristine/fork runtime identities, `ServerMeasurementRunner`, native completion JSON and process-owned memory records.
 - Produces: `StockCandidate`, `stock_candidate_matrix()`, `import_stock_measurement()`, and `select_strongest_stock()`.
 
 - [ ] **Step 1: Write failing matrix and strongest-floor tests**
@@ -634,9 +870,11 @@ git commit -m "feat: calibrate compiler candidate selection"
 ```python
 def test_stock_matrix_is_bounded_and_deterministic() -> None:
     candidates = stock_candidate_matrix(hardware_fixture(), workload_fixture())
-    assert [item.gpu_layers for item in candidates] == ["auto", "all", "99"]
+    assert {(item.gpu_layers, item.cpu_moe) for item in candidates} == {
+        (layers, cpu_moe) for layers in ("auto", "all", "99") for cpu_moe in (False, True)
+    }
     assert all(item.context_size == 4096 for item in candidates)
-    assert len({item.candidate_id for item in candidates}) == 3
+    assert len({item.candidate_id for item in candidates}) == 6
 
 
 def test_strongest_stock_requires_measured_exact_memory_safe_runs() -> None:
@@ -662,7 +900,7 @@ Expected: import failure.
 
 - [ ] **Step 3: Implement bounded candidates and measured selection**
 
-Build `BaselineRunConfig` values through the existing runtime module. Keep process execution injectable:
+Implement `lower_launch()` and the native server runner from the binding contracts. Keep process execution injectable only at subprocess/HTTP/memory sampling boundaries:
 
 ```python
 class StockRunner(Protocol):
@@ -671,18 +909,18 @@ class StockRunner(Protocol):
     ) -> StockMeasurement: ...
 ```
 
-The production runner executes sequential warmup/measured processes, stores raw manifests through `EvidenceStore`, and imports probe JSON. Unit tests use a fake runner; they never launch a model.
+The production runner executes sequential warmup/measured processes and stores native token/timing responses, commands, dependency identities and memory manifests through `EvidenceStore`. Unit tests use an owned tiny Python HTTP child instead of a model: exercise real start, health, completion, timeout, malformed token output, failed memory samples, and teardown. Fake candidate runners cover search decisions, never substitute for runner integration tests. Verify pristine/fork feature-off token equivalence before measuring static candidates. Pin the actual baseline batch/KV/graph settings; selecting an unsupported setting is a rejection, not a silent default.
 
 - [ ] **Step 4: Run stock and existing baseline/benchmark suites**
 
-Run: `uv run pytest -q tests/test_compiler_stock.py tests/test_baseline_command.py tests/test_baseline_cli.py tests/test_performance_benchmark.py`
+Run: `uv run --extra dev --extra quality pytest -q tests/test_compiler_stock.py tests/test_compiler_runner.py tests/test_baseline_command.py tests/test_baseline_cli.py tests/test_performance_benchmark.py`
 
 Expected: PASS.
 
 - [ ] **Step 5: Commit strongest-stock compilation**
 
 ```powershell
-git add src/expertflow/compiler/stock.py tests/test_compiler_stock.py
+git add src/expertflow/compiler/stock.py src/expertflow/compiler/runner.py tests/test_compiler_stock.py tests/test_compiler_runner.py
 git commit -m "feat: compile strongest stock runtime floor"
 ```
 
@@ -721,7 +959,7 @@ def test_candidate_generation_never_crosses_vram_reserve() -> None:
     assert all(item.arena_bytes <= 2_000 for item in candidates)
 ```
 
-Also test duplicate/missing profile layers, profile/backend mismatch, nonfinite timings, exact arena accounting, deterministic greedy prefixes, inclusion of the recorded twelve-layer regression candidate, and rejection when no layer fits.
+Also test duplicate/missing profile layers, profile/backend mismatch, nonfinite timings, aligned arena accounting, deterministic greedy prefixes, inclusion of the recorded twelve-layer diagnostic candidate, rejection when no layer fits, a 19-layer VRAM-fit candidate rejected by the 12-layer runtime cap, the 48-shadow cap, and exact rejection of a numerical-path-changing candidate. Existing profile names are translated by the Gemma adapter; generic ranking consumes normalized layer IDs, not raw `first_node` strings.
 
 - [ ] **Step 2: Run static-placement tests and verify RED**
 
@@ -731,7 +969,7 @@ Expected: import failure.
 
 - [ ] **Step 3: Implement generic ranking and bounded prefixes**
 
-Port the useful calculation from `scripts/analyze_q6_layer_profile.py` into the package, replacing `shadow_bytes` constants with `MoELayerIR.routed_expert_bank_bytes`. Generate an empty/static-off control, the recorded `[0,1,2,3,4,5,6,7,8,9,15,20]` regression candidate when compatible, and score-ordered prefixes that fit the budget. Do not implement arbitrary subsets or exhaustive combinatorics in Phase 3.
+Port the useful calculation from `scripts/analyze_q6_layer_profile.py` into the package, replacing `shadow_bytes` constants with checked aligned `MoELayerIR` allocation accounting. Generate an empty/static-off control, the recorded `[0,1,2,3,4,5,6,7,8,9,15,20]` diagnostic candidate when compatible, and score-ordered prefixes within both memory and runtime caps. Record `numerical_path_change` for historical CPU-to-CUDA static candidates that lack exact eligibility; never seal them because a short token test happens to match. Do not implement arbitrary subsets, approximate profiles, or exhaustive combinatorics in Phase 3.
 
 - [ ] **Step 4: Run compiler and historical static-analysis tests**
 
@@ -769,7 +1007,7 @@ def test_phase3_pipeline_emits_stock_floor_static_winner_and_rejections(tmp_path
         request_fixture(tmp_path), FakeRunner(), EvidenceStore(tmp_path / "db.sqlite3")
     )
     assert result.execution_plan.settings.static_placement.layers
-    assert result.execution_plan.fallback_id == result.stock_floor.candidate_id
+    assert result.execution_plan.fallback.candidate_id == result.stock_floor.candidate_id
     assert result.report["objective"] == "decode_tps"
     assert result.report["rejected_candidates"]
 
@@ -781,7 +1019,7 @@ def test_compile_cli_writes_plan_and_explanation(tmp_path, capsys) -> None:
     assert (tmp_path / "explanation.json").is_file()
 ```
 
-Also test unsupported adapter exit 2, identity mismatch exit 2, no valid stock candidate exit 3, no static winner returning the stock plan with an explicit no-go, plan tampering rejected by `validate`, and `explain` never relabeling estimates as measurements.
+Also test unsupported adapter exit 2, identity mismatch exit 2, no valid stock candidate exit 3, no exact static winner returning the stock plan with an explicit no-go, inconclusive improvement returning stock, selected winner paired/replayed rather than the historical candidate, plan tampering rejected by `validate`, and `explain` never relabeling estimates as measurements.
 
 - [ ] **Step 2: Run pipeline/CLI tests and verify RED**
 
@@ -827,14 +1065,20 @@ expertflow compile --descriptor FILE --inventory FILE --hardware FILE
   [--recorded-evidence FILE]
 
 expertflow validate --plan FILE --descriptor FILE --inventory FILE
-  --hardware FILE --runtime-identity FILE
+  --hardware FILE --workload FILE --runtime-identity FILE --evidence-db FILE
+
+expertflow run --plan FILE --descriptor FILE --inventory FILE --hardware FILE
+  --workload FILE --runtime-identity FILE --evidence-db FILE --output-dir DIR
 
 expertflow explain --plan FILE --report FILE --output FILE
 ```
 
 `--recorded-evidence` imports only hash-verified committed evidence and marks the
-result `recorded_replay`; without it, `compile` uses the production sequential
-measurement runner.
+result `recorded_replay`. Historical summary-only records produce diagnostics
+with no `execution-plan.json`; compatible complete raw token evidence is required
+to seal. Without it, `compile` uses the production sequential server runner.
+`run` revalidates a sealed plan and its measured fallback, uses `lower_launch()`,
+and records the replay through the same runner; it cannot perform candidate search.
 
 `main.py` imports only handler functions from `expertflow.compiler.commands`. Command handlers catch `ValueError`/identity errors, emit structured JSON failures, and return nonzero without tracebacks. All output files use UTF-8, sorted keys, trailing newline, and atomic temporary-file replacement.
 
@@ -864,12 +1108,12 @@ git commit -m "feat: expose Phase 3 inference compiler"
 - Modify: `PROJECT_LOG.md`
 
 **Interfaces:**
-- Consumes: the implemented compiler, verified external Gemma Q6 model/inventory/runtime/profile paths, authoritative stock `22.966667` TPS reference, and authoritative ExpertFlow `28.13` TPS regression target.
-- Produces: one clean-checkout Phase 3 verdict: `PASS`, `STATIC-REGRESSION-STOP`, or `ENVIRONMENT-BLOCKED`.
+- Consumes: the implemented compiler, verified external Gemma Q6 model/inventory/runtime/profile paths, a freshly measured server stock floor, and report-only historical CLI evidence.
+- Produces: one clean-checkout Phase 3 verdict: `PASS-STATIC`, `PASS-STOCK-FALLBACK`, `VALIDATION-STOP`, `INCONCLUSIVE`, or `ENVIRONMENT-BLOCKED`.
 
 - [ ] **Step 1: Run the complete CPU-only verification before GPU work**
 
-Run: `uv sync --frozen --extra quality`
+Run: `uv sync --frozen --extra dev --extra quality`
 
 Run: `uv run pytest -q`
 
@@ -881,7 +1125,7 @@ Expected: all tests pass; the earlier pandas/NumPy ABI failure is gone. Source-c
 
 - [ ] **Step 2: Verify identities and compile a dry-run plan from recorded evidence**
 
-Run `expertflow inspect` with the verified inventory and Gemma descriptor. Run `expertflow compile --recorded-evidence` against committed authoritative evidence. Verify that the stock floor is `22.966667` TPS, the static regression candidate is the twelve-layer set, all evidence remains labeled recorded/measured, and the plan validates.
+Run `expertflow inspect` with the verified inventory and Gemma descriptor. Run `expertflow compile --recorded-evidence` against committed historical evidence. Verify that the historical CLI reports retain 22.966667/28.13 TPS under their own workload IDs, the twelve-layer candidate remains exact-ineligible, and no sealed plan is emitted from summary-only evidence. Complete imported evidence may seal only when every identity and raw token gate matches.
 
 - [ ] **Step 3: Run the live strongest-stock candidate matrix sequentially**
 
@@ -889,19 +1133,21 @@ Preflight with `nvidia-smi`; stop with `ENVIRONMENT-BLOCKED` if another compute 
 
 - [ ] **Step 4: Run the recorded twelve-layer static regression candidate**
 
-Use the pinned ExpertFlow llama.cpp fork and identical workload. Run one warmup plus ten alternating stock/static measured pairs, matching the authoritative protocol. Require exact prompt/generated token identity, stable process-owned memory, complete cleanup, and paired decode TPS at least `28.13 * 0.98 = 27.5674` to allow 2% reproduction tolerance. Do not claim a new improvement from the reproduction run.
+Keep optional historical CLI reproduction separate from product selection; its response divergence and quality stop are preserved. On the product server workload, reject static candidates without numerical-path eligibility. Confirm the actual eligible selected static candidate with ten alternating pristine-stock/static pairs, exact prompt/generated token IDs for the frozen workload, stable owned memory, reserve, cleanup, and a positive lower 95% paired-bootstrap improvement bound. If static is ineligible or inconclusive, confirm the exact stock floor with ten ordinary runs and emit a stock plan with explicit static rejections. Replay the selected sealed plan once through `expertflow run`, requiring all identity/token/memory gates and mean TPS within 2% of its own confirmation mean.
 
 - [ ] **Step 5: Enforce the Phase 3 decision**
 
 Declare:
 
 ```text
-PASS                    compiler selects a valid measured static plan and reproduces >=27.5674 TPS
-STATIC-REGRESSION-STOP  exactness/memory/cleanup fails or static reproduction is below 27.5674 TPS
-ENVIRONMENT-BLOCKED     required external identity, idle GPU, or supported build is unavailable
+PASS-STATIC          eligible exact static winner beats current stock and sealed replay passes
+PASS-STOCK-FALLBACK   measured exact stock replay passes; static no-go is explicit
+VALIDATION-STOP      selected-plan identity/token/memory/cleanup/replay gate fails
+INCONCLUSIVE         stock variance or measurement uncertainty prevents a valid floor
+ENVIRONMENT-BLOCKED  required external artifact, idle GPU, memory counter or token support unavailable
 ```
 
-On `STATIC-REGRESSION-STOP`, do not begin CUDA autotuning, KV, adapters, MTP, or dynamic caching. On `ENVIRONMENT-BLOCKED`, preserve the dry-run plan but do not call it live-validated.
+On `VALIDATION-STOP` or `INCONCLUSIVE`, retain failure evidence and do not begin later tracks. On `ENVIRONMENT-BLOCKED`, preserve diagnostics and the execution ledger but emit no live-validated plan. A stock fallback passes the compiler product gate; it does not rehabilitate historical static quality or authorize approximate execution.
 
 - [ ] **Step 6: Write verification evidence and append the project log**
 
@@ -917,10 +1163,12 @@ Run: `git diff --check`
 
 Run: `git status --short`
 
-Stage only `docs/evidence/compiler-phase3/` and `PROJECT_LOG.md`, inspect the cached diff, then commit:
+Stage only this task's new evidence and the newly appended project-log entry. The
+pre-existing `PROJECT_LOG.md` change belongs to the user; use an index-only patch
+for our added entry rather than staging the entire file. Inspect the cached diff.
 
 ```powershell
-git add docs/evidence/compiler-phase3 PROJECT_LOG.md
+git add docs/evidence/compiler-phase3
 git diff --cached --check
 git commit -m "docs: record Phase 3 compiler verification"
 ```
@@ -929,12 +1177,21 @@ git commit -m "docs: record Phase 3 compiler verification"
 
 ## Phase 3 completion boundary
 
-This plan is complete only when Tasks 1–10 are implemented and Task 11 emits a declared verdict. A `PASS` authorizes separate specifications and plans for independent Phase 4–8 tracks. It does not authorize implementing those tracks inside this plan.
+This plan is complete only when Tasks 0–10 are implemented and Task 11 emits a declared verdict. Only `PASS-STATIC` or `PASS-STOCK-FALLBACK` establishes a live-validated compiler product. An environment blocker is recorded incomplete work, not completion. A passing result permits separate specifications and plans for independent Phase 4–8 tracks; it does not authorize implementing those tracks inside this plan.
 
-Recommended next planning order after `PASS`:
+Recommended next planning order after a passing product verdict:
 
 1. Phase 4 CUDA execution autotuning.
 2. Phase 5 KV and shared memory-budget compilation.
 3. Phase 6 second Gemma quant and Qwen MoE adapter.
 4. Phase 7 upstream MTP/speculative compilation.
 5. Phase 8 two-table dynamic residency.
+
+## Review focus
+
+- Foreign/missing raw evidence, caller-forged validation flags and fallback resolution.
+- Pristine/fork identity pairing versus accidental cross-workload measurement reuse.
+- Response text parity versus real native token IDs and numerical-path eligibility.
+- WDDM unavailable counters, residual children, timeouts and inherited runtime controls.
+- Runtime static-layer/shadow caps and aligned memory accounting at reserve boundaries.
+- Actual selected-winner confirmation/replay, variance and stock fallback on no-go.

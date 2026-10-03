@@ -2,7 +2,7 @@
 
 Date: 2026-08-28
 
-Status: approved architecture
+Status: approved architecture; execution corrections recorded 2026-10-03
 Primary objective: maximum single-request decode TPS
 
 ## 1. Purpose
@@ -81,9 +81,11 @@ The compiler emits a versioned `ExecutionPlan` containing:
 - evidence and rejected-candidate provenance;
 - validation gates and a compatible fallback plan.
 
-The ExpertFlow llama.cpp fork consumes this declarative plan through a stable
-runtime interface. The compiler does not generate or rewrite C++ source for
-individual models.
+For Phase 0–3, the Python launcher validates the declarative plan and lowers it
+to the pinned runtime's arguments, environment controls and native completion
+payload. The existing C++ fork does not read ExecutionPlan JSON. Launcher ABI,
+pristine/fork binary and dependency identities are recorded separately. The
+compiler does not generate or rewrite C++ source for individual models.
 
 ### 3.3 Fork governance
 
@@ -474,7 +476,21 @@ Convert existing layer diagnostics and static placement into generic analyses,
 candidate generation, lowering, and validation.
 
 Exit gate: match or exceed the authoritative existing Gemma 28.13 decode-TPS
-result under its compatible protocol.
+result only as a separate historical CLI diagnostic, never as exact acceptance.
+The historical stock/static response hashes differ and its strict PPL gate failed.
+The exact product gate is a freshly measured native single-request server plan,
+paired confirmation against current strongest pristine stock, owned memory and
+cleanup, and sealed replay. Static placement is selected only with supported
+numerical-path eligibility and exact input/generated token IDs; otherwise emit a
+measured exact stock fallback with explicit static rejection. A stock fallback is
+a valid compiler result. Approximate CPU-to-CUDA placement requires its own plan
+and quality budget; short token parity cannot waive numerical-path changes.
+
+Execution correction: validate environment and historical evidence before the
+remaining compiler abstractions. Freeze historical CLI and product server workloads
+separately. Include `--cpu-moe` in stock search, enforce the pinned 12-layer/48-shadow
+limits, and verify raw evidence through the store before sealing. Phase 3 success
+is `PASS-STATIC` or `PASS-STOCK-FALLBACK`; an environment blocker leaves it incomplete.
 
 ### Phase 4: CUDA execution autotuning
 
