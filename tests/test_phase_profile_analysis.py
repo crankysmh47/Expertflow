@@ -40,6 +40,7 @@ def test_decode_breakdown_excludes_prefill_and_uses_explicit_phase():
     lambda d:d['records'].pop(1),
     lambda d:d['records'].pop(2),
     lambda d:d['phases'].append({'phase':'mixed','tokens':1,'graph_calls':0,'split_count':0}),
+    lambda d:(d['records'].pop(2),d['phases'][0].update(split_count=0)),
 ])
 def test_invalid_phase_or_accounting_fails_closed(mutation):
     value=fixture();mutation(value)

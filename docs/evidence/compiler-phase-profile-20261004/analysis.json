@@ -1,0 +1,151 @@
+{
+  "diagnostic_only": true,
+  "hypothesis_proposal": "docs/superpowers/specs/2026-10-04-cpu-expert-prefetch-experiment.md",
+  "mean": {
+    "cpu_completion_wait_us": 658,
+    "cpu_compute_share_pct": 69.11747923454386,
+    "cpu_compute_us": 15271507,
+    "cuda_completion_wait_us": 4371552.666666667,
+    "cuda_host_submission_us": 161728.33333333334,
+    "decode_total_us": 22093609.333333332,
+    "input_boundary_us": 2288163.3333333335
+  },
+  "optimization_executed": false,
+  "product_plan_published": false,
+  "pure_transfer_us": null,
+  "runs": [
+    {
+      "cpu_completion_wait_us": 663,
+      "cpu_compute_share_pct": 68.64363052801855,
+      "cpu_compute_us": 14872121,
+      "cuda_completion_wait_us": 4318121,
+      "cuda_host_submission_us": 160002,
+      "decode_total_us": 21665697,
+      "diagnostic_only": true,
+      "input_boundary_us": 2314790,
+      "limitation": "Synchronized split timing perturbs overlap; input boundaries combine routing/copies/waits.",
+      "phases": {
+        "decode": {
+          "graph_calls": 511,
+          "phase": "decode",
+          "split_count": 62,
+          "tokens": 511
+        },
+        "initialization_or_other": {
+          "graph_calls": 1,
+          "phase": "initialization_or_other",
+          "split_count": 62,
+          "tokens": 2
+        },
+        "mixed": {
+          "graph_calls": 0,
+          "phase": "mixed",
+          "split_count": 0,
+          "tokens": 0
+        },
+        "prefill": {
+          "graph_calls": 2,
+          "phase": "prefill",
+          "split_count": 62,
+          "tokens": 39
+        },
+        "warmup": {
+          "graph_calls": 1,
+          "phase": "warmup",
+          "split_count": 62,
+          "tokens": 2
+        }
+      },
+      "pure_transfer_us": null
+    },
+    {
+      "cpu_completion_wait_us": 636,
+      "cpu_compute_share_pct": 69.46679056679,
+      "cpu_compute_us": 15447515,
+      "cuda_completion_wait_us": 4365764,
+      "cuda_host_submission_us": 161741,
+      "decode_total_us": 22237266,
+      "diagnostic_only": true,
+      "input_boundary_us": 2261610,
+      "limitation": "Synchronized split timing perturbs overlap; input boundaries combine routing/copies/waits.",
+      "phases": {
+        "decode": {
+          "graph_calls": 511,
+          "phase": "decode",
+          "split_count": 62,
+          "tokens": 511
+        },
+        "initialization_or_other": {
+          "graph_calls": 1,
+          "phase": "initialization_or_other",
+          "split_count": 62,
+          "tokens": 2
+        },
+        "mixed": {
+          "graph_calls": 0,
+          "phase": "mixed",
+          "split_count": 0,
+          "tokens": 0
+        },
+        "prefill": {
+          "graph_calls": 2,
+          "phase": "prefill",
+          "split_count": 62,
+          "tokens": 39
+        },
+        "warmup": {
+          "graph_calls": 1,
+          "phase": "warmup",
+          "split_count": 62,
+          "tokens": 2
+        }
+      },
+      "pure_transfer_us": null
+    },
+    {
+      "cpu_completion_wait_us": 675,
+      "cpu_compute_share_pct": 69.24201660882305,
+      "cpu_compute_us": 15494885,
+      "cuda_completion_wait_us": 4430773,
+      "cuda_host_submission_us": 163442,
+      "decode_total_us": 22377865,
+      "diagnostic_only": true,
+      "input_boundary_us": 2288090,
+      "limitation": "Synchronized split timing perturbs overlap; input boundaries combine routing/copies/waits.",
+      "phases": {
+        "decode": {
+          "graph_calls": 511,
+          "phase": "decode",
+          "split_count": 62,
+          "tokens": 511
+        },
+        "initialization_or_other": {
+          "graph_calls": 1,
+          "phase": "initialization_or_other",
+          "split_count": 62,
+          "tokens": 2
+        },
+        "mixed": {
+          "graph_calls": 0,
+          "phase": "mixed",
+          "split_count": 0,
+          "tokens": 0
+        },
+        "prefill": {
+          "graph_calls": 2,
+          "phase": "prefill",
+          "split_count": 62,
+          "tokens": 39
+        },
+        "warmup": {
+          "graph_calls": 1,
+          "phase": "warmup",
+          "split_count": 62,
+          "tokens": 2
+        }
+      },
+      "pure_transfer_us": null
+    }
+  ],
+  "status": "PASS-PHASE-PROFILING"
+}

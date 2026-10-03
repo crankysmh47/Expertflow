@@ -15,6 +15,8 @@ def analyze_phase_profile(data, *, prompt_tokens, generated_tokens, expert_layer
         if phase['split_count'] > 256 or (phase['graph_calls'] == 0 and
                 (phase['tokens'] != 0 or phase['split_count'] != 0)):
             raise ValueError('inconsistent empty phase or excessive splits')
+        if phase['graph_calls'] > 0 and phase['split_count'] == 0:
+            raise ValueError('computed phase has no split coverage')
     if (phases.get('prefill', {}).get('tokens') != prompt_tokens or
             phases.get('decode', {}).get('tokens') != generated_tokens - 1 or
             phases.get('decode', {}).get('graph_calls') != generated_tokens - 1 or
