@@ -1,5 +1,7 @@
 """Gemma 4's normalized metadata accounting, never a full weight load."""
 
+import re
+
 from ..schema import ModelIR, MoELayerIR, canonical_sha256
 
 
@@ -28,8 +30,10 @@ class Gemma4Adapter:
         for row in rows:
             if row.get('components') != components:
                 raise ValueError('inconsistent component sets')
+            component_bytes = tuple(t['bytes'] for t in inventory.get('tensors', [])
+                                    if t.get('routed_expert_tensor') is True and t.get('layer_id') == row['layer_id'])
             layer = MoELayerIR(row['layer_id'], descriptor.expert_count, descriptor.expert_top_k,
-                               row['complete_expert_bundle_bytes'], row['routed_expert_bank_bytes'])
+                               row['complete_expert_bundle_bytes'], row['routed_expert_bank_bytes'], component_bytes)
             if layer.expert_bundle_bytes * layer.expert_count != layer.routed_expert_bank_bytes:
                 raise ValueError('inconsistent per-layer bundle bytes')
             layers.append(layer)
@@ -42,3 +46,16 @@ class Gemma4Adapter:
                        descriptor.quantization, descriptor.expert_count, descriptor.expert_top_k,
                        tuple(layers), descriptor.kv_kind, descriptor.mtp_kind,
                        inventory_sha256=canonical_sha256(inventory))
+
+    def normalize_profile(self, profile, *, profile_id):
+        if profile.get('diagnostic_synchronization') is not True:
+            raise ValueError('profile requires diagnostic synchronization')
+        rows = []
+        for record in profile.get('records', []):
+            match = re.fullmatch(r'ffn_moe_gate_up-(\d+)', record.get('first_node', ''))
+            if match:
+                rows.append({'layer_id': int(match.group(1)), 'total_us': record['total_us'],
+                             'backend': record['backend'], 'profile_id': profile_id})
+        if not rows:
+            raise ValueError('profile contains no routed expert splits')
+        return rows

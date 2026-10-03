@@ -88,6 +88,7 @@ class MoELayerIR:
     expert_top_k: int
     expert_bundle_bytes: int
     routed_expert_bank_bytes: int
+    component_bank_bytes: tuple[int, ...] = ()
 
     def __post_init__(self):
         require_int(self.layer_id, 'layer_id', 0)
@@ -95,6 +96,12 @@ class MoELayerIR:
             require_int(getattr(self, name), name)
         if self.expert_top_k > self.expert_count:
             raise ValueError('top_k exceeds expert_count')
+        components = tuple(self.component_bank_bytes) or (self.routed_expert_bank_bytes,)
+        for value in components:
+            require_int(value, 'component bytes')
+        if sum(components) != self.routed_expert_bank_bytes:
+            raise ValueError('component bytes do not sum to expert bank')
+        object.__setattr__(self, 'component_bank_bytes', components)
 
 
 @dataclass(frozen=True, slots=True)
