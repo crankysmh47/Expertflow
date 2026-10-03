@@ -1,0 +1,4808 @@
+{
+  "bootstrap_samples": 10000,
+  "bootstrap_seed": 20261003,
+  "ci90_pct": [
+    -1.2221297309701018,
+    0.07938784005436059
+  ],
+  "ci95_pct": [
+    -1.3691680830804835,
+    0.17755398888280163
+  ],
+  "direct_cv_pct": 1.4852386424531954,
+  "direct_mean_tps": 22.669733245399055,
+  "direct_tps": [
+    22.005470250452337,
+    22.350259915625152,
+    22.470677302202084,
+    22.831943119208205,
+    22.781833641266303,
+    23.14498693370557,
+    23.07995093346681,
+    22.6602104540491,
+    22.6428435059772,
+    22.72915639803778
+  ],
+  "frozen": {
+    "bootstrap_samples": 10000,
+    "candidates": {
+      "prefetch": {
+        "estimated_decode_tps": null,
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "a71ceefcfb464562f02f888490386430c90dccef916d13498cf12520c672b296",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measurement_ids": [],
+        "rejection_reasons": [],
+        "settings": {
+          "batch_size": 2048,
+          "cpu_moe": true,
+          "cuda_graphs": "on",
+          "gpu_layers": 99,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "microbatch_size": 512,
+          "static": null
+        },
+        "status": "unmeasured",
+        "validation": []
+      },
+      "stock": {
+        "estimated_decode_tps": null,
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measurement_ids": [],
+        "rejection_reasons": [],
+        "settings": {
+          "batch_size": 2048,
+          "cpu_moe": true,
+          "cuda_graphs": "on",
+          "gpu_layers": 99,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "microbatch_size": 512,
+          "static": null
+        },
+        "status": "unmeasured",
+        "validation": []
+      }
+    },
+    "imported_reference_records": 1,
+    "inputs": {
+      "hardware_preflight": {
+        "gpu_fields": [
+          "GPU-949ee8ea-765f-abfd-fd90-16ad3923af6e",
+          "NVIDIA GeForce RTX 5060 Ti",
+          "12.0",
+          "616.92",
+          "16311",
+          "14010",
+          "1"
+        ]
+      },
+      "input_hashes": {
+        "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\runtime-identity.json": "f24face8cd7cb082173f01e793b2526e26312080f36f36c65c9a65d7d34d9531",
+        "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q6-model.json": "1676efffaba68987183f4a9b9e7218d56cb9595e782d1306b51aabfe19d12d1c",
+        "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q6-single-request.json": "66e57710f995fae21b94d71241a4b6dfee0dcdf3064878db40ceeb1e61a68bb7",
+        "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\inputs\\hardware.json": "391249a0aa9c61ec234501b7853e0f00b1336c1601af7b9e24e3cb885b3582dd",
+        "C:\\sem4\\expertflow\\docs\\evidence\\q6-download\\tensor-inventory.json": "22e51eae9787a400490ad98542b70e56af15c87fbe765e1346fb24233244e8b2"
+      }
+    },
+    "maximum_cv_pct": 10,
+    "minimum_point_gain_pct": 5,
+    "minimum_two_sided_ci95_lower_pct": 0,
+    "native_budget": 20,
+    "native_source_commit": "2a6d7c0ab9463feab827c193cee817d1297e23a7",
+    "pairs": 10,
+    "prior_hashes": {
+      "aa_database": "49d97d46663c7c25494d4a1abb5f9433e580cf9c8319d75599c98341f297c222",
+      "aa_report": "66438d5bd01755e1fe35644f85ee5b302bbfba5c575ca80a2f6681c12494df9a"
+    },
+    "reference_measurement_id": "6021f0e3-c342-46a1-8461-6fa1ef004063",
+    "runtime_bindings": {
+      "prefetch": {
+        "cuda_runtime": {
+          "path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin\\cudart64_12.dll",
+          "sha256": "c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344",
+          "size_bytes": 573952
+        },
+        "dependencies": [
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\ggml-base.dll",
+            "sha256": "f555f4953da4bea9d00b3226b123474903182ca3fb4aaf0743f802246bffbd9a",
+            "size_bytes": 641536
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\ggml-cpu.dll",
+            "sha256": "ae299da337e7990d69a703951d1935bfab819cb8ec5c4ca00b049843e8bfb306",
+            "size_bytes": 878592
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\ggml-cuda.dll",
+            "sha256": "7ea4aed24056faf381186882a782076fbca526d778e5c979a11dffdebd7d196d",
+            "size_bytes": 32615424
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\ggml.dll",
+            "sha256": "a1a1809a644c9a9654c5786186866d573b83948177b6ca9591d1deb729dced9a",
+            "size_bytes": 57856
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-batched-bench-impl.dll",
+            "sha256": "ee33da8ffd71c08571dc438613345cd3e1dfcb28d6fbdaf5beff23e17f43429c",
+            "size_bytes": 123392
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-bench-impl.dll",
+            "sha256": "08732d35fa6987f857a9e52d3ca5cc023b31f0c8c993f44c50289b074cb7efc5",
+            "size_bytes": 856576
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-cli-impl.dll",
+            "sha256": "6c58364d0c513823c226d2b67ad4c058c676cc71e86a3e5b9a37593aeb4dbbb2",
+            "size_bytes": 1646592
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-common.dll",
+            "sha256": "fd3004b3d32aa3c90e934cd281b204c175a70579d211b64d842b482907381d0f",
+            "size_bytes": 9191936
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-completion-impl.dll",
+            "sha256": "1260ad9644e8013b712e786221f509749383081f89ddf2bc0bf715424f2212dd",
+            "size_bytes": 240128
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-fit-params-impl.dll",
+            "sha256": "d7e94b1b3998ddd4ce39d931b8b62e98f227d54bf362040f0cc482064645b92a",
+            "size_bytes": 109056
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-perplexity-impl.dll",
+            "sha256": "80e5205e06879a02016c60c24a7849fcd5dd576495cf86f1350ca7fea1ae7347",
+            "size_bytes": 345600
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-quantize-impl.dll",
+            "sha256": "054f46735a0051f3917fa06bf8038a674668f6d0d78e964ea159669598e70dac",
+            "size_bytes": 313344
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-server-impl.dll",
+            "sha256": "08f9094d6ed0e2c8eb74262cd235182dc359a244b4f65dba577512bd8cd20ab1",
+            "size_bytes": 13061120
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama.dll",
+            "sha256": "a6c88283f32073d8f12db225e4ad499a3deefc8d584aad31d132a8cdfbaa27af",
+            "size_bytes": 2219520
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\mtmd.dll",
+            "sha256": "1831ad4fbe79a77bf5db2baeffac1b14ba5f7526a04131b4204fe5e35cbcde08",
+            "size_bytes": 982016
+          }
+        ],
+        "manifest_json": "{\"binaries\":{\"llama-cli.exe\":\"56d5cbe8fc5782595a280345e5e2f70bc1bcc79c94130e1b73bb4eb3cdeacd0f\",\"llama-server.exe\":\"0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428\"},\"build\":{\"compiler\":\"MSVC v143 14.39.33519\",\"configuration\":\"Release\",\"cuda\":\"12.8.93\",\"flags\":[\"GGML_CUDA=ON\",\"CMAKE_BUILD_TYPE=Release\",\"GGML_NATIVE=OFF\",\"GGML_AVX2=ON\",\"GGML_AVX512=OFF\",\"kernel-only replacement of pristine ggml-cpu.dll\"],\"generator\":\"Ninja\"},\"capabilities\":{\"max_static_layers\":0,\"max_static_shadows\":0},\"cuda_runtime_sha256\":\"c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344\",\"dependencies\":{\"ggml-base.dll\":\"f555f4953da4bea9d00b3226b123474903182ca3fb4aaf0743f802246bffbd9a\",\"ggml-cpu.dll\":\"ae299da337e7990d69a703951d1935bfab819cb8ec5c4ca00b049843e8bfb306\",\"ggml-cuda.dll\":\"7ea4aed24056faf381186882a782076fbca526d778e5c979a11dffdebd7d196d\",\"ggml.dll\":\"a1a1809a644c9a9654c5786186866d573b83948177b6ca9591d1deb729dced9a\",\"llama-batched-bench-impl.dll\":\"ee33da8ffd71c08571dc438613345cd3e1dfcb28d6fbdaf5beff23e17f43429c\",\"llama-bench-impl.dll\":\"08732d35fa6987f857a9e52d3ca5cc023b31f0c8c993f44c50289b074cb7efc5\",\"llama-cli-impl.dll\":\"6c58364d0c513823c226d2b67ad4c058c676cc71e86a3e5b9a37593aeb4dbbb2\",\"llama-common.dll\":\"fd3004b3d32aa3c90e934cd281b204c175a70579d211b64d842b482907381d0f\",\"llama-completion-impl.dll\":\"1260ad9644e8013b712e786221f509749383081f89ddf2bc0bf715424f2212dd\",\"llama-fit-params-impl.dll\":\"d7e94b1b3998ddd4ce39d931b8b62e98f227d54bf362040f0cc482064645b92a\",\"llama-perplexity-impl.dll\":\"80e5205e06879a02016c60c24a7849fcd5dd576495cf86f1350ca7fea1ae7347\",\"llama-quantize-impl.dll\":\"054f46735a0051f3917fa06bf8038a674668f6d0d78e964ea159669598e70dac\",\"llama-server-impl.dll\":\"08f9094d6ed0e2c8eb74262cd235182dc359a244b4f65dba577512bd8cd20ab1\",\"llama.dll\":\"a6c88283f32073d8f12db225e4ad499a3deefc8d584aad31d132a8cdfbaa27af\",\"mtmd.dll\":\"1831ad4fbe79a77bf5db2baeffac1b14ba5f7526a04131b4204fe5e35cbcde08\"},\"expertflow_commit\":\"2a6d7c0ab9463feab827c193cee817d1297e23a7\",\"launcher_abi\":\"1.0.0\",\"patches\":[{\"path\":\"docs/evidence/compiler-cpu-prefetch-20261004/0001-cpu-expert-row-prefetch.patch\",\"sha256\":\"117fbfd3b669ac196ccc67d0d4fd0f8a8ceb161eb7a26ffd3354a7dd0a07a56e\"}],\"schema_version\":\"1.0.0\",\"upstream_commit\":\"a7312ae94f801fc9c6786dc56e38df57b964f697\"}",
+        "server": {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-server.exe",
+          "sha256": "0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428",
+          "size_bytes": 10240
+        }
+      },
+      "stock": {
+        "cuda_runtime": {
+          "path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin\\cudart64_12.dll",
+          "sha256": "c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344",
+          "size_bytes": 573952
+        },
+        "dependencies": [
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\ggml-base.dll",
+            "sha256": "f555f4953da4bea9d00b3226b123474903182ca3fb4aaf0743f802246bffbd9a",
+            "size_bytes": 641536
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\ggml-cpu.dll",
+            "sha256": "ddb2bf1619053f9d64d5e4d434d8638b35f233103e4efd62e4d46b5561ceccaf",
+            "size_bytes": 878592
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\ggml-cuda.dll",
+            "sha256": "7ea4aed24056faf381186882a782076fbca526d778e5c979a11dffdebd7d196d",
+            "size_bytes": 32615424
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\ggml.dll",
+            "sha256": "a1a1809a644c9a9654c5786186866d573b83948177b6ca9591d1deb729dced9a",
+            "size_bytes": 57856
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-batched-bench-impl.dll",
+            "sha256": "ee33da8ffd71c08571dc438613345cd3e1dfcb28d6fbdaf5beff23e17f43429c",
+            "size_bytes": 123392
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-bench-impl.dll",
+            "sha256": "08732d35fa6987f857a9e52d3ca5cc023b31f0c8c993f44c50289b074cb7efc5",
+            "size_bytes": 856576
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-cli-impl.dll",
+            "sha256": "6c58364d0c513823c226d2b67ad4c058c676cc71e86a3e5b9a37593aeb4dbbb2",
+            "size_bytes": 1646592
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-common.dll",
+            "sha256": "fd3004b3d32aa3c90e934cd281b204c175a70579d211b64d842b482907381d0f",
+            "size_bytes": 9191936
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-completion-impl.dll",
+            "sha256": "1260ad9644e8013b712e786221f509749383081f89ddf2bc0bf715424f2212dd",
+            "size_bytes": 240128
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-fit-params-impl.dll",
+            "sha256": "d7e94b1b3998ddd4ce39d931b8b62e98f227d54bf362040f0cc482064645b92a",
+            "size_bytes": 109056
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-perplexity-impl.dll",
+            "sha256": "80e5205e06879a02016c60c24a7849fcd5dd576495cf86f1350ca7fea1ae7347",
+            "size_bytes": 345600
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-quantize-impl.dll",
+            "sha256": "054f46735a0051f3917fa06bf8038a674668f6d0d78e964ea159669598e70dac",
+            "size_bytes": 313344
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-server-impl.dll",
+            "sha256": "08f9094d6ed0e2c8eb74262cd235182dc359a244b4f65dba577512bd8cd20ab1",
+            "size_bytes": 13061120
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama.dll",
+            "sha256": "a6c88283f32073d8f12db225e4ad499a3deefc8d584aad31d132a8cdfbaa27af",
+            "size_bytes": 2219520
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\mtmd.dll",
+            "sha256": "1831ad4fbe79a77bf5db2baeffac1b14ba5f7526a04131b4204fe5e35cbcde08",
+            "size_bytes": 982016
+          }
+        ],
+        "manifest_json": "{\"binaries\":{\"llama-cli.exe\":\"56d5cbe8fc5782595a280345e5e2f70bc1bcc79c94130e1b73bb4eb3cdeacd0f\",\"llama-server.exe\":\"0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428\"},\"build\":{\"compiler\":\"MSVC v143 14.39.33519\",\"configuration\":\"Release\",\"cuda\":\"12.8.93\",\"flags\":[\"GGML_CUDA=ON\",\"CMAKE_BUILD_TYPE=Release\"],\"generator\":\"Ninja\"},\"capabilities\":{\"max_static_layers\":0,\"max_static_shadows\":0},\"cuda_runtime_sha256\":\"c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344\",\"dependencies\":{\"ggml-base.dll\":\"f555f4953da4bea9d00b3226b123474903182ca3fb4aaf0743f802246bffbd9a\",\"ggml-cpu.dll\":\"ddb2bf1619053f9d64d5e4d434d8638b35f233103e4efd62e4d46b5561ceccaf\",\"ggml-cuda.dll\":\"7ea4aed24056faf381186882a782076fbca526d778e5c979a11dffdebd7d196d\",\"ggml.dll\":\"a1a1809a644c9a9654c5786186866d573b83948177b6ca9591d1deb729dced9a\",\"llama-batched-bench-impl.dll\":\"ee33da8ffd71c08571dc438613345cd3e1dfcb28d6fbdaf5beff23e17f43429c\",\"llama-bench-impl.dll\":\"08732d35fa6987f857a9e52d3ca5cc023b31f0c8c993f44c50289b074cb7efc5\",\"llama-cli-impl.dll\":\"6c58364d0c513823c226d2b67ad4c058c676cc71e86a3e5b9a37593aeb4dbbb2\",\"llama-common.dll\":\"fd3004b3d32aa3c90e934cd281b204c175a70579d211b64d842b482907381d0f\",\"llama-completion-impl.dll\":\"1260ad9644e8013b712e786221f509749383081f89ddf2bc0bf715424f2212dd\",\"llama-fit-params-impl.dll\":\"d7e94b1b3998ddd4ce39d931b8b62e98f227d54bf362040f0cc482064645b92a\",\"llama-perplexity-impl.dll\":\"80e5205e06879a02016c60c24a7849fcd5dd576495cf86f1350ca7fea1ae7347\",\"llama-quantize-impl.dll\":\"054f46735a0051f3917fa06bf8038a674668f6d0d78e964ea159669598e70dac\",\"llama-server-impl.dll\":\"08f9094d6ed0e2c8eb74262cd235182dc359a244b4f65dba577512bd8cd20ab1\",\"llama.dll\":\"a6c88283f32073d8f12db225e4ad499a3deefc8d584aad31d132a8cdfbaa27af\",\"mtmd.dll\":\"1831ad4fbe79a77bf5db2baeffac1b14ba5f7526a04131b4204fe5e35cbcde08\"},\"expertflow_commit\":\"a7312ae94f801fc9c6786dc56e38df57b964f697\",\"launcher_abi\":\"1.0.0\",\"patches\":[],\"schema_version\":\"1.0.0\",\"upstream_commit\":\"a7312ae94f801fc9c6786dc56e38df57b964f697\"}",
+        "server": {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-server.exe",
+          "sha256": "0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428",
+          "size_bytes": 10240
+        }
+      }
+    },
+    "schedule": [
+      [
+        "prefetch",
+        "stock"
+      ],
+      [
+        "prefetch",
+        "stock"
+      ],
+      [
+        "stock",
+        "prefetch"
+      ],
+      [
+        "prefetch",
+        "stock"
+      ],
+      [
+        "stock",
+        "prefetch"
+      ],
+      [
+        "stock",
+        "prefetch"
+      ],
+      [
+        "stock",
+        "prefetch"
+      ],
+      [
+        "prefetch",
+        "stock"
+      ],
+      [
+        "prefetch",
+        "stock"
+      ],
+      [
+        "stock",
+        "prefetch"
+      ]
+    ],
+    "seed": 20261003,
+    "source_commit": "cb68b4c33b122469613c272bd578625da37bb9cf",
+    "source_hashes": {
+      ".superpowers\\sdd\\cpu-expert-prefetch-20261004\\numerical-gate.json": "0d39834b5f898f946d301c59308fb994d9e6742be1883fb7fd73a9bfbe953aa0",
+      "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\runtime-identity.json": "f24face8cd7cb082173f01e793b2526e26312080f36f36c65c9a65d7d34d9531",
+      "C:\\sem4\\expertflow\\docs\\evidence\\compiler-cpu-prefetch-20261004\\probe.py": "e266486172c08d4936079bc96814405b655e4520d44005bd5e7f0c571c0b1c12",
+      "configs\\compiler\\runtime-cpu-prefetch.json": "9b680bce52a280ea1670e7d354624083253f5b46e29f98da90bba015f4f453af",
+      "configs\\compiler\\runtime-stock.json": "e46120718c551dc8fce984f40c52ac7338f89642828f5283ad19ed0697418eed",
+      "docs\\evidence\\compiler-cpu-prefetch-20261004\\0001-cpu-expert-row-prefetch.patch": "117fbfd3b669ac196ccc67d0d4fd0f8a8ceb161eb7a26ffd3354a7dd0a07a56e",
+      "docs\\superpowers\\plans\\2026-10-04-cpu-expert-prefetch-experiment.md": "452b8405197c953f1c9e9a6a2ba42f7ba5647c5bd87b8d89e9b1d313b41bd591",
+      "docs\\superpowers\\specs\\2026-10-04-cpu-expert-prefetch-experiment.md": "6299aaf47bf158b4f12360ccedc4a32265af14946522da03b75baac7af0e1ce1",
+      "src\\expertflow\\compiler\\__init__.py": "682e7a8b5de67d7860d06a0bedf5917314a38dfbce34d2f95ed98d27c13f6736",
+      "src\\expertflow\\compiler\\adapters\\__init__.py": "84cc32ef696f27fa4e9875ddd2fc17ffff6c63ed087978b9fe3785ae800fb7a6",
+      "src\\expertflow\\compiler\\adapters\\base.py": "d3ccc82954d79d2251b09a5fe00bdded14b8c888617f587cfcc586839670b708",
+      "src\\expertflow\\compiler\\adapters\\gemma4.py": "71976e683e5bf843ed60a3a4d37981d186c23a4258dfe597fc5ccb9f7a55c3f7",
+      "src\\expertflow\\compiler\\commands.py": "987950daa84270123c2e815932da650f8ddb4052cf4aefc2ed52a4fcb624c75e",
+      "src\\expertflow\\compiler\\cost_model.py": "1fe418086f42a9911c1553e0778712869c89066b295970728b7c083aa388fcc4",
+      "src\\expertflow\\compiler\\diagnostics.py": "30a9cd7d2ce663a87aa3d08340c835d57d95a4d72f4c9f4ad797764c88cfc916",
+      "src\\expertflow\\compiler\\evidence.py": "c67bb4553bcc5eed446c028222b1c535b3e198e033cc9e11dd259413d6c8f808",
+      "src\\expertflow\\compiler\\passes\\__init__.py": "5651d7e1cd27e9b162e1a718f8ac9f1632e753420cbeef5ae604949f7f261b23",
+      "src\\expertflow\\compiler\\passes\\base.py": "11cc25d1630940f77de562d02093f369c20165a77b9d3437b14a32b4877301db",
+      "src\\expertflow\\compiler\\pipeline.py": "35b7e3dc7cf925bfd64f029dc19a253e2733cd249e1bddedb9c1b93b232d3a35",
+      "src\\expertflow\\compiler\\plan.py": "5b49935b36b493762574c0387a2cb686a52c2504501e03c5d2af1b277768658f",
+      "src\\expertflow\\compiler\\preflight.py": "ab1b102fe0b423555f986b12dd37bee4e0615375228cbd61e3b0ca6185b94b40",
+      "src\\expertflow\\compiler\\reference.py": "9021a967b97d9d97e72ce3ff5499347080a867099834b12c994295ceb6c38dcf",
+      "src\\expertflow\\compiler\\refinement.py": "b0c8bfef1398ac943f20f442abb6240fd4a7b53dacb73ef4bf29d35b6bac1910",
+      "src\\expertflow\\compiler\\runner.py": "9a326df6a5de6ccd5df5613b3e6fd42ec41649819ceaccee46fe290d970974c1",
+      "src\\expertflow\\compiler\\schema.py": "f3e360489a7922ab156da64dd722364b0aef566971a15a556f50db8f28bfc14d",
+      "src\\expertflow\\compiler\\static_placement.py": "a7ab797692ac8516fbc852c778c129f89e8ba55682d3c8092f486f178a6d5ffd",
+      "src\\expertflow\\compiler\\stock.py": "988d0b3dc56f54dfec447198e65bde57f2a57a40585f4282224573df640d7319",
+      "tests\\native\\cpu_expert_prefetch_parity.cpp": "08464cc96cea83ba0ffc2a1f7e0243b1b1d5e5be4cbd8f80784efe2ef3a9b7ec"
+    }
+  },
+  "geometric_change_pct": -0.5466328942509545,
+  "method": "percentile bootstrap of ten paired mean log ratios",
+  "one_sided95_lower_pct": -1.2221297309701018,
+  "optimization_gain_established": false,
+  "outcomes": [
+    {
+      "measurement_id": "46dd9227-0b35-4aa3-b30c-af8bd071c554",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "1b86cc3e-af59-46f8-9f37-3ec12c8904b2",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "0d8b9dab-db35-4971-8b89-f15a15a40b15",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "b7dd60a2-8fa7-49d5-b6db-24ed86bf9b46",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "97413f7b-9d8a-40da-8d3b-70a5e4364808",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "1ed5bb36-992e-43e5-bc7f-76682e9fd3ed",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "e4f1b289-f130-4257-9cfa-31288e77de40",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "aa452f2b-869f-467e-a157-b15548539024",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "5d38e262-3715-4e4f-9753-0fc91cf73b82",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "87e3ecf8-5365-47cb-b260-e7ef96184469",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "31836124-381e-4576-ac1d-a646e7018990",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "73999601-39b1-4f57-b155-e7666e33bee1",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "ed050124-022a-4ba4-8781-ab2feb0ed8c5",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "db4f373b-9d06-45fd-aa5e-cc31c3cde4ee",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "3beb6d56-5917-4f0c-b6c1-57769a6563ea",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "9bc46a26-87bd-457d-a4fb-793e8767666a",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "1c372286-410f-4133-830a-0f4d5e0490ce",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "b02d8ad8-c7ac-4403-8828-acc01580cdc7",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "5d82d7a2-a10e-4c12-a4a1-d054158b8df1",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "b57d04c1-0120-46a2-b2d7-bdf42167bb42",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    }
+  ],
+  "paired_log_ratios": [
+    -0.007569356279443884,
+    -0.006590853762966198,
+    0.004286502473918485,
+    -0.011856404296718193,
+    0.004562755664926588,
+    -0.032585911206679974,
+    -0.018964040105135638,
+    0.00511021025850944,
+    -0.0015112843972366896,
+    0.010305141763170766
+  ],
+  "product_plan_published": false,
+  "retry_count": 0,
+  "rows": [
+    {
+      "arm": "prefetch",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\launch.json",
+            "sha256": "4aacf5fe0563e155073afdbeeb789b50d16fe0ca28273a486166edcf808b5aa4",
+            "size_bytes": 20192
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\completion.json",
+            "sha256": "ad1d6bf666a5c9dbf1474bef391033437121315bc7b218e37b4775f543e89f71",
+            "size_bytes": 10078
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\memory.json",
+            "sha256": "1628450a810eec3a0aa8593d3e36c546eec510c919d83a6b0046c1fb2d8f342e",
+            "size_bytes": 377075
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\process.json",
+            "sha256": "b511b74ba5750c3d8c3e3d7e70a37c88632ee7cc756b177ce3e979f79ed4ab89",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\run-start.json",
+            "sha256": "d00bcb8193ae88830e49cfd0bd7c003a9c23d2fca629ff69b3b97882654c1e92",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\completion-wall.json",
+            "sha256": "9745d171e9195a90007e2b78c3250b8bd38b8bf69b28b1bd679ac3b4b92492f6",
+            "size_bytes": 117
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\phase-timing.json",
+            "sha256": "8b104bab06a196fc8761e5b6e0b9951632bf5fac0c7d2c172901103542636922",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "00bb028ed53f3f2459be8fed6be30f5c57fe5a6be256cb0c0013b6339f98087d",
+      "completion_wall_ms": 30128.406,
+      "decode_tps": 21.839531821861424,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 148,
+          "max": 139.44286059434646,
+          "mean": 134.70963771523637,
+          "min": 120.01591938075069
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 148,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 148,
+          "max": 92.74533983846135,
+          "mean": 57.563054222084844,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 148,
+          "max": 32,
+          "mean": 17.62837837837838,
+          "min": 2
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 148,
+          "max": 13801,
+          "mean": 11687.486486486487,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 148,
+          "max": 25,
+          "mean": 12.824324324324325,
+          "min": 3
+        },
+        "gpu_power_mw": {
+          "count": 148,
+          "max": 47448,
+          "mean": 35555.16891891892,
+          "min": 14148
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 148,
+          "max": 2820,
+          "mean": 2208.0945945945946,
+          "min": 442
+        },
+        "gpu_temperature_c": {
+          "count": 148,
+          "max": 44,
+          "mean": 40.891891891891895,
+          "min": 38
+        },
+        "measurement_samples": 148,
+        "minimum_device_free_bytes": 11399933952,
+        "owned_cpu_busy_cores_mean": 8.317946058091286,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 9884.360500000184,
+          "teardown_ms": 1673.5458000039216,
+          "tokenize_ms": 0.9701000089989975
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "a71ceefcfb464562f02f888490386430c90dccef916d13498cf12520c672b296",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "46dd9227-0b35-4aa3-b30c-af8bd071c554",
+      "numerical_path": "fork_off_vs_pristine",
+      "owned_run_sha256": "972197a5cb3c2e0ab7b03958db3ba480c30ff85e280d4b38958461d84982e2e7",
+      "pair": 0,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 42.82962750000297,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-00-prefetch",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "stock",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\launch.json",
+            "sha256": "5661a341ba0a9ca2ba4c14ccd3305ce5163b0538b06682e304dbe55c1b1c9306",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\completion.json",
+            "sha256": "0dd243cd1d6a88bf31dced8b2c130e5912bc0daddc7723f419fe1be923d08d5d",
+            "size_bytes": 10079
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\memory.json",
+            "sha256": "faffaebe93d232993010dfcc43dba0d00fba5187468d44a856d3b53e0682e8d7",
+            "size_bytes": 436498
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\process.json",
+            "sha256": "9e27b4562c882a01514ddf1c0e51c270eec89ca9acacfc9ebc34c51638dbf723",
+            "size_bytes": 273
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\run-start.json",
+            "sha256": "989556622c8c2c3b9cefcb6aa77198d4d41a471f3b0879d501cf471c833f7857",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\completion-wall.json",
+            "sha256": "702048a7fba43270b985dab08a7f34c65abcb851e68618566b5edaf375a0056c",
+            "size_bytes": 117
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\phase-timing.json",
+            "sha256": "160d841b236b2d2b081517d5689521d8fdef50c09c5d0ec8c64e59cb9eeab5d1",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 39402.883,
+      "decode_tps": 22.005470250452337,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 194,
+          "max": 138.7340346036673,
+          "mean": 131.43991849882067,
+          "min": 114.65494862087616
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 194,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 194,
+          "max": 94.8200355097266,
+          "mean": 45.66556770567102,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 194,
+          "max": 29,
+          "mean": 13.6340206185567,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 194,
+          "max": 13801,
+          "mean": 10611.309278350516,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 194,
+          "max": 25,
+          "mean": 10.458762886597938,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 194,
+          "max": 47995,
+          "mean": 30833,
+          "min": 13736
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 194,
+          "max": 2820,
+          "mean": 1760.680412371134,
+          "min": 300
+        },
+        "gpu_temperature_c": {
+          "count": 194,
+          "max": 46,
+          "mean": 41.94329896907217,
+          "min": 39
+        },
+        "measurement_samples": 194,
+        "minimum_device_free_bytes": 11476873216,
+        "owned_cpu_busy_cores_mean": 6.401705958483045,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5987.244499992812,
+          "teardown_ms": 1694.6824000042398,
+          "tokenize_ms": 1.0254000080749393
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "1b86cc3e-af59-46f8-9f37-3ec12c8904b2",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "246d51188f010a309d8af83e51a272f2fa10dcb3f4c7b94dd79063c578da4d83",
+      "pair": 0,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 48.01238630000444,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-00-stock",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "prefetch",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\launch.json",
+            "sha256": "8329c366e419da34b6c586155dc445bfc279cc3de7a31f57d4e35a39c65acf47",
+            "size_bytes": 20192
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\completion.json",
+            "sha256": "183c776ae52f7d2b65508b7cd5f05db79ac8ff8a6dab7aa7f86232466ef344a3",
+            "size_bytes": 10080
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\memory.json",
+            "sha256": "824d454302921f4bce7b1c1851c9da1d8dcce4abba72a129a7eca7dbc2a04ec1",
+            "size_bytes": 439210
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\process.json",
+            "sha256": "adeac2c6b84ccc23b07d5843de64ff2f1c4b3e16074cb2c3249f89c219c19a6a",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\run-start.json",
+            "sha256": "4936bfd80c2c00942570d9d4741ff077e2ac5c434530833b7eddefcbe805ee1c",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\completion-wall.json",
+            "sha256": "d5c3f80eb66630965174a7895baa518cbe74444af3903ce0c425017f10a42e7e",
+            "size_bytes": 117
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\phase-timing.json",
+            "sha256": "e5d9b46fae661629388a853a76a94b0479b57c17cb0fd969f2296e48a639446d",
+            "size_bytes": 115
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "00bb028ed53f3f2459be8fed6be30f5c57fe5a6be256cb0c0013b6339f98087d",
+      "completion_wall_ms": 39625.781,
+      "decode_tps": 22.20343699664169,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 193,
+          "max": 139.60005412394383,
+          "mean": 132.14902367648187,
+          "min": 115.6935888252149
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 193,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 193,
+          "max": 93.83311077356076,
+          "mean": 45.92713470963042,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 193,
+          "max": 23,
+          "mean": 13.455958549222798,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 193,
+          "max": 13801,
+          "mean": 10630.015544041451,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 193,
+          "max": 18,
+          "mean": 10.145077720207254,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 193,
+          "max": 48141,
+          "mean": 30934.689119170984,
+          "min": 13855
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 193,
+          "max": 2820,
+          "mean": 1733.139896373057,
+          "min": 307
+        },
+        "gpu_temperature_c": {
+          "count": 193,
+          "max": 47,
+          "mean": 43.24352331606217,
+          "min": 41
+        },
+        "measurement_samples": 193,
+        "minimum_device_free_bytes": 11500007424,
+        "owned_cpu_busy_cores_mean": 6.3489747634069404,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6225.344999998924,
+          "teardown_ms": 1728.4913999901619,
+          "tokenize_ms": 1.156700003775768
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "a71ceefcfb464562f02f888490386430c90dccef916d13498cf12520c672b296",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "0d8b9dab-db35-4971-8b89-f15a15a40b15",
+      "numerical_path": "fork_off_vs_pristine",
+      "owned_run_sha256": "50f928628b44e698db85c7ac8915bbd9efc133f916fdd657d7b178b27fbff7f8",
+      "pair": 1,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 48.67715309999767,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-01-prefetch",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "stock",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\launch.json",
+            "sha256": "97535771947667fcf8918e50324471dea7f6a37db89c1d8db4a3332ee542c7f3",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\completion.json",
+            "sha256": "f9be176f84965f9b2acf7527921f646b2a85f4ca571627d2ee1aef623e30d3f1",
+            "size_bytes": 10081
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\memory.json",
+            "sha256": "67cdfbd9056d7108190722a2782a87e1193713db1f3a12fa8f7abed0852a9a3c",
+            "size_bytes": 429574
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\process.json",
+            "sha256": "48220952b76e8fb34994bd7f6e874b410eac6118cffe4c5f6b2b43590c59e429",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\run-start.json",
+            "sha256": "340592a46cc94fb2367df43a8ed4b8fc32d9768150769af40f6833f1c49ce832",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\completion-wall.json",
+            "sha256": "1eaaedf86e5c62f6f1a0e2f469c2389876975e306a76897fb1808b41a41189a5",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\phase-timing.json",
+            "sha256": "bbce6c04d654f80251b77984884e1100e55916a832ec15d42b8532ffe107df1f",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 38507.0492,
+      "decode_tps": 22.350259915625152,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 188,
+          "max": 138.93280438497064,
+          "mean": 131.33874852093408,
+          "min": 114.62576687116564
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 188,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 188,
+          "max": 91.44944758650782,
+          "mean": 46.58072905608494,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 188,
+          "max": 32,
+          "mean": 14.547872340425531,
+          "min": 3
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 188,
+          "max": 13801,
+          "mean": 10473.340425531915,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 188,
+          "max": 29,
+          "mean": 11.037234042553191,
+          "min": 3
+        },
+        "gpu_power_mw": {
+          "count": 188,
+          "max": 48258,
+          "mean": 31624.617021276597,
+          "min": 14079
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 188,
+          "max": 2820,
+          "mean": 1774.718085106383,
+          "min": 307
+        },
+        "gpu_temperature_c": {
+          "count": 188,
+          "max": 48,
+          "mean": 44.37234042553192,
+          "min": 42
+        },
+        "measurement_samples": 188,
+        "minimum_device_free_bytes": 11476873216,
+        "owned_cpu_busy_cores_mean": 6.56939935064935,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6295.514999990701,
+          "teardown_ms": 1711.4885999908438,
+          "tokenize_ms": 0.9554999996908009
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "b7dd60a2-8fa7-49d5-b6db-24ed86bf9b46",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "1fc8f3ac1ab8b17ad89e2ccb5124770f3bfc57f06ebce841b0a3c216ff099cb9",
+      "pair": 1,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 47.4420029999892,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-01-stock",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "stock",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\launch.json",
+            "sha256": "b310be489cb4179fd563219cddbd64e80852926165cbc4b42424b41fd8d6d075",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\completion.json",
+            "sha256": "45da203f91393fee7f1bc08cec6b34a1433eaca6e64413eb39fee865105f13ce",
+            "size_bytes": 10080
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\memory.json",
+            "sha256": "a6e502454872c0c1c17117bb86fd0d09d08e2c71b7955d4ba7f95f1a7236da66",
+            "size_bytes": 421573
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\process.json",
+            "sha256": "bae8eca40b47ea2847b042fdae5635e9bed6562d1370ae87c5a64c6a05376366",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\run-start.json",
+            "sha256": "e0a02fa7671d1c8a95e1a48782bb41909e46b65bf6f804b9c6a05a76922469aa",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\completion-wall.json",
+            "sha256": "88d2cea33b48fb07213ef73ce1d3d2884fb5fe8a35a2a11ff54cd085ffc5869f",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\phase-timing.json",
+            "sha256": "0cf32a64eec84588804c05f9dc51a8274f67cfe846ddb89ebc297dd00e433459",
+            "size_bytes": 114
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 37594.3876,
+      "decode_tps": 22.470677302202084,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 184,
+          "max": 154.4438902743142,
+          "mean": 131.83536589091048,
+          "min": 118.98131476133854
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 184,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 184,
+          "max": 100.0,
+          "mean": 46.172631647856356,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 184,
+          "max": 26,
+          "mean": 14.23913043478261,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 184,
+          "max": 13801,
+          "mean": 10955.347826086956,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 184,
+          "max": 23,
+          "mean": 10.021739130434783,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 184,
+          "max": 47507,
+          "mean": 31494.706521739132,
+          "min": 14121
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 184,
+          "max": 2820,
+          "mean": 1826.75,
+          "min": 330
+        },
+        "gpu_temperature_c": {
+          "count": 184,
+          "max": 48,
+          "mean": 45.29891304347826,
+          "min": 43
+        },
+        "measurement_samples": 184,
+        "minimum_device_free_bytes": 11522289664,
+        "owned_cpu_busy_cores_mean": 6.572691120921475,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6224.433499999577,
+          "teardown_ms": 1726.470800000243,
+          "tokenize_ms": 1.072400002158247
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "97413f7b-9d8a-40da-8d3b-70a5e4364808",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "5819c6a600fe364af9831c8f93f60d4d03041e9c9d9bdd81ffe1a26d0789cece",
+      "pair": 2,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 46.46305890000076,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-02-stock",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "prefetch",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\launch.json",
+            "sha256": "b0041b6bc6b17c08d5f27d037b66311df919a3ce159f909e372a705df1cc7219",
+            "size_bytes": 20192
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\completion.json",
+            "sha256": "66bd0cb9d31ad2bb125b29f57ddd37d92b1c9b762bc79ffdc844e2c8783e367a",
+            "size_bytes": 10078
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\memory.json",
+            "sha256": "7fb9ddafcd8f36a7d80bef801f19fd456defd710b884bd3a7b82b7f458088a6e",
+            "size_bytes": 447324
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\process.json",
+            "sha256": "b01a4ef0a8ba0d019e98bb69708a91c248e887bb5ee01da1644851a91b7fada3",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\run-start.json",
+            "sha256": "ff520678e82283662a4aa34b81ac1b24137b9ce42cf3061bbc923ca883e31cbc",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\completion-wall.json",
+            "sha256": "ef1d436685ca672768017f488a2cabcb60fab655ea43e7e8d6eb2cdcc05301d9",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\phase-timing.json",
+            "sha256": "d20fe1bdbd89c9bae911e593c1f0acb3400ac8e8665b2f535e67cb61317ac297",
+            "size_bytes": 115
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "00bb028ed53f3f2459be8fed6be30f5c57fe5a6be256cb0c0013b6339f98087d",
+      "completion_wall_ms": 39897.9265,
+      "decode_tps": 22.56720465060722,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 196,
+          "max": 139.28300855040763,
+          "mean": 134.5540601738758,
+          "min": 128.7574879227053
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 196,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 196,
+          "max": 89.46503918305626,
+          "mean": 43.291835158222284,
+          "min": 0.03280598404546975
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 196,
+          "max": 51,
+          "mean": 19.714285714285715,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 196,
+          "max": 13801,
+          "mean": 8275.367346938776,
+          "min": 810
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 196,
+          "max": 24,
+          "mean": 11.89795918367347,
+          "min": 0
+        },
+        "gpu_power_mw": {
+          "count": 196,
+          "max": 47443,
+          "mean": 29122.755102040817,
+          "min": 10494
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 196,
+          "max": 2827,
+          "mean": 1793.5051020408164,
+          "min": 405
+        },
+        "gpu_temperature_c": {
+          "count": 196,
+          "max": 49,
+          "mean": 45.525510204081634,
+          "min": 43
+        },
+        "measurement_samples": 196,
+        "minimum_device_free_bytes": 11505184768,
+        "owned_cpu_busy_cores_mean": 6.184455345060478,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6407.891499999096,
+          "teardown_ms": 1730.500799996662,
+          "tokenize_ms": 1.1387999984435737
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "a71ceefcfb464562f02f888490386430c90dccef916d13498cf12520c672b296",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "1ed5bb36-992e-43e5-bc7f-76682e9fd3ed",
+      "numerical_path": "fork_off_vs_pristine",
+      "owned_run_sha256": "35902cfa82860bf8dcd22e030aabb136ef1d0639922b454a5de9d4af3857b3a2",
+      "pair": 2,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 49.13034639999387,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-02-prefetch",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "prefetch",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\launch.json",
+            "sha256": "b9d9f9d03960f38f875d8a3891ec474eb86eb64574fabc8de2a736916290ea41",
+            "size_bytes": 20192
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\completion.json",
+            "sha256": "5819bc38ec6f16dc3dbc7139493f997d4efe83e2271cce490ea674339a8a509d",
+            "size_bytes": 10080
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\memory.json",
+            "sha256": "ef325bdf07901921c265c0568b5a4d72a3ef8fcd0c49b9a7b82d41b92b8102d9",
+            "size_bytes": 437472
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\process.json",
+            "sha256": "c0f16042a573569b9584ee85928b0a51038f7f5fa510cd05e57bfa219132d4ea",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\run-start.json",
+            "sha256": "b4a6b899e961aaba077ebd97f54b8b8a872112b8d55d88c0814679cd03c54671",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\completion-wall.json",
+            "sha256": "bb0646eb3172ec1ea6176db61aeda58510a9e2c75c2f043c15d3fd828e61fe64",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\phase-timing.json",
+            "sha256": "cbd4f84cba372598b0e20392e4bc46aaf3a52abea8b7fa657c8327b2f5ef14c3",
+            "size_bytes": 117
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "00bb028ed53f3f2459be8fed6be30f5c57fe5a6be256cb0c0013b6339f98087d",
+      "completion_wall_ms": 39049.1907,
+      "decode_tps": 22.562836839577614,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 192,
+          "max": 139.12433909734108,
+          "mean": 135.3233819609242,
+          "min": 129.64506129350428
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 192,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 192,
+          "max": 89.51435745887497,
+          "mean": 45.250467761173496,
+          "min": 0.8283790242928357
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 192,
+          "max": 46,
+          "mean": 18.260416666666668,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 192,
+          "max": 13801,
+          "mean": 8909.838541666666,
+          "min": 405
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 192,
+          "max": 26,
+          "mean": 10.255208333333334,
+          "min": 0
+        },
+        "gpu_power_mw": {
+          "count": 192,
+          "max": 47522,
+          "mean": 29921.151041666668,
+          "min": 11082
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 192,
+          "max": 2827,
+          "mean": 1889.0729166666667,
+          "min": 397
+        },
+        "gpu_temperature_c": {
+          "count": 192,
+          "max": 49,
+          "mean": 45.979166666666664,
+          "min": 43
+        },
+        "measurement_samples": 192,
+        "minimum_device_free_bytes": 11527467008,
+        "owned_cpu_busy_cores_mean": 6.482172125898571,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6260.9189999930095,
+          "teardown_ms": 1718.4142000041902,
+          "tokenize_ms": 0.9684999968158081
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "a71ceefcfb464562f02f888490386430c90dccef916d13498cf12520c672b296",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "e4f1b289-f130-4257-9cfa-31288e77de40",
+      "numerical_path": "fork_off_vs_pristine",
+      "owned_run_sha256": "83afcd8096092b4411fee20e580a1d47d1e5b24cf7f88bdce40d1f7119e4b1a2",
+      "pair": 3,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 48.11880179999571,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-03-prefetch",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "stock",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\launch.json",
+            "sha256": "35c177f43d5389b389b5ece076493cc400f5e69ea093817d517c59b4689aef28",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\completion.json",
+            "sha256": "82b11c2be6ff37408fee9002c05d2337d6f3c4cda71cd34a29ccaabc813c1830",
+            "size_bytes": 10080
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\memory.json",
+            "sha256": "78b11dda2e628926e055c77f7742049697edf5dacccf1f95871f6e0d7c3ff619",
+            "size_bytes": 441390
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\process.json",
+            "sha256": "ceb624d9d458b1bfeaac0012391fd7ef01a1baf43c21cb1805ef5a00cf4415fd",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\run-start.json",
+            "sha256": "60b051c40fc8099c75e919c5ddea4215223ed29afd0559efaa9e71528831e3f4",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\completion-wall.json",
+            "sha256": "75c377125e52b2846deef317bdb8642d201a973e09e6622709aee094c3be630d",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\phase-timing.json",
+            "sha256": "af558768325be85232067454449d3e1e66a3539c5fbd7b97ad7c8a5da5bd5fac",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 39212.0337,
+      "decode_tps": 22.831943119208205,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 194,
+          "max": 141.47121092204193,
+          "mean": 134.55264579463778,
+          "min": 125.75588829071333
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 194,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 194,
+          "max": 85.61871120200044,
+          "mean": 43.923507824200165,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 194,
+          "max": 34,
+          "mean": 17.855670103092784,
+          "min": 3
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 194,
+          "max": 13801,
+          "mean": 8839.41237113402,
+          "min": 405
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 194,
+          "max": 18,
+          "mean": 10.474226804123711,
+          "min": 0
+        },
+        "gpu_power_mw": {
+          "count": 194,
+          "max": 47691,
+          "mean": 29893.31443298969,
+          "min": 10774
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 194,
+          "max": 2827,
+          "mean": 1843.319587628866,
+          "min": 375
+        },
+        "gpu_temperature_c": {
+          "count": 194,
+          "max": 49,
+          "mean": 46.1958762886598,
+          "min": 44
+        },
+        "measurement_samples": 194,
+        "minimum_device_free_bytes": 11536510976,
+        "owned_cpu_busy_cores_mean": 6.240996073329914,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6284.951400011778,
+          "teardown_ms": 1768.4833999956027,
+          "tokenize_ms": 14.113199998973869
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "aa452f2b-869f-467e-a157-b15548539024",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "76ecfe17f83665bba6156633059a331ddda325107b6ab74ffd053fb6a2f2465f",
+      "pair": 3,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 48.20527259999653,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-03-stock",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "stock",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\launch.json",
+            "sha256": "53e5df2cdce2d46d6c10f2603076406ec705ea71fe53acdcd2cb00d69da20c8b",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\completion.json",
+            "sha256": "98ec497a0d18beda198c426798941ac68db8a352dfba0cdf60bcfc681822775d",
+            "size_bytes": 10080
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\memory.json",
+            "sha256": "eee58025d7523fb176a3c5b1e36c440373d6a5c77146f096ba9c34ba7e965285",
+            "size_bytes": 437398
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\process.json",
+            "sha256": "f246e0aa2bbfdd23ef55f7a667ffa964c980621b94ecb63741c1511d2f02fe56",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\run-start.json",
+            "sha256": "d82c0c8219710600a2a2cb91dccfc32e7d745b335fb031ce93234af0ba95287b",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\completion-wall.json",
+            "sha256": "a08ba9fb3c289e2534bb805bd23a3483c6ac6eca687818bfd7fc1c1b8d7a9da4",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\phase-timing.json",
+            "sha256": "f34a0a3bc7fdb560a47712182163d53426d88daa70102dbaebc6bc8dd0168a97",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 38992.8079,
+      "decode_tps": 22.781833641266303,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 192,
+          "max": 139.24512936977857,
+          "mean": 134.58639503738502,
+          "min": 125.16989957353144
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 192,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 192,
+          "max": 90.90183383356487,
+          "mean": 44.682437639941504,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 192,
+          "max": 31,
+          "mean": 19.625,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 192,
+          "max": 13801,
+          "mean": 8433.020833333334,
+          "min": 405
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 192,
+          "max": 24,
+          "mean": 11.546875,
+          "min": 0
+        },
+        "gpu_power_mw": {
+          "count": 192,
+          "max": 48083,
+          "mean": 29830.177083333332,
+          "min": 11106
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 192,
+          "max": 2827,
+          "mean": 1845.7291666666667,
+          "min": 405
+        },
+        "gpu_temperature_c": {
+          "count": 192,
+          "max": 50,
+          "mean": 46.609375,
+          "min": 44
+        },
+        "measurement_samples": 192,
+        "minimum_device_free_bytes": 11498438656,
+        "owned_cpu_busy_cores_mean": 6.328525641025641,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6302.136500002234,
+          "teardown_ms": 1723.5245000047144,
+          "tokenize_ms": 0.9974999993573874
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "5d38e262-3715-4e4f-9753-0fc91cf73b82",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "7a8b2f7691c4a35a25e419b26a8f67b1512d11a40b7e189771cf01b2f63a8cc6",
+      "pair": 4,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 47.9441771999991,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-04-stock",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "prefetch",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\launch.json",
+            "sha256": "de5154c6b2af0e40ded701d8f09060d86a04c23998a6969a9224da5d08aa5e48",
+            "size_bytes": 20192
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\completion.json",
+            "sha256": "c3148af6d64a0e1322d8136736a08d4babb91e6b1eac4f74612999d658381445",
+            "size_bytes": 10080
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\memory.json",
+            "sha256": "60cb998d0ea258fe6d7f90fb21c5308e8483ef5665ed7d4729cd4ac15581c4a9",
+            "size_bytes": 437446
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\process.json",
+            "sha256": "d7b2638d2d2f3536c9133b791fa19f46544f30dae3975bc88f3fa6971624fe38",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\run-start.json",
+            "sha256": "53f589cdd7de4f4cc6c4864587d8b540ce7b2956be816386a05d73fa9b94647b",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\completion-wall.json",
+            "sha256": "da26e20c436cab54d5a21c7ba8e4ec6a896c367bdfbb5b7a30f3a915bec0f79e",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\phase-timing.json",
+            "sha256": "24865d72a58876f612f0c20eff1c2fbfcd42e89f3e4b7a5922e53c0fd1c6ba1e",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "00bb028ed53f3f2459be8fed6be30f5c57fe5a6be256cb0c0013b6339f98087d",
+      "completion_wall_ms": 38921.9264,
+      "decode_tps": 22.88601908738691,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 191,
+          "max": 138.84001144819692,
+          "mean": 134.65572727985244,
+          "min": 129.7522516467267
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 191,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 191,
+          "max": 87.63695076662242,
+          "mean": 44.56528940929088,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 191,
+          "max": 59,
+          "mean": 19.659685863874344,
+          "min": 3
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 191,
+          "max": 13801,
+          "mean": 8437.34554973822,
+          "min": 405
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 191,
+          "max": 22,
+          "mean": 11.44502617801047,
+          "min": 1
+        },
+        "gpu_power_mw": {
+          "count": 191,
+          "max": 48006,
+          "mean": 29866.98952879581,
+          "min": 11230
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 191,
+          "max": 2827,
+          "mean": 1844.2984293193717,
+          "min": 427
+        },
+        "gpu_temperature_c": {
+          "count": 191,
+          "max": 50,
+          "mean": 46.795811518324605,
+          "min": 44
+        },
+        "measurement_samples": 191,
+        "minimum_device_free_bytes": 11531010048,
+        "owned_cpu_busy_cores_mean": 6.364685525706032,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6406.337899999926,
+          "teardown_ms": 1758.6583999946015,
+          "tokenize_ms": 1.0206000006292015
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "a71ceefcfb464562f02f888490386430c90dccef916d13498cf12520c672b296",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "87e3ecf8-5365-47cb-b260-e7ef96184469",
+      "numerical_path": "fork_off_vs_pristine",
+      "owned_run_sha256": "27c54a96ee48c5e3cef8ab402e2e7ac72d13898eeda070f1e4b1fbb1a9fa8b98",
+      "pair": 4,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 48.18311119999271,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-04-prefetch",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "stock",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\launch.json",
+            "sha256": "067b08421ce80777ea5d10808cde6c8cc8e8afe9c5f81b7c68a0c10d7699ad1d",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\completion.json",
+            "sha256": "2cd48a8b94cbc9dde0d9b93f84f7b56899101f1d2bc351fc21a907724645eb10",
+            "size_bytes": 10081
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\memory.json",
+            "sha256": "15f318f3d1de9b27f165ff3129caf63b421ad23387f60c339a3b8a6e7be68acd",
+            "size_bytes": 427703
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\process.json",
+            "sha256": "c0a0cab95c01aa422b50254bc75b70fa495bb96903931784ea12f60dfb9ae091",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\run-start.json",
+            "sha256": "ced6ce8ea2c049bc9c99bebb8b7e30a829ce139038269dc56c1e22d6e33d62e3",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\completion-wall.json",
+            "sha256": "ac61668d860f955de79f741f00351075f72e9bbf1a4c492c3a14261f6feb9d10",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\phase-timing.json",
+            "sha256": "1adadbc703331e2e39c4c3bed57c1b93cb3c6237ea51754bcda2c77d0c1cba54",
+            "size_bytes": 115
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 37750.6121,
+      "decode_tps": 23.14498693370557,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 187,
+          "max": 139.27474483119602,
+          "mean": 134.5366580422409,
+          "min": 124.40499510284035
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 187,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 187,
+          "max": 83.90422746050844,
+          "mean": 45.376933158117346,
+          "min": 0.5811955517510237
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 187,
+          "max": 75,
+          "mean": 21.144385026737968,
+          "min": 0
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 187,
+          "max": 13801,
+          "mean": 8640.101604278076,
+          "min": 405
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 187,
+          "max": 33,
+          "mean": 12.411764705882353,
+          "min": 0
+        },
+        "gpu_power_mw": {
+          "count": 187,
+          "max": 48021,
+          "mean": 30449.657754010695,
+          "min": 11171
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 187,
+          "max": 2827,
+          "mean": 1874.566844919786,
+          "min": 367
+        },
+        "gpu_temperature_c": {
+          "count": 187,
+          "max": 50,
+          "mean": 47.04812834224599,
+          "min": 45
+        },
+        "measurement_samples": 187,
+        "minimum_device_free_bytes": 11553292288,
+        "owned_cpu_busy_cores_mean": 6.430805640143089,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6358.044199994765,
+          "teardown_ms": 1747.1509000024525,
+          "tokenize_ms": 0.927800007048063
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "31836124-381e-4576-ac1d-a646e7018990",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "b804f19a3665499e78bbaadc4fe606a730fd324c22ba1eefa33b53b397a7b67f",
+      "pair": 5,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 46.779850199993234,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-05-stock",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "prefetch",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\launch.json",
+            "sha256": "456752b33401e46e630b07e9de9f0605a3cc573ce2c697c28bde39152a1e8702",
+            "size_bytes": 20192
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\completion.json",
+            "sha256": "6110c1dba9d3d2bf88b1b8ff53888508c0eee177dc7357d2106b4dc53715797f",
+            "size_bytes": 10081
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\memory.json",
+            "sha256": "b72fdb0b18e60ef45a64ae961dab3cc7719ce9e0d7ac6fa947da67c641ae73e7",
+            "size_bytes": 433584
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\process.json",
+            "sha256": "0b90878a1820443481adb11cbc5b9597f0945953c4b49d1647133d23d580ab6f",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\run-start.json",
+            "sha256": "c930257dc8b260e5a743451c54ed75faa25baa27d03efe1b6b740974decca553",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\completion-wall.json",
+            "sha256": "3a5eec24d0ea4ea140f2581d4238a7d5ac57c86a9e7d903a19c03762c58906b6",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\phase-timing.json",
+            "sha256": "0196701fdd78ef582c87fcc4c074bff78c3b84619e4837e4e0837573fc6fa5f1",
+            "size_bytes": 115
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "00bb028ed53f3f2459be8fed6be30f5c57fe5a6be256cb0c0013b6339f98087d",
+      "completion_wall_ms": 38480.6069,
+      "decode_tps": 22.402942206403644,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 190,
+          "max": 139.42288633071587,
+          "mean": 134.75025868216488,
+          "min": 127.05363048166787
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 190,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 190,
+          "max": 88.95195325181258,
+          "mean": 45.48910056347265,
+          "min": 1.7197065443234405
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 190,
+          "max": 63,
+          "mean": 20.610526315789475,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 190,
+          "max": 13801,
+          "mean": 8713.047368421052,
+          "min": 405
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 190,
+          "max": 35,
+          "mean": 12.589473684210526,
+          "min": 0
+        },
+        "gpu_power_mw": {
+          "count": 190,
+          "max": 49198,
+          "mean": 30758.452631578948,
+          "min": 11130
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 190,
+          "max": 2820,
+          "mean": 1866.8578947368421,
+          "min": 345
+        },
+        "gpu_temperature_c": {
+          "count": 190,
+          "max": 50,
+          "mean": 47.3,
+          "min": 45
+        },
+        "measurement_samples": 190,
+        "minimum_device_free_bytes": 11454791680,
+        "owned_cpu_busy_cores_mean": 6.480609328309633,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6335.651900008088,
+          "teardown_ms": 1744.376699993154,
+          "tokenize_ms": 0.9989999962272123
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "a71ceefcfb464562f02f888490386430c90dccef916d13498cf12520c672b296",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "73999601-39b1-4f57-b155-e7666e33bee1",
+      "numerical_path": "fork_off_vs_pristine",
+      "owned_run_sha256": "8e61820e9d046e7288ef3b153b344505f7b6a5681b37e781c2e8334e251970d8",
+      "pair": 5,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 47.654586200005724,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-05-prefetch",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "stock",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\launch.json",
+            "sha256": "0bb7692404c38c1bfc2444c485e73c78a8943766958df6b503a519d16c3f252d",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\completion.json",
+            "sha256": "27c1a1926b00ec4076f183897c48067724f187d175867b8bcdd9d316de376f8b",
+            "size_bytes": 10077
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\memory.json",
+            "sha256": "828883efac5df55d57d00ed5945a959b05d60d1a7d66495d6fac4cb5f7422ca3",
+            "size_bytes": 405168
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\process.json",
+            "sha256": "382edd86e41d55077c88401a271aa032aac6562b623190225d20651f46f7a33b",
+            "size_bytes": 273
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\run-start.json",
+            "sha256": "d8400d9c2403e404da79381d2c3d03abaa65c9c18490790aaff13464d9f8fa10",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\completion-wall.json",
+            "sha256": "ee2459828e0d47c21bc3487467cbd6045e01848166a62871e4e528225d05a44c",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\phase-timing.json",
+            "sha256": "302cb87ca22754ebd92de2d65a9facb20943918459db72d11af7f5f9f1ed536d",
+            "size_bytes": 115
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 35858.7716,
+      "decode_tps": 23.07995093346681,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 176,
+          "max": 138.88065262462067,
+          "mean": 131.51704101523265,
+          "min": 119.05382069362498
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 176,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 176,
+          "max": 83.24024181728761,
+          "mean": 45.81929723840491,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 176,
+          "max": 32,
+          "mean": 15.346590909090908,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 176,
+          "max": 13801,
+          "mean": 10594.181818181818,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 176,
+          "max": 29,
+          "mean": 11.607954545454545,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 176,
+          "max": 49695,
+          "mean": 33369.14772727273,
+          "min": 14329
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 176,
+          "max": 2827,
+          "mean": 1861.8579545454545,
+          "min": 330
+        },
+        "gpu_temperature_c": {
+          "count": 176,
+          "max": 51,
+          "mean": 47.64204545454545,
+          "min": 45
+        },
+        "measurement_samples": 176,
+        "minimum_device_free_bytes": 11545296896,
+        "owned_cpu_busy_cores_mean": 6.723381856714467,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6320.579799998086,
+          "teardown_ms": 1764.105100010056,
+          "tokenize_ms": 1.5136999863898382
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "ed050124-022a-4ba4-8781-ab2feb0ed8c5",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "d7991b0ca90fa2544e59c8026314428b1475718ecd51eb21d42a0402a16d4e33",
+      "pair": 6,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 44.872130900010234,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-06-stock",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "prefetch",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\launch.json",
+            "sha256": "b2fb31e3ab4dffc81298d6782499b94b06a68087bea935179da71caa528fc2a4",
+            "size_bytes": 20192
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\completion.json",
+            "sha256": "0d83d35519586207549cf6d041eb79759019d3a67e4f8f41643cbf3f16912132",
+            "size_bytes": 10074
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\memory.json",
+            "sha256": "d4dd4cdf75d6ca55d2fc19f1abfd341ddec9ff801f303328731ad2a2929eec15",
+            "size_bytes": 411975
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\process.json",
+            "sha256": "92069fe7366e12cd0627d5178c05045dd47d093392be0e5713645430884d8a9e",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\run-start.json",
+            "sha256": "c29718cf41c7a772e9a816524d669d48733d0157dcb4041a2609e96924fee1f1",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\completion-wall.json",
+            "sha256": "51c8eb6bc3fd2c98cec434ff2422ec8d6f2a25321b212558191642abcbceea47",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\phase-timing.json",
+            "sha256": "533fb17a7851cfe36f4ca9f6382b1c4119dfc38b8c10ac6df539a52799149535",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "00bb028ed53f3f2459be8fed6be30f5c57fe5a6be256cb0c0013b6339f98087d",
+      "completion_wall_ms": 36528.7187,
+      "decode_tps": 22.64638588450768,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 179,
+          "max": 139.6896100154527,
+          "mean": 131.27372294272936,
+          "min": 118.22857142857143
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 179,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 179,
+          "max": 89.42253867146133,
+          "mean": 45.921475358407044,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 179,
+          "max": 34,
+          "mean": 14.430167597765363,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 179,
+          "max": 13801,
+          "mean": 10951.837988826815,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 179,
+          "max": 26,
+          "mean": 10.71508379888268,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 179,
+          "max": 49496,
+          "mean": 33269.30726256983,
+          "min": 14473
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 179,
+          "max": 2820,
+          "mean": 1865.2905027932961,
+          "min": 322
+        },
+        "gpu_temperature_c": {
+          "count": 179,
+          "max": 51,
+          "mean": 48.022346368715084,
+          "min": 45
+        },
+        "measurement_samples": 179,
+        "minimum_device_free_bytes": 11526553600,
+        "owned_cpu_busy_cores_mean": 6.6356313815658545,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6279.733300005319,
+          "teardown_ms": 1782.2633999894606,
+          "tokenize_ms": 0.9766000002855435
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "a71ceefcfb464562f02f888490386430c90dccef916d13498cf12520c672b296",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "db4f373b-9d06-45fd-aa5e-cc31c3cde4ee",
+      "numerical_path": "fork_off_vs_pristine",
+      "owned_run_sha256": "f5ce9574ce28ad3c3c4a4133a023def3fa6c4dd9cce947cdc13b1cea046fb3a0",
+      "pair": 6,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 45.68414460000349,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-06-prefetch",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "prefetch",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\launch.json",
+            "sha256": "9900e6535ff877b896fd4c780045db7597975b068e2231765fde2a6e4f47cec6",
+            "size_bytes": 20192
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\completion.json",
+            "sha256": "133c38b37ee385043e43fc42a3ab43f2321d0172c30a6b114eba91966b638d51",
+            "size_bytes": 10080
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\memory.json",
+            "sha256": "5d5b17a2e67012f900950ae025a52a353f3c46c8cad5696ab3c54d905d1c858d",
+            "size_bytes": 408049
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\process.json",
+            "sha256": "6452feeb739834ef7080a3cfd5d29b31bbd6dbfd613eb42dbe4d7528c839aed5",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\run-start.json",
+            "sha256": "b008231fcc4cef98b42f9b637683b402410b8072f819a4bf806458d8e22d2cf9",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\completion-wall.json",
+            "sha256": "a20a75fd27a3f3ceba6af61de57b89c04eda5d0498ed5a12b8c9e38f09bbc8cc",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\phase-timing.json",
+            "sha256": "943b1dbedd39b0f64120971d4d3f482b8c0ea0d7718ff2fc1684458a62c6d3fa",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "00bb028ed53f3f2459be8fed6be30f5c57fe5a6be256cb0c0013b6339f98087d",
+      "completion_wall_ms": 36195.0651,
+      "decode_tps": 22.776305275801928,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 177,
+          "max": 138.92432461464097,
+          "mean": 131.79969917589682,
+          "min": 119.63317037841753
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 177,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 177,
+          "max": 90.97000855563547,
+          "mean": 46.21739247333709,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 177,
+          "max": 31,
+          "mean": 14.655367231638419,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 177,
+          "max": 13801,
+          "mean": 10804.389830508475,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 177,
+          "max": 28,
+          "mean": 11.107344632768362,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 177,
+          "max": 49621,
+          "mean": 33282.06779661017,
+          "min": 14404
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 177,
+          "max": 2827,
+          "mean": 1864.553672316384,
+          "min": 300
+        },
+        "gpu_temperature_c": {
+          "count": 177,
+          "max": 51,
+          "mean": 48.31073446327684,
+          "min": 46
+        },
+        "measurement_samples": 177,
+        "minimum_device_free_bytes": 11548835840,
+        "owned_cpu_busy_cores_mean": 6.771063612248156,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6353.379099993617,
+          "teardown_ms": 1767.6436000037938,
+          "tokenize_ms": 0.8806999976513907
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "a71ceefcfb464562f02f888490386430c90dccef916d13498cf12520c672b296",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "3beb6d56-5917-4f0c-b6c1-57769a6563ea",
+      "numerical_path": "fork_off_vs_pristine",
+      "owned_run_sha256": "18e2656a37fb967baee6df8c7b7c391446d280c159a7fae11832722e7ca2bdaf",
+      "pair": 7,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 45.40682499999821,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-07-prefetch",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "stock",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\launch.json",
+            "sha256": "a58409f0f1870b93e00113ba983b2c6135b243c7a1b5aa35b7d81bf54ef8f22e",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\completion.json",
+            "sha256": "47028e2ca56b358591570513528ae9c81f8cb1017d49bd53c88abbbbd52e4177",
+            "size_bytes": 10078
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\memory.json",
+            "sha256": "cd5e87253ac8feaa94410de3c7dd5cfa8380d65ccab7fab9836519d9aa8d7d19",
+            "size_bytes": 409099
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\process.json",
+            "sha256": "74a9e0daa352d42f5f48033468be8712df091d3c8f6bb69d32a048ed3ab2de00",
+            "size_bytes": 273
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\run-start.json",
+            "sha256": "d934d3ad28616e23fdf703dfbd313034044ba8659bd12e3c3271232f3fcc9cbe",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\completion-wall.json",
+            "sha256": "a704a45d14a0cf31ab872ac6ce6d1c6b5b7f314e87465dd583af39248f39c5c4",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\phase-timing.json",
+            "sha256": "5edc84322f197116f5193bfb7af4fd1ba211a12c8d74126bc852b4b673b15943",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 36428.6651,
+      "decode_tps": 22.6602104540491,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 178,
+          "max": 138.99078561767357,
+          "mean": 131.83702694250397,
+          "min": 119.58922558922559
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 178,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 178,
+          "max": 87.83272203112705,
+          "mean": 46.73950743099633,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 178,
+          "max": 27,
+          "mean": 14.730337078651685,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 178,
+          "max": 13801,
+          "mean": 10897.629213483146,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 178,
+          "max": 24,
+          "mean": 11.207865168539326,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 178,
+          "max": 49706,
+          "mean": 33183.89887640449,
+          "min": 14342
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 178,
+          "max": 2827,
+          "mean": 1836.5898876404494,
+          "min": 322
+        },
+        "gpu_temperature_c": {
+          "count": 178,
+          "max": 51,
+          "mean": 48.46629213483146,
+          "min": 46
+        },
+        "measurement_samples": 178,
+        "minimum_device_free_bytes": 11548835840,
+        "owned_cpu_busy_cores_mean": 6.787213897580448,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6263.789900011034,
+          "teardown_ms": 1741.2901999923633,
+          "tokenize_ms": 13.623000006191432
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "9bc46a26-87bd-457d-a4fb-793e8767666a",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "48059a660c1be5aa067e84d065a9cbcb47a2b31cc0281a420a3fa69fe88558a9",
+      "pair": 7,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 45.37510069999553,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-07-stock",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "prefetch",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\launch.json",
+            "sha256": "7671c9ea4e88dea91add8321e426bab23ca1a2e02f86f0280b889cd26b62060c",
+            "size_bytes": 20192
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\completion.json",
+            "sha256": "d4767b5f4e1e8a26ec137141eceda19979a3f61dd6ac7c4f770232d556b418b2",
+            "size_bytes": 10075
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\memory.json",
+            "sha256": "411eeb0e08cc16942ac6b6a1afdaae21cead618aaa3c6a9d93f14a2f11bdf010",
+            "size_bytes": 407962
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\process.json",
+            "sha256": "bdbd5c6c316fe39c1e2b932acc943e03b8b0bcf5dce57793714c418e27cc4109",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\run-start.json",
+            "sha256": "93ae960613aba6808fac661222196ef8a3a46ed9d1d5a54f4b897c47eebfc775",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\completion-wall.json",
+            "sha256": "b331b43477b976986a5cf8946ab3b1ffbab7e40ac376d4abab358b6449dee8ec",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\phase-timing.json",
+            "sha256": "703e197c762859a7ce32fcc92429aec3fd697979b93d77c2821f2da051666051",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "00bb028ed53f3f2459be8fed6be30f5c57fe5a6be256cb0c0013b6339f98087d",
+      "completion_wall_ms": 36085.8893,
+      "decode_tps": 22.608649574763096,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 177,
+          "max": 138.69931350114416,
+          "mean": 131.53994889977233,
+          "min": 118.08570097810899
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 177,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 177,
+          "max": 90.48959275753701,
+          "mean": 47.38656225437587,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 177,
+          "max": 26,
+          "mean": 14.564971751412429,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 177,
+          "max": 13801,
+          "mean": 10919.64406779661,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 177,
+          "max": 20,
+          "mean": 10.830508474576272,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 177,
+          "max": 49747,
+          "mean": 33642.4802259887,
+          "min": 14432
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 177,
+          "max": 2827,
+          "mean": 1890.1073446327684,
+          "min": 330
+        },
+        "gpu_temperature_c": {
+          "count": 177,
+          "max": 52,
+          "mean": 48.77401129943503,
+          "min": 46
+        },
+        "measurement_samples": 177,
+        "minimum_device_free_bytes": 11548835840,
+        "owned_cpu_busy_cores_mean": 6.829389926304048,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6367.191299999831,
+          "teardown_ms": 1813.4319999953732,
+          "tokenize_ms": 0.8521999989170581
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "a71ceefcfb464562f02f888490386430c90dccef916d13498cf12520c672b296",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "1c372286-410f-4133-830a-0f4d5e0490ce",
+      "numerical_path": "fork_off_vs_pristine",
+      "owned_run_sha256": "86fce2b6071a4c1e7e7527e79af38125cf29bdcede516f584507edd8d47e3005",
+      "pair": 8,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 45.369088300009025,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-08-prefetch",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "stock",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\launch.json",
+            "sha256": "0a843da27904fe64435db4429ce187b4ea67659d554ea9d4ff333403fda726c8",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\completion.json",
+            "sha256": "378f7e36a3bb3658bc8eff71ceb3caa26322a3188c23e1f840cc98d1e13eb061",
+            "size_bytes": 10080
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\memory.json",
+            "sha256": "08185f90ae118b976e195514519d48388d69798f35752f83caf1499349de7fbe",
+            "size_bytes": 413956
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\process.json",
+            "sha256": "e1c0bc2b4481f61b2ae236fdafd3ef41f57760ce20a694974e41ca10be99a178",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\run-start.json",
+            "sha256": "56f84c413a94e3713f7f2b47e480f32605721cf9ff802b3c5a8f9ca482dd618f",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\completion-wall.json",
+            "sha256": "7b02ea87208ea2796eb2ba38544a93cb1edc482f25c3d97dffe7daf3c818b7fc",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\phase-timing.json",
+            "sha256": "8c5db559e5c6f1e0e6bf00852c0252d1426e55024f749915346d7d860d52c359",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 36574.1417,
+      "decode_tps": 22.6428435059772,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 179,
+          "max": 138.28638414405896,
+          "mean": 131.9493216371458,
+          "min": 116.85532503457814
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 179,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 179,
+          "max": 85.6620666231426,
+          "mean": 46.80440568560122,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 179,
+          "max": 32,
+          "mean": 15.139664804469273,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 179,
+          "max": 13801,
+          "mean": 10799.882681564246,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 179,
+          "max": 25,
+          "mean": 11.1731843575419,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 179,
+          "max": 49936,
+          "mean": 33222.00558659218,
+          "min": 14238
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 179,
+          "max": 2827,
+          "mean": 1835.2905027932961,
+          "min": 322
+        },
+        "gpu_temperature_c": {
+          "count": 179,
+          "max": 52,
+          "mean": 48.84357541899441,
+          "min": 46
+        },
+        "measurement_samples": 179,
+        "minimum_device_free_bytes": 11526553600,
+        "owned_cpu_busy_cores_mean": 6.750799639137597,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6421.342400004505,
+          "teardown_ms": 1773.3146000100533,
+          "tokenize_ms": 1.0184999991906807
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "b02d8ad8-c7ac-4403-8828-acc01580cdc7",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "8a233f14acaa4156f50f0d08f5e643a9a58eef013261d500a3da775fcbf4fa43",
+      "pair": 8,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 45.69899020000594,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-08-stock",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "stock",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\launch.json",
+            "sha256": "bde0b05b47a2dd7c837b85710fde00b2e1ca4e793c84e3079108f908c30533f9",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\completion.json",
+            "sha256": "c82292f6ea3a8a2aeca0e8edd48de1bb553c8d697e77c432756fc331911c6e54",
+            "size_bytes": 10080
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\memory.json",
+            "sha256": "7905f44751a525211ee0c7843fceb8a6ca1d9f238f15dba39ca937fe9f31a305",
+            "size_bytes": 408011
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\process.json",
+            "sha256": "8fe182e7cf535a6ef7e30aa0157429172e9922fa0d8ff637d02533256ea7fa96",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\run-start.json",
+            "sha256": "1309e74108ccfb1f457c4fc106aa109aeb515e5e2f41415dac87dbc59744a89c",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\completion-wall.json",
+            "sha256": "5bb4b75f994d4e9f5d99b818b2202bab6004b7606a2c0648156311a9ee880c96",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\phase-timing.json",
+            "sha256": "62bd45233ff9eb7c1eebf147012b883af03a50df890b05cbbc6ffaf58a77a09f",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 36017.3458,
+      "decode_tps": 22.72915639803778,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 178,
+          "max": 138.52326487310822,
+          "mean": 132.05698868716286,
+          "min": 118.12129690585911
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 178,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 178,
+          "max": 95.33721803003478,
+          "mean": 46.535634631308056,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 178,
+          "max": 32,
+          "mean": 15.101123595505618,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 178,
+          "max": 13801,
+          "mean": 11050.438202247191,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 178,
+          "max": 20,
+          "mean": 11.162921348314606,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 178,
+          "max": 49880,
+          "mean": 33768.41573033708,
+          "min": 14497
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 178,
+          "max": 2820,
+          "mean": 1883.3370786516855,
+          "min": 330
+        },
+        "gpu_temperature_c": {
+          "count": 178,
+          "max": 52,
+          "mean": 49.00561797752809,
+          "min": 46
+        },
+        "measurement_samples": 178,
+        "minimum_device_free_bytes": 11548835840,
+        "owned_cpu_busy_cores_mean": 6.707088516214409,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6212.406199992984,
+          "teardown_ms": 1761.6428000037558,
+          "tokenize_ms": 0.8953000069595873
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "5d82d7a2-a10e-4c12-a4a1-d054158b8df1",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "e3606584103db2f1293dd2001d3266b5b51556d41c830e0f02ee08f16f927458",
+      "pair": 9,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 44.916296199997305,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-09-stock",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "prefetch",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\launch.json",
+            "sha256": "3b0104aeba39814db04c3fc10067191e4c2ff3b1c1fa1089059a71126ac67797",
+            "size_bytes": 20192
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\completion.json",
+            "sha256": "8a64d53e88423853a5141976db1611a768cc68fcaaa65314484636c5c8911cf7",
+            "size_bytes": 10080
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\memory.json",
+            "sha256": "251f8881c3edcac9fc914f1ea433956f43003cbca8ea40d3cf1366d3254cd0cf",
+            "size_bytes": 388528
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\process.json",
+            "sha256": "a5997d6f97f8e3bafb4b0c9a99bd3cec7074f7d584a88172b7387766ec40a48c",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\run-start.json",
+            "sha256": "433125951f9672de26178ac6352803de490aafaac43f0193270a8ae93472c107",
+            "size_bytes": 199
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\completion-wall.json",
+            "sha256": "8ae1272d345bbfdba0db85ebb30fc4f7fc7d91f1c356313ea76bea39e0a313c3",
+            "size_bytes": 118
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\phase-timing.json",
+            "sha256": "6ce888ef117dd41730ba75732323894cff976b57cbd08ef6978c72bdfbc9112d",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "00bb028ed53f3f2459be8fed6be30f5c57fe5a6be256cb0c0013b6339f98087d",
+      "completion_wall_ms": 34366.2209,
+      "decode_tps": 22.964594605383493,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 168,
+          "max": 140.45110952040085,
+          "mean": 133.04135749501347,
+          "min": 120.16696887277124
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 168,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 168,
+          "max": 84.64131811695943,
+          "mean": 49.41561651522473,
+          "min": 0.021401886973659856
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 168,
+          "max": 32,
+          "mean": 15.589285714285714,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 168,
+          "max": 13801,
+          "mean": 11089.095238095239,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 168,
+          "max": 22,
+          "mean": 11.541666666666666,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 168,
+          "max": 49905,
+          "mean": 34705.255952380954,
+          "min": 14530
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 168,
+          "max": 2820,
+          "mean": 1953.2440476190477,
+          "min": 337
+        },
+        "gpu_temperature_c": {
+          "count": 168,
+          "max": 52,
+          "mean": 49.214285714285715,
+          "min": 47
+        },
+        "measurement_samples": 168,
+        "minimum_device_free_bytes": 11548835840,
+        "owned_cpu_busy_cores_mean": 7.111284924330497,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6139.893100000336,
+          "teardown_ms": 1766.0138000064762,
+          "tokenize_ms": 1.0623999987728894
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "a71ceefcfb464562f02f888490386430c90dccef916d13498cf12520c672b296",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "b57d04c1-0120-46a2-b2d7-bdf42167bb42",
+      "numerical_path": "fork_off_vs_pristine",
+      "owned_run_sha256": "21039005fa1a691289e9b5727125edb4e5cb63e2ef38a755a7d917015b07a84f",
+      "pair": 9,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 43.36435000000347,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "prefetch-09-prefetch",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    }
+  ],
+  "sealed_cv_pct": 1.4751586745764351,
+  "sealed_mean_tps": 22.54579069429347,
+  "sealed_tps": [
+    21.839531821861424,
+    22.20343699664169,
+    22.56720465060722,
+    22.562836839577614,
+    22.88601908738691,
+    22.402942206403644,
+    22.64638588450768,
+    22.776305275801928,
+    22.608649574763096,
+    22.964594605383493
+  ],
+  "statistics_arm_mapping": {
+    "direct": "stock",
+    "sealed": "prefetch"
+  },
+  "status": "INCONCLUSIVE"
+}

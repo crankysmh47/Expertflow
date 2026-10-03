@@ -1,0 +1,1849 @@
+{
+  "runs": [
+    {
+      "pair": 0,
+      "arm": "prefetch",
+      "measurement_id": "46dd9227-0b35-4aa3-b30c-af8bd071c554",
+      "owned_run_sha256": "972197a5cb3c2e0ab7b03958db3ba480c30ff85e280d4b38958461d84982e2e7",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\launch.json",
+            "size_bytes": 20192,
+            "sha256": "4aacf5fe0563e155073afdbeeb789b50d16fe0ca28273a486166edcf808b5aa4"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\completion.json",
+            "size_bytes": 10078,
+            "sha256": "ad1d6bf666a5c9dbf1474bef391033437121315bc7b218e37b4775f543e89f71"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\memory.json",
+            "size_bytes": 377075,
+            "sha256": "1628450a810eec3a0aa8593d3e36c546eec510c919d83a6b0046c1fb2d8f342e"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\process.json",
+            "size_bytes": 274,
+            "sha256": "b511b74ba5750c3d8c3e3d7e70a37c88632ee7cc756b177ce3e979f79ed4ab89"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "d00bcb8193ae88830e49cfd0bd7c003a9c23d2fca629ff69b3b97882654c1e92"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\completion-wall.json",
+            "size_bytes": 117,
+            "sha256": "9745d171e9195a90007e2b78c3250b8bd38b8bf69b28b1bd679ac3b4b92492f6"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-prefetch\\phase-timing.json",
+            "size_bytes": 116,
+            "sha256": "8b104bab06a196fc8761e5b6e0b9951632bf5fac0c7d2c172901103542636922"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 0,
+      "arm": "stock",
+      "measurement_id": "1b86cc3e-af59-46f8-9f37-3ec12c8904b2",
+      "owned_run_sha256": "246d51188f010a309d8af83e51a272f2fa10dcb3f4c7b94dd79063c578da4d83",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\launch.json",
+            "size_bytes": 19908,
+            "sha256": "5661a341ba0a9ca2ba4c14ccd3305ce5163b0538b06682e304dbe55c1b1c9306"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\completion.json",
+            "size_bytes": 10079,
+            "sha256": "0dd243cd1d6a88bf31dced8b2c130e5912bc0daddc7723f419fe1be923d08d5d"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\memory.json",
+            "size_bytes": 436498,
+            "sha256": "faffaebe93d232993010dfcc43dba0d00fba5187468d44a856d3b53e0682e8d7"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\process.json",
+            "size_bytes": 273,
+            "sha256": "9e27b4562c882a01514ddf1c0e51c270eec89ca9acacfc9ebc34c51638dbf723"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\run-start.json",
+            "size_bytes": 198,
+            "sha256": "989556622c8c2c3b9cefcb6aa77198d4d41a471f3b0879d501cf471c833f7857"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\completion-wall.json",
+            "size_bytes": 117,
+            "sha256": "702048a7fba43270b985dab08a7f34c65abcb851e68618566b5edaf375a0056c"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-00-stock\\phase-timing.json",
+            "size_bytes": 116,
+            "sha256": "160d841b236b2d2b081517d5689521d8fdef50c09c5d0ec8c64e59cb9eeab5d1"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 1,
+      "arm": "prefetch",
+      "measurement_id": "0d8b9dab-db35-4971-8b89-f15a15a40b15",
+      "owned_run_sha256": "50f928628b44e698db85c7ac8915bbd9efc133f916fdd657d7b178b27fbff7f8",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\launch.json",
+            "size_bytes": 20192,
+            "sha256": "8329c366e419da34b6c586155dc445bfc279cc3de7a31f57d4e35a39c65acf47"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\completion.json",
+            "size_bytes": 10080,
+            "sha256": "183c776ae52f7d2b65508b7cd5f05db79ac8ff8a6dab7aa7f86232466ef344a3"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\memory.json",
+            "size_bytes": 439210,
+            "sha256": "824d454302921f4bce7b1c1851c9da1d8dcce4abba72a129a7eca7dbc2a04ec1"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\process.json",
+            "size_bytes": 274,
+            "sha256": "adeac2c6b84ccc23b07d5843de64ff2f1c4b3e16074cb2c3249f89c219c19a6a"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "4936bfd80c2c00942570d9d4741ff077e2ac5c434530833b7eddefcbe805ee1c"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\completion-wall.json",
+            "size_bytes": 117,
+            "sha256": "d5c3f80eb66630965174a7895baa518cbe74444af3903ce0c425017f10a42e7e"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-prefetch\\phase-timing.json",
+            "size_bytes": 115,
+            "sha256": "e5d9b46fae661629388a853a76a94b0479b57c17cb0fd969f2296e48a639446d"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 1,
+      "arm": "stock",
+      "measurement_id": "b7dd60a2-8fa7-49d5-b6db-24ed86bf9b46",
+      "owned_run_sha256": "1fc8f3ac1ab8b17ad89e2ccb5124770f3bfc57f06ebce841b0a3c216ff099cb9",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\launch.json",
+            "size_bytes": 19908,
+            "sha256": "97535771947667fcf8918e50324471dea7f6a37db89c1d8db4a3332ee542c7f3"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\completion.json",
+            "size_bytes": 10081,
+            "sha256": "f9be176f84965f9b2acf7527921f646b2a85f4ca571627d2ee1aef623e30d3f1"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\memory.json",
+            "size_bytes": 429574,
+            "sha256": "67cdfbd9056d7108190722a2782a87e1193713db1f3a12fa8f7abed0852a9a3c"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\process.json",
+            "size_bytes": 274,
+            "sha256": "48220952b76e8fb34994bd7f6e874b410eac6118cffe4c5f6b2b43590c59e429"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "340592a46cc94fb2367df43a8ed4b8fc32d9768150769af40f6833f1c49ce832"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "1eaaedf86e5c62f6f1a0e2f469c2389876975e306a76897fb1808b41a41189a5"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-01-stock\\phase-timing.json",
+            "size_bytes": 116,
+            "sha256": "bbce6c04d654f80251b77984884e1100e55916a832ec15d42b8532ffe107df1f"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 2,
+      "arm": "stock",
+      "measurement_id": "97413f7b-9d8a-40da-8d3b-70a5e4364808",
+      "owned_run_sha256": "5819c6a600fe364af9831c8f93f60d4d03041e9c9d9bdd81ffe1a26d0789cece",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\launch.json",
+            "size_bytes": 19908,
+            "sha256": "b310be489cb4179fd563219cddbd64e80852926165cbc4b42424b41fd8d6d075"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\completion.json",
+            "size_bytes": 10080,
+            "sha256": "45da203f91393fee7f1bc08cec6b34a1433eaca6e64413eb39fee865105f13ce"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\memory.json",
+            "size_bytes": 421573,
+            "sha256": "a6e502454872c0c1c17117bb86fd0d09d08e2c71b7955d4ba7f95f1a7236da66"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\process.json",
+            "size_bytes": 274,
+            "sha256": "bae8eca40b47ea2847b042fdae5635e9bed6562d1370ae87c5a64c6a05376366"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "e0a02fa7671d1c8a95e1a48782bb41909e46b65bf6f804b9c6a05a76922469aa"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "88d2cea33b48fb07213ef73ce1d3d2884fb5fe8a35a2a11ff54cd085ffc5869f"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-stock\\phase-timing.json",
+            "size_bytes": 114,
+            "sha256": "0cf32a64eec84588804c05f9dc51a8274f67cfe846ddb89ebc297dd00e433459"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 2,
+      "arm": "prefetch",
+      "measurement_id": "1ed5bb36-992e-43e5-bc7f-76682e9fd3ed",
+      "owned_run_sha256": "35902cfa82860bf8dcd22e030aabb136ef1d0639922b454a5de9d4af3857b3a2",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\launch.json",
+            "size_bytes": 20192,
+            "sha256": "b0041b6bc6b17c08d5f27d037b66311df919a3ce159f909e372a705df1cc7219"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\completion.json",
+            "size_bytes": 10078,
+            "sha256": "66bd0cb9d31ad2bb125b29f57ddd37d92b1c9b762bc79ffdc844e2c8783e367a"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\memory.json",
+            "size_bytes": 447324,
+            "sha256": "7fb9ddafcd8f36a7d80bef801f19fd456defd710b884bd3a7b82b7f458088a6e"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\process.json",
+            "size_bytes": 274,
+            "sha256": "b01a4ef0a8ba0d019e98bb69708a91c248e887bb5ee01da1644851a91b7fada3"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "ff520678e82283662a4aa34b81ac1b24137b9ce42cf3061bbc923ca883e31cbc"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "ef1d436685ca672768017f488a2cabcb60fab655ea43e7e8d6eb2cdcc05301d9"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-02-prefetch\\phase-timing.json",
+            "size_bytes": 115,
+            "sha256": "d20fe1bdbd89c9bae911e593c1f0acb3400ac8e8665b2f535e67cb61317ac297"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 3,
+      "arm": "prefetch",
+      "measurement_id": "e4f1b289-f130-4257-9cfa-31288e77de40",
+      "owned_run_sha256": "83afcd8096092b4411fee20e580a1d47d1e5b24cf7f88bdce40d1f7119e4b1a2",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\launch.json",
+            "size_bytes": 20192,
+            "sha256": "b9d9f9d03960f38f875d8a3891ec474eb86eb64574fabc8de2a736916290ea41"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\completion.json",
+            "size_bytes": 10080,
+            "sha256": "5819bc38ec6f16dc3dbc7139493f997d4efe83e2271cce490ea674339a8a509d"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\memory.json",
+            "size_bytes": 437472,
+            "sha256": "ef325bdf07901921c265c0568b5a4d72a3ef8fcd0c49b9a7b82d41b92b8102d9"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\process.json",
+            "size_bytes": 274,
+            "sha256": "c0f16042a573569b9584ee85928b0a51038f7f5fa510cd05e57bfa219132d4ea"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "b4a6b899e961aaba077ebd97f54b8b8a872112b8d55d88c0814679cd03c54671"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "bb0646eb3172ec1ea6176db61aeda58510a9e2c75c2f043c15d3fd828e61fe64"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-prefetch\\phase-timing.json",
+            "size_bytes": 117,
+            "sha256": "cbd4f84cba372598b0e20392e4bc46aaf3a52abea8b7fa657c8327b2f5ef14c3"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 3,
+      "arm": "stock",
+      "measurement_id": "aa452f2b-869f-467e-a157-b15548539024",
+      "owned_run_sha256": "76ecfe17f83665bba6156633059a331ddda325107b6ab74ffd053fb6a2f2465f",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\launch.json",
+            "size_bytes": 19908,
+            "sha256": "35c177f43d5389b389b5ece076493cc400f5e69ea093817d517c59b4689aef28"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\completion.json",
+            "size_bytes": 10080,
+            "sha256": "82b11c2be6ff37408fee9002c05d2337d6f3c4cda71cd34a29ccaabc813c1830"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\memory.json",
+            "size_bytes": 441390,
+            "sha256": "78b11dda2e628926e055c77f7742049697edf5dacccf1f95871f6e0d7c3ff619"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\process.json",
+            "size_bytes": 274,
+            "sha256": "ceb624d9d458b1bfeaac0012391fd7ef01a1baf43c21cb1805ef5a00cf4415fd"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "60b051c40fc8099c75e919c5ddea4215223ed29afd0559efaa9e71528831e3f4"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "75c377125e52b2846deef317bdb8642d201a973e09e6622709aee094c3be630d"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-03-stock\\phase-timing.json",
+            "size_bytes": 116,
+            "sha256": "af558768325be85232067454449d3e1e66a3539c5fbd7b97ad7c8a5da5bd5fac"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 4,
+      "arm": "stock",
+      "measurement_id": "5d38e262-3715-4e4f-9753-0fc91cf73b82",
+      "owned_run_sha256": "7a8b2f7691c4a35a25e419b26a8f67b1512d11a40b7e189771cf01b2f63a8cc6",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\launch.json",
+            "size_bytes": 19908,
+            "sha256": "53e5df2cdce2d46d6c10f2603076406ec705ea71fe53acdcd2cb00d69da20c8b"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\completion.json",
+            "size_bytes": 10080,
+            "sha256": "98ec497a0d18beda198c426798941ac68db8a352dfba0cdf60bcfc681822775d"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\memory.json",
+            "size_bytes": 437398,
+            "sha256": "eee58025d7523fb176a3c5b1e36c440373d6a5c77146f096ba9c34ba7e965285"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\process.json",
+            "size_bytes": 274,
+            "sha256": "f246e0aa2bbfdd23ef55f7a667ffa964c980621b94ecb63741c1511d2f02fe56"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "d82c0c8219710600a2a2cb91dccfc32e7d745b335fb031ce93234af0ba95287b"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "a08ba9fb3c289e2534bb805bd23a3483c6ac6eca687818bfd7fc1c1b8d7a9da4"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-stock\\phase-timing.json",
+            "size_bytes": 116,
+            "sha256": "f34a0a3bc7fdb560a47712182163d53426d88daa70102dbaebc6bc8dd0168a97"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 4,
+      "arm": "prefetch",
+      "measurement_id": "87e3ecf8-5365-47cb-b260-e7ef96184469",
+      "owned_run_sha256": "27c54a96ee48c5e3cef8ab402e2e7ac72d13898eeda070f1e4b1fbb1a9fa8b98",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\launch.json",
+            "size_bytes": 20192,
+            "sha256": "de5154c6b2af0e40ded701d8f09060d86a04c23998a6969a9224da5d08aa5e48"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\completion.json",
+            "size_bytes": 10080,
+            "sha256": "c3148af6d64a0e1322d8136736a08d4babb91e6b1eac4f74612999d658381445"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\memory.json",
+            "size_bytes": 437446,
+            "sha256": "60cb998d0ea258fe6d7f90fb21c5308e8483ef5665ed7d4729cd4ac15581c4a9"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\process.json",
+            "size_bytes": 274,
+            "sha256": "d7b2638d2d2f3536c9133b791fa19f46544f30dae3975bc88f3fa6971624fe38"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "53f589cdd7de4f4cc6c4864587d8b540ce7b2956be816386a05d73fa9b94647b"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "da26e20c436cab54d5a21c7ba8e4ec6a896c367bdfbb5b7a30f3a915bec0f79e"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-04-prefetch\\phase-timing.json",
+            "size_bytes": 116,
+            "sha256": "24865d72a58876f612f0c20eff1c2fbfcd42e89f3e4b7a5922e53c0fd1c6ba1e"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 5,
+      "arm": "stock",
+      "measurement_id": "31836124-381e-4576-ac1d-a646e7018990",
+      "owned_run_sha256": "b804f19a3665499e78bbaadc4fe606a730fd324c22ba1eefa33b53b397a7b67f",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\launch.json",
+            "size_bytes": 19908,
+            "sha256": "067b08421ce80777ea5d10808cde6c8cc8e8afe9c5f81b7c68a0c10d7699ad1d"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\completion.json",
+            "size_bytes": 10081,
+            "sha256": "2cd48a8b94cbc9dde0d9b93f84f7b56899101f1d2bc351fc21a907724645eb10"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\memory.json",
+            "size_bytes": 427703,
+            "sha256": "15f318f3d1de9b27f165ff3129caf63b421ad23387f60c339a3b8a6e7be68acd"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\process.json",
+            "size_bytes": 274,
+            "sha256": "c0a0cab95c01aa422b50254bc75b70fa495bb96903931784ea12f60dfb9ae091"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "ced6ce8ea2c049bc9c99bebb8b7e30a829ce139038269dc56c1e22d6e33d62e3"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "ac61668d860f955de79f741f00351075f72e9bbf1a4c492c3a14261f6feb9d10"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-stock\\phase-timing.json",
+            "size_bytes": 115,
+            "sha256": "1adadbc703331e2e39c4c3bed57c1b93cb3c6237ea51754bcda2c77d0c1cba54"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 5,
+      "arm": "prefetch",
+      "measurement_id": "73999601-39b1-4f57-b155-e7666e33bee1",
+      "owned_run_sha256": "8e61820e9d046e7288ef3b153b344505f7b6a5681b37e781c2e8334e251970d8",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\launch.json",
+            "size_bytes": 20192,
+            "sha256": "456752b33401e46e630b07e9de9f0605a3cc573ce2c697c28bde39152a1e8702"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\completion.json",
+            "size_bytes": 10081,
+            "sha256": "6110c1dba9d3d2bf88b1b8ff53888508c0eee177dc7357d2106b4dc53715797f"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\memory.json",
+            "size_bytes": 433584,
+            "sha256": "b72fdb0b18e60ef45a64ae961dab3cc7719ce9e0d7ac6fa947da67c641ae73e7"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\process.json",
+            "size_bytes": 274,
+            "sha256": "0b90878a1820443481adb11cbc5b9597f0945953c4b49d1647133d23d580ab6f"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "c930257dc8b260e5a743451c54ed75faa25baa27d03efe1b6b740974decca553"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "3a5eec24d0ea4ea140f2581d4238a7d5ac57c86a9e7d903a19c03762c58906b6"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-05-prefetch\\phase-timing.json",
+            "size_bytes": 115,
+            "sha256": "0196701fdd78ef582c87fcc4c074bff78c3b84619e4837e4e0837573fc6fa5f1"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 6,
+      "arm": "stock",
+      "measurement_id": "ed050124-022a-4ba4-8781-ab2feb0ed8c5",
+      "owned_run_sha256": "d7991b0ca90fa2544e59c8026314428b1475718ecd51eb21d42a0402a16d4e33",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\launch.json",
+            "size_bytes": 19908,
+            "sha256": "0bb7692404c38c1bfc2444c485e73c78a8943766958df6b503a519d16c3f252d"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\completion.json",
+            "size_bytes": 10077,
+            "sha256": "27c1a1926b00ec4076f183897c48067724f187d175867b8bcdd9d316de376f8b"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\memory.json",
+            "size_bytes": 405168,
+            "sha256": "828883efac5df55d57d00ed5945a959b05d60d1a7d66495d6fac4cb5f7422ca3"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\process.json",
+            "size_bytes": 273,
+            "sha256": "382edd86e41d55077c88401a271aa032aac6562b623190225d20651f46f7a33b"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\run-start.json",
+            "size_bytes": 198,
+            "sha256": "d8400d9c2403e404da79381d2c3d03abaa65c9c18490790aaff13464d9f8fa10"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "ee2459828e0d47c21bc3487467cbd6045e01848166a62871e4e528225d05a44c"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-stock\\phase-timing.json",
+            "size_bytes": 115,
+            "sha256": "302cb87ca22754ebd92de2d65a9facb20943918459db72d11af7f5f9f1ed536d"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 6,
+      "arm": "prefetch",
+      "measurement_id": "db4f373b-9d06-45fd-aa5e-cc31c3cde4ee",
+      "owned_run_sha256": "f5ce9574ce28ad3c3c4a4133a023def3fa6c4dd9cce947cdc13b1cea046fb3a0",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\launch.json",
+            "size_bytes": 20192,
+            "sha256": "b2fb31e3ab4dffc81298d6782499b94b06a68087bea935179da71caa528fc2a4"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\completion.json",
+            "size_bytes": 10074,
+            "sha256": "0d83d35519586207549cf6d041eb79759019d3a67e4f8f41643cbf3f16912132"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\memory.json",
+            "size_bytes": 411975,
+            "sha256": "d4dd4cdf75d6ca55d2fc19f1abfd341ddec9ff801f303328731ad2a2929eec15"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\process.json",
+            "size_bytes": 274,
+            "sha256": "92069fe7366e12cd0627d5178c05045dd47d093392be0e5713645430884d8a9e"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "c29718cf41c7a772e9a816524d669d48733d0157dcb4041a2609e96924fee1f1"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "51c8eb6bc3fd2c98cec434ff2422ec8d6f2a25321b212558191642abcbceea47"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-06-prefetch\\phase-timing.json",
+            "size_bytes": 116,
+            "sha256": "533fb17a7851cfe36f4ca9f6382b1c4119dfc38b8c10ac6df539a52799149535"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 7,
+      "arm": "prefetch",
+      "measurement_id": "3beb6d56-5917-4f0c-b6c1-57769a6563ea",
+      "owned_run_sha256": "18e2656a37fb967baee6df8c7b7c391446d280c159a7fae11832722e7ca2bdaf",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\launch.json",
+            "size_bytes": 20192,
+            "sha256": "9900e6535ff877b896fd4c780045db7597975b068e2231765fde2a6e4f47cec6"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\completion.json",
+            "size_bytes": 10080,
+            "sha256": "133c38b37ee385043e43fc42a3ab43f2321d0172c30a6b114eba91966b638d51"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\memory.json",
+            "size_bytes": 408049,
+            "sha256": "5d5b17a2e67012f900950ae025a52a353f3c46c8cad5696ab3c54d905d1c858d"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\process.json",
+            "size_bytes": 274,
+            "sha256": "6452feeb739834ef7080a3cfd5d29b31bbd6dbfd613eb42dbe4d7528c839aed5"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "b008231fcc4cef98b42f9b637683b402410b8072f819a4bf806458d8e22d2cf9"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "a20a75fd27a3f3ceba6af61de57b89c04eda5d0498ed5a12b8c9e38f09bbc8cc"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-prefetch\\phase-timing.json",
+            "size_bytes": 116,
+            "sha256": "943b1dbedd39b0f64120971d4d3f482b8c0ea0d7718ff2fc1684458a62c6d3fa"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 7,
+      "arm": "stock",
+      "measurement_id": "9bc46a26-87bd-457d-a4fb-793e8767666a",
+      "owned_run_sha256": "48059a660c1be5aa067e84d065a9cbcb47a2b31cc0281a420a3fa69fe88558a9",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\launch.json",
+            "size_bytes": 19908,
+            "sha256": "a58409f0f1870b93e00113ba983b2c6135b243c7a1b5aa35b7d81bf54ef8f22e"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\completion.json",
+            "size_bytes": 10078,
+            "sha256": "47028e2ca56b358591570513528ae9c81f8cb1017d49bd53c88abbbbd52e4177"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\memory.json",
+            "size_bytes": 409099,
+            "sha256": "cd5e87253ac8feaa94410de3c7dd5cfa8380d65ccab7fab9836519d9aa8d7d19"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\process.json",
+            "size_bytes": 273,
+            "sha256": "74a9e0daa352d42f5f48033468be8712df091d3c8f6bb69d32a048ed3ab2de00"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\run-start.json",
+            "size_bytes": 198,
+            "sha256": "d934d3ad28616e23fdf703dfbd313034044ba8659bd12e3c3271232f3fcc9cbe"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "a704a45d14a0cf31ab872ac6ce6d1c6b5b7f314e87465dd583af39248f39c5c4"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-07-stock\\phase-timing.json",
+            "size_bytes": 116,
+            "sha256": "5edc84322f197116f5193bfb7af4fd1ba211a12c8d74126bc852b4b673b15943"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 8,
+      "arm": "prefetch",
+      "measurement_id": "1c372286-410f-4133-830a-0f4d5e0490ce",
+      "owned_run_sha256": "86fce2b6071a4c1e7e7527e79af38125cf29bdcede516f584507edd8d47e3005",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\launch.json",
+            "size_bytes": 20192,
+            "sha256": "7671c9ea4e88dea91add8321e426bab23ca1a2e02f86f0280b889cd26b62060c"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\completion.json",
+            "size_bytes": 10075,
+            "sha256": "d4767b5f4e1e8a26ec137141eceda19979a3f61dd6ac7c4f770232d556b418b2"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\memory.json",
+            "size_bytes": 407962,
+            "sha256": "411eeb0e08cc16942ac6b6a1afdaae21cead618aaa3c6a9d93f14a2f11bdf010"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\process.json",
+            "size_bytes": 274,
+            "sha256": "bdbd5c6c316fe39c1e2b932acc943e03b8b0bcf5dce57793714c418e27cc4109"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "93ae960613aba6808fac661222196ef8a3a46ed9d1d5a54f4b897c47eebfc775"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "b331b43477b976986a5cf8946ab3b1ffbab7e40ac376d4abab358b6449dee8ec"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-prefetch\\phase-timing.json",
+            "size_bytes": 116,
+            "sha256": "703e197c762859a7ce32fcc92429aec3fd697979b93d77c2821f2da051666051"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 8,
+      "arm": "stock",
+      "measurement_id": "b02d8ad8-c7ac-4403-8828-acc01580cdc7",
+      "owned_run_sha256": "8a233f14acaa4156f50f0d08f5e643a9a58eef013261d500a3da775fcbf4fa43",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\launch.json",
+            "size_bytes": 19908,
+            "sha256": "0a843da27904fe64435db4429ce187b4ea67659d554ea9d4ff333403fda726c8"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\completion.json",
+            "size_bytes": 10080,
+            "sha256": "378f7e36a3bb3658bc8eff71ceb3caa26322a3188c23e1f840cc98d1e13eb061"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\memory.json",
+            "size_bytes": 413956,
+            "sha256": "08185f90ae118b976e195514519d48388d69798f35752f83caf1499349de7fbe"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\process.json",
+            "size_bytes": 274,
+            "sha256": "e1c0bc2b4481f61b2ae236fdafd3ef41f57760ce20a694974e41ca10be99a178"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "56f84c413a94e3713f7f2b47e480f32605721cf9ff802b3c5a8f9ca482dd618f"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "7b02ea87208ea2796eb2ba38544a93cb1edc482f25c3d97dffe7daf3c818b7fc"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-08-stock\\phase-timing.json",
+            "size_bytes": 116,
+            "sha256": "8c5db559e5c6f1e0e6bf00852c0252d1426e55024f749915346d7d860d52c359"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 9,
+      "arm": "stock",
+      "measurement_id": "5d82d7a2-a10e-4c12-a4a1-d054158b8df1",
+      "owned_run_sha256": "e3606584103db2f1293dd2001d3266b5b51556d41c830e0f02ee08f16f927458",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\launch.json",
+            "size_bytes": 19908,
+            "sha256": "bde0b05b47a2dd7c837b85710fde00b2e1ca4e793c84e3079108f908c30533f9"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\completion.json",
+            "size_bytes": 10080,
+            "sha256": "c82292f6ea3a8a2aeca0e8edd48de1bb553c8d697e77c432756fc331911c6e54"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\memory.json",
+            "size_bytes": 408011,
+            "sha256": "7905f44751a525211ee0c7843fceb8a6ca1d9f238f15dba39ca937fe9f31a305"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\process.json",
+            "size_bytes": 274,
+            "sha256": "8fe182e7cf535a6ef7e30aa0157429172e9922fa0d8ff637d02533256ea7fa96"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "1309e74108ccfb1f457c4fc106aa109aeb515e5e2f41415dac87dbc59744a89c"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "5bb4b75f994d4e9f5d99b818b2202bab6004b7606a2c0648156311a9ee880c96"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-stock\\phase-timing.json",
+            "size_bytes": 116,
+            "sha256": "62bd45233ff9eb7c1eebf147012b883af03a50df890b05cbbc6ffaf58a77a09f"
+          }
+        }
+      ]
+    },
+    {
+      "pair": 9,
+      "arm": "prefetch",
+      "measurement_id": "b57d04c1-0120-46a2-b2d7-bdf42167bb42",
+      "owned_run_sha256": "21039005fa1a691289e9b5727125edb4e5cb63e2ef38a755a7d917015b07a84f",
+      "artifacts": [
+        {
+          "role": "launch",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\launch.json",
+            "size_bytes": 20192,
+            "sha256": "3b0104aeba39814db04c3fc10067191e4c2ff3b1c1fa1089059a71126ac67797"
+          }
+        },
+        {
+          "role": "request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\request.json",
+            "size_bytes": 577,
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5"
+          }
+        },
+        {
+          "role": "tokenize-request",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\tokenize-request.json",
+            "size_bytes": 215,
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea"
+          }
+        },
+        {
+          "role": "tokenize",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\tokenize.json",
+            "size_bytes": 430,
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc"
+          }
+        },
+        {
+          "role": "completion",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\completion.json",
+            "size_bytes": 10080,
+            "sha256": "8a64d53e88423853a5141976db1611a768cc68fcaaa65314484636c5c8911cf7"
+          }
+        },
+        {
+          "role": "memory",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\memory.json",
+            "size_bytes": 388528,
+            "sha256": "251f8881c3edcac9fc914f1ea433956f43003cbca8ea40d3cf1366d3254cd0cf"
+          }
+        },
+        {
+          "role": "process",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\process.json",
+            "size_bytes": 274,
+            "sha256": "a5997d6f97f8e3bafb4b0c9a99bd3cec7074f7d584a88172b7387766ec40a48c"
+          }
+        },
+        {
+          "role": "run-start",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\run-start.json",
+            "size_bytes": 199,
+            "sha256": "433125951f9672de26178ac6352803de490aafaac43f0193270a8ae93472c107"
+          }
+        },
+        {
+          "role": "completion-wall",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\completion-wall.json",
+            "size_bytes": 118,
+            "sha256": "8ae1272d345bbfdba0db85ebb30fc4f7fc7d91f1c356313ea76bea39e0a313c3"
+          }
+        },
+        {
+          "role": "phase-timing",
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\native\\pair-09-prefetch\\phase-timing.json",
+            "size_bytes": 116,
+            "sha256": "6ce888ef117dd41730ba75732323894cff976b57cbd08ef6978c72bdfbc9112d"
+          }
+        }
+      ]
+    }
+  ],
+  "fresh_native_runs": 20,
+  "imported_reference_records": 1,
+  "reference_measurement_id": "6021f0e3-c342-46a1-8461-6fa1ef004063",
+  "numerical_artifacts": [
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\build-after.log",
+      "sha256": "19f4bf4f0aa868a13d1c9980fa149d63ec86867ccabdcfe5bb6f2c5e5a121db6",
+      "size_bytes": 2673
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\build.log",
+      "sha256": "1e39b4dc7293cf50227eb070d4b1e9c472705ae081f8384ff9bc40bb7a8b273e",
+      "size_bytes": 6167
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\caller-after.disasm",
+      "sha256": "31b8818ef0b692770db3fd534aa1a0c6b21b3f753397960baa957dc0a114912c",
+      "size_bytes": 511077
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\caller-before.disasm",
+      "sha256": "3ccf446fb48c34a701e10e700ad6e026fb8d717aaf8d7702bcdae02d21ef605f",
+      "size_bytes": 511115
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\candidate-fixture.bin",
+      "sha256": "1c11eb2a816e37c460a8a644f7151ff7fb229738f75333b3cb9139644c86c8eb",
+      "size_bytes": 43392
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\cpu-tests.log",
+      "sha256": "d660f28739f28e56c4fb711c9713fe50ae7411e361744bd24a6599b2ef310299",
+      "size_bytes": 898
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\fixture-stock.log",
+      "sha256": "ed6e3342a899b8d558163bf72072b8ef7db3b0888842063f5de7b83d3bdff501",
+      "size_bytes": 370
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\ggml-cpu-arch-x86-quants.c-candidate.disasm",
+      "sha256": "b0b8db2adaedc07ca899bbf0aa472f035a7e65143aa5dcbd4a8ae850a91dd8c1",
+      "size_bytes": 415195
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\ggml-cpu-arch-x86-quants.c-stock.disasm",
+      "sha256": "0f4a48e3380f496f1b786b3dfac4290e949678044f085da32ed4770ae7874b81",
+      "size_bytes": 415195
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\ggml-cpu-quants.c-candidate.disasm",
+      "sha256": "186647d806a5bfcc3b52f8916cf0f7fdb8bf96a3a7999cd651845ea59ef9e823",
+      "size_bytes": 524449
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\ggml-cpu-quants.c-stock.disasm",
+      "sha256": "4cce6d4318f9c337d3a176c5ec7a24cde1020891117a50cae615dd161f53d14b",
+      "size_bytes": 524449
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\hint-red.log",
+      "sha256": "797a658a396fcf36b9f11d089c3c51625d0b265b9e5da4f11d8e362a7dfe1a01",
+      "size_bytes": 349
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\numerical-gate.json",
+      "sha256": "0d39834b5f898f946d301c59308fb994d9e6742be1883fb7fd73a9bfbe953aa0",
+      "size_bytes": 9020
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\numerical-gate.log",
+      "sha256": "ff451bb99a5891feb13a9df5ea51d592b5fce134e4dc85443c367fdd0c9c6d66",
+      "size_bytes": 891
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\preflight-patch-order-red.log",
+      "sha256": "89ebab7d1a14d7b21b0cfd7a29f4cf2b98160b5afc3895c82625af2ed8a3c294",
+      "size_bytes": 1161
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\numerical\\stock-fixture.bin",
+      "sha256": "1c11eb2a816e37c460a8a644f7151ff7fb229738f75333b3cb9139644c86c8eb",
+      "size_bytes": 43392
+    }
+  ]
+}
