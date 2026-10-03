@@ -7,12 +7,15 @@ from pathlib import Path
 from expertflow.compiler.diagnostics import DiagnosticSampler
 from expertflow.compiler.evidence import EvidenceStore
 from expertflow.compiler.pipeline import CompilationRequest, EnvironmentBlocked, load_compiler_inputs
-from expertflow.compiler.refinement import execute_pairs
+from expertflow.compiler.refinement import execute_pairs, execute_thread_pairs
 from expertflow.compiler.runner import ServerMeasurementRunner, WindowsGpuMemorySampler
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--experiment', choices=('aa', 'threads8'), default='aa')
+    parser.add_argument('--aa-report', type=Path)
+    parser.add_argument('--aa-evidence-db', type=Path)
     parser.add_argument('--descriptor', type=Path, default=Path('configs/compiler/gemma4-q6-model.json'))
     parser.add_argument('--inventory', type=Path, default=Path('docs/evidence/q6-download/tensor-inventory.json'))
     parser.add_argument('--hardware', type=Path, default=Path('docs/evidence/compiler-phase3/inputs/hardware.json'))
@@ -26,20 +29,25 @@ def main(argv=None):
     sampler = None
     base_sampler = None
     try:
-        if not args.source_evidence_db.is_file():
+        source_db = args.source_evidence_db if args.experiment == 'aa' else args.aa_evidence_db
+        if source_db is None or (args.experiment == 'threads8' and (args.aa_report is None or not args.aa_report.is_file())):
+            raise ValueError('threads8 requires --aa-report and --aa-evidence-db')
+        if not source_db.is_file():
             raise EnvironmentBlocked('original source evidence database unavailable')
         if args.evidence_db.exists() or args.output_dir.exists():
             raise ValueError('fresh output directory and database required; no resuming or optional retries')
         request = CompilationRequest(args.descriptor, args.inventory, args.hardware, args.workload,
             args.runtime_identity, (), args.evidence_db, args.output_dir)
         inputs = load_compiler_inputs(request, live=True)
-        source = EvidenceStore(args.source_evidence_db)
+        source = EvidenceStore(source_db)
         target = EvidenceStore(args.evidence_db)
         base_sampler = WindowsGpuMemorySampler(inputs.hardware.gpu_uuid)
         sampler = DiagnosticSampler(base_sampler)
         runner = ServerMeasurementRunner(target, memory_sampler=sampler)
-        report = execute_pairs(inputs, args.source_plan, source, target, runner, args.output_dir)
-        code = 0 if report['status'] == 'PASS-MEASUREMENT' else 3 if report['status'] in ('INCONCLUSIVE', 'ENVIRONMENT-BLOCKED') else 2
+        report = (execute_pairs(inputs, args.source_plan, source, target, runner, args.output_dir)
+                  if args.experiment == 'aa' else
+                  execute_thread_pairs(inputs, args.aa_report, source, target, runner, args.output_dir))
+        code = 0 if report['status'] in ('PASS-MEASUREMENT', 'PASS-OPTIMIZATION') else 3 if report['status'] in ('INCONCLUSIVE', 'ENVIRONMENT-BLOCKED') else 2
         print(json.dumps({'status': report['status'], 'reason': report.get('reason'),
                           'change_pct': report.get('geometric_change_pct'), 'ci90_pct': report.get('ci90_pct'),
                           'report': str(args.output_dir / 'report.json')}))

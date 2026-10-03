@@ -152,3 +152,40 @@ def test_source_change_after_first_run_stops_without_collecting_more(tmp_path,mo
     report=api().execute_pairs(inp,path,source,target,runner,tmp_path/'aa')
     assert report['status']=='VALIDATION-STOP' and 'source changed' in report['reason']
     assert len(runner.calls)==1 and report['frozen']['source_files']
+
+
+def setup_thread_execution(tmp_path):
+    from expertflow.compiler.evidence import EvidenceStore
+    from test_compiler_pipeline import FakeRunner
+    inp,source,aa_store,runner,path=setup_execution(tmp_path)
+    aa=api().execute_pairs(inp,path,source,aa_store,runner,tmp_path/'aa')
+    assert aa['status']=='PASS-MEASUREMENT'
+    target=EvidenceStore(tmp_path/'threads.sqlite3')
+    return inp,aa_store,target,FakeRunner(target),tmp_path/'aa/report.json'
+
+
+def test_thread_experiment_binds_distinct_workloads_and_stops_at_budget(tmp_path):
+    inp,aa_store,target,runner,path=setup_thread_execution(tmp_path)
+    result=api().execute_thread_pairs(inp,path,aa_store,target,runner,tmp_path/'threads')
+    assert result['status']=='INCONCLUSIVE' and len(runner.calls)==20
+    assert result['geometric_change_pct']==0
+    assert result['frozen']['candidates']['threads8']['identities']['workload']['threads']==8
+    assert len({row['candidate_id'] for row in result['rows']})==2
+    assert not (tmp_path/'threads/execution-plan.json').exists()
+
+
+def test_thread_experiment_rejects_forged_prerequisite_before_native(tmp_path):
+    inp,aa_store,target,runner,path=setup_thread_execution(tmp_path)
+    import json
+    value=json.loads(path.read_text());value['rows'][0]['decode_tps']=999
+    path.write_text(json.dumps(value))
+    with pytest.raises(ValueError,match='prerequisite'):
+        api().execute_thread_pairs(inp,path,aa_store,target,runner,tmp_path/'threads')
+    assert not runner.calls
+
+
+def test_thread_experiment_preserves_native_failure_without_retry(tmp_path):
+    inp,aa_store,target,runner,path=setup_thread_execution(tmp_path)
+    runner.fail=True
+    result=api().execute_thread_pairs(inp,path,aa_store,target,runner,tmp_path/'threads')
+    assert result['status']=='ENVIRONMENT-BLOCKED' and len(runner.calls)==1

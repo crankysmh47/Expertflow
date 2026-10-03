@@ -188,3 +188,101 @@ def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, 
         report.update(status='VALIDATION-STOP', reason=str(error))
     atomic_json(output / 'report.json', report)
     return report
+
+
+def execute_thread_pairs(inputs, aa_report_path, aa_store, target_store, runner, output_dir):
+    """One conditional twelve-versus-eight-thread experiment; no product sealing."""
+    from dataclasses import replace
+    from .plan import CandidatePlan, RuntimeSettings
+    from .preflight import file_sha256
+    from .pipeline import atomic_json
+    from .evidence import MeasurementKey
+    aa_path = Path(aa_report_path)
+    aa = json.loads(aa_path.read_text())
+    w = inputs.workload
+    if w.threads != 12:
+        raise ValueError('requires frozen twelve-thread baseline')
+    settings = RuntimeSettings(99, True, w.cuda_graphs, w.kv_type_k, w.kv_type_v,
+                               w.batch_size, w.microbatch_size)
+    candidates = {'threads12': CandidatePlan(inputs.identities(inputs.stock), settings),
+                  'threads8': CandidatePlan(replace(inputs, workload=replace(w, threads=8)).identities(inputs.stock), settings)}
+    # Reverify the prerequisite's native artifacts, not only its claimed verdict.
+    verified_rows = []
+    for index, row in enumerate(aa.get('rows', [])):
+        verified = aa_store.verify_measurement(row['measurement_id'])
+        record = aa_store.measurement(row['measurement_id'])
+        pair, arm = divmod(index, 2)
+        expected_arm = balanced_schedule()[pair][arm] if pair < PAIRS else None
+        if (row.get('pair') != pair or row.get('arm') != expected_arm or
+                record.key != MeasurementKey.from_candidate(candidates['threads12']) or
+                record.stage != f'aa-{pair:02}-{expected_arm}' or
+                any(canonical_payload(row.get(k)) != canonical_payload(v) for k, v in verified.items())):
+            raise ValueError('prerequisite evidence does not bind to verified A/A control')
+        verified_rows.append({**verified, 'pair': pair, 'arm': expected_arm, 'measurement_id': row['measurement_id']})
+    if aa.get('status') != 'PASS-MEASUREMENT' or evaluate_pairs(verified_rows)['status'] != 'PASS-MEASUREMENT':
+        raise ValueError('prerequisite measurement gate did not pass')
+    baseline = verified_rows[0]
+    prior_owners = {r['owned_run_sha256'] for r in verified_rows}
+    target_store.prime_model(inputs.model)
+    output = Path(output_dir)
+    output.mkdir(parents=True, exist_ok=False)
+    protocol = Path('docs/superpowers/specs/2026-10-03-compiler-eight-thread-experiment.md')
+    sources = [*sorted(Path('src/expertflow/compiler').rglob('*.py')),
+               Path('scripts/benchmark_compiler_refinement.py'), protocol]
+    freeze = {'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+              'source_files': {str(p): file_sha256(p) for p in sources},
+              'prerequisite_report': str(aa_path.resolve()), 'prerequisite_report_sha256': file_sha256(aa_path),
+              'prerequisite_database': str(aa_store.path.resolve()), 'prerequisite_database_sha256': file_sha256(aa_store.path),
+              'candidates': canonical_payload(candidates), 'pairs': PAIRS, 'seed': SEED,
+              'schedule': [['threads12' if arm == 'direct' else 'threads8' for arm in order] for order in balanced_schedule()],
+              'bootstrap_samples': RESAMPLES, 'minimum_point_gain_pct': 5,
+              'minimum_ci95_lower_pct': 0, 'maximum_cv_pct': 10}
+    atomic_json(output / 'frozen-protocol.json', freeze)
+    report = {'status': 'RUNNING', 'frozen': freeze, 'rows': [], 'outcomes': [],
+              'live_validated_product': False, 'optimization_gain_established': False}
+    try:
+        for pair, order in enumerate(freeze['schedule']):
+            for arm in order:
+                if any(file_sha256(Path(p)) != digest for p, digest in freeze['source_files'].items()):
+                    raise ValueError('measured source or protocol changed during experiment')
+                if file_sha256(aa_path) != freeze['prerequisite_report_sha256']:
+                    raise ValueError('prerequisite report changed during experiment')
+                started = time.perf_counter()
+                candidate = candidates[arm]
+                outcome = runner.run_once(candidate, inputs.model, inputs.stock,
+                    output_dir=output / 'raw' / f'pair-{pair:02}-{arm}', measured=True, stage=f'threads-{pair:02}-{arm}')
+                report['outcomes'].append(canonical_payload(outcome))
+                if outcome.status != 'measured':
+                    report.update(status=outcome.status.upper().replace('_', '-'), reason=outcome.reason)
+                    atomic_json(output / 'report.json', report)
+                    return report
+                record = target_store.measurement(outcome.measurement_id)
+                if record.key != MeasurementKey.from_candidate(candidate) or record.stage != f'threads-{pair:02}-{arm}':
+                    raise ValueError('thread run does not bind to its frozen candidate')
+                verified = target_store.verify_measurement(outcome.measurement_id)
+                for name in ('generated_tokens_sha256', 'prompt_tokens_sha256'):
+                    if verified[name] != baseline[name]:
+                        raise ValueError('thread change altered reference native tokens')
+                if (verified['owned_run_sha256'] in prior_owners or
+                        any(r['owned_run_sha256'] == verified['owned_run_sha256'] or
+                            r['measurement_id'] == outcome.measurement_id for r in report['rows'])):
+                    raise ValueError('thread experiment reused an owned native run')
+                report['rows'].append({**verified, 'pair': pair, 'arm': arm, 'measurement_id': outcome.measurement_id,
+                    'run_wall_seconds': time.perf_counter() - started,
+                    'diagnostics': diagnostic_summary(record), 'artifacts': canonical_payload(record.artifacts)})
+                atomic_json(output / 'report.json', report)
+        rates = {(r['pair'], r['arm']): r['decode_tps'] for r in report['rows']}
+        result = paired_statistics([rates[i, 'threads12'] for i in range(PAIRS)],
+                                   [rates[i, 'threads8'] for i in range(PAIRS)])
+        passed = (result['geometric_change_pct'] >= 5 and result['ci95_pct'][0] > 0 and
+                  max(result['direct_cv_pct'], result['sealed_cv_pct']) <= 10)
+        report.update(result, status='PASS-OPTIMIZATION' if passed else
+                      'VALIDATION-STOP' if result['ci95_pct'][1] < 0 else 'INCONCLUSIVE',
+                      optimization_gain_established=passed,
+                      statistics_arm_mapping={'direct': 'threads12', 'sealed': 'threads8'})
+        if file_sha256(aa_store.path) != freeze['prerequisite_database_sha256']:
+            raise ValueError('prerequisite database changed during read-only experiment')
+    except (ValueError, OSError, KeyError, TypeError) as error:
+        report.update(status='VALIDATION-STOP', reason=str(error), optimization_gain_established=False)
+    atomic_json(output / 'report.json', report)
+    return report
