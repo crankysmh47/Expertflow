@@ -1,0 +1,3674 @@
+[
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-0-warmup\\launch.json",
+          "sha256": "2581f3ae2c4e7f7380733f483eef5843b3819fd58976747c954816082aff8109",
+          "size_bytes": 19893
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-0-warmup\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-0-warmup\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-0-warmup\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-0-warmup\\completion.json",
+          "sha256": "11efec95a2106e18aa16264f0624ade7b6c0b6a52a55f163cbc466d48783747a",
+          "size_bytes": 10086
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-0-warmup\\memory.json",
+          "sha256": "32266f8f82a2ad4a87a1f6c5881bf96acb46f7da43296a55151d4d734e0d6ccf",
+          "size_bytes": 109255
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-0-warmup\\process.json",
+          "sha256": "4409ee47ae489737a6cce2f5147758b9149d5293b6b5f1db4c1a94a4027374eb",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-0-warmup\\run-start.json",
+          "sha256": "6b9e98b5df007fa171fef6d18507f35ad875cc6d57f8d2e72f45f2f0b3af1f82",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-0-warmup\\completion-wall.json",
+          "sha256": "9080059fcba93aaccb9b65c73d571fce0e7010f76eafc1141e8ba2deca603ef6",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "2bca480529b72757b58174cbcc93859956256c226c886124b74831523c8e3889",
+    "measured": false,
+    "measurement_id": "8d8c2776-dd0a-4b5f-ab07-9d375f25b3e0",
+    "metrics": {
+      "decode_tps": 33.80896337690265
+    },
+    "owned_run_sha256": "0ad16672259ebc28af6635c44151a7d524d0243831e5d5cc48c0afe82a93ccd4",
+    "stage": "warmup",
+    "validation": {
+      "passed": false,
+      "reason": "VRAM reserve violated"
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-warmup\\launch.json",
+          "sha256": "e52cda25f4d8aab58def290ac7fcd67d8ab55df9505167a23585fbf396586c1c",
+          "size_bytes": 19910
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-warmup\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-warmup\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-warmup\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-warmup\\completion.json",
+          "sha256": "d29ae48ca38a6247e2b5423acf937e7b1e2ced041bb99a03d57cf81b9b6792c9",
+          "size_bytes": 10076
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-warmup\\memory.json",
+          "sha256": "cdff60bc2a3f3f84d79b1cf2f021c26441e839ae4749998bf5137e6b32f36987",
+          "size_bytes": 120459
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-warmup\\process.json",
+          "sha256": "793d190e81519f64aba37f619c9b3a4c51e8be481dec645a1046717be55718a4",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-warmup\\run-start.json",
+          "sha256": "e98e4f18d6897e33d4c20333e2376b30f53d3be866060181a5a9aaa9729e9154",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-warmup\\completion-wall.json",
+          "sha256": "905144671ff745466c608bc745073f0abb39cdb610b447cc46bdbc780dcbfb8d",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c35d270ddaa68eb8da8acfddc7c48190459b068b32b75955cb489f14d01319c4",
+    "measured": false,
+    "measurement_id": "bdf3dcde-f848-4e72-8949-aaaaf3a41695",
+    "metrics": {
+      "decode_tps": 22.9560156463181
+    },
+    "owned_run_sha256": "f6b3a503672eaee75916df3848b9056c58f1d0cb80bbba1d40e6d0099ea4f3db",
+    "stage": "warmup",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c35d270ddaa68eb8da8acfddc7c48190459b068b32b75955cb489f14d01319c4",
+        "completion_wall_ms": 29631.8558,
+        "decode_tps": 22.9560156463181,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": false,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "f6b3a503672eaee75916df3848b9056c58f1d0cb80bbba1d40e6d0099ea4f3db",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "e31d41b94265b28a59ea50c252e11da2578ff65269b5e5dbe175b63d3059e51d",
+        "stage": "warmup",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-0\\launch.json",
+          "sha256": "8f489cc04ee9e38b4cb880efac6be2a0ab627d01f27414a027adac99a36aa86d",
+          "size_bytes": 19910
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-0\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-0\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-0\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-0\\completion.json",
+          "sha256": "4cd2c75fe04d514afc7ad36bc28320f7a51717c075a1a6fcaf9e8254e711a16a",
+          "size_bytes": 10077
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-0\\memory.json",
+          "sha256": "aa86cf5d80b62d961588f0311376aed9bc3f84f20df49901bdaaa8c3777f4cdf",
+          "size_bytes": 139491
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-0\\process.json",
+          "sha256": "1ec1dd9fa51ed29908ff632044b39a323f94758dc18bb505b792fa8efe7fdf18",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-0\\run-start.json",
+          "sha256": "c6583144cabe2e0398fdfb133687ea55ab3facac20129246883ce5d0738a8066",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-0\\completion-wall.json",
+          "sha256": "add1da289deee35c494fba561225edf070156564326b644cc6cccb711ca6d9c1",
+          "size_bytes": 114
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c35d270ddaa68eb8da8acfddc7c48190459b068b32b75955cb489f14d01319c4",
+    "measured": true,
+    "measurement_id": "ad882d59-e7ef-4155-8ac0-65dd33083d24",
+    "metrics": {
+      "decode_tps": 21.11757332685508
+    },
+    "owned_run_sha256": "ff573c41e83d77072ebb66ecb6ab1e5a63fb5c9bde2b5590ee869898267037c9",
+    "stage": "initial",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c35d270ddaa68eb8da8acfddc7c48190459b068b32b75955cb489f14d01319c4",
+        "completion_wall_ms": 36701.11,
+        "decode_tps": 21.11757332685508,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "ff573c41e83d77072ebb66ecb6ab1e5a63fb5c9bde2b5590ee869898267037c9",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "e31d41b94265b28a59ea50c252e11da2578ff65269b5e5dbe175b63d3059e51d",
+        "stage": "initial",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-1\\launch.json",
+          "sha256": "99f3c16c7b25bcc86ca8b68d9dbac9488637a7f9926bc68741a887fc9558b3af",
+          "size_bytes": 19910
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-1\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-1\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-1\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-1\\completion.json",
+          "sha256": "5a1c347d10987c4a9f447adb0f28776a4b95587b368836e8df75ff7be124f8cd",
+          "size_bytes": 10081
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-1\\memory.json",
+          "sha256": "cefa8429fadb613443fa2c626ff088c34a1eb771f112bf9a4e38d033fdfc57f0",
+          "size_bytes": 134289
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-1\\process.json",
+          "sha256": "115e5b07f1dd7ed92d2a2830b7cf7c86bda79ed7dfae5073292282c8b6d94d18",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-1\\run-start.json",
+          "sha256": "dc048dc4d3ae119d3c2ca9d5d40d868bb856028f1c14cb33941258a9acb844e5",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-1\\completion-wall.json",
+          "sha256": "5d3654fa40d4b565e91c5a900940092526d192c3925c57b48fb1417581151b11",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c35d270ddaa68eb8da8acfddc7c48190459b068b32b75955cb489f14d01319c4",
+    "measured": true,
+    "measurement_id": "828d0847-f765-4462-983f-2483681a1615",
+    "metrics": {
+      "decode_tps": 22.366232999096482
+    },
+    "owned_run_sha256": "df7d5421171fe90b46d63b4a5762a74ccd10caa68ba7a80d0c5abdc02027a687",
+    "stage": "initial",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c35d270ddaa68eb8da8acfddc7c48190459b068b32b75955cb489f14d01319c4",
+        "completion_wall_ms": 35229.8994,
+        "decode_tps": 22.366232999096482,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "df7d5421171fe90b46d63b4a5762a74ccd10caa68ba7a80d0c5abdc02027a687",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "e31d41b94265b28a59ea50c252e11da2578ff65269b5e5dbe175b63d3059e51d",
+        "stage": "initial",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-2\\launch.json",
+          "sha256": "eaaa79071997c0fa846f0e232ec1a259da2d542870e011f14fb28db94671566c",
+          "size_bytes": 19910
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-2\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-2\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-2\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-2\\completion.json",
+          "sha256": "abb1fa9fd723006b6a002095fb56e40648ba831bd98795be5ea103db3d363dac",
+          "size_bytes": 10076
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-2\\memory.json",
+          "sha256": "314caa21e2c4cdb0309f4e8451fcbbe089f73aaaac7de98409fb0ddff12f6c1c",
+          "size_bytes": 139523
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-2\\process.json",
+          "sha256": "9410d1047f34c04386440d6bd20c187e5e02dfbadab242d9c21069b0eef1969c",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-2\\run-start.json",
+          "sha256": "e01db1cb0afc8d5bd73b429b0565b126ded4883213abd5e9de900139f3cf553f",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-1-measured-2\\completion-wall.json",
+          "sha256": "52b9c4d9f00a6dd95e73f51496f4d11e6e52c76c5f7c64c29e846d2cc88daa12",
+          "size_bytes": 115
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c35d270ddaa68eb8da8acfddc7c48190459b068b32b75955cb489f14d01319c4",
+    "measured": true,
+    "measurement_id": "9827e4ce-0c71-489f-a7f8-15314eac91c5",
+    "metrics": {
+      "decode_tps": 21.811269132998646
+    },
+    "owned_run_sha256": "ce6c9dcdbcbaffe9ea7c487a47e568fdd6cc365c95434140080c7030b6922a05",
+    "stage": "initial",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c35d270ddaa68eb8da8acfddc7c48190459b068b32b75955cb489f14d01319c4",
+        "completion_wall_ms": 36904.042,
+        "decode_tps": 21.811269132998646,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "ce6c9dcdbcbaffe9ea7c487a47e568fdd6cc365c95434140080c7030b6922a05",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "e31d41b94265b28a59ea50c252e11da2578ff65269b5e5dbe175b63d3059e51d",
+        "stage": "initial",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-2-warmup\\launch.json",
+          "sha256": "25574726b3f9dbd15acb27ebed2cdf25a2ae77d4ae69b00ecf2e2666e4f61235",
+          "size_bytes": 19892
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-2-warmup\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-2-warmup\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-2-warmup\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-2-warmup\\completion.json",
+          "sha256": "03e320ecc90a6e8b47413865b60d6e878c7d575750b48734cc22a3aa6e2c2e42",
+          "size_bytes": 9703
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-2-warmup\\memory.json",
+          "sha256": "1a80ad195f31d6b6ebd5202a68c10f1077145761ade1d083e8eb5a28d0c03f04",
+          "size_bytes": 433225
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-2-warmup\\process.json",
+          "sha256": "125c3c3afcf426a753fa931fee71f21ea0abd5c49d9d645fee591cfe4389e385",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-2-warmup\\run-start.json",
+          "sha256": "0e4380b89c57632c802d0bfb646903b55ae4e14b9d135c4d8709f44c750d5768",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-2-warmup\\completion-wall.json",
+          "sha256": "e832d85c273247c73b82f319af219a54bd49f00c60f85074f779beccaa31ba72",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "2d2847568abccc706af406df353891d472b5e5d6d4e45cb878e5f568a81d3ad0",
+    "measured": false,
+    "measurement_id": "74e3426b-0335-4a3a-9430-3343e7dc0bbb",
+    "metrics": {
+      "decode_tps": 6.0842429989614
+    },
+    "owned_run_sha256": "93e672f51b826ad1dd6b80be08d2519dd8aa165d9a38baa69d53b3865c0b36ea",
+    "stage": "warmup",
+    "validation": {
+      "passed": false,
+      "reason": "VRAM reserve violated"
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-warmup\\launch.json",
+          "sha256": "dde7a2f1cd7cf2e5832bae8f589a2b5e238ad5793c2de88e2da5d7345d8bba90",
+          "size_bytes": 19909
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-warmup\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-warmup\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-warmup\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-warmup\\completion.json",
+          "sha256": "f490ca5adfb0d83df8da7dc2db65048f9b6249c2425b27988cbe2f6e3513951a",
+          "size_bytes": 10077
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-warmup\\memory.json",
+          "sha256": "1059d80e7b554adbc905cd12198988d4061e911f225a397723735750d5abb6a3",
+          "size_bytes": 109967
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-warmup\\process.json",
+          "sha256": "de9837426fce8e3305c43df43bb7439aa405d6fab1b62ec67dc9b65d9423ba8b",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-warmup\\run-start.json",
+          "sha256": "013a178fc4ac0b9d23e6a8bbfd5e33945f418684573c5537be1e6220b6f579dd",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-warmup\\completion-wall.json",
+          "sha256": "bc2b01cae22cff5166a6b1a9515f4eab99b38fde377c6d755f0d9a81b8656f24",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "3807475a255c61be66294414300ca04d37941591ccf50e9426b79b585050fb7f",
+    "measured": false,
+    "measurement_id": "64a97c00-4263-4880-bf33-d17cd9b88a48",
+    "metrics": {
+      "decode_tps": 24.48021147842691
+    },
+    "owned_run_sha256": "ef2c0996c218c15cbe2b3e29fb7a25b00d6382851c9b8c993fec04c0aba62477",
+    "stage": "warmup",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "3807475a255c61be66294414300ca04d37941591ccf50e9426b79b585050fb7f",
+        "completion_wall_ms": 25705.0635,
+        "decode_tps": 24.48021147842691,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": false,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "ef2c0996c218c15cbe2b3e29fb7a25b00d6382851c9b8c993fec04c0aba62477",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4bdc85dc294545effaa1b0338fb3cebe69e381f59d688d3c7916b712b554da73",
+        "stage": "warmup",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-0\\launch.json",
+          "sha256": "84a4c91df2f3c4aaf55bb872a8beec1d3fdc61ec1a83a0c479812f73457bf26e",
+          "size_bytes": 19909
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-0\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-0\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-0\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-0\\completion.json",
+          "sha256": "7483d6cc719712d18c0a5fe89498015b69f03e0883ac0b766de210032e5f0635",
+          "size_bytes": 10069
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-0\\memory.json",
+          "sha256": "e2083bb271b366238693e8e00fb65246fe7a088902b85bdc4ba8e429fcc5ceba",
+          "size_bytes": 120579
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-0\\process.json",
+          "sha256": "7adb583b37fd9f267303ff03e0fb5db630205817012e893b1f97ef9c20647c10",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-0\\run-start.json",
+          "sha256": "c48622dccbad7a616d77e6b9c811ec1011dabb8b245049435e2010ad61507ed4",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-0\\completion-wall.json",
+          "sha256": "35aa63f07101a370da39077a9728d946127a1b05e12c27729f2ae3e4366674c2",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "3807475a255c61be66294414300ca04d37941591ccf50e9426b79b585050fb7f",
+    "measured": true,
+    "measurement_id": "8593137a-be68-4cae-962f-f7b8968a84cd",
+    "metrics": {
+      "decode_tps": 22.305671962070946
+    },
+    "owned_run_sha256": "c19331645647eaabed1a688e9c5924ebbb9b3ef8fae6bdb63ae304905ef35153",
+    "stage": "initial",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "3807475a255c61be66294414300ca04d37941591ccf50e9426b79b585050fb7f",
+        "completion_wall_ms": 31943.1061,
+        "decode_tps": 22.305671962070946,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "c19331645647eaabed1a688e9c5924ebbb9b3ef8fae6bdb63ae304905ef35153",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4bdc85dc294545effaa1b0338fb3cebe69e381f59d688d3c7916b712b554da73",
+        "stage": "initial",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-1\\launch.json",
+          "sha256": "fb6c2a272da61e6f2f5a3889e95e44ea223beb61deb005333f10e5a444ad0202",
+          "size_bytes": 19909
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-1\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-1\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-1\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-1\\completion.json",
+          "sha256": "1017a8d1021034fcd92e28ae78cfea72f01cda3bca3a3279fef163f323e890f0",
+          "size_bytes": 10078
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-1\\memory.json",
+          "sha256": "4e2b9e352f476824f8ad1853c54df378f6dec6c1ac8b8d6a09815b7ca1e4fff3",
+          "size_bytes": 118611
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-1\\process.json",
+          "sha256": "9aaa0631001b16af3f24d2d2d48238b09502590a45071a2631426c86fbd08c0d",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-1\\run-start.json",
+          "sha256": "b8b3d7fd53c3872171b9d1c3c79940ba613d605cfb1602d4edde44976821b69b",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-1\\completion-wall.json",
+          "sha256": "08ff4660105b7b56b0064f131e875fde8433dc672a57a894a229e874d312b5a1",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "3807475a255c61be66294414300ca04d37941591ccf50e9426b79b585050fb7f",
+    "measured": true,
+    "measurement_id": "8e17ecfe-c632-43e0-8a91-fcf7f389e01e",
+    "metrics": {
+      "decode_tps": 23.05827898950335
+    },
+    "owned_run_sha256": "90d3d338774b160facb46852b56bed6c9e856c09b15f772490a208f3697a0c15",
+    "stage": "initial",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "3807475a255c61be66294414300ca04d37941591ccf50e9426b79b585050fb7f",
+        "completion_wall_ms": 31614.7065,
+        "decode_tps": 23.05827898950335,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "90d3d338774b160facb46852b56bed6c9e856c09b15f772490a208f3697a0c15",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4bdc85dc294545effaa1b0338fb3cebe69e381f59d688d3c7916b712b554da73",
+        "stage": "initial",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-2\\launch.json",
+          "sha256": "ea766f950ec3edbb028369c272514d0bde33351e9db23f74bd56c3811577c9f5",
+          "size_bytes": 19909
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-2\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-2\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-2\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-2\\completion.json",
+          "sha256": "29b6b3517a0c3557b40f661d670367dae3e2b2e1fa6d4ad186aed09d200bcad4",
+          "size_bytes": 10081
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-2\\memory.json",
+          "sha256": "b76792657a176b13f58b330fd9d278b3c8d462a4d5afea05e2e896292b4f2942",
+          "size_bytes": 124361
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-2\\process.json",
+          "sha256": "a37602113f5bd716ba1e382e51dfbf6deebaf422a630f3e49c9191cf74a70ece",
+          "size_bytes": 273
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-2\\run-start.json",
+          "sha256": "c3bf034d931d0ca77e6985d790c607b52258d7a0ab5eba19e1ccd10875652aa7",
+          "size_bytes": 197
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-3-measured-2\\completion-wall.json",
+          "sha256": "7b85c25efd39583e61972a4127f9d9f8f37268351e00ef3a10f590bc8e6c6e3f",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "3807475a255c61be66294414300ca04d37941591ccf50e9426b79b585050fb7f",
+    "measured": true,
+    "measurement_id": "930754dc-3f0d-4021-a8b3-f24e84fce818",
+    "metrics": {
+      "decode_tps": 22.800997436758184
+    },
+    "owned_run_sha256": "4f1defed623addb5ed5a794e356a4aa82e0943e5416fdee98f29d508c9ef63f5",
+    "stage": "initial",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "3807475a255c61be66294414300ca04d37941591ccf50e9426b79b585050fb7f",
+        "completion_wall_ms": 33073.4012,
+        "decode_tps": 22.800997436758184,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "4f1defed623addb5ed5a794e356a4aa82e0943e5416fdee98f29d508c9ef63f5",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4bdc85dc294545effaa1b0338fb3cebe69e381f59d688d3c7916b712b554da73",
+        "stage": "initial",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-4-warmup\\launch.json",
+          "sha256": "69fbf743ded1b21bd9fcf72540ede69ec13a4470f7b71ead81e6282ea37a1f95",
+          "size_bytes": 19891
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-4-warmup\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-4-warmup\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-4-warmup\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-4-warmup\\completion.json",
+          "sha256": "f9e39c7bd6e7bfe421be534a18f0a4d3409d04c16a17483dd019ecf96ed6eeeb",
+          "size_bytes": 9712
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-4-warmup\\memory.json",
+          "sha256": "45cb441d49832acf8f39454aae40af9d58b2281882ec2405c966541c786c5785",
+          "size_bytes": 433315
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-4-warmup\\process.json",
+          "sha256": "3b4562d574c70d52ec11b679b9b6ea5d4872b57411cff865677eb21a1a86cfc8",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-4-warmup\\run-start.json",
+          "sha256": "ff4e79e11a4d7f1f8da028cc1cb6133b249e517201c875e3c9526166a7af1263",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-4-warmup\\completion-wall.json",
+          "sha256": "5f871df4e4eab011c3626dccacd55ebdbe9030c42e2849ae82e5e76dff63846c",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "aa93476550204ff6d3b56f98273ecbe483901f1632b3365d082e740dc520c2a5",
+    "measured": false,
+    "measurement_id": "098481de-94cd-408f-a5b8-f0e3d0b0de67",
+    "metrics": {
+      "decode_tps": 5.917042076213328
+    },
+    "owned_run_sha256": "1ef877351f9af59385a0713b07e73acd8d612a833973f7bd583592b375f7ca45",
+    "stage": "warmup",
+    "validation": {
+      "passed": false,
+      "reason": "VRAM reserve violated"
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-warmup\\launch.json",
+          "sha256": "01fa61a47b76ab9f965065399b06c7f44140123b10eb1f31690111fa6ff4e06a",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-warmup\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-warmup\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-warmup\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-warmup\\completion.json",
+          "sha256": "69ed3a3645069c654806adb12f9be52cb6f215e7e08e70172427097c148ad8ce",
+          "size_bytes": 10079
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-warmup\\memory.json",
+          "sha256": "0f43ebae2994f5e7d247bad5d5d51e369c17424361e745ab63c57636919887d8",
+          "size_bytes": 96375
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-warmup\\process.json",
+          "sha256": "a1682c44d383bcba12873ce076d80e8f67af856986e5a6de7a8f66ae35963f45",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-warmup\\run-start.json",
+          "sha256": "fbf567323764eefaea8ab636685b41919ef019af7e716df732eae95e8d3cf786",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-warmup\\completion-wall.json",
+          "sha256": "a032d6100618b6e318f28b49f95d7efda204ea302c8870ca887d5e609a401551",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": false,
+    "measurement_id": "7c331104-9711-4f79-b153-395018d72304",
+    "metrics": {
+      "decode_tps": 24.58394198996351
+    },
+    "owned_run_sha256": "25626736ae58d7eec2fd18e7a86fb698779a20c675c1e40a04a7662600fdc0f4",
+    "stage": "warmup",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 24347.0904,
+        "decode_tps": 24.58394198996351,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": false,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "25626736ae58d7eec2fd18e7a86fb698779a20c675c1e40a04a7662600fdc0f4",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "warmup",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-0\\launch.json",
+          "sha256": "aa81f6fa1df65d0c6a77c765e078afce77f4a068a6632fb0040df7871cecf2d2",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-0\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-0\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-0\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-0\\completion.json",
+          "sha256": "c7c15890f46409d8391a5432a66dc9db921d8f9ed3caf9d3ea2d699b6facaa91",
+          "size_bytes": 10076
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-0\\memory.json",
+          "sha256": "62e38fdbfe2be11c522e0dea5a9d51645dcf3e0fb4f6ff6060dac0610d5d0a00",
+          "size_bytes": 84687
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-0\\process.json",
+          "sha256": "bc4739f175ed7d3bd5db1309812fe2988e28c94fb2b0a3f8ab3857148d4e49d0",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-0\\run-start.json",
+          "sha256": "2aab63d0b80aeceb695c853bb711e02520b59fae6989286940a0543f16db435c",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-0\\completion-wall.json",
+          "sha256": "f66a0a7123b5f4d16335c8284449edf31bc6b9631cff056e273a9ffbd96539ad",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "5117213e-89b7-496d-b0f3-4313e04b8b72",
+    "metrics": {
+      "decode_tps": 25.65885628454549
+    },
+    "owned_run_sha256": "1cfaa7c22c9c82ddcc9eadd5b7c32fc890c4dfd7add0009d458e1282ec9c112c",
+    "stage": "initial",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 22883.8355,
+        "decode_tps": 25.65885628454549,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "1cfaa7c22c9c82ddcc9eadd5b7c32fc890c4dfd7add0009d458e1282ec9c112c",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "initial",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-1\\launch.json",
+          "sha256": "33d6d396a95874882701676561fe90664e2854584aa2b99a83e2d69bcc4e2b0e",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-1\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-1\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-1\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-1\\completion.json",
+          "sha256": "4009d2d72f21fe38a6ff954550d92a029809aa96558392a1b529b9cbd0395ae8",
+          "size_bytes": 10077
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-1\\memory.json",
+          "sha256": "00b875537645db94ce86a779ba118eddc1bc847e7e75139528493435c4fa6ce6",
+          "size_bytes": 91215
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-1\\process.json",
+          "sha256": "eecf387f014f379105cfc19a4d5d2a1aca9be22d88ae5b2ec6115395ccb86517",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-1\\run-start.json",
+          "sha256": "69811dfd3352f23dfcd91a3cb2baf559562577e8826e573aff6c4abfcf57eed9",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-1\\completion-wall.json",
+          "sha256": "8600fb60479e78ff4de2437636a042a085a99a8b65296c96f84e5003ab7ee582",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "0aa64158-815d-46c1-be2f-9c97d28560cd",
+    "metrics": {
+      "decode_tps": 24.19200361670454
+    },
+    "owned_run_sha256": "00c529bc5691c00828a4d1204e8216e18587d2a0c2216dbff13a96c806834c3f",
+    "stage": "initial",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 24202.7262,
+        "decode_tps": 24.19200361670454,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "00c529bc5691c00828a4d1204e8216e18587d2a0c2216dbff13a96c806834c3f",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "initial",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-2\\launch.json",
+          "sha256": "e982db427e19cd0ccc0af3460e8128f038113b5a0ef3299ef45200f1eb1cdea3",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-2\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-2\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-2\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-2\\completion.json",
+          "sha256": "cdf977cb434bcde4fdb073ccd15db5e4429a6aa3b84ee08a2679e058ec475d19",
+          "size_bytes": 10080
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-2\\memory.json",
+          "sha256": "d8c5cbaf1b81829b9d077ec942fbbf85220d81564076a9220ac315c0ea8e5588",
+          "size_bytes": 87965
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-2\\process.json",
+          "sha256": "008e1cc6142e9095a631d990cffe34e273682916d223f3cfad1492e8ec6f46ad",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-2\\run-start.json",
+          "sha256": "3a83ff03ca81eceabf7b2055a02b6dbf35d348b3e5087514084d68b43f3a19ab",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\stock-5-measured-2\\completion-wall.json",
+          "sha256": "9c326135232d6975c1081b6485e809c3a2fde3ad7ee72ea372ce3af35572c8bb",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "d7479007-8280-46ca-8178-a186c9ca4812",
+    "metrics": {
+      "decode_tps": 25.020929372122747
+    },
+    "owned_run_sha256": "3f12c8a42f54a3d61a228506af7296df7a11eebea21c103967b77e6324e6c555",
+    "stage": "initial",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 23436.3852,
+        "decode_tps": 25.020929372122747,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "3f12c8a42f54a3d61a228506af7296df7a11eebea21c103967b77e6324e6c555",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "initial",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\fork-feature-off\\launch.json",
+          "sha256": "7303c228fb96395727a7724903029747b66927dd55f1eefa0b9bfe9825f63087",
+          "size_bytes": 19335
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\fork-feature-off\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\fork-feature-off\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\fork-feature-off\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\fork-feature-off\\completion.json",
+          "sha256": "4679beed242c633636f4f00b9f17ce658d25b7e09195d3505b62c24b89350671",
+          "size_bytes": 10079
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\fork-feature-off\\memory.json",
+          "sha256": "89d251f66ff773b4279d21addf8036eac997aea5cfd4152d33f2df397fb9d262",
+          "size_bytes": 95864
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\fork-feature-off\\process.json",
+          "sha256": "6c011fe682d735901456ef05b89b95c6f865b30d52cf296a901bed688c63e688",
+          "size_bytes": 273
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\fork-feature-off\\run-start.json",
+          "sha256": "4b1ed209fb79d09afcfca5ffc1e9141018dc04dbc116395a7696a624597e27aa",
+          "size_bytes": 197
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\fork-feature-off\\completion-wall.json",
+          "sha256": "e769fc99a0e7bb8709eb52031880c13adc5bff781ba289afdfa885e8814d14e9",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "402403b9e67fcf4f5ae34d0a5a0263ee43253618293efe88e2405c6731d50a36",
+    "measured": false,
+    "measurement_id": "0c967579-265e-4253-bea6-f7b7803840b1",
+    "metrics": {
+      "decode_tps": 24.61598699698949
+    },
+    "owned_run_sha256": "a2284262f76c115522cac691d62f960175d2e5f18f8b542a52baebe57cbb0ab0",
+    "stage": "startup_equivalence",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "402403b9e67fcf4f5ae34d0a5a0263ee43253618293efe88e2405c6731d50a36",
+        "completion_wall_ms": 25454.7617,
+        "decode_tps": 24.61598699698949,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "ce82fcecf4e27e3e460c0e4b523083abe84efcd8a7a8d9c9bdde39638627af7b",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": false,
+        "numerical_path": "fork_off_vs_pristine",
+        "owned_run_sha256": "a2284262f76c115522cac691d62f960175d2e5f18f8b542a52baebe57cbb0ab0",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "e31d41b94265b28a59ea50c252e11da2578ff65269b5e5dbe175b63d3059e51d",
+        "stage": "startup_equivalence",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-0\\launch.json",
+          "sha256": "e74ccc2103794a1bc7140ff6526bf95130dfc01cfead2441e3cd6886ed667da4",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-0\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-0\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-0\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-0\\completion.json",
+          "sha256": "c2a7995bf32ed30b424cd4a5033fee4bdcfd5ea9fa1d86693908e0abab44f8f4",
+          "size_bytes": 10080
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-0\\memory.json",
+          "sha256": "53a0dd2c5db85f04856edb261af99d54cd60d43257226452483775c1c257662b",
+          "size_bytes": 87311
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-0\\process.json",
+          "sha256": "11a21f24f42ed8543b80a36626c9ca5149973b8c83299935e6f4583773772c60",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-0\\run-start.json",
+          "sha256": "d36cdfca714411a4c6da5ebb7d3a62e222f4c9b05403a325732f4fd59812b091",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-0\\completion-wall.json",
+          "sha256": "9f4185ff5a3bd4ef632a59b422987dc4dad6b69d405dd16d185e10fa493063f4",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "67a33f42-6dc5-46e3-9edf-42f3a917498e",
+    "metrics": {
+      "decode_tps": 25.562222868933148
+    },
+    "owned_run_sha256": "3e5af75b588209c47b4e892dadbef0de08d63972db6e9d13722a96ad5788fd30",
+    "stage": "confirmation",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 23018.0798,
+        "decode_tps": 25.562222868933148,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "3e5af75b588209c47b4e892dadbef0de08d63972db6e9d13722a96ad5788fd30",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "confirmation",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-1\\launch.json",
+          "sha256": "93d084d5203deda3875850ddaa3d7f57f69026ff2b6bd600feea1e0a9ab463e0",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-1\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-1\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-1\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-1\\completion.json",
+          "sha256": "f3371da644fd80290c351425a8fc6185d51d59b43ad398a49fe1883590dbc738",
+          "size_bytes": 10077
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-1\\memory.json",
+          "sha256": "760ec4dfa5a12c8856f5d69eb86b8f8d3641cfecdf61d668e1c5b03b585121de",
+          "size_bytes": 86653
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-1\\process.json",
+          "sha256": "6f531dda9bfefaa7c7110f9d3a1db5520d666eb4a796ce09e6f317b66522b9c6",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-1\\run-start.json",
+          "sha256": "1a75e43d24f1298e3ae62ab130b8e45d0134791ae262780f09448c14fffc4143",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-1\\completion-wall.json",
+          "sha256": "668f9999253b6ff0f0c1155c4e3f09c3c2cc81aba764ac8fc02eb46ce987fbf0",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "28010cfd-b67f-4933-98f7-e5055b8fd135",
+    "metrics": {
+      "decode_tps": 25.61080007439137
+    },
+    "owned_run_sha256": "8fca348e4f2a77bd8c27acee64a3b721eabda0e8bb22a41add19070ee87ff973",
+    "stage": "confirmation",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 23067.4276,
+        "decode_tps": 25.61080007439137,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "8fca348e4f2a77bd8c27acee64a3b721eabda0e8bb22a41add19070ee87ff973",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "confirmation",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-2\\launch.json",
+          "sha256": "b165a23e03731629470dd870fcae7f30c5aa828060298e08a23d1143248e52f1",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-2\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-2\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-2\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-2\\completion.json",
+          "sha256": "f9187b06a368813aa78dee40951a7efe9d43f238c31d02828aedb7a88ed85868",
+          "size_bytes": 10080
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-2\\memory.json",
+          "sha256": "7acc9069be05fde26802381ed3df7853d724aa3d6e36390690f9a1baeb852ad1",
+          "size_bytes": 91221
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-2\\process.json",
+          "sha256": "6dbe4e5efd3f18cbde4d30524efcd2532494916a888ab3920fb408245911e3d9",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-2\\run-start.json",
+          "sha256": "339eb8bb5e9c7577cf51eaa052d51b88d9aec1be0bae8e47b9b076cebb8e761e",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-2\\completion-wall.json",
+          "sha256": "da9528035ee72b5e69f70095b626f2d9d180d31db4f49032f7ae24637c13ca61",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "d69527e8-71e3-49ed-9ae9-bdabfe1e73af",
+    "metrics": {
+      "decode_tps": 24.297804138153328
+    },
+    "owned_run_sha256": "8f8601ed5ef2889a3342c640bd5d44e52d261b0349407008994d409c8dc019ac",
+    "stage": "confirmation",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 24103.2821,
+        "decode_tps": 24.297804138153328,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "8f8601ed5ef2889a3342c640bd5d44e52d261b0349407008994d409c8dc019ac",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "confirmation",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-3\\launch.json",
+          "sha256": "5f1787e05177a2e8924bc49d9893f230729d50659d5b9fbf52b44469d76eaca6",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-3\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-3\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-3\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-3\\completion.json",
+          "sha256": "5e72606bca05a62b4d030f04a33018b236d9e63efe39cc6afabce584333a9d48",
+          "size_bytes": 10078
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-3\\memory.json",
+          "sha256": "7ce5bf76d2d346e562e4366a0172180076f1e82d9c41007b08c55491ad975fac",
+          "size_bytes": 89271
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-3\\process.json",
+          "sha256": "205be876dfe5191c0d6b1c08652233a3909cc7336d575add5ece44813365da0e",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-3\\run-start.json",
+          "sha256": "168a21a7aea24529da50525341d52e6b7014c5b1994dde1cc71f6627d53a0732",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-3\\completion-wall.json",
+          "sha256": "583d7176a304f242fd29a0a59ac804b0051ffa571417abf8b6f6c5c6e31bd101",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "9d880b7f-a580-43e1-85fa-cc7a17f0872a",
+    "metrics": {
+      "decode_tps": 24.70210205721711
+    },
+    "owned_run_sha256": "7cc42340ffcb19f6e8ffc9a7d37a723de77c34e794aecbbd26ecb985f22e79f8",
+    "stage": "confirmation",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 23674.0574,
+        "decode_tps": 24.70210205721711,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "7cc42340ffcb19f6e8ffc9a7d37a723de77c34e794aecbbd26ecb985f22e79f8",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "confirmation",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-4\\launch.json",
+          "sha256": "e28538fa5ce8c4c3aa8531b757cfd39fbac071b8483f8a7308838678b768c793",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-4\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-4\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-4\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-4\\completion.json",
+          "sha256": "56e451eedec6f2764e6a3d7bc2173f41f99897366ef63d73278d97efb456e8c3",
+          "size_bytes": 10065
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-4\\memory.json",
+          "sha256": "34aa122298b2b6212b0451c4de792b2652c293ba251c4ca27d72e10d6aefaa2e",
+          "size_bytes": 89277
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-4\\process.json",
+          "sha256": "9d725dee0875f06034b5a3496e81ea57b98ba8d06cc71322b705cbc15ba6064a",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-4\\run-start.json",
+          "sha256": "9f6d0cb93a88868f87663ee43fca0855544618cef2064776f3537304dce3ff46",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-4\\completion-wall.json",
+          "sha256": "f6aa103994d805c42d1fdaa391e5cc259646bac0576b292fa37fe09848d3b0e5",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "898721be-2c7c-4275-b6f3-df190b3c508c",
+    "metrics": {
+      "decode_tps": 24.93996750107907
+    },
+    "owned_run_sha256": "bfb64814027aa1f7a8fba5d6623669a05d476c4e3b8b060a931f248be652c79e",
+    "stage": "confirmation",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 23499.1362,
+        "decode_tps": 24.93996750107907,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "bfb64814027aa1f7a8fba5d6623669a05d476c4e3b8b060a931f248be652c79e",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "confirmation",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-5\\launch.json",
+          "sha256": "44b618064a83fd8b6e60df5c8aa6326b592b6c0bd3eb7131dc9c5b422cafdacc",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-5\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-5\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-5\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-5\\completion.json",
+          "sha256": "6a7b5dbe6305c36ef3424ef30822cd203fa741840f95392a66616d99ded30f25",
+          "size_bytes": 10079
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-5\\memory.json",
+          "sha256": "113a74a63de1772846d5b798ee1e77771e89fe6bf8ae7961bf33294f3a2fbf2e",
+          "size_bytes": 87311
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-5\\process.json",
+          "sha256": "68e51ffb16d27b91dc8fb391e33300b5f586b4bb3cd66a8a58c4410f7b503624",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-5\\run-start.json",
+          "sha256": "a6fffeea60b30a11843738d447019bbbd0405b7780d91534e6a1abf7b0564dc7",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-5\\completion-wall.json",
+          "sha256": "b6d0a8af8982061612e48be88e7948bba708749158853c6f666dba5e39b28397",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "c7f6fff0-e64e-4971-b8e6-138b9a60f608",
+    "metrics": {
+      "decode_tps": 25.166360951087903
+    },
+    "owned_run_sha256": "662adb7debd6842a49d28fcbdd5f00193ba9e76c76f6bd2f46888fa2a052ae82",
+    "stage": "confirmation",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 23289.8999,
+        "decode_tps": 25.166360951087903,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "662adb7debd6842a49d28fcbdd5f00193ba9e76c76f6bd2f46888fa2a052ae82",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "confirmation",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-6\\launch.json",
+          "sha256": "f6718b7251870bac5e695d752ce04e0e82f2bbcb31a04eacea89f5c004a7cc22",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-6\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-6\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-6\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-6\\completion.json",
+          "sha256": "43c1efe661082673f415d4082968001cbded832419f4a95f07f5399fbc21b3d8",
+          "size_bytes": 10079
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-6\\memory.json",
+          "sha256": "200aa9c4bad17f8e6b12c1cf3821f8383e08cba163092de88f66e4a62b4bd0ad",
+          "size_bytes": 92539
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-6\\process.json",
+          "sha256": "ba379888100488b495c329047376e69b0af1fed16a569a42d8d860fcdea20cb9",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-6\\run-start.json",
+          "sha256": "84384b2d625913305649f5b590251720c9b31cf528d593bd62b295dde5afb002",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-6\\completion-wall.json",
+          "sha256": "02a012621d8c0cac376bf2188d88615bf35f77515ec775029e6bdc8deda69421",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "f4d4238e-c3f8-4a10-9148-ef19d1ad633c",
+    "metrics": {
+      "decode_tps": 23.81717379182385
+    },
+    "owned_run_sha256": "52eb36fbffa2c6e733f67e7f9ea257fadaeec495931312e1389ee28b40eec27a",
+    "stage": "confirmation",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 24640.7286,
+        "decode_tps": 23.81717379182385,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "52eb36fbffa2c6e733f67e7f9ea257fadaeec495931312e1389ee28b40eec27a",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "confirmation",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-7\\launch.json",
+          "sha256": "f94767054a476a8910747dc4c39c5f9bdd55bb138138bbfca1f4dc35f36ec5ed",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-7\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-7\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-7\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-7\\completion.json",
+          "sha256": "f3f523f3b3c00ef6abec893e2039b18edc7724dbd9857f67339f773880dbc440",
+          "size_bytes": 10079
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-7\\memory.json",
+          "sha256": "3a6b278489ab7ca147374cefe78331deb3e9559e17ddf80472edfe22832d712a",
+          "size_bytes": 110763
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-7\\process.json",
+          "sha256": "813591029ed0be2c776e9b8a20d389b034b4c8a781154d6f3a2f43b1f3c275d5",
+          "size_bytes": 273
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-7\\run-start.json",
+          "sha256": "9a1ec4156298ee8f8f63570924bb4ea8d8d0cbaa1295fdc7c59e125deb878723",
+          "size_bytes": 197
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-7\\completion-wall.json",
+          "sha256": "4fd9c54f382c487639b64ceb35d020ec389f4e759fba71bf1c63200dbcc2482d",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "a61409d8-f40f-44e0-b3dc-2cf4949dca9a",
+    "metrics": {
+      "decode_tps": 22.75249458661717
+    },
+    "owned_run_sha256": "8094bf2c8067c27e2425e94fc5222cac0ce0714777029f7d4a48e7815f9022d3",
+    "stage": "confirmation",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 29663.5255,
+        "decode_tps": 22.75249458661717,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "8094bf2c8067c27e2425e94fc5222cac0ce0714777029f7d4a48e7815f9022d3",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "confirmation",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-8\\launch.json",
+          "sha256": "1bf384f5baf54977ae178ec5f68199135d9dd7cd3e72b3ca3a07e1a79ddc3f3b",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-8\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-8\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-8\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-8\\completion.json",
+          "sha256": "86b8be19e9dbce2f9f4704108a4f6d2b28b78467b45914e72c7d626b80b71d03",
+          "size_bytes": 10080
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-8\\memory.json",
+          "sha256": "c677ae19b93a06b68a9f9673707e66b4c3674642be59dcf1c33c8afad0ca7817",
+          "size_bytes": 102981
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-8\\process.json",
+          "sha256": "250e9f3cff0ebd5db6212ff93c3b075227ff79f77d62f91fa081fa7949e4e18d",
+          "size_bytes": 273
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-8\\run-start.json",
+          "sha256": "a11e687bcef00a65a09c5aa644e31e3c1affaca23660c735d33d22dd393366dc",
+          "size_bytes": 197
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-8\\completion-wall.json",
+          "sha256": "491628a11652ba174298707fa76294ddc2119cd0bb3d3185461f7af76fae9928",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "d8e8d870-77e4-4a59-b5cf-2a1c140351f4",
+    "metrics": {
+      "decode_tps": 23.881668571136448
+    },
+    "owned_run_sha256": "67125398ea4630fbdf138d83ca8e86fdb40db69c5994d1947098542e4908607c",
+    "stage": "confirmation",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 27371.8617,
+        "decode_tps": 23.881668571136448,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "67125398ea4630fbdf138d83ca8e86fdb40db69c5994d1947098542e4908607c",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "confirmation",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-9\\launch.json",
+          "sha256": "81e02fb38b3f87c252d6af1435c60007ca3221869a755346566670f0ca26d09d",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-9\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-9\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-9\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-9\\completion.json",
+          "sha256": "2fbb51f8031ea2f4d5e7ad9669189287ae9830756cfb4c8abbda21ca174c9cca",
+          "size_bytes": 10080
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-9\\memory.json",
+          "sha256": "5e3b23bf8e7d6b3ab8d9449afa2178f2d07848f0c5c8bc54784883035ad1174b",
+          "size_bytes": 110136
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-9\\process.json",
+          "sha256": "23809e349703976be2bbfc784772a0cd6b37e4e6ffd2c247ee55b2241f2db156",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-9\\run-start.json",
+          "sha256": "87ed73b8fa1aa6f8b1dd21a98f8aa8654fc790c94175406001ca5dae53730e21",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\confirmation-9\\completion-wall.json",
+          "sha256": "8a390494601f5a7c764cf2426cb6dc5256aa97e337a64ba63fafbea53e3ad9d9",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "588b779d-4dbd-4a5f-8cb4-8356b6d17d08",
+    "metrics": {
+      "decode_tps": 23.379400036192408
+    },
+    "owned_run_sha256": "f65d64e868d956a562f23d3a3cd22633e2821b2dc0719bb52540cffec1ac04e9",
+    "stage": "confirmation",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 28994.6523,
+        "decode_tps": 23.379400036192408,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "f65d64e868d956a562f23d3a3cd22633e2821b2dc0719bb52540cffec1ac04e9",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "confirmation",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  },
+  {
+    "artifacts": [
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\sealed-replay\\launch.json",
+          "sha256": "68fea113c972137ba2f5694f91d67f1dfefc2152cfaa78dab844b4e32d285696",
+          "size_bytes": 19908
+        },
+        "role": "launch"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\sealed-replay\\request.json",
+          "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+          "size_bytes": 577
+        },
+        "role": "request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\sealed-replay\\tokenize-request.json",
+          "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+          "size_bytes": 215
+        },
+        "role": "tokenize-request"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\sealed-replay\\tokenize.json",
+          "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+          "size_bytes": 430
+        },
+        "role": "tokenize"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\sealed-replay\\completion.json",
+          "sha256": "235379623c4928ba2e6173fd8621523b2bff7b7f4ce8e5a472343e8aaca599cb",
+          "size_bytes": 10077
+        },
+        "role": "completion"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\sealed-replay\\memory.json",
+          "sha256": "84967c8db4740dd3d74a65f833e70cc1a527275b157bab81af641a32c3c6756f",
+          "size_bytes": 86671
+        },
+        "role": "memory"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\sealed-replay\\process.json",
+          "sha256": "0dc77aa7728ac672eb6d0a995c8c26f4ef3225f633aca9c699e4f31303c398a2",
+          "size_bytes": 274
+        },
+        "role": "process"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\sealed-replay\\run-start.json",
+          "sha256": "61906770af2b0c564d1264115b219d0e86a4e8b36c9a0c2fa3fe0fa95bac9b4c",
+          "size_bytes": 198
+        },
+        "role": "run-start"
+      },
+      {
+        "identity": {
+          "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live\\raw\\e96ef15e-7044-4360-a659-48a90bf44e96\\sealed-replay\\completion-wall.json",
+          "sha256": "8b51e3215b42a474c972c4d245ff733bbbccae5b87c7580da265ad107901fbb7",
+          "size_bytes": 116
+        },
+        "role": "completion-wall"
+      }
+    ],
+    "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+    "measured": true,
+    "measurement_id": "d04eb77a-b8ba-4910-9b62-8e5f5e71621d",
+    "metrics": {
+      "decode_tps": 25.38260811454219
+    },
+    "owned_run_sha256": "b74c6e9f51dc9dba00b8351821693f3114474ef0972f408474ab8483f352a54e",
+    "stage": "sealed_replay",
+    "validation": {
+      "passed": true,
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 23148.8394,
+        "decode_tps": 25.38260811454219,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": true,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "b74c6e9f51dc9dba00b8351821693f3114474ef0972f408474ab8483f352a54e",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "sealed_replay",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  }
+]

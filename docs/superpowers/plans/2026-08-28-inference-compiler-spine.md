@@ -1158,7 +1158,7 @@ git commit -m "feat: expose Phase 3 inference compiler"
 - Consumes: the implemented compiler, verified external Gemma Q6 model/inventory/runtime/profile paths, a freshly measured server stock floor, and report-only historical CLI evidence.
 - Produces: one clean-checkout Phase 3 verdict: `PASS-STATIC`, `PASS-STOCK-FALLBACK`, `VALIDATION-STOP`, `INCONCLUSIVE`, or `ENVIRONMENT-BLOCKED`.
 
-- [ ] **Step 1: Run the complete CPU-only verification before GPU work**
+- [x] **Step 1: Run the complete CPU-only verification before GPU work**
 
 Run: `uv sync --frozen --extra dev --extra quality --extra predictor`
 
@@ -1170,19 +1170,27 @@ Run: `git diff --check`
 
 Expected: all tests pass; the earlier pandas/NumPy ABI failure is gone. Source-contract skips remain explicitly reported when their external llama source is not supplied.
 
-- [ ] **Step 2: Verify identities and compile a dry-run plan from recorded evidence**
+- [x] **Step 2: Verify identities and compile a dry-run plan from recorded evidence**
 
 Run `expertflow inspect` with the verified inventory and Gemma descriptor. Run `expertflow compile --recorded-evidence` against committed historical evidence. Preserve the separate earlier strongest-stock result of 22.966667 TPS and the later ten-pair OFF/ON means of 22.28/28.13 TPS under their own evidence/workload IDs. The twelve-layer candidate remains exact-ineligible, and summary-only evidence emits no sealed plan. Complete imported evidence may seal only when every identity and raw token gate matches.
 
-- [ ] **Step 3: Run the live strongest-stock candidate matrix sequentially**
+- [x] **Step 3: Run the live strongest-stock candidate matrix sequentially**
 
 Preflight with `nvidia-smi`; stop with `ENVIRONMENT-BLOCKED` if another compute workload is active or reserve cannot be measured. Run one warmup plus three measured processes per stock candidate. Preserve raw commands, logs, probe JSON, process-owned VRAM, output hashes, and cleanup. Select the winner only through `select_strongest_stock()`.
 
-- [ ] **Step 4: Run the recorded twelve-layer static regression candidate**
+- [x] **Step 4: Run the recorded twelve-layer static regression candidate**
 
 Keep optional historical CLI reproduction separate from product selection; its response divergence and quality stop are preserved. On the product server workload, reject static candidates without numerical-path eligibility. Confirm the actual eligible selected static candidate with ten alternating pristine-stock/static pairs, exact prompt/generated token IDs for the frozen workload, stable owned memory, reserve, cleanup, and a positive lower 95% paired-bootstrap improvement bound. If static is ineligible or inconclusive, confirm the exact stock floor with ten ordinary runs and emit a stock plan with explicit static rejections. Replay the selected sealed plan once through `expertflow run`, requiring all identity/token/memory gates and mean TPS within 2% of its own confirmation mean.
 
-- [ ] **Step 5: Enforce the Phase 3 decision**
+Executed 2026-10-03: static remained exact-ineligible. Ten stock confirmations
+averaged 24.411 TPS (3.901% CV); the compiler's pending-plan replay produced
+25.383 TPS, 3.980% above that mean. This fails the absolute 2% gate despite being
+faster. The terminal verdict is `VALIDATION-STOP`, with no published plan.
+Standalone `validate`/`run --plan` are consequently blocked, rather than retrying
+the pending plan to obtain a passing sample. All native token, memory, owned-run
+and cleanup checks passed. Evidence preserves all 27 independent processes.
+
+- [x] **Step 5: Enforce the Phase 3 decision**
 
 Declare:
 
@@ -1196,7 +1204,7 @@ ENVIRONMENT-BLOCKED  required external artifact, idle GPU, memory counter or tok
 
 On `VALIDATION-STOP` or `INCONCLUSIVE`, retain failure evidence and do not begin later tracks. On `ENVIRONMENT-BLOCKED`, preserve diagnostics and the execution ledger but emit no live-validated plan. A stock fallback passes the compiler product gate; it does not rehabilitate historical static quality or authorize approximate execution.
 
-- [ ] **Step 6: Write verification evidence and append the project log**
+- [x] **Step 6: Write verification evidence and append the project log**
 
 `verification.json` records every command, exit code, artifact SHA-256, test count, source-contract skip, model/runtime/compiler identity, measurement ID, decision, and limitation. `README.md` separates recorded reproduction, live measurement, estimates, and rejected candidates. Append one factual entry to `PROJECT_LOG.md`; never rewrite prior entries.
 

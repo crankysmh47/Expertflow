@@ -1,0 +1,275 @@
+{
+  "artifacts": [
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\compiler.sqlite3",
+      "sha256": "5cb802be81f08709a72b2b00f1fca500be3923b94ace9409866218e44c75c0a2",
+      "size_bytes": 307200
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\compile.stdout.json",
+      "sha256": "6170426ad499369e34a39f6bb039173741dd8f9931145be3c6d2b361734e9fb2",
+      "size_bytes": 177
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\compile.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\compile.exit.txt",
+      "sha256": "df4e26a04a444901b95afef44e4a96cfae34690fff2ad2c66389c70079cdff2b",
+      "size_bytes": 3
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\execution-plan.pending.json",
+      "sha256": "22c3a3965eb17d5beac69b7f90bf5889d8681fa8673f699d0f43d6045633c166",
+      "size_bytes": 2618
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\explanation.json",
+      "sha256": "19ff206c38a4c964fdb2ebe3ada6d7f578188c21ad22d2765027335f7e593a2a",
+      "size_bytes": 52131
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\inputs\\hardware.json",
+      "sha256": "391249a0aa9c61ec234501b7853e0f00b1336c1601af7b9e24e3cb885b3582dd",
+      "size_bytes": 474
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\inputs\\runtime-identity.json",
+      "sha256": "665357b25342b634ea028f7683ba23bd768d7c25313f61efa91624ce616067c0",
+      "size_bytes": 867
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\measurement-manifest.json",
+      "sha256": "2af3b252321175e6dcd5de09955389aad89eb642d08d5da48c435d4cc6c9b6cb",
+      "size_bytes": 160356
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\model-ir.json",
+      "sha256": "3c9cd21c05a428e5782ef878b58d7b78b3bc5936b8310e4021fc772b34e650e7",
+      "size_bytes": 8344
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\preflight.json",
+      "sha256": "bed33d24ee9bb469a63ac6677488a83cb168a3a4aa1c473fbd2fa3eb8c050ea0",
+      "size_bytes": 9704
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\recorded\\explanation.json",
+      "sha256": "b64e3f85546df1d0c7c4cf589404f82502a977088c59dbc56b670907adff63b4",
+      "size_bytes": 1588
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\static-plan.json",
+      "sha256": "5148354712fcfdb01dd249c0054f6f417afe729491bd6a8a46c969aa1ba258fa",
+      "size_bytes": 34059
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\stock-floor.json",
+      "sha256": "cbd1efe2ef5988a68cbbf5e38736d512af3443ac9eec6ff5d8c85e2212e4931b",
+      "size_bytes": 2494
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q6-historical-cli.json",
+      "sha256": "d552caddbbc3fa4cef8fb1db69494039fad12b6425bacb8fc06cb95f1da553c0",
+      "size_bytes": 805
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q6-model.json",
+      "sha256": "1676efffaba68987183f4a9b9e7218d56cb9595e782d1306b51aabfe19d12d1c",
+      "size_bytes": 174
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q6-single-request.json",
+      "sha256": "66e57710f995fae21b94d71241a4b6dfee0dcdf3064878db40ceeb1e61a68bb7",
+      "size_bytes": 750
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\configs\\compiler\\runtime-fork.json",
+      "sha256": "574d7906d6ac55bb0d952d9a3052fbdacb3a67c814fa31108e4ee93899534d08",
+      "size_bytes": 3064
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\configs\\compiler\\runtime-stock.json",
+      "sha256": "e46120718c551dc8fce984f40c52ac7338f89642828f5283ad19ed0697418eed",
+      "size_bytes": 2269
+    },
+    {
+      "path": "C:\\sem4\\expertflow\\.superpowers\\sdd\\2026-08-28-inference-compiler-spine\\task-11-reviewed-cpu-tests.log",
+      "sha256": "b45827923f0be926f94de453b0e501db18b70519e04ccef6d834a09334b794d0",
+      "size_bytes": 817
+    }
+  ],
+  "branch": "ef-v2",
+  "commands": [
+    {
+      "command": "uv sync --frozen --extra dev --extra quality --extra predictor",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run --extra dev --extra quality --extra predictor pytest -q",
+      "exit_code": 0,
+      "log": ".superpowers/sdd/2026-08-28-inference-compiler-spine/task-11-reviewed-cpu-tests.log",
+      "passed": 481,
+      "skipped": 6
+    },
+    {
+      "command": "uv run --extra dev --extra quality --extra predictor python -m compileall -q src/expertflow",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "command": "expertflow inspect",
+      "exit_code": 0,
+      "output": "docs/evidence/compiler-phase3/model-ir.json"
+    },
+    {
+      "command": "expertflow compile --recorded-evidence docs/evidence/q6-placement-final/results.json",
+      "exit_code": 0,
+      "output": "docs/evidence/compiler-phase3/recorded/explanation.json",
+      "status": "RECORDED-DIAGNOSTIC"
+    },
+    {
+      "command": "expertflow compile",
+      "exit_code": 2,
+      "inputs": {
+        "descriptor": "configs/compiler/gemma4-q6-model.json",
+        "evidence_db": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\compiler.sqlite3",
+        "hardware": "docs/evidence/compiler-phase3/inputs/hardware.json",
+        "inventory": "docs/evidence/q6-download/tensor-inventory.json",
+        "layer_profiles": [
+          "C:/models/expertflow/runs/q6-placement-final/stage1-profiles/run-1/split-profile.json",
+          "C:/models/expertflow/runs/q6-placement-final/stage1-profiles/run-2/split-profile.json",
+          "C:/models/expertflow/runs/q6-placement-final/stage1-profiles/run-3/split-profile.json"
+        ],
+        "output_dir": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live",
+        "runtime_identity": "docs/evidence/compiler-phase3/inputs/runtime-identity.json",
+        "workload": "configs/compiler/gemma4-q6-single-request.json"
+      },
+      "status": "VALIDATION-STOP",
+      "stderr": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\compile.stderr.log",
+      "stdout": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\compile.stdout.json"
+    },
+    {
+      "command": "expertflow validate / expertflow run --plan",
+      "reason": "Compile replay failed the fixed terminal gate; no published plan exists. Do not retry for a passing sample.",
+      "status": "NOT-RUN"
+    }
+  ],
+  "compiler_commit": "c27711ab6d3bc8cffabcd07fc0a66ecfb5d9c120",
+  "confirmation_cv_pct": 3.9007630347887297,
+  "confirmation_mean_tps": 24.41099945766318,
+  "confirmation_measurement_ids": [
+    "67a33f42-6dc5-46e3-9edf-42f3a917498e",
+    "28010cfd-b67f-4933-98f7-e5055b8fd135",
+    "d69527e8-71e3-49ed-9ae9-bdabfe1e73af",
+    "9d880b7f-a580-43e1-85fa-cc7a17f0872a",
+    "898721be-2c7c-4275-b6f3-df190b3c508c",
+    "c7f6fff0-e64e-4971-b8e6-138b9a60f608",
+    "f4d4238e-c3f8-4a10-9148-ef19d1ad633c",
+    "a61409d8-f40f-44e0-b3dc-2cf4949dca9a",
+    "d8e8d870-77e4-4a59-b5cf-2a1c140351f4",
+    "588b779d-4dbd-4a5f-8cb4-8356b6d17d08"
+  ],
+  "diagnostic_live_run": "C:/models/expertflow/runs/compiler-phase3-20261003/live",
+  "identities": {
+    "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+    "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+    "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+    "workload": {
+      "approximate_quality_budget": null,
+      "batch_size": 2048,
+      "bootstrap_samples": 10000,
+      "bootstrap_seed": 20261003,
+      "cache_prompt": false,
+      "completion_timeout_seconds": 300,
+      "concurrency": 1,
+      "confirmation_pairs": 10,
+      "context_size": 4096,
+      "cuda_graphs": "on",
+      "health_timeout_seconds": 180,
+      "ignore_eos": true,
+      "kv_type_k": "f16",
+      "kv_type_v": "f16",
+      "maximum_cv_pct": 10.0,
+      "measured_runs": 3,
+      "microbatch_size": 512,
+      "minimum_vram_reserve_mib": 256,
+      "objective": "decode_tps",
+      "policy": "exact",
+      "predict_tokens": 512,
+      "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+      "replay_tolerance_pct": 2.0,
+      "runtime_interface": "server_completion",
+      "schema_version": "1.0.0",
+      "seed": 42,
+      "temperature": 0.0,
+      "threads": 12,
+      "warmup_runs": 1
+    },
+    "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+  },
+  "independent_owned_runs": 27,
+  "limitations": [
+    "Replay is faster, but the absolute repeatability gate still failed; this is not a slowdown or token-quality failure.",
+    "The pending plan is diagnostic-only and is not a published live-validated product.",
+    "All three non-CPU-MoE stock warmups violated the free-memory reserve and were rejected.",
+    "Static CPU-to-CUDA execution remains exact-ineligible; historical response divergence and quality failure are preserved.",
+    "Six external-source modules skip in the normal suite; the two applicable static/profile source suites passed six tests during native startup.",
+    "Raw native artifacts and the append-only database remain at the external paths; weights and binaries are not distributed in Git.",
+    "No later research tracks, merge or push are authorized by this result."
+  ],
+  "live_run": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\live",
+  "live_validated": false,
+  "measurement_count": 27,
+  "measurement_manifest": "docs/evidence/compiler-phase3/measurement-manifest.json",
+  "provenance": {
+    "hardware_preflight": {
+      "gpu_fields": [
+        "GPU-949ee8ea-765f-abfd-fd90-16ad3923af6e",
+        "NVIDIA GeForce RTX 5060 Ti",
+        "12.0",
+        "616.92",
+        "16311",
+        "14148",
+        "1"
+      ]
+    },
+    "input_hashes": {
+      "C:\\models\\expertflow\\runs\\q6-placement-final\\stage1-profiles\\run-1\\split-profile.json": "05816d078603e4a1d95cbf8b9219b976d0926100ca6ea242c4afa4de627b4048",
+      "C:\\models\\expertflow\\runs\\q6-placement-final\\stage1-profiles\\run-2\\split-profile.json": "ce340df1ec83509d53ce30239f462d5f34cc7fc2236eb19f018346e4956f7cc2",
+      "C:\\models\\expertflow\\runs\\q6-placement-final\\stage1-profiles\\run-3\\split-profile.json": "ca330f78e08ead8247f2279b4a20d9ce83cc1132ec427e9e454c19dff73f0f70",
+      "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q6-model.json": "1676efffaba68987183f4a9b9e7218d56cb9595e782d1306b51aabfe19d12d1c",
+      "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q6-single-request.json": "66e57710f995fae21b94d71241a4b6dfee0dcdf3064878db40ceeb1e61a68bb7",
+      "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\inputs\\hardware.json": "391249a0aa9c61ec234501b7853e0f00b1336c1601af7b9e24e3cb885b3582dd",
+      "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\inputs\\runtime-identity.json": "665357b25342b634ea028f7683ba23bd768d7c25313f61efa91624ce616067c0",
+      "C:\\sem4\\expertflow\\docs\\evidence\\q6-download\\tensor-inventory.json": "22e51eae9787a400490ad98542b70e56af15c87fbe765e1346fb24233244e8b2"
+    },
+    "source_contracts": {
+      "exit_code": 0,
+      "output": "......                                                                   [100%]\n6 passed in 0.07s\n"
+    }
+  },
+  "published_plan": null,
+  "reason": "Selected replay TPS differs from its own confirmation mean by more than the frozen 2% tolerance.",
+  "replay": {
+    "confirmation_mean_tps": 24.41099945766318,
+    "difference_pct": 3.9802084243379845,
+    "measurement_id": "d04eb77a-b8ba-4910-9b62-8e5f5e71621d",
+    "plan_sha256": "bf6f292342cf867c2bc03f2fee79e2390a7a932b922c341339533caf09a278ae",
+    "replay_tps": 25.38260811454219,
+    "tolerance_pct": 2.0
+  },
+  "review_fix_pass": {
+    "addressed": 7,
+    "critical": 0,
+    "important": 4,
+    "minor": 3,
+    "report": ".superpowers/sdd/2026-08-28-inference-compiler-spine/final-review.md"
+  },
+  "status": "VALIDATION-STOP"
+}

@@ -1116,3 +1116,11 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Added the public `expertflow prefetch-sim` command accepting multiple single-conversation traces, rejecting duplicate or mixed conversation identities and all invalid contracts through the established JSON failure-object exit-2 pattern.
 - New tests: 13 mover benchmark, 1 mover CLI, 13 prefetch simulation, 2 prefetch CLI; all pass. Full-suite rerun pending final verification checkpoint.
 - No llama.cpp source, deployment profile, evidence artifact, or release asset was modified. All live measurements await a free GPU; every new analysis command runs CPU-only.
+
+
+# 2026-10-03 - Compiler spine implemented; live replay validation stop
+
+- Implemented and repaired the Phase 0–3 compiler on ef-v2: immutable model/hardware/workload/runtime identities, bounded stock search, append-only evidence, capped static diagnostics, confirmation and sealed-plan replay. Four Important and three Minor final-review findings were reproduced and fixed in one pass; CPU verification passed 481 tests with six external-source skips, and six applicable native source-contract tests passed.
+- Recovered and fully hash-verified the pinned 22,862,575,520-byte Q6 model. Measured 27 independent owned processes under the frozen context-4096, 512-token server workload. All three non-CPU-MoE stock settings violated the VRAM reserve; selection chose pristine `-ngl 99 --cpu-moe` with a three-run mean of 24.957 TPS.
+- Ten selected-stock confirmations averaged 24.411 TPS (3.901% CV). Pending-plan replay achieved 25.383 TPS, 3.980% faster than the confirmation mean, exceeding the frozen absolute 2% repeatability gate. Native tokens, owned memory, process identity and cleanup passed. Declared VALIDATION-STOP; no validated execution plan was published and no further GPU retries were made.
+- Static CPU-to-CUDA execution remains exact-ineligible; historical 28.13 TPS and quality failure remain diagnostic. Evidence, raw hashes, commands and limitations are in `docs/evidence/compiler-phase3/verification.json`; the pending plan is diagnostic-only. Later research tracks remain blocked; no merge or push was performed.
