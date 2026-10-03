@@ -29,3 +29,8 @@ def test_explain_never_relabels_estimates(tmp_path,capsys):
     plan=tmp_path/'invalid.json';plan.write_text('{}')
     assert main(['explain','--plan',str(plan),'--report',str(report),'--output',str(tmp_path/'out.json')])==2
     assert not (tmp_path/'out.json').exists()
+
+
+def test_legacy_run_rejects_compiler_only_arguments(tmp_path,capsys):
+    assert main(['run','legacy.json','--descriptor','descriptor.json']) == 2
+    assert 'mixed' in json.loads(capsys.readouterr().out)['reason']

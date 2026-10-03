@@ -74,8 +74,9 @@ def test_static_pass_preserves_aligned_arena_in_lowered_rejected_settings():
     from expertflow.compiler.stock import stock_candidate_matrix
     from expertflow.compiler.schema import HardwareIR
     stock = replace(stock_candidate_matrix(identities())[1], status=CandidateStatus.MEASURED)
-    hardware = HardwareIR('GPU-test','RTX','12',16000 << 20,14000 << 20,'616','12.8','b' * 64)
+    hardware = HardwareIR('GPU-test','RTX','12',9000,7600,'616','12.8','b' * 64,minimum_reserve_bytes=1000)
     profile = [{**r, 'profile_id':str(i)} for i in range(3) for r in rows()]
     state = CompilerState(model_fixture(),hardware,stock.identities.workload,(stock,),capabilities=frozenset({'stock-baseline'}))
     result = PassManager([StaticPlacementPass(profile,baseline_peak_bytes=1000)]).run(state)
     assert result.candidates[1].settings.static.arena_bytes == result.analysis('static_candidates')[1]['arena_bytes']
+    assert any(c.settings.static and c.settings.static.layer_ids == (0,1) for c in result.candidates)

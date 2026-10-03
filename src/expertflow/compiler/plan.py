@@ -187,8 +187,13 @@ def seal_candidate(candidate, store: VerifiedEvidence, identities, fallback):
     token_hashes = set()
     prompt_hashes = set()
     measured_tps = []
+    owned_runs = set()
     for mid in candidate.measurement_ids:
         row = store.verify_measurement(mid)
+        require_hash(row.get('owned_run_sha256'), 'owned run hash')
+        if row['owned_run_sha256'] in owned_runs:
+            raise ValueError('duplicate owned run')
+        owned_runs.add(row['owned_run_sha256'])
         if row.get('candidate_id') != candidate.candidate_id or row.get('identities') != canonical_payload(identities):
             raise ValueError('foreign candidate evidence or identity mismatch')
         if row.get('settings_sha256') != canonical_sha256(candidate.settings):

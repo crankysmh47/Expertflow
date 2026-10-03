@@ -793,6 +793,19 @@ Expected: import failure.
 
 Use only `sqlite3`. Create tables `measurement`, `artifact`, and `validation` with foreign keys enabled. Store canonical JSON payloads and SHA-256 values; expose no update/delete API.
 
+Bind raw argv and effective runtime-control environment to the frozen settings,
+runtime binding and complete ModelIR snapshot. Record the exact `/tokenize`
+request, including prompt bytes and `add_special=true`. Required raw roles are
+`launch`, `run-start`, `tokenize-request`, `tokenize`, `request`, `completion`,
+`completion-wall`, `memory` and `process`. The owned-run identity comes from PID
+and OS process creation time, checked against teardown; enforce its uniqueness
+across the database and again when importing or sealing repeat sets. An older
+database without this proof is diagnostic-only and requires a fresh database.
+Record whole-request wall time separately from native predicted-token TPS.
+Memory observations must distinguish allocated, valid absence and unavailable
+counters; unavailable readings cannot prove measurement safety or settlement.
+Enforce an absolute HTTP deadline across connection, status, headers and body.
+
 - [x] **Step 4: Run evidence and artifact tests**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_evidence.py tests/test_artifacts.py`

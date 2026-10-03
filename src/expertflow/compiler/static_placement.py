@@ -124,7 +124,7 @@ class StaticPlacementPass:
         benefits = rank_layer_benefits(state.model, self.profile_rows, minimum_repetitions=3)
         candidates = generate_static_candidates(benefits,
             available_bytes=max(0, state.hardware.usable_vram_bytes - self.baseline_peak_bytes),
-            reserve_bytes=state.hardware.minimum_reserve_bytes,
+            reserve_bytes=0,  # HardwareIR.usable_vram_bytes already excludes reserve.
             max_static_layers=self.max_static_layers, max_static_shadows=self.max_static_shadows)
         generated = []
         for c in candidates:

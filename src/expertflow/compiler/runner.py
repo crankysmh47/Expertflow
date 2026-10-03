@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 import json
+import http.client
 import os
 from pathlib import Path
 import re
@@ -9,13 +10,14 @@ import socket
 import subprocess
 import threading
 import time
+import uuid
 import urllib.error
 import urllib.request
 
 from .evidence import EvidenceArtifact, MeasurementKey, MeasurementRecord
 from .preflight import DEFAULT_CUDA_RUNTIME, file_sha256
 from .reference import canonical_json, load_runtime_manifest
-from .schema import ArtifactIdentity, canonical_payload, canonical_sha256, require_int
+from .schema import ArtifactIdentity, ModelIR, canonical_payload, canonical_sha256, require_int
 
 
 @dataclass(frozen=True, slots=True)
@@ -100,31 +102,69 @@ def _write(path, payload):
 
 
 def _http(port, route, payload=None, timeout=1):
-    deadline = time.monotonic() + timeout
     body = None if payload is None else canonical_json(payload).encode('utf-8')
-    request = urllib.request.Request(f'http://127.0.0.1:{port}{route}', body,
-                                     {'Content-Type': 'application/json'})
-    with urllib.request.urlopen(request, timeout=timeout) as response:
+    connection = http.client.HTTPConnection('127.0.0.1', port, timeout=timeout)
+    expired = threading.Event()
+    owned_socket = []
+    def expire():
+        expired.set()
+        if owned_socket:
+            try:
+                owned_socket[0].shutdown(socket.SHUT_RDWR)
+            except OSError:
+                pass
+    watchdog = threading.Timer(timeout, expire)
+    watchdog.daemon = True
+    watchdog.start()
+    try:
+        connection.connect()
+        owned_socket.append(connection.sock)
+        if expired.is_set():
+            raise TimeoutError('absolute connection deadline exceeded')
+        connection.request('GET' if payload is None else 'POST', route, body,
+                           {'Content-Type': 'application/json'})
+        response = connection.getresponse()
+        if response.status != 200:
+            raise OSError(f'native HTTP status {response.status}')
         chunks = []
+        size = 0
         while True:
-            if response.isclosed():
-                break
-            remaining = deadline - time.monotonic()
-            if remaining <= 0:
+            if expired.is_set():
                 raise TimeoutError(f'{route} absolute response deadline exceeded')
-            # A read inactivity timeout alone lets a trickling response run
-            # forever. Recompute the remaining wall budget for every read.
-            response.fp.raw._sock.settimeout(remaining)
             chunk = response.read1(64 * 1024)
             if not chunk:
                 break
             chunks.append(chunk)
-            if sum(map(len, chunks)) > 16 * 1024 * 1024:
+            size += len(chunk)
+            if size > 16 * 1024 * 1024:
                 raise ValueError('native response exceeds bounded JSON size')
+        if expired.is_set():
+            raise TimeoutError(f'{route} absolute response deadline exceeded')
         value = json.loads(b''.join(chunks))
+    except Exception as error:
+        if expired.is_set():
+            raise TimeoutError(f'{route} absolute response deadline exceeded') from error
+        raise
+    finally:
+        watchdog.cancel()
+        connection.close()
     if not isinstance(value, dict):
         raise ValueError('server response is not a JSON object')
     return value
+
+
+def _process_creation(process):
+    if os.name == 'nt':
+        import ctypes
+        from ctypes import wintypes
+        kernel = ctypes.WinDLL('kernel32', use_last_error=True)
+        kernel.GetProcessTimes.argtypes = [wintypes.HANDLE, *([ctypes.POINTER(wintypes.FILETIME)] * 4)]
+        values = [wintypes.FILETIME() for _ in range(4)]
+        if not kernel.GetProcessTimes(wintypes.HANDLE(int(process._handle)), *(ctypes.byref(v) for v in values)):
+            raise RuntimeError('owned process creation time unavailable')
+        return (values[0].dwHighDateTime << 32) | values[0].dwLowDateTime, 'GetProcessTimes'
+    fields = Path(f'/proc/{process.pid}/stat').read_text().rsplit(')', 1)[1].split()
+    return int(fields[19]), 'proc-start-ticks'
 
 
 def _owns_port(pid, port):
@@ -194,6 +234,17 @@ class WindowsGpuMemorySampler:
         self.counter = wintypes.HANDLE()
         self.compute_counter = wintypes.HANDLE()
         self.gpu_uuid = gpu_uuid
+        self.nvml = ctypes.WinDLL('nvml.dll')
+        if self.nvml.nvmlInit_v2():
+            raise RuntimeError('NVML memory telemetry unavailable')
+        self.device = ctypes.c_void_p()
+        self.nvml.nvmlDeviceGetHandleByUUID.argtypes = [ctypes.c_char_p, ctypes.POINTER(ctypes.c_void_p)]
+        if self.nvml.nvmlDeviceGetHandleByUUID(gpu_uuid.encode(), ctypes.byref(self.device)):
+            raise RuntimeError('NVML GPU UUID unavailable')
+        class Memory(ctypes.Structure):
+            _fields_ = [(name, ctypes.c_ulonglong) for name in ('total', 'free', 'used')]
+        self.Memory = Memory
+        self.nvml.nvmlDeviceGetMemoryInfo.argtypes = [ctypes.c_void_p, ctypes.POINTER(Memory)]
         class ValueUnion(ctypes.Union):
             _fields_ = [('largeValue', ctypes.c_longlong), ('doubleValue', ctypes.c_double)]
         class Value(ctypes.Structure):
@@ -249,23 +300,22 @@ class WindowsGpuMemorySampler:
         size, count = wintypes.DWORD(), wintypes.DWORD()
         self.pdh.PdhGetFormattedCounterArrayW(self.counter, 0x400, c.byref(size), c.byref(count), None)
         if not size.value:
-            return None
+            return {'pid': pid, 'state': 'unavailable', 'counter_available': False}
         buffer = c.create_string_buffer(size.value)
         if self.pdh.PdhGetFormattedCounterArrayW(self.counter, 0x400, c.byref(size), c.byref(count), buffer):
             raise RuntimeError('PDH formatted memory unavailable')
         items = c.cast(buffer, c.POINTER(self.Item))
+        if not count.value or not any(items[n].FmtValue.CStatus in (0, 1) for n in range(count.value)):
+            return {'pid': pid, 'state': 'unavailable', 'counter_available': False}
         matching = [items[n] for n in range(count.value) if items[n].szName.startswith(f'pid_{pid}_')]
-        if not matching or any(item.FmtValue.CStatus not in (0, 1) for item in matching):
-            return None
+        if any(item.FmtValue.CStatus not in (0, 1) for item in matching):
+            return {'pid': pid, 'state': 'unavailable', 'counter_available': False}
         owned = sum(item.FmtValue.largeValue for item in matching)
-        if owned <= 0:
-            return None
-        result = subprocess.run(['nvidia-smi', '-i', self.gpu_uuid, '--query-gpu=memory.free',
-                                 '--format=csv,noheader,nounits'], capture_output=True, text=True, timeout=5,
-                                 creationflags=subprocess.CREATE_NO_WINDOW)
-        if result.returncode:
+        memory = self.Memory()
+        if self.nvml.nvmlDeviceGetMemoryInfo(self.device, c.byref(memory)):
             raise RuntimeError('device free memory unavailable')
-        return {'pid': pid, 'dedicated_bytes': owned, 'device_free_bytes': int(result.stdout.strip()) << 20,
+        return {'pid': pid, 'state': 'allocated' if owned > 0 else 'absent', 'counter_available': True,
+                'dedicated_bytes': owned, 'device_free_bytes': memory.free,
                 'counter_instances': [item.szName for item in matching]}
 
     def close(self):
@@ -276,9 +326,10 @@ class WindowsGpuMemorySampler:
 
 class ServerMeasurementRunner:
     def __init__(self, store, *, process_factory=subprocess.Popen, http_request=_http,
-                 memory_sampler=None, sample_interval=0.2):
+                 memory_sampler=None, sample_interval=0.2, teardown_timeout_seconds=30):
         self.store, self.process_factory, self.http_request = store, process_factory, http_request
         self.memory_sampler, self.sample_interval = memory_sampler, sample_interval
+        self.teardown_timeout_seconds = teardown_timeout_seconds
 
     def run_once(self, candidate, model, binding, *, output_dir, measured, stage='initial',
                  numerical_path='stock_same_runtime', comparison_ids=()):
@@ -288,7 +339,11 @@ class ServerMeasurementRunner:
         process = None
         monitor = None
         stop = threading.Event()
-        samples, sample_errors = [], []
+        samples, observations, sample_errors = [], [], []
+        active = threading.Event()
+        sampling_lock = threading.Lock()
+        run_start = {}
+        teardown_reading = None
         reason = None
         status = 'measured'
         request_completed = False
@@ -299,28 +354,44 @@ class ServerMeasurementRunner:
         with socket.socket() as port_socket:
             port_socket.bind(('127.0.0.1', 0))
             port = port_socket.getsockname()[1]
-        launch = lower_launch(candidate, model, binding, port, output_dir)
+        if not isinstance(model, ModelIR) or canonical_sha256(model) != candidate.identities.model_sha256:
+            raise ValueError('model snapshot identity mismatch')
+        launch = lower_launch(candidate, model.identity, binding, port, output_dir)
         _write(output_dir / 'launch.json', {
             'argv': launch.argv, 'environment': {k: v for k, v in launch.environment.items()
                 if k.startswith(('EXPERTFLOW', 'LLAMA_EXPERTFLOW', 'GGML_')) or k == 'PATH'},
             'runtime_binding': binding, 'candidate_id': candidate.candidate_id,
+            'model_ir': model,
             'settings_sha256': canonical_sha256(candidate.settings),
             'runtime_sha256': candidate.identities.runtime_sha256,
             'model_sha256': candidate.identities.model_sha256,
             'workload_sha256': candidate.identities.workload_sha256,
         })
 
-        def sample_loop():
-            while not stop.is_set():
+        def sample_once():
+            with sampling_lock:
+                phase = 'measurement' if active.is_set() else 'startup'
                 try:
                     sample = self.memory_sampler(process.pid) if self.memory_sampler else None
-                    if sample is not None:
-                        if type(sample.get('dedicated_bytes')) is not int or sample['dedicated_bytes'] <= 0:
-                            raise RuntimeError('unknown process-owned memory')
-                        samples.append({**sample, 'time_monotonic': time.monotonic()})
+                    if not isinstance(sample, dict):
+                        sample = {'pid': process.pid, 'state': 'unavailable', 'counter_available': False}
+                    observation = {**sample, 'phase': phase, 'time_monotonic': time.monotonic()}
+                    observations.append(observation)
+                    if sample.get('counter_available') is not True or sample.get('state') == 'unavailable':
+                        raise RuntimeError('unknown process-owned memory')
+                    if sample.get('state') == 'absent' and phase == 'startup':
+                        return
+                    if sample.get('state') != 'allocated' or type(sample.get('dedicated_bytes')) is not int or sample['dedicated_bytes'] <= 0:
+                        raise RuntimeError('unknown process-owned memory during measurement')
+                    samples.append(observation)
                 except Exception as error:
                     sample_errors.append(str(error))
-                stop.wait(self.sample_interval)
+
+        def sample_loop():
+            while not stop.is_set():
+                tick = time.monotonic()
+                sample_once()
+                stop.wait(max(0, self.sample_interval - (time.monotonic() - tick)))
 
         try:
             binding.verify()
@@ -332,6 +403,10 @@ class ServerMeasurementRunner:
                 process = self.process_factory(list(launch.argv), env=launch.environment,
                     stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr,
                     creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0)
+                creation, source = _process_creation(process)
+                run_start = {'pid': process.pid, 'run_id': str(uuid.uuid4()), 'creation_time_100ns': creation,
+                             'creation_source': source, 'started_monotonic_ns': time.monotonic_ns()}
+                _write(output_dir / 'run-start.json', run_start)
                 monitor = threading.Thread(target=sample_loop, daemon=True)
                 monitor.start()
                 deadline = time.monotonic() + w.health_timeout_seconds
@@ -347,17 +422,26 @@ class ServerMeasurementRunner:
                         if time.monotonic() >= deadline:
                             raise TimeoutError('server health timeout')
                         stop.wait(0.1)
-                tokenize = self.http_request(port, '/tokenize', {'content': w.prompt, 'add_special': True},
+                active.set()
+                sample_once()
+                tokenize_request = {'content': w.prompt, 'add_special': True}
+                _write(output_dir / 'tokenize-request.json', tokenize_request)
+                tokenize = self.http_request(port, '/tokenize', tokenize_request,
                                              timeout=w.completion_timeout_seconds)
                 _write(output_dir / 'tokenize.json', tokenize)
                 request = {**launch.request, 'prompt': tokenize.get('tokens')}
                 _write(output_dir / 'request.json', request)
-                completion = self.http_request(port, '/completion', request, timeout=w.completion_timeout_seconds)
+                started = time.perf_counter_ns()
+                try:
+                    completion = self.http_request(port, '/completion', request, timeout=w.completion_timeout_seconds)
+                finally:
+                    finished = time.perf_counter_ns()
+                    _write(output_dir / 'completion-wall.json', {'started_monotonic_ns': started,
+                        'finished_monotonic_ns': finished, 'elapsed_ms': (finished - started) / 1e6})
                 _write(output_dir / 'completion.json', completion)
                 request_completed = True
                 # Ensure at least one post-response sample even for tiny tests.
-                if not samples:
-                    stop.wait(self.sample_interval * 2)
+                sample_once()
         except ValueError as error:
             status, reason = 'validation_stop', str(error)
         except Exception as error:
@@ -380,28 +464,30 @@ class ServerMeasurementRunner:
                 child_exit = process.returncode
             settled = False
             if process and self.memory_sampler:
-                deadline = time.monotonic() + 30
+                deadline = time.monotonic() + self.teardown_timeout_seconds
                 while time.monotonic() < deadline:
                     try:
                         remaining = self.memory_sampler(process.pid)
-                        if remaining is None:
+                        teardown_reading = remaining
+                        if isinstance(remaining, dict) and remaining.get('counter_available') is True and remaining.get('state') == 'absent' and remaining.get('dedicated_bytes') == 0:
                             settled = True
                             break
                     except Exception as error:
-                        sample_errors.append(f'teardown counter: {error}')
-                        break
+                        teardown_reading = {'state': 'unavailable', 'reason': str(error)}
                     time.sleep(self.sample_interval)
-            _write(output_dir / 'memory.json', {'samples': samples, 'errors': sample_errors,
+            _write(output_dir / 'memory.json', {'samples': samples, 'observations': observations, 'errors': sample_errors,
+                                                'teardown_reading': teardown_reading,
                                                 'sample_interval_seconds': self.sample_interval})
             cleanup = process is not None and process.poll() is not None and not forced_kill and settled
             _write(output_dir / 'process.json', {'pid': process.pid if process else None,
                 'exited': cleanup, 'exit_code': 0 if request_completed and cleanup else child_exit,
                 'child_exit_code': child_exit, 'cleanup': cleanup,
                 'owned_termination': request_completed and cleanup, 'forced_kill': forced_kill,
-                'memory_settled': settled})
+                'memory_settled': settled, 'run_id': run_start.get('run_id'),
+                'creation_time_100ns': run_start.get('creation_time_100ns')})
         mid = None
         if status == 'measured':
-            if not samples or sample_errors:
+            if not samples or sample_errors or not settled:
                 status, reason = 'environment_blocked', 'process-owned memory unavailable: ' + '; '.join(sample_errors)
             else:
                 try:
@@ -412,7 +498,7 @@ class ServerMeasurementRunner:
                     from .schema import require_number
                     require_number(milliseconds, 'native predicted_ms', 0.000001)
                     artifacts = []
-                    for role in ('launch', 'request', 'tokenize', 'completion', 'memory', 'process'):
+                    for role in ('launch', 'request', 'tokenize-request', 'tokenize', 'completion', 'memory', 'process', 'run-start', 'completion-wall'):
                         p = (output_dir / f'{role}.json').resolve()
                         artifacts.append(EvidenceArtifact(role, ArtifactIdentity(str(p), p.stat().st_size, file_sha256(p))))
                     record = MeasurementRecord(MeasurementKey.from_candidate(candidate), candidate.candidate_id,

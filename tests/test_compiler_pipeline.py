@@ -1,5 +1,7 @@
 from dataclasses import replace
 import json
+import time
+import uuid
 from pathlib import Path
 
 import pytest
@@ -17,6 +19,8 @@ from test_compiler_gemma4_adapter import inventory_fixture, descriptor_fixture
 
 def inputs(tmp_path):
     model = model_fixture()
+    model_path=tmp_path/'model.gguf';model_path.write_bytes(b'GGUF'+bytes(12000))
+    model=replace(model,identity=ArtifactIdentity(str(model_path),model_path.stat().st_size,file_sha256(model_path)))
     w = WorkloadIR('hello', 4096, 3)
     hardware = HardwareIR('GPU-test','RTX','12.0', 16000 << 20, 14000 << 20,'616.92','12.8','b' * 64)
     exe = tmp_path / 'runtime'
@@ -50,15 +54,27 @@ class FakeRunner:
         w = candidate.identities.workload
         tps = self.replay_tps if stage == 'sealed_replay' else 30
         prompt = [1,2]
+        from expertflow.compiler.runner import lower_launch
+        launch=lower_launch(candidate,model.identity,binding,12345,output_dir,inherited={'PATH':'path'})
+        run_id=str(uuid.uuid4());creation=time.time_ns()//100
+        sample={'pid':123,'state':'allocated','counter_available':True,'dedicated_bytes':1000,
+                'device_free_bytes':512 << 20,'phase':'measurement'}
         payloads = {
             'completion':{'tokens':[10,11,12],'timings':{'predicted_n':3,'predicted_ms':3000/tps}},
             'tokenize':{'tokens':prompt},
+            'tokenize-request':{'content':w.prompt,'add_special':True},
             'request':{'prompt':prompt,'n_predict':w.predict_tokens,'seed':w.seed,'temperature':w.temperature,
                        'ignore_eos':True,'cache_prompt':False,'return_tokens':True,'stream':False},
-            'memory':{'samples':[{'pid':123,'dedicated_bytes':1000,'device_free_bytes':512 << 20}]},
-            'process':{'pid':123,'exited':True,'cleanup':True,'exit_code':0},
+            'memory':{'samples':[sample],'observations':[sample],
+                      'teardown_reading':{'pid':123,'state':'absent','counter_available':True,'dedicated_bytes':0}},
+            'process':{'pid':123,'exited':True,'cleanup':True,'exit_code':0,'memory_settled':True,
+                       'run_id':run_id,'creation_time_100ns':creation},
+            'run-start':{'pid':123,'run_id':run_id,'creation_time_100ns':creation,
+                         'creation_source':'GetProcessTimes','started_monotonic_ns':time.monotonic_ns()},
+            'completion-wall':{'started_monotonic_ns':100000000,'finished_monotonic_ns':200000000,'elapsed_ms':100},
             'launch':{'candidate_id':candidate.candidate_id,'settings_sha256':canonical_sha256(candidate.settings),
                       'runtime_binding':canonical_payload(binding),
+                      'model_ir':canonical_payload(model),'argv':launch.argv,'environment':launch.environment,
                       'runtime_sha256':candidate.identities.runtime_sha256,'model_sha256':candidate.identities.model_sha256,
                       'workload_sha256':candidate.identities.workload_sha256},
         }

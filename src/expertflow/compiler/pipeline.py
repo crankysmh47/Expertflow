@@ -241,7 +241,7 @@ def replay_sealed_plan(plan_path, inputs, runner, store, output_dir):
         sampler = WindowsGpuMemorySampler(inputs.hardware.gpu_uuid)
         runner = ServerMeasurementRunner(store, memory_sampler=sampler)
     try:
-        outcome = runner.run_once(plan.candidate, inputs.model.identity, inputs.stock,
+        outcome = runner.run_once(plan.candidate, inputs.model, inputs.stock,
             output_dir=output_dir, measured=True, stage='sealed_replay')
         if outcome.status != 'measured':
             return outcome.status.upper().replace('_', '-'), {'reason': outcome.reason, 'outcome': canonical_payload(outcome)}
@@ -290,7 +290,7 @@ def compile_phase3(request, runner=None, store=None):
         matrix = stock_candidate_matrix(inputs.identities(inputs.stock))
         measurements, placements = [], {}
         for index, candidate in enumerate(matrix):
-            warmup = runner.run_once(candidate, inputs.model.identity, inputs.stock,
+            warmup = runner.run_once(candidate, inputs.model, inputs.stock,
                 output_dir=run_root / f'stock-{index}-warmup', measured=False, stage='warmup')
             report['measurements'].append(canonical_payload(warmup))
             if warmup.status != 'measured':
@@ -310,7 +310,7 @@ def compile_phase3(request, runner=None, store=None):
             ids = []
             candidate_rejected = False
             for repetition in range(inputs.workload.measured_runs):
-                outcome = runner.run_once(candidate, inputs.model.identity, inputs.stock,
+                outcome = runner.run_once(candidate, inputs.model, inputs.stock,
                     output_dir=run_root / f'stock-{index}-measured-{repetition}', measured=True)
                 report['measurements'].append(canonical_payload(outcome))
                 if outcome.status != 'measured':
@@ -341,7 +341,7 @@ def compile_phase3(request, runner=None, store=None):
         if cpu_floor is None:
             raise EnvironmentBlocked('no measured pristine CPU-MoE equivalence reference')
         fork_candidate = replace(cpu_floor.candidate, identities=inputs.identities(inputs.fork), measurement_ids=())
-        equivalence = runner.run_once(fork_candidate, inputs.model.identity, inputs.fork,
+        equivalence = runner.run_once(fork_candidate, inputs.model, inputs.fork,
             output_dir=run_root / 'fork-feature-off', measured=False, stage='startup_equivalence',
             numerical_path='fork_off_vs_pristine', comparison_ids=(cpu_floor.measurement_ids[0],))
         report['measurements'].append(canonical_payload(equivalence))
@@ -359,7 +359,7 @@ def compile_phase3(request, runner=None, store=None):
         report['stock_floor'] = canonical_payload(stock_floor)
         confirmed = []
         for index in range(inputs.workload.confirmation_pairs):
-            outcome = runner.run_once(stock_floor.candidate, inputs.model.identity, inputs.stock,
+            outcome = runner.run_once(stock_floor.candidate, inputs.model, inputs.stock,
                 output_dir=run_root / f'confirmation-{index}', measured=True, stage='confirmation')
             report['measurements'].append(canonical_payload(outcome))
             if outcome.status != 'measured':

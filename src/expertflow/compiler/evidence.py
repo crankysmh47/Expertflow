@@ -11,7 +11,7 @@ import uuid
 from .plan import PlanIdentities, RuntimeSettings, StaticPlacement
 from .preflight import file_sha256
 from .reference import canonical_json, read_json
-from .schema import (ArtifactIdentity, WorkloadIR, canonical_payload, canonical_sha256,
+from .schema import (ArtifactIdentity, ModelIR, MoELayerIR, WorkloadIR, canonical_payload, canonical_sha256,
                      require_hash, require_int, require_number, require_text)
 
 
@@ -60,6 +60,7 @@ class MeasurementRecord:
     numerical_path: str
     comparison_ids: tuple[str, ...] = ()
     measurement_id: str = ''
+    owned_run_sha256: str = ''
 
     def __post_init__(self):
         require_text(self.candidate_id, 'candidate ID')
@@ -84,13 +85,17 @@ class EvidenceStore:
     def __init__(self, path):
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
+        self._model_verifications = set()
         with self._connection() as conn:
+            existing = conn.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='measurement'").fetchone()
+            if existing and 'owned_run_sha256' not in {r[1] for r in conn.execute('PRAGMA table_info(measurement)')}:
+                raise ValueError('legacy evidence database lacks owned run proof; use a fresh database')
             conn.executescript('''
                 CREATE TABLE IF NOT EXISTS measurement (
                     sequence INTEGER PRIMARY KEY AUTOINCREMENT,
                     id TEXT UNIQUE NOT NULL, key_sha256 TEXT NOT NULL,
                     payload TEXT NOT NULL, payload_sha256 TEXT NOT NULL,
-                    created_at TEXT NOT NULL
+                    created_at TEXT NOT NULL, owned_run_sha256 TEXT UNIQUE NOT NULL
                 );
                 CREATE TABLE IF NOT EXISTS artifact (
                     measurement_id TEXT NOT NULL REFERENCES measurement(id),
@@ -137,12 +142,14 @@ class EvidenceStore:
         require_text(mid, 'measurement ID')
         record = replace(record, measurement_id=mid)
         self._verify_artifacts(record)
+        owned = self._owned_run(record)
+        record = replace(record, owned_run_sha256=owned)
         payload = canonical_payload(record)
         try:
             with self._connection() as conn:
-                conn.execute('INSERT INTO measurement(id,key_sha256,payload,payload_sha256,created_at) VALUES(?,?,?,?,?)',
+                conn.execute('INSERT INTO measurement(id,key_sha256,payload,payload_sha256,created_at,owned_run_sha256) VALUES(?,?,?,?,?,?)',
                              (mid, canonical_sha256(record.key), canonical_json(payload), canonical_sha256(payload),
-                              datetime.now(timezone.utc).isoformat()))
+                              datetime.now(timezone.utc).isoformat(), owned))
                 for a in record.artifacts:
                     conn.execute('INSERT INTO artifact VALUES(?,?,?)', (mid, a.role, canonical_json(canonical_payload(a))))
                 for name, passed in json.loads(record.validation_json).items():
@@ -150,8 +157,21 @@ class EvidenceStore:
                         raise ValueError('validation requires boolean values')
                     conn.execute('INSERT INTO validation VALUES(?,?,?)', (mid, name, int(passed)))
         except sqlite3.IntegrityError as error:
-            raise ValueError(f'duplicate or invalid evidence ID: {mid}') from error
+            raise ValueError(f'duplicate owned run or invalid evidence ID: {mid}') from error
         return mid
+
+    @staticmethod
+    def _owned_run(record):
+        paths = {a.role: Path(a.identity.path) for a in record.artifacts}
+        if 'run-start' not in paths:
+            raise ValueError('missing owned run start proof')
+        start = read_json(paths['run-start'])
+        for key in ('pid', 'creation_time_100ns', 'started_monotonic_ns'):
+            require_int(start.get(key), 'owned run ' + key)
+        require_text(start.get('run_id'), 'owned run UUID')
+        if start.get('creation_source') not in {'GetProcessTimes', 'proc-start-ticks'}:
+            raise ValueError('invalid owned run creation source')
+        return canonical_sha256({k: start[k] for k in ('pid', 'creation_time_100ns', 'creation_source')})
 
     def replace_measurement(self, *_):
         raise ValueError('append-only evidence')
@@ -186,9 +206,9 @@ class EvidenceStore:
             raise ValueError('comparison evidence cycle')
         record = self.measurement(mid)
         self._verify_artifacts(record)
-        artifacts = {a.role: read_json(Path(a.identity.path)) for a in record.artifacts
-                     if a.role in {'completion', 'tokenize', 'request', 'memory', 'process', 'launch'}}
-        if artifacts.keys() != {'completion', 'tokenize', 'request', 'memory', 'process', 'launch'}:
+        roles = {'completion', 'tokenize', 'tokenize-request', 'request', 'memory', 'process', 'launch', 'run-start', 'completion-wall'}
+        artifacts = {a.role: read_json(Path(a.identity.path)) for a in record.artifacts if a.role in roles}
+        if artifacts.keys() != roles:
             raise ValueError('missing native measurement artifacts')
         raw_i = json.loads(record.identities_json)
         i = PlanIdentities(**{**raw_i, 'workload': WorkloadIR(**raw_i['workload'])})
@@ -220,6 +240,42 @@ class EvidenceStore:
                                'workload_sha256': i.workload_sha256}.items():
             if launch.get(name) != expected:
                 raise ValueError(f'launch mismatch: {name}')
+        try:
+            from .runner import lower_launch
+            raw_model = launch['model_ir']
+            model = ModelIR(**{**raw_model, 'identity': ArtifactIdentity(**raw_model['identity']),
+                              'moe_layers': tuple(MoELayerIR(**layer) for layer in raw_model['moe_layers'])})
+            if canonical_sha256(model) != i.model_sha256:
+                raise ValueError('model snapshot hash mismatch')
+            model_path = Path(model.identity.path)
+            stat = model_path.stat()
+            verification = (model.identity, stat.st_mtime_ns, stat.st_ctime_ns)
+            if stat.st_size != model.identity.size_bytes:
+                raise ValueError('model artifact size mismatch')
+            if verification not in self._model_verifications:
+                if file_sha256(model_path) != model.identity.sha256:
+                    raise ValueError('model artifact hash mismatch')
+                self._model_verifications.add(verification)
+            argv = launch['argv']
+            port = int(argv[argv.index('--port') + 1])
+            expected = lower_launch(candidate, model.identity, binding, port, '.', inherited={'PATH': ''})
+            if list(expected.argv) != argv:
+                raise ValueError('actual launch argv differs from frozen settings')
+            env = launch['environment']
+            controls = lambda e: {k: v for k, v in e.items() if k.upper().startswith(('EXPERTFLOW', 'LLAMA_EXPERTFLOW', 'LLAMA_ARG_', 'GGML_'))}
+            if controls(env) != controls(expected.environment) or not env.get('PATH', '').startswith(expected.environment['PATH']):
+                raise ValueError('actual launch environment differs from frozen settings')
+        except (KeyError, TypeError, IndexError, OSError) as error:
+            raise ValueError('missing or malformed actual launch proof') from error
+        if artifacts['tokenize-request'] != {'content': w.prompt, 'add_special': True}:
+            raise ValueError('tokenization input differs from frozen prompt')
+        wall = artifacts['completion-wall']
+        for key in ('started_monotonic_ns', 'finished_monotonic_ns'):
+            require_int(wall.get(key), key)
+        elapsed = (wall['finished_monotonic_ns'] - wall['started_monotonic_ns']) / 1e6
+        require_number(wall.get('elapsed_ms'), 'completion wall milliseconds', 0.000001)
+        if abs(wall['elapsed_ms'] - elapsed) > 1e-6:
+            raise ValueError('completion wall timing mismatch')
         tokens = artifacts['completion'].get('tokens')
         prompt_tokens = artifacts['tokenize'].get('tokens')
         for values in (tokens, prompt_tokens):
@@ -243,10 +299,34 @@ class EvidenceStore:
         if not abs(tps - reported) <= 1e-9 * max(1, tps):
             raise ValueError('recorded TPS differs from native timings')
         process = artifacts['process']
+        start = artifacts['run-start']
+        owned = self._owned_run(record)
+        if owned != record.owned_run_sha256 or any(process.get(k) != start.get(k) for k in ('pid', 'run_id', 'creation_time_100ns')):
+            raise ValueError('owned run process provenance mismatch')
         require_int(process.get('pid'), 'owned PID')
         if record.exit_code != 0 or process.get('exit_code') != 0 or process.get('exited') is not True or process.get('cleanup') is not True:
             raise ValueError('child process did not exit cleanly')
         samples = artifacts['memory'].get('samples')
+        observations = artifacts['memory'].get('observations')
+        if not isinstance(observations, list) or not observations:
+            raise ValueError('missing memory observations')
+        for observation in observations:
+            if observation.get('counter_available') is not True or observation.get('state') not in {'allocated', 'absent'} or observation.get('pid') != process['pid']:
+                raise ValueError('unknown memory observation')
+            if observation.get('phase') not in {'startup', 'measurement'}:
+                raise ValueError('unknown memory observation phase')
+            if observation['state'] == 'allocated':
+                require_int(observation.get('dedicated_bytes'), 'observed process-owned memory')
+                require_int(observation.get('device_free_bytes'), 'observed device free memory', 0)
+                if observation['device_free_bytes'] < w.minimum_vram_reserve_mib << 20:
+                    raise ValueError('VRAM reserve violated')
+            elif observation.get('dedicated_bytes') != 0:
+                raise ValueError('invalid absent memory observation')
+            if observation.get('phase') == 'measurement' and observation.get('state') != 'allocated':
+                raise ValueError('memory absent during measurement')
+        teardown = artifacts['memory'].get('teardown_reading')
+        if not isinstance(teardown, dict) or teardown.get('state') != 'absent' or teardown.get('counter_available') is not True or teardown.get('dedicated_bytes') != 0 or teardown.get('pid') != process['pid'] or process.get('memory_settled') is not True:
+            raise ValueError('unknown memory teardown')
         if artifacts['memory'].get('errors'):
             raise ValueError('memory counter failed')
         if not isinstance(samples, list) or not samples:
@@ -277,4 +357,5 @@ class EvidenceStore:
                 'settings_sha256': canonical_sha256(settings), 'validations': validations,
                 'exit_code': record.exit_code, 'measured': record.measured, 'stage': record.stage,
                 'decode_tps': tps, 'generated_tokens_sha256': canonical_sha256(tokens),
-                'prompt_tokens_sha256': canonical_sha256(prompt_tokens), 'numerical_path': record.numerical_path}
+                'prompt_tokens_sha256': canonical_sha256(prompt_tokens), 'numerical_path': record.numerical_path,
+                'owned_run_sha256': owned, 'completion_wall_ms': elapsed}

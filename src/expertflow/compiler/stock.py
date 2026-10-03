@@ -45,6 +45,8 @@ def import_stock_measurement(candidate, measurement_ids, store):
     if not ids or len(ids) != len(set(ids)):
         raise ValueError('missing or duplicate measurement evidence')
     rows = tuple(store.verify_measurement(mid) for mid in ids)
+    if len({r['owned_run_sha256'] for r in rows}) != len(rows):
+        raise ValueError('duplicate owned run')
     if any(r['candidate_id'] != candidate.candidate_id or not r['measured'] for r in rows):
         raise ValueError('foreign candidate evidence or warmup')
     if len({r['generated_tokens_sha256'] for r in rows}) != 1 or len({r['prompt_tokens_sha256'] for r in rows}) != 1:

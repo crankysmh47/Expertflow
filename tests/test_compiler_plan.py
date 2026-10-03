@@ -35,6 +35,7 @@ class VerifiedStore:
                 'validations': {'exact_tokens': True, 'memory': True, 'cleanup': True},
                 'exit_code': 0, 'generated_tokens_sha256': 'd' * 64,
                 'prompt_tokens_sha256': 'e' * 64,
+                'owned_run_sha256': canonical_sha256(mid),
                 'measured': True, 'decode_tps': 23.0}
 
 
@@ -137,3 +138,12 @@ def test_unstable_prompt_tokens_variance_and_unresolved_fallback_evidence():
     other = candidate_fixture(settings=RuntimeSettings('all', True))
     with pytest.raises(ValueError, match='foreign'):
         seal_candidate(other, VerifiedStore(other), other.identities, fallback)
+
+
+def test_sealing_requires_distinct_verified_owned_runs():
+    candidate=candidate_fixture()
+    store=VerifiedStore(candidate)
+    original=store.verify_measurement
+    store.verify_measurement=lambda mid:{**original(mid),'owned_run_sha256':'f' * 64}
+    with pytest.raises(ValueError,match='owned run'):
+        seal_candidate(candidate,store,candidate.identities,None)
