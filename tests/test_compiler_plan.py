@@ -34,6 +34,7 @@ class VerifiedStore:
                 'settings_sha256': canonical_sha256(self.candidate.settings),
                 'validations': {'exact_tokens': True, 'memory': True, 'cleanup': True},
                 'exit_code': 0, 'generated_tokens_sha256': 'd' * 64,
+                'prompt_tokens_sha256': 'e' * 64,
                 'measured': True, 'decode_tps': 23.0}
 
 
@@ -120,3 +121,19 @@ def test_settings_and_immutable_identity_controls():
     assert candidate.candidate_id == replace(candidate, status=CandidateStatus.UNMEASURED,
                                              measurement_ids=()).candidate_id
     assert candidate.candidate_id != replace(candidate, settings=RuntimeSettings('auto', False)).candidate_id
+
+
+def test_unstable_prompt_tokens_variance_and_unresolved_fallback_evidence():
+    candidate = candidate_fixture()
+    store = VerifiedStore(candidate)
+    original = store.verify_measurement
+    store.verify_measurement = lambda mid: {**original(mid), 'prompt_tokens_sha256': ('f' if mid == 'm-1' else 'e') * 64}
+    with pytest.raises(ValueError, match='prompt'):
+        seal_candidate(candidate, store, candidate.identities, None)
+    store.verify_measurement = lambda mid: {**original(mid), 'decode_tps': 1 if mid == 'm-1' else 23}
+    with pytest.raises(ValueError, match='variance'):
+        seal_candidate(candidate, store, candidate.identities, None)
+    fallback = seal_candidate(candidate, VerifiedStore(candidate), candidate.identities, None)
+    other = candidate_fixture(settings=RuntimeSettings('all', True))
+    with pytest.raises(ValueError, match='foreign'):
+        seal_candidate(other, VerifiedStore(other), other.identities, fallback)

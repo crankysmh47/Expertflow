@@ -233,6 +233,8 @@ class EvidenceStore:
         if record.exit_code != 0 or process.get('exit_code') != 0 or process.get('exited') is not True or process.get('cleanup') is not True:
             raise ValueError('child process did not exit cleanly')
         samples = artifacts['memory'].get('samples')
+        if artifacts['memory'].get('errors'):
+            raise ValueError('memory counter failed')
         if not isinstance(samples, list) or not samples:
             raise ValueError('unknown process-owned memory')
         for sample in samples:

@@ -4,6 +4,7 @@ from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 from enum import Enum
 from pathlib import Path
+import statistics
 from typing import Protocol
 
 from .reference import SCHEMA_VERSION, read_json
@@ -179,7 +180,11 @@ def seal_candidate(candidate, store: VerifiedEvidence, identities, fallback):
     if candidate.identities != identities:
         raise ValueError('candidate identity mismatch')
     _validate_fallback(candidate, fallback)
+    if fallback is not None:
+        validate_execution_plan(fallback, store=store)
     token_hashes = set()
+    prompt_hashes = set()
+    measured_tps = []
     for mid in candidate.measurement_ids:
         row = store.verify_measurement(mid)
         if row.get('candidate_id') != candidate.candidate_id or row.get('identities') != canonical_payload(identities):
@@ -191,10 +196,17 @@ def seal_candidate(candidate, store: VerifiedEvidence, identities, fallback):
         if any(row.get('validations', {}).get(name) is not True for name in ('exact_tokens', 'memory', 'cleanup')):
             raise ValueError('measurement validation failed')
         require_hash(row.get('generated_tokens_sha256'), 'generated token hash')
+        require_hash(row.get('prompt_tokens_sha256'), 'prompt token hash')
         require_number(row.get('decode_tps'), 'measured TPS', 0.000001)
         token_hashes.add(row['generated_tokens_sha256'])
+        prompt_hashes.add(row['prompt_tokens_sha256'])
+        measured_tps.append(row['decode_tps'])
     if len(token_hashes) != 1:
         raise ValueError('unstable generated tokens')
+    if len(prompt_hashes) != 1:
+        raise ValueError('unstable prompt tokens')
+    if statistics.stdev(measured_tps) * 100 / statistics.mean(measured_tps) > identities.workload.maximum_cv_pct:
+        raise ValueError('inconclusive measurement variance')
     plan = ExecutionPlan(SCHEMA_VERSION, '0.1.0', SCHEMA_VERSION, candidate, fallback,
                          datetime.now(timezone.utc).isoformat(), '0' * 64)
     return replace(plan, plan_sha256=canonical_sha256(plan.without_hash()))

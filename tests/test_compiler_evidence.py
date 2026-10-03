@@ -84,6 +84,7 @@ def test_real_store_verification_and_sealing(tmp_path):
     ('request', lambda p: p.update(cache_prompt=True)),
     ('request', lambda p: p.update(prompt=[99])),
     ('memory', lambda p: p.update(samples=[])),
+    ('memory', lambda p: p.update(errors=['counter failed'])),
     ('memory', lambda p: p['samples'][0].update(dedicated_bytes=0)),
     ('memory', lambda p: p['samples'][0].update(device_free_bytes=0)),
     ('memory', lambda p: p['samples'][0].update(pid=999)),
