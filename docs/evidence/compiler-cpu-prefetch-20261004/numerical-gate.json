@@ -1,0 +1,104 @@
+{
+  "status": "PASS-NUMERICAL-GATE",
+  "fixtures": 48,
+  "threads": [
+    1,
+    12
+  ],
+  "rows": [
+    1,
+    15,
+    16,
+    17,
+    33,
+    257
+  ],
+  "tokens": [
+    1,
+    3
+  ],
+  "widths": [
+    256,
+    768
+  ],
+  "weight_type": "Q6_K",
+  "activation_conversion": "unchanged F32 to Q8_K",
+  "output_bytes": 43392,
+  "output_sha256": "1c11eb2a816e37c460a8a644f7151ff7fb229738f75333b3cb9139644c86c8eb",
+  "bitwise_outputs_equal": true,
+  "compile_flags_and_source_set_equal": true,
+  "cpu_exports_and_imports_equal": true,
+  "only_source_change": "ggml/src/ggml-cpu/ggml-cpu.c",
+  "quantization_dot_disassembly": [
+    {
+      "object": "ggml-cpu/quants.c.obj",
+      "normalized_disassembly_sha256": "9b3bc72ccf2bf4ff6112ac9c90016119be6f3549747e1accaccb796190225cb4"
+    },
+    {
+      "object": "ggml-cpu/arch/x86/quants.c.obj",
+      "normalized_disassembly_sha256": "a208492e47b58cdd86ca60fc08f3c78689c0ab1b3d9bf26771f8b90fb7cd4235"
+    }
+  ],
+  "cpu_compile_commands": {
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\ggml-cpu.c.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /O2 /Ob2 /DNDEBUG -std:c11 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\ggml-cpu.cpp.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\repack.cpp.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\hbm.cpp.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\quants.c.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /O2 /Ob2 /DNDEBUG -std:c11 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\traits.cpp.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\amx\\amx.cpp.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\amx\\mmq.cpp.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\binary-ops.cpp.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\unary-ops.cpp.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\vec.cpp.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\ops.cpp.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\llamafile\\sgemm.cpp.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\arch\\x86\\quants.c.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /O2 /Ob2 /DNDEBUG -std:c11 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ],
+    "ggml\\src\\CMakeFiles\\ggml-cpu.dir\\ggml-cpu\\arch\\x86\\repack.cpp.obj": [
+      "DEFINES = -DGGML_AVX2 -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_BMI2 -DGGML_F16C -DGGML_FMA -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_REPACK -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_CRT_SECURE_NO_WARNINGS -D_XOPEN_SOURCE=600 -D__BMI2__ -Dggml_cpu_EXPORTS",
+      "FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /utf-8 /bigobj /arch:AVX2 /wd4005 /wd4244 /wd4267 /wd4305 /wd4566 /wd4996 /wd4702 -openmp"
+    ]
+  }
+}
