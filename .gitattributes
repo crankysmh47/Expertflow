@@ -8,7 +8,7 @@
 *.patch text eol=lf
 # Blank context lines in this unified patch require a literal leading space.
 release/expertflow-build-week/patches/llama.cpp/0007-feat-phase-aware-diagnostic-profile.patch whitespace=-blank-at-eol
-docs/evidence/compiler-cpu-prefetch-20261004/native.patch whitespace=-blank-at-eol,-blank-at-eof
+docs/evidence/compiler-cpu-prefetch-20261004/0001-cpu-expert-row-prefetch.patch whitespace=-blank-at-eol,-blank-at-eof
 *.toml text eol=lf
 *.lock text eol=lf
 *.csv text eol=lf

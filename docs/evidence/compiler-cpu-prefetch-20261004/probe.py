@@ -76,7 +76,7 @@ def main():
         Path('docs/superpowers/specs/2026-10-04-cpu-expert-prefetch-experiment.md'),
         Path('docs/superpowers/plans/2026-10-04-cpu-expert-prefetch-experiment.md'),
         Path('configs/compiler/runtime-cpu-prefetch.json'), Path('configs/compiler/runtime-stock.json'),
-        Path('docs/evidence/compiler-cpu-prefetch-20261004/native.patch'), ROOT/'runtime-identity.json']
+        Path('docs/evidence/compiler-cpu-prefetch-20261004/0001-cpu-expert-row-prefetch.patch'), ROOT/'runtime-identity.json']
     freeze = {'source_commit': subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
         'native_source_commit': native_commit, 'source_hashes': {str(p): file_sha256(p) for p in sources},
         'inputs': inputs.provenance, 'candidates': canonical_payload(candidates),
