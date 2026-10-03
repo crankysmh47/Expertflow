@@ -98,11 +98,28 @@ def _write(path, payload):
 
 
 def _http(port, route, payload=None, timeout=1):
+    deadline = time.monotonic() + timeout
     body = None if payload is None else canonical_json(payload).encode('utf-8')
     request = urllib.request.Request(f'http://127.0.0.1:{port}{route}', body,
                                      {'Content-Type': 'application/json'})
     with urllib.request.urlopen(request, timeout=timeout) as response:
-        value = json.loads(response.read())
+        chunks = []
+        while True:
+            if response.isclosed():
+                break
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise TimeoutError(f'{route} absolute response deadline exceeded')
+            # A read inactivity timeout alone lets a trickling response run
+            # forever. Recompute the remaining wall budget for every read.
+            response.fp.raw._sock.settimeout(remaining)
+            chunk = response.read1(64 * 1024)
+            if not chunk:
+                break
+            chunks.append(chunk)
+            if sum(map(len, chunks)) > 16 * 1024 * 1024:
+                raise ValueError('native response exceeds bounded JSON size')
+        value = json.loads(b''.join(chunks))
     if not isinstance(value, dict):
         raise ValueError('server response is not a JSON object')
     return value
@@ -149,6 +166,19 @@ class MeasurementOutcome:
     output_dir: str
 
 
+def compute_activity_by_pid(items):
+    valid = [(name, value) for name, status, value in items if status in (0, 1)]
+    if not valid:
+        raise RuntimeError('GPU engine telemetry unavailable')
+    result = {}
+    for name, value in valid:
+        match = re.match(r'pid_(\d+)_.*engtype_(?:Compute|CUDA)', name)
+        if match and value > 0:
+            pid = int(match.group(1))
+            result[pid] = result.get(pid, 0.0) + value
+    return result
+
+
 class WindowsGpuMemorySampler:
     """English PDH counter names, owned PID, plus device-wide free reserve."""
     def __init__(self, gpu_uuid):
@@ -160,6 +190,7 @@ class WindowsGpuMemorySampler:
         self.pdh = ctypes.WinDLL('pdh')
         self.query = wintypes.HANDLE()
         self.counter = wintypes.HANDLE()
+        self.compute_counter = wintypes.HANDLE()
         self.gpu_uuid = gpu_uuid
         class ValueUnion(ctypes.Union):
             _fields_ = [('largeValue', ctypes.c_longlong), ('doubleValue', ctypes.c_double)]
@@ -180,6 +211,33 @@ class WindowsGpuMemorySampler:
         if self.pdh.PdhAddEnglishCounterW(self.query, r'\GPU Process Memory(*)\Dedicated Usage', 0, ctypes.byref(self.counter)):
             self.close()
             raise RuntimeError('GPU Process Memory counter unavailable')
+        if self.pdh.PdhAddEnglishCounterW(self.query, r'\GPU Engine(*)\Utilization Percentage', 0, ctypes.byref(self.compute_counter)):
+            self.close()
+            raise RuntimeError('GPU Engine counter unavailable')
+
+    def check_idle(self):
+        self.pdh.PdhCollectQueryData(self.query)
+        readings = []
+        for _ in range(3):
+            time.sleep(0.2)
+            if self.pdh.PdhCollectQueryData(self.query):
+                raise RuntimeError('GPU engine collection failed')
+            c = self.ctypes
+            from ctypes import wintypes
+            size, count = wintypes.DWORD(), wintypes.DWORD()
+            self.pdh.PdhGetFormattedCounterArrayW(self.compute_counter, 0x200, c.byref(size), c.byref(count), None)
+            if not size.value:
+                raise RuntimeError('GPU engine telemetry unavailable')
+            buffer = c.create_string_buffer(size.value)
+            if self.pdh.PdhGetFormattedCounterArrayW(self.compute_counter, 0x200, c.byref(size), c.byref(count), buffer):
+                raise RuntimeError('GPU engine telemetry unavailable')
+            items = c.cast(buffer, c.POINTER(self.Item))
+            activity = compute_activity_by_pid([(items[n].szName, items[n].FmtValue.CStatus,
+                                                 items[n].FmtValue.doubleValue) for n in range(count.value)])
+            readings.append(activity)
+            if any(rate >= 1 for rate in activity.values()):
+                raise RuntimeError(f'another compute workload is active: {activity}')
+        return {'compute_activity_pct_by_pid': readings, 'sampling_period_seconds': 0.2}
 
     def __call__(self, pid):
         c = self.ctypes
@@ -266,6 +324,8 @@ class ServerMeasurementRunner:
             binding.verify()
             if binding.sha256 != candidate.identities.runtime_sha256:
                 raise ValueError('runtime binding identity mismatch')
+            if hasattr(self.memory_sampler, 'check_idle'):
+                _write(output_dir / 'idle-compute.json', self.memory_sampler.check_idle())
             with (output_dir / 'stdout.log').open('wb') as stdout, (output_dir / 'stderr.log').open('wb') as stderr:
                 process = self.process_factory(list(launch.argv), env=launch.environment,
                     stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr,

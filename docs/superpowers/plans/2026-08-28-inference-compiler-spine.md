@@ -167,7 +167,7 @@ planning approval round.
 The report distinguishes `READY`, `ENVIRONMENT-BLOCKED`, `IDENTITY-STOP` and
 historical static rejection; historical rejection alone does not block stock.
 
-- [ ] **Step 1: Write failing tests**
+- [x] **Step 1: Write failing tests**
 
 ```python
 def test_historical_static_is_report_only(repo_root):
@@ -186,17 +186,17 @@ Also exercise malformed/empty CSV, changing historical summaries, matching
 responses without token-ID evidence, model-size/hash mismatch, runtime hash
 mismatch, failed patch verification, atomic JSON output and CLI exit codes.
 
-- [ ] **Step 2: Run RED**: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_preflight.py`.
+- [x] **Step 2: Run RED**: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_preflight.py`.
 Expected: import failure before the module exists.
-- [ ] **Step 3: Implement**: read the committed manifests and actual CSV rows;
+- [x] **Step 3: Implement**: read the committed manifests and actual CSV rows;
 check 10 rows per mode, finite TPS and one stable response hash per mode. Preserve
 each historical input hash and measured mean. Never promote those rows into
 token-ID evidence. Verify model using `ArtifactSpec`/`verify_artifact`, every patch
 against its pinned hash, pristine/fork executable hashes, and dependency hashes.
 Inspect all required paths before expensive hashes; report missing paths together.
-- [ ] **Step 4: Run GREEN** with the same test command, then `uv run --extra dev --extra quality --extra predictor pytest -q`.
+- [x] **Step 4: Run GREEN** with the same test command, then `uv run --extra dev --extra quality --extra predictor pytest -q`.
 Expected: all applicable CPU tests pass; external source skips are reported.
-- [ ] **Step 5: Run live artifact preflight**:
+- [x] **Step 5: Run live artifact preflight**:
 
 ```powershell
 uv run --extra dev --extra quality --extra predictor python scripts/compiler_preflight.py --model C:/models/gemma-4-26b-a4b-q6/google_gemma-4-26B-A4B-it-Q6_K.gguf --stock-dir C:/models/expertflow/builds/llama-a7312ae-cuda128-clean/bin --fork-dir C:/models/expertflow/builds/llama-q6-placement-final/bin --output docs/evidence/compiler-phase3/preflight.json
@@ -210,7 +210,7 @@ if absent and recovery is authorized, recover repository
 `google_gemma-4-26B-A4B-it-Q6_K.gguf`, 22,862,575,520 bytes, SHA-256
 `089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba`.
 Never substitute another quant/revision. A failed recovery is a recorded blocker.
-- [ ] **Step 6: Commit** only this task's files and report. Start Task 2 only on
+- [x] **Step 6: Commit** only this task's files and report. Start Task 2 only on
 `READY`; preserve the execution ledger and recovery evidence otherwise.
 
 ---
@@ -261,7 +261,7 @@ Do not move or rewrite existing `expertflow.analysis`, `expertflow.runtime`, or 
 - Consumes: `configs/baseline-prompt.txt`, existing release evidence, Python 3.11.
 - Produces: committed compiler workload schema `1.0.0` and a quality extra that cannot import an incompatible global pandas build.
 
-- [ ] **Step 1: Write the failing reference-config and environment tests**
+- [x] **Step 1: Write the failing reference-config and environment tests**
 
 ```python
 import json
@@ -316,7 +316,7 @@ def test_runtime_fork_manifest_pins_reproducible_patch_stack() -> None:
     ]
 ```
 
-- [ ] **Step 2: Run the tests and verify RED**
+- [x] **Step 2: Run the tests and verify RED**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_reference_config.py`
 
@@ -326,7 +326,7 @@ unsupported interface, missing/empty prompt, invalid repetition counts, reserve,
 model-family capabilities and runtime patch/binary hash fields. Add pandas import
 verification to the environment commands, rather than grepping dependency text.
 
-- [ ] **Step 3: Add the exact reference configuration and dependency**
+- [x] **Step 3: Add the exact reference configuration and dependency**
 
 Create `configs/compiler/gemma4-q6-single-request.json` exactly:
 
@@ -429,7 +429,7 @@ JSON with `allow_nan=False`. Implement `load_runtime_manifest(path) -> dict` wit
 strict SHA-256, commit, launcher-ABI, patch-order and capability checks. These
 small boundaries are consumed by Task 0 and later converted into Task 2 IRs.
 
-- [ ] **Step 4: Verify the isolated quality environment and tests**
+- [x] **Step 4: Verify the isolated quality environment and tests**
 
 Run: `uv sync --frozen --extra dev --extra quality --extra predictor`
 
@@ -439,7 +439,7 @@ Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_
 
 Expected: imports succeed and both test files pass.
 
-- [ ] **Step 5: Commit only Phase 0 environment files**
+- [x] **Step 5: Commit only Phase 0 environment files**
 
 ```powershell
 git add pyproject.toml uv.lock configs/compiler src/expertflow/compiler/__init__.py src/expertflow/compiler/reference.py tests/test_compiler_reference_config.py
@@ -459,7 +459,7 @@ git commit -m "build: stabilize compiler reference environment"
 - Consumes: plain Python primitives and resolved artifact identities.
 - Produces: `ArtifactIdentity`, `MoELayerIR`, `ModelIR`, `HardwareIR`, `WorkloadIR`, `ExactnessPolicy`, `Objective`, `canonical_payload()`, and `canonical_sha256()`.
 
-- [ ] **Step 1: Write failing IR round-trip, ordering, and validation tests**
+- [x] **Step 1: Write failing IR round-trip, ordering, and validation tests**
 
 ```python
 from expertflow.compiler.schema import (
@@ -502,13 +502,13 @@ def test_exactness_and_objective_are_closed_enums() -> None:
 
 Also test rejection of invalid SHA-256, duplicate layers, nonpositive bytes, `top_k > expert_count`, concurrency other than one, and approximate settings inside an exact `WorkloadIR`.
 
-- [ ] **Step 2: Run schema tests and verify RED**
+- [x] **Step 2: Run schema tests and verify RED**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_schema.py`
 
 Expected: collection fails with `ModuleNotFoundError: expertflow.compiler`.
 
-- [ ] **Step 3: Implement minimal immutable IRs and canonical serialization**
+- [x] **Step 3: Implement minimal immutable IRs and canonical serialization**
 
 Use frozen, slotted dataclasses and closed enums:
 
@@ -547,13 +547,13 @@ def canonical_sha256(value: object) -> str:
 
 Sort `ModelIR.moe_layers` by `layer_id` in `__post_init__` using `object.__setattr__`; reject duplicate IDs and inconsistent expert/top-k values.
 
-- [ ] **Step 4: Run focused and existing inventory tests**
+- [x] **Step 4: Run focused and existing inventory tests**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_schema.py tests/test_q6_inventory.py tests/test_expert_layout.py`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit the typed compiler schema**
+- [x] **Step 5: Commit the typed compiler schema**
 
 ```powershell
 git add src/expertflow/compiler/__init__.py src/expertflow/compiler/schema.py tests/test_compiler_schema.py
@@ -572,7 +572,7 @@ git commit -m "feat: add typed compiler intermediate representations"
 - Consumes: Task 2 IR hashes and primitive runtime settings.
 - Produces: `CandidateStatus`, `StaticPlacement`, `RuntimeSettings`, `CandidatePlan`, `ExecutionPlan`, `seal_candidate()`, `load_execution_plan()`, and `validate_execution_plan()`.
 
-- [ ] **Step 1: Write failing plan-sealing tests**
+- [x] **Step 1: Write failing plan-sealing tests**
 
 ```python
 def test_only_measured_passing_candidate_can_be_sealed() -> None:
@@ -596,23 +596,23 @@ def test_unmeasured_or_rejected_candidate_cannot_be_sealed(status) -> None:
 
 Also test identity mismatch, missing evidence, exact plan containing approximate settings, unsupported schema, tampered plan hash, and fallback incompatibility.
 
-- [ ] **Step 2: Run plan tests and verify RED**
+- [x] **Step 2: Run plan tests and verify RED**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_plan.py`
 
 Expected: import fails because `expertflow.compiler.plan` is absent.
 
-- [ ] **Step 3: Implement minimal plan types and fail-closed validation**
+- [x] **Step 3: Implement minimal plan types and fail-closed validation**
 
 `CandidatePlan` must carry model/hardware/workload/runtime hashes, status, settings, estimates, measurement IDs, rejection reasons, and validation results. `ExecutionPlan` adds compiler version, a complete measured fallback payload (or null for stock), canonical hash, and sealed timestamp. Serialize enums as strings and tuples as arrays. Sealing resolves records from the evidence store, checks candidate settings/identities, numerical-path eligibility and all required validations, verifies raw artifact hashes, and includes the full frozen workload. Tests must reject fabricated IDs, caller-only passing flags, foreign-candidate evidence and an unresolvable fallback.
 
-- [ ] **Step 4: Run focused plan/schema tests**
+- [x] **Step 4: Run focused plan/schema tests**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_schema.py tests/test_compiler_plan.py`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit plan contracts**
+- [x] **Step 5: Commit plan contracts**
 
 ```powershell
 git add src/expertflow/compiler/plan.py tests/test_compiler_plan.py
@@ -633,7 +633,7 @@ git commit -m "feat: add sealed execution plan contracts"
 - Consumes: metadata-only inventory emitted by `scripts/inventory_q6_gguf.py` and a `ModelDescriptor` containing family, architecture, quant, expert count, top-k, KV kind, and MTP kind.
 - Produces: `ModelAdapter.normalize(descriptor, inventory, identity) -> ModelIR`, `AdapterRegistry.register()`, `AdapterRegistry.resolve()`, and built-in key `gemma4`.
 
-- [ ] **Step 1: Write failing registry and Gemma normalization tests**
+- [x] **Step 1: Write failing registry and Gemma normalization tests**
 
 ```python
 def test_gemma_adapter_normalizes_inventory_without_raw_names_in_model_ir() -> None:
@@ -654,13 +654,13 @@ def test_adapter_rejects_inconsistent_component_sets() -> None:
 
 Also test wrong family, noncontiguous/duplicate layer IDs, expert-count mismatch, absent routed layers, inconsistent per-layer bundle bytes, and duplicate adapter registration.
 
-- [ ] **Step 2: Run adapter tests and verify RED**
+- [x] **Step 2: Run adapter tests and verify RED**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_gemma4_adapter.py`
 
 Expected: import fails because adapter modules are absent.
 
-- [ ] **Step 3: Implement the protocol, registry, and Gemma-only parser**
+- [x] **Step 3: Implement the protocol, registry, and Gemma-only parser**
 
 ```python
 class ModelAdapter(Protocol):
@@ -676,13 +676,13 @@ class ModelAdapter(Protocol):
 
 Only `gemma4.py` may inspect Gemma-specific family metadata. It consumes the inventory's normalized layer/component byte accounting and emits only `MoELayerIR` values.
 
-- [ ] **Step 4: Run adapter, inventory, and placement tests**
+- [x] **Step 4: Run adapter, inventory, and placement tests**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_gemma4_adapter.py tests/test_q6_inventory.py tests/test_q6_placement.py`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit the first model adapter**
+- [x] **Step 5: Commit the first model adapter**
 
 ```powershell
 git add src/expertflow/compiler/adapters tests/test_compiler_gemma4_adapter.py
@@ -702,7 +702,7 @@ git commit -m "feat: normalize Gemma MoE models for compilation"
 - Consumes: `CompilerState(model, hardware, workload, candidates, analyses, diagnostics)`.
 - Produces: `CompilerPass`, `PassResult`, `PassManager.resolve()`, and `PassManager.run()`.
 
-- [ ] **Step 1: Write failing pass-order and rejection tests**
+- [x] **Step 1: Write failing pass-order and rejection tests**
 
 ```python
 def test_pass_manager_topologically_orders_declared_capabilities() -> None:
@@ -721,13 +721,13 @@ def test_missing_capability_and_cycle_fail_before_execution() -> None:
 
 Also test deterministic tie-breaking by pass name, explicit conflicts, duplicate pass names, a pass returning undeclared capabilities, and diagnostics preserved after a no-op/rejected pass.
 
-- [ ] **Step 2: Run pass-manager tests and verify RED**
+- [x] **Step 2: Run pass-manager tests and verify RED**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_pass_manager.py`
 
 Expected: import failure.
 
-- [ ] **Step 3: Implement the minimal pass protocol and manager**
+- [x] **Step 3: Implement the minimal pass protocol and manager**
 
 ```python
 class CompilerPass(Protocol):
@@ -741,13 +741,13 @@ class CompilerPass(Protocol):
 
 Resolve dependencies without third-party graph packages. Do not mutate an input state in place; return a replaced frozen state.
 
-- [ ] **Step 4: Run pass and plan suites**
+- [x] **Step 4: Run pass and plan suites**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_pass_manager.py tests/test_compiler_plan.py`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit the pass manager**
+- [x] **Step 5: Commit the pass manager**
 
 ```powershell
 git add src/expertflow/compiler/passes tests/test_compiler_pass_manager.py
@@ -766,7 +766,7 @@ git commit -m "feat: add dependency checked compiler passes"
 - Consumes: `MeasurementKey`, candidate ID, raw artifact paths/hashes, metrics, exit status, and validation results.
 - Produces: `EvidenceStore(path)`, `append_measurement() -> str`, `measurements_for(key)`, `measurement(id)`, and `verify_artifacts(id)`.
 
-- [ ] **Step 1: Write failing append-only and identity tests**
+- [x] **Step 1: Write failing append-only and identity tests**
 
 ```python
 def test_measurements_are_append_only_and_key_scoped(tmp_path: Path) -> None:
@@ -783,23 +783,23 @@ def test_measurements_are_append_only_and_key_scoped(tmp_path: Path) -> None:
 
 Also test canonical key hashing, transaction rollback, duplicate explicit ID rejection, artifact hash mismatch, different workload/model key isolation, and stable chronological ordering.
 
-- [ ] **Step 2: Run evidence tests and verify RED**
+- [x] **Step 2: Run evidence tests and verify RED**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_evidence.py`
 
 Expected: import failure.
 
-- [ ] **Step 3: Implement SQLite schema and artifact verification**
+- [x] **Step 3: Implement SQLite schema and artifact verification**
 
 Use only `sqlite3`. Create tables `measurement`, `artifact`, and `validation` with foreign keys enabled. Store canonical JSON payloads and SHA-256 values; expose no update/delete API.
 
-- [ ] **Step 4: Run evidence and artifact tests**
+- [x] **Step 4: Run evidence and artifact tests**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_evidence.py tests/test_artifacts.py`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit the evidence store**
+- [x] **Step 5: Commit the evidence store**
 
 ```powershell
 git add src/expertflow/compiler/evidence.py tests/test_compiler_evidence.py
@@ -818,7 +818,7 @@ git commit -m "feat: add append only compiler evidence store"
 - Consumes: `CostEstimate(candidate_id, metrics, uncertainty)`, measured residuals, hard constraints, and measurement budget.
 - Produces: `CalibrationState`, `update_calibration()`, `select_measurement_batch()`, and `CalibrationDecision` with winner/boundary/uncertain/sentinel reasons.
 
-- [ ] **Step 1: Write failing exploration and pruning-suspension tests**
+- [x] **Step 1: Write failing exploration and pruning-suspension tests**
 
 ```python
 def test_batch_contains_winner_boundary_uncertain_and_sentinel() -> None:
@@ -842,23 +842,23 @@ def test_large_sentinel_residual_suspends_pruning() -> None:
 
 Also test exhaustive selection when candidates fit the budget, deterministic selection, no cross-key calibration, nonfinite metric rejection, and `inconclusive` when uncertainty remains excessive.
 
-- [ ] **Step 2: Run cost-model tests and verify RED**
+- [x] **Step 2: Run cost-model tests and verify RED**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_cost_model.py`
 
 Expected: import failure.
 
-- [ ] **Step 3: Implement conservative residual calibration**
+- [x] **Step 3: Implement conservative residual calibration**
 
 Use analytical estimates unchanged as the initial mean, observed absolute percentage residual as empirical error, and the maximum of declared/empirical uncertainty for pruning. Do not introduce NumPy, scikit-learn, or Bayesian optimization in this phase.
 
-- [ ] **Step 4: Run cost/evidence tests**
+- [x] **Step 4: Run cost/evidence tests**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_cost_model.py tests/test_compiler_evidence.py`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit calibrated candidate selection**
+- [x] **Step 5: Commit calibrated candidate selection**
 
 ```powershell
 git add src/expertflow/compiler/cost_model.py tests/test_compiler_cost_model.py
@@ -879,7 +879,7 @@ git commit -m "feat: calibrate compiler candidate selection"
 - Consumes: `HardwareIR`, `WorkloadIR`, pristine/fork runtime identities, `ServerMeasurementRunner`, native completion JSON and process-owned memory records.
 - Produces: `StockCandidate`, `stock_candidate_matrix()`, `import_stock_measurement()`, and `select_strongest_stock()`.
 
-- [ ] **Step 1: Write failing matrix and strongest-floor tests**
+- [x] **Step 1: Write failing matrix and strongest-floor tests**
 
 ```python
 def test_stock_matrix_is_bounded_and_deterministic() -> None:
@@ -906,13 +906,13 @@ def test_strongest_stock_requires_measured_exact_memory_safe_runs() -> None:
 
 Also test failed exit, missing repetitions, variance beyond configured tolerance, mismatched measurement key, missing cleanup, and deterministic tie-breaking by candidate ID.
 
-- [ ] **Step 2: Run stock tests and verify RED**
+- [x] **Step 2: Run stock tests and verify RED**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_stock.py`
 
 Expected: import failure.
 
-- [ ] **Step 3: Implement bounded candidates and measured selection**
+- [x] **Step 3: Implement bounded candidates and measured selection**
 
 Implement `lower_launch()` and the native server runner from the binding contracts. Keep process execution injectable only at subprocess/HTTP/memory sampling boundaries:
 
@@ -925,13 +925,13 @@ class StockRunner(Protocol):
 
 The production runner executes sequential warmup/measured processes and stores native token/timing responses, commands, dependency identities and memory manifests through `EvidenceStore`. Unit tests use an owned tiny Python HTTP child instead of a model: exercise real start, health, completion, timeout, malformed token output, failed memory samples, and teardown. Fake candidate runners cover search decisions, never substitute for runner integration tests. Verify pristine/fork feature-off token equivalence before measuring static candidates. Pin the actual baseline batch/KV/graph settings; selecting an unsupported setting is a rejection, not a silent default.
 
-- [ ] **Step 4: Run stock and existing baseline/benchmark suites**
+- [x] **Step 4: Run stock and existing baseline/benchmark suites**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_stock.py tests/test_compiler_runner.py tests/test_baseline_command.py tests/test_baseline_cli.py tests/test_performance_benchmark.py`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit strongest-stock compilation**
+- [x] **Step 5: Commit strongest-stock compilation**
 
 ```powershell
 git add src/expertflow/compiler/stock.py src/expertflow/compiler/runner.py tests/test_compiler_stock.py tests/test_compiler_runner.py
@@ -950,7 +950,7 @@ git commit -m "feat: compile strongest stock runtime floor"
 - Consumes: `ModelIR`, strongest stock plan, repeated per-layer profile records, exact bytes per layer, VRAM budget, and a measurement runner.
 - Produces: `LayerBenefit`, `StaticPlacementCandidate`, `rank_layer_benefits()`, `generate_static_candidates()`, `StaticPlacementPass`, and lowered `StaticPlacement(layers, arena_bytes)`.
 
-- [ ] **Step 1: Write failing generic ranking and budget tests**
+- [x] **Step 1: Write failing generic ranking and budget tests**
 
 ```python
 def test_ranking_uses_measured_time_per_vram_byte_without_family_names() -> None:
@@ -975,23 +975,23 @@ def test_candidate_generation_never_crosses_vram_reserve() -> None:
 
 Also test duplicate/missing profile layers, profile/backend mismatch, nonfinite timings, aligned arena accounting, deterministic greedy prefixes, inclusion of the recorded twelve-layer diagnostic candidate, rejection when no layer fits, a 19-layer VRAM-fit candidate rejected by the 12-layer runtime cap, the 48-shadow cap, and exact rejection of a numerical-path-changing candidate. Existing profile names are translated by the Gemma adapter; generic ranking consumes normalized layer IDs, not raw `first_node` strings.
 
-- [ ] **Step 2: Run static-placement tests and verify RED**
+- [x] **Step 2: Run static-placement tests and verify RED**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_static_placement.py`
 
 Expected: import failure.
 
-- [ ] **Step 3: Implement generic ranking and bounded prefixes**
+- [x] **Step 3: Implement generic ranking and bounded prefixes**
 
 Port the useful calculation from `scripts/analyze_q6_layer_profile.py` into the package, replacing `shadow_bytes` constants with checked aligned `MoELayerIR` allocation accounting. Generate an empty/static-off control, the recorded `[0,1,2,3,4,5,6,7,8,9,15,20]` diagnostic candidate when compatible, and score-ordered prefixes within both memory and runtime caps. Record `numerical_path_change` for historical CPU-to-CUDA static candidates that lack exact eligibility; never seal them because a short token test happens to match. Do not implement arbitrary subsets, approximate profiles, or exhaustive combinatorics in Phase 3.
 
-- [ ] **Step 4: Run compiler and historical static-analysis tests**
+- [x] **Step 4: Run compiler and historical static-analysis tests**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_static_placement.py tests/test_q6_layer_profile.py tests/test_q6_selected_static_analysis.py tests/test_q6_placement.py`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit static placement compilation**
+- [x] **Step 5: Commit static placement compilation**
 
 ```powershell
 git add src/expertflow/compiler/static_placement.py tests/test_compiler_static_placement.py
@@ -1013,15 +1013,16 @@ git commit -m "feat: compile bounded static MoE placement"
 - Consumes: Tasks 2–9 services and existing JSON inventory/profile/evidence artifacts.
 - Produces: `CompilationRequest`, `compile_phase3(request, runner, store) -> CompilationResult` plus CLI commands `inspect`, `compile`, `validate`, and `explain`.
 
-- [ ] **Step 1: Write failing pipeline and CLI tests**
+- [x] **Step 1: Write failing pipeline and CLI tests**
 
 ```python
-def test_phase3_pipeline_emits_stock_floor_static_winner_and_rejections(tmp_path) -> None:
+def test_phase3_pipeline_confirms_and_replays_exact_stock_fallback(tmp_path) -> None:
     result = compile_phase3(
         request_fixture(tmp_path), FakeRunner(), EvidenceStore(tmp_path / "db.sqlite3")
     )
-    assert result.execution_plan.settings.static_placement.layers
-    assert result.execution_plan.fallback.candidate_id == result.stock_floor.candidate_id
+    assert result.status == "PASS-STOCK-FALLBACK"
+    assert result.execution_plan.candidate.settings.static is None
+    assert result.execution_plan.fallback is None
     assert result.report["objective"] == "decode_tps"
     assert result.report["rejected_candidates"]
 
@@ -1035,13 +1036,13 @@ def test_compile_cli_writes_plan_and_explanation(tmp_path, capsys) -> None:
 
 Also test unsupported adapter exit 2, identity mismatch exit 2, no valid stock candidate exit 3, no exact static winner returning the stock plan with an explicit no-go, inconclusive improvement returning stock, selected winner paired/replayed rather than the historical candidate, plan tampering rejected by `validate`, and `explain` never relabeling estimates as measurements.
 
-- [ ] **Step 2: Run pipeline/CLI tests and verify RED**
+- [x] **Step 2: Run pipeline/CLI tests and verify RED**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_pipeline.py tests/test_compiler_cli.py`
 
 Expected: import/argument failures because pipeline and commands are absent.
 
-- [ ] **Step 3: Implement orchestration and keep CLI wiring thin**
+- [x] **Step 3: Implement orchestration and keep CLI wiring thin**
 
 Define the request boundary exactly:
 
@@ -1093,16 +1094,35 @@ with no `execution-plan.json`; compatible complete raw token evidence is require
 to seal. Without it, `compile` uses the production sequential server runner.
 `run` revalidates a sealed plan and its measured fallback, uses `lower_launch()`,
 and records the replay through the same runner; it cannot perform candidate search.
+The existing positional `run DEPLOYMENT` interface remains supported. The new
+`run --plan FILE` interface requires all compiler inputs; mixing the two modes
+is an error. Compile includes ten cold stock confirmation runs and one sealed
+replay before publishing `execution-plan.json`. Pending plans and failed runs
+remain evidence but are not published as live-validated products.
+
+`--runtime-identity` is a JSON object with `schema_version="1.0.0"`, `model`
+(`path`, `size_bytes`, `sha256`), `stock` and `fork` objects (each containing
+`manifest_path`, `binary_dir`, `cuda_runtime`), and optional `source_path` for
+the pinned fork checkout. Manifests and dependency files are reverified. A supplied
+source checkout must match the fork revision and pass both applicable static/profile
+source-contract suites. `--hardware` is the serialized `HardwareIR` returned by
+`capture_hardware()`; live checks compare physical identity and driver while
+checking current free reserve separately from its fixed allocation frontier.
+Under WDDM, the compute-process listing includes graphics apps. The owned runner
+checks GPU Engine Compute/CUDA activity counters instead of treating that listing
+as proof of another active compute workload. It checks idle activity before each
+cold process and records native child termination separately from completion
+status; Windows owned termination normally returns a nonzero child exit code.
 
 `main.py` imports only handler functions from `expertflow.compiler.commands`. Command handlers catch `ValueError`/identity errors, emit structured JSON failures, and return nonzero without tracebacks. All output files use UTF-8, sorted keys, trailing newline, and atomic temporary-file replacement.
 
-- [ ] **Step 4: Run all compiler and existing CLI tests**
+- [x] **Step 4: Run all compiler and existing CLI tests**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_*.py tests/test_product_cli.py tests/test_profile_cli.py tests/test_baseline_cli.py`
 
 Expected: PASS and no existing command changes behavior.
 
-- [ ] **Step 5: Commit the compiler product surface**
+- [x] **Step 5: Commit the compiler product surface**
 
 ```powershell
 git add src/expertflow/compiler/pipeline.py src/expertflow/compiler/commands.py src/expertflow/cli/main.py tests/test_compiler_pipeline.py tests/test_compiler_cli.py

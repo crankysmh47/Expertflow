@@ -26,8 +26,10 @@ class CandidateStatus(str, Enum):
 class StaticPlacement:
     layer_ids: tuple[int, ...]
     precompute: bool = True
+    arena_bytes: int = 0
 
     def __post_init__(self):
+        require_int(self.arena_bytes, 'static arena bytes', 0)
         if not self.layer_ids or len(self.layer_ids) > 12:
             raise ValueError('static placement requires 1–12 layers')
         for layer in self.layer_ids:

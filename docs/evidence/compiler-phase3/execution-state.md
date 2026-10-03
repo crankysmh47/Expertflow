@@ -27,7 +27,7 @@ the pinned Q6 weights could not be found.
 ## Verification
 
 `uv run --extra dev --extra quality --extra predictor pytest -q`:
-**355 passed, 6 external-source skips**.
+**465 passed, 6 external-source skips** (before the final aligned-arena regression).
 
 With `EXPERTFLOW_LLAMA_SOURCE` set to the pinned static fork, the two applicable
 static/profile source-contract suites passed **6 tests**. Historical temporal
@@ -45,7 +45,9 @@ have run yet; native token, memory, numerical-path and replay gates remain.
 Model: `C:/models/gemma-4-26b-a4b-q6/google_gemma-4-26B-A4B-it-Q6_K.gguf`.
 Size: **22,862,575,520 bytes**. SHA-256:
 `089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba`.
-Task 2 is now in progress, followed by Tasks 3–11 without routine pauses.
+Tasks 2–10 are implemented and individually verified on ef-v2. Task 11 is in
+progress: complete CPU verification, recorded reproduction, live stock search,
+confirmation and sealed replay. No live performance verdict is available yet.
 
 ## Resume
 

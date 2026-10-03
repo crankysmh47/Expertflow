@@ -130,7 +130,7 @@ class StaticPlacementPass:
         for c in candidates:
             if not c.layer_ids or any(r != 'numerical_path_change' for r in c.rejection_reasons):
                 continue
-            generated.append(replace(stock, settings=replace(stock.settings, static=StaticPlacement(c.layer_ids)),
+            generated.append(replace(stock, settings=replace(stock.settings, static=StaticPlacement(c.layer_ids, arena_bytes=c.arena_bytes)),
                                      status=CandidateStatus.REJECTED, measurement_ids=(),
                                      rejection_reasons=c.rejection_reasons))
         output = state.with_analysis('static_candidates', candidates)

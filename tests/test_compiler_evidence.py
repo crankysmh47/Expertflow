@@ -13,7 +13,12 @@ from expertflow.compiler.schema import ArtifactIdentity, WorkloadIR, canonical_p
 
 def record_fixture(tmp_path, name='run', **changes):
     w = WorkloadIR('hello', 4096, 3)
-    identities = PlanIdentities('a' * 64, 'b' * 64, canonical_sha256(w), 'c' * 64, w)
+    from expertflow.compiler.runner import RuntimeBinding
+    executable = tmp_path / 'runtime'
+    executable.write_bytes(b'pinned fixture executable')
+    binding = RuntimeBinding(ArtifactIdentity(str(executable.resolve()), executable.stat().st_size, file_sha256(executable)),
+                             '{"patches":[]}', (), None)
+    identities = PlanIdentities('a' * 64, 'b' * 64, canonical_sha256(w), binding.sha256, w)
     candidate = CandidatePlan(identities, RuntimeSettings('auto', True))
     key = MeasurementKey.from_candidate(candidate)
     payloads = {
@@ -24,6 +29,7 @@ def record_fixture(tmp_path, name='run', **changes):
         'memory': {'samples': [{'pid': 123, 'dedicated_bytes': 100, 'device_free_bytes': 512 << 20}]},
         'process': {'pid': 123, 'exited': True, 'exit_code': 0, 'cleanup': True},
         'launch': {'candidate_id': candidate.candidate_id, 'settings_sha256': canonical_sha256(candidate.settings),
+                   'runtime_binding': canonical_payload(binding),
                    'runtime_sha256': identities.runtime_sha256, 'model_sha256': identities.model_sha256,
                    'workload_sha256': identities.workload_sha256},
     }
@@ -90,6 +96,7 @@ def test_real_store_verification_and_sealing(tmp_path):
     ('memory', lambda p: p['samples'][0].update(pid=999)),
     ('process', lambda p: p.update(cleanup=False)),
     ('launch', lambda p: p.update(candidate_id='other')),
+    ('launch', lambda p: p.pop('runtime_binding')),
 ])
 def test_caller_pass_flags_cannot_override_raw_failure(tmp_path, role, mutation):
     record, _ = record_fixture(tmp_path)

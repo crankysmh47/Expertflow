@@ -34,6 +34,7 @@ from expertflow.runtime.cuda_transfer import (
 from expertflow.runtime.measurement import run_measured_baseline
 from expertflow.trace.io import load_router_events
 from expertflow.trace.parity import compare_token_sequences
+from expertflow.compiler.commands import add_compiler_commands, configure_sealed_run, handle_compiler_command
 from expertflow.product.commands import (
     DEFAULT_DEPLOYMENT,
     build_runtime_command,
@@ -55,6 +56,7 @@ def build_parser() -> argparse.ArgumentParser:
         description="Profile and explain sparse-MoE routing on local hardware.",
     )
     commands = parser.add_subparsers(dest="command", required=True)
+    add_compiler_commands(commands)
 
     baseline = commands.add_parser(
         "baseline", help="Run and measure an unmodified llama.cpp baseline."
@@ -312,10 +314,11 @@ def build_parser() -> argparse.ArgumentParser:
     optimize.add_argument("--output", type=Path, required=True)
 
     run = commands.add_parser("run", help="Launch inference from a deployment manifest.")
-    run.add_argument("deployment", type=Path)
+    run.add_argument("deployment", type=Path, nargs="?")
     run.add_argument("--runtime", type=Path)
     run.add_argument("--model", type=Path)
     run.add_argument("--dry-run", action="store_true")
+    configure_sealed_run(run)
 
     serve = commands.add_parser("serve", help="Launch an OpenAI-compatible llama-server deployment.")
     serve.add_argument("deployment", type=Path)
@@ -1017,6 +1020,11 @@ def _run_deadline_eval(args: argparse.Namespace) -> int:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if args.command in {"inspect", "compile", "validate", "explain"} or args.command == "run" and args.plan is not None:
+        return handle_compiler_command(args)
+    if args.command == "run" and args.deployment is None:
+        print(json.dumps({"status": "failure", "reason": "deployment or --plan is required"}))
+        return 2
     if args.command == "baseline":
         return _run_baseline(args)
     if args.command == "collect-pairs":

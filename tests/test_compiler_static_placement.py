@@ -63,3 +63,19 @@ def test_gemma_profile_names_are_normalized_only_in_adapter():
     normalized = Gemma4Adapter().normalize_profile(raw, profile_id='one')
     assert normalized == rows()
     assert len(rank_layer_benefits(model_fixture(), normalized)) == 2
+
+
+def test_static_pass_preserves_aligned_arena_in_lowered_rejected_settings():
+    from expertflow.compiler.passes.base import CompilerState, PassManager
+    from expertflow.compiler.static_placement import StaticPlacementPass
+    from expertflow.compiler.plan import CandidateStatus
+    from test_compiler_schema import workload_fixture
+    from test_compiler_stock import identities
+    from expertflow.compiler.stock import stock_candidate_matrix
+    from expertflow.compiler.schema import HardwareIR
+    stock = replace(stock_candidate_matrix(identities())[1], status=CandidateStatus.MEASURED)
+    hardware = HardwareIR('GPU-test','RTX','12',16000 << 20,14000 << 20,'616','12.8','b' * 64)
+    profile = [{**r, 'profile_id':str(i)} for i in range(3) for r in rows()]
+    state = CompilerState(model_fixture(),hardware,stock.identities.workload,(stock,),capabilities=frozenset({'stock-baseline'}))
+    result = PassManager([StaticPlacementPass(profile,baseline_peak_bytes=1000)]).run(state)
+    assert result.candidates[1].settings.static.arena_bytes == result.analysis('static_candidates')[1]['arena_bytes']

@@ -200,6 +200,20 @@ class EvidenceStore:
             raise ValueError('record identity/settings mismatch')
         w = i.workload
         launch = artifacts['launch']
+        try:
+            from .runner import RuntimeBinding
+            raw_binding = launch['runtime_binding']
+            binding = RuntimeBinding(ArtifactIdentity(**raw_binding['server']), raw_binding['manifest_json'],
+                tuple(ArtifactIdentity(**a) for a in raw_binding['dependencies']),
+                ArtifactIdentity(**raw_binding['cuda_runtime']) if raw_binding['cuda_runtime'] else None)
+            binding.verify()
+            if binding.sha256 != i.runtime_sha256:
+                raise ValueError('runtime binding hash mismatch')
+            is_fork = bool(json.loads(binding.manifest_json).get('patches'))
+            if is_fork != (record.numerical_path == 'fork_off_vs_pristine') and record.numerical_path != 'numerical_path_change':
+                raise ValueError('runtime comparison role mismatch')
+        except (KeyError, TypeError, OSError) as error:
+            raise ValueError('missing or malformed verified runtime binding') from error
         for name, expected in {'candidate_id': candidate.candidate_id,
                                'settings_sha256': canonical_sha256(settings),
                                'runtime_sha256': i.runtime_sha256, 'model_sha256': i.model_sha256,

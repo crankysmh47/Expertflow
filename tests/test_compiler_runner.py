@@ -31,7 +31,10 @@ class Handler(BaseHTTPRequestHandler):
   else:
    if mode=='timeout': time.sleep(2)
    response={'tokens':[] if mode=='malformed' else [10,11,12], 'timings':{'predicted_n':3,'predicted_ms':100}}
-  self.send_response(200); self.end_headers(); self.wfile.write(json.dumps(response).encode())
+  self.send_response(200); self.send_header('Content-Length',str(len(json.dumps(response).encode()))); self.end_headers()
+  if mode=='trickle' and self.path=='/completion':
+   for byte in json.dumps(response).encode(): self.wfile.write(bytes([byte])); self.wfile.flush(); time.sleep(.3)
+  else: self.wfile.write(json.dumps(response).encode())
 HTTPServer(('127.0.0.1',port),Handler).serve_forever()
 ''', encoding='utf-8')
     return p
@@ -65,9 +68,17 @@ def test_lowering_scrubs_inherited_controls_and_uses_frozen_settings(tmp_path):
     assert launch.request['return_tokens'] is True and launch.request['stream'] is False
 
 
+def test_compute_idle_uses_engine_activity_not_graphics_process_listing():
+    from expertflow.compiler.runner import compute_activity_by_pid
+    assert compute_activity_by_pid([('pid_123_luid_0_engtype_3D', 0, 25.0)]) == {}
+    assert compute_activity_by_pid([('pid_123_luid_0_engtype_Compute_0', 0, 25.0)]) == {123: 25.0}
+    with pytest.raises(RuntimeError, match='unavailable'):
+        compute_activity_by_pid([])
+
+
 @pytest.mark.parametrize('mode,memory_good,expected', [
     ('ok', True, 'measured'), ('malformed', True, 'validation_stop'),
-    ('timeout', True, 'environment_blocked'), ('ok', False, 'environment_blocked')])
+    ('timeout', True, 'environment_blocked'), ('trickle', True, 'environment_blocked'), ('ok', False, 'environment_blocked')])
 def test_owned_real_child_health_completion_failure_and_cleanup(tmp_path, tiny_child, mode, memory_good, expected):
     from dataclasses import replace
     from expertflow.compiler.plan import PlanIdentities
