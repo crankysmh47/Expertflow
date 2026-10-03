@@ -394,8 +394,10 @@ Phase 3 gate.
 Add `"pandas>=2.2,<3"` to `[project.optional-dependencies].quality`, then run `uv lock`.
 Set pytest `pythonpath = [".", "src"]`: existing tests import both `scripts`
 and `tests.source_contract_paths`; the entry-point pytest launcher otherwise
-cannot collect them in a clean uv environment. Use `uv run --extra dev --extra
-quality` for every test command below (the shorter commands assume those extras
+cannot collect them in a clean uv environment. The full suite also imports
+`expertflow.predictor.learned` directly, so sync the existing `predictor` extra;
+do not make that legacy test disappear by excluding it. Use `uv run --extra dev
+--extra quality --extra predictor` for every test command below (the shorter commands assume those extras
 were already synced). Pin the reference interpreter with `uv sync --python 3.11`.
 
 Create the historical workload from the binding contract above with

@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "launcher_abi": "1.0.0",
+  "upstream_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+  "expertflow_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+  "patches": [],
+  "build": {
+    "generator": "Ninja",
+    "configuration": "Release",
+    "compiler": "MSVC v143 14.39.33519",
+    "cuda": "12.8.93",
+    "flags": ["GGML_CUDA=ON", "CMAKE_BUILD_TYPE=Release"]
+  },
+  "capabilities": {"max_static_layers": 0, "max_static_shadows": 0},
+  "binaries": {
+    "llama-cli.exe": "56d5cbe8fc5782595a280345e5e2f70bc1bcc79c94130e1b73bb4eb3cdeacd0f",
+    "llama-server.exe": "0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428"
+  }
+}

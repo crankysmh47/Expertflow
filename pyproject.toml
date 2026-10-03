@@ -24,11 +24,12 @@ predictor = [
 quality = [
     "huggingface-hub>=0.36,<1",
     "pyarrow>=20,<22",
+    "pandas>=2.2,<3",
 ]
 
 [tool.pytest.ini_options]
 addopts = "-ra"
-pythonpath = ["src"]
+pythonpath = [".", "src"]
 testpaths = ["tests"]
 
 [tool.hatch.build.targets.wheel]
