@@ -1,0 +1,4594 @@
+{
+  "bootstrap_samples": 10000,
+  "bootstrap_seed": 20261003,
+  "ci90_pct": [
+    -8.830937628375876,
+    -5.125217556796864
+  ],
+  "ci95_pct": [
+    -9.104248422612963,
+    -4.744118528094895
+  ],
+  "direct_cv_pct": 4.688948195372837,
+  "direct_mean_tps": 23.688042832943438,
+  "direct_tps": [
+    24.200085551083685,
+    24.091538435296926,
+    24.27874349535949,
+    24.379750807519724,
+    24.424124929399014,
+    24.366757004514607,
+    24.23995892841959,
+    23.502440122484433,
+    22.243001665270977,
+    21.154027390085925
+  ],
+  "frozen": {
+    "bootstrap_samples": 10000,
+    "candidates": {
+      "threads12": {
+        "estimated_decode_tps": null,
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measurement_ids": [],
+        "rejection_reasons": [],
+        "settings": {
+          "batch_size": 2048,
+          "cpu_moe": true,
+          "cuda_graphs": "on",
+          "gpu_layers": 99,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "microbatch_size": 512,
+          "static": null
+        },
+        "status": "unmeasured",
+        "validation": []
+      },
+      "threads8": {
+        "estimated_decode_tps": null,
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 8,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+        },
+        "measurement_ids": [],
+        "rejection_reasons": [],
+        "settings": {
+          "batch_size": 2048,
+          "cpu_moe": true,
+          "cuda_graphs": "on",
+          "gpu_layers": 99,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "microbatch_size": 512,
+          "static": null
+        },
+        "status": "unmeasured",
+        "validation": []
+      }
+    },
+    "maximum_cv_pct": 10,
+    "minimum_ci95_lower_pct": 0,
+    "minimum_point_gain_pct": 5,
+    "pairs": 10,
+    "prerequisite_database": "C:\\models\\expertflow\\runs\\compiler-refinement-20261003\\compiler.sqlite3",
+    "prerequisite_database_sha256": "49d97d46663c7c25494d4a1abb5f9433e580cf9c8319d75599c98341f297c222",
+    "prerequisite_report": "C:\\models\\expertflow\\runs\\compiler-refinement-20261003\\aa\\report.json",
+    "prerequisite_report_sha256": "66438d5bd01755e1fe35644f85ee5b302bbfba5c575ca80a2f6681c12494df9a",
+    "schedule": [
+      [
+        "threads8",
+        "threads12"
+      ],
+      [
+        "threads8",
+        "threads12"
+      ],
+      [
+        "threads12",
+        "threads8"
+      ],
+      [
+        "threads8",
+        "threads12"
+      ],
+      [
+        "threads12",
+        "threads8"
+      ],
+      [
+        "threads12",
+        "threads8"
+      ],
+      [
+        "threads12",
+        "threads8"
+      ],
+      [
+        "threads8",
+        "threads12"
+      ],
+      [
+        "threads8",
+        "threads12"
+      ],
+      [
+        "threads12",
+        "threads8"
+      ]
+    ],
+    "seed": 20261003,
+    "source_commit": "922e8b5b36e10619fd12a60e37697df0bf314829",
+    "source_files": {
+      "docs\\superpowers\\specs\\2026-10-03-compiler-eight-thread-experiment.md": "a2a7338793730a9eb1d9d34a569b5fface2e401ce582cdd0b66f57e5c43af823",
+      "scripts\\benchmark_compiler_refinement.py": "9bf5db7ec87f18ef99159c9cfa3484485133693c0b885dd8209b1956922e3dec",
+      "src\\expertflow\\compiler\\__init__.py": "682e7a8b5de67d7860d06a0bedf5917314a38dfbce34d2f95ed98d27c13f6736",
+      "src\\expertflow\\compiler\\adapters\\__init__.py": "84cc32ef696f27fa4e9875ddd2fc17ffff6c63ed087978b9fe3785ae800fb7a6",
+      "src\\expertflow\\compiler\\adapters\\base.py": "d3ccc82954d79d2251b09a5fe00bdded14b8c888617f587cfcc586839670b708",
+      "src\\expertflow\\compiler\\adapters\\gemma4.py": "71976e683e5bf843ed60a3a4d37981d186c23a4258dfe597fc5ccb9f7a55c3f7",
+      "src\\expertflow\\compiler\\commands.py": "987950daa84270123c2e815932da650f8ddb4052cf4aefc2ed52a4fcb624c75e",
+      "src\\expertflow\\compiler\\cost_model.py": "1fe418086f42a9911c1553e0778712869c89066b295970728b7c083aa388fcc4",
+      "src\\expertflow\\compiler\\diagnostics.py": "30a9cd7d2ce663a87aa3d08340c835d57d95a4d72f4c9f4ad797764c88cfc916",
+      "src\\expertflow\\compiler\\evidence.py": "c67bb4553bcc5eed446c028222b1c535b3e198e033cc9e11dd259413d6c8f808",
+      "src\\expertflow\\compiler\\passes\\__init__.py": "5651d7e1cd27e9b162e1a718f8ac9f1632e753420cbeef5ae604949f7f261b23",
+      "src\\expertflow\\compiler\\passes\\base.py": "11cc25d1630940f77de562d02093f369c20165a77b9d3437b14a32b4877301db",
+      "src\\expertflow\\compiler\\pipeline.py": "35b7e3dc7cf925bfd64f029dc19a253e2733cd249e1bddedb9c1b93b232d3a35",
+      "src\\expertflow\\compiler\\plan.py": "5b49935b36b493762574c0387a2cb686a52c2504501e03c5d2af1b277768658f",
+      "src\\expertflow\\compiler\\preflight.py": "ab1b102fe0b423555f986b12dd37bee4e0615375228cbd61e3b0ca6185b94b40",
+      "src\\expertflow\\compiler\\reference.py": "9021a967b97d9d97e72ce3ff5499347080a867099834b12c994295ceb6c38dcf",
+      "src\\expertflow\\compiler\\refinement.py": "b0c8bfef1398ac943f20f442abb6240fd4a7b53dacb73ef4bf29d35b6bac1910",
+      "src\\expertflow\\compiler\\runner.py": "9a326df6a5de6ccd5df5613b3e6fd42ec41649819ceaccee46fe290d970974c1",
+      "src\\expertflow\\compiler\\schema.py": "f3e360489a7922ab156da64dd722364b0aef566971a15a556f50db8f28bfc14d",
+      "src\\expertflow\\compiler\\static_placement.py": "a7ab797692ac8516fbc852c778c129f89e8ba55682d3c8092f486f178a6d5ffd",
+      "src\\expertflow\\compiler\\stock.py": "988d0b3dc56f54dfec447198e65bde57f2a57a40585f4282224573df640d7319"
+    }
+  },
+  "geometric_change_pct": -7.178761115730749,
+  "live_validated_product": false,
+  "method": "percentile bootstrap of ten paired mean log ratios",
+  "one_sided95_lower_pct": -8.830937628375876,
+  "optimization_gain_established": false,
+  "outcomes": [
+    {
+      "measurement_id": "5d4c500e-0980-4031-b23e-b13c8f2fd1c2",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads8",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "d8651bc3-dcf3-4aff-9029-3f9cfad7fe04",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads12",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "5de44500-d43e-4336-83d9-9b5a7d285239",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads8",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "92df733c-fea2-4fe7-8035-3519580ca6e9",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads12",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "c223faed-2687-41f6-ac87-276055858f7d",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads12",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "af0937ac-5332-4b63-a041-eb2d551767fc",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads8",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "bf836ca9-ca08-4db7-81c5-4363a5b7386c",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads8",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "b72b5b43-f519-4e79-8281-ee2c305a9a67",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads12",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "711ab6ac-593b-449f-9c88-01a56bc5e3c6",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads12",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "02a2a296-324a-4e91-84d9-b90e3600f517",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads8",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "d138e5b8-0f8d-4606-bdb5-3420ea2e50e4",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads12",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "b54a990e-fc60-4789-8477-633486a7a5c1",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads8",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "78b32d8f-b682-4d56-9811-fe68ada18a56",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads12",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "30e2b538-cc91-4cf4-ad1e-98a181c69e18",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads8",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "b4402463-ffdd-4f9e-a1be-17d7be4b7053",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads8",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "61761442-7d9e-4e81-8fd2-1ee0aba119d2",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads12",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "45198857-35be-40a2-960d-65c0e93257b2",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads8",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "c77fcd80-8497-47ae-92a7-486a39c549c4",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads12",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "34f07b16-44fb-4122-abf3-8720d9a07d6c",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads12",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "f0bcf384-a73c-4442-95d0-dca6d461e1b7",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads8",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    }
+  ],
+  "paired_log_ratios": [
+    0.023999997437094578,
+    -0.0757344945415106,
+    -0.07477197580550232,
+    -0.0835291869653294,
+    -0.08236698945459509,
+    -0.11030214256422122,
+    -0.12400164087740251,
+    -0.0915073391211747,
+    -0.0756432327222405,
+    -0.05109004633186398
+  ],
+  "rows": [
+    {
+      "arm": "threads8",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads8\\launch.json",
+            "sha256": "3022ef0d23fa88967398de54bf7a0e7f47a949fc2811fe0ec626a533b4c346a2",
+            "size_bytes": 19906
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads8\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads8\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads8\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads8\\completion.json",
+            "sha256": "2ed9ac8b4b94b970f5697a54d05e7b7c37ef76e5c638d75138905706fb31b92a",
+            "size_bytes": 10078
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads8\\memory.json",
+            "sha256": "07032c4d449390f9ffa8a52d9b5fed14f4149b25c38d2b77fea1f552a9a44cf9",
+            "size_bytes": 305865
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads8\\process.json",
+            "sha256": "723bee1ee0c5287357f6040d2ca4fd7717473525c9192a35cdc72c5a944d6d1c",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads8\\run-start.json",
+            "sha256": "720223be14a167a5464932fc7c26b89b4f2bd2ddcde3390ebf1fc30f91e09f2c",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads8\\completion-wall.json",
+            "sha256": "b3bd3e8e6253babc785ca72f39e55c854e21ad482d0fdb45a7914a57f81f38bf",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads8\\phase-timing.json",
+            "sha256": "041b53adc9921ff19c72089cfde13805846f36cdbc2fc161bb35699b2e5771c0",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "fab1e6bdb0a3f383a5c73193b11c5a95de49e4a772d0f18373c92fe30582e3d2",
+      "completion_wall_ms": 24900.7331,
+      "decode_tps": 24.787913258570665,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 124,
+          "max": 141.4529244551641,
+          "mean": 138.02819190687146,
+          "min": 130.40709525676206
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 124,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 124,
+          "max": 62.78979223964007,
+          "mean": 42.75461542518862,
+          "min": 2.2991949986945315
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 124,
+          "max": 34,
+          "mean": 20.516129032258064,
+          "min": 5
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 124,
+          "max": 13801,
+          "mean": 12594.548387096775,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 124,
+          "max": 19,
+          "mean": 15.379032258064516,
+          "min": 4
+        },
+        "gpu_power_mw": {
+          "count": 124,
+          "max": 48347,
+          "mean": 39876.854838709674,
+          "min": 14738
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 124,
+          "max": 2820,
+          "mean": 2509.5080645161293,
+          "min": 960
+        },
+        "gpu_temperature_c": {
+          "count": 124,
+          "max": 44,
+          "mean": 41.516129032258064,
+          "min": 38
+        },
+        "measurement_samples": 124,
+        "minimum_device_free_bytes": 12131872768,
+        "owned_cpu_busy_cores_mean": 6.3310027285151484,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6542.114900003071,
+          "teardown_ms": 1743.7618999974802,
+          "tokenize_ms": 14.752799994312227
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 8,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+      },
+      "measured": true,
+      "measurement_id": "5d4c500e-0980-4031-b23e-b13c8f2fd1c2",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "d5ade42976356db3efd209ad389f6103c60194d0fcf96818c224d24870506326",
+      "pair": 0,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 34.151702200004365,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-00-threads8",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads12",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads12\\launch.json",
+            "sha256": "550f5c2bcaeddeb63b6f15f7a7d5f749a597053e796af69c278a19a9f6c72484",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads12\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads12\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads12\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads12\\completion.json",
+            "sha256": "ebf89037685c74b534401aed56f66c5670f33218f3c2bd0e48a99ebf0c9059aa",
+            "size_bytes": 10067
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads12\\memory.json",
+            "sha256": "37a5aa8cc6dfee0ce51abc45ac98c4bf96b4005dc76ba343a8a065b5f60bc877",
+            "size_bytes": 331380
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads12\\process.json",
+            "sha256": "4754789d1b60e8e6c0f7af78b9397c5e4f1735a4e4646c094b5b119412250524",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads12\\run-start.json",
+            "sha256": "1d56b37f3a6f540ff849e938d5acefb810bc3a3ddf0f411b7d0ab59e79cb2f68",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads12\\completion-wall.json",
+            "sha256": "87e34aa998e1e122f9823e74119e59c460cbd1af92c83cbf6ba4eabf25e301c1",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-00-threads12\\phase-timing.json",
+            "sha256": "2df90aa389235e4874490aae8e5c24903671fecd707c9457d882adbbfae7e7e3",
+            "size_bytes": 115
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 28934.7319,
+      "decode_tps": 24.200085551083685,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 144,
+          "max": 140.63408674404397,
+          "mean": 134.45109251258648,
+          "min": 119.95338983050847
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 144,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 144,
+          "max": 85.94926057411733,
+          "mean": 55.42490402934517,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 144,
+          "max": 34,
+          "mean": 17.555555555555557,
+          "min": 3
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 144,
+          "max": 13801,
+          "mean": 12289.888888888889,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 144,
+          "max": 25,
+          "mean": 13.625,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 144,
+          "max": 48370,
+          "mean": 37350.756944444445,
+          "min": 14144
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 144,
+          "max": 2820,
+          "mean": 2332.9930555555557,
+          "min": 592
+        },
+        "gpu_temperature_c": {
+          "count": 144,
+          "max": 46,
+          "mean": 42.88194444444444,
+          "min": 40
+        },
+        "measurement_samples": 144,
+        "minimum_device_free_bytes": 12131872768,
+        "owned_cpu_busy_cores_mean": 8.19910239132089,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5124.7079000022495,
+          "teardown_ms": 1768.504200008465,
+          "tokenize_ms": 0.978600000962615
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "d8651bc3-dcf3-4aff-9029-3f9cfad7fe04",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "615d96710c60f03a2f937b7c6a992738bd1681ff1d2ce7a46a7aef8aac77eb06",
+      "pair": 0,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 36.73978600000555,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-00-threads12",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads8",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads8\\launch.json",
+            "sha256": "7b5a95c3429538db50bab7cd593cff6381e08f20d94aedd945811b678d6137df",
+            "size_bytes": 19906
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads8\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads8\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads8\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads8\\completion.json",
+            "sha256": "6bef1b6ca9ae34641a5f8f257079c05a26f396d8df6cbfd2522c9ad76452aca5",
+            "size_bytes": 10078
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads8\\memory.json",
+            "sha256": "80c5f1fff8296ff25423e3a39a24df1fd719ba7eabbba509d7fe9031b53e5f07",
+            "size_bytes": 345088
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads8\\process.json",
+            "sha256": "1c429b525d35b08460de6d171030367a939b272ae037f6ea3dbd895fef08b798",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads8\\run-start.json",
+            "sha256": "d7cdaa77652844a309e0ad3558d5a09172eb41df95ba902aa4bbc33bff661bc4",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads8\\completion-wall.json",
+            "sha256": "aefbeda89c128c4b775e31eca24fcdf9c5f0e3fb09ee4d91720ee13af0acfe98",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads8\\phase-timing.json",
+            "sha256": "486d0bdd9187ca33f5ef259f0f87d6e1d72ac8e1d3a00354fa4f015ce48975bc",
+            "size_bytes": 115
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "fab1e6bdb0a3f383a5c73193b11c5a95de49e4a772d0f18373c92fe30582e3d2",
+      "completion_wall_ms": 30368.9705,
+      "decode_tps": 22.33435736943496,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 150,
+          "max": 140.82604748603353,
+          "mean": 135.6923234360671,
+          "min": 121.06026438569207
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 150,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 150,
+          "max": 58.236746317544096,
+          "mean": 35.60405254211494,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 150,
+          "max": 34,
+          "mean": 17.246666666666666,
+          "min": 3
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 150,
+          "max": 13801,
+          "mean": 12033,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 150,
+          "max": 29,
+          "mean": 13.493333333333334,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 150,
+          "max": 48964,
+          "mean": 36538.05333333334,
+          "min": 14028
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 150,
+          "max": 2820,
+          "mean": 2294,
+          "min": 480
+        },
+        "gpu_temperature_c": {
+          "count": 150,
+          "max": 47,
+          "mean": 43.99333333333333,
+          "min": 41
+        },
+        "measurement_samples": 150,
+        "minimum_device_free_bytes": 12162347008,
+        "owned_cpu_busy_cores_mean": 5.215020576131687,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5207.957499995246,
+          "teardown_ms": 1760.901500005275,
+          "tokenize_ms": 14.372699995874427
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 8,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+      },
+      "measured": true,
+      "measurement_id": "5de44500-d43e-4336-83d9-9b5a7d285239",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "ee0ef2e2f1680f2d9e6420717f1ddbe052fd65b2a7f070b5d0bca52c0e2f81d0",
+      "pair": 1,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 38.26056239999889,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-01-threads8",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads12",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads12\\launch.json",
+            "sha256": "c67e3ad745957e0eb2b4691f3cfcb7a6c69b36087fd1b6539e61bd462c787d98",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads12\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads12\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads12\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads12\\completion.json",
+            "sha256": "1b1f8f61bc42ce5fa54780d8f6ee436519be068e27d372b9736c1ad8e7074591",
+            "size_bytes": 10081
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads12\\memory.json",
+            "sha256": "38bf6470c111e091df483f48b1f6b262ab1bb852b7fc5a0d95269fd430647d8a",
+            "size_bytes": 341134
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads12\\process.json",
+            "sha256": "95308524150d97eff97d1db42a79b2dbd99ee2e68bda806aa740bcbe6e50fbda",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads12\\run-start.json",
+            "sha256": "401bb55fcf2dc71ea1a1fe75e370c08c2a0b97e2dcba3817c5724acea873c0be",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads12\\completion-wall.json",
+            "sha256": "cf79dd66038c4063b84efc0ff21354ab979336e82cbb21b036471819524b81ac",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-01-threads12\\phase-timing.json",
+            "sha256": "bd9ebcbbaf68c32ad8ce3693b18e9c47a1ec1f2f1fa49e189947bd7752b478ca",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 29988.8795,
+      "decode_tps": 24.091538435296926,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 148,
+          "max": 141.82088860031536,
+          "mean": 134.83736534984712,
+          "min": 125.01243650376598
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 148,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 148,
+          "max": 86.6380666813918,
+          "mean": 52.911591387412386,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 148,
+          "max": 31,
+          "mean": 17.263513513513512,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 148,
+          "max": 13801,
+          "mean": 11917.216216216217,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 148,
+          "max": 24,
+          "mean": 13.378378378378379,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 148,
+          "max": 48805,
+          "mean": 36715.55405405405,
+          "min": 14159
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 148,
+          "max": 2827,
+          "mean": 2213.864864864865,
+          "min": 360
+        },
+        "gpu_temperature_c": {
+          "count": 148,
+          "max": 48,
+          "mean": 45.310810810810814,
+          "min": 42
+        },
+        "measurement_samples": 148,
+        "minimum_device_free_bytes": 12162347008,
+        "owned_cpu_busy_cores_mean": 7.924479166666667,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5232.833000001847,
+          "teardown_ms": 1745.6142000010004,
+          "tokenize_ms": 1.0990000009769574
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "92df733c-fea2-4fe7-8035-3519580ca6e9",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "44489b82abde52bd1f2395d1cbb898e82da7215bd40881f5089e00220b3f3004",
+      "pair": 1,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 37.87935810000636,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-01-threads12",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads12",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads12\\launch.json",
+            "sha256": "75e1cf55a59e5a03b851e145bd93658d4d5254edae029dccc5b0bbc6372c51e9",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads12\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads12\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads12\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads12\\completion.json",
+            "sha256": "88d3af63e1d55f14641882cf610bc0976e86b026eee58b86738a1ee477447978",
+            "size_bytes": 10078
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads12\\memory.json",
+            "sha256": "5f33c4f8712c8bd4b90309c4953be985c1216f92ba95f6c6c4883acbcef2d74f",
+            "size_bytes": 323507
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads12\\process.json",
+            "sha256": "45adb8228626975166cec3075ab260417e4ee25c1c15e8ecc6a8ddfa630db659",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads12\\run-start.json",
+            "sha256": "678c2c726b9d606570a6e1a9f7b5b2d45d9cdfdd7eafbe1bf22747a764342f53",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads12\\completion-wall.json",
+            "sha256": "64edf9f9294f222bbfaafa2a4e390d76d7a1bac692e3138e1c17f0f3101c95df",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads12\\phase-timing.json",
+            "sha256": "09a432118f6c34af99896b775672f4ddbe6dea4f247d133b8acf831d9f9fa4b3",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 28212.6831,
+      "decode_tps": 24.27874349535949,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 140,
+          "max": 141.74807102351957,
+          "mean": 134.3795003590834,
+          "min": 120.28438272779151
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 140,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 140,
+          "max": 85.22182757570313,
+          "mean": 56.18927303196372,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 140,
+          "max": 33,
+          "mean": 18.22142857142857,
+          "min": 2
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 140,
+          "max": 13801,
+          "mean": 12198.142857142857,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 140,
+          "max": 23,
+          "mean": 13.978571428571428,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 140,
+          "max": 49225,
+          "mean": 38439.21428571428,
+          "min": 14157
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 140,
+          "max": 2820,
+          "mean": 2353.5785714285716,
+          "min": 502
+        },
+        "gpu_temperature_c": {
+          "count": 140,
+          "max": 48,
+          "mean": 46.378571428571426,
+          "min": 43
+        },
+        "measurement_samples": 140,
+        "minimum_device_free_bytes": 12162347008,
+        "owned_cpu_busy_cores_mean": 8.425174527801218,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5025.194100002409,
+          "teardown_ms": 1749.3613999977242,
+          "tokenize_ms": 0.9833000076469034
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "c223faed-2687-41f6-ac87-276055858f7d",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "ec0ed5347e24b943f5601fb43a4c383f946bd314e9cc1293c5e5f27dfb18cfda",
+      "pair": 2,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 35.90003699999943,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-02-threads12",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads8",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads8\\launch.json",
+            "sha256": "97f625c23ce9f66f4bbd562471918c403c2ab143c0f6c2c30e40bb3e5d4ae184",
+            "size_bytes": 19906
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads8\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads8\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads8\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads8\\completion.json",
+            "sha256": "5465d999ab7ad80e585ed5c47758d0dacd154bf8b34674c1f0c055adab4c44a2",
+            "size_bytes": 10078
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads8\\memory.json",
+            "sha256": "154a5bbc84c3751d7b9ac58a1d78400b66601645258b9050c54410778b96e272",
+            "size_bytes": 341193
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads8\\process.json",
+            "sha256": "615e729ddfa75821df3803350db89d8fb639eb13e323dab8d2e0667b3b3c0fdd",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads8\\run-start.json",
+            "sha256": "85ffa0facba4d48c7a93d3a0f0b9b26309d2f8f0852f26fe634f281494b9d523",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads8\\completion-wall.json",
+            "sha256": "89aadb7fc8e447e9edb3c171cb6e82dc9526c4297dd577592f1c68ae394d241c",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-02-threads8\\phase-timing.json",
+            "sha256": "da3a4027b06d685ed6d5d9f659c4cbb72c343bd78b522f31ab80eb697d67f94e",
+            "size_bytes": 117
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "fab1e6bdb0a3f383a5c73193b11c5a95de49e4a772d0f18373c92fe30582e3d2",
+      "completion_wall_ms": 30081.5439,
+      "decode_tps": 22.529582838371894,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 149,
+          "max": 141.3253108348135,
+          "mean": 135.5512755264425,
+          "min": 121.42193308550186
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 149,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 149,
+          "max": 60.03656720380736,
+          "mean": 35.73617913249546,
+          "min": 0.38546228501650237
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 149,
+          "max": 34,
+          "mean": 17.48993288590604,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 149,
+          "max": 13801,
+          "mean": 12112.409395973154,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 149,
+          "max": 28,
+          "mean": 13.630872483221477,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 149,
+          "max": 49697,
+          "mean": 37249.42953020134,
+          "min": 13910
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 149,
+          "max": 2827,
+          "mean": 2294.731543624161,
+          "min": 472
+        },
+        "gpu_temperature_c": {
+          "count": 149,
+          "max": 50,
+          "mean": 47.10738255033557,
+          "min": 44
+        },
+        "measurement_samples": 149,
+        "minimum_device_free_bytes": 12162347008,
+        "owned_cpu_busy_cores_mean": 5.26890742340458,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5139.2793000122765,
+          "teardown_ms": 1745.7067000068491,
+          "tokenize_ms": 1.0131000017281622
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 8,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+      },
+      "measured": true,
+      "measurement_id": "af0937ac-5332-4b63-a041-eb2d551767fc",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "70ceaa805f07055bcb19f32a5983961a1f112f5617d13d69fd0241f8bd1eb6af",
+      "pair": 2,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 37.878521899998304,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-02-threads8",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads8",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads8\\launch.json",
+            "sha256": "6ecea510a13b71c665cc404fb5b371a8083ee05566a4899e9c88761987e527c9",
+            "size_bytes": 19906
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads8\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads8\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads8\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads8\\completion.json",
+            "sha256": "1af428f8cfde70f20b450a7c57dae701507bb8c9b60f9304b48a8177ff233417",
+            "size_bytes": 10078
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads8\\memory.json",
+            "sha256": "d9ec3954d17ea456ea128f447d4f8d4b7562309aae8482649f375ce0b4ce2254",
+            "size_bytes": 341222
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads8\\process.json",
+            "sha256": "0f8c0cafc1e7c0449e085bb9f74d0676a035e7794b4d37a85a06ec7bc2d99bbe",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads8\\run-start.json",
+            "sha256": "b293b9dde312aac6c82edf8a480686754ceaac01b1ed5b5b1da41cf0d6df9054",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads8\\completion-wall.json",
+            "sha256": "e0c2c769108087653abc2e45cc52108f9368634ab3e0c0ff3e6b2828b8cca979",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads8\\phase-timing.json",
+            "sha256": "c42e8aac85d2a3dcd80397b4c5d8a7d26bc414d98606969ff7d7a30c57b08f1d",
+            "size_bytes": 115
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "fab1e6bdb0a3f383a5c73193b11c5a95de49e4a772d0f18373c92fe30582e3d2",
+      "completion_wall_ms": 29970.1216,
+      "decode_tps": 22.42606090488893,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 148,
+          "max": 141.88365019011408,
+          "mean": 136.29114882386125,
+          "min": 126.8589462129528
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 148,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 148,
+          "max": 71.3420539081185,
+          "mean": 36.98098512334916,
+          "min": 1.623921049504462
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 148,
+          "max": 33,
+          "mean": 17.972972972972972,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 148,
+          "max": 13801,
+          "mean": 12101,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 148,
+          "max": 31,
+          "mean": 13.871621621621621,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 148,
+          "max": 49735,
+          "mean": 37697.43243243243,
+          "min": 14454
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 148,
+          "max": 2827,
+          "mean": 2309.9527027027025,
+          "min": 472
+        },
+        "gpu_temperature_c": {
+          "count": 148,
+          "max": 50,
+          "mean": 47.804054054054056,
+          "min": 45
+        },
+        "measurement_samples": 148,
+        "minimum_device_free_bytes": 12162347008,
+        "owned_cpu_busy_cores_mean": 5.35553405185406,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5164.385399999446,
+          "teardown_ms": 1759.6785000059754,
+          "tokenize_ms": 1.138299994636327
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 8,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+      },
+      "measured": true,
+      "measurement_id": "bf836ca9-ca08-4db7-81c5-4363a5b7386c",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "be928d6367230b3fe17796b1424b024105c069d063c28693cd0c03d3937e1440",
+      "pair": 3,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 37.80814960000862,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-03-threads8",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads12",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads12\\launch.json",
+            "sha256": "46459b6bbdfd4cb40b944e584497f6fca0aa82102253bf35aae704b0810973a6",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads12\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads12\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads12\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads12\\completion.json",
+            "sha256": "caee95c067a61997b7dde430a65c611f149ea4efaacf8a3be850d9b04c43c9fd",
+            "size_bytes": 10080
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads12\\memory.json",
+            "sha256": "d05da97eb5532d6e66c6a6a038957e3952454132e26c64ce740712161adc29be",
+            "size_bytes": 321636
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads12\\process.json",
+            "sha256": "f30a03f7cd0f407120e54f2e4a30286ad06264e1a28afc217233e6ec886df70e",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads12\\run-start.json",
+            "sha256": "eaf7ab39adbd81c7ebda11295e99fbff7b2c8c616e0023b0f2186a2dbb1b1638",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads12\\completion-wall.json",
+            "sha256": "8469252a21c19ed8f1b84d41189ce202c9fd1bc6a64a31f57ba1cb9e5c573e8f",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-03-threads12\\phase-timing.json",
+            "sha256": "a18a49a82cc3ca2e21e4c8371e0fbfa758f233a5fa55a8225cdb3ae8722a70ca",
+            "size_bytes": 115
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 28031.2749,
+      "decode_tps": 24.379750807519724,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 139,
+          "max": 140.74034095138836,
+          "mean": 134.6520286219799,
+          "min": 120.05933014354066
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 139,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 139,
+          "max": 87.63601108491864,
+          "mean": 56.46184480307622,
+          "min": 0.787787703204923
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 139,
+          "max": 34,
+          "mean": 18.194244604316548,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 139,
+          "max": 13801,
+          "mean": 12333.374100719424,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 139,
+          "max": 19,
+          "mean": 13.964028776978417,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 139,
+          "max": 49849,
+          "mean": 39258.474820143885,
+          "min": 14514
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 139,
+          "max": 2820,
+          "mean": 2384.115107913669,
+          "min": 532
+        },
+        "gpu_temperature_c": {
+          "count": 139,
+          "max": 51,
+          "mean": 48.70503597122302,
+          "min": 45
+        },
+        "measurement_samples": 139,
+        "minimum_device_free_bytes": 12162347008,
+        "owned_cpu_busy_cores_mean": 8.42558918957286,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 4996.893200004706,
+          "teardown_ms": 1728.482400008943,
+          "tokenize_ms": 0.9977000008802861
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "b72b5b43-f519-4e79-8281-ee2c305a9a67",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "f373dd470828b60f2526418a826c4b7d04b29aa00a687ccdf37550b225f250db",
+      "pair": 3,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 35.66993980000552,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-03-threads12",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads12",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads12\\launch.json",
+            "sha256": "8409850fad58c9fc197a7b261ab8ef5f6ddd1af19f9aeaf5ebd6f1f2d6fa0414",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads12\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads12\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads12\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads12\\completion.json",
+            "sha256": "09efc94cd9fde416c6751c40a198206a8e5124cb80aceecd72ad11e3ce3c53d1",
+            "size_bytes": 10074
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads12\\memory.json",
+            "sha256": "04dc11469d09838d4a7ba1583541f06ef0f7a69ccc9525fb027a8d40826e9af7",
+            "size_bytes": 323541
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads12\\process.json",
+            "sha256": "32ddbd15c8139702ab350c22baf40f310b084bd80eac99a8a01c57822c3dcf65",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads12\\run-start.json",
+            "sha256": "88cdf6d916c7148e4bb6bd585bf63a4d659d619db9bb8f242e379842bd628c8c",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads12\\completion-wall.json",
+            "sha256": "1e72dbbc7d0fdb2cbbb89b8beb5ff1500e858369a96d268be7f6b982bfc0d3b2",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads12\\phase-timing.json",
+            "sha256": "e6acca074398c6448ae7c1beae5e634b6d71fa415b24f5d23bed48125b90fa5d",
+            "size_bytes": 114
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 28074.9106,
+      "decode_tps": 24.424124929399014,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 140,
+          "max": 140.70013086558234,
+          "mean": 135.1264899694971,
+          "min": 124.97058350747469
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 140,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 140,
+          "max": 100.0,
+          "mean": 56.2795207159039,
+          "min": 0.7758655641817103
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 140,
+          "max": 33,
+          "mean": 18.785714285714285,
+          "min": 5
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 140,
+          "max": 13801,
+          "mean": 12101,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 140,
+          "max": 26,
+          "mean": 14.264285714285714,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 140,
+          "max": 50025,
+          "mean": 39145.33571428571,
+          "min": 14609
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 140,
+          "max": 2827,
+          "mean": 2338.635714285714,
+          "min": 450
+        },
+        "gpu_temperature_c": {
+          "count": 140,
+          "max": 51,
+          "mean": 49.08571428571429,
+          "min": 46
+        },
+        "measurement_samples": 140,
+        "minimum_device_free_bytes": 12162347008,
+        "owned_cpu_busy_cores_mean": 8.445780504311209,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5059.43940000725,
+          "teardown_ms": 1797.7586000051815,
+          "tokenize_ms": 0.952799993683584
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "711ab6ac-593b-449f-9c88-01a56bc5e3c6",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "53fd935cc2b6493ba6b9a8598ae078aaf005d364ff9f2e5c0b598d6baa6bc8e8",
+      "pair": 4,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 35.84715739999956,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-04-threads12",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads8",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads8\\launch.json",
+            "sha256": "11726f4ce49c1ace8be3b8135616479dea3cd4d554976860841cc6efd4fe05a0",
+            "size_bytes": 19906
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads8\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads8\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads8\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads8\\completion.json",
+            "sha256": "f5d580ba3db56b531f99021e8c96964f57f371100d57a05883629755b2c51352",
+            "size_bytes": 10076
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads8\\memory.json",
+            "sha256": "72c86e8d0675eb7a28de2b7de5ef97c36276c5b1e9a059baa6eb627b247695f4",
+            "size_bytes": 339223
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads8\\process.json",
+            "sha256": "257fdb204ce68b17f461e22dce5099e3704d39a4b94f5e0dcf0667c085bd5594",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads8\\run-start.json",
+            "sha256": "46d326f258e80717fe80ac101e064cc5a4f09aff0d617ba390139e82c35e8207",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads8\\completion-wall.json",
+            "sha256": "113bc763b0583fac0dd545baef996d661bc310bb925204fdd93e40ce9796eb3f",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-04-threads8\\phase-timing.json",
+            "sha256": "0b3077b7b284eb5ba76be7cc91550036120eb264ffdc2ec1b69fe3769943945b",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "fab1e6bdb0a3f383a5c73193b11c5a95de49e4a772d0f18373c92fe30582e3d2",
+      "completion_wall_ms": 29925.4819,
+      "decode_tps": 22.49300520256181,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 147,
+          "max": 140.78148479427549,
+          "mean": 136.25269755667603,
+          "min": 125.06615870656012
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 147,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 147,
+          "max": 57.73480730150131,
+          "mean": 36.405086907249014,
+          "min": 0.29301230622374996
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 147,
+          "max": 33,
+          "mean": 17.74829931972789,
+          "min": 5
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 147,
+          "max": 13801,
+          "mean": 11904.401360544218,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 147,
+          "max": 29,
+          "mean": 13.782312925170068,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 147,
+          "max": 50294,
+          "mean": 37927.183673469386,
+          "min": 14410
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 147,
+          "max": 2820,
+          "mean": 2288.0068027210887,
+          "min": 427
+        },
+        "gpu_temperature_c": {
+          "count": 147,
+          "max": 52,
+          "mean": 49.42176870748299,
+          "min": 46
+        },
+        "measurement_samples": 147,
+        "minimum_device_free_bytes": 12158152704,
+        "owned_cpu_busy_cores_mean": 5.338115438574006,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5190.463900013128,
+          "teardown_ms": 1761.3759000087157,
+          "tokenize_ms": 13.851800002157688
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 8,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+      },
+      "measured": true,
+      "measurement_id": "02a2a296-324a-4e91-84d9-b90e3600f517",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "3414e2328012309697e9a1de3151385c1debb38933b33e0ac528e1edf3ffb433",
+      "pair": 4,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 37.80489509999461,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-04-threads8",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads12",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads12\\launch.json",
+            "sha256": "54d6566f775ce938bb373c267413b4ccb72d007acbd530b18d5219dff9586cd3",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads12\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads12\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads12\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads12\\completion.json",
+            "sha256": "90b5f5bac0dc4ac95d5395f09dd5d683ec9a7189631e58ffcb80b1a1707f2517",
+            "size_bytes": 10076
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads12\\memory.json",
+            "sha256": "3532735f1e26686242eaa6de562052c9ac252582efc8d26cb68998dfa6fb6d6f",
+            "size_bytes": 323522
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads12\\process.json",
+            "sha256": "70b45d69aed598eb5549ccb4a6d9bb9a0cfaeef27cdda328fe8bc1e36260ef98",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads12\\run-start.json",
+            "sha256": "41765b40ab9702c181f1362d0bd29117ccd263b95b77fdad1538e802af06f4f9",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads12\\completion-wall.json",
+            "sha256": "7d2b0b36fd8cfc82345e1098b293eb9d4759583e97e054045dead6fa1e5484be",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads12\\phase-timing.json",
+            "sha256": "f81fcce74adcba7408dd2cb65212bd95c7d0d4bdd30b4634561650d23cc16bd3",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 28244.1216,
+      "decode_tps": 24.366757004514607,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 140,
+          "max": 141.54009955752213,
+          "mean": 134.85796413534743,
+          "min": 123.85597232337946
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 140,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 140,
+          "max": 90.8870163299646,
+          "mean": 57.011471227823414,
+          "min": 0.7033017099319139
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 140,
+          "max": 34,
+          "mean": 18.257142857142856,
+          "min": 3
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 140,
+          "max": 13801,
+          "mean": 12101,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 140,
+          "max": 25,
+          "mean": 14.17142857142857,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 140,
+          "max": 50342,
+          "mean": 39267.07142857143,
+          "min": 14659
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 140,
+          "max": 2812,
+          "mean": 2343.057142857143,
+          "min": 472
+        },
+        "gpu_temperature_c": {
+          "count": 140,
+          "max": 52,
+          "mean": 49.792857142857144,
+          "min": 47
+        },
+        "measurement_samples": 140,
+        "minimum_device_free_bytes": 12158152704,
+        "owned_cpu_busy_cores_mean": 8.431969026548673,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 4986.457799997879,
+          "teardown_ms": 1750.3834999952232,
+          "tokenize_ms": 1.0063000081572682
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "d138e5b8-0f8d-4606-bdb5-3420ea2e50e4",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "43deb54f978840e48142beb4a527f7605b4101fa3fa22258324efc7942537e75",
+      "pair": 5,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 35.89229929998692,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-05-threads12",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads8",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads8\\launch.json",
+            "sha256": "51811d503015bc1450c5d64f7146a338b8cce77d30c0aa73b88cefe9b02dd2ba",
+            "size_bytes": 19906
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads8\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads8\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads8\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads8\\completion.json",
+            "sha256": "da7559acf1e129372aaca1dbfe802202ac5da9d5447217a8a8677349618af508",
+            "size_bytes": 10076
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads8\\memory.json",
+            "sha256": "d8575bb1bf902f5d9acb6b460868ac0b9f0f2e050f7a9cfb648b0baab17926cb",
+            "size_bytes": 350997
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads8\\process.json",
+            "sha256": "2f15ed66814cba1a3ea979f24e57c64861d85cf667406e6452bb723f7b5568e5",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads8\\run-start.json",
+            "sha256": "730acce3ac7bc3a9b93d7928611552849ca9d65c3d5142632c0a397f0a2c5efe",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads8\\completion-wall.json",
+            "sha256": "ebd6d9d7699ac8d9d66c56bb6b42137b937e888622106938e69a38c6df31a9a7",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-05-threads8\\phase-timing.json",
+            "sha256": "c7b733105415358e1ab7e6c65d66e2151ea83da9e223c34b05608194bc094185",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "fab1e6bdb0a3f383a5c73193b11c5a95de49e4a772d0f18373c92fe30582e3d2",
+      "completion_wall_ms": 30896.1789,
+      "decode_tps": 21.82197834646005,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 153,
+          "max": 141.36547520088666,
+          "mean": 135.3443720046064,
+          "min": 120.58894136166863
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 153,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 153,
+          "max": 55.50024534645173,
+          "mean": 35.16998395071566,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 153,
+          "max": 33,
+          "mean": 17.986928104575163,
+          "min": 3
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 153,
+          "max": 13801,
+          "mean": 11401,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 153,
+          "max": 28,
+          "mean": 14.261437908496733,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 153,
+          "max": 50820,
+          "mean": 37444.18954248366,
+          "min": 14549
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 153,
+          "max": 2812,
+          "mean": 2239.4771241830067,
+          "min": 472
+        },
+        "gpu_temperature_c": {
+          "count": 153,
+          "max": 52,
+          "mean": 49.95424836601307,
+          "min": 47
+        },
+        "measurement_samples": 153,
+        "minimum_device_free_bytes": 12158152704,
+        "owned_cpu_busy_cores_mean": 5.159293502879253,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5270.998000007239,
+          "teardown_ms": 1734.4439000007696,
+          "tokenize_ms": 14.723900007084012
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 8,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+      },
+      "measured": true,
+      "measurement_id": "b54a990e-fc60-4789-8477-633486a7a5c1",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "89628a00bdca872acdc44ee070c8e2b03f802ba21818c55801c339470b52b601",
+      "pair": 5,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 38.826951199996984,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-05-threads8",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads12",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads12\\launch.json",
+            "sha256": "899f282d7ecb1f4173b5a66ac487ea6fad4f515845796423172d1c30b8c2df11",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads12\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads12\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads12\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads12\\completion.json",
+            "sha256": "63ceae672e2061dc7e9b33d6c1d30ff076de10d6c5df4079fa5656f27a06a377",
+            "size_bytes": 10077
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads12\\memory.json",
+            "sha256": "0e4e5e1adb39a2db9347e3c4a203cd8b58993f0e19bf50208ebadac268b26f8d",
+            "size_bytes": 325528
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads12\\process.json",
+            "sha256": "ec11f3d273a342c219455cd1a703038de006d62d770f771d3893c734214b4367",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads12\\run-start.json",
+            "sha256": "eee9ab66ad5d758f129a18a193f6fb1d62065fd8b6fd9420d914fb4e04412b53",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads12\\completion-wall.json",
+            "sha256": "91c724ce98edee0895b28cafbcdd59d13df49e31cbf2e8bca3933d8f6dfc1fb8",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads12\\phase-timing.json",
+            "sha256": "a29e120c68facfb719af67a3bf91512dc338b89816949dfce8164223fb883d19",
+            "size_bytes": 115
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 28417.2224,
+      "decode_tps": 24.23995892841959,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 141,
+          "max": 140.74147053457398,
+          "mean": 135.10350543265113,
+          "min": 126.37330588437125
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 141,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 141,
+          "max": 85.68680090578427,
+          "mean": 55.616306400296665,
+          "min": 0.6288329752302202
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 141,
+          "max": 34,
+          "mean": 18.361702127659573,
+          "min": 5
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 141,
+          "max": 13801,
+          "mean": 12402.418439716312,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 141,
+          "max": 20,
+          "mean": 14.049645390070921,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 141,
+          "max": 50669,
+          "mean": 39468.78014184397,
+          "min": 14684
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 141,
+          "max": 2812,
+          "mean": 2356.354609929078,
+          "min": 472
+        },
+        "gpu_temperature_c": {
+          "count": 141,
+          "max": 53,
+          "mean": 50.48936170212766,
+          "min": 47
+        },
+        "measurement_samples": 141,
+        "minimum_device_free_bytes": 12158152704,
+        "owned_cpu_busy_cores_mean": 8.304268850497259,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5019.18509999814,
+          "teardown_ms": 1736.0837999876821,
+          "tokenize_ms": 14.315599997644313
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "78b32d8f-b682-4d56-9811-fe68ada18a56",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "eca3259df7df8f40d3aaa31ec4777086c41e59e676a5f4f5643222abdfa7c8eb",
+      "pair": 6,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 36.0971137000015,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-06-threads12",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads8",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads8\\launch.json",
+            "sha256": "6086e2c3f9d10a93743ba2af993a806e9630ddb858b9ddc8e4ed09c3ff0d6c4b",
+            "size_bytes": 19906
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads8\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads8\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads8\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads8\\completion.json",
+            "sha256": "db7fe978e5ca3773fb72ef6607b83d6d7d8e8aef313dfb051bfe5e81c0f2eebf",
+            "size_bytes": 10077
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads8\\memory.json",
+            "sha256": "d6bd2e5b40324825f7059d1565d8d6500ccd07445b42522d7c9b14612d4aa43f",
+            "size_bytes": 368607
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads8\\process.json",
+            "sha256": "83523508c162be68d6004e13df365460445501c066f0ee258ecd2554f80e4c7d",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads8\\run-start.json",
+            "sha256": "b78d8690115ace0c65bedc9bd00d3b60ea6a47694dc59e3986912c6a6860392f",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads8\\completion-wall.json",
+            "sha256": "48f99e44f77a8b906591c7c94b64002f85322c0d98714a4a6a24ba37bd2d4f58",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-06-threads8\\phase-timing.json",
+            "sha256": "3790cfa6c168fd4d01400c32c386054c741a5b7fba259a57c2d610fc990dbea4",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "fab1e6bdb0a3f383a5c73193b11c5a95de49e4a772d0f18373c92fe30582e3d2",
+      "completion_wall_ms": 32838.6634,
+      "decode_tps": 21.4130559249633,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 162,
+          "max": 162.5287356321839,
+          "mean": 135.04850932664303,
+          "min": 120.77723132969035
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 162,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 162,
+          "max": 78.23756424814505,
+          "mean": 35.49218846574424,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 162,
+          "max": 39,
+          "mean": 17.944444444444443,
+          "min": 2
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 162,
+          "max": 13801,
+          "mean": 11870.135802469136,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 162,
+          "max": 27,
+          "mean": 13.777777777777779,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 162,
+          "max": 52191,
+          "mean": 37518.333333333336,
+          "min": 15522
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 162,
+          "max": 2812,
+          "mean": 2232.5185185185187,
+          "min": 412
+        },
+        "gpu_temperature_c": {
+          "count": 162,
+          "max": 53,
+          "mean": 50.358024691358025,
+          "min": 48
+        },
+        "measurement_samples": 162,
+        "minimum_device_free_bytes": 11824885760,
+        "owned_cpu_busy_cores_mean": 4.955834018077731,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5165.820900001563,
+          "teardown_ms": 1756.0508000024129,
+          "tokenize_ms": 14.516399998683482
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 8,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+      },
+      "measured": true,
+      "measurement_id": "30e2b538-cc91-4cf4-ad1e-98a181c69e18",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "aa9bdd273c649ad1742bcfaf77f75f1775e379785386a4a52d08e78136e77117",
+      "pair": 6,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 40.71478090000164,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-06-threads8",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads8",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads8\\launch.json",
+            "sha256": "059a727d47ccc265607cd0d066df3311792ba9c6577cbb137741464a7bc9cca2",
+            "size_bytes": 19906
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads8\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads8\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads8\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads8\\completion.json",
+            "sha256": "ec5f3f07c9d3f821bbf87ed60e2f04501f9dcb820b8b686abe73064a4db0b95d",
+            "size_bytes": 10079
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads8\\memory.json",
+            "sha256": "0a2887a7c0a846cd5833fc05709059778003385417be9f32302a75c74fcf976e",
+            "size_bytes": 372536
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads8\\process.json",
+            "sha256": "5473544ada4e8f28553ec05f197a74b24808de338e802c4d3f6157d4a3b65cf3",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads8\\run-start.json",
+            "sha256": "08ca996893c79c0982b017d8785e5dc14d2a125e18882a80a818f2310bb2a5f6",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads8\\completion-wall.json",
+            "sha256": "516faebedd209732388dc3fa3fc50a4dcae80bcbc6b953010ad8f61d9367dc6c",
+            "size_bytes": 115
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads8\\phase-timing.json",
+            "sha256": "3230639974b8bc1b051cdaba0287361de42cf38843c56d36873e3eb2c3c5a652",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "fab1e6bdb0a3f383a5c73193b11c5a95de49e4a772d0f18373c92fe30582e3d2",
+      "completion_wall_ms": 32621.472,
+      "decode_tps": 21.44726028633852,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 160,
+          "max": 140.13048549351217,
+          "mean": 135.61696290355385,
+          "min": 121.29824701833026
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 160,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 160,
+          "max": 80.40462136365171,
+          "mean": 38.56868972128608,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 160,
+          "max": 34,
+          "mean": 18.64375,
+          "min": 6
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 160,
+          "max": 13801,
+          "mean": 11463.5,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 160,
+          "max": 25,
+          "mean": 13.2875,
+          "min": 3
+        },
+        "gpu_power_mw": {
+          "count": 160,
+          "max": 51128,
+          "mean": 38281.0125,
+          "min": 16425
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 160,
+          "max": 2827,
+          "mean": 2318.2375,
+          "min": 645
+        },
+        "gpu_temperature_c": {
+          "count": 160,
+          "max": 49,
+          "mean": 48.05625,
+          "min": 46
+        },
+        "measurement_samples": 160,
+        "minimum_device_free_bytes": 11510030336,
+        "owned_cpu_busy_cores_mean": 5.057950191570881,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5960.623099992517,
+          "teardown_ms": 1768.8508999999613,
+          "tokenize_ms": 1.0559999936958775
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 8,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+      },
+      "measured": true,
+      "measurement_id": "b4402463-ffdd-4f9e-a1be-17d7be4b7053",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "2bb663e879f3cad4d7f2a8f52ef33f7c507858c14caf3d19fd79857f40aafe73",
+      "pair": 7,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 41.2721545999957,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-07-threads8",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads12",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads12\\launch.json",
+            "sha256": "7a68e57a304de30458190074fd83eea2d47bedc1b76f36cc783f543ab959f084",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads12\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads12\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads12\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads12\\completion.json",
+            "sha256": "49b7a6205defece15c25f75523d5b2a2c2ca1b33ca032cedf09c3c18e85f88df",
+            "size_bytes": 10078
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads12\\memory.json",
+            "sha256": "ef2a82da07778ae48978567fd2004f86475f1edd50cf3b77f0a3fea1060d8387",
+            "size_bytes": 349126
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads12\\process.json",
+            "sha256": "027dbf73d76c7bd1ae17d5403524dc6baf236611d977dc103a02428f917577af",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads12\\run-start.json",
+            "sha256": "e272f434fbc69d21d1d12ad6a4c8721bee55be70f954d7ef67e4915c02ca98bd",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads12\\completion-wall.json",
+            "sha256": "bdd65b9893390783094199d90ffab988e223c694ab1082de118423ce119c1976",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-07-threads12\\phase-timing.json",
+            "sha256": "275ece7587cc893c82610eabb2f319c1ff6189e4faf267f2f7f326ec15504723",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 30898.6352,
+      "decode_tps": 23.502440122484433,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 151,
+          "max": 139.1246276288293,
+          "mean": 134.2057716300741,
+          "min": 123.26800998573466
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 151,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 151,
+          "max": 93.79839773337892,
+          "mean": 55.459860033078655,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 151,
+          "max": 44,
+          "mean": 19.019867549668874,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 151,
+          "max": 13801,
+          "mean": 12269.874172185431,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 151,
+          "max": 26,
+          "mean": 13.350993377483444,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 151,
+          "max": 49972,
+          "mean": 38882.75496688742,
+          "min": 15410
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 151,
+          "max": 2827,
+          "mean": 2390.1854304635763,
+          "min": 600
+        },
+        "gpu_temperature_c": {
+          "count": 151,
+          "max": 48,
+          "mean": 45.966887417218544,
+          "min": 43
+        },
+        "measurement_samples": 151,
+        "minimum_device_free_bytes": 11627778048,
+        "owned_cpu_busy_cores_mean": 7.77559373584716,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5497.440299994196,
+          "teardown_ms": 1794.6171000075992,
+          "tokenize_ms": 0.9367000020574778
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "61761442-7d9e-4e81-8fd2-1ee0aba119d2",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "380158211e0c95188e17e3480b43386b47d0b42f883db5d5ba07ee0f71c3d4cf",
+      "pair": 7,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 39.13311179999437,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-07-threads12",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads8",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads8\\launch.json",
+            "sha256": "6c74b27b90fe074bb9417e077f5ec65c8b9ac25dfc24f19237f44f38a9f98644",
+            "size_bytes": 19906
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads8\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads8\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads8\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads8\\completion.json",
+            "sha256": "6f8791e740bbb6438072eb84af85beb12ac90cb005a45fc8a62c96990d3b2c99",
+            "size_bytes": 10079
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads8\\memory.json",
+            "sha256": "772b4f2b03e865699695a0f97c1d3ef01dd75b659760a7dbf21098184908aea4",
+            "size_bytes": 374537
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads8\\process.json",
+            "sha256": "8477063f924cde14439448aad86b085774268464eb70d0ea37aea2eb3edb5551",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads8\\run-start.json",
+            "sha256": "0241791091f7cc10d74d0397601f78e1fd7503032dd885c6397781c1ba08d292",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads8\\completion-wall.json",
+            "sha256": "7dc4f214846a2db26d79c794aa1cbbdf4e3d985b6874b07d3143ebf81ba07d40",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads8\\phase-timing.json",
+            "sha256": "508561406c9b3679a97e77807e6af3ac28b341df828bf06966feb3307109378e",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "fab1e6bdb0a3f383a5c73193b11c5a95de49e4a772d0f18373c92fe30582e3d2",
+      "completion_wall_ms": 33142.7598,
+      "decode_tps": 20.622530557696464,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 163,
+          "max": 141.1935602575897,
+          "mean": 133.8436427270065,
+          "min": 122.07077352472089
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 163,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 163,
+          "max": 96.67543212476359,
+          "mean": 41.57121921141164,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 163,
+          "max": 39,
+          "mean": 18.858895705521473,
+          "min": 4
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 163,
+          "max": 13801,
+          "mean": 11673.39263803681,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 163,
+          "max": 27,
+          "mean": 13.760736196319018,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 163,
+          "max": 52279,
+          "mean": 36849.398773006134,
+          "min": 14221
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 163,
+          "max": 2827,
+          "mean": 2217.5398773006136,
+          "min": 337
+        },
+        "gpu_temperature_c": {
+          "count": 163,
+          "max": 47,
+          "mean": 44.33742331288344,
+          "min": 42
+        },
+        "measurement_samples": 163,
+        "minimum_device_free_bytes": 11326074880,
+        "owned_cpu_busy_cores_mean": 5.119851388050784,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 5559.4065000041155,
+          "teardown_ms": 1829.360200004885,
+          "tokenize_ms": 0.8909999887691811
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 8,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+      },
+      "measured": true,
+      "measurement_id": "45198857-35be-40a2-960d-65c0e93257b2",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "478f89990c025f668b5132065255a1a4cce0aa505f1460f21b3cd9df4a9186b2",
+      "pair": 8,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 41.4720484999998,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-08-threads8",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads12",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads12\\launch.json",
+            "sha256": "71d6fbe0da620ddb29cb002cba103095d5704ec56232279cdd4ca9ab0e4dd7bb",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads12\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads12\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads12\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads12\\completion.json",
+            "sha256": "8666ecf52aea407a366f02ffd6823d5eaef95290b8eb46758b7f7ff21f6f3f3f",
+            "size_bytes": 10079
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads12\\memory.json",
+            "sha256": "c09edbcbfece785d11eee7545c90cf1c6afcbe5e92085e9ee8d79cd133d1b737",
+            "size_bytes": 435437
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads12\\process.json",
+            "sha256": "3d7267036ff38e8af3a9d26bbf44e7b94b41fae4e2c49f43103b735250f867b3",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads12\\run-start.json",
+            "sha256": "a77ec7725da2a9fc17d5edfdcd23e73bf97be0ee76d817f775a42db71a112ce4",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads12\\completion-wall.json",
+            "sha256": "b537f69817521d0ee79ba1b1e3255d8bc3fcf1acae70f7ce661d7e8a8ece80a5",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-08-threads12\\phase-timing.json",
+            "sha256": "5467df98dbcef28684b902ce31de35c3082242971c1763e928cee0d855cd0752",
+            "size_bytes": 116
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 38396.7161,
+      "decode_tps": 22.243001665270977,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 190,
+          "max": 138.89356752747622,
+          "mean": 134.2478632011508,
+          "min": 124.45137290995551
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 190,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 190,
+          "max": 96.63445158876296,
+          "mean": 52.31771697023507,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 190,
+          "max": 39,
+          "mean": 18.01578947368421,
+          "min": 4
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 190,
+          "max": 13801,
+          "mean": 11832.578947368422,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 190,
+          "max": 20,
+          "mean": 11.884210526315789,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 190,
+          "max": 49784,
+          "mean": 36253.221052631576,
+          "min": 15324
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 190,
+          "max": 2827,
+          "mean": 2326.4842105263156,
+          "min": 862
+        },
+        "gpu_temperature_c": {
+          "count": 190,
+          "max": 46,
+          "mean": 43.42631578947368,
+          "min": 41
+        },
+        "measurement_samples": 190,
+        "minimum_device_free_bytes": 11104579584,
+        "owned_cpu_busy_cores_mean": 6.517403620734665,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6496.341699996265,
+          "teardown_ms": 1782.5224999978673,
+          "tokenize_ms": 1.0092999873450026
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "c77fcd80-8497-47ae-92a7-486a39c549c4",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "94412a872d19d20afbcf806da8bc58d2775d17940b3032899c7cbde5d28f538d",
+      "pair": 8,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 47.608793500010506,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-08-threads12",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads12",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads12\\launch.json",
+            "sha256": "2c29a5abe416e57c613609c732870a83f8cc3fb631c9010e3663104854c68616",
+            "size_bytes": 19908
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads12\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads12\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads12\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads12\\completion.json",
+            "sha256": "e69733d31c26119d8fbfaafa50d038de577d9144199252260c46f50e75e56bf2",
+            "size_bytes": 10081
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads12\\memory.json",
+            "sha256": "44e1a1dc34ebec95de3897d009a0e7ed7d4a08d92a96a06e49e0200d0fc8789f",
+            "size_bytes": 423432
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads12\\process.json",
+            "sha256": "9c549c8c0534a72de020225a22c12881a75ac91fd99a58b8a4abd2874eb2c314",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads12\\run-start.json",
+            "sha256": "ffe33fac2cd4011904b1a7cb050a3968f775d51557b99c484f96a634ef578e05",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads12\\completion-wall.json",
+            "sha256": "9a0b4ce1aa116b8da2d242fc68d4300d6904cd3413c4ff98b3e70d4dc10a1eac",
+            "size_bytes": 115
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads12\\phase-timing.json",
+            "sha256": "af386b373fe350f01dda7ec7278a6a8dfafd37a88999df4b5343bc8d1d93ebf7",
+            "size_bytes": 115
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 37333.708,
+      "decode_tps": 21.154027390085925,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 184,
+          "max": 139.32985636958918,
+          "mean": 131.89652921772864,
+          "min": 119.20148148148148
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 185,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 185,
+          "max": 100.0,
+          "mean": 52.81461923488769,
+          "min": 0.3285142849419831
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 185,
+          "max": 40,
+          "mean": 20.232432432432432,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 185,
+          "max": 13801,
+          "mean": 11448.567567567568,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 185,
+          "max": 22,
+          "mean": 11.902702702702703,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 185,
+          "max": 50103,
+          "mean": 35070.88108108108,
+          "min": 14269
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 185,
+          "max": 2827,
+          "mean": 2041.081081081081,
+          "min": 300
+        },
+        "gpu_temperature_c": {
+          "count": 185,
+          "max": 45,
+          "mean": 42.605405405405406,
+          "min": 40
+        },
+        "measurement_samples": 185,
+        "minimum_device_free_bytes": 11286433792,
+        "owned_cpu_busy_cores_mean": 6.952254712939658,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6255.431500001578,
+          "teardown_ms": 1773.1372999987798,
+          "tokenize_ms": 0.985999999102205
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "34f07b16-44fb-4122-abf3-8720d9a07d6c",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "7860e71370e35332b9af745de32cf20fa214f2351f16c8acedc5d3978bcec8b0",
+      "pair": 9,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 46.28920840000501,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-09-threads12",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "threads8",
+      "artifacts": [
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads8\\launch.json",
+            "sha256": "b4bd05d7ba74106d313951d250a2b08188048abbd1897c40fb9ff498b0125e99",
+            "size_bytes": 19906
+          },
+          "role": "launch"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads8\\request.json",
+            "sha256": "63aca9ecd2c5df1fb8eabae6b28d596501b3e642eea828c880cea70458b3e3e5",
+            "size_bytes": 577
+          },
+          "role": "request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads8\\tokenize-request.json",
+            "sha256": "95ee082252aeac7792429e5d7565aa9b8d67c822dc4941aa1fabbd0401ec31ea",
+            "size_bytes": 215
+          },
+          "role": "tokenize-request"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads8\\tokenize.json",
+            "sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+            "size_bytes": 430
+          },
+          "role": "tokenize"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads8\\completion.json",
+            "sha256": "2a90168c8eb5a2bf0101e1a656fcfaa99d67f232c245565be92be889b0c61506",
+            "size_bytes": 10078
+          },
+          "role": "completion"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads8\\memory.json",
+            "sha256": "b8a7faa737210541fc4d7b652167735c2f902767d5828abf6847f57280e5a727",
+            "size_bytes": 433107
+          },
+          "role": "memory"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads8\\process.json",
+            "sha256": "a71a966a10a6040d7db58dd4ec808b95c2514170ff0758725d58428603c4ca15",
+            "size_bytes": 274
+          },
+          "role": "process"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads8\\run-start.json",
+            "sha256": "cbd846fd1647dcf3c3080992421a069df7fca4cb1dcddee7580069ea74eab887",
+            "size_bytes": 198
+          },
+          "role": "run-start"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads8\\completion-wall.json",
+            "sha256": "42fac577dd78cc6cd08f637082c2cfd976938d35632d68cf5edbf1a223190736",
+            "size_bytes": 116
+          },
+          "role": "completion-wall"
+        },
+        {
+          "identity": {
+            "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\raw\\pair-09-threads8\\phase-timing.json",
+            "sha256": "9d4d060c34b595db1d0552748ce64edbdada0d3a6b94ea5cdfccd00c615d2ec6",
+            "size_bytes": 115
+          },
+          "role": "phase-timing"
+        }
+      ],
+      "candidate_id": "fab1e6bdb0a3f383a5c73193b11c5a95de49e4a772d0f18373c92fe30582e3d2",
+      "completion_wall_ms": 38251.3649,
+      "decode_tps": 20.100410974887204,
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 187,
+          "max": 150.55777777777777,
+          "mean": 133.87010472477678,
+          "min": 115.37677725118483
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 187,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 187,
+          "max": 72.58186306792128,
+          "mean": 32.42756134164362,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 187,
+          "max": 37,
+          "mean": 16.77540106951872,
+          "min": 3
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 187,
+          "max": 13801,
+          "mean": 10782.818181818182,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 187,
+          "max": 31,
+          "mean": 12.352941176470589,
+          "min": 3
+        },
+        "gpu_power_mw": {
+          "count": 187,
+          "max": 49181,
+          "mean": 33890.93048128342,
+          "min": 14588
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 187,
+          "max": 2827,
+          "mean": 2003.7914438502673,
+          "min": 315
+        },
+        "gpu_temperature_c": {
+          "count": 187,
+          "max": 45,
+          "mean": 42.149732620320854,
+          "min": 40
+        },
+        "measurement_samples": 187,
+        "minimum_device_free_bytes": 11232206848,
+        "owned_cpu_busy_cores_mean": 4.386237129566344,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6845.563599999878,
+          "teardown_ms": 1827.414499988663,
+          "tokenize_ms": 11.447299999417737
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 8,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+      },
+      "measured": true,
+      "measurement_id": "f0bcf384-a73c-4442-95d0-dca6d461e1b7",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "d89aca283cf1cc9024aa929231556b6dda2210b7286d9bfa56515cf4becea9f5",
+      "pair": 9,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "run_wall_seconds": 47.863050300002214,
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "threads-09-threads8",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    }
+  ],
+  "sealed_cv_pct": 5.824968177205293,
+  "sealed_mean_tps": 21.99761556641738,
+  "sealed_tps": [
+    24.787913258570665,
+    22.33435736943496,
+    22.529582838371894,
+    22.42606090488893,
+    22.49300520256181,
+    21.82197834646005,
+    21.4130559249633,
+    21.44726028633852,
+    20.622530557696464,
+    20.100410974887204
+  ],
+  "statistics_arm_mapping": {
+    "direct": "threads12",
+    "sealed": "threads8"
+  },
+  "status": "VALIDATION-STOP"
+}

@@ -1,0 +1,160 @@
+{
+  "aa_prerequisite_unchanged": true,
+  "commands": [
+    "uv run --extra dev --extra quality --extra predictor pytest -q",
+    "uv run --extra dev --extra quality --extra predictor python -m compileall -q src/expertflow/compiler scripts/benchmark_compiler_refinement.py",
+    "git diff --check",
+    "uv run --extra dev --extra quality --extra predictor python scripts/benchmark_compiler_refinement.py --evidence-db C:/models/expertflow/runs/compiler-refinement-20261003/compiler.sqlite3 --output-dir C:/models/expertflow/runs/compiler-refinement-20261003/aa",
+    "uv run --extra dev --extra quality --extra predictor python scripts/benchmark_compiler_refinement.py --experiment threads8 --aa-report C:/models/expertflow/runs/compiler-refinement-20261003/aa/report.json --aa-evidence-db C:/models/expertflow/runs/compiler-refinement-20261003/compiler.sqlite3 --evidence-db C:/models/expertflow/runs/compiler-threads8-20261003/compiler.sqlite3 --output-dir C:/models/expertflow/runs/compiler-threads8-20261003/threads"
+  ],
+  "compileall_exit_code": 0,
+  "cpu_tests": {
+    "aa": {
+      "passed": 502,
+      "skipped": 6
+    },
+    "threads8": {
+      "passed": 505,
+      "skipped": 6
+    }
+  },
+  "diff_check_exit_code": 0,
+  "experiments": {
+    "aa": {
+      "diagnostics": {
+        "actual_offloaded_layers": "unknown at this native log verbosity",
+        "cpu_temperature": "unavailable",
+        "gpu_temperature_c_range": [
+          39,
+          53
+        ],
+        "gpu_utilization_pct_mean": 16.864179520498322,
+        "minimum_device_free_bytes": 11399942144,
+        "owned_cpu_busy_cores_mean": 7.497468866359069,
+        "peak_owned_bytes": 3289026560
+      },
+      "exit_code": 0,
+      "files": [
+        {
+          "path": "C:\\models\\expertflow\\runs\\compiler-refinement-20261003\\aa\\report.json",
+          "sha256": "66438d5bd01755e1fe35644f85ee5b302bbfba5c575ca80a2f6681c12494df9a",
+          "size_bytes": 172477
+        },
+        {
+          "path": "C:\\models\\expertflow\\runs\\compiler-refinement-20261003\\compiler.sqlite3",
+          "sha256": "49d97d46663c7c25494d4a1abb5f9433e580cf9c8319d75599c98341f297c222",
+          "size_bytes": 221184
+        },
+        {
+          "path": "C:\\models\\expertflow\\runs\\compiler-refinement-20261003\\stdout.log",
+          "sha256": "fed755afbd0e00d958de21770390cf37dfce1b183d2191b9681f117e9f7980b3",
+          "size_bytes": 226
+        },
+        {
+          "path": "C:\\models\\expertflow\\runs\\compiler-refinement-20261003\\stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0
+        },
+        {
+          "path": "C:\\models\\expertflow\\runs\\compiler-refinement-20261003\\exit-code.txt",
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+          "size_bytes": 3
+        },
+        {
+          "path": "C:\\models\\expertflow\\runs\\compiler-refinement-20261003\\aa\\frozen-protocol.json",
+          "sha256": "4335d3f249ac897e9ab5b71c8eedd6d3dd68c6db5f68041297847f9902fdb84d",
+          "size_bytes": 6463
+        }
+      ],
+      "retained_runs": 20,
+      "source_commit": "11928563f6bb87dd74b97df992b6a9bd0eeaba6b",
+      "statistics_recomputed": true,
+      "status": "PASS-MEASUREMENT"
+    },
+    "threads8": {
+      "diagnostics": {
+        "actual_offloaded_layers": "unknown at this native log verbosity",
+        "cpu_temperature": "unavailable",
+        "gpu_temperature_c_range": [
+          38,
+          53
+        ],
+        "gpu_utilization_pct_mean": 18.25454055863539,
+        "minimum_device_free_bytes": 11104579584,
+        "owned_cpu_busy_cores_mean": 6.579468108743237,
+        "peak_owned_bytes": 3289026560
+      },
+      "exit_code": 2,
+      "files": [
+        {
+          "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\report.json",
+          "sha256": "220f6bfb1e904e32afbac57258c70c5bb1f87d1980fa97e60637a3cadae69305",
+          "size_bytes": 173997
+        },
+        {
+          "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\compiler.sqlite3",
+          "sha256": "cd69c897f73d3db162f8831e0ffd1f18c0efce10ee75d2fedea960d4828fdd45",
+          "size_bytes": 221184
+        },
+        {
+          "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\stdout.log",
+          "sha256": "e88563c5de9a50ca3f681bbbfda9d78b5a567720ae637dd57d9bde61bfaeb73a",
+          "size_bytes": 227
+        },
+        {
+          "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0
+        },
+        {
+          "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\exit-code.txt",
+          "sha256": "df4e26a04a444901b95afef44e4a96cfae34690fff2ad2c66389c70079cdff2b",
+          "size_bytes": 3
+        },
+        {
+          "path": "C:\\models\\expertflow\\runs\\compiler-threads8-20261003\\threads\\frozen-protocol.json",
+          "sha256": "ebd480cc4e86b0ea80f7fee39e2f08ed7dded876bf6295af746a5c69b65a5efa",
+          "size_bytes": 7693
+        }
+      ],
+      "retained_runs": 20,
+      "source_commit": "922e8b5b36e10619fd12a60e37697df0bf314829",
+      "statistics_recomputed": true,
+      "status": "VALIDATION-STOP"
+    }
+  },
+  "limitations": [
+    "single prompt and hardware configuration",
+    "ten-pair percentile-bootstrap estimate",
+    "possible temporal dependence",
+    "CPU temperature unavailable",
+    "native offloaded-layer count unavailable",
+    "no synchronized profiles during timing",
+    "no universal bitwise proof from finite token parity",
+    "no automatic product plan publication"
+  ],
+  "original_database_unchanged": true,
+  "original_phase3_verdict": "VALIDATION-STOP",
+  "product_plan_published": false,
+  "raw_evidence_reverified": true,
+  "review": "one fresh final review; two Important and one Minor findings addressed before A/A",
+  "source_contracts": {
+    "exit_code": 0,
+    "output": "......                                                                   [100%]\n6 passed in 0.09s\n"
+  },
+  "unique_owned_runs": 40,
+  "verification_artifacts": [
+    {
+      "path": ".superpowers\\sdd\\2026-10-03-compiler-measurement-refinement\\cpu-tests.log",
+      "sha256": "4f017c47dc403580e03b61bba69c7a33b15873f10b173befc550cbc042bad7f6"
+    },
+    {
+      "path": ".superpowers\\sdd\\2026-10-03-compiler-measurement-refinement\\thread-cpu-tests.log",
+      "sha256": "4ad3c7739f9d60596789a415b5a151618ea40ce796018775a3a05ddfe3fc0430"
+    },
+    {
+      "path": ".superpowers\\sdd\\2026-10-03-compiler-measurement-refinement\\review.md",
+      "sha256": "091e070b85d856c0615294093ce4581e1453a4894996c21d1a33a95835ade7a5"
+    }
+  ]
+}
