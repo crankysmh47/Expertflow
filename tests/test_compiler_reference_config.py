@@ -56,6 +56,7 @@ def test_returned_payload_cannot_change_frozen_identity(tmp_path):
     {'minimum_vram_reserve_mib': -1}, {'batch_size': 128, 'microbatch_size': 512},
     {'cache_prompt': True}, {'health_timeout_seconds': 0},
     {'unexpected_setting': True},
+    {'maximum_cv_pct': 10 ** 400},
 ])
 def test_invalid_exact_reference_cannot_reach_measurement(tmp_path, overrides):
     path = write_workload(tmp_path, **overrides)
@@ -93,7 +94,7 @@ def test_runtime_manifests_distinguish_stock_from_bounded_fork():
     assert stock['binaries']['llama-server.exe'] != fork['binaries']['llama-server.exe']
 
 
-@pytest.mark.parametrize('change', ['digest', 'commit', 'abi', 'patch_order', 'capacity', 'missing_binary'])
+@pytest.mark.parametrize('change', ['digest', 'commit', 'abi', 'patch_order', 'capacity', 'missing_binary', 'missing_dependencies'])
 def test_invalid_runtime_identity_fails_closed(tmp_path, change):
     value = json.loads((CONFIGS / 'runtime-fork.json').read_text())
     if change == 'digest':
@@ -106,8 +107,10 @@ def test_invalid_runtime_identity_fails_closed(tmp_path, change):
         value['patches'].reverse()
     elif change == 'capacity':
         value['capabilities']['max_static_layers'] = -1
-    else:
+    elif change == 'missing_binary':
         del value['binaries']['llama-server.exe']
+    else:
+        del value['dependencies']
     path = tmp_path / 'runtime.json'
     path.write_text(json.dumps(value), encoding='utf-8')
     with pytest.raises(ValueError):

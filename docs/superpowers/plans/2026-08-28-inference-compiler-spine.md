@@ -85,9 +85,14 @@ planning approval round.
   runtime does **not** consume `ExecutionPlan` JSON. Host-side validation resolves
   and verifies the plan, then `lower_launch()` emits argv, a sanitized environment,
   and the completion payload. Do not invent a native execution-plan ABI.
-- For every resolved runtime directory, hash the executable and every loaded
-  companion DLL in that directory; record the CUDA DLL path/hash and exact build
-  flags. An executable hash alone cannot establish a compatible runtime build.
+- For every resolved runtime directory, compare the executable and every companion
+  DLL with the frozen `binaries` and `dependencies` maps in its runtime manifest.
+  Compare the CUDA DLL with `cuda_runtime_sha256`. Missing, unpinned or mismatched
+  DLLs block execution; directory snapshots alone are insufficient. Record resolved
+  dependency paths and exact build flags. These initial dependency pins describe
+  the currently inspected local build, not proof of historical loaded dependencies.
+  Never silently refresh pins during preflight; changed pins require explicit
+  runtime-manifest revision and the fresh feature-off/Phase 3 gates.
 - Add `compiler/runner.py` with `ServerMeasurementRunner.measure(candidate,
   output_dir)` and `measure_pairs(stock, candidate, pairs=10)`. Do not route new
   measurements through `run_measured_baseline`: it lacks the native completion
@@ -156,8 +161,9 @@ planning approval round.
 - Create after execution: `docs/evidence/compiler-phase3/preflight.json`
 
 **Interfaces:** `audit_historical_evidence(root) -> dict`,
-`verify_external_artifacts(model, stock_dir, fork_dir, runtime_manifests) -> dict`,
-`run_preflight(root, model, stock_dir, fork_dir) -> dict`.
+`verify_external_artifacts(root, model, stock_dir, fork_dir, *, cuda_runtime=DEFAULT_CUDA_RUNTIME) -> dict`,
+`run_preflight(root, model, stock_dir, fork_dir, *, cuda_runtime=DEFAULT_CUDA_RUNTIME) -> dict`.
+`DEFAULT_CUDA_RUNTIME` is the pinned CUDA 12.8 `cudart64_12.dll` path.
 The report distinguishes `READY`, `ENVIRONMENT-BLOCKED`, `IDENTITY-STOP` and
 historical static rejection; historical rejection alone does not block stock.
 
@@ -173,14 +179,14 @@ def test_historical_static_is_report_only(repo_root):
 def test_missing_model_blocks_before_hashing_large_files(tmp_path):
     result = run_preflight(repo_root(), tmp_path / 'missing.gguf', stock_dir(), fork_dir())
     assert result['status'] == 'ENVIRONMENT-BLOCKED'
-    assert 'model' in result['missing_artifacts']
+    assert 'model' in result['external_artifacts']['missing_artifacts']
 ```
 
 Also exercise malformed/empty CSV, changing historical summaries, matching
 responses without token-ID evidence, model-size/hash mismatch, runtime hash
 mismatch, failed patch verification, atomic JSON output and CLI exit codes.
 
-- [ ] **Step 2: Run RED**: `uv run --extra dev --extra quality pytest -q tests/test_compiler_preflight.py`.
+- [ ] **Step 2: Run RED**: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_preflight.py`.
 Expected: import failure before the module exists.
 - [ ] **Step 3: Implement**: read the committed manifests and actual CSV rows;
 check 10 rows per mode, finite TPS and one stable response hash per mode. Preserve
@@ -188,12 +194,12 @@ each historical input hash and measured mean. Never promote those rows into
 token-ID evidence. Verify model using `ArtifactSpec`/`verify_artifact`, every patch
 against its pinned hash, pristine/fork executable hashes, and dependency hashes.
 Inspect all required paths before expensive hashes; report missing paths together.
-- [ ] **Step 4: Run GREEN** with the same test command, then `uv run --extra dev --extra quality pytest -q`.
+- [ ] **Step 4: Run GREEN** with the same test command, then `uv run --extra dev --extra quality --extra predictor pytest -q`.
 Expected: all applicable CPU tests pass; external source skips are reported.
 - [ ] **Step 5: Run live artifact preflight**:
 
 ```powershell
-uv run --extra dev --extra quality python scripts/compiler_preflight.py --model C:/models/gemma-4-26b-a4b-q6/google_gemma-4-26B-A4B-it-Q6_K.gguf --stock-dir C:/models/expertflow/builds/llama-a7312ae-cuda128-clean/bin --fork-dir C:/models/expertflow/builds/llama-q6-placement-final/bin --output docs/evidence/compiler-phase3/preflight.json
+uv run --extra dev --extra quality --extra predictor python scripts/compiler_preflight.py --model C:/models/gemma-4-26b-a4b-q6/google_gemma-4-26B-A4B-it-Q6_K.gguf --stock-dir C:/models/expertflow/builds/llama-a7312ae-cuda128-clean/bin --fork-dir C:/models/expertflow/builds/llama-q6-placement-final/bin --output docs/evidence/compiler-phase3/preflight.json
 ```
 
 Expected: exit 0 (`READY`), exit 3 (`ENVIRONMENT-BLOCKED`), or exit 2
@@ -312,7 +318,7 @@ def test_runtime_fork_manifest_pins_reproducible_patch_stack() -> None:
 
 - [ ] **Step 2: Run the tests and verify RED**
 
-Run: `uv run pytest -q tests/test_compiler_reference_config.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_reference_config.py`
 
 Expected: FAIL because the config is absent and `quality` does not declare pandas.
 Also exercise nonfinite sampler settings, approximate KV inside an exact request,
@@ -410,6 +416,12 @@ build flags, and binaries:
 `llama-server.exe=0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428`.
 These local pristine hashes must be verified in Task 0, not assumed compatible
 because they were copied here.
+Extend both runtime manifests with the explicit `dependencies` map and
+`cuda_runtime_sha256` from the committed `configs/compiler/runtime-stock.json`
+and `runtime-fork.json`. Include `llama-cli-impl.dll`, `llama-server-impl.dll`,
+`llama.dll` and the ggml implementation libraries; the EXE files are wrappers.
+The complete committed manifests are the authoritative values. Do not regenerate
+expected hashes from live files as part of verification.
 
 Implement `load_reference_workload(root, path) -> ReferenceWorkload(payload,
 sha256)` by resolving prompt bytes, rejecting invalid fields, and hashing canonical
@@ -419,11 +431,11 @@ small boundaries are consumed by Task 0 and later converted into Task 2 IRs.
 
 - [ ] **Step 4: Verify the isolated quality environment and tests**
 
-Run: `uv sync --frozen --extra dev --extra quality`
+Run: `uv sync --frozen --extra dev --extra quality --extra predictor`
 
-Run: `uv run python -c "import numpy,pandas,pyarrow; print(numpy.__version__, pandas.__version__, pyarrow.__version__)"`
+Run: `uv run --extra dev --extra quality --extra predictor python -c "import numpy,pandas,pyarrow; print(numpy.__version__, pandas.__version__, pyarrow.__version__)"`
 
-Run: `uv run --extra dev --extra quality pytest -q tests/test_quality_dataset.py tests/test_compiler_reference_config.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_quality_dataset.py tests/test_compiler_reference_config.py`
 
 Expected: imports succeed and both test files pass.
 
@@ -492,7 +504,7 @@ Also test rejection of invalid SHA-256, duplicate layers, nonpositive bytes, `to
 
 - [ ] **Step 2: Run schema tests and verify RED**
 
-Run: `uv run pytest -q tests/test_compiler_schema.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_schema.py`
 
 Expected: collection fails with `ModuleNotFoundError: expertflow.compiler`.
 
@@ -537,7 +549,7 @@ Sort `ModelIR.moe_layers` by `layer_id` in `__post_init__` using `object.__setat
 
 - [ ] **Step 4: Run focused and existing inventory tests**
 
-Run: `uv run pytest -q tests/test_compiler_schema.py tests/test_q6_inventory.py tests/test_expert_layout.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_schema.py tests/test_q6_inventory.py tests/test_expert_layout.py`
 
 Expected: PASS.
 
@@ -586,7 +598,7 @@ Also test identity mismatch, missing evidence, exact plan containing approximate
 
 - [ ] **Step 2: Run plan tests and verify RED**
 
-Run: `uv run pytest -q tests/test_compiler_plan.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_plan.py`
 
 Expected: import fails because `expertflow.compiler.plan` is absent.
 
@@ -596,7 +608,7 @@ Expected: import fails because `expertflow.compiler.plan` is absent.
 
 - [ ] **Step 4: Run focused plan/schema tests**
 
-Run: `uv run pytest -q tests/test_compiler_schema.py tests/test_compiler_plan.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_schema.py tests/test_compiler_plan.py`
 
 Expected: PASS.
 
@@ -644,7 +656,7 @@ Also test wrong family, noncontiguous/duplicate layer IDs, expert-count mismatch
 
 - [ ] **Step 2: Run adapter tests and verify RED**
 
-Run: `uv run pytest -q tests/test_compiler_gemma4_adapter.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_gemma4_adapter.py`
 
 Expected: import fails because adapter modules are absent.
 
@@ -666,7 +678,7 @@ Only `gemma4.py` may inspect Gemma-specific family metadata. It consumes the inv
 
 - [ ] **Step 4: Run adapter, inventory, and placement tests**
 
-Run: `uv run pytest -q tests/test_compiler_gemma4_adapter.py tests/test_q6_inventory.py tests/test_q6_placement.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_gemma4_adapter.py tests/test_q6_inventory.py tests/test_q6_placement.py`
 
 Expected: PASS.
 
@@ -711,7 +723,7 @@ Also test deterministic tie-breaking by pass name, explicit conflicts, duplicate
 
 - [ ] **Step 2: Run pass-manager tests and verify RED**
 
-Run: `uv run pytest -q tests/test_compiler_pass_manager.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_pass_manager.py`
 
 Expected: import failure.
 
@@ -731,7 +743,7 @@ Resolve dependencies without third-party graph packages. Do not mutate an input 
 
 - [ ] **Step 4: Run pass and plan suites**
 
-Run: `uv run pytest -q tests/test_compiler_pass_manager.py tests/test_compiler_plan.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_pass_manager.py tests/test_compiler_plan.py`
 
 Expected: PASS.
 
@@ -773,7 +785,7 @@ Also test canonical key hashing, transaction rollback, duplicate explicit ID rej
 
 - [ ] **Step 2: Run evidence tests and verify RED**
 
-Run: `uv run pytest -q tests/test_compiler_evidence.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_evidence.py`
 
 Expected: import failure.
 
@@ -783,7 +795,7 @@ Use only `sqlite3`. Create tables `measurement`, `artifact`, and `validation` wi
 
 - [ ] **Step 4: Run evidence and artifact tests**
 
-Run: `uv run pytest -q tests/test_compiler_evidence.py tests/test_artifacts.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_evidence.py tests/test_artifacts.py`
 
 Expected: PASS.
 
@@ -832,7 +844,7 @@ Also test exhaustive selection when candidates fit the budget, deterministic sel
 
 - [ ] **Step 2: Run cost-model tests and verify RED**
 
-Run: `uv run pytest -q tests/test_compiler_cost_model.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_cost_model.py`
 
 Expected: import failure.
 
@@ -842,7 +854,7 @@ Use analytical estimates unchanged as the initial mean, observed absolute percen
 
 - [ ] **Step 4: Run cost/evidence tests**
 
-Run: `uv run pytest -q tests/test_compiler_cost_model.py tests/test_compiler_evidence.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_cost_model.py tests/test_compiler_evidence.py`
 
 Expected: PASS.
 
@@ -896,7 +908,7 @@ Also test failed exit, missing repetitions, variance beyond configured tolerance
 
 - [ ] **Step 2: Run stock tests and verify RED**
 
-Run: `uv run pytest -q tests/test_compiler_stock.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_stock.py`
 
 Expected: import failure.
 
@@ -915,7 +927,7 @@ The production runner executes sequential warmup/measured processes and stores n
 
 - [ ] **Step 4: Run stock and existing baseline/benchmark suites**
 
-Run: `uv run --extra dev --extra quality pytest -q tests/test_compiler_stock.py tests/test_compiler_runner.py tests/test_baseline_command.py tests/test_baseline_cli.py tests/test_performance_benchmark.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_stock.py tests/test_compiler_runner.py tests/test_baseline_command.py tests/test_baseline_cli.py tests/test_performance_benchmark.py`
 
 Expected: PASS.
 
@@ -965,7 +977,7 @@ Also test duplicate/missing profile layers, profile/backend mismatch, nonfinite 
 
 - [ ] **Step 2: Run static-placement tests and verify RED**
 
-Run: `uv run pytest -q tests/test_compiler_static_placement.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_static_placement.py`
 
 Expected: import failure.
 
@@ -975,7 +987,7 @@ Port the useful calculation from `scripts/analyze_q6_layer_profile.py` into the 
 
 - [ ] **Step 4: Run compiler and historical static-analysis tests**
 
-Run: `uv run pytest -q tests/test_compiler_static_placement.py tests/test_q6_layer_profile.py tests/test_q6_selected_static_analysis.py tests/test_q6_placement.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_static_placement.py tests/test_q6_layer_profile.py tests/test_q6_selected_static_analysis.py tests/test_q6_placement.py`
 
 Expected: PASS.
 
@@ -1025,7 +1037,7 @@ Also test unsupported adapter exit 2, identity mismatch exit 2, no valid stock c
 
 - [ ] **Step 2: Run pipeline/CLI tests and verify RED**
 
-Run: `uv run pytest -q tests/test_compiler_pipeline.py tests/test_compiler_cli.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_pipeline.py tests/test_compiler_cli.py`
 
 Expected: import/argument failures because pipeline and commands are absent.
 
@@ -1086,7 +1098,7 @@ and records the replay through the same runner; it cannot perform candidate sear
 
 - [ ] **Step 4: Run all compiler and existing CLI tests**
 
-Run: `uv run pytest -q tests/test_compiler_*.py tests/test_product_cli.py tests/test_profile_cli.py tests/test_baseline_cli.py`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q tests/test_compiler_*.py tests/test_product_cli.py tests/test_profile_cli.py tests/test_baseline_cli.py`
 
 Expected: PASS and no existing command changes behavior.
 
@@ -1115,11 +1127,11 @@ git commit -m "feat: expose Phase 3 inference compiler"
 
 - [ ] **Step 1: Run the complete CPU-only verification before GPU work**
 
-Run: `uv sync --frozen --extra dev --extra quality`
+Run: `uv sync --frozen --extra dev --extra quality --extra predictor`
 
-Run: `uv run pytest -q`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q`
 
-Run: `uv run python -m compileall -q src/expertflow`
+Run: `uv run --extra dev --extra quality --extra predictor python -m compileall -q src/expertflow`
 
 Run: `git diff --check`
 
@@ -1127,7 +1139,7 @@ Expected: all tests pass; the earlier pandas/NumPy ABI failure is gone. Source-c
 
 - [ ] **Step 2: Verify identities and compile a dry-run plan from recorded evidence**
 
-Run `expertflow inspect` with the verified inventory and Gemma descriptor. Run `expertflow compile --recorded-evidence` against committed historical evidence. Verify that the historical CLI reports retain 22.966667/28.13 TPS under their own workload IDs, the twelve-layer candidate remains exact-ineligible, and no sealed plan is emitted from summary-only evidence. Complete imported evidence may seal only when every identity and raw token gate matches.
+Run `expertflow inspect` with the verified inventory and Gemma descriptor. Run `expertflow compile --recorded-evidence` against committed historical evidence. Preserve the separate earlier strongest-stock result of 22.966667 TPS and the later ten-pair OFF/ON means of 22.28/28.13 TPS under their own evidence/workload IDs. The twelve-layer candidate remains exact-ineligible, and summary-only evidence emits no sealed plan. Complete imported evidence may seal only when every identity and raw token gate matches.
 
 - [ ] **Step 3: Run the live strongest-stock candidate matrix sequentially**
 
@@ -1157,9 +1169,9 @@ On `VALIDATION-STOP` or `INCONCLUSIVE`, retain failure evidence and do not begin
 
 - [ ] **Step 7: Final verification and scoped commit**
 
-Run: `uv run pytest -q`
+Run: `uv run --extra dev --extra quality --extra predictor pytest -q`
 
-Run: `uv run python -m compileall -q src/expertflow`
+Run: `uv run --extra dev --extra quality --extra predictor python -m compileall -q src/expertflow`
 
 Run: `git diff --check`
 

@@ -46,7 +46,11 @@ def _positive_int(value: object, field: str, *, minimum: int = 1) -> None:
 
 
 def _finite_number(value: object, field: str, *, minimum: float = 0) -> None:
-    if type(value) not in (int, float) or not math.isfinite(value) or value < minimum:
+    try:
+        valid = type(value) in (int, float) and math.isfinite(value) and value >= minimum
+    except OverflowError:
+        valid = False
+    if not valid:
         raise ValueError(f'{field} must be finite and >= {minimum}')
 
 
@@ -143,7 +147,19 @@ def load_runtime_manifest(path: Path) -> dict:
     patches = value.get('patches')
     if not isinstance(patches, list):
         raise ValueError('invalid ordered patches')
-    digests = list(binaries.values())
+    dependencies = value.get('dependencies')
+    if not isinstance(dependencies, dict) or not dependencies:
+        raise ValueError('runtime manifest requires pinned dependency identities')
+    for name in dependencies:
+        if not isinstance(name, str) or Path(name).name != name or not name.endswith('.dll'):
+            raise ValueError('invalid runtime dependency name')
+    required_dependencies = {
+        'ggml-base.dll', 'ggml-cpu.dll', 'ggml-cuda.dll', 'ggml.dll',
+        'llama-common.dll', 'llama-cli-impl.dll', 'llama-server-impl.dll', 'llama.dll',
+    }
+    if not required_dependencies <= dependencies.keys():
+        raise ValueError('missing pinned implementation dependency')
+    digests = list(binaries.values()) + list(dependencies.values()) + [value.get('cuda_runtime_sha256')]
     for index, patch in enumerate(patches, start=1):
         if not isinstance(patch, dict) or set(patch) != {'path', 'sha256'}:
             raise ValueError('invalid patch record')
