@@ -36,30 +36,16 @@ passed. No model measurements or GPU inference processes have run in this checkp
 
 ## Current gate and recovery
 
-Task 0's live artifact gate is **ENVIRONMENT-BLOCKED**, solely because the Q6
-download is incomplete. It is not a completed task. Tasks 2–11 have not started.
-The exact runtime binaries and six patches passed verification; the audit rejects
-the historical static result from exact sealing and preserves its quality failure.
+Task 0 is complete. The recovered Q6 artifact passed a fresh full size/SHA-256
+check on 2026-10-03; `preflight.json` reports **READY**. Runtime binaries, six
+patches, companion DLLs and CUDA runtime also match their pinned identities.
+The download and verifier processes exited successfully. No live measurements
+have run yet; native token, memory, numerical-path and replay gates remain.
 
-The C/D drive search found Q4, Qwen and tiny test weights, but no pinned Q6 GGUF
-or complete SHA-named cache object. A stalled zero-byte Hugging Face CLI download
-was stopped along with its verified owned children. One native aria2 process
-owns the recovery, PID `18900` at this checkpoint. Revision:
-`fabed3e586120477355eea23b92644540a79ce2f`.
-
-Destination: `C:/models/gemma-4-26b-a4b-q6/google_gemma-4-26B-A4B-it-Q6_K.gguf`.
-Required size: **22,862,575,520 bytes**. Required SHA-256:
+Model: `C:/models/gemma-4-26b-a4b-q6/google_gemma-4-26B-A4B-it-Q6_K.gguf`.
+Size: **22,862,575,520 bytes**. SHA-256:
 `089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba`.
-Do not infer completed download bytes from apparent file length: aria2 writes
-segments at distant offsets. Its `.aria2` marker and transfer log remain authoritative
-until the downloader exits and the full hash is checked.
-
-The hidden verifier in
-`.superpowers/sdd/2026-08-28-inference-compiler-spine/finish-model-recovery.ps1`
-waits for this owned downloader, then runs the artifact gate once. It writes
-`model-recovery-verdict.json` and `model-verification.log` in the same ignored
-directory and refreshes `preflight.json`. It launches no model and executes no
-compiler tasks. A recovery failure preserves resumable files.
+Task 2 is now in progress, followed by Tasks 3–11 without routine pauses.
 
 ## Resume
 
