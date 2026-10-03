@@ -255,7 +255,7 @@ class EvidenceStore:
             if sample.get('pid') != process['pid']:
                 raise ValueError('foreign memory PID')
             require_int(sample.get('dedicated_bytes'), 'process-owned GPU memory')
-            require_int(sample.get('device_free_bytes'), 'device free memory')
+            require_int(sample.get('device_free_bytes'), 'device free memory', 0)
             if sample['device_free_bytes'] < w.minimum_vram_reserve_mib << 20:
                 raise ValueError('VRAM reserve violated')
         if record.numerical_path == 'numerical_path_change' or settings.static is not None:

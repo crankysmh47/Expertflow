@@ -98,6 +98,7 @@ def test_owned_real_child_health_completion_failure_and_cleanup(tmp_path, tiny_c
     assert outcome.status == expected
     assert len(owned) == 1 and owned[0].poll() is not None
     assert (tmp_path / 'run' / 'process.json').exists()
+    assert b'\r\n' not in (tmp_path / 'run' / 'process.json').read_bytes()
     if expected == 'measured':
         row = store.verify_measurement(outcome.measurement_id)
         assert row['decode_tps'] == 30

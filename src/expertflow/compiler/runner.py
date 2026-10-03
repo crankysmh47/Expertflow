@@ -94,7 +94,9 @@ def lower_launch(candidate, model, binding, port, output_dir, *, inherited=None)
 
 
 def _write(path, payload):
-    Path(path).write_text(json.dumps(canonical_payload(payload), indent=2) + '\n', encoding='utf-8')
+    # Keep artifact bytes unchanged by this checkout's JSON eol=lf rule.
+    Path(path).write_text(json.dumps(canonical_payload(payload), indent=2, sort_keys=True) + '\n',
+                          encoding='utf-8', newline='\n')
 
 
 def _http(port, route, payload=None, timeout=1):

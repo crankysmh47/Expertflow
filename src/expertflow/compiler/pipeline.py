@@ -299,25 +299,35 @@ def compile_phase3(request, runner=None, store=None):
                 if re.search(r'out of memory|failed to allocate|unable to allocate|not enough memory', text, re.I):
                     report['rejected_candidates'].append({'candidate_id':candidate.candidate_id, 'reason':'allocation_failure', 'evidence':warmup.output_dir})
                     continue
+                if warmup.status == 'validation_stop' and warmup.reason == 'VRAM reserve violated':
+                    report['rejected_candidates'].append({'candidate_id':candidate.candidate_id, 'reason':'vram_budget', 'evidence':warmup.output_dir})
+                    continue
                 raise EnvironmentBlocked(warmup.reason or 'stock warmup failed')
             if warmup.resolved_placement is not None and warmup.resolved_placement in placements:
                 report['duplicate_placements'].append({'candidate_id':candidate.candidate_id,
                     'representative':placements[warmup.resolved_placement], 'evidence':warmup.output_dir})
                 continue
-            if warmup.resolved_placement is not None:
-                placements[warmup.resolved_placement] = candidate.candidate_id
             ids = []
+            candidate_rejected = False
             for repetition in range(inputs.workload.measured_runs):
                 outcome = runner.run_once(candidate, inputs.model.identity, inputs.stock,
                     output_dir=run_root / f'stock-{index}-measured-{repetition}', measured=True)
                 report['measurements'].append(canonical_payload(outcome))
                 if outcome.status != 'measured':
+                    if outcome.status == 'validation_stop' and outcome.reason == 'VRAM reserve violated':
+                        report['rejected_candidates'].append({'candidate_id':candidate.candidate_id, 'reason':'vram_budget', 'evidence':outcome.output_dir})
+                        candidate_rejected = True
+                        break
                     if outcome.status == 'environment_blocked':
                         raise EnvironmentBlocked(outcome.reason or 'stock measurement failed')
                     raise ValueError(outcome.reason or 'stock validation failed')
                 _same_tokens(store, outcome.measurement_id, warmup.measurement_id)
                 ids.append(outcome.measurement_id)
+            if candidate_rejected:
+                continue
             measurements.append(import_stock_measurement(candidate, ids, store))
+            if warmup.resolved_placement is not None:
+                placements[warmup.resolved_placement] = candidate.candidate_id
         try:
             stock_floor = select_strongest_stock(measurements,
                 total_vram_mib=inputs.hardware.total_vram_bytes >> 20,

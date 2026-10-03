@@ -142,3 +142,18 @@ def test_committed_historical_replay_is_diagnostic_and_never_runs_or_seals(tmp_p
     assert result.report['earlier_strongest_stock_decode_tps'] == 22.966667
     assert runner.calls == [] and result.execution_plan is None
     assert not (tmp_path/'output/execution-plan.json').exists()
+
+
+def test_memory_unsafe_stock_candidate_is_rejected_without_discarding_safe_floor(tmp_path, monkeypatch):
+    inp=inputs(tmp_path)
+    monkeypatch.setattr('expertflow.compiler.pipeline.load_compiler_inputs',lambda *a,**k:inp)
+    store=EvidenceStore(tmp_path/'store.sqlite3')
+    class UnsafeCudaRunner(FakeRunner):
+        def run_once(self,candidate,model,binding,**kwargs):
+            if not candidate.settings.cpu_moe:
+                return MeasurementOutcome('validation_stop',None,'VRAM reserve violated',None,str(kwargs['output_dir']))
+            return super().run_once(candidate,model,binding,**kwargs)
+    result=compile_phase3(request(tmp_path),UnsafeCudaRunner(store),store)
+    assert result.status == 'PASS-STOCK-FALLBACK'
+    assert result.execution_plan.candidate.settings.cpu_moe is True
+    assert any(r.get('reason') == 'vram_budget' for r in result.report['rejected_candidates'])
