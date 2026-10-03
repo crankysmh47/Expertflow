@@ -1,0 +1,67 @@
+{
+  "all_native_tokens_memory_cleanup_verified": true,
+  "all_runs_measured_false": true,
+  "artifacts": [
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\controls-stdout.log",
+      "sha256": "81114d8790d1ec118ba1979c0ac2d659d106d0ac7f91dd36e34edd411d5a8a20",
+      "size_bytes": 56
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\controls-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\controls-exit.txt",
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "size_bytes": 3
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\profiles-stdout.log",
+      "sha256": "e6acf4717c6b9beaf5ce35773bae0f9b96e9e078dc1943f83f08e8e7024198a3",
+      "size_bytes": 61
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\profiles-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\profiles-exit.txt",
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "size_bytes": 3
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\controls-frozen.json",
+      "sha256": "a8ea9e26d98a3937d0eecde4e196cbf6c1318d5b5e9adabcbeccd5bade6f87a5",
+      "size_bytes": 1424
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\profiles-frozen.json",
+      "sha256": "eb31a1e31a982f92a3cbe6818849ee62f8f6da3aacf13047058f5de6f11facdd",
+      "size_bytes": 4165
+    }
+  ],
+  "control_database_unchanged": true,
+  "hidden_private_console_shutdown_probe": "passed",
+  "new_optimization_launched": false,
+  "probe_sources": {
+    "C:\\sem4\\expertflow\\.superpowers\\profiling-spike-20261004\\console_stop.py": "12b48c5ef3b8479839f351b9a041433ba878dda5add7f035b2f0df408f2da89a",
+    "C:\\sem4\\expertflow\\.superpowers\\profiling-spike-20261004\\profiles.py": "052998e642279325f4874668821aa1cde7f8ca954cbbdcdb891b78a30dba51e3",
+    "src\\expertflow\\compiler\\runner.py": "9a326df6a5de6ccd5df5613b3e6fd42ec41649819ceaccee46fe290d970974c1"
+  },
+  "product_code_changed": false,
+  "product_plan_published": false,
+  "profile_children_graceful_exit_code": 0,
+  "profile_count": 3,
+  "profiling_environment": "isolated diagnostic override, fixed fork runtime and output path; rejected by ordinary product lowering",
+  "raw_artifact_hashes_reverified": true,
+  "retries": 0,
+  "source_commit": "c879e52c33f1ea35000f5edd02b64bcc13ce6f79",
+  "source_contracts": {
+    "exit_code": 0,
+    "output": "......                                                                   [100%]\n6 passed in 0.08s\n"
+  },
+  "unique_owned_runs": 5
+}
