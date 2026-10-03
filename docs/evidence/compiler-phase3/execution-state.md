@@ -34,6 +34,12 @@ ownership and cleanup gates passed. `validate` and standalone `run --plan` were
 not attempted because the terminal compile gate failed. Later tracks are blocked.
 See `verification.json`; no GPU process remains running.
 
+Final clean-checkout verification at `6ea456c`: frozen installation, 481 tests
+passed / six external-source skips, compileall and diff checks passed, Git status
+clean. The tested compiler code is `c27711a`; subsequent commits record evidence.
+The implementation and fixed-budget verdict are complete. Live product acceptance
+and later research tracks remain blocked by the selected replay tolerance gate.
+
 Resume from the ignored `.superpowers/sdd/2026-08-28-inference-compiler-spine/`
 ledger. Check live processes and artifacts before launching anything again.
 Keep the pre-existing PROJECT_LOG edit, R1 report and OpenCode transcript outside

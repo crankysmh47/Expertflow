@@ -1208,7 +1208,7 @@ On `VALIDATION-STOP` or `INCONCLUSIVE`, retain failure evidence and do not begin
 
 `verification.json` records every command, exit code, artifact SHA-256, test count, source-contract skip, model/runtime/compiler identity, measurement ID, decision, and limitation. `README.md` separates recorded reproduction, live measurement, estimates, and rejected candidates. Append one factual entry to `PROJECT_LOG.md`; never rewrite prior entries.
 
-- [ ] **Step 7: Final verification and scoped commit**
+- [x] **Step 7: Final verification and scoped commit**
 
 Run: `uv run --extra dev --extra quality --extra predictor pytest -q`
 

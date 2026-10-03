@@ -99,9 +99,46 @@
       "path": "C:\\sem4\\expertflow\\.superpowers\\sdd\\2026-08-28-inference-compiler-spine\\task-11-reviewed-cpu-tests.log",
       "sha256": "b45827923f0be926f94de453b0e501db18b70519e04ccef6d834a09334b794d0",
       "size_bytes": 817
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\clean-sync.log",
+      "sha256": "2bd0d4813040b181d6d1240504be45ab87cd71e32d88cbd33ac653f30d151214",
+      "size_bytes": 1259
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\clean-sync.exit.txt",
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "size_bytes": 3
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\clean-cpu-tests.log",
+      "sha256": "10f6329648f7945b295df42008ff39040419439f7cd2c24ca9383b77b8243c62",
+      "size_bytes": 817
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\clean-cpu-tests.exit.txt",
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "size_bytes": 3
     }
   ],
   "branch": "ef-v2",
+  "clean_checkout": {
+    "branch": "ef-v2",
+    "compileall_command": "uv run --extra dev --extra quality --extra predictor python -m compileall -q src/expertflow",
+    "compileall_exit_code": 0,
+    "diff_check_command": "git diff --check",
+    "diff_check_exit_code": 0,
+    "git_status": "clean",
+    "gpu_measurements_repeated": false,
+    "path": "C:\\models\\expertflow\\runs\\compiler-phase3-20261003-reviewed\\clean-checkout",
+    "sync_command": "uv sync --frozen --extra dev --extra quality --extra predictor",
+    "sync_exit_code": 0,
+    "test_command": "uv run --extra dev --extra quality --extra predictor pytest -q",
+    "test_exit_code": 0,
+    "tested_commit": "6ea456c4b36bfb42b14782c542ac04494480e2e9",
+    "tests_passed": 481,
+    "tests_skipped": 6
+  },
   "commands": [
     {
       "command": "uv sync --frozen --extra dev --extra quality --extra predictor",

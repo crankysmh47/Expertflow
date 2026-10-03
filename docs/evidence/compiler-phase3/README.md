@@ -31,6 +31,11 @@ compilation checks its fork revision and runs the two applicable static/profile
 suites before starting GPU inference. Temporal-cache source contracts belong to
 a different fork.
 
+A clean local checkout at `6ea456c` independently passed the same 481 tests and
+six skips after frozen environment installation; compileall and Git checks also
+passed. `verification.json` records its path, commands, exit codes and log hashes.
+This check repeated no GPU measurements and leaves the live verdict unchanged.
+
 External files are pinned by the model manifest, runtime manifests, and
 `preflight.json`:
 
