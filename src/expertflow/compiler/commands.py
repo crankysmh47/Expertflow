@@ -20,6 +20,7 @@ def _input_arguments(parser, *, required=True):
 
 def configure_sealed_run(parser):
     parser.add_argument('--plan', type=Path)
+    parser.add_argument('--acceptance', type=Path)
     _input_arguments(parser, required=False)
     parser.add_argument('--output-dir', type=Path)
 
@@ -36,6 +37,7 @@ def add_compiler_commands(commands):
     validate = commands.add_parser('validate', help='Verify a sealed plan, evidence and live identities.')
     _input_arguments(validate)
     validate.add_argument('--plan', type=Path, required=True)
+    validate.add_argument('--acceptance', type=Path)
     explain = commands.add_parser('explain', help='Export decisions without promoting estimates to measurements.')
     for name in ('plan', 'report', 'output'):
         explain.add_argument('--' + name, type=Path, required=True)
@@ -76,15 +78,27 @@ def handle_compiler_command(args):
                 raise ValueError('sealed-plan run requires output-dir')
             inputs = load_compiler_inputs(request, live=True)
             store = EvidenceStore(request.evidence_db_path)
-            plan = load_execution_plan(args.plan, identities=inputs.identities(inputs.stock), store=store)
+            acceptance = getattr(args, 'acceptance', None)
+            if acceptance:
+                from .stock_validation import load_validated_stock_plan
+                from .preflight import capture_host_environment
+                plan = load_validated_stock_plan(args.plan, acceptance, store,
+                    identities=inputs.identities(inputs.stock), host_environment=capture_host_environment())
+            else:
+                plan = load_execution_plan(args.plan, identities=inputs.identities(inputs.stock), store=store)
             if args.command == 'validate':
-                result = {'status': 'VALIDATED', 'plan_sha256': plan.plan_sha256}
+                result = {'status': 'VALIDATED-STOCK-FALLBACK' if acceptance else 'VALIDATED', 'plan_sha256': plan.plan_sha256}
                 code = 0
             else:
-                status, replay = replay_sealed_plan(args.plan, inputs, None, store, request.output_dir / 'raw-replay')
+                if acceptance:
+                    from .stock_validation import run_accepted_stock_plan
+                    status, replay = run_accepted_stock_plan(args.plan, acceptance, inputs, store,
+                        request.output_dir / 'raw-replay')
+                else:
+                    status, replay = replay_sealed_plan(args.plan, inputs, None, store, request.output_dir / 'raw-replay')
                 result = {'status': status, **replay}
                 atomic_json(request.output_dir / 'replay.json', result)
-                code = 0 if status.startswith('PASS-') else 3 if status == 'ENVIRONMENT-BLOCKED' else 2
+                code = 0 if status.startswith('PASS-') or status == 'MEASURED-ACCEPTED-STOCK' else 3 if status == 'ENVIRONMENT-BLOCKED' else 2
         elif args.command == 'explain':
             plan = load_execution_plan(args.plan)
             report = read_json(args.report)

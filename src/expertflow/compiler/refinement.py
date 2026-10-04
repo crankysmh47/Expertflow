@@ -116,11 +116,22 @@ def diagnostic_summary(record):
     return summary
 
 
-def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, output_dir):
+def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, output_dir,
+                  *, validation_protocol='measurement-v1', host_capture=None):
     from .plan import CandidatePlan, RuntimeSettings, load_execution_plan
     from .preflight import file_sha256
     from .pipeline import atomic_json
     from .evidence import MeasurementKey
+    import uuid
+    if validation_protocol not in {'measurement-v1', 'paired-stock-product-v1'}:
+        raise ValueError('unsupported paired validation protocol')
+    product = validation_protocol == 'paired-stock-product-v1'
+    if product and host_capture is None:
+        from .preflight import capture_host_environment
+        host_capture = capture_host_environment
+    host_environment = host_capture() if product else None
+    experiment_id = uuid.uuid4().hex
+    stage_prefix = f'product-{experiment_id}' if product else 'aa'
     output = Path(output_dir)
     output.mkdir(parents=True, exist_ok=False)
     source_plan_path = Path(source_plan_path)
@@ -136,7 +147,8 @@ def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, 
         raise ValueError('source plan lacks ten confirmation records')
     baseline = source_store.verify_measurement(plan.candidate.measurement_ids[0])
     target_store.prime_model(inputs.model)
-    protocol_path = Path('docs/superpowers/specs/2026-10-03-compiler-measurement-refinement.md')
+    protocol_path = Path('docs/superpowers/specs/2026-10-04-stock-configuration-discovery.md' if product else
+                         'docs/superpowers/specs/2026-10-03-compiler-measurement-refinement.md')
     freeze = {'protocol_sha256': file_sha256(protocol_path),
               'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
               'source_plan_file_sha256': file_sha256(source_plan_path), 'source_plan_sha256': plan.plan_sha256,
@@ -146,6 +158,12 @@ def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, 
               'identities': canonical_payload(identities), 'settings': canonical_payload(direct.settings),
               'source_provenance': inputs.provenance, 'pairs': PAIRS, 'schedule': balanced_schedule(),
               'seed': SEED, 'bootstrap_samples': RESAMPLES, 'equivalence_margin_pct': 2}
+    if product:
+        freeze.update(protocol_version=validation_protocol, experiment_id=experiment_id,
+                      host_environment=canonical_payload(host_environment), source_plan=canonical_payload(plan),
+                      frozen_monotonic_ns=time.monotonic_ns(), experiment_root=str(output.resolve()))
+        for mid in plan.candidate.measurement_ids:
+            target_store.append_measurement(source_store.measurement(mid), measurement_id=mid)
     sources = [*sorted(Path('src/expertflow/compiler').rglob('*.py')), Path('scripts/benchmark_compiler_refinement.py')]
     freeze['source_files'] = {str(path): file_sha256(path) for path in sources}
     atomic_json(output / 'frozen-protocol.json', freeze)
@@ -155,6 +173,8 @@ def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, 
         for pair, order in enumerate(balanced_schedule()):
             for arm in order:
                 started = time.perf_counter()
+                if product and canonical_payload(host_capture()) != canonical_payload(host_environment):
+                    raise ValueError('host environment changed during product validation')
                 if file_sha256(source_plan_path) != freeze['source_plan_file_sha256']:
                     raise ValueError('source plan changed during experiment')
                 if any(file_sha256(Path(path)) != digest for path, digest in freeze['source_files'].items()):
@@ -163,14 +183,14 @@ def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, 
                 candidate = direct if arm == 'direct' else load_execution_plan(source_plan_path, identities=identities).candidate
                 preparation_ms = (time.perf_counter() - preparation_started) * 1000
                 outcome = runner.run_once(candidate, inputs.model, inputs.stock,
-                    output_dir=output / 'raw' / f'pair-{pair:02}-{arm}', measured=True, stage=f'aa-{pair:02}-{arm}')
+                    output_dir=output / 'raw' / f'pair-{pair:02}-{arm}', measured=True, stage=f'{stage_prefix}-{pair:02}-{arm}')
                 report['outcomes'].append(canonical_payload(outcome))
                 if outcome.status != 'measured':
                     report.update(status=outcome.status.upper().replace('_', '-'), reason=outcome.reason)
                     atomic_json(output / 'report.json', report)
                     return report
                 record = target_store.measurement(outcome.measurement_id)
-                if record.key != MeasurementKey.from_candidate(direct) or record.stage != f'aa-{pair:02}-{arm}':
+                if record.key != MeasurementKey.from_candidate(direct) or record.stage != f'{stage_prefix}-{pair:02}-{arm}':
                     raise ValueError('run does not bind to frozen pair/settings')
                 verified = target_store.verify_measurement(outcome.measurement_id)
                 for name in ('generated_tokens_sha256', 'prompt_tokens_sha256'):
@@ -182,6 +202,8 @@ def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, 
                     'diagnostics': diagnostic_summary(record), 'artifacts': canonical_payload(record.artifacts)})
                 atomic_json(output / 'report.json', report)
         report.update(evaluate_pairs(report['rows']))
+        if product and canonical_payload(host_capture()) != canonical_payload(host_environment):
+            raise ValueError('host environment changed before product publication')
         if file_sha256(source_store.path) != freeze['source_evidence_db_sha256']:
             raise ValueError('original source database changed during read-only experiment')
     except (ValueError, OSError, KeyError, TypeError) as error:

@@ -1021,7 +1021,7 @@ def _run_deadline_eval(args: argparse.Namespace) -> int:
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == 'run' and args.plan is None and any(getattr(args, name, None) is not None for name in
-            ('descriptor', 'inventory', 'hardware', 'workload', 'runtime_identity', 'evidence_db', 'output_dir')):
+            ('descriptor', 'inventory', 'hardware', 'workload', 'runtime_identity', 'evidence_db', 'output_dir', 'acceptance')):
         print(json.dumps({'status': 'failure', 'reason': 'mixed run modes: compiler-only arguments require --plan'}))
         return 2
     if args.command in {"inspect", "compile", "validate", "explain"} or args.command == "run" and args.plan is not None:

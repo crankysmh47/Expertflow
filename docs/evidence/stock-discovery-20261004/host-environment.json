@@ -1,0 +1,29 @@
+{
+  "architecture": "AMD64",
+  "cpu": [
+    {
+      "cores": 8,
+      "logical_processors": 16,
+      "name": "AMD Ryzen 7 9700X 8-Core Processor",
+      "processor_id": "178BFBFF00B40F40"
+    }
+  ],
+  "os": "10.0.26200.0",
+  "power_scheme": "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c",
+  "process_affinity_mask": 65535,
+  "ram": [
+    {
+      "capacity_bytes": 17179869184,
+      "configured_mhz": 5600,
+      "slot": "DIMMA2"
+    },
+    {
+      "capacity_bytes": 17179869184,
+      "configured_mhz": 5600,
+      "slot": "DIMMB2"
+    }
+  ],
+  "ram_bytes": 33396510720,
+  "system_affinity_mask": 65535,
+  "threading_environment": {}
+}

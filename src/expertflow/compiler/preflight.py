@@ -4,9 +4,13 @@ import csv
 from datetime import datetime, timezone
 import hashlib
 import math
+import os
 from pathlib import Path
+import platform
 import re
 import statistics
+import subprocess
+import json
 
 from expertflow.artifacts import ArtifactSpec, verify_artifact
 from expertflow.compiler.reference import load_reference_workload, load_runtime_manifest, read_json
@@ -17,6 +21,40 @@ _REQUIRED_DLLS = (
     'ggml-base.dll', 'ggml-cpu.dll', 'ggml-cuda.dll', 'ggml.dll',
     'llama-common.dll', 'llama-cli-impl.dll', 'llama-server-impl.dll', 'llama.dll',
 )
+
+
+def capture_host_environment():
+    """Stable host controls omitted by the legacy GPU-only HardwareIR."""
+    if os.name != 'nt':
+        raise RuntimeError('stock product host capture requires a supported Windows provider')
+    script = """$ErrorActionPreference='Stop';
+$stockCpus=@(Get-CimInstance Win32_Processor | ForEach-Object {
+    [ordered]@{name=$_.Name.Trim();cores=$_.NumberOfCores;logical_processors=$_.NumberOfLogicalProcessors;processor_id=$_.ProcessorId}});
+$stockRam=@(Get-CimInstance Win32_PhysicalMemory | Sort-Object DeviceLocator | ForEach-Object {
+    [ordered]@{slot=$_.DeviceLocator;capacity_bytes=$_.Capacity;configured_mhz=$_.ConfiguredClockSpeed}});
+$stockSystem=Get-CimInstance Win32_ComputerSystem;
+[ordered]@{cpu=$stockCpus;ram=$stockRam;ram_bytes=$stockSystem.TotalPhysicalMemory;os=[Environment]::OSVersion.Version.ToString()} | ConvertTo-Json -Depth 6 -Compress"""
+    flags = subprocess.CREATE_NO_WINDOW
+    result = subprocess.run(['powershell', '-NoProfile', '-NonInteractive', '-Command', script],
+        capture_output=True, text=True, timeout=30, creationflags=flags, check=True)
+    host = json.loads(result.stdout)
+    power = subprocess.run(['powercfg', '/getactivescheme'], capture_output=True,
+        text=True, timeout=10, creationflags=flags, check=True)
+    match = re.search(r'[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}', power.stdout)
+    if not match or not host.get('cpu') or not host.get('ram'):
+        raise RuntimeError('host topology/power identity unavailable')
+    import ctypes
+    process_mask, system_mask = ctypes.c_size_t(), ctypes.c_size_t()
+    kernel = ctypes.WinDLL('kernel32', use_last_error=True)
+    kernel.GetCurrentProcess.restype = ctypes.c_void_p
+    kernel.GetProcessAffinityMask.argtypes = (ctypes.c_void_p, ctypes.POINTER(ctypes.c_size_t), ctypes.POINTER(ctypes.c_size_t))
+    if not kernel.GetProcessAffinityMask(kernel.GetCurrentProcess(), ctypes.byref(process_mask), ctypes.byref(system_mask)):
+        raise RuntimeError('process affinity identity unavailable')
+    host.update(power_scheme=match.group().lower(), architecture=platform.machine(),
+        process_affinity_mask=process_mask.value, system_affinity_mask=system_mask.value,
+        threading_environment={name:value for name,value in sorted(os.environ.items())
+            if name.upper().startswith(('OMP_', 'KMP_', 'GOMP_', 'MKL_', 'OPENBLAS_'))})
+    return host
 
 
 def file_sha256(path: Path) -> str:

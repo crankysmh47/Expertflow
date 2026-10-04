@@ -9,11 +9,12 @@ from expertflow.compiler.evidence import EvidenceStore
 from expertflow.compiler.pipeline import CompilationRequest, EnvironmentBlocked, load_compiler_inputs
 from expertflow.compiler.refinement import execute_pairs, execute_thread_pairs
 from expertflow.compiler.runner import ServerMeasurementRunner, WindowsGpuMemorySampler
+from expertflow.compiler.stock_validation import execute_stock_product
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--experiment', choices=('aa', 'threads8'), default='aa')
+    parser.add_argument('--experiment', choices=('aa', 'threads8', 'stock-product'), default='aa')
     parser.add_argument('--aa-report', type=Path)
     parser.add_argument('--aa-evidence-db', type=Path)
     parser.add_argument('--descriptor', type=Path, default=Path('configs/compiler/gemma4-q6-model.json'))
@@ -29,7 +30,7 @@ def main(argv=None):
     sampler = None
     base_sampler = None
     try:
-        source_db = args.source_evidence_db if args.experiment == 'aa' else args.aa_evidence_db
+        source_db = args.aa_evidence_db if args.experiment == 'threads8' else args.source_evidence_db
         if source_db is None or (args.experiment == 'threads8' and (args.aa_report is None or not args.aa_report.is_file())):
             raise ValueError('threads8 requires --aa-report and --aa-evidence-db')
         if not source_db.is_file():
@@ -44,10 +45,13 @@ def main(argv=None):
         base_sampler = WindowsGpuMemorySampler(inputs.hardware.gpu_uuid)
         sampler = DiagnosticSampler(base_sampler)
         runner = ServerMeasurementRunner(target, memory_sampler=sampler)
-        report = (execute_pairs(inputs, args.source_plan, source, target, runner, args.output_dir)
-                  if args.experiment == 'aa' else
-                  execute_thread_pairs(inputs, args.aa_report, source, target, runner, args.output_dir))
-        code = 0 if report['status'] in ('PASS-MEASUREMENT', 'PASS-OPTIMIZATION') else 3 if report['status'] in ('INCONCLUSIVE', 'ENVIRONMENT-BLOCKED') else 2
+        if args.experiment == 'aa':
+            report = execute_pairs(inputs, args.source_plan, source, target, runner, args.output_dir)
+        elif args.experiment == 'stock-product':
+            report = execute_stock_product(inputs, args.source_plan, source, target, runner, args.output_dir)
+        else:
+            report = execute_thread_pairs(inputs, args.aa_report, source, target, runner, args.output_dir)
+        code = 0 if report['status'] in ('PASS-MEASUREMENT', 'PASS-OPTIMIZATION', 'PASS-STOCK-FALLBACK') else 3 if report['status'] in ('INCONCLUSIVE', 'ENVIRONMENT-BLOCKED') else 2
         print(json.dumps({'status': report['status'], 'reason': report.get('reason'),
                           'change_pct': report.get('geometric_change_pct'), 'ci90_pct': report.get('ci90_pct'),
                           'report': str(args.output_dir / 'report.json')}))
