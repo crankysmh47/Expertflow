@@ -61,3 +61,13 @@ Next work follows the [bounded search plan](../../superpowers/plans/2026-10-04-b
 Generic candidate generation, fixed complete-block screening and temporal
 normalization/ranking passed25 synthetic contract tests after observed RED.
 No stock search native samples or cross-model results have been collected.
+
+The reviewed numerical eligibility provider is implemented for the pinned Gemma4
+Q6 artifact and pristine runtime only. Its nine additional tests reject changed
+weights/build/source objects, unsupported architecture/family/quantization and
+misbound provider identities;34 search/eligibility tests pass together. The
+[live input attestation](scheduling-eligibility.json) verified actual pinned
+runtime binaries and immutable source objects without launching a native model.
+A synthetic second-family provider tests the extension contract only. Q4 weights
+exist locally, but Q4 and other families remain ineligible until their own
+operation-path proof and validation are implemented.

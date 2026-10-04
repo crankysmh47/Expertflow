@@ -1,0 +1,21 @@
+{
+  "allowed_controls": [
+    "threads",
+    "cuda_graphs"
+  ],
+  "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+  "host_environment_sha256": "428ac2955dab54e43f491e258e455b57d20ccf5223c0d294eda14d320962ff2c",
+  "model_ir_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+  "protocol_version": "stock-scheduling-eligibility-v1",
+  "provider_id": "gemma4-q6-x86-scheduling-v1",
+  "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+  "scope": "pinned Gemma4 Q6, unchanged arithmetic/placement/KV; exact native token guards required",
+  "source_object_ids": {
+    "ggml/src/ggml-cpu/ggml-cpu.c": "2745a7dbb29ea12f45c1722f55bc913141669419",
+    "ggml/src/ggml-cpu/ops.cpp": "7c54cb6f469da40913c7a9bd4beb51359a4b7e72",
+    "ggml/src/ggml-cpu/repack.cpp": "f18758f16bb62040333418bab06ce22efe826b20",
+    "ggml/src/ggml-cuda/common.cuh": "290dc4aff259cb78a9a477dea27920fecf398c4a",
+    "ggml/src/ggml-cuda/ggml-cuda.cu": "0878ab9c08afb783c6b5d459d4f9654617807d1d"
+  },
+  "upstream_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697"
+}
