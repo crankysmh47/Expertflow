@@ -16,13 +16,28 @@ extended to other MoE models and hardware without weakening quality.
 | Available second quantization | q4-weight-verification.json, tensor inventory, normalization and source audit | Actual Q4 bytes and accounting verified; separate reviewed numerical scope |
 | Q4 own reference | q4-reference-verification.json, diagnostic plan/receipt, q4-report.md, live reference CLI log | Ten native runs independently verified stable |
 | Q4 paired acceptance | q4-product-verification.json, q4-accepted/ receipt/plan, actual product CLI log | Twenty fresh processes passed and independently verified; CLI validated same plan |
-| Q4 bounded search | Actual Q4 search root and terminal independent audit | Incomplete: search18 plus optional20 unstarted |
-| Runnable reuse method and exclusions | docs/stock-configuration-method.md, explicit Q4 space JSON | Inspection/preparation/collection/audit/validation and trusted extension contracts documented; final terminal coverage update pending |
-| Universal live coverage | Local model inventory and explicit provider registry | Not proven: one actual family/two quants, no verified second-family weights; new families/backends/topologies require their own scope and validation |
+| Q4 bounded search | q4-search-verification.json, q4-recommended/ receipt/plan, actual search CLI log | Eighteen screening runs independently verified, incumbent ranked first; no self-confirmation under frozen rules |
+| Runnable reuse method and exclusions | docs/stock-configuration-method.md, explicit Q4 space JSON | Inspection/preparation/collection/audit/validation, execution consumer and trusted extension contracts documented; terminal coverage recorded |
+| Universal live coverage | local-model-inventory.json and explicit provider registry | Not proven or claimed: one actual family/two quants, no verified second-family weights in inspected roots; new families/backends/topologies require their own scope and validation |
 
-The goal is not complete while Q4's required terminal gates and final coverage
-audit remain missing. A failed product/search gate must preserve evidence and
-stop that track, rather than retry to recover a preferred speed. No current
-result establishes one universally best configuration across all models or
-hardware. The reusable artifact is an evidence-based discovery procedure with
-explicit support and extension boundaries.
+Final read-only audit returned VERIFIED-REGISTERED-STOCK-METHOD. It independently
+reverified100 distinct native measurement/artifact sets, matching all five
+terminal reports to their audit hashes, each frozen source bundle to its exact
+Git revision, current host identity, prerequisite/source databases and historical
+source files. This supplements stage-specific independently recomputed
+statistics/ranking, source proofs, actual CLI validations, full post-review
+checks and contract regressions. No measurement source changed during collection.
+
+The approved StageA/B/C method and Q4 reuse plan are delivered. Q6 and Q4 retain
+their independently accepted incumbents in their declared spaces; no new
+speedup is claimed. Q4 consumed48/68 and Q6 search32/32; no retry/discard or
+extension occurred. A failed future product/search gate must preserve evidence
+and stop that track, rather than retry to recover a preferred speed.
+
+The user goal is fulfilled as a reusable discovery method with verified current
+model results and explicit reviewed extension boundaries, as specified by the
+approved plans. It is not universal model/hardware live support or a global
+optimum: other families/backends/topologies need their adapter, operation proof
+and own live validation. Historical Q6 server24.411/25.383TPS were not recovered
+or explained; the approved specification treats them as descriptive comparison
+targets, not a gate that may be relaxed or met through selective retries.

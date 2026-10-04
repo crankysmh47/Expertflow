@@ -83,12 +83,18 @@ tests/test_compiler_cli.py and stock_validation tests.
 
 ### Task6: MoE/hardware reuse
 
-- [ ] Generalize model/runtime/host inputs through existing adapter registry;
+- [x] Generalize model/runtime/host inputs through existing adapter registry;
   test multiple model inventories/topologies and identity invalidation.
-- [ ] Inventory available local model artifacts; add second real family/quant
+- [x] Inventory available local model artifacts; add second real family/quant
   when supported weights exist, with independent normalization/quality evidence.
-- [ ] Document capability exclusions and live-tested coverage; audit full goal,
+- [x] Document capability exclusions and live-tested coverage; audit full goal,
   not merely StageA, before claiming completion.
+
+Terminal evidence: `docs/evidence/stock-discovery-20261004/objective-audit.md`
+and `method-verification.json`. One actual Gemma family/two quantizations,
+multiple synthetic family/topology contracts; universal live support is not
+claimed. Q6 and Q4 retain12threads/graphs-on in their declared spaces. All100
+registered native processes reverified; historical sources and verdicts intact.
 
 ## Review focus
 

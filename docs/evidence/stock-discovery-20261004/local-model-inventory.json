@@ -1,0 +1,85 @@
+{
+  "cached_metadata": [
+    {
+      "architectures": null,
+      "config_path": "C:\\Users\\Hank47\\.cache\\huggingface\\hub\\models--google--siglip2-so400m-patch14-384\\snapshots\\e8e487298228002f3d8a82e0cd5c8ea9c567f57f\\config.json",
+      "config_sha256": "73477b47ae9a395f008f993ebd8fb5c16ce0b5e8419ffdf2f5b2183b260f9cff",
+      "eligible_live_moe": false,
+      "model_type": "siglip",
+      "num_experts": null,
+      "num_local_experts": null,
+      "reason": "not identified as a supported routed MoE; no verified GGUF/runtime/provider scope",
+      "text_model_type": "siglip_text_model",
+      "text_num_experts": null
+    },
+    {
+      "architectures": [
+        "Qwen2ForCausalLM"
+      ],
+      "config_path": "C:\\Users\\Hank47\\.cache\\huggingface\\hub\\models--Qwen--Qwen2.5-Coder-1.5B-Instruct\\snapshots\\2e1fd397ee46e1388853d2af2c993145b0f1098a\\config.json",
+      "config_sha256": "88f9a17863c05fb313515d2ff74b1098e0c35579f99068e32beda00618508ae0",
+      "eligible_live_moe": false,
+      "model_type": "qwen2",
+      "num_experts": null,
+      "num_local_experts": null,
+      "reason": "not identified as a supported routed MoE; no verified GGUF/runtime/provider scope",
+      "text_model_type": null,
+      "text_num_experts": null
+    },
+    {
+      "architectures": [
+        "Qwen3_5ForConditionalGeneration"
+      ],
+      "config_path": "C:\\Users\\Hank47\\.cache\\huggingface\\hub\\models--Qwen--Qwen3.5-0.8B-Base\\snapshots\\dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68\\config.json",
+      "config_sha256": "b90b86f35c8e6925ef74ee04d0e758f0a845c83a42089ad82bbaa948de9b4204",
+      "eligible_live_moe": false,
+      "model_type": "qwen3_5",
+      "num_experts": null,
+      "num_local_experts": null,
+      "reason": "not identified as a supported routed MoE; no verified GGUF/runtime/provider scope",
+      "text_model_type": "qwen3_5_text",
+      "text_num_experts": null
+    },
+    {
+      "architectures": null,
+      "config_path": "C:\\Users\\Hank47\\.cache\\huggingface\\hub\\models--Systran--faster-whisper-base\\snapshots\\ebe41f70d5b6dfa9166e2c581c45c9c0cfc57b66\\config.json",
+      "config_sha256": "56a6d8110d311f19c8f0471e562832c7527f146b567275bfca59fcf7c184da9a",
+      "eligible_live_moe": false,
+      "model_type": null,
+      "num_experts": null,
+      "num_local_experts": null,
+      "reason": "not identified as a supported routed MoE; no verified GGUF/runtime/provider scope",
+      "text_model_type": null,
+      "text_num_experts": null
+    }
+  ],
+  "limitation": "does not prove absence elsewhere on the PC; cache metadata is not verified model weights",
+  "recursive_pc_search": false,
+  "scope": [
+    "C:/models",
+    "C:\\Users\\Hank47\\.cache\\huggingface\\hub"
+  ],
+  "second_verified_moe_family_available_in_this_inventory": false,
+  "status": "LOCAL-METADATA-INVENTORY-NOT-UNIVERSAL-COVERAGE",
+  "supported_artifacts": [
+    {
+      "exists": true,
+      "family": "gemma4",
+      "path": "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+      "quantization": "Q6_K",
+      "size_bytes": 22862575520,
+      "verification_evidence": "scheduling-eligibility.json",
+      "weight_digest_recomputed_by_this_inventory": false
+    },
+    {
+      "exists": true,
+      "family": "gemma4",
+      "path": "C:\\models\\expertflow\\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\\gemma-4-26B_q4_0-it.gguf",
+      "quantization": "Q4_0",
+      "size_bytes": 14439361440,
+      "verification_evidence": "q4-weight-verification.json",
+      "weight_digest_recomputed_by_this_inventory": false
+    }
+  ],
+  "verified_supported_family_count": 1
+}

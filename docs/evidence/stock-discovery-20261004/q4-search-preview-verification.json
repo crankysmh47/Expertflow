@@ -1,0 +1,14 @@
+{
+  "candidate_count": 6,
+  "manifest_sha256": "ca472cf52a78b40b1cf8901a8c0c5e7a355f2d68e470e2ea8d195400bc5b1862",
+  "maximum_native_processes": 38,
+  "native_samples": 0,
+  "screening_processes": 18,
+  "source_commit": "f02ccbdbe00fcbb3bfee1ff9483df9546ddc92d9",
+  "status": "VERIFIED-Q4-SEARCH-PREVIEW",
+  "threads": [
+    8,
+    12,
+    16
+  ]
+}

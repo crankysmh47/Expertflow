@@ -108,3 +108,22 @@ of the measured revision is preserved at
 [method guide](../../stock-configuration-method.md) for exact validation commands
 and source-preservation rules. Q4 normalization/provider/live validation and
 accepted recommendation execution remain the next Stage C work.
+
+## Stage C terminal update
+
+The separately reviewed reuse implementation and Q4 validation are complete.
+Q4's actual inventory/weights and numerical scope were verified, ten fresh
+reference processes were stable, twenty paired product processes passed, and
+all eighteen screening runs ranked the accepted12-thread/graphs-on incumbent
+first. No self-confirmation was required. Its audits and actual CLI validators
+passed; see [Q4 report](q4-report.md). This is a separate quantization, not a
+Q6 quality-preserving speedup or second-family live result.
+
+Trusted model/provider extension contracts, multiple synthetic inventories and
+topologies, identity invalidation and accepted search execution/CLI are tested.
+Post-review suite passed670 tests with7 source-environment skips; six pinned
+source checks passed separately. Accepted search consumer uses native artifact
+fixtures, with no extra native run added to either registered search budget.
+Final [method verification](method-verification.json) reverified all100 distinct
+registered native records and source revisions. The [objective audit](objective-audit.md)
+preserves remaining coverage limits and the unrecovered historical server rates.

@@ -12,12 +12,12 @@ predict performance on a different host or workload.
 | Model accounting | ModelDescriptor, ModelIR and AdapterRegistry; real Gemma4 Q6 and separately hash-verified Q4 normalized inventories |
 | Runtime identity | RuntimeBinding verifies pristine manifest, binary/dependency/CUDA hashes and build flags |
 | Host identity | GPU/driver plus CPU, RAM, OS, affinity, thread environment and complete power policy |
-| Numerical eligibility | Provider registry; Q6 audited native search, Q4 reviewed source scope and ten audited native reference processes |
+| Numerical eligibility | Provider registry; Q6 audited native search, Q4 reviewed source scope and separately audited reference/product/search |
 | Scheduling coverage | Physical/midpoint/logical/incumbent thread anchors, CUDA graphs on/off, explicit exclusions and untested counts |
 | Valid stock incumbent | Fresh paired product receipts; Q6 and Q4 separately completed twenty runs and passed |
 | Search | Three seeded complete blocks, then independent ten-pair confirmation of one finalist |
 | Recommendation | Atomic execution-plan/search-receipt publication and artifact-backed read-only validation |
-| Remaining reuse work | Q4 product/search native validation and final objective audit; implementation review and post-fix full checks passed |
+| Live reuse coverage | Q6 search32 and Q4 reference10/product20/search18 independently audited; other families/topologies use explicit extension contracts |
 
 Q6 scheduling search completed32 runs and retained the accepted12-thread/graphs-on
 incumbent. The16-thread screening finalist was0.985% slower in independent
@@ -25,6 +25,12 @@ confirmation, CI95[-1.383%,-0.551%]. See
 [the audited evidence report](evidence/stock-discovery-20261004/report.md).
 Q4 is another quantization of the same real family; synthetic second-family
 fixtures establish plugin contracts only.
+
+Q4's independent search completed18 screening processes and retained the
+accepted12-thread/graphs-on incumbent, which ranked first. Its product validation
+measured direct36.6095/sealed36.6385TPS with equivalence acceptance; screening
+mean36.6867TPS is descriptive. No self-confirmation was required. See the
+[Q4 evidence report](evidence/stock-discovery-20261004/q4-report.md).
 
 ## Reproducible sequence
 
@@ -160,7 +166,9 @@ targeted contract checks; the actual zero-native preview verified complete
 source/host/runtime/model binding. Independent review identified and resolved
 a direct API runtime identity gap; post-fix full checks passed670 tests, with
 seven source-environment skips and six pinned source checks passing separately.
-Q4 native validation remains pending. No Q4 speed or accepted product is claimed yet.
+Q4 reference/product/search native validation completed and passed independent
+audit and actual CLI validation. This is separate Q4 evidence, not a Q6
+quality-preserving speedup or a second-family result.
 
 ## Coverage and invalidation
 
@@ -261,3 +269,10 @@ its original gate. Static28.13TPS failed its quality gate; aggregate four-slot
 35.6699TPS measures another objective. None is a matched control or an eligible
 speed target obtained by relaxing correctness. See the retained
 [historical audit](evidence/stock-discovery-20261004/history-audit.json).
+
+The [final objective audit](evidence/stock-discovery-20261004/objective-audit.md)
+maps the registered StageA/B/C requirements to evidence.
+[Final verification](evidence/stock-discovery-20261004/method-verification.json)
+rechecked all100 distinct native records, artifacts and frozen source revisions.
+This completes the registered method, not universal live support or an eligible
+Q6 speedup. Subsequent families/settings require the extension procedure above.

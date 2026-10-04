@@ -54,15 +54,21 @@ No native retries or altered gates. Preserve ef-v2 and unrelated user files.
 
 - [x] One fresh ten-process reference, audit and diagnostic plan.
 - [x] One fresh twenty-process product experiment, unchanged acceptance gates.
-- [ ] Only after product PASS, explicit six-configuration search,18 screening
+- [x] Only after product PASS, explicit six-configuration search,18 screening
   plus optional20 confirmation; publish only independently validated result.
-- [ ] Independent artifact/statistical/source audit and live read-only CLI
+- [x] Independent artifact/statistical/source audit and live read-only CLI
   verification. Record failures without retries or unmeasured speed claims.
 
 ## Task 6: method documentation and full objective audit
 
-- [ ] Document runnable inspect/prepare/run/validate commands, plugin contracts,
+- [x] Document runnable inspect/prepare/run/validate commands, plugin contracts,
   declared coverage/budgets, capability rejection and cache invalidation.
-- [ ] Distinguish Q6/Q4 live coverage from synthetic cross-family/topology tests.
-- [ ] Audit original Stage A/B/C requirements and historical speed comparison;
+- [x] Distinguish Q6/Q4 live coverage from synthetic cross-family/topology tests.
+- [x] Audit original Stage A/B/C requirements and historical speed comparison;
   do not mark the goal complete while required evidence remains missing.
+
+Final read-only audit: VERIFIED-REGISTERED-STOCK-METHOD,100 distinct native
+processes/artifact sets reverified at their frozen source revisions. Q4 consumed
+48/68; incumbent ranked first, so no20-process self-confirmation. See
+`docs/evidence/stock-discovery-20261004/method-verification.json` and the objective
+audit for requirement evidence and explicit historical/universal coverage limits.
