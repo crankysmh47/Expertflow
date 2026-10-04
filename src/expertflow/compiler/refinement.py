@@ -16,6 +16,18 @@ SEED = 20261003
 RESAMPLES = 10000
 
 
+def paired_source_files(*, product=False):
+    from .preflight import file_sha256
+    sources = [*sorted(Path('src/expertflow/compiler').rglob('*.py')),
+               Path('scripts/benchmark_compiler_refinement.py')]
+    if product:
+        sources.append(Path('docs/superpowers/specs/2026-10-04-stock-configuration-discovery.md'))
+        family_spec = Path('docs/superpowers/specs/2026-10-04-granite-generalization.md')
+        if family_spec.exists():
+            sources.append(family_spec)
+    return {str(path): file_sha256(path) for path in sources}
+
+
 def balanced_schedule():
     schedule = [('direct', 'sealed')] * 5 + [('sealed', 'direct')] * 5
     random.Random(SEED).shuffle(schedule)
@@ -138,10 +150,11 @@ def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, 
     identities = inputs.identities(inputs.stock)
     plan = load_execution_plan(source_plan_path, identities=identities, store=source_store)
     w = inputs.workload
-    direct = CandidatePlan(identities, RuntimeSettings(99, True, w.cuda_graphs, w.kv_type_k, w.kv_type_v,
+    cpu_moe = plan.candidate.settings.cpu_moe if product else True
+    direct = CandidatePlan(identities, RuntimeSettings(99, cpu_moe, w.cuda_graphs, w.kv_type_k, w.kv_type_v,
                                                        w.batch_size, w.microbatch_size))
     if plan.candidate.candidate_id != direct.candidate_id:
-        raise ValueError('source plan is not the frozen ngl99 CPU-MoE control')
+        raise ValueError('source plan is not the frozen pristine ngl99 control')
     if len(plan.candidate.measurement_ids) != 10 or any(source_store.measurement(mid).stage != 'confirmation'
                                                        for mid in plan.candidate.measurement_ids):
         raise ValueError('source plan lacks ten confirmation records')
@@ -164,8 +177,7 @@ def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, 
                       frozen_monotonic_ns=time.monotonic_ns(), experiment_root=str(output.resolve()))
         for mid in plan.candidate.measurement_ids:
             target_store.append_measurement(source_store.measurement(mid), measurement_id=mid)
-    sources = [*sorted(Path('src/expertflow/compiler').rglob('*.py')), Path('scripts/benchmark_compiler_refinement.py')]
-    freeze['source_files'] = {str(path): file_sha256(path) for path in sources}
+    freeze['source_files'] = paired_source_files(product=product)
     atomic_json(output / 'frozen-protocol.json', freeze)
     report = {'status': 'RUNNING', 'frozen': freeze, 'rows': [], 'outcomes': [],
               'live_validated_product': False, 'optimization_gain_established': False}
@@ -177,7 +189,7 @@ def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, 
                     raise ValueError('host environment changed during product validation')
                 if file_sha256(source_plan_path) != freeze['source_plan_file_sha256']:
                     raise ValueError('source plan changed during experiment')
-                if any(file_sha256(Path(path)) != digest for path, digest in freeze['source_files'].items()):
+                if paired_source_files(product=product) != freeze['source_files']:
                     raise ValueError('measured source changed during experiment')
                 preparation_started = time.perf_counter()
                 candidate = direct if arm == 'direct' else load_execution_plan(source_plan_path, identities=identities).candidate
@@ -202,6 +214,8 @@ def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, 
                     'candidate_preparation_wall_ms': preparation_ms,
                     'diagnostics': diagnostic_summary(record), 'artifacts': canonical_payload(record.artifacts)})
                 atomic_json(output / 'report.json', report)
+        if paired_source_files(product=product) != freeze['source_files']:
+            raise ValueError('measured source or protocol changed before publication')
         report.update(evaluate_pairs(report['rows']))
         if product and canonical_payload(host_capture()) != canonical_payload(host_environment):
             raise ValueError('host environment changed before product publication')

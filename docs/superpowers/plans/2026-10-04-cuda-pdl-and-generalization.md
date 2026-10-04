@@ -47,9 +47,9 @@ Keep all profiler failures distinct from model measurements.
 
 ## Task4: real-family generalization
 
-- [ ] Inspect official small-MoE metadata and pinned backend support; choose one
+- [x] Inspect official small-MoE metadata and pinned backend support; choose one
   compatible artifact under2GiB and verify downloaded size/hash.
-- [ ] Normalize complete real tensor inventory; TDD required family adapter and
+- [x] Normalize complete real tensor inventory; TDD required family adapter and
   source eligibility extension, with explicit operation/control limits.
 - [ ] Freeze and execute its own reference10, product20 and bounded stock search,
   conditional on each gate. Audit and document actual coverage and exclusions.

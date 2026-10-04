@@ -1,0 +1,28 @@
+{
+  "upstream_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+  "source_object_ids": {
+    "src/models/granite-moe.cpp": "115263c418faefb2d07e7d8501b9c16ee4ad6895",
+    "src/models/granite.cpp": "4a75c5ff3cc3d073fea4a87b961d25bf6df42ccd",
+    "src/models/models.h": "beab9f6bc7df422c2e35f79d03ef223f02a40035",
+    "src/llama-graph.cpp": "c8ecb0a2854cc2a43ca3102ebafea89e386d917f",
+    "src/llama-arch.cpp": "72968607db809f91ff87afb68a222b4ef52a6cf7",
+    "src/llama-model.cpp": "eaf3f35d2d8e86722d130be89430298b991babfc",
+    "ggml/src/ggml-cpu/ggml-cpu.c": "2745a7dbb29ea12f45c1722f55bc913141669419",
+    "ggml/src/ggml-cpu/ops.cpp": "7c54cb6f469da40913c7a9bd4beb51359a4b7e72",
+    "ggml/src/ggml-cpu/quants.c": "5e36459f8cbc5900b375d2189414307393471a6b",
+    "ggml/src/ggml-cuda/ggml-cuda.cu": "0878ab9c08afb783c6b5d459d4f9654617807d1d",
+    "ggml/src/ggml-cuda/common.cuh": "290dc4aff259cb78a9a477dea27920fecf398c4a",
+    "ggml/src/ggml-cuda/mmq.cuh": "607e433bf1f3904a9fea0d2b3c040f4f7e705ca0",
+    "ggml/src/ggml-cuda/mmvq.cuh": "5605bf7a4e60348c047844c771e7171849ba2eec",
+    "ggml/src/ggml-cuda/vecdotq.cuh": "d1741cc8d7babdf6726f9928a3c908ae2df12dd6",
+    "ggml/src/ggml-cuda/quantize.cu": "39a500a170414a9dfeb798d22f562585fdbf3a84",
+    "ggml/src/ggml-cuda/getrows.cu": "0e15707093fc6b150e620e67d503d37b0139cbdd",
+    "ggml/src/ggml-cuda/norm.cu": "09d9f3a7d624160b291351f0fbf050fa153657b3",
+    "ggml/src/ggml-cuda/softmax.cu": "285c0e9543a2a6a2e61682b7b98f482910bffbb5"
+  },
+  "proposed_provider_id": "granitemoe-q6-gpu-scheduling-v1",
+  "inventory_sha256": "3de0a37570c518db90d027d256d2f5785d300582f5d68c2c5cfb6acbc132e569",
+  "model_ir_sha256": "54f52d76dba171c90ee73150688351fd8a88aa96373af6b4c66b8e00aa1fbbce",
+  "baseline_cpu_moe": false,
+  "numerical_scope": "same fixed GPU-resident Q6 runtime arithmetic; threads and CUDA graph launch mode only; own-reference exact token guards required"
+}

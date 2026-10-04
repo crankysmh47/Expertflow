@@ -10,7 +10,7 @@ import tempfile
 
 from .plan import CandidateStatus, _decode_plan, load_execution_plan, seal_candidate, validate_execution_plan
 from .pipeline import atomic_json
-from .refinement import PAIRS, RESAMPLES, SEED, balanced_schedule, evaluate_pairs, execute_pairs
+from .refinement import PAIRS, RESAMPLES, SEED, balanced_schedule, evaluate_pairs, execute_pairs, paired_source_files
 from .schema import canonical_payload, canonical_sha256
 
 PROTOCOL = 'paired-stock-product-v1'
@@ -24,6 +24,8 @@ def reconstruct_product(report, store, *, host_environment):
     protocol_path = Path('docs/superpowers/specs/2026-10-04-stock-configuration-discovery.md')
     if freeze.get('protocol_sha256') != file_sha256(protocol_path):
         raise ValueError('product frozen protocol identity mismatch')
+    if freeze.get('source_files') != paired_source_files(product=True):
+        raise ValueError('product frozen source/protocol map mismatch')
     experiment_id = freeze.get('experiment_id')
     if not isinstance(experiment_id, str) or not re.fullmatch('[0-9a-f]{32}', experiment_id):
         raise ValueError('invalid product experiment identity')

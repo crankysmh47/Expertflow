@@ -186,3 +186,28 @@ def test_cli_receipt_validation_and_tamper_failure(tmp_path, monkeypatch, capsys
     (root/'acceptance-receipt.json').write_text(json.dumps(value))
     assert main(argv) == 2
     assert json.loads(capsys.readouterr().out)['status'] == 'IDENTITY-STOP'
+
+
+def test_product_reconstruction_requires_complete_frozen_source_map(tmp_path):
+    *_, store, runner, pending, report = execute(tmp_path)
+    report['status'] = 'PASS-MEASUREMENT'
+    report['frozen']['source_files'].pop(next(iter(report['frozen']['source_files'])))
+    with pytest.raises(ValueError, match='source'):
+        api().reconstruct_product(report, store, host_environment=HOST)
+
+
+def test_family_spec_change_stops_product_before_next_launch(tmp_path, monkeypatch):
+    from expertflow.compiler import refinement
+    inp, source, target, runner, plan = setup_execution(tmp_path)
+    from expertflow.compiler import preflight
+    digest = preflight.file_sha256
+    family = '2026-10-04-granite-generalization.md'
+    def hashing(path):
+        if str(path).endswith(family) and runner.calls:
+            return '0' * 64
+        return digest(path)
+    monkeypatch.setattr(preflight, 'file_sha256', hashing)
+    report = api().execute_stock_product(inp, plan, source, target, runner,
+        tmp_path/'product', host_capture=lambda: deepcopy(HOST))
+    assert report['status'] == 'VALIDATION-STOP' and len(runner.calls) == 1
+    assert 'source' in report['reason'] and not (tmp_path/'product/accepted').exists()

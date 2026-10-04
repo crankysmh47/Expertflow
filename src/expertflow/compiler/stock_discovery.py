@@ -43,6 +43,9 @@ def _checksum(payload, name):
 
 def _source_files():
     paths = [*sorted(Path('src/expertflow/compiler').rglob('*.py')),SPEC]
+    family_spec = Path('docs/superpowers/specs/2026-10-04-granite-generalization.md')
+    if family_spec.is_file():
+        paths.append(family_spec)
     driver = Path('scripts/benchmark_compiler_stock_search.py')
     if driver.exists():
         paths.append(driver)
@@ -97,6 +100,8 @@ def prepare_search(inputs, plan_path, receipt_path, source_store, output_dir, *,
         'host_environment_sha256':canonical_sha256(host_environment)}
     if any(eligibility.get(k) != v for k,v in expected.items()) or eligibility.get('allowed_controls') != ['threads','cuda_graphs']:
         raise ValueError('search eligibility identity/scope mismatch')
+    if plan.candidate.settings.cpu_moe is not eligibility.get('baseline_cpu_moe', True):
+        raise ValueError('search baseline placement outside trusted provider scope')
     space,config = _space(plan.candidate,host_environment,excluded_threads,space_config,model=inputs.model)
     manifest = {'schema_version':'1.0.0','protocol_version':PROTOCOL,'experiment_id':uuid.uuid4().hex,
         'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
@@ -156,6 +161,8 @@ def _validate_manifest(manifest, host, *, registry=None):
     trusted = (registry or EligibilityRegistry.with_builtins()).attest(inputs,host,manifest['source_repository'])
     if canonical_payload(trusted) != proof:
         raise ValueError('search eligibility differs from trusted complete attestation')
+    if plan.candidate.settings.cpu_moe is not trusted.get('baseline_cpu_moe', True):
+        raise ValueError('search baseline placement outside trusted provider scope')
     controls = {'screening_seed':20261004,'confirmation_seed':20261003,'bootstrap_samples':10000,
         'minimum_gain_pct':2,'minimum_ci95_lower_pct':0,'maximum_cv_pct':10,
         'screening_processes':3*len(candidates),'maximum_native_processes':3*len(candidates)+20}

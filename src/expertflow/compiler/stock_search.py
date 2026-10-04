@@ -47,8 +47,8 @@ class SchedulingSpace:
 
 
 def scheduling_space(base, host, *, graph_modes=('on','off'), excluded_threads=None):
-    if base.settings.static is not None or not base.settings.cpu_moe:
-        raise ValueError('scheduling space requires pristine CPU-MoE placement')
+    if base.settings.static is not None or base.settings.cuda_pdl is not None:
+        raise ValueError('scheduling space requires pristine fixed placement without PDL/static controls')
     modes = tuple(graph_modes)
     if not modes or any(mode not in ('on','off') for mode in modes) or len(set(modes)) != len(modes):
         raise ValueError('invalid graph mode coverage')

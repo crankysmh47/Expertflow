@@ -32,18 +32,19 @@ def _sources():
     return files
 
 
-def _incumbent(inputs):
+def _incumbent(inputs, proof=None):
     w = inputs.workload
     if w.policy.value != 'exact' or (w.kv_type_k, w.kv_type_v) != ('f16', 'f16'):
         raise ValueError('reference requires exact policy and audited F16 KV')
-    return CandidatePlan(inputs.identities(inputs.stock), RuntimeSettings(99, True,
+    cpu_moe = (proof or {}).get('baseline_cpu_moe', True)
+    return CandidatePlan(inputs.identities(inputs.stock), RuntimeSettings(99, cpu_moe,
         w.cuda_graphs, w.kv_type_k, w.kv_type_v, w.batch_size, w.microbatch_size))
 
 
 def prepare_reference(inputs, output_dir, *, host_environment, source_repository, registry=None):
-    candidate = _incumbent(inputs)
     topology_anchors(host_environment, inputs.workload.threads)
     proof = (registry or EligibilityRegistry.with_builtins()).attest(inputs, host_environment, source_repository)
+    candidate = _incumbent(inputs, proof)
     manifest = canonical_payload({'schema_version': '1.0.0', 'protocol_version': PROTOCOL,
         'experiment_id': uuid.uuid4().hex, 'frozen_monotonic_ns': time.monotonic_ns(),
         'experiment_root': str(Path(output_dir).resolve()),
@@ -71,10 +72,10 @@ def _validate(manifest, host, registry):
         raise ValueError('reference frozen budget/gate mismatch')
     candidate = _candidate(manifest['candidate'])
     inputs = _snapshot_inputs(manifest['inputs'], candidate.identities.workload)
-    if canonical_payload(_incumbent(inputs)) != manifest['candidate']:
-        raise ValueError('reference candidate/input identity mismatch')
     topology_anchors(host, inputs.workload.threads)
     proof = (registry or EligibilityRegistry.with_builtins()).attest(inputs, host, manifest['source_repository'])
+    if canonical_payload(_incumbent(inputs, proof)) != manifest['candidate']:
+        raise ValueError('reference candidate/input identity mismatch')
     if canonical_payload(proof) != manifest['eligibility']:
         raise ValueError('reference differs from trusted complete eligibility')
     return candidate

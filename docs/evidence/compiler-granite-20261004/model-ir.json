@@ -1,0 +1,307 @@
+{
+  "schema_version": "1.0.0",
+  "identity": {
+    "path": "C:\\models\\expertflow\\models\\granite-3.1-1b-a400m-q6\\granite-3.1-1b-a400m-instruct-Q6_K.gguf",
+    "size_bytes": 1099212096,
+    "sha256": "4566cfa92be10888026bd3663c83d64e91cd91f874dfb3607596587ff1c8f67f"
+  },
+  "family": "granitemoe",
+  "architecture": "granitemoe",
+  "quantization": "Q6_K",
+  "expert_count": 32,
+  "expert_top_k": 8,
+  "moe_layers": [
+    {
+      "layer_id": 0,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 1,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 2,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 3,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 4,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 5,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 6,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 7,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 8,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 9,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 10,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 11,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 12,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 13,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 14,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 15,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 16,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 17,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 18,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 19,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 20,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 21,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 22,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    },
+    {
+      "layer_id": 23,
+      "expert_count": 32,
+      "expert_top_k": 8,
+      "expert_bundle_bytes": 1290240,
+      "routed_expert_bank_bytes": 41287680,
+      "component_bank_bytes": [
+        13762560,
+        13762560,
+        13762560
+      ]
+    }
+  ],
+  "kv_kind": "standard",
+  "mtp_kind": "none",
+  "alignment_bytes": 256,
+  "inventory_sha256": "3de0a37570c518db90d027d256d2f5785d300582f5d68c2c5cfb6acbc132e569"
+}
