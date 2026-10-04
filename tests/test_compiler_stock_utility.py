@@ -17,6 +17,10 @@ def trusted_test_dependencies(monkeypatch):
     from test_compiler_stock_discovery import FixtureEligibility
     monkeypatch.setattr(api().EligibilityRegistry,'with_builtins',classmethod(lambda cls:FixtureEligibility()))
     monkeypatch.setattr(api(),'audit_defaults',lambda repository,host:{'scope':'synthetic test fixture'})
+    real_scope=getattr(api(),'audit_protocol_scope',None)
+    if real_scope:
+        monkeypatch.setattr(api(),'audit_protocol_scope',lambda inputs:{'scope':'synthetic test fixture'})
+    return real_scope
 
 
 def test_utility_requires_default_gain_manual_equivalence_and_equal_budget():
@@ -53,6 +57,8 @@ def completed(tmp_path_factory):
     with pytest.MonkeyPatch.context() as patch:
         patch.setattr(api().EligibilityRegistry,'with_builtins',classmethod(lambda cls:FixtureEligibility()))
         patch.setattr(api(),'audit_defaults',lambda repository,host:{'scope':'synthetic test fixture'})
+        if hasattr(api(),'audit_protocol_scope'):
+            patch.setattr(api(),'audit_protocol_scope',lambda inputs:{'scope':'synthetic test fixture'})
         report=api().execute_utility(inputs,store,runner,root/'utility',
             source_repository=root,host_capture=lambda:deepcopy(HOST),registry=FixtureEligibility(),
             default_source_proof={'scope':'synthetic test fixture'},include_product=False)
@@ -133,3 +139,88 @@ def test_passing_utility_runs_separate_product_database_and_fresh_consumer(tmp_p
     changed['consumer']['measurement_id']=report['rows'][0]['measurement_id']
     with pytest.raises(ValueError):
         api().validate_result(changed,store,inputs,source_repository=tmp_path,host_environment=HOST)
+
+
+@pytest.mark.parametrize('drift_at,kind',[(0,'source'),(3,'host'),(20,'source')])
+def test_original_freeze_guards_every_product_and_consumer_launch(tmp_path,monkeypatch,drift_at,kind):
+    from test_compiler_pipeline import FakeRunner
+    from test_compiler_refinement import setup_execution
+    from test_compiler_stock_discovery import FixtureEligibility,HOST
+    inputs,old,store,runner,pending=setup_execution(tmp_path)
+    rates=lambda candidate,stage:22 if candidate.identities.workload.threads==12 else 20
+    current=deepcopy(HOST)
+    product_calls=[]
+    class DriftRunner(FakeRunner):
+        def run_once(self,*args,**kwargs):
+            product_calls.append(kwargs['stage'])
+            result=super().run_once(*args,**kwargs)
+            if len(product_calls)==drift_at:
+                if kind=='source':monkeypatch.setattr(api(),'sources',lambda:{'changed':'source'})
+                else:current['process_affinity_mask']=255
+            return result
+    def factory(target):
+        if drift_at==0:
+            monkeypatch.setattr(api(),'sources',lambda:{'changed':'source'})
+        return DriftRunner(target,rates=rates)
+    report=api().execute_utility(inputs,store,FakeRunner(store,rates=rates),tmp_path/'utility',
+        source_repository=tmp_path,host_capture=lambda:deepcopy(current),registry=FixtureEligibility(),
+        default_source_proof={'scope':'synthetic test fixture'},product_runner_factory=factory)
+    assert report['status']!='PASS-STOCK-UTILITY-PRODUCT'
+    assert len(product_calls)==drift_at
+    assert len(report['attempts'])==86+drift_at
+    assert json.loads((tmp_path/'utility/report.json').read_text())['status']==report['status']
+
+
+@pytest.mark.parametrize('failure',['os','timeout','verification'])
+def test_native_exception_retains_attempt_identity_and_terminal_report(tmp_path,failure):
+    import subprocess
+    from test_compiler_pipeline import FakeRunner
+    from test_compiler_refinement import setup_execution
+    from test_compiler_stock_discovery import FixtureEligibility,HOST
+    inputs,old,store,runner,pending=setup_execution(tmp_path)
+    class BrokenRunner(FakeRunner):
+        def run_once(self,*args,**kwargs):
+            outcome=super().run_once(*args,**kwargs)
+            if failure=='timeout':raise subprocess.TimeoutExpired('owned-server',30)
+            if failure=='os':raise OSError('post-native artifact error')
+            (kwargs['output_dir']/'completion.json').write_text('{}')
+            return outcome
+    report=api().execute_utility(inputs,store,BrokenRunner(store),tmp_path/'utility',
+        source_repository=tmp_path,host_capture=lambda:deepcopy(HOST),registry=FixtureEligibility(),
+        default_source_proof={'scope':'synthetic test fixture'},include_product=False)
+    assert report['status']=='VALIDATION-STOP'
+    assert len(report['attempts'])==1 and len(report['outcomes'])==1
+    assert report['attempts'][0]['native_started'] is True
+    assert report['attempts'][0]['process_identity']['pid']>0
+    assert json.loads((tmp_path/'utility/report.json').read_text())['status']=='VALIDATION-STOP'
+
+
+def test_live_protocol_accepts_only_registered_q6_workloads(completed,trusted_test_dependencies):
+    from expertflow.compiler.reference import load_reference_workload
+    from expertflow.compiler.schema import WorkloadIR
+    from pathlib import Path
+    inputs,store,root,report,host=completed
+    production_scope=trusted_test_dependencies
+    assert callable(production_scope)
+    identity=replace(inputs.model.identity,sha256='089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba')
+    model=replace(inputs.model,identity=identity)
+    for name in ('gemma4-q6-single-request.json','gemma4-q6-utility-transfer.json'):
+        workload=WorkloadIR.from_reference(load_reference_workload(Path.cwd(),Path('configs/compiler/'+name)))
+        valid=replace(inputs,model=model,workload=workload)
+        assert production_scope(valid)['registered_workload'].endswith(name)
+        for changes in ({'predict_tokens':256},{'context_size':8192},{'seed':43},{'prompt':'unregistered'}):
+            with pytest.raises(ValueError,match='registered'):
+                production_scope(replace(valid,workload=replace(workload,**changes)))
+        with pytest.raises(ValueError,match='Q6'):
+            production_scope(inputs)
+
+
+def test_reconstruction_rejects_rehashed_protocol_scope(completed):
+    inputs,store,root,original,host=completed
+    changed=deepcopy(original)
+    changed['manifest']['protocol_scope']={'scope':'different registered workload'}
+    payload=dict(changed['manifest'])
+    payload.pop('manifest_sha256')
+    changed['manifest']['manifest_sha256']=api().canonical_sha256(payload)
+    with pytest.raises(ValueError,match='scope'):
+        api().reconstruct_utility(changed,store,host_environment=host)

@@ -17,7 +17,7 @@ from expertflow.compiler.plan import CandidatePlan, CandidateStatus, seal_candid
 from expertflow.compiler.preflight import capture_host_environment, file_sha256
 from expertflow.compiler.refinement import balanced_schedule, paired_statistics
 from expertflow.compiler.runner import ServerMeasurementRunner, WindowsGpuMemorySampler
-from expertflow.compiler.schema import canonical_payload, canonical_sha256
+from expertflow.compiler.schema import WorkloadIR, canonical_payload, canonical_sha256
 from expertflow.compiler.stock_discovery import _candidate, _snapshot_inputs
 from expertflow.compiler.stock_eligibility import EligibilityRegistry, UPSTREAM
 from expertflow.compiler.stock_search import rank_screening, scheduling_space, screening_schedule, topology_anchors
@@ -25,6 +25,65 @@ from expertflow.compiler.stock_search import rank_screening, scheduling_space, s
 
 SPEC = Path('docs/superpowers/specs/2026-10-04-stock-utility-proof.md')
 PROTOCOL = 'stock-utility-proof-v1'
+Q6_SHA256 = '089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba'
+
+
+def audit_protocol_scope(inputs):
+    from expertflow.compiler.reference import load_reference_workload
+    if inputs.model.identity.sha256 != Q6_SHA256:
+        raise ValueError('utility protocol requires the registered Gemma Q6 weights')
+    actual = replace(inputs.workload,threads=8,cuda_graphs='on')
+    for name in ('gemma4-q6-single-request.json','gemma4-q6-utility-transfer.json'):
+        path = Path('configs/compiler')/name
+        registered = WorkloadIR.from_reference(load_reference_workload(Path.cwd(),path))
+        if actual == replace(registered,threads=8,cuda_graphs='on'):
+            return {'registered_workload':str(path),'workload_sha256':canonical_sha256(actual),
+                    'model_weights_sha256':Q6_SHA256}
+    raise ValueError('workload is outside the two registered utility inputs')
+
+
+class FrozenRunner:
+    """Carry the original utility freeze and durable attempts across every stage."""
+    def __init__(self,runner,manifest,report,capture):
+        self.runner,self.manifest,self.report,self.capture=runner,manifest,report,capture
+
+    def run_once(self,*args,**kwargs):
+        manifest,report=self.manifest,self.report
+        if canonical_payload(self.capture())!=manifest['host_environment'] or sources()!=manifest['source_files']:
+            raise ValueError('utility source/host changed before launch')
+        if len(report['attempts'])>=manifest['maximum_native_processes']:
+            raise ValueError('utility native attempt budget exhausted')
+        root=Path(manifest['experiment_root'])
+        output=Path(kwargs['output_dir']).resolve()
+        relative=output.relative_to(root)
+        utility=output.parent==(root/'raw')
+        attempt={'output_dir':str(output),'stage':kwargs['stage'],'status':'attempting',
+                 'native_started':False,'process_identity':None}
+        report['attempts'].append(attempt)
+        index=len(report['outcomes'])
+        if utility:
+            report['outcomes'].append({'status':'attempting','measurement_id':None,'label':relative.name})
+        atomic_json(root/'report.json',report)
+        kwargs['host_environment']=manifest['host_environment']
+        kwargs['experiment_context']={'manifest_sha256':manifest['manifest_sha256']}
+        try:
+            outcome=self.runner.run_once(*args,**kwargs)
+            attempt.update(status=outcome.status,measurement_id=outcome.measurement_id)
+            if utility:report['outcomes'][index]=canonical_payload(outcome)
+            return outcome
+        except Exception as error:
+            attempt.update(status='exception',reason=str(error),exception_type=type(error).__name__)
+            if utility:report['outcomes'][index]={'status':'exception','measurement_id':None,
+                'label':relative.name,'reason':str(error),'exception_type':type(error).__name__}
+            raise
+        finally:
+            started=output/'run-start.json'
+            if started.is_file():
+                try:
+                    attempt.update(native_started=True,process_identity=json.loads(started.read_text()))
+                except (ValueError,OSError) as error:
+                    attempt.update(native_started=None,process_identity_error=str(error))
+            atomic_json(root/'report.json',report)
 
 
 def resolved_defaults(host):
@@ -166,6 +225,13 @@ def validate_result(report, store, inputs, *, source_repository, host_environmen
         raise ValueError('product source differs from utility selection/confirmation')
     if report.get('product_status') != 'PASS-STOCK-FALLBACK' or report.get('product_native_processes') != 20:
         raise ValueError('utility product process/status mismatch')
+    if len(report['attempts'])!=107:
+        raise ValueError('complete utility/product proof requires 107 retained attempts')
+    for mid in plan.candidate.measurement_ids:
+        artifacts={a.role:Path(a.identity.path) for a in product_store.measurement(mid).artifacts}
+        launch=json.loads(artifacts['launch'].read_text())
+        if launch.get('experiment_context')!={'manifest_sha256':report['manifest']['manifest_sha256']}:
+            raise ValueError('product launch lost original utility protocol binding')
     consumer = report['consumer']
     record = product_store.measurement(consumer['measurement_id'])
     native = product_store.verify_measurement(consumer['measurement_id'])
@@ -185,7 +251,9 @@ def validate_result(report, store, inputs, *, source_repository, host_environmen
         raise ValueError('consumer artifacts outside utility experiment')
     launch = json.loads(artifacts['launch'].read_text())
     start = json.loads(artifacts['run-start'].read_text())
-    if launch.get('host_environment') != canonical_payload(host_environment) or start['started_monotonic_ns'] < report['manifest']['frozen_monotonic_ns']:
+    if (launch.get('host_environment') != canonical_payload(host_environment) or
+            launch.get('experiment_context')!={'manifest_sha256':report['manifest']['manifest_sha256']} or
+            start['started_monotonic_ns'] < report['manifest']['frozen_monotonic_ns']):
         raise ValueError('consumer host/freshness binding mismatch')
     return {**result,'status':status,'native_processes':107,'accepted_plan_sha256':plan.plan_sha256}
 
@@ -203,6 +271,8 @@ def reconstruct_utility(report, store, *, host_environment):
     candidates = {cid:_candidate(p) for cid,p in m['candidates'].items()}
     default = candidates[m['default_id']]
     snapshot_inputs = _snapshot_inputs(m['inputs'], default.identities.workload)
+    if m.get('protocol_scope') != audit_protocol_scope(snapshot_inputs):
+        raise ValueError('utility registered protocol scope mismatch')
     proof = EligibilityRegistry.with_builtins().attest(snapshot_inputs,host_environment,m['source_repository'])
     if m['eligibility'] != proof or default.identities != snapshot_inputs.identities(snapshot_inputs.stock):
         raise ValueError('utility eligibility/input bindings changed')
@@ -221,6 +291,8 @@ def reconstruct_utility(report, store, *, host_environment):
     rows = report['rows']
     if len(rows)!=86 or len(report['outcomes'])!=86:
         raise ValueError('utility proof requires exactly 86 retained runs')
+    if not 86 <= len(report['attempts']) <= 107:
+        raise ValueError('utility retained attempt budget mismatch')
     owners=set()
     reference=None
     index=0
@@ -231,6 +303,13 @@ def reconstruct_utility(report, store, *, host_environment):
         if row['label']!=label or row['candidate_id']!=cid or outcome['status']!='measured' or outcome['measurement_id']!=row['measurement_id']:
             raise ValueError('utility outcome/order mismatch')
         verified=verify_row(row,candidates[cid],store,m,owners,reference)
+        attempt=report['attempts'][index]
+        artifacts={a.role:Path(a.identity.path) for a in store.measurement(row['measurement_id']).artifacts}
+        if (attempt.get('status')!='measured' or attempt.get('measurement_id')!=row['measurement_id'] or
+                attempt.get('native_started') is not True or
+                attempt.get('process_identity')!=json.loads(artifacts['run-start'].read_text()) or
+                Path(attempt['output_dir']).resolve()!=(Path(m['experiment_root'])/'raw'/label).resolve()):
+            raise ValueError('utility retained attempt does not match native record')
         reference=reference or verified
         index+=1
         return row
@@ -264,6 +343,7 @@ def execute_utility(inputs, store, runner, output, *, source_repository, host_ca
     capture=host_capture or capture_host_environment
     host=canonical_payload(capture())
     proof=(registry or EligibilityRegistry.with_builtins()).attest(inputs,host,source_repository)
+    protocol_scope=audit_protocol_scope(inputs)
     if proof.get('allowed_controls') != ['threads','cuda_graphs']:
         raise ValueError('utility requires reviewed stock scheduling scope')
     threads,graphs=resolved_defaults(host)
@@ -281,7 +361,7 @@ def execute_utility(inputs, store, runner, output, *, source_repository, host_ca
         raise ValueError('fresh utility output required; no retries or resume')
     m={'protocol_version':PROTOCOL,'experiment_id':uuid.uuid4().hex,
        'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
-       'source_files':sources(),'host_environment':host,'eligibility':proof,
+       'source_files':sources(),'host_environment':host,'eligibility':proof,'protocol_scope':protocol_scope,
        'inputs':canonical_payload({'model':inputs.model,'hardware':inputs.hardware,'stock':inputs.stock}),
        'source_repository':str(Path(source_repository).resolve()),
        'default_source_proof':default_source_proof or audit_defaults(source_repository,host),
@@ -294,17 +374,17 @@ def execute_utility(inputs, store, runner, output, *, source_repository, host_ca
     output.mkdir(parents=True)
     atomic_json(output/'frozen-manifest.json',m)
     store.prime_model(inputs.model)
-    report={'status':'RUNNING','manifest':m,'rows':[],'outcomes':[]}
+    report={'status':'RUNNING','manifest':m,'rows':[],'outcomes':[],'attempts':[]}
+    frozen_runner=FrozenRunner(runner,m,report,capture)
     owners=set()
     reference=None
     def collect(label,cid):
         nonlocal reference
         if canonical_payload(capture())!=host or sources()!=m['source_files']:
             raise ValueError('utility source/host changed before launch')
-        outcome=runner.run_once(candidates[cid],inputs.model,inputs.stock,
+        outcome=frozen_runner.run_once(candidates[cid],inputs.model,inputs.stock,
             output_dir=output/'raw'/label,measured=True,stage=measurement_stage(label,m),
             host_environment=host,experiment_context={'manifest_sha256':m['manifest_sha256']})
-        report['outcomes'].append(canonical_payload(outcome))
         if outcome.status!='measured':
             report.update(status=outcome.status.upper().replace('_','-'),reason=outcome.reason)
             atomic_json(output/'report.json',report)
@@ -359,6 +439,7 @@ def execute_utility(inputs, store, runner, output, *, source_repository, host_ca
             product_store=EvidenceStore(output/'product.sqlite3')
             product_runner=(product_runner_factory(product_store) if product_runner_factory else
                 ServerMeasurementRunner(product_store,memory_sampler=runner.memory_sampler))
+            product_runner=FrozenRunner(product_runner,m,report,capture)
             product=execute_stock_product(adjusted,output/'selected-plan.json',store,product_store,product_runner,
                 output/'product',host_capture=capture)
             report['product_status']=product['status']
@@ -371,8 +452,10 @@ def execute_utility(inputs, store, runner, output, *, source_repository, host_ca
                     output/'consumer',runner=product_runner,host_capture=capture)
                 report['consumer']={'status':status,**consumer}
                 if status!='MEASURED-ACCEPTED-STOCK':report['status']='CONSUMER-VALIDATION-STOP'
-                else:report['status']='PASS-STOCK-UTILITY-PRODUCT'
-    except (ValueError,OSError,KeyError,TypeError,RuntimeError) as error:
+                else:
+                    report['status']='PASS-STOCK-UTILITY-PRODUCT'
+                    validate_result(report,store,inputs,source_repository=source_repository,host_environment=capture())
+    except Exception as error:
         report.update(status='VALIDATION-STOP',reason=str(error))
     atomic_json(output/'report.json',report)
     return report
@@ -388,6 +471,7 @@ def main(argv=None):
     try:
         request=CompilationRequest(args.descriptor,args.inventory,args.hardware,args.workload,args.runtime_identity,(),args.evidence_db,args.output_dir)
         inputs=load_compiler_inputs(request,live=True)
+        audit_protocol_scope(inputs)
         if args.action=='validate':
             if not args.evidence_db.is_file():raise ValueError('existing utility database required')
             report=json.loads((args.output_dir/'report.json').read_text())
