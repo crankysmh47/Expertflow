@@ -39,12 +39,12 @@ No native retries or altered gates. Preserve ef-v2 and unrelated user files.
 
 ## Task 4: reuse contracts and verification
 
-- [ ] Exercise separate inventories/quantizations, topology anchors and explicit
+- [x] Exercise separate inventories/quantizations, topology anchors and explicit
   spaces. Test invalidation across weights/semantic workload/build/driver/CPU/
   affinity/RAM/OS/power/environment and rejected unsupported capabilities.
-- [ ] Bind any new provider/driver source in search manifests without weakening
+- [x] Bind any new provider/driver source in search manifests without weakening
   trusted re-attestation. Keep frozen Q6 validation runnable at its revision.
-- [ ] Add evidence-backed accepted recommendation execution and an explicit CLI
+- [x] Add evidence-backed accepted recommendation execution and an explicit CLI
   action. Test actual-input/token/host/ownership failures and tested candidate
   settings; do not append native runs to the frozen search budget.
 - [ ] Run targeted and full checks, one required independent review/fix pass,

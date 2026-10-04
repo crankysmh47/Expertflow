@@ -79,9 +79,9 @@ def atomic_json(path, payload):
             temporary.unlink()
 
 
-def inspect_model(descriptor_path, inventory_path):
+def inspect_model(descriptor_path, inventory_path, *, adapter_registry=None):
     descriptor = ModelDescriptor(**read_json(Path(descriptor_path)))
-    adapter = AdapterRegistry.with_builtins().resolve(descriptor.family)
+    adapter = (adapter_registry or AdapterRegistry.with_builtins()).resolve(descriptor.family)
     inventory = read_json(Path(inventory_path))
     provenance = inventory.get('model', {})
     identity = ArtifactIdentity(Path(provenance['path']).resolve().as_posix(), provenance['bytes'], provenance['sha256'])
@@ -120,9 +120,9 @@ def capture_hardware(cuda_runtime, *, reserve_mib=256):
                       file_sha256(Path(cuda_runtime)), reserve_mib << 20)
 
 
-def load_compiler_inputs(request, *, live):
+def load_compiler_inputs(request, *, live, adapter_registry=None):
     descriptor = ModelDescriptor(**read_json(request.descriptor_path))
-    adapter = AdapterRegistry.with_builtins().resolve(descriptor.family)
+    adapter = (adapter_registry or AdapterRegistry.with_builtins()).resolve(descriptor.family)
     inventory = read_json(request.inventory_path)
     runtime = read_json(request.runtime_identity_path)
     if runtime.get('schema_version') != '1.0.0':

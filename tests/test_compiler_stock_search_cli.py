@@ -48,3 +48,32 @@ def test_generate_writes_preview_without_instantiating_native_runner(tmp_path,mo
     assert code == 0 and json.loads(capsys.readouterr().out)['status'] == 'GENERATED-SEARCH-MANIFEST'
     assert json.loads(preview.read_text())['manifest_sha256'] == 'a'*64
     assert not (tmp_path/'future-run').exists()
+
+
+def test_accepted_execute_uses_existing_store_without_collection_source_database(tmp_path,monkeypatch,capsys):
+    module = driver()
+    database = EvidenceStore(tmp_path/'search.sqlite3').path
+    inp = object()
+    monkeypatch.setattr(module,'load_compiler_inputs',lambda *args,**kwargs:inp)
+    def execute(directory,store,actual,output):
+        assert directory == tmp_path/'recommended' and store.path == database
+        assert actual is inp and output == tmp_path/'execution'
+        return 'MEASURED-ACCEPTED-STOCK-SEARCH',{'measurement_id':'fixture-only'}
+    monkeypatch.setattr(module,'run_search_recommendation',execute)
+    code = module.main(['--action','execute','--source-evidence-db',str(tmp_path/'missing'),
+        '--evidence-db',str(database),'--recommendation',str(tmp_path/'recommended'),
+        '--output-dir',str(tmp_path/'execution')])
+    assert code == 0
+    assert json.loads(capsys.readouterr().out)['status'] == 'MEASURED-ACCEPTED-STOCK-SEARCH'
+
+
+def test_accepted_execute_rejects_existing_output_before_loading_inputs(tmp_path,monkeypatch,capsys):
+    module = driver()
+    database = EvidenceStore(tmp_path/'search.sqlite3').path
+    output = tmp_path/'execution';output.mkdir()
+    def forbidden(*args,**kwargs):
+        raise AssertionError('existing output must fail before input loading or native execution')
+    monkeypatch.setattr(module,'load_compiler_inputs',forbidden)
+    code = module.main(['--action','execute','--evidence-db',str(database),
+        '--recommendation',str(tmp_path/'recommended'),'--output-dir',str(output)])
+    assert code == 2 and json.loads(capsys.readouterr().out)['status'] == 'IDENTITY-STOP'

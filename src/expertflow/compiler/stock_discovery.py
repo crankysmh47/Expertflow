@@ -307,6 +307,96 @@ def load_search_recommendation(directory,store,*,host_environment,registry=None)
     return plan
 
 
+def check_search_inputs(inputs, manifest):
+    incumbent = _decode_plan(manifest['prerequisite_plan']).candidate
+    w = inputs.workload
+    settings = replace(incumbent.settings,cuda_graphs=w.cuda_graphs,kv_type_k=w.kv_type_k,
+        kv_type_v=w.kv_type_v,batch_size=w.batch_size,microbatch_size=w.microbatch_size)
+    actual = CandidatePlan(inputs.identities(inputs.stock), settings)
+    if semantic_fingerprint(actual) != manifest['semantic_sha256']:
+        raise ValueError('actual inputs differ from search semantic/runtime identity')
+
+
+def run_search_recommendation(directory, store, inputs, output_dir, *, runner=None,
+                              host_capture=None, registry=None):
+    """Execute tested settings; a single new TPS never changes acceptance."""
+    from .pipeline import validate_live_hardware
+    from .runner import ServerMeasurementRunner, WindowsGpuMemorySampler
+    output = Path(output_dir)
+    if output.exists():
+        raise ValueError('fresh accepted execution output required')
+    root = Path(directory)
+    paths = (root/'search-receipt.json', root/'execution-plan.json')
+    pinned = {str(path):file_sha256(path) for path in paths}
+    receipt = json.loads(paths[0].read_text(encoding='utf-8'))
+    capture = host_capture or capture_host_environment
+    host = capture()
+    plan = load_search_recommendation(root, store, host_environment=host, registry=registry)
+    manifest = receipt['experiment']['manifest']
+    if output.resolve().is_relative_to(Path(manifest['experiment_root']).resolve()):
+        raise ValueError('accepted execution must be outside frozen search experiment')
+    check_search_inputs(inputs, manifest)
+    pinned.update(manifest['source_files'])
+    if any(file_sha256(Path(path)) != digest for path,digest in pinned.items()):
+        raise ValueError('accepted execution source/receipt changed')
+    store.prime_model(inputs.model)
+    inputs.stock.verify()
+    with store._connection() as connection:
+        prior_owners = {row[0] for row in connection.execute('SELECT owned_run_sha256 FROM measurement')}
+    context = {'accepted_search_receipt_sha256':receipt['receipt_sha256'],
+        'accepted_plan_sha256':plan.plan_sha256}
+    sampler = None
+    if runner is None:
+        validate_live_hardware(inputs.hardware)
+        sampler = WindowsGpuMemorySampler(inputs.hardware.gpu_uuid)
+        runner = ServerMeasurementRunner(store, memory_sampler=sampler)
+    try:
+        started = time.monotonic_ns()
+        outcome = runner.run_once(plan.candidate, inputs.model, inputs.stock, output_dir=output,
+            measured=True, stage='accepted-stock-search-run', host_environment=host,
+            experiment_context=context)
+        result = {'plan_sha256':plan.plan_sha256, 'outcome':canonical_payload(outcome),
+            'acceptance_recomputed_from_single_run':False}
+        status = outcome.status.upper().replace('_','-')
+        if outcome.status == 'measured':
+            try:
+                native = store.verify_measurement(outcome.measurement_id)
+                record = store.measurement(outcome.measurement_id)
+                reference = store.verify_measurement(plan.candidate.measurement_ids[0])
+                if native['measured'] is not True or native['exit_code'] != 0 or any(
+                        native['validations'].get(name) is not True for name in ('exact_tokens','memory','cleanup')):
+                    raise ValueError('accepted execution requires passing measured evidence')
+                if record.stage != 'accepted-stock-search-run' or record.numerical_path != 'stock_same_runtime' or native['owned_run_sha256'] in prior_owners:
+                    raise ValueError('accepted execution reused or misidentified native process')
+                if native['candidate_id'] != plan.candidate.candidate_id or native['identities'] != canonical_payload(plan.candidate.identities) or native['settings_sha256'] != canonical_sha256(plan.candidate.settings):
+                    raise ValueError('accepted execution launch identity mismatch')
+                if any(native[key] != reference[key] for key in ('prompt_tokens_sha256','generated_tokens_sha256')):
+                    raise ValueError('accepted execution changed exact reference tokens')
+                artifacts = {a.role:Path(a.identity.path) for a in record.artifacts}
+                if any(path.resolve().parent != output.resolve() for path in artifacts.values()):
+                    raise ValueError('accepted execution artifacts outside fresh output')
+                launch = json.loads(artifacts['launch'].read_text(encoding='utf-8'))
+                start = json.loads(artifacts['run-start'].read_text(encoding='utf-8'))
+                if launch.get('host_environment') != canonical_payload(host) or launch.get('experiment_context') != context or start['started_monotonic_ns'] < started:
+                    raise ValueError('accepted native launch does not bind fresh host/receipt')
+                if canonical_payload(capture()) != canonical_payload(host) or any(
+                        file_sha256(Path(path)) != digest for path,digest in pinned.items()):
+                    raise ValueError('accepted execution host/source/receipt changed')
+                status = 'MEASURED-ACCEPTED-STOCK-SEARCH'
+                result.update(measurement_id=outcome.measurement_id, decode_tps=native['decode_tps'],
+                    validation_scope='fresh exact execution of independently validated stock recommendation')
+            except (ValueError, OSError, KeyError, TypeError) as error:
+                status = 'VALIDATION-STOP'
+                result['reason'] = str(error)
+        else:
+            result['reason'] = outcome.reason
+        atomic_json(output/'accepted-execution.json', {'status':status, **result})
+        return status,result
+    finally:
+        if sampler:
+            sampler.close()
+
+
 def execute_stock_search(inputs,plan_path,receipt_path,source_store,target_store,runner,output_dir,*,
                          host_capture=None,registry=None,source_repository,excluded_threads=None,space_config=None):
     capture = host_capture or capture_host_environment

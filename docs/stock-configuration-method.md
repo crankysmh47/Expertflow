@@ -17,7 +17,7 @@ predict performance on a different host or workload.
 | Valid stock incumbent | Fresh paired product receipt; Q6 completed twenty runs and passed |
 | Search | Three seeded complete blocks, then independent ten-pair confirmation of one finalist |
 | Recommendation | Atomic execution-plan/search-receipt publication and artifact-backed read-only validation |
-| Remaining reuse work | Q4 reference/product/search native validation, accepted recommendation execution, full checks/review and scope audit |
+| Remaining reuse work | Q4 reference/product/search native validation, full checks/review and scope audit |
 
 Q6 scheduling search completed32 runs and retained the accepted12-thread/graphs-on
 incumbent. The16-thread screening finalist was0.985% slower in independent
@@ -87,6 +87,14 @@ The collector accepts explicit `--descriptor`, `--inventory`, `--hardware`,
 `--source-evidence-db` and `--source-repository` inputs. Those arguments do not
 bypass unsupported family/quantization, numerical provider or acceptance checks.
 
+`--action execute` consumes a published recommendation and its existing evidence
+database, with a fresh `--output-dir` outside the original experiment. It launches
+the recommendation's tested thread/graph settings, verifies fresh token/memory/
+cleanup/ownership/host/source evidence, and writes `accepted-execution.json`.
+Its single TPS does not alter acceptance or the registered search budget. Actual
+model, semantic workload and runtime inputs must match. Input tuning knobs do
+not override the recommendation's tested settings.
+
 For another supported topology, `--space-config` names a JSON object with exactly
 `policy`, `excluded_threads` and `maximum_native_processes`. An explicit six-
 candidate space has this shape:
@@ -106,6 +114,10 @@ Implement `ModelAdapter.normalize(descriptor, inventory, identity)` to produce
 complete routed layer/component accounting. Register reviewed code through
 `AdapterRegistry.register`; unknown families fail before measurement. Test
 malformed provenance, topology/expert accounting and model identity mismatches.
+Trusted Python callers can pass `adapter_registry=registry` to `inspect_model`
+or `load_compiler_inputs`. CLI descriptors do not execute arbitrary plugin code;
+its normal path resolves reviewed builtin adapters/providers. A registered
+adapter does not establish numerical eligibility or supply missing weights.
 
 Separately implement `SchedulingEligibilityProvider.attest(inputs, host,
 repository)` and register through `EligibilityRegistry.register`. Bind verified

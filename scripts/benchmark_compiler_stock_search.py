@@ -12,12 +12,13 @@ from expertflow.compiler.pipeline import CompilationRequest, EnvironmentBlocked,
 from expertflow.compiler.preflight import capture_host_environment
 from expertflow.compiler.runner import ServerMeasurementRunner, WindowsGpuMemorySampler
 from expertflow.compiler.schema import canonical_payload
-from expertflow.compiler.stock_discovery import prepare_search, execute_stock_search, load_search_recommendation
+from expertflow.compiler.stock_discovery import (prepare_search, execute_stock_search,
+    load_search_recommendation, check_search_inputs, run_search_recommendation)
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--action',choices=('generate','run','validate'),required=True)
+    parser.add_argument('--action',choices=('generate','run','validate','execute'),required=True)
     parser.add_argument('--descriptor',type=Path,default=Path('configs/compiler/gemma4-q6-model.json'))
     parser.add_argument('--inventory',type=Path,default=Path('docs/evidence/q6-download/tensor-inventory.json'))
     parser.add_argument('--hardware',type=Path,default=Path('docs/evidence/compiler-phase3/inputs/hardware.json'))
@@ -36,12 +37,14 @@ def main(argv=None):
     args = parser.parse_args(argv)
     sampler = base = None
     try:
-        if args.action != 'validate' and not args.source_evidence_db.is_file():
+        if args.action in ('generate','run') and not args.source_evidence_db.is_file():
             raise EnvironmentBlocked('accepted stock prerequisite database unavailable')
-        if args.action == 'validate':
+        if args.action in ('validate','execute'):
             if args.evidence_db is None or not args.evidence_db.is_file() or args.recommendation is None:
-                raise ValueError('validate requires existing --evidence-db and --recommendation')
-            output = args.recommendation.parent
+                raise ValueError('validate/execute requires existing --evidence-db and --recommendation')
+            if args.action == 'execute' and (args.output_dir is None or args.output_dir.exists()):
+                raise ValueError('execute requires fresh --output-dir')
+            output = args.output_dir if args.action == 'execute' else args.recommendation.parent
         else:
             if args.output_dir is None or args.output_dir.exists():
                 raise ValueError('fresh --output-dir required; no retries/resume')
@@ -62,11 +65,14 @@ def main(argv=None):
             store = EvidenceStore(args.evidence_db)
             plan = load_search_recommendation(args.recommendation,store,host_environment=capture_host_environment())
             receipt = json.loads((args.recommendation/'search-receipt.json').read_text(encoding='utf-8'))
-            expected = canonical_payload(inputs.identities(inputs.stock))
-            if receipt['experiment']['manifest']['prerequisite_plan']['candidate']['identities'] != expected:
-                raise ValueError('actual inputs differ from search semantic/runtime identity')
+            check_search_inputs(inputs,receipt['experiment']['manifest'])
             result = {'status':'VALIDATED-STOCK-RECOMMENDATION','plan_sha256':plan.plan_sha256}
             code = 0
+        elif args.action == 'execute':
+            status,details = run_search_recommendation(args.recommendation,
+                EvidenceStore(args.evidence_db),inputs,output)
+            result = {'status':status,**details}
+            code = 0 if status == 'MEASURED-ACCEPTED-STOCK-SEARCH' else 3 if status == 'ENVIRONMENT-BLOCKED' else 2
         else:
             source = EvidenceStore(args.source_evidence_db)
             if args.action == 'generate':
