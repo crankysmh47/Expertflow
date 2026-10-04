@@ -28,6 +28,12 @@ class FixtureEligibility:
             'host_environment_sha256':canonical_sha256(captured),'allowed_controls':['threads','cuda_graphs']}
 
 
+@pytest.fixture(autouse=True)
+def trusted_fixture_provider(monkeypatch):
+    # Dependency injection is test-only; CLI production resolves reviewed builtins.
+    monkeypatch.setattr(api().EligibilityRegistry,'with_builtins',classmethod(lambda cls:FixtureEligibility()))
+
+
 @pytest.fixture(scope='module')
 def prerequisite(tmp_path_factory):
     from expertflow.compiler.stock_validation import execute_stock_product
@@ -125,6 +131,38 @@ def test_host_change_stops_before_second_process(prerequisite,tmp_path):
     _,_,runner,report = execute(prerequisite,tmp_path,capture=capture)
     assert report['status'] == 'VALIDATION-STOP' and len(runner.calls) == 1
     assert not (tmp_path/'search/recommended').exists()
+
+
+def prepared(prerequisite,tmp_path,**kwargs):
+    inputs,source,accepted = prerequisite
+    return api().prepare_search(inputs,accepted/'execution-plan.json',accepted/'acceptance-receipt.json',
+        source,tmp_path/'search',host_environment=HOST,source_repository=tmp_path,
+        registry=FixtureEligibility(),**kwargs)
+
+
+@pytest.mark.parametrize('corruption',['provider_id','protocol_version','upstream_commit','source_object_ids','source_files'])
+def test_manifest_verifier_requires_trusted_complete_provenance(prerequisite,tmp_path,corruption):
+    manifest = prepared(prerequisite,tmp_path,excluded_threads={8:'prior rejection'})
+    if corruption == 'source_files':
+        manifest['source_files'].pop(next(iter(manifest['source_files'])))
+    else:
+        manifest['eligibility'][corruption] = 'unreviewed'
+    manifest.pop('manifest_sha256')
+    manifest['manifest_sha256'] = canonical_sha256(manifest)
+    with pytest.raises(ValueError):
+        api()._validate_manifest(manifest,HOST)
+
+
+def test_default_current_space_cannot_reopen_threads8_or_exceed32(prerequisite,tmp_path):
+    manifest = prepared(prerequisite,tmp_path)
+    assert len(manifest['candidates']) == 4 and manifest['maximum_native_processes'] == 32
+    assert {c['identities']['workload']['threads'] for c in manifest['candidates'].values()} == {12,16}
+
+
+def test_generic_larger_space_requires_explicit_config_and_coherent_budget(prerequisite,tmp_path):
+    manifest = prepared(prerequisite,tmp_path,space_config={'policy':'explicit',
+        'excluded_threads':[],'maximum_native_processes':38})
+    assert len(manifest['candidates']) == 6 and manifest['maximum_native_processes'] == 38
 
 
 @pytest.mark.parametrize('corruption',['ranking','budget','host','row','statistics','finalist'])

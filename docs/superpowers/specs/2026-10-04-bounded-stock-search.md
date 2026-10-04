@@ -71,6 +71,13 @@ finalist, extended budget, retry or discarded outlier. If incumbent screens
 first, retain it without an unnecessary self-comparison.
 
 Maximum budget is32 new processes; screen-only budget12 if incumbent wins.
+The default CLI enforces this current space and threads8 exclusion. Alternate
+topologies/coverage require an explicit space-config with exclusions and a
+coherent maximum budget; no alternate space is authorized for this current
+native experiment. Reconstruction re-attests the complete numerical proof
+through trusted registered code and requires the full expected source-file set.
+Screening reports the three within-block ratios, their range and coefficient of
+variation as descriptive uncertainty; these are not confirmation intervals.
 Any collection/identity/token/memory/cleanup failure stops, with partial evidence
 retained and no discovery publication. Source/host changes invalidate reuse.
 Independent reconstruction binds run artifacts, manifest, candidate/stage IDs,

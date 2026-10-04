@@ -109,6 +109,16 @@ def test_screening_tie_prefers_incumbent_not_candidate_order():
     assert api().rank_screening(rows,'z',schedule)[0]['candidate_id'] == 'z'
 
 
+def test_screening_reports_three_block_variation_as_descriptive_only():
+    schedule = api().screening_schedule(('a','b'))
+    rows = screen_rows(schedule,[{'a':20,'b':21},{'a':20,'b':22},{'a':20,'b':23}])
+    winner = api().rank_screening(rows,'a',schedule)[0]
+    assert winner['block_ratios'] == pytest.approx([1.05,1.1,1.15])
+    assert winner['block_ratio_range'] == pytest.approx([1.05,1.15])
+    assert winner['block_ratio_cv_pct'] > 0
+    assert 'descriptive' in winner['uncertainty_scope'] and 'not confirmation' in winner['uncertainty_scope']
+
+
 @pytest.mark.parametrize('corruption',['missing','duplicate','order','nonfinite','unknown'])
 def test_partial_or_corrupt_screening_cannot_select_a_finalist(corruption):
     schedule = api().screening_schedule(('a','b'))

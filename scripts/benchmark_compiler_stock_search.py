@@ -28,6 +28,7 @@ def main(argv=None):
     parser.add_argument('--source-evidence-db',type=Path,default=Path('C:/models/expertflow/runs/compiler-stock-product-20261004/compiler.sqlite3'))
     parser.add_argument('--source-repository',type=Path,default=Path('C:/models/expertflow/worktrees/llama-q6-placement-final'))
     parser.add_argument('--exclude-threads',type=int,action='append',default=[])
+    parser.add_argument('--space-config',type=Path,help='explicit alternate coverage/budget JSON; default stays in approved32-process space')
     parser.add_argument('--evidence-db',type=Path)
     parser.add_argument('--output-dir',type=Path)
     parser.add_argument('--manifest-output',type=Path)
@@ -56,6 +57,7 @@ def main(argv=None):
         inputs = load_compiler_inputs(request,live=True)
         exclusions = {count:'explicit exclusion; prior eight-thread rejection is not current-host cached evidence'
                       for count in args.exclude_threads}
+        config = json.loads(args.space_config.read_text(encoding='utf-8')) if args.space_config else None
         if args.action == 'validate':
             store = EvidenceStore(args.evidence_db)
             plan = load_search_recommendation(args.recommendation,store,host_environment=capture_host_environment())
@@ -70,7 +72,7 @@ def main(argv=None):
             if args.action == 'generate':
                 manifest = prepare_search(inputs,args.source_plan,args.source_receipt,source,output,
                     host_environment=capture_host_environment(),source_repository=args.source_repository,
-                    excluded_threads=exclusions)
+                    excluded_threads=exclusions,space_config=config)
                 atomic_json(args.manifest_output,manifest)
                 result = {'status':'GENERATED-SEARCH-MANIFEST','manifest_sha256':manifest['manifest_sha256'],
                           'manifest':str(args.manifest_output),'native_samples':0}
@@ -81,7 +83,7 @@ def main(argv=None):
                 sampler = DiagnosticSampler(base)
                 runner = ServerMeasurementRunner(target,memory_sampler=sampler)
                 report = execute_stock_search(inputs,args.source_plan,args.source_receipt,source,target,runner,output,
-                    source_repository=args.source_repository,excluded_threads=exclusions)
+                    source_repository=args.source_repository,excluded_threads=exclusions,space_config=config)
                 result = {'status':report['status'],'reason':report.get('reason'),
                     'report':str(output/'report.json'),'native_outcomes':len(report['outcomes']),
                     'recommended_id':report.get('recommended_id'),'statistics':report.get('statistics')}

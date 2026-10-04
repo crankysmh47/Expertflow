@@ -107,7 +107,13 @@ def rank_screening(rows, incumbent_id, schedule):
         rate = row.get('decode_tps')
         require_number(rate,'screening native TPS',1e-12)
         rates[block,cid] = rate
-    ranked = [{'candidate_id':cid, 'geometric_ratio':math.exp(statistics.mean(
-        math.log(rates[block,cid])-math.log(rates[block,incumbent_id]) for block in range(3)))} for cid in ids]
+    ranked = []
+    for cid in ids:
+        ratios = [rates[block,cid]/rates[block,incumbent_id] for block in range(3)]
+        ranked.append({'candidate_id':cid,'geometric_ratio':math.exp(statistics.mean(
+            math.log(rates[block,cid])-math.log(rates[block,incumbent_id]) for block in range(3))),
+            'block_ratios':ratios,'block_ratio_range':[min(ratios),max(ratios)],
+            'block_ratio_cv_pct':100*statistics.stdev(ratios)/statistics.mean(ratios),
+            'uncertainty_scope':'three-block descriptive variation, not confirmation evidence'})
     return tuple(sorted(ranked,key=lambda row:(-row['geometric_ratio'],
         row['candidate_id'] != incumbent_id,row['candidate_id'])))

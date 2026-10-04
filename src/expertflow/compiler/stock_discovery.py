@@ -11,11 +11,12 @@ import tempfile
 import time
 import uuid
 
-from .pipeline import atomic_json
+from .pipeline import atomic_json, CompilerInputs
 from .plan import CandidatePlan, CandidateStatus, PlanIdentities, RuntimeSettings, _decode_plan, seal_candidate, validate_execution_plan
 from .preflight import capture_host_environment, file_sha256
 from .refinement import balanced_schedule, paired_statistics
-from .schema import WorkloadIR, canonical_payload, canonical_sha256
+from .schema import ArtifactIdentity, HardwareIR, ModelIR, MoELayerIR, WorkloadIR, canonical_payload, canonical_sha256, require_int
+from .runner import RuntimeBinding
 from .stock_eligibility import EligibilityRegistry
 from .stock_search import scheduling_space, semantic_fingerprint, screening_schedule, rank_screening
 from .stock_validation import load_validated_stock_plan
@@ -40,8 +41,50 @@ def _checksum(payload, name):
         raise ValueError(f'{name} mismatch')
 
 
+def _source_files():
+    paths = [*sorted(Path('src/expertflow/compiler').rglob('*.py')),SPEC]
+    driver = Path('scripts/benchmark_compiler_stock_search.py')
+    if driver.exists():
+        paths.append(driver)
+    return {str(p):file_sha256(p) for p in paths}
+
+
+def _snapshot_inputs(snapshot,workload):
+    model = dict(snapshot['model'])
+    model['identity'] = ArtifactIdentity(**model['identity'])
+    model['moe_layers'] = tuple(MoELayerIR(**row) for row in model['moe_layers'])
+    binding = dict(snapshot['stock'])
+    binding['server'] = ArtifactIdentity(**binding['server'])
+    binding['dependencies'] = tuple(ArtifactIdentity(**row) for row in binding['dependencies'])
+    if binding['cuda_runtime'] is not None:
+        binding['cuda_runtime'] = ArtifactIdentity(**binding['cuda_runtime'])
+    stock = RuntimeBinding(**binding)
+    return CompilerInputs(ModelIR(**model),HardwareIR(**snapshot['hardware']),workload,stock,stock,(),{})
+
+
+def _space(base,host,exclusions=None,config=None):
+    if config is None:
+        cpus = host.get('cpu',[])
+        if len(cpus) != 1 or (cpus[0].get('cores'),cpus[0].get('logical_processors'),base.identities.workload.threads) != (8,16,12):
+            raise ValueError('this topology requires an explicit search space/budget config')
+        exclusions = exclusions or {8:'prior rejected eight-thread hypothesis; no compatible cached TPS'}
+        if set(exclusions) != {8}:
+            raise ValueError('approved current search requires only the threads8 exclusion')
+        config = {'policy':'approved-current','excluded_threads':canonical_payload(sorted(exclusions.items())),
+                  'maximum_native_processes':32}
+    else:
+        if exclusions or set(config) != {'policy','excluded_threads','maximum_native_processes'} or config['policy'] != 'explicit':
+            raise ValueError('explicit space config must declare exclusions and coherent budget')
+        exclusions = dict(config['excluded_threads'])
+        require_int(config['maximum_native_processes'],'explicit search budget')
+    space = scheduling_space(base,host,excluded_threads=exclusions)
+    if config['maximum_native_processes'] != 3*len(space.candidates)+20:
+        raise ValueError('search candidate coverage exceeds or differs from declared budget')
+    return space,canonical_payload(config)
+
+
 def prepare_search(inputs, plan_path, receipt_path, source_store, output_dir, *, host_environment,
-                   source_repository, registry=None, excluded_threads=None):
+                   source_repository, registry=None, excluded_threads=None, space_config=None):
     source_store.prime_model(inputs.model)
     plan = load_validated_stock_plan(plan_path,receipt_path,source_store,
         identities=inputs.identities(inputs.stock),host_environment=host_environment)
@@ -52,14 +95,12 @@ def prepare_search(inputs, plan_path, receipt_path, source_store, output_dir, *,
         'host_environment_sha256':canonical_sha256(host_environment)}
     if any(eligibility.get(k) != v for k,v in expected.items()) or eligibility.get('allowed_controls') != ['threads','cuda_graphs']:
         raise ValueError('search eligibility identity/scope mismatch')
-    space = scheduling_space(plan.candidate,host_environment,excluded_threads=excluded_threads)
-    source_files = [*sorted(Path('src/expertflow/compiler').rglob('*.py')),SPEC]
-    driver = Path('scripts/benchmark_compiler_stock_search.py')
-    if driver.exists():
-        source_files.append(driver)
+    space,config = _space(plan.candidate,host_environment,excluded_threads,space_config)
     manifest = {'schema_version':'1.0.0','protocol_version':PROTOCOL,'experiment_id':uuid.uuid4().hex,
         'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
-        'source_files':{str(p):file_sha256(p) for p in source_files},'protocol_sha256':file_sha256(SPEC),
+        'source_files':_source_files(),'protocol_sha256':file_sha256(SPEC),
+        'source_repository':str(Path(source_repository).resolve()),'space_config':config,
+        'inputs':canonical_payload({'model':inputs.model,'hardware':inputs.hardware,'stock':inputs.stock}),
         'experiment_root':str(Path(output_dir).resolve()),'frozen_monotonic_ns':time.monotonic_ns(),
         'incumbent_id':plan.candidate.candidate_id,'semantic_sha256':semantic_fingerprint(plan.candidate),
         'host_environment':canonical_payload(host_environment),'eligibility':eligibility,
@@ -78,7 +119,7 @@ def prepare_search(inputs, plan_path, receipt_path, source_store, output_dir, *,
     return manifest
 
 
-def _validate_manifest(manifest, host):
+def _validate_manifest(manifest, host, *, registry=None):
     _checksum(manifest,'manifest_sha256')
     if manifest.get('schema_version') != '1.0.0' or manifest.get('protocol_version') != PROTOCOL:
         raise ValueError('unsupported search protocol')
@@ -88,9 +129,13 @@ def _validate_manifest(manifest, host):
         raise ValueError('invalid fresh search boundary')
     plan = _decode_plan(manifest['prerequisite_plan'])
     candidates = {cid:_candidate(c) for cid,c in manifest['candidates'].items()}
-    modes = tuple(sorted({c.settings.cuda_graphs for c in candidates.values()}))
-    space = scheduling_space(plan.candidate,host,graph_modes=modes,
-        excluded_threads=dict(manifest['excluded_threads']))
+    config = manifest['space_config']
+    if config.get('policy') == 'approved-current':
+        space,expected_config = _space(plan.candidate,host,dict(config['excluded_threads']))
+    else:
+        space,expected_config = _space(plan.candidate,host,config=config)
+    if config != expected_config or manifest['excluded_threads'] != canonical_payload(space.excluded_threads):
+        raise ValueError('search approved space/exclusion mismatch')
     if canonical_payload({c.candidate_id:c for c in space.candidates}) != manifest['candidates']:
         raise ValueError('search candidate coverage/identity mismatch')
     if manifest['incumbent_id'] != plan.candidate.candidate_id or manifest['semantic_sha256'] != semantic_fingerprint(plan.candidate):
@@ -103,6 +148,12 @@ def _validate_manifest(manifest, host):
         'hardware_sha256':plan.candidate.identities.hardware_sha256,'host_environment_sha256':canonical_sha256(host)}
     if not proof.get('provider_id') or any(proof.get(k) != v for k,v in expected.items()) or proof.get('allowed_controls') != ['threads','cuda_graphs']:
         raise ValueError('search eligibility binding mismatch')
+    inputs = _snapshot_inputs(manifest['inputs'],plan.candidate.identities.workload)
+    if inputs.identities(inputs.stock) != plan.candidate.identities:
+        raise ValueError('search input snapshot identity mismatch')
+    trusted = (registry or EligibilityRegistry.with_builtins()).attest(inputs,host,manifest['source_repository'])
+    if canonical_payload(trusted) != proof:
+        raise ValueError('search eligibility differs from trusted complete attestation')
     controls = {'screening_seed':20261004,'confirmation_seed':20261003,'bootstrap_samples':10000,
         'minimum_gain_pct':2,'minimum_ci95_lower_pct':0,'maximum_cv_pct':10,
         'screening_processes':3*len(candidates),'maximum_native_processes':3*len(candidates)+20}
@@ -110,7 +161,7 @@ def _validate_manifest(manifest, host):
             manifest['screening_schedule'] != canonical_payload(screening_schedule(candidates))) or (
             manifest['confirmation_schedule'] != canonical_payload(balanced_schedule())):
         raise ValueError('search frozen budget/schedule/gate mismatch')
-    if not manifest['source_files'] or any(file_sha256(Path(p)) != sha for p,sha in manifest['source_files'].items()):
+    if manifest['source_files'] != _source_files():
         raise ValueError('search source changed')
     return plan,candidates
 
@@ -164,9 +215,9 @@ def _decision(ranking, incumbent_id, confirmation):
         'status':'RECOMMENDED-CHALLENGER' if accepted else 'RECOMMENDED-INCUMBENT'}
 
 
-def reconstruct_search(report, store, *, host_environment):
+def reconstruct_search(report, store, *, host_environment, registry=None):
     manifest = report['manifest']
-    plan,candidates = _validate_manifest(manifest,host_environment)
+    plan,candidates = _validate_manifest(manifest,host_environment,registry=registry)
     validate_execution_plan(plan,store=store)
     receipt = manifest['prerequisite_receipt']
     _checksum(receipt,'receipt_sha256')
@@ -209,8 +260,8 @@ def reconstruct_search(report, store, *, host_environment):
     return plan,candidates,decision
 
 
-def _publish(report,store,output,host):
-    incumbent,candidates,decision = reconstruct_search(report,store,host_environment=host)
+def _publish(report,store,output,host,registry=None):
+    incumbent,candidates,decision = reconstruct_search(report,store,host_environment=host,registry=registry)
     if decision['confirmation_accepted']:
         candidate = candidates[decision['recommended_id']]
         mids = tuple(r['measurement_id'] for r in report['confirmation'] if r['arm'] == 'sealed')
@@ -237,13 +288,13 @@ def _publish(report,store,output,host):
     return plan
 
 
-def load_search_recommendation(directory,store,*,host_environment):
+def load_search_recommendation(directory,store,*,host_environment,registry=None):
     root = Path(directory)
     receipt = json.loads((root/'search-receipt.json').read_text(encoding='utf-8'))
     _checksum(receipt,'receipt_sha256')
     if receipt.get('schema_version') != '1.0.0' or receipt.get('protocol_version') != PROTOCOL:
         raise ValueError('search receipt protocol mismatch')
-    incumbent,candidates,decision = reconstruct_search(receipt['experiment'],store,host_environment=host_environment)
+    incumbent,candidates,decision = reconstruct_search(receipt['experiment'],store,host_environment=host_environment,registry=registry)
     plan = _decode_plan(json.loads((root/'execution-plan.json').read_text(encoding='utf-8')))
     validate_execution_plan(plan,store=store)
     if plan.plan_sha256 != receipt['published_plan_sha256'] or plan.candidate.candidate_id != decision['recommended_id']:
@@ -255,7 +306,7 @@ def load_search_recommendation(directory,store,*,host_environment):
 
 
 def execute_stock_search(inputs,plan_path,receipt_path,source_store,target_store,runner,output_dir,*,
-                         host_capture=None,registry=None,source_repository,excluded_threads=None):
+                         host_capture=None,registry=None,source_repository,excluded_threads=None,space_config=None):
     capture = host_capture or capture_host_environment
     host = capture()
     output = Path(output_dir)
@@ -265,7 +316,7 @@ def execute_stock_search(inputs,plan_path,receipt_path,source_store,target_store
         if connection.execute('SELECT COUNT(*) FROM measurement').fetchone()[0]:
             raise ValueError('fresh empty search database required')
     manifest = prepare_search(inputs,plan_path,receipt_path,source_store,output,
-        host_environment=host,source_repository=source_repository,registry=registry,excluded_threads=excluded_threads)
+        host_environment=host,source_repository=source_repository,registry=registry,excluded_threads=excluded_threads,space_config=space_config)
     output.mkdir(parents=True)
     target_store.prime_model(inputs.model)
     source_plan = _decode_plan(manifest['prerequisite_receipt']['experiment']['frozen']['source_plan'])
@@ -313,7 +364,7 @@ def execute_stock_search(inputs,plan_path,receipt_path,source_store,target_store
         report.update(_decision(ranking,manifest['incumbent_id'],report['confirmation']))
         if canonical_payload(capture()) != manifest['host_environment'] or any(file_sha256(Path(p)) != sha for p,sha in manifest['prerequisite_files'].items()):
             raise ValueError('search host/prerequisite changed before publication')
-        _publish(report,target_store,output,host)
+        _publish(report,target_store,output,host,registry)
     except (ValueError,OSError,KeyError,TypeError,RuntimeError) as error:
         report.update(status='VALIDATION-STOP',reason=str(error))
     atomic_json(output/'report.json',report)
