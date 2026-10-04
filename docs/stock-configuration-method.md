@@ -9,15 +9,15 @@ predict performance on a different host or workload.
 
 | Boundary | Implementation and evidence |
 | --- | --- |
-| Model accounting | ModelDescriptor, ModelIR and AdapterRegistry; real Gemma4 Q6, Q4 header inspected separately |
+| Model accounting | ModelDescriptor, ModelIR and AdapterRegistry; real Gemma4 Q6 and separately hash-verified Q4 normalized inventories |
 | Runtime identity | RuntimeBinding verifies pristine manifest, binary/dependency/CUDA hashes and build flags |
 | Host identity | GPU/driver plus CPU, RAM, OS, affinity, thread environment and complete power policy |
-| Numerical eligibility | Provider registry; Q6 audited native search, Q4 separately audited source/verified zero-native preview with review/live validation pending |
+| Numerical eligibility | Provider registry; Q6 audited native search, Q4 reviewed source scope and ten audited native reference processes |
 | Scheduling coverage | Physical/midpoint/logical/incumbent thread anchors, CUDA graphs on/off, explicit exclusions and untested counts |
-| Valid stock incumbent | Fresh paired product receipt; Q6 completed twenty runs and passed |
+| Valid stock incumbent | Fresh paired product receipts; Q6 and Q4 separately completed twenty runs and passed |
 | Search | Three seeded complete blocks, then independent ten-pair confirmation of one finalist |
 | Recommendation | Atomic execution-plan/search-receipt publication and artifact-backed read-only validation |
-| Remaining reuse work | Q4 reference/product/search native validation, full checks/review and scope audit |
+| Remaining reuse work | Q4 product/search native validation and final objective audit; implementation review and post-fix full checks passed |
 
 Q6 scheduling search completed32 runs and retained the accepted12-thread/graphs-on
 incumbent. The16-thread screening finalist was0.985% slower in independent
@@ -185,6 +185,17 @@ $q4Reference = 'C:/models/expertflow/runs/compiler-q4-stock-reference-20261004'
 $q4Product = 'C:/models/expertflow/runs/compiler-q4-stock-product-20261004'
 $q4Search = 'C:/models/expertflow/runs/compiler-q4-stock-search-20261004'
 
+# Metadata normalization only; this does not prove actual weight hashes:
+uv run --extra dev --extra quality --extra predictor expertflow inspect `
+  --descriptor configs/compiler/gemma4-q4-model.json `
+  --inventory docs/evidence/stock-discovery-20261004/q4-tensor-inventory.json `
+  --output C:/models/expertflow/runs/NEW-Q4-ModelIR.json
+
+# Optional read-only preparation before the fresh native run:
+uv run --extra dev --extra quality --extra predictor python scripts/benchmark_compiler_stock_reference.py @q4Inputs `
+  --action generate --source-repository $q4Source `
+  --output-dir "$q4Reference/reference" --manifest-output C:/models/expertflow/runs/NEW-Q4-reference-preview.json
+
 uv run --extra dev --extra quality --extra predictor python scripts/benchmark_compiler_stock_reference.py @q4Inputs `
   --action run --source-repository $q4Source `
   --evidence-db "$q4Reference/compiler.sqlite3" --output-dir "$q4Reference/reference"
@@ -200,6 +211,14 @@ uv run --extra dev --extra quality --extra predictor python scripts/benchmark_co
   --experiment stock-product --source-plan "$q4Reference/reference/diagnostic/execution-plan.json" `
   --source-evidence-db "$q4Reference/compiler.sqlite3" `
   --evidence-db "$q4Product/compiler.sqlite3" --output-dir "$q4Product/product"
+uv run --extra dev --extra quality --extra predictor python docs/evidence/stock-discovery-20261004/verify_product.py `
+  --root "$q4Product/product" --database "$q4Product/compiler.sqlite3" `
+  --source-plan "$q4Reference/reference/diagnostic/execution-plan.json" `
+  --output docs/evidence/stock-discovery-20261004/q4-product-verification.json
+uv run --extra dev --extra quality --extra predictor expertflow validate @q4Inputs `
+  --evidence-db "$q4Product/compiler.sqlite3" `
+  --plan "$q4Product/product/accepted/execution-plan.json" `
+  --acceptance "$q4Product/product/accepted/acceptance-receipt.json"
 
 # Only after PASS-STOCK-FALLBACK and independent product/receipt checks pass:
 uv run --extra dev --extra quality --extra predictor python scripts/benchmark_compiler_stock_search.py @q4Inputs `
@@ -209,11 +228,22 @@ uv run --extra dev --extra quality --extra predictor python scripts/benchmark_co
   --source-evidence-db "$q4Product/compiler.sqlite3" `
   --space-config configs/compiler/gemma4-q4-stock-search-space.json `
   --evidence-db "$q4Search/compiler.sqlite3" --output-dir "$q4Search/search"
+uv run --extra dev --extra quality --extra predictor python docs/evidence/stock-discovery-20261004/verify_search.py `
+  --root "$q4Search/search" --database "$q4Search/compiler.sqlite3" `
+  --output docs/evidence/stock-discovery-20261004/q4-search-verification.json
+uv run --extra dev --extra quality --extra predictor python scripts/benchmark_compiler_stock_search.py @q4Inputs `
+  --action validate --evidence-db "$q4Search/compiler.sqlite3" --recommendation "$q4Search/search/recommended"
 ```
 
 The explicit Q4 space includes threads8/12/16 and both graph modes on this
 host. Q6's rejected eight-thread condition is not an exclusion for Q4. Stop
 after any failed gate; preserve all failed artifacts without retries.
+
+After recommendation validation, the search driver's `--action execute` is
+available with the same explicit model inputs, existing search database and
+recommendation, plus a fresh output directory outside the original experiment.
+It is a consumer operation, not part of Q4's registered68-process validation
+budget; no additional native execution is included in these collection commands.
 
 | Change or setting | Required action |
 | --- | --- |
