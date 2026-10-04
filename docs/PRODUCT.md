@@ -1,8 +1,45 @@
 # ExpertFlow Product and Architecture Guide
 
-ExpertFlow is a placement compiler for quantized mixture-of-experts models. It profiles where sparse-model work actually executes, decides which complete expert banks deserve scarce VRAM, and emits a reproducible deployment plan for a compatible llama.cpp runtime.
+ExpertFlow compiles measured, eligible MoE runtime configurations into validated execution plans. The current accepted path is stock selection on Gemma Q6, Gemma Q4 and Granite Q6 on one pinned Windows/NVIDIA system. Quality-preserving placement acceleration remains unproven.
 
-The important idea is not that one fixed set of layers is always best. The product turns measurements, model structure, and a hardware budget into a **hardware-specific emitted plan**.
+## Current compiler architecture and next decision
+
+```text
+Verified model/inventory + hardware/host + workload + pinned runtime
+  -> adapter and numerical eligibility
+  -> owned reference and paired product acceptance
+  -> bounded measured stock search
+  -> independent confirmation or retained incumbent
+  -> validated ExecutionPlan + receipt + raw evidence
+```
+
+`src/expertflow/compiler/` implements typed inputs/plans, adapters, calibration,
+passes, EvidenceStore, the owned runner and stock reference/acceptance/search.
+`stock_eligibility.py` binds controls to audited operation paths;
+`stock_validation.py` and `stock_search.py` reconstruct acceptance and search
+from native artifacts. Gemma uses CPU-MoE; Granite uses GPU-resident pristine
+execution. Changed model, runtime, host, source or workload invalidates reuse.
+
+The original Phase 3 compile gate stopped on replay tolerance. Separate later
+stock-product gates passed without reversing its verdict or the historical
+placement quality stop. Current collection/reuse uses explicit metadata inputs
+and benchmark scripts, alongside CLI `inspect`, `compile`, `validate`, `explain`
+and `run --plan`. The older `optimize`/`serve` deployment interface below is a
+distinct historical product path.
+
+Next, follow the [proof and fallback plan](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md):
+qualify a placement mechanism, prove automatic selection and limited transfer,
+or evaluate stock autotuning against defaults and manual tuning. Broader feature
+work follows a useful proof. See [status](STATUS.md), [tasks](TODO.md), and
+[the current stock method](stock-configuration-method.md).
+
+## Historical placement architecture
+
+The sections below describe the archived placement release and its experiments.
+Its **28.13 TPS** result failed the quality gate; it is not an accepted current
+acceleration product. Historical diagrams and dashboards remain evidence of
+that implementation. It turns measurements, model structure, and a hardware
+budget into a **hardware-specific emitted plan**.
 
 ## 1. The problem
 
@@ -84,7 +121,7 @@ The released static configuration uses **Identity remapping**: logical expert `n
 
 These are architectural outcomes, not omissions hidden by the presentation. Earlier cache and predictor prototypes informed the decision, but their transfer and remapping costs did not produce the best Q6 product on this GPU.
 
-## 4. The shipped Q6 plan
+## 4. The historical Q6 placement
 
 For the verified 16 GB RTX 5060 Ti system, the compiler output retained complete 128-expert Q6 banks for layers:
 
@@ -110,7 +147,7 @@ The authoritative single-stream protocol used ten matched 512-token runs with th
 | Peak process-owned VRAM | **10,966.801 MiB** | Measured |
 | Selected expert-bank layers | **12 of 30** | Measured configuration |
 
-The quality point estimates did not show a decline: MMLU moved from 49/100 to 50/100, and PPL changed by -2.92%. The predefined strict PPL confidence requirement was not met because the 95% upper bound was +2.25%. ExpertFlow reports that boundary instead of turning it into a stronger claim.
+The historical release scorecard reports MMLU 49/100 to 50/100. The terminal twelve-layer placement study itself did not run MMLU after its PPL failure. Its PPL point change was -2.92%, but the strict confidence requirement was not met because the 95% upper bound was +2.25%. These finite results do not establish exact numerical execution or quality-qualified placement.
 
 The machine-readable authority is repository path `docs/evidence/product-release/release-scorecard.json`, linked here as the [release scorecard](evidence/product-release/release-scorecard.json). The protocol and comparability rules are in [BENCHMARKING.md](BENCHMARKING.md).
 
@@ -152,9 +189,9 @@ The GGUF is not bundled. The expected Q6 model SHA-256 is `089ecf3bbad0b18b187ff
 
 ## 9. Supported scope
 
-Evidence replay is portable across ordinary Python platforms. Live acceleration is verified on Windows 11 x64, NVIDIA CUDA, and the documented RTX 5060 Ti 16 GB system. Other NVIDIA configurations may be compatible but require fresh profiling and verification. Linux/NVIDIA live execution remains experimental and unverified; CPU-only, AMD, and macOS paths are replay-only in this release.
+Historical replay is portable across ordinary Python platforms. Placement timings were measured on the documented Windows 11 x64 / RTX 5060 Ti 16 GB system, with the quality stop above. Current stock acceptance covers two families on that pinned host/build. Other hosts need fresh eligibility and validation; Linux/NVIDIA is unverified, and CPU-only, AMD and macOS support historical replay only.
 
-ExpertFlow currently targets the documented Gemma 4 26B A4B Q6_K tensor layout and pinned llama.cpp fork. It is a reproducible hackathon product, not yet a general-purpose replacement for llama.cpp placement across every MoE architecture.
+The historical placement runtime targets Gemma Q6 and its pinned fork. Current adapters and stock contracts additionally cover Gemma Q4 and Granite Q6. Granite static placement, memory-constrained second-family acceleration and universal hardware support remain unverified.
 
 ## 10. How GPT-5.6 and Codex were used
 
@@ -166,7 +203,9 @@ That workflow is reflected in the append-only [`../PROJECT_LOG.md`](../PROJECT_L
 
 ## 11. Where to go next
 
-- [README](../README.md): fastest product introduction.
+- [Current status](STATUS.md) and [tasks](TODO.md): accepted results and next work.
+- [Proof and fallback plan](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md): decision gates.
+- [README](../README.md): current project introduction.
 - [Judge guide](../JUDGES.md): quickest verification route.
 - [Deployment guide](../DEPLOYMENT.md): hosted dashboard and local hardware setup.
 - [Benchmarking protocol](BENCHMARKING.md): fair-comparison rules.

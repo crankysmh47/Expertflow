@@ -1,155 +1,97 @@
 <p align="center">
-  <img src="docs/assets/expertflow-logo.png" alt="ExpertFlow: a black and gold routing mark on a green circuit board" width="760">
+  <img src="docs/assets/expertflow-logo.png" alt="ExpertFlow routing mark on a green circuit board" width="760">
 </p>
 
 # ExpertFlow
 
-### A placement compiler for quantized MoE models.
+### A hardware-aware configuration compiler for quantized MoE inference.
 
-Run the high-quality model you want, not the smaller quant your GPU forces you into.
+ExpertFlow measures eligible runtime configurations and emits validated execution plans. Stock selection is validated on Gemma Q6, Gemma Q4 and Granite Q6 on one Windows/NVIDIA system. Placement acceleration remains a research goal: the historical faster placement failed its quality gate.
 
-## 28.13 TPS · 22.48% faster than stock · 16 GB GPU · Q6
+Read [current status](docs/STATUS.md), [tasks](docs/TODO.md), and the concise [placement proof and stock-tuning fallback plan](docs/superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md). Prove useful compiler-selected placement first; if it cannot qualify, evaluate stock autotuning. Broader features follow a successful proof.
+
+## Installation and CLI
+
+Requires Python 3.11+ and `uv`.
 
 ```console
 uv sync --frozen
+uv run expertflow --help
+```
+
+The current workflow verifies model bytes and inventory, runtime, host and workload; establishes a reference and paired product acceptance; searches a bounded eligible space; and validates an execution plan and evidence receipt. Changed inputs invalidate reuse. No qualifying challenger means the validated incumbent is retained.
+
+Use [the stock configuration method](docs/stock-configuration-method.md) for collection, audit, validation and execution commands. These need explicit input files and local native artifacts. The public CLI and benchmark scripts exist; one command that optimizes any supplied GGUF is a future product goal.
+
+## What is validated today?
+
+| Model | Accepted result | Evidence |
+| --- | --- | --- |
+| Gemma 4 26B A4B Q6_K | Stock acceptance passed; bounded search retained 12 threads/graphs on | [Q6 report](docs/evidence/stock-discovery-20261004/report.md) |
+| Gemma 4 26B A4B Q4_0 | Separate reference/product/search passed; same incumbent retained | [Q4 report](docs/evidence/stock-discovery-20261004/q4-report.md) |
+| Granite 3.1 1B-A400M Q6_K | Real second-family reference/product/search passed; GPU-resident incumbent retained | [Granite report](docs/evidence/compiler-granite-20261004/report.md) |
+
+These results establish reproducible stock selection within declared spaces, with no newly accepted gain over tuned stock. Granite's small, fully resident model establishes compatibility; Q4 is a separate quantization. Neither proves quality-preserving Gemma Q6 acceleration or a global optimum.
+
+Gemma profiling identified CPU expert work as a substantial decode bottleneck, but synchronized diagnostics perturb overlap. Placement research ranks complete expert banks by CPU relief per byte of VRAM. Its numerical and quality contracts must pass before a faster plan becomes an accepted result.
+
+## Historical release replay
+
+```console
 uv run expertflow demo --replay
 ```
 
-The replay needs no GGUF, CUDA installation, or NVIDIA GPU. It verifies the committed evidence and reconstructs the measured result in about a minute.
+No GGUF, CUDA installation or GPU is needed. Replay verifies historical evidence integrity; a replay `pass` is not quality acceptance or a fresh live benchmark. The archived dashboards and release ZIP describe that earlier release.
 
+![Historical ExpertFlow dashboard](docs/assets/dashboard-architecture.png)
 
-## Why does this exist?
+On Gemma Q6, historical static placement measured **28.13 TPS**. A separate strongest historical stock reference was **22.967 TPS**, giving **22.48%** against that reference. The ten matched pairs themselves measured 22.28/28.13 TPS. Peak process-owned VRAM was 10,966.801 MiB. The terminal verdict was **QUALITY STOP**; this is not an accepted quality-preserving acceleration claim.
 
-Gemma 4 26B A4B is sparse, but its expert banks still have to live somewhere. Stock llama.cpp can keep that routed-expert work on CPU, which fits but creates a bottleneck. Whole-layer CUDA offload is too coarse for this memory budget.
+Complete expert banks for layers `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20]` remained on CUDA without eviction or per-token loading. CPU-to-CUDA placement changed the numerical path, and historical response hashes differed. The strict +1% PPL confidence gate was **not met**: the favorable -2.92% point estimate had a +2.25% upper 95% bound. See the [original report](docs/evidence/q6-placement-final/report.md).
 
-The usual layer count also hides the interesting part: a layer can appear GPU-offloaded while its expert matmuls still execute on CPU. ExpertFlow profiles those operations separately and places the complete expert banks that remove the most CPU work per byte of VRAM.
+Other historical release boundaries: four-slot outputs were **not fully deterministic**; their aggregate TPS is a separate objective. A **262,144**-token context was allocated, but only **417** tokens were processed. The release scorecard reports MMLU 49/100 to 50/100; the terminal placement study stopped before MMLU. Reactive/predictive caching and mover no-go verdicts remain closed.
 
-## What measurable difference does it make?
+The historical scorecard is `release/expertflow-build-week/evidence/release-scorecard.json`. Current accepted authorities are linked from [STATUS.md](docs/STATUS.md).
 
-On Gemma 4 26B A4B IT Q6_K, ExpertFlow measured **28.13 decode TPS**. The strongest fair stock Q6 configuration reached **22.967 TPS**. That is a **22.48% improvement** on the same 16 GB RTX 5060 Ti.
+## Interfaces and scope
 
-The matched protocol used ten 512-token runs. Peak process-owned VRAM was **10,966.801 MiB**.
+Current compiler interfaces include `expertflow inspect`, `expertflow compile`, `expertflow validate`, `expertflow explain` and `expertflow run --plan`. Stock reference/search collection and recommendation execution also use scripts documented in [the method guide](docs/stock-configuration-method.md).
 
-The winning placement keeps complete 128-expert Q6 banks for layers `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20]` on CUDA.
+The earlier deployment interface remains available: `expertflow doctor`, `expertflow profile`, `expertflow optimize`, positional `expertflow run`, `expertflow serve` and `expertflow compare`. Its setup is documented in the historical [judge guide](JUDGES.md) and [deployment guide](DEPLOYMENT.md). It does not promote the old placement result into current exact acceptance.
 
-## Can I see it immediately?
+| Platform | Historical replay | Current live compiler evidence |
+| --- | --- | --- |
+| Pinned Windows 11 x64 / RTX 5060 Ti 16 GB system | Supported | Stock acceptance verified for the listed artifacts/workloads |
+| Other Windows/NVIDIA or Linux/NVIDIA systems | Supported | Unverified; new scope and live validation required |
+| macOS, AMD or CPU-only systems | Supported | Historical replay only |
 
-Yes. Run the two commands at the top of this page. The replay checks the evidence hash, then prints the stock result, ExpertFlow result, placement, VRAM, quality status, and cache decision.
+The GGUFs, local measurement databases and native binaries are not bundled. Current evidence does not establish universal support or automatic speedups.
 
-For a visual replay, open `release/expertflow-build-week/dashboard.html`. Judges can choose a quick replay, compatible live run, or full source reproduction in [JUDGES.md](JUDGES.md).
-
-The redesigned narrative dashboard is also available at `docs/evidence/product-release/dashboard.html`. See [DEPLOYMENT.md](DEPLOYMENT.md) for Vercel deployment, local dashboard hosting, evidence replay, compatible NVIDIA setup, and pinned-runtime instructions.
-
-For the complete product model, component boundaries, runtime data flow, and evidence-backed architecture, read the [Product and Architecture Guide](docs/PRODUCT.md).
-
-### Links for judges
-
-- [Repository](https://github.com/crankysmh47/Expertflow)
-- [Product architecture](docs/PRODUCT.md)
-- [Live dashboard](https://expertflow-zeta.vercel.app)
-- [Deployment guide](DEPLOYMENT.md)
-
-## How does it work?
-
-ExpertFlow reads measured routing and backend-placement evidence, ranks complete expert banks by CPU relief per byte of VRAM, and emits a deployment manifest. The Q6 runtime establishes placement before graph construction. Selected packed operands remain on CUDA with identity logical-to-physical mapping.
-
-There is no eviction, reactive loading, repacking, prediction, or per-token transfer in the shipped configuration.
-
-![ExpertFlow dashboard showing the measured result and CPU-to-GPU execution boundary](docs/assets/dashboard-architecture.png)
-
-That last sentence matters because the project did not begin with static placement.
-
-We tested observer paths, reactive caches, temporal prediction, and asynchronous sidecar transfers. Some experiments preserved exact outputs but ran slower. Others reached clean architectural stop conditions. A bounded cache simulation combining measured Q6 routing with measured transfer costs found `NO CACHE OPPORTUNITY` on this GPU. The evidence favored complete static residency, so that is what ExpertFlow ships.
-
-## How Codex and GPT-5.6 built ExpertFlow
-
-GPT-5.6 was part of the entire ideation and project progression, not a final documentation pass. It helped turn the initial predictive-cache idea into a sequence of bounded experiments, interpret failures, define stop conditions, and change the product direction when measurements contradicted the original plan.
-
-Codex with GPT-5.6-sol managed the engineering workflow end to end. That included:
-
-- creating and protecting isolated Git worktrees;
-- investigating llama.cpp and instrumenting the real routing path;
-- writing tests before each narrow runtime experiment;
-- collecting traces, timings, VRAM measurements, hashes, and environment metadata;
-- implementing cache, observer, predictor, Q6 placement, and product experiments;
-- diagnosing failed approaches without weakening correctness gates;
-- running repeated parity and performance checks;
-- maintaining the append-only command and decision ledger;
-- packaging the CLI, replay, dashboard, judge paths, and release archive;
-- handling the small tweaks and verification work needed to keep the project shippable.
-
-The human role stayed explicit. I chose the problem, set the scientific gates, approved or rejected scope changes, and made the final product calls. Codex handled the implementation loop and kept the evidence organized enough for those decisions to be made from measurements rather than intuition.
-
-Primary `/feedback` Session ID: **UNRESOLVED — ADD THE REQUIRED SESSION ID BEFORE SUBMISSION.**
-
-## Can I run it live?
-
-The verified live path requires Windows 11 x64, an NVIDIA GPU, the ExpertFlow llama.cpp build, and a user-supplied `google_gemma-4-26B-A4B-it-Q6_K.gguf`.
+## Development checks
 
 ```powershell
-$env:EXPERTFLOW_MODEL_PATH = "C:\path\to\google_gemma-4-26B-A4B-it-Q6_K.gguf"
-$env:EXPERTFLOW_LLAMA_CLI = "C:\path\to\llama-cli.exe"
-$env:EXPERTFLOW_LLAMA_SERVER = "C:\path\to\llama-server.exe"
-
-uv run expertflow doctor --model $env:EXPERTFLOW_MODEL_PATH --runtime $env:EXPERTFLOW_LLAMA_CLI --server $env:EXPERTFLOW_LLAMA_SERVER
-./scripts/live-tps-demo.ps1 -Mode Demo
-uv run expertflow profile $env:EXPERTFLOW_MODEL_PATH
-uv run expertflow optimize $env:EXPERTFLOW_MODEL_PATH --goal max-performance --output deployment.json
-uv run expertflow run deployment.json --model $env:EXPERTFLOW_MODEL_PATH
-uv run expertflow compare deployment.json
+uv sync --frozen --extra dev --extra quality --extra predictor
+uv run --no-sync pytest -q
+uv run --no-sync python -m compileall -q src/expertflow
+git diff --check
 ```
 
-`live-tps-demo.ps1` performs a fresh matched stock/ExpertFlow pair and saves the raw evidence. It is the fastest live judge path; the headline claim still comes from ten matched pairs.
+Latest recorded full suite: 745 passed, 7 historical source-environment skips. Run applicable source contracts against the exact external checkout they target. CPU tests and replay do not prove native speed or quality.
 
-The expected model SHA-256 is `089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba`.
+## Project documentation
 
-### OpenAI-compatible local serving
+- [Product architecture](docs/PRODUCT.md): current compiler and historical placement architecture.
+- [Benchmarking](docs/BENCHMARKING.md): comparable workloads and acceptance boundaries.
+- [Repository](https://github.com/crankysmh47/Expertflow).
+- [Live dashboard](https://expertflow-zeta.vercel.app): historical release presentation.
+- [Deployment guide](DEPLOYMENT.md): historical replay and live setup.
+- [Project log](PROJECT_LOG.md): chronological evidence and decisions.
 
-```powershell
-uv run expertflow optimize $env:EXPERTFLOW_MODEL_PATH --goal agentic --output deployment.json
-uv run expertflow serve deployment.json
-uv run python examples/agentic_session.py
-```
+## How Codex was used
 
-The measured four-slot profile completed 20/20 requests at **35.6699 aggregate generated TPS**, compared with 24.5231 stock. This is a concurrent server-throughput measurement, not the single-stream 28.13 TPS protocol.
+Codex with GPT-5.6-sol managed the engineering workflow: source investigation, isolated native experiments, test-first changes, measurements, parity checks, evidence review, failure diagnosis and release packaging. The human chose the problem, scientific gates and product direction. Historical failures remain part of the record.
 
-## What are the limitations?
-
-- The strict +1% PPL confidence gate was not met. The point estimate improved by 2.92%, but the 95% upper bound was +2.25%.
-- MMLU moved from 49/100 to 50/100.
-- Four-slot outputs were not fully deterministic across repetitions.
-- A 262,144-token context was allocated with 675.418 MiB reserve, but the bounded run processed 417 tokens. This is not a filled-context claim.
-- Predictive caching was simulated and rejected. It is not a measured cache-runtime result and is not shipped.
-- Live acceleration is verified on the documented Windows/NVIDIA system. Other live platforms remain unverified or unsupported.
-
-The machine-readable source of truth is `release/expertflow-build-week/evidence/release-scorecard.json`. Benchmark protocol and comparability rules are in [docs/BENCHMARKING.md](docs/BENCHMARKING.md).
-
-## Supported platforms
-
-| Platform | Evidence replay | Live ExpertFlow CUDA |
-|---|---:|---:|
-| Windows 11 x64 + NVIDIA RTX 5060 Ti 16 GB | Supported | Verified |
-| Other Windows x64 + NVIDIA CUDA | Supported | Compatible, unverified |
-| Linux x64 + NVIDIA | Supported | Experimental, unverified |
-| macOS / Metal | Supported | Unsupported; replay only |
-| AMD Vulkan or ROCm | Supported | Unsupported; replay only |
-| CPU-only | Supported | Unsupported; replay only |
-
-This matrix describes ExpertFlow evidence, not every backend supported by upstream llama.cpp.
-
-## Reproduction
-
-Use [JUDGES.md](JUDGES.md) for the replay, compatible live inference, and clean runtime build paths. The release archive includes the upstream pin, ordered patch series, compiler and CUDA versions, binary hashes, model hash, setup scripts, and SHA-256 manifest.
-
-Applicable tests:
-
-```powershell
-uv sync --frozen
-$env:PYTHONPATH = "$PWD;$PWD\src"
-uv run pytest -q --ignore=tests/test_t1_temporal_source_contract.py --ignore=tests/test_t2_sidecar_source_contract.py
-```
-
-Those two source-contract modules belong to a preserved temporal-cache llama.cpp branch. The Q6 release does not ship the temporal cache.
+The archived submission still has an unresolved primary `/feedback` session ID; resolve it before any submission. Current research progress is tracked separately.
 
 ## License
 

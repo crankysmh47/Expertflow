@@ -1,5 +1,13 @@
 # Compiler execution checkpoint — 2026-10-03
 
+**Historical state:** this checkpoint preserves the original gate and its
+blocked status at completion. Separately registered later stock-product
+experiments passed for Gemma Q6/Q4 and Granite Q6. Current work follows
+[STATUS.md](../../STATUS.md), [TODO.md](../../TODO.md), and the
+[proof/fallback plan](../../superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md).
+The remainder records the original experiment; it is not the current resume
+instruction or a restriction on later explicitly authorized work.
+
 Branch: `ef-v2`. Starting commit: `bb4fef6`. Implementation and review fixes:
 `c27711a`. The user authorized plan repairs, execution and model recovery.
 

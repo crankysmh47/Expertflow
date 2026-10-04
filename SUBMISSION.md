@@ -1,5 +1,11 @@
 # ExpertFlow Build Week submission
 
+**Historical Observatory submission:** this document preserves an earlier
+submission narrative. Current compiler results and priorities are in
+[STATUS.md](docs/STATUS.md), [tasks](docs/TODO.md), and the
+[proof/fallback plan](docs/superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md).
+It is not the current product claim or a new submission authorization.
+
 ## One-line pitch
 
 ExpertFlow tells you whether a sparse MoE model's routed experts are worth

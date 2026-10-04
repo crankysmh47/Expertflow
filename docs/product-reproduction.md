@@ -1,5 +1,10 @@
 # Product reproduction
 
+This reproduces the historical placement release, whose strict quality gate
+failed. For current accepted stock plans use [the method guide](stock-configuration-method.md).
+Current results and next work are in [STATUS.md](STATUS.md) and the
+[proof/fallback plan](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md).
+
 ## Evidence-only path
 
 Run `scripts/setup_release.ps1`, then `uv run expertflow demo --replay`. This path verifies the bundled evidence without CUDA or the GGUF.

@@ -1,5 +1,11 @@
 # Judge bundle
 
+**Historical Observatory bundle:** these assets document the earlier release.
+Current compiler acceptance and the placement-proof/stock-tuning decision are
+tracked in [STATUS.md](../docs/STATUS.md), [tasks](../docs/TODO.md), and the
+[current plan](../docs/superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md).
+This bundle's simulation and negative runtime verdict remain unchanged.
+
 This folder contains the release assets for the Observatory submission.
 
 ## Quick verification

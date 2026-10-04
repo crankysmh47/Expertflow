@@ -1,11 +1,18 @@
 # ExpertFlow deployment and local hardware guide
 
+**Historical release setup:** these dashboard/replay and placement instructions
+describe the archived release. The placement timing result failed its strict
+quality gate; replay success verifies integrity rather than quality-qualified
+acceleration. For current accepted stock plans use [the method guide](docs/stock-configuration-method.md).
+Current status, tasks and the proof-first decision are in [STATUS.md](docs/STATUS.md),
+[TODO.md](docs/TODO.md), and the [proof/fallback plan](docs/superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md).
+
 Source: <https://github.com/crankysmh47/Expertflow>
 
 The repository contains two independent surfaces:
 
 1. A static, model-free dashboard and evidence replay that work on ordinary developer machines.
-2. The verified live CUDA path for compatible NVIDIA hardware.
+2. The historical measured CUDA placement path for compatible NVIDIA hardware, subject to its quality stop.
 
 The GGUF is not included. The model is needed only for live inference and benchmarking.
 

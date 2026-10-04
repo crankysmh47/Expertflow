@@ -1,5 +1,11 @@
 # Finding a validated stock MoE configuration
 
+Current priorities and accepted scope are in [STATUS.md](STATUS.md),
+[tasks](TODO.md), and the [proof/fallback plan](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md).
+This method is the existing validated foundation for the conditional
+stock-autotuning product. Its incumbent-retention results establish reliable
+selection/reproduction, not a newly accepted gain over tuned stock.
+
 The compiler compares eligible configurations for one verified model, semantic
 workload, runtime and host. A result is the strongest validated configuration in
 its declared search space. A small sweep cannot establish a global optimum or
@@ -9,22 +15,25 @@ predict performance on a different host or workload.
 
 | Boundary | Implementation and evidence |
 | --- | --- |
-| Model accounting | ModelDescriptor, ModelIR and AdapterRegistry; real Gemma4 Q6 and separately hash-verified Q4 normalized inventories |
+| Model accounting | ModelDescriptor, ModelIR and AdapterRegistry; verified Gemma4 Q6/Q4 and complete real GraniteMoE Q6 inventory |
 | Runtime identity | RuntimeBinding verifies pristine manifest, binary/dependency/CUDA hashes and build flags |
 | Host identity | GPU/driver plus CPU, RAM, OS, affinity, thread environment and complete power policy |
-| Numerical eligibility | Provider registry; Q6 audited native search, Q4 reviewed source scope and separately audited reference/product/search |
+| Numerical eligibility | Separate audited Gemma Q6/Q4 and Granite Q6 providers with declared control and baseline scopes |
 | Scheduling coverage | Physical/midpoint/logical/incumbent thread anchors, CUDA graphs on/off, explicit exclusions and untested counts |
-| Valid stock incumbent | Fresh paired product receipts; Q6 and Q4 separately completed twenty runs and passed |
+| Valid stock incumbent | Own reference/product receipts; Gemma Q6/Q4 and Granite Q6 separately passed fresh paired acceptance |
 | Search | Three seeded complete blocks, then independent ten-pair confirmation of one finalist |
 | Recommendation | Atomic execution-plan/search-receipt publication and artifact-backed read-only validation |
-| Live reuse coverage | Q6 search32 and Q4 reference10/product20/search18 independently audited; other families/topologies use explicit extension contracts |
+| Live reuse coverage | Gemma Q6 search32, Q4 reference10/product20/search18, Granite reference10/product20/search38 independently audited on one host/build |
 
 Q6 scheduling search completed32 runs and retained the accepted12-thread/graphs-on
 incumbent. The16-thread screening finalist was0.985% slower in independent
 confirmation, CI95[-1.383%,-0.551%]. See
 [the audited evidence report](evidence/stock-discovery-20261004/report.md).
-Q4 is another quantization of the same real family; synthetic second-family
-fixtures establish plugin contracts only.
+Q4 is another quantization of Gemma. Subsequent real GraniteMoE Q6 validation
+established second-family stock coverage with its own inventory, source proof,
+GPU-resident reference and acceptance; see [Granite report](evidence/compiler-granite-20261004/report.md).
+Synthetic topology/family fixtures still establish contracts rather than new
+live hardware or placement coverage.
 
 Q4's independent search completed18 screening processes and retained the
 accepted12-thread/graphs-on incumbent, which ranked first. Its product validation

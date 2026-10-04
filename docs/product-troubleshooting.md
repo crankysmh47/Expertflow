@@ -1,5 +1,10 @@
 # Troubleshooting
 
+The procedures below target the historical placement release and preserve its
+quality limitations. For current stock-plan reuse and invalidation use
+[the method guide](stock-configuration-method.md). See [STATUS.md](STATUS.md)
+and [tasks](TODO.md) for current progress and next work.
+
 ## Model or binary hash warning
 
 Use the exact Q6_K filename and the compatible patched binaries. `doctor` prints expected and actual hashes. Do not continue with a different model and compare its numbers to the release result.

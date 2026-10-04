@@ -1,5 +1,12 @@
 # Phase 3 compiler evidence
 
+**Historical checkpoint:** the verdict below belongs to the original Phase 3
+experiment. Later, separately registered stock-product acceptance passed for
+Gemma Q6/Q4 and Granite Q6; it does not reverse this validation stop. Use
+[current status](../../STATUS.md), [tasks](../../TODO.md), and the
+[proof/fallback plan](../../superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md)
+for present priorities. Preserve this experiment's raw records and thresholds.
+
 Reproduce the exact single-request compiler gate on `ef-v2`.
 
 The live verdict is **VALIDATION-STOP**. The selected stock settings were
@@ -167,5 +174,5 @@ tracks. See the repaired plan and compiler design for their separate scope.
 
 - [Implementation plan](../../superpowers/plans/2026-08-28-inference-compiler-spine.md)
 - [Compiler design](../../superpowers/specs/2026-08-28-expertflow-inference-compiler-design.md)
-- [Historical placement evidence](../q6-placement-final/README.md)
+- [Historical placement evidence](../q6-placement-final/report.md)
 - [Repository license](../../../LICENSE)

@@ -1,5 +1,38 @@
 # Benchmarking ExpertFlow
 
+## Current proof and acceptance rules
+
+Current results and next work are in [STATUS.md](STATUS.md) and the
+[proof/fallback plan](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md).
+Fresh stock reference/product/search acceptance covers Gemma Q6, Gemma Q4 and
+Granite Q6 on one pinned host/build; each retained its incumbent. No new accepted
+quality-preserving speedup over tuned stock has been demonstrated.
+
+For new placement proof, compare a compiler-selected plan with contemporary
+tuned stock using the same model bytes, workload/interface, host, context,
+concurrency and numerical/quality policy. Keep discovery and held-out quality/
+confirmation separate; freeze all source/data identities and the complete
+process budget before collection. Report tuning cost and startup separately
+from decode TPS. Exact policies require numerical eligibility; short token
+parity does not make a CPU-to-CUDA numerical change exact.
+
+The new plan proposes at least 10% paired geometric decode-TPS gain with a
+positive 95% lower confidence bound, CV at most 10%, numerical/quality PASS,
+owned memory/reserve/cleanup PASS, and sealed execution acceptance. The stock
+fallback separately proposes at least 5% over defaults and equivalence within
+2% of a documented manual result at no greater tuning cost. Each future
+protocol must freeze these gates and quality tests before running. Existing
+experimental thresholds/verdicts remain unchanged.
+
+## Historical placement release protocol
+
+The protocol below documents the earlier release. Its terminal placement
+verdict was **QUALITY STOP**: the +2.25% upper PPL confidence bound exceeded
+the +1% limit. Replay integrity and favorable point estimates cannot waive
+that gate. The separate 22.967 TPS reference is not the stock mean of the
+matched ten-pair experiment, which measured 22.28/28.13 TPS. Do not treat
+historical CLI or aggregate server rates as matched current controls.
+
 The headline comparison uses `google_gemma-4-26B-A4B-it-Q6_K.gguf` (22,862,575,520 bytes, SHA-256 `089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba`) on a Windows 11 x64 machine with an NVIDIA RTX 5060 Ti 16 GB, driver 591.86, CUDA 12.8.93, and MSVC v143 14.39.33519.
 
 The runtime is llama.cpp `451224ab4d12a616dc3e16e8c8063f4b331f531c`, based on upstream `a7312ae94f801fc9c6786dc56e38df57b964f697`. Stock and ExpertFlow used the same binary, Q6 model, prompt, `-ngl 99`, `--cpu-moe`, 12 threads, seed 42, temperature 0, 2,048-token context, and CUDA graph mode. Batch and ubatch were not overridden for the generation comparison, so the pinned runtime defaults applied equally to both modes.

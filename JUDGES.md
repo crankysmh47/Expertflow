@@ -1,5 +1,11 @@
 # Judge ExpertFlow
 
+**Historical release guide:** the commands and headline metrics below reproduce
+the archived placement release. Its strict quality gate failed; replay success
+checks evidence integrity, not accepted quality-preserving acceleration. Current
+stock acceptance and proof-first priorities are in [STATUS.md](docs/STATUS.md)
+and the [proof/fallback plan](docs/superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md).
+
 All headline values come from `release/expertflow-build-week/evidence/release-scorecard.json`.
 
 ## Path A: any computer, under two minutes
