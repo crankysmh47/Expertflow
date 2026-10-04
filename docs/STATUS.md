@@ -16,13 +16,25 @@ No new exact mechanism qualifies under the pinned CPU/CUDA kernels, and the
 unchanged quality-bounded hypothesis is not reopened. See the
 [audit and reconstruction](evidence/placement-proof-20261004/feasibility.md).
 
-Next: the stock utility gate in step 4 of the [proof and fallback plan](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md).
-The [task list](TODO.md) tracks work; this page records results. The plan is
-approved for execution. The utility collector and independent manual-grid
-comparison are implemented; validation and source freeze precede native runs.
-The corrected collector is committed at `356b660`; three independent review
-findings were reproduced and fixed. Main and held-out prompts are frozen before collection in the
-[bounded utility protocol](superpowers/specs/2026-10-04-stock-utility-proof.md).
+The stock utility study is complete at **PRODUCT-VALIDATION-STOP**, using
+106 of 107 permitted native processes from measured source `0370579`.
+The main utility gate passed at +12.70% over resolved thread/graph defaults,
+CI95 [12.45%, 12.99%], with manual equivalence and equal 18-evaluation search
+budgets. Fresh product equivalence was inconclusive: CI90 [+0.13%, +2.34%]
+exceeded the fixed +2% upper limit. All native correctness, identity, memory
+and cleanup checks passed; the independent raw audit reproduced the result.
+See the [result](evidence/stock-utility-20261004/report.md) and
+[terminal execution state](evidence/stock-utility-20261004/execution-state.md).
+
+No new accepted plan, consumer run or held-out transfer was produced. Current
+product scope stays validated configuration selection/reproduction, with the
+narrow defaults-tuning gain reported separately. CLI expansion and broader
+features are deferred. Next is a separately reviewed bounded repeatability/
+acceptance protocol with a new justification; this closed study cannot be
+resampled or have its gate waived. The [task list](TODO.md) and
+[proof and fallback plan](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md)
+record completed work and blocked stages. All three fresh implementation-review
+findings were reproduced and fixed before collection at `356b660`.
 
 ## Verified milestones
 
@@ -33,6 +45,7 @@ findings were reproduced and fixed. Main and held-out prompts are frozen before 
 | Gemma Q4 stock product | Separate artifact/reference/product/search passed; 48 native processes; incumbent retained | [Q4 report](evidence/stock-discovery-20261004/q4-report.md) |
 | Granite Q6 stock product | Real second-family reference/product passed; 68 native processes; GPU-resident incumbent retained | [Granite report](evidence/compiler-granite-20261004/report.md) |
 | Gemma phase-aware profiling | CPU expert work dominated synchronized decode; diagnostic instrumentation perturbs overlap | [Profile report](evidence/compiler-phase-profile-20261004/report.md) |
+| Gemma Q6 utility fallback | +12.70% over resolved thread/graph defaults; manual equivalence passed; final product equivalence inconclusive, no transfer | [Utility result and audit](evidence/stock-utility-20261004/report.md) |
 
 Gemma Q6/Q4 use pristine CPU-MoE; Granite uses a pristine GPU-resident baseline.
 All three retained 12 threads and CUDA graphs on in their declared search spaces.
@@ -43,7 +56,8 @@ universal model/hardware support or a global stock optimum.
 Latest full suite: **767 passed, 7 historical source-environment skips**;
 **6 applicable pinned native source checks passed** separately.
 See [utility implementation verification](evidence/stock-utility-20261004/implementation-verification.json).
-These tests establish implementation checks, not a live utility result.
+These tests establish implementation checks; live results come from the native
+records and independent audits linked above.
 
 ## Closed results
 

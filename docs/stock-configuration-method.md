@@ -9,8 +9,11 @@ selection/reproduction, not a newly accepted gain over tuned stock.
 After the scoped placement feasibility no-go, the
 [bounded utility protocol](evidence/stock-utility-20261004/protocol.md) compares
 automatic tuning with resolved thread/graph defaults and an independent manual
-grid. It uses separately frozen main/held-out workloads and fixed budgets;
-implementation tests do not establish its utility result.
+grid. The [completed result](evidence/stock-utility-20261004/report.md) confirmed
+a 12.70% gain over those defaults and manual equivalence at equal evaluation
+budgets. Final sealed-plan acceptance was inconclusive, so no new accepted
+artifact, consumer or held-out run followed. The utility study is closed;
+the earlier accepted stock plans below remain separate authorities.
 
 The compiler compares eligible configurations for one verified model, semantic
 workload, runtime and host. A result is the strongest validated configuration in

@@ -11,7 +11,7 @@ Results and scope: [STATUS.md](STATUS.md). Updated 2026-10-04.
 - [x] Close thread/prefetch/PDL/cache experiments with their original verdicts.
 - [x] Align current documentation with accepted results and proof-first priorities.
 
-## Next: placement proof
+## Closed placement feasibility; inactive experiment branch
 
 - [x] Audit numerical-path differences and reconstruct the failed held-out quality gate.
 - [x] Document scoped placement no-go (plan step 1): no new exact mechanism under pinned kernels.
@@ -21,18 +21,30 @@ Results and scope: [STATUS.md](STATUS.md). Updated 2026-10-04.
 - [ ] If it passes, demonstrate automatic compiler selection, sealed execution,
   and a separately budgeted held-out transfer test (step 3).
 
-## Conditional: stock-autotuning fallback
+## Executed stock-autotuning fallback
 
 - [x] Activate after scoped placement no-go; current claim remains validated selection/reproduction.
 - [x] Freeze defaults/manual-tuning comparisons, search costs, eligible controls
   and unseen test inputs (step 4).
-- [ ] Prove utility or choose the narrower validation/reproduction product scope.
-- [ ] After utility passes, unify public CLI/decision reports and validate a
-  fresh consumer run; historical experiment budgets remain closed.
+- [x] Implement and review the collector; reproduce/fix all three review
+  findings; verify 767 tests and six applicable native source checks.
+- [x] Execute and independently audit the frozen main comparison: +12.70%
+  over resolved defaults, manual equivalence, equal 18-evaluation grids.
+- [x] Attempt fresh paired product acceptance and retain its inconclusive
+  result; close collection at 106/107 processes without retries/discards.
+- [x] Choose the narrower validated selection/reproduction product scope
+  pending end-to-end acceptance; report the narrow default-tuning gain.
+- [ ] Resolve repeatability/acceptance under a separately reviewed protocol
+  with a new justification and a fixed budget before any further native run.
+- [ ] After full acceptance, validate a fresh consumer and the untouched
+  transfer workload, then consolidate public CLI/decision reports.
 
 Placement steps 2–3 are inactive after the feasibility rejection. The fallback
-protocol freezes two workloads and up to 107 native processes each; the second
-starts only after all first-workload gates pass. CPU fixtures do not prove utility.
+study reached **PRODUCT-VALIDATION-STOP**: product CI90 [+0.13%, +2.34%] was not
+within the fixed ±2% equivalence margin. Consumer, transfer and CLI expansion
+are blocked by this gate. Both prompts were frozen, but the transfer prompt
+remains unmeasured. See [terminal evidence](evidence/stock-utility-20261004/report.md).
+Do not reuse the closed study's unused budget to retry acceptance.
 
 ## Deferred until a proof path passes
 

@@ -1,0 +1,46 @@
+{
+  "actual_native_processes": 106,
+  "applicable_native_source_checks": {
+    "log_sha256": "744fb1fe1923d1e62a4579daddfd11640eb88312845e030735e4794faf2f18d5",
+    "passed": 6,
+    "source": "C:/models/expertflow/worktrees/llama-q6-placement-final"
+  },
+  "auditor_quantile_known_vector": {
+    "log_sha256": "8bfb817094468990898653a998fe6a0ca6f6148970b4bf873261a3eb91d4dd8b",
+    "status": "PASS"
+  },
+  "documentation_links": {
+    "checked": 148,
+    "fences_balanced": true,
+    "log_sha256": "57298d25d0f11bb6a69720739a60ceae16e658765b9b16c9d21f5c34a2d61e6c"
+  },
+  "documentation_tests": {
+    "log_sha256": "53997d9f61df06ac490f367de49a455b118000939dbb28043dfbe52e035811a4",
+    "passed": 21
+  },
+  "focused_utility_tests": {
+    "log_sha256": "92234a4ea99ea74bf1e11d995dcd43900bb5a9315ff83c294c4c3102f198b5dc",
+    "passed": 22,
+    "seconds": 146.85
+  },
+  "full_post_fix_suite": {
+    "log_sha256": "07b61e70f864ae7609356eb9eba5f0f1d341da42213173b607addb4c05228f93",
+    "passed": 767,
+    "seconds": 693.41,
+    "skip_reason": "optional historical source-contract modules require their target checkout",
+    "skipped": 7
+  },
+  "historical_pins_unchanged": 6,
+  "measured_source_checkpoint": "0370579",
+  "no_accepted_product_consumer_or_transfer": true,
+  "no_native_model_processes": true,
+  "process_snapshot_sha256": "b0bb335bf705495952fab88208cfcfa094b520a355035aa0e5dbed49cd62b34e",
+  "published_raw_copies_byte_identical": true,
+  "raw_audit_reproduced": true,
+  "scope_note": "Implementation verification is the pre-collection checkpoint; live utility passed but final product equivalence was inconclusive.",
+  "source_files_unchanged": 32,
+  "status": "VERIFIED-TERMINAL-EVIDENCE",
+  "syntax_compileall": "PASS",
+  "terminal_status": "PRODUCT-VALIDATION-STOP",
+  "utility_verdict": "PASS-STOCK-UTILITY"
+}

@@ -27,11 +27,14 @@ and benchmark scripts, alongside CLI `inspect`, `compile`, `validate`, `explain`
 and `run --plan`. The older `optimize`/`serve` deployment interface below is a
 distinct historical product path.
 
-Next, follow the [proof and fallback plan](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md):
-qualify a placement mechanism, prove automatic selection and limited transfer,
-or evaluate stock autotuning against defaults and manual tuning. Broader feature
-work follows a useful proof. See [status](STATUS.md), [tasks](TODO.md), and
-[the current stock method](stock-configuration-method.md).
+The [proof and fallback plan](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md)
+reached a scoped placement no-go and then a partial stock-tuning proof.
+The [utility result](evidence/stock-utility-20261004/report.md) confirmed 12.70%
+gain over resolved thread/graph defaults and manual equivalence, but final
+product equivalence was inconclusive. The supported product remains validated
+selection/reproduction. Consumer/transfer and CLI expansion await complete
+acceptance under a separately justified protocol. See [status](STATUS.md),
+[tasks](TODO.md), and [the current stock method](stock-configuration-method.md).
 
 ## Historical placement architecture
 

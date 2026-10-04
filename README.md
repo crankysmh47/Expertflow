@@ -8,7 +8,9 @@
 
 ExpertFlow measures eligible runtime configurations and emits validated execution plans. Stock selection is validated on Gemma Q6, Gemma Q4 and Granite Q6 on one Windows/NVIDIA system. Placement acceleration remains a research goal: the historical faster placement failed its quality gate.
 
-Read [current status](docs/STATUS.md), [tasks](docs/TODO.md), and the concise [placement proof and stock-tuning fallback plan](docs/superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md). The [placement feasibility audit](docs/evidence/placement-proof-20261004/feasibility.md) found no new exact mechanism under the pinned kernels. The active proof path is [stock-tuning utility](docs/evidence/stock-utility-20261004/protocol.md), compared with resolved thread/graph defaults and an independent manual grid. Broader features follow a successful proof.
+Read [current status](docs/STATUS.md), [tasks](docs/TODO.md), and the concise [placement proof and stock-tuning fallback plan](docs/superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md). The [placement feasibility audit](docs/evidence/placement-proof-20261004/feasibility.md) found no new exact mechanism under the pinned kernels.
+
+The [stock-tuning utility study](docs/evidence/stock-utility-20261004/report.md) confirmed **12.70%** gain over resolved thread/graph defaults and equivalence to an independent manual grid, at equal evaluation budgets. Its final sealed-plan equivalence check was **inconclusive**, so no new accepted plan or transfer result was published. This is a narrow defaults-tuning result on the pinned Gemma Q6 workload; product expansion awaits complete acceptance.
 
 ## Installation and CLI
 

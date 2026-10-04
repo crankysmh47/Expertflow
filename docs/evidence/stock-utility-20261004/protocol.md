@@ -4,7 +4,12 @@ Authorized execution follows the scoped
 [placement feasibility no-go](../placement-proof-20261004/feasibility.md).
 The authoritative [frozen specification](../../superpowers/specs/2026-10-04-stock-utility-proof.md)
 declares all gates, controls, inputs, ranks and budgets. Implementation is
-`scripts/benchmark_compiler_stock_utility.py`; no native run has started yet.
+`scripts/benchmark_compiler_stock_utility.py`. Main collection completed from
+measured source checkpoint `0370579`; [frozen manifest](main-frozen-manifest.json)
+pins the actual source, inputs, native eligibility, host and process budget.
+Terminal result: [PRODUCT-VALIDATION-STOP](report.md), 106 retained processes.
+The utility comparison passed; fresh product equivalence was inconclusive.
+Consumer and held-out stages did not run. This study is closed.
 
 ## Inputs and gates
 
@@ -39,18 +44,28 @@ must reconstruct from native artifacts and existing acceptance receipts.
 
 ## Collection and validation
 
-Use fresh output/database paths; validation reuses them. Main command:
+The recorded collection command is below; do not rerun the closed study.
+Future studies require their own justified protocol and fresh paths.
 
 ```powershell
 uv run --no-sync python scripts/benchmark_compiler_stock_utility.py --action run --descriptor configs/compiler/gemma4-q6-model.json --inventory docs/evidence/q6-download/tensor-inventory.json --hardware docs/evidence/compiler-phase3/inputs/hardware.json --workload configs/compiler/gemma4-q6-single-request.json --runtime-identity docs/evidence/compiler-phase3/inputs/runtime-identity.json --source-repository C:/models/expertflow/worktrees/llama-q6-placement-final --evidence-db C:/models/expertflow/runs/compiler-stock-utility-main-20261004/utility.sqlite3 --output-dir C:/models/expertflow/runs/compiler-stock-utility-main-20261004/utility
 ```
 
 Reconstruct with the same arguments and `--action validate`. It checks supplied
-inputs as well as evidence. Separate raw-timing/statistical audit code will be
-published with the result. Native logs, artifacts and SQLite databases remain
-under the run root; summarize and pin them in this evidence directory.
+inputs as well as evidence, returns `PRODUCT-VALIDATION-STOP` and exits nonzero
+for this negative terminal result. See [actual output](main-validation.log).
+The independent raw audit launches no model process:
 
-If main passes every gate, use the transfer workload and fresh root
+```powershell
+uv run --no-sync python docs/evidence/stock-utility-20261004/independent_audit.py --report C:/models/expertflow/runs/compiler-stock-utility-main-20261004/utility/report.json --database C:/models/expertflow/runs/compiler-stock-utility-main-20261004/utility.sqlite3 --output C:/models/expertflow/runs/compiler-stock-utility-main-20261004/reconstructed-audit.json
+```
+
+It reconstructs the utility and product statistics and verifies all 106 retained
+native records. Native logs, artifacts and SQLite databases remain under the
+run root; [published audit](main-audit.json) pins their report/database signatures.
+
+The registered conditional transfer, which was not activated, would use the
+transfer workload and fresh root
 `C:/models/expertflow/runs/compiler-stock-utility-transfer-20261004` without
 changing any collector, compiler, prompt, search-space or acceptance source.
-Public CLI consolidation remains conditional on demonstrated utility.
+Public CLI consolidation remains deferred until complete utility/product proof.

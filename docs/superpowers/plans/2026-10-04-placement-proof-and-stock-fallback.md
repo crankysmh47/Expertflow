@@ -64,16 +64,36 @@ reconstruction. Steps 2–3 are inactive; step 4 is the active proof path.
 - [x] On scoped placement no-go, activate stock utility evaluation. The current supported claim remains validated configuration selection/reproduction; acceleration claims depend on utility passing.
 - [x] Admit only reviewed controls. Threads/graphs have current live coverage; offload, batching, attention and KV changes require their own numerical or quality eligibility before search.
 - [x] Freeze a benchmark against resolved thread/graph deployment defaults and a documented independent manual grid, using matched inputs and equal native evaluation budgets. Utility gate: **at least 5% paired TPS gain over defaults with 95% lower bound above 0**, and **equivalence within 2% of the manual result at no greater measured tuning cost**. See the [frozen protocol](../specs/2026-10-04-stock-utility-proof.md) for the narrower default and cost scopes.
+- [x] Implement/review the collector, fix all review findings, execute the main
+  comparison once and independently audit all raw records. Utility comparison
+  passed; fresh product equivalence was inconclusive. Retain the complete
+  partial result and current validation/reproduction scope.
 - [ ] Test the method on an unseen workload or host; keep untouched test inputs separate from search. Report neutral/default-optimal cases and costs instead of promising an improvement on every input.
-- [ ] Only after utility passes, consolidate scripts into the public CLI, provide decision explanations and invalidation, and verify fresh consumer execution. If utility fails, scope the product as configuration validation/reproduction rather than acceleration.
+- [ ] Only after complete utility/product acceptance, verify fresh consumer and
+  transfer execution, then consolidate scripts into the public CLI and provide
+  decision explanations/invalidation. Until then, retain the narrower scope.
 
 **Exit:** measured stock-tuning utility with honest coverage and cost, or an explicit narrower product decision.
+
+Execution exit: **PRODUCT-VALIDATION-STOP**, 106/107 native processes. Defaults
+gain +12.70%, CI95 [+12.45%, +12.99%]; manual CI90 [-0.79%, +0.22%]; each search
+used 18 evaluations. Product CI90 [+0.13%, +2.34%] exceeded the fixed +2% upper
+equivalence limit. Correctness/identity/memory/cleanup and independent raw audit
+passed. No consumer, transfer, retry or accepted new artifact. See
+[terminal report](../../evidence/stock-utility-20261004/report.md).
+
+Next prerequisite is a separately reviewed bounded repeatability/acceptance
+protocol with a new justification. This study and its thresholds remain closed;
+CLI/product expansion is deferred despite the passing initial utility comparison.
 
 ## Tracking and verification
 
 - [x] Align current README, architecture, benchmarking, historical guide notices, status and task list with accepted evidence and this decision order.
-- [ ] After each stage, append its result to `PROJECT_LOG.md`, update `docs/STATUS.md` and `docs/TODO.md`, and link raw/audit artifacts. Change public claims only after the corresponding gate passes.
-- [ ] Defer KV compression/TurboQuant, MTP/speculation, dynamic residency, universal adapters and product polish until a proof path passes. Existing accepted stock recommendations remain usable.
+- [x] Record both executed stages in `PROJECT_LOG.md`, `docs/STATUS.md` and
+  `docs/TODO.md`, with raw/audit artifacts and qualified public claims.
+- [x] Defer KV compression/TurboQuant, MTP/speculation, dynamic residency,
+  universal adapters and product polish until complete proof. Existing accepted
+  stock recommendations remain usable.
 
 For future code changes, run focused checks, then the full gate once after final fixes:
 
