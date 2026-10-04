@@ -90,6 +90,14 @@ and execute_utility. Keep their source files and historical protocols unchanged.
 Its GuardedRunner owns the outer freeze, fixed waiting and durable attempt count;
 the existing transfer FrozenRunner retains the nested utility manifest/context.
 Require fresh database/output paths; validate is read-only and launches no model.
+The outer source map includes every later paired collector/protocol file. Check
+the outer guard after each native return and reconstruct before final PASS.
+Reconstruction covers negative/partial prefixes, every observed start's pacing,
+chronological phase journals, kernel process ownership and consumer/reference
+token parity. Only the registered complete final status returns success.
+Persist collector monotonic start/end/elapsed on every terminal path, beginning
+at run_followup entry after input loading and ending after collection/publication;
+input loading and subsequent read-only reconstruction are outside that interval.
 
 Test before implementation in `tests/test_compiler_stock_repeatability.py`:
 both-pass publication, first/second block stops, consumer/transfer conditional

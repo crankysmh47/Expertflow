@@ -1,0 +1,497 @@
+FFFFFFFFF                                                                [100%]
+================================== FAILURES ===================================
+_ test_terminal_state_journal_and_elapsed_cost_cannot_be_rewritten[unknown-status] _
+
+completed = (WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1343/stock-repeatability0'), <test_compiler_s...t': 'C:\\Users\\Hank47\\AppData\\Local\\Temp\\pytest-of-Hank47\\pytest-1343\\stock-repeatability0\\study', ...}, ...}))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000026AD25BF350>
+change = 'unknown-status'
+
+    @pytest.mark.parametrize('change', ['unknown-status', 'relabel-attempt', 'reorder-attempts', 'collector-cost'])
+    def test_terminal_state_journal_and_elapsed_cost_cannot_be_rewritten(completed, monkeypatch, change):
+        root, _, (inp, source, plan, prior, _, report) = completed
+        patch_validation(monkeypatch)
+        changed=deepcopy(report)
+        if change=='unknown-status': changed['status']='PASS-ARBITRARY'
+        elif change=='relabel-attempt': changed['attempts'][0]['status']='exception'
+        elif change=='reorder-attempts': changed['attempts'][0],changed['attempts'][1]=changed['attempts'][1],changed['attempts'][0]
+        else: changed['collector_elapsed_ns']=-1
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests\test_compiler_stock_repeatability.py:310: Failed
+---------------------------- Captured stdout setup ----------------------------
+{"process": 1, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-00-sealed", "status": "measured"}
+{"process": 2, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-00-direct", "status": "measured"}
+{"process": 3, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-01-sealed", "status": "measured"}
+{"process": 4, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-01-direct", "status": "measured"}
+{"process": 5, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-02-direct", "status": "measured"}
+{"process": 6, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-02-sealed", "status": "measured"}
+{"process": 7, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-03-sealed", "status": "measured"}
+{"process": 8, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-03-direct", "status": "measured"}
+{"process": 9, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-04-direct", "status": "measured"}
+{"process": 10, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-04-sealed", "status": "measured"}
+{"process": 11, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-05-direct", "status": "measured"}
+{"process": 12, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-05-sealed", "status": "measured"}
+{"process": 13, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-06-direct", "status": "measured"}
+{"process": 14, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-06-sealed", "status": "measured"}
+{"process": 15, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-07-sealed", "status": "measured"}
+{"process": 16, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-07-direct", "status": "measured"}
+{"process": 17, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-08-sealed", "status": "measured"}
+{"process": 18, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-08-direct", "status": "measured"}
+{"process": 19, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-09-direct", "status": "measured"}
+{"process": 20, "stage": "product-5bb9c20a447046d4b3c38bd8206b5fc5-09-sealed", "status": "measured"}
+{"process": 21, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-00-sealed", "status": "measured"}
+{"process": 22, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-00-direct", "status": "measured"}
+{"process": 23, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-01-sealed", "status": "measured"}
+{"process": 24, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-01-direct", "status": "measured"}
+{"process": 25, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-02-direct", "status": "measured"}
+{"process": 26, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-02-sealed", "status": "measured"}
+{"process": 27, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-03-sealed", "status": "measured"}
+{"process": 28, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-03-direct", "status": "measured"}
+{"process": 29, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-04-direct", "status": "measured"}
+{"process": 30, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-04-sealed", "status": "measured"}
+{"process": 31, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-05-direct", "status": "measured"}
+{"process": 32, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-05-sealed", "status": "measured"}
+{"process": 33, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-06-direct", "status": "measured"}
+{"process": 34, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-06-sealed", "status": "measured"}
+{"process": 35, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-07-sealed", "status": "measured"}
+{"process": 36, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-07-direct", "status": "measured"}
+{"process": 37, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-08-sealed", "status": "measured"}
+{"process": 38, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-08-direct", "status": "measured"}
+{"process": 39, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-09-direct", "status": "measured"}
+{"process": 40, "stage": "product-9fcbc368401f4741a7d09dd9126f6d31-09-sealed", "status": "measured"}
+{"process": 41, "stage": "accepted-stock-run", "status": "measured"}
+{"process": 42, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-reference-00", "status": "measured"}
+{"process": 1, "label": "reference-00", "tps": 20.0}
+{"process": 43, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-reference-01", "status": "measured"}
+{"process": 2, "label": "reference-01", "tps": 20.0}
+{"process": 44, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-reference-02", "status": "measured"}
+{"process": 3, "label": "reference-02", "tps": 20.0}
+{"process": 45, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-reference-03", "status": "measured"}
+{"process": 4, "label": "reference-03", "tps": 20.0}
+{"process": 46, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-reference-04", "status": "measured"}
+{"process": 5, "label": "reference-04", "tps": 20.0}
+{"process": 47, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-reference-05", "status": "measured"}
+{"process": 6, "label": "reference-05", "tps": 20.0}
+{"process": 48, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-reference-06", "status": "measured"}
+{"process": 7, "label": "reference-06", "tps": 20.0}
+{"process": 49, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-reference-07", "status": "measured"}
+{"process": 8, "label": "reference-07", "tps": 20.0}
+{"process": 50, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-reference-08", "status": "measured"}
+{"process": 9, "label": "reference-08", "tps": 20.0}
+{"process": 51, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-reference-09", "status": "measured"}
+{"process": 10, "label": "reference-09", "tps": 20.0}
+{"process": 52, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-00-ba6a3a69495c877a62e4595b56fdb9000406054ff83ad39ab8a32478977b7921", "status": "measured"}
+{"process": 11, "label": "automatic-screen-00-ba6a3a69495c877a62e4595b56fdb9000406054ff83ad39ab8a32478977b7921", "tps": 20.0}
+{"process": 53, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-00-6caea9b7ed3832a07881ceecba665b4749ea5155c0b96224a6be231bfabc2515", "status": "measured"}
+{"process": 12, "label": "automatic-screen-00-6caea9b7ed3832a07881ceecba665b4749ea5155c0b96224a6be231bfabc2515", "tps": 22.0}
+{"process": 54, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-00-decf7f01897dc9188604675599982a04ec3ae83a85bebf66a1a06534010b02d2", "status": "measured"}
+{"process": 13, "label": "automatic-screen-00-decf7f01897dc9188604675599982a04ec3ae83a85bebf66a1a06534010b02d2", "tps": 20.0}
+{"process": 55, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-00-3fd94d005ca9f60c9492df42bd7c67a115aacc40614bafce4e897a2ef145d3e7", "status": "measured"}
+{"process": 14, "label": "automatic-screen-00-3fd94d005ca9f60c9492df42bd7c67a115aacc40614bafce4e897a2ef145d3e7", "tps": 20.0}
+{"process": 56, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-00-0bb65d25f003661e83a0fc33fb9f26df8ad01b8b4daab1f6f3671933e88d5f03", "status": "measured"}
+{"process": 15, "label": "automatic-screen-00-0bb65d25f003661e83a0fc33fb9f26df8ad01b8b4daab1f6f3671933e88d5f03", "tps": 20.0}
+{"process": 57, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-00-0f386a476a5f7e9456658e5807e01d2bdd8a34557dbc98576ada5e2a1584db2d", "status": "measured"}
+{"process": 16, "label": "automatic-screen-00-0f386a476a5f7e9456658e5807e01d2bdd8a34557dbc98576ada5e2a1584db2d", "tps": 20.0}
+{"process": 58, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-01-3fd94d005ca9f60c9492df42bd7c67a115aacc40614bafce4e897a2ef145d3e7", "status": "measured"}
+{"process": 17, "label": "automatic-screen-01-3fd94d005ca9f60c9492df42bd7c67a115aacc40614bafce4e897a2ef145d3e7", "tps": 20.0}
+{"process": 59, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-01-0bb65d25f003661e83a0fc33fb9f26df8ad01b8b4daab1f6f3671933e88d5f03", "status": "measured"}
+{"process": 18, "label": "automatic-screen-01-0bb65d25f003661e83a0fc33fb9f26df8ad01b8b4daab1f6f3671933e88d5f03", "tps": 20.0}
+{"process": 60, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-01-6caea9b7ed3832a07881ceecba665b4749ea5155c0b96224a6be231bfabc2515", "status": "measured"}
+{"process": 19, "label": "automatic-screen-01-6caea9b7ed3832a07881ceecba665b4749ea5155c0b96224a6be231bfabc2515", "tps": 22.0}
+{"process": 61, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-01-decf7f01897dc9188604675599982a04ec3ae83a85bebf66a1a06534010b02d2", "status": "measured"}
+{"process": 20, "label": "automatic-screen-01-decf7f01897dc9188604675599982a04ec3ae83a85bebf66a1a06534010b02d2", "tps": 20.0}
+{"process": 62, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-01-0f386a476a5f7e9456658e5807e01d2bdd8a34557dbc98576ada5e2a1584db2d", "status": "measured"}
+{"process": 21, "label": "automatic-screen-01-0f386a476a5f7e9456658e5807e01d2bdd8a34557dbc98576ada5e2a1584db2d", "tps": 20.0}
+{"process": 63, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-01-ba6a3a69495c877a62e4595b56fdb9000406054ff83ad39ab8a32478977b7921", "status": "measured"}
+{"process": 22, "label": "automatic-screen-01-ba6a3a69495c877a62e4595b56fdb9000406054ff83ad39ab8a32478977b7921", "tps": 20.0}
+{"process": 64, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-02-0f386a476a5f7e9456658e5807e01d2bdd8a34557dbc98576ada5e2a1584db2d", "status": "measured"}
+{"process": 23, "label": "automatic-screen-02-0f386a476a5f7e9456658e5807e01d2bdd8a34557dbc98576ada5e2a1584db2d", "tps": 20.0}
+{"process": 65, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-02-decf7f01897dc9188604675599982a04ec3ae83a85bebf66a1a06534010b02d2", "status": "measured"}
+{"process": 24, "label": "automatic-screen-02-decf7f01897dc9188604675599982a04ec3ae83a85bebf66a1a06534010b02d2", "tps": 20.0}
+{"process": 66, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-02-0bb65d25f003661e83a0fc33fb9f26df8ad01b8b4daab1f6f3671933e88d5f03", "status": "measured"}
+{"process": 25, "label": "automatic-screen-02-0bb65d25f003661e83a0fc33fb9f26df8ad01b8b4daab1f6f3671933e88d5f03", "tps": 20.0}
+{"process": 67, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-02-3fd94d005ca9f60c9492df42bd7c67a115aacc40614bafce4e897a2ef145d3e7", "status": "measured"}
+{"process": 26, "label": "automatic-screen-02-3fd94d005ca9f60c9492df42bd7c67a115aacc40614bafce4e897a2ef145d3e7", "tps": 20.0}
+{"process": 68, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-02-ba6a3a69495c877a62e4595b56fdb9000406054ff83ad39ab8a32478977b7921", "status": "measured"}
+{"process": 27, "label": "automatic-screen-02-ba6a3a69495c877a62e4595b56fdb9000406054ff83ad39ab8a32478977b7921", "tps": 20.0}
+{"process": 69, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-automatic-screen-02-6caea9b7ed3832a07881ceecba665b4749ea5155c0b96224a6be231bfabc2515", "status": "measured"}
+{"process": 28, "label": "automatic-screen-02-6caea9b7ed3832a07881ceecba665b4749ea5155c0b96224a6be231bfabc2515", "tps": 22.0}
+{"process": 70, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-00-ba6a3a69495c877a62e4595b56fdb9000406054ff83ad39ab8a32478977b7921", "status": "measured"}
+{"process": 29, "label": "manual-screen-00-ba6a3a69495c877a62e4595b56fdb9000406054ff83ad39ab8a32478977b7921", "tps": 20.0}
+{"process": 71, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-00-6caea9b7ed3832a07881ceecba665b4749ea5155c0b96224a6be231bfabc2515", "status": "measured"}
+{"process": 30, "label": "manual-screen-00-6caea9b7ed3832a07881ceecba665b4749ea5155c0b96224a6be231bfabc2515", "tps": 22.0}
+{"process": 72, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-00-decf7f01897dc9188604675599982a04ec3ae83a85bebf66a1a06534010b02d2", "status": "measured"}
+{"process": 31, "label": "manual-screen-00-decf7f01897dc9188604675599982a04ec3ae83a85bebf66a1a06534010b02d2", "tps": 20.0}
+{"process": 73, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-00-3fd94d005ca9f60c9492df42bd7c67a115aacc40614bafce4e897a2ef145d3e7", "status": "measured"}
+{"process": 32, "label": "manual-screen-00-3fd94d005ca9f60c9492df42bd7c67a115aacc40614bafce4e897a2ef145d3e7", "tps": 20.0}
+{"process": 74, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-00-0bb65d25f003661e83a0fc33fb9f26df8ad01b8b4daab1f6f3671933e88d5f03", "status": "measured"}
+{"process": 33, "label": "manual-screen-00-0bb65d25f003661e83a0fc33fb9f26df8ad01b8b4daab1f6f3671933e88d5f03", "tps": 20.0}
+{"process": 75, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-00-0f386a476a5f7e9456658e5807e01d2bdd8a34557dbc98576ada5e2a1584db2d", "status": "measured"}
+{"process": 34, "label": "manual-screen-00-0f386a476a5f7e9456658e5807e01d2bdd8a34557dbc98576ada5e2a1584db2d", "tps": 20.0}
+{"process": 76, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-01-3fd94d005ca9f60c9492df42bd7c67a115aacc40614bafce4e897a2ef145d3e7", "status": "measured"}
+{"process": 35, "label": "manual-screen-01-3fd94d005ca9f60c9492df42bd7c67a115aacc40614bafce4e897a2ef145d3e7", "tps": 20.0}
+{"process": 77, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-01-0bb65d25f003661e83a0fc33fb9f26df8ad01b8b4daab1f6f3671933e88d5f03", "status": "measured"}
+{"process": 36, "label": "manual-screen-01-0bb65d25f003661e83a0fc33fb9f26df8ad01b8b4daab1f6f3671933e88d5f03", "tps": 20.0}
+{"process": 78, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-01-6caea9b7ed3832a07881ceecba665b4749ea5155c0b96224a6be231bfabc2515", "status": "measured"}
+{"process": 37, "label": "manual-screen-01-6caea9b7ed3832a07881ceecba665b4749ea5155c0b96224a6be231bfabc2515", "tps": 22.0}
+{"process": 79, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-01-decf7f01897dc9188604675599982a04ec3ae83a85bebf66a1a06534010b02d2", "status": "measured"}
+{"process": 38, "label": "manual-screen-01-decf7f01897dc9188604675599982a04ec3ae83a85bebf66a1a06534010b02d2", "tps": 20.0}
+{"process": 80, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-01-0f386a476a5f7e9456658e5807e01d2bdd8a34557dbc98576ada5e2a1584db2d", "status": "measured"}
+{"process": 39, "label": "manual-screen-01-0f386a476a5f7e9456658e5807e01d2bdd8a34557dbc98576ada5e2a1584db2d", "tps": 20.0}
+{"process": 81, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-01-ba6a3a69495c877a62e4595b56fdb9000406054ff83ad39ab8a32478977b7921", "status": "measured"}
+{"process": 40, "label": "manual-screen-01-ba6a3a69495c877a62e4595b56fdb9000406054ff83ad39ab8a32478977b7921", "tps": 20.0}
+{"process": 82, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-02-0f386a476a5f7e9456658e5807e01d2bdd8a34557dbc98576ada5e2a1584db2d", "status": "measured"}
+{"process": 41, "label": "manual-screen-02-0f386a476a5f7e9456658e5807e01d2bdd8a34557dbc98576ada5e2a1584db2d", "tps": 20.0}
+{"process": 83, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-02-decf7f01897dc9188604675599982a04ec3ae83a85bebf66a1a06534010b02d2", "status": "measured"}
+{"process": 42, "label": "manual-screen-02-decf7f01897dc9188604675599982a04ec3ae83a85bebf66a1a06534010b02d2", "tps": 20.0}
+{"process": 84, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-02-0bb65d25f003661e83a0fc33fb9f26df8ad01b8b4daab1f6f3671933e88d5f03", "status": "measured"}
+{"process": 43, "label": "manual-screen-02-0bb65d25f003661e83a0fc33fb9f26df8ad01b8b4daab1f6f3671933e88d5f03", "tps": 20.0}
+{"process": 85, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-02-3fd94d005ca9f60c9492df42bd7c67a115aacc40614bafce4e897a2ef145d3e7", "status": "measured"}
+{"process": 44, "label": "manual-screen-02-3fd94d005ca9f60c9492df42bd7c67a115aacc40614bafce4e897a2ef145d3e7", "tps": 20.0}
+{"process": 86, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-02-ba6a3a69495c877a62e4595b56fdb9000406054ff83ad39ab8a32478977b7921", "status": "measured"}
+{"process": 45, "label": "manual-screen-02-ba6a3a69495c877a62e4595b56fdb9000406054ff83ad39ab8a32478977b7921", "tps": 20.0}
+{"process": 87, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-screen-02-6caea9b7ed3832a07881ceecba665b4749ea5155c0b96224a6be231bfabc2515", "status": "measured"}
+{"process": 46, "label": "manual-screen-02-6caea9b7ed3832a07881ceecba665b4749ea5155c0b96224a6be231bfabc2515", "tps": 22.0}
+{"process": 88, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-00-sealed", "status": "measured"}
+{"process": 47, "label": "defaults-pair-00-sealed", "tps": 22.0}
+{"process": 89, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-00-direct", "status": "measured"}
+{"process": 48, "label": "defaults-pair-00-direct", "tps": 20.0}
+{"process": 90, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-01-sealed", "status": "measured"}
+{"process": 49, "label": "defaults-pair-01-sealed", "tps": 22.0}
+{"process": 91, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-01-direct", "status": "measured"}
+{"process": 50, "label": "defaults-pair-01-direct", "tps": 20.0}
+{"process": 92, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-02-direct", "status": "measured"}
+{"process": 51, "label": "defaults-pair-02-direct", "tps": 20.0}
+{"process": 93, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-02-sealed", "status": "measured"}
+{"process": 52, "label": "defaults-pair-02-sealed", "tps": 22.0}
+{"process": 94, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-03-sealed", "status": "measured"}
+{"process": 53, "label": "defaults-pair-03-sealed", "tps": 22.0}
+{"process": 95, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-03-direct", "status": "measured"}
+{"process": 54, "label": "defaults-pair-03-direct", "tps": 20.0}
+{"process": 96, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-04-direct", "status": "measured"}
+{"process": 55, "label": "defaults-pair-04-direct", "tps": 20.0}
+{"process": 97, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-04-sealed", "status": "measured"}
+{"process": 56, "label": "defaults-pair-04-sealed", "tps": 22.0}
+{"process": 98, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-05-direct", "status": "measured"}
+{"process": 57, "label": "defaults-pair-05-direct", "tps": 20.0}
+{"process": 99, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-05-sealed", "status": "measured"}
+{"process": 58, "label": "defaults-pair-05-sealed", "tps": 22.0}
+{"process": 100, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-06-direct", "status": "measured"}
+{"process": 59, "label": "defaults-pair-06-direct", "tps": 20.0}
+{"process": 101, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-06-sealed", "status": "measured"}
+{"process": 60, "label": "defaults-pair-06-sealed", "tps": 22.0}
+{"process": 102, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-07-sealed", "status": "measured"}
+{"process": 61, "label": "defaults-pair-07-sealed", "tps": 22.0}
+{"process": 103, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-07-direct", "status": "measured"}
+{"process": 62, "label": "defaults-pair-07-direct", "tps": 20.0}
+{"process": 104, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-08-sealed", "status": "measured"}
+{"process": 63, "label": "defaults-pair-08-sealed", "tps": 22.0}
+{"process": 105, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-08-direct", "status": "measured"}
+{"process": 64, "label": "defaults-pair-08-direct", "tps": 20.0}
+{"process": 106, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-09-direct", "status": "measured"}
+{"process": 65, "label": "defaults-pair-09-direct", "tps": 20.0}
+{"process": 107, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-defaults-pair-09-sealed", "status": "measured"}
+{"process": 66, "label": "defaults-pair-09-sealed", "tps": 22.0}
+{"process": 108, "stage": "confirmation", "status": "measured"}
+{"process": 67, "label": "manual-pair-00-sealed", "tps": 22.0}
+{"process": 109, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-pair-00-direct", "status": "measured"}
+{"process": 68, "label": "manual-pair-00-direct", "tps": 22.0}
+{"process": 110, "stage": "confirmation", "status": "measured"}
+{"process": 69, "label": "manual-pair-01-sealed", "tps": 22.0}
+{"process": 111, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-pair-01-direct", "status": "measured"}
+{"process": 70, "label": "manual-pair-01-direct", "tps": 22.0}
+{"process": 112, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-pair-02-direct", "status": "measured"}
+{"process": 71, "label": "manual-pair-02-direct", "tps": 22.0}
+{"process": 113, "stage": "confirmation", "status": "measured"}
+{"process": 72, "label": "manual-pair-02-sealed", "tps": 22.0}
+{"process": 114, "stage": "confirmation", "status": "measured"}
+{"process": 73, "label": "manual-pair-03-sealed", "tps": 22.0}
+{"process": 115, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-pair-03-direct", "status": "measured"}
+{"process": 74, "label": "manual-pair-03-direct", "tps": 22.0}
+{"process": 116, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-pair-04-direct", "status": "measured"}
+{"process": 75, "label": "manual-pair-04-direct", "tps": 22.0}
+{"process": 117, "stage": "confirmation", "status": "measured"}
+{"process": 76, "label": "manual-pair-04-sealed", "tps": 22.0}
+{"process": 118, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-pair-05-direct", "status": "measured"}
+{"process": 77, "label": "manual-pair-05-direct", "tps": 22.0}
+{"process": 119, "stage": "confirmation", "status": "measured"}
+{"process": 78, "label": "manual-pair-05-sealed", "tps": 22.0}
+{"process": 120, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-pair-06-direct", "status": "measured"}
+{"process": 79, "label": "manual-pair-06-direct", "tps": 22.0}
+{"process": 121, "stage": "confirmation", "status": "measured"}
+{"process": 80, "label": "manual-pair-06-sealed", "tps": 22.0}
+{"process": 122, "stage": "confirmation", "status": "measured"}
+{"process": 81, "label": "manual-pair-07-sealed", "tps": 22.0}
+{"process": 123, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-pair-07-direct", "status": "measured"}
+{"process": 82, "label": "manual-pair-07-direct", "tps": 22.0}
+{"process": 124, "stage": "confirmation", "status": "measured"}
+{"process": 83, "label": "manual-pair-08-sealed", "tps": 22.0}
+{"process": 125, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-pair-08-direct", "status": "measured"}
+{"process": 84, "label": "manual-pair-08-direct", "tps": 22.0}
+{"process": 126, "stage": "utility-86ad615d029143a18ea72af0f4d814d9-manual-pair-09-direct", "status": "measured"}
+{"process": 85, "label": "manual-pair-09-direct", "tps": 22.0}
+{"process": 127, "stage": "confirmation", "status": "measured"}
+{"process": 86, "label": "manual-pair-09-sealed", "tps": 22.0}
+{"process": 128, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-00-sealed", "status": "measured"}
+{"process": 129, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-00-direct", "status": "measured"}
+{"process": 130, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-01-sealed", "status": "measured"}
+{"process": 131, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-01-direct", "status": "measured"}
+{"process": 132, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-02-direct", "status": "measured"}
+{"process": 133, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-02-sealed", "status": "measured"}
+{"process": 134, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-03-sealed", "status": "measured"}
+{"process": 135, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-03-direct", "status": "measured"}
+{"process": 136, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-04-direct", "status": "measured"}
+{"process": 137, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-04-sealed", "status": "measured"}
+{"process": 138, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-05-direct", "status": "measured"}
+{"process": 139, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-05-sealed", "status": "measured"}
+{"process": 140, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-06-direct", "status": "measured"}
+{"process": 141, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-06-sealed", "status": "measured"}
+{"process": 142, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-07-sealed", "status": "measured"}
+{"process": 143, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-07-direct", "status": "measured"}
+{"process": 144, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-08-sealed", "status": "measured"}
+{"process": 145, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-08-direct", "status": "measured"}
+{"process": 146, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-09-direct", "status": "measured"}
+{"process": 147, "stage": "product-8fc7a8a53a6f4fb4bb53b064ff243df5-09-sealed", "status": "measured"}
+{"process": 148, "stage": "accepted-stock-run", "status": "measured"}
+_ test_terminal_state_journal_and_elapsed_cost_cannot_be_rewritten[relabel-attempt] _
+
+completed = (WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1343/stock-repeatability0'), <test_compiler_s...t': 'C:\\Users\\Hank47\\AppData\\Local\\Temp\\pytest-of-Hank47\\pytest-1343\\stock-repeatability0\\study', ...}, ...}))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000026AD047F0D0>
+change = 'relabel-attempt'
+
+    @pytest.mark.parametrize('change', ['unknown-status', 'relabel-attempt', 'reorder-attempts', 'collector-cost'])
+    def test_terminal_state_journal_and_elapsed_cost_cannot_be_rewritten(completed, monkeypatch, change):
+        root, _, (inp, source, plan, prior, _, report) = completed
+        patch_validation(monkeypatch)
+        changed=deepcopy(report)
+        if change=='unknown-status': changed['status']='PASS-ARBITRARY'
+        elif change=='relabel-attempt': changed['attempts'][0]['status']='exception'
+        elif change=='reorder-attempts': changed['attempts'][0],changed['attempts'][1]=changed['attempts'][1],changed['attempts'][0]
+        else: changed['collector_elapsed_ns']=-1
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests\test_compiler_stock_repeatability.py:310: Failed
+_ test_terminal_state_journal_and_elapsed_cost_cannot_be_rewritten[reorder-attempts] _
+
+completed = (WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1343/stock-repeatability0'), <test_compiler_s...t': 'C:\\Users\\Hank47\\AppData\\Local\\Temp\\pytest-of-Hank47\\pytest-1343\\stock-repeatability0\\study', ...}, ...}))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000026AD021DDD0>
+change = 'reorder-attempts'
+
+    @pytest.mark.parametrize('change', ['unknown-status', 'relabel-attempt', 'reorder-attempts', 'collector-cost'])
+    def test_terminal_state_journal_and_elapsed_cost_cannot_be_rewritten(completed, monkeypatch, change):
+        root, _, (inp, source, plan, prior, _, report) = completed
+        patch_validation(monkeypatch)
+        changed=deepcopy(report)
+        if change=='unknown-status': changed['status']='PASS-ARBITRARY'
+        elif change=='relabel-attempt': changed['attempts'][0]['status']='exception'
+        elif change=='reorder-attempts': changed['attempts'][0],changed['attempts'][1]=changed['attempts'][1],changed['attempts'][0]
+        else: changed['collector_elapsed_ns']=-1
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests\test_compiler_stock_repeatability.py:310: Failed
+_ test_terminal_state_journal_and_elapsed_cost_cannot_be_rewritten[collector-cost] _
+
+completed = (WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1343/stock-repeatability0'), <test_compiler_s...t': 'C:\\Users\\Hank47\\AppData\\Local\\Temp\\pytest-of-Hank47\\pytest-1343\\stock-repeatability0\\study', ...}, ...}))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000026AD053B710>
+change = 'collector-cost'
+
+    @pytest.mark.parametrize('change', ['unknown-status', 'relabel-attempt', 'reorder-attempts', 'collector-cost'])
+    def test_terminal_state_journal_and_elapsed_cost_cannot_be_rewritten(completed, monkeypatch, change):
+        root, _, (inp, source, plan, prior, _, report) = completed
+        patch_validation(monkeypatch)
+        changed=deepcopy(report)
+        if change=='unknown-status': changed['status']='PASS-ARBITRARY'
+        elif change=='relabel-attempt': changed['attempts'][0]['status']='exception'
+        elif change=='reorder-attempts': changed['attempts'][0],changed['attempts'][1]=changed['attempts'][1],changed['attempts'][0]
+        else: changed['collector_elapsed_ns']=-1
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests\test_compiler_stock_repeatability.py:310: Failed
+____ test_consumer_reconstruction_requires_accepted_reference_token_parity ____
+
+completed = (WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1343/stock-repeatability0'), <test_compiler_s...t': 'C:\\Users\\Hank47\\AppData\\Local\\Temp\\pytest-of-Hank47\\pytest-1343\\stock-repeatability0\\study', ...}, ...}))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000026AD2629F10>
+
+    def test_consumer_reconstruction_requires_accepted_reference_token_parity(completed,monkeypatch):
+        from expertflow.compiler.evidence import EvidenceStore
+        root, _, (inp,source,plan,prior,_,report)=completed
+        patch_validation(monkeypatch)
+        original=EvidenceStore.verify_measurement
+        def different(self,mid):
+            result=original(self,mid)
+            if mid==report['consumer']['measurement_id']:
+                result={**result,'generated_tokens_sha256':'0'*64}
+            return result
+        monkeypatch.setattr(EvidenceStore,'verify_measurement',different)
+>       with pytest.raises(ValueError,match='consumer'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests\test_compiler_stock_repeatability.py:332: Failed
+_ test_negative_block_reconstructs_full_evidence_and_prevents_promotion[statistics] _
+
+stopped = (WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1343/stock-repeatability-stop0'), (CompilerIn...Temp\\pytest-of-Hank47\\pytest-1343\\stock-repeatability-stop0\\study', ...}, 'reason': 'block-a: INCONCLUSIVE', ...}))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000026AD047F350>
+change = 'statistics'
+
+    @pytest.mark.parametrize('change',['statistics','schedule','outcome','promote'])
+    def test_negative_block_reconstructs_full_evidence_and_prevents_promotion(stopped,monkeypatch,change):
+        root,(inp,source,plan,prior,_,report)=stopped
+        patch_validation(monkeypatch)
+>       assert api().validate_followup(report,inp,inp,plan,source,prior,source_repository=root,host_environment=HOST)['status']=='REPEATABILITY-STOP'
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_compiler_stock_repeatability.py:350: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\benchmark_compiler_stock_repeatability.py:266: in validate_followup
+    if evaluate_pairs(rows)['status'] != block['status']:
+       ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rows = ({'arm': 'sealed', 'candidate_id': '6b557a4e0a35d7a3683719ff2f380f644c14cf9503a308d789e084fcce06a543', 'completion_wal...e0a35d7a3683719ff2f380f644c14cf9503a308d789e084fcce06a543', 'completion_wall_ms': 100.0, 'decode_tps': 24.0, ...}, ...)
+
+    def evaluate_pairs(rows):
+        """Consume EvidenceStore-verified rows; callers must bind them to their schedule."""
+        rows = tuple(rows)
+        if len(rows) != PAIRS * 2:
+            raise ValueError('requires twenty independently verified measurements')
+        for name in ('measurement_id', 'owned_run_sha256'):
+            if any(not r.get(name) for r in rows) or len({r[name] for r in rows}) != len(rows):
+>               raise ValueError('missing or duplicate ' + name)
+E               ValueError: missing or duplicate measurement_id
+
+src\expertflow\compiler\refinement.py:74: ValueError
+---------------------------- Captured stdout setup ----------------------------
+{"process": 1, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-00-sealed", "status": "measured"}
+{"process": 2, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-00-direct", "status": "measured"}
+{"process": 3, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-01-sealed", "status": "measured"}
+{"process": 4, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-01-direct", "status": "measured"}
+{"process": 5, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-02-direct", "status": "measured"}
+{"process": 6, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-02-sealed", "status": "measured"}
+{"process": 7, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-03-sealed", "status": "measured"}
+{"process": 8, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-03-direct", "status": "measured"}
+{"process": 9, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-04-direct", "status": "measured"}
+{"process": 10, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-04-sealed", "status": "measured"}
+{"process": 11, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-05-direct", "status": "measured"}
+{"process": 12, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-05-sealed", "status": "measured"}
+{"process": 13, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-06-direct", "status": "measured"}
+{"process": 14, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-06-sealed", "status": "measured"}
+{"process": 15, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-07-sealed", "status": "measured"}
+{"process": 16, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-07-direct", "status": "measured"}
+{"process": 17, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-08-sealed", "status": "measured"}
+{"process": 18, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-08-direct", "status": "measured"}
+{"process": 19, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-09-direct", "status": "measured"}
+{"process": 20, "stage": "product-d4d7ecff446b4054bc9fe2f2181c27d8-09-sealed", "status": "measured"}
+_ test_negative_block_reconstructs_full_evidence_and_prevents_promotion[schedule] _
+
+stopped = (WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1343/stock-repeatability-stop0'), (CompilerIn...Temp\\pytest-of-Hank47\\pytest-1343\\stock-repeatability-stop0\\study', ...}, 'reason': 'block-a: INCONCLUSIVE', ...}))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000026AD2A00090>
+change = 'schedule'
+
+    @pytest.mark.parametrize('change',['statistics','schedule','outcome','promote'])
+    def test_negative_block_reconstructs_full_evidence_and_prevents_promotion(stopped,monkeypatch,change):
+        root,(inp,source,plan,prior,_,report)=stopped
+        patch_validation(monkeypatch)
+>       assert api().validate_followup(report,inp,inp,plan,source,prior,source_repository=root,host_environment=HOST)['status']=='REPEATABILITY-STOP'
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_compiler_stock_repeatability.py:350: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\benchmark_compiler_stock_repeatability.py:266: in validate_followup
+    if evaluate_pairs(rows)['status'] != block['status']:
+       ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rows = ({'arm': 'sealed', 'candidate_id': '6b557a4e0a35d7a3683719ff2f380f644c14cf9503a308d789e084fcce06a543', 'completion_wal...e0a35d7a3683719ff2f380f644c14cf9503a308d789e084fcce06a543', 'completion_wall_ms': 100.0, 'decode_tps': 24.0, ...}, ...)
+
+    def evaluate_pairs(rows):
+        """Consume EvidenceStore-verified rows; callers must bind them to their schedule."""
+        rows = tuple(rows)
+        if len(rows) != PAIRS * 2:
+            raise ValueError('requires twenty independently verified measurements')
+        for name in ('measurement_id', 'owned_run_sha256'):
+            if any(not r.get(name) for r in rows) or len({r[name] for r in rows}) != len(rows):
+>               raise ValueError('missing or duplicate ' + name)
+E               ValueError: missing or duplicate measurement_id
+
+src\expertflow\compiler\refinement.py:74: ValueError
+_ test_negative_block_reconstructs_full_evidence_and_prevents_promotion[outcome] _
+
+stopped = (WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1343/stock-repeatability-stop0'), (CompilerIn...Temp\\pytest-of-Hank47\\pytest-1343\\stock-repeatability-stop0\\study', ...}, 'reason': 'block-a: INCONCLUSIVE', ...}))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000026AD2A25150>
+change = 'outcome'
+
+    @pytest.mark.parametrize('change',['statistics','schedule','outcome','promote'])
+    def test_negative_block_reconstructs_full_evidence_and_prevents_promotion(stopped,monkeypatch,change):
+        root,(inp,source,plan,prior,_,report)=stopped
+        patch_validation(monkeypatch)
+>       assert api().validate_followup(report,inp,inp,plan,source,prior,source_repository=root,host_environment=HOST)['status']=='REPEATABILITY-STOP'
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_compiler_stock_repeatability.py:350: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\benchmark_compiler_stock_repeatability.py:266: in validate_followup
+    if evaluate_pairs(rows)['status'] != block['status']:
+       ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rows = ({'arm': 'sealed', 'candidate_id': '6b557a4e0a35d7a3683719ff2f380f644c14cf9503a308d789e084fcce06a543', 'completion_wal...e0a35d7a3683719ff2f380f644c14cf9503a308d789e084fcce06a543', 'completion_wall_ms': 100.0, 'decode_tps': 24.0, ...}, ...)
+
+    def evaluate_pairs(rows):
+        """Consume EvidenceStore-verified rows; callers must bind them to their schedule."""
+        rows = tuple(rows)
+        if len(rows) != PAIRS * 2:
+            raise ValueError('requires twenty independently verified measurements')
+        for name in ('measurement_id', 'owned_run_sha256'):
+            if any(not r.get(name) for r in rows) or len({r[name] for r in rows}) != len(rows):
+>               raise ValueError('missing or duplicate ' + name)
+E               ValueError: missing or duplicate measurement_id
+
+src\expertflow\compiler\refinement.py:74: ValueError
+_ test_negative_block_reconstructs_full_evidence_and_prevents_promotion[promote] _
+
+stopped = (WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1343/stock-repeatability-stop0'), (CompilerIn...Temp\\pytest-of-Hank47\\pytest-1343\\stock-repeatability-stop0\\study', ...}, 'reason': 'block-a: INCONCLUSIVE', ...}))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000026AD052E210>
+change = 'promote'
+
+    @pytest.mark.parametrize('change',['statistics','schedule','outcome','promote'])
+    def test_negative_block_reconstructs_full_evidence_and_prevents_promotion(stopped,monkeypatch,change):
+        root,(inp,source,plan,prior,_,report)=stopped
+        patch_validation(monkeypatch)
+>       assert api().validate_followup(report,inp,inp,plan,source,prior,source_repository=root,host_environment=HOST)['status']=='REPEATABILITY-STOP'
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_compiler_stock_repeatability.py:350: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\benchmark_compiler_stock_repeatability.py:266: in validate_followup
+    if evaluate_pairs(rows)['status'] != block['status']:
+       ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rows = ({'arm': 'sealed', 'candidate_id': '6b557a4e0a35d7a3683719ff2f380f644c14cf9503a308d789e084fcce06a543', 'completion_wal...e0a35d7a3683719ff2f380f644c14cf9503a308d789e084fcce06a543', 'completion_wall_ms': 100.0, 'decode_tps': 24.0, ...}, ...)
+
+    def evaluate_pairs(rows):
+        """Consume EvidenceStore-verified rows; callers must bind them to their schedule."""
+        rows = tuple(rows)
+        if len(rows) != PAIRS * 2:
+            raise ValueError('requires twenty independently verified measurements')
+        for name in ('measurement_id', 'owned_run_sha256'):
+            if any(not r.get(name) for r in rows) or len({r[name] for r in rows}) != len(rows):
+>               raise ValueError('missing or duplicate ' + name)
+E               ValueError: missing or duplicate measurement_id
+
+src\expertflow\compiler\refinement.py:74: ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_compiler_stock_repeatability.py::test_terminal_state_journal_and_elapsed_cost_cannot_be_rewritten[unknown-status]
+FAILED tests/test_compiler_stock_repeatability.py::test_terminal_state_journal_and_elapsed_cost_cannot_be_rewritten[relabel-attempt]
+FAILED tests/test_compiler_stock_repeatability.py::test_terminal_state_journal_and_elapsed_cost_cannot_be_rewritten[reorder-attempts]
+FAILED tests/test_compiler_stock_repeatability.py::test_terminal_state_journal_and_elapsed_cost_cannot_be_rewritten[collector-cost]
+FAILED tests/test_compiler_stock_repeatability.py::test_consumer_reconstruction_requires_accepted_reference_token_parity
+FAILED tests/test_compiler_stock_repeatability.py::test_negative_block_reconstructs_full_evidence_and_prevents_promotion[statistics]
+FAILED tests/test_compiler_stock_repeatability.py::test_negative_block_reconstructs_full_evidence_and_prevents_promotion[schedule]
+FAILED tests/test_compiler_stock_repeatability.py::test_negative_block_reconstructs_full_evidence_and_prevents_promotion[outcome]
+FAILED tests/test_compiler_stock_repeatability.py::test_negative_block_reconstructs_full_evidence_and_prevents_promotion[promote]
+9 failed, 19 deselected in 116.25s (0:01:56)

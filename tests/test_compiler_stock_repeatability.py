@@ -49,6 +49,15 @@ def patch_dependencies(patch, clock):
     patch.setattr(utility, 'audit_protocol_scope', lambda *args: {'fixture': True})
 
 
+def patch_validation(monkeypatch):
+    from scripts import benchmark_compiler_stock_utility as utility
+    from test_compiler_stock_discovery import FixtureEligibility
+    monkeypatch.setattr(api(), 'verify_prerequisite', lambda *args, **kwargs: {'fixture':'native-artifact fixture'})
+    monkeypatch.setattr(utility.EligibilityRegistry,'with_builtins',classmethod(lambda cls:FixtureEligibility()))
+    monkeypatch.setattr(utility,'audit_defaults',lambda *args:{'fixture':True})
+    monkeypatch.setattr(utility,'audit_protocol_scope',lambda *args:{'fixture':True})
+
+
 def run_fixture(root, *, rates=None):
     from test_compiler_pipeline import FakeRunner
     inp, source, _, _, plan = setup_execution(root)
@@ -73,6 +82,13 @@ def completed(tmp_path_factory):
     clock = Clock()
     with pytest.MonkeyPatch.context() as patch:
         patch_dependencies(patch, clock)
+        clock.terminal_states=[]
+        original=api().validate_followup
+        def observed(report,*args,**kwargs):
+            persisted=Path(report['manifest']['experiment_root'])/'report.json'
+            clock.terminal_states.append(json.loads(persisted.read_text())['status'])
+            return original(report,*args,**kwargs)
+        patch.setattr(api(),'validate_followup',observed)
         data = run_fixture(root)
     return root, clock, data
 
@@ -170,6 +186,30 @@ def test_wait_and_original_guards_precede_every_native_call(tmp_path):
     assert report['attempts'][0]['native_started'] is False
 
 
+def test_outer_freeze_includes_all_later_paired_collector_sources():
+    from expertflow.compiler.refinement import paired_source_files
+    outer = api().sources()
+    for name, digest in paired_source_files(product=True).items():
+        assert outer.get(str(Path(name).resolve())) == digest, name
+
+
+def test_last_native_return_cannot_escape_original_source_freeze(tmp_path):
+    runner, report, events = guard_setup(tmp_path)
+    original = runner.runner.run_once
+
+    def drift(*args, **kwargs):
+        outcome = original(*args, **kwargs)
+        runner.source_capture = lambda: {'tracked': 'changed'}
+        return outcome
+
+    runner.runner.run_once = drift
+    with pytest.raises(ValueError, match='source/host changed'):
+        runner.run_once(output_dir=tmp_path/'raw/a', stage='last')
+    assert events == [('wait', 30), 'native']
+    assert len(report['attempts']) == 1
+    assert report['attempts'][0]['status'] == 'exception'
+
+
 @pytest.mark.parametrize('condition', ['budget', 'outside', 'source-before', 'source-during', 'host-during'])
 def test_budget_root_and_drift_stop_before_native(tmp_path, condition):
     runner, report, events = guard_setup(tmp_path)
@@ -212,13 +252,16 @@ def test_attempt_audit_counts_observed_failed_processes(tmp_path):
             output=kwargs['output_dir']
             output.mkdir(parents=True)
             (output/'run-start.json').write_text(json.dumps({'pid':123,'creation_time_100ns':456,
-                'run_id':'observed','started_monotonic_ns':runner.clock()}))
+                'run_id':'observed','creation_source':'GetProcessTimes','started_monotonic_ns':runner.clock()}))
             raise subprocess.TimeoutExpired('native',300)
 
     runner, report, _ = guard_setup(tmp_path,inner=Broken())
     with pytest.raises(subprocess.TimeoutExpired):
         runner.run_once(output_dir=tmp_path/'raw/a',stage='one')
     assert api().audit_attempts(report)==1
+    report['attempts'][0]['wait_elapsed_ns']=0
+    with pytest.raises(ValueError,match='wait'):
+        api().audit_attempts(report)
 
 
 def test_native_context_cannot_be_rebound_to_another_outer_manifest(tmp_path,monkeypatch):
@@ -234,12 +277,52 @@ def test_native_context_cannot_be_rebound_to_another_outer_manifest(tmp_path,mon
     runner,report,_=guard_setup(study,inner=fake)
     runner.clock=clock.now
     runner.sleep_fn=clock.sleep
+    report['manifest']['frozen_monotonic_ns']=clock.now()
     plan=load_execution_plan(plan_path,store=source)
     runner.run_once(plan.candidate,inp.model,inp.stock,output_dir=study/'raw/a',measured=True,stage='one')
     assert api().audit_attempts(report)==1
     report['manifest']['manifest_sha256']='b'*64
     with pytest.raises(ValueError,match='context'):
         api().audit_attempts(report)
+
+
+def test_kernel_owner_reuse_is_rejected_even_with_different_run_uuid(tmp_path):
+    class Broken:
+        store=type('Store',(),{'path':tmp_path/'store.sqlite3'})()
+        def run_once(self,*args,**kwargs):
+            output=kwargs['output_dir']
+            output.mkdir(parents=True)
+            (output/'run-start.json').write_text(json.dumps({'pid':123,'creation_time_100ns':456,
+                'creation_source':'GetProcessTimes','run_id':output.name,'started_monotonic_ns':runner.clock()}))
+            raise subprocess.TimeoutExpired('native',300)
+    runner,report,_=guard_setup(tmp_path,inner=Broken())
+    for name in ('a','b'):
+        with pytest.raises(subprocess.TimeoutExpired):
+            runner.run_once(output_dir=tmp_path/'raw'/name,stage='one')
+    with pytest.raises(ValueError,match='owner'):
+        api().audit_attempts(report)
+
+
+def test_partial_environment_stop_binds_prefix_controls_outcomes_and_journal(tmp_path,monkeypatch):
+    from test_compiler_pipeline import FakeRunner
+    clock=Clock()
+    patch_dependencies(monkeypatch,clock)
+    original=FakeRunner.run_once
+    def failing(self,*args,**kwargs):
+        if kwargs['stage'].startswith('product-') and len(self.calls)==2:
+            self.fail=True
+        return original(self,*args,**kwargs)
+    monkeypatch.setattr(FakeRunner,'run_once',failing)
+    inp,source,plan,prior,_,report=run_fixture(tmp_path)
+    assert report['status']=='REPEATABILITY-STOP' and len(report['attempts'])==3
+    assert api().validate_followup(report,inp,inp,plan,source,prior,source_repository=tmp_path,host_environment=HOST)['native_processes']==2
+    path=tmp_path/'study/block-a/report.json'
+    block=json.loads(path.read_text())
+    block['frozen']['seed']=0
+    path.write_text(json.dumps(block))
+    report['blocks'][0]['report_sha256']=api().file_sha256(path)
+    with pytest.raises(ValueError,match='frozen'):
+        api().validate_followup(report,inp,inp,plan,source,prior,source_repository=tmp_path,host_environment=HOST)
 
 
 def test_complete_result_reconstructs_both_blocks_and_nested_transfer(completed, monkeypatch):
@@ -260,3 +343,73 @@ def test_complete_result_reconstructs_both_blocks_and_nested_transfer(completed,
     changed['blocks'][0]['status'] = 'INCONCLUSIVE'
     with pytest.raises(ValueError):
         api().validate_followup(changed, inp, inp, plan, source, prior, source_repository=root, host_environment=HOST)
+
+
+@pytest.mark.parametrize('change', ['unknown-status', 'relabel-attempt', 'reorder-attempts', 'collector-cost'])
+def test_terminal_state_journal_and_elapsed_cost_cannot_be_rewritten(completed, monkeypatch, change):
+    root, _, (inp, source, plan, prior, _, report) = completed
+    patch_validation(monkeypatch)
+    changed=deepcopy(report)
+    if change=='unknown-status': changed['status']='PASS-ARBITRARY'
+    elif change=='relabel-attempt': changed['attempts'][0]['status']='exception'
+    elif change=='reorder-attempts': changed['attempts'][0],changed['attempts'][1]=changed['attempts'][1],changed['attempts'][0]
+    else: changed['collector_elapsed_ns']=-1
+    with pytest.raises(ValueError):
+        api().validate_followup(changed,inp,inp,plan,source,prior,source_repository=root,host_environment=HOST)
+
+
+def test_collector_persists_full_elapsed_cost_and_reconstructs_before_success(completed):
+    _, clock, (_, _, _, _, _, report)=completed
+    assert report['collector_elapsed_ns']==report['collector_finished_monotonic_ns']-report['collector_started_monotonic_ns']
+    assert report['collector_elapsed_ns']>=sum(a['wait_elapsed_ns'] for a in report['attempts'])
+    assert report['reconstruction']['status']=='PASS-STOCK-REPEATABILITY-TRANSFER'
+    assert clock.terminal_states==['PENDING-RECONSTRUCTION']
+
+
+def test_consumer_reconstruction_requires_accepted_reference_token_parity(completed,monkeypatch):
+    from expertflow.compiler.evidence import EvidenceStore
+    root, _, (inp,source,plan,prior,_,report)=completed
+    patch_validation(monkeypatch)
+    original=EvidenceStore.verify_measurement
+    def different(self,mid):
+        result=original(self,mid)
+        if mid==report['consumer']['measurement_id']:
+            result={**result,'generated_tokens_sha256':'0'*64}
+        return result
+    monkeypatch.setattr(EvidenceStore,'verify_measurement',different)
+    with pytest.raises(ValueError,match='consumer'):
+        api().validate_followup(report,inp,inp,plan,source,prior,source_repository=root,host_environment=HOST)
+
+
+@pytest.fixture(scope='module')
+def stopped(tmp_path_factory):
+    root=tmp_path_factory.mktemp('stock-repeatability-stop')
+    clock=Clock()
+    with pytest.MonkeyPatch.context() as patch:
+        patch_dependencies(patch,clock)
+        data=run_fixture(root,rates=lambda candidate,stage:24 if stage.endswith('sealed') else 22)
+    return root,data
+
+
+@pytest.mark.parametrize('change',['statistics','schedule','outcome','promote'])
+def test_negative_block_reconstructs_full_evidence_and_prevents_promotion(stopped,monkeypatch,change):
+    root,(inp,source,plan,prior,_,report)=stopped
+    patch_validation(monkeypatch)
+    assert api().validate_followup(report,inp,inp,plan,source,prior,source_repository=root,host_environment=HOST)['status']=='REPEATABILITY-STOP'
+    path=root/'study/block-a/report.json'
+    original=path.read_bytes()
+    block=json.loads(original)
+    changed=deepcopy(report)
+    if change=='statistics': block['ci90_pct']=[-99,99]
+    elif change=='schedule': block['rows'][0]['arm']='sealed' if block['rows'][0]['arm']=='direct' else 'direct'
+    elif change=='outcome': block['outcomes'][0]['status']='exception'
+    else:
+        (root/'study/consumer').mkdir()
+    try:
+        path.write_text(json.dumps(block))
+        changed['blocks'][0]['report_sha256']=api().file_sha256(path)
+        with pytest.raises(ValueError):
+            api().validate_followup(changed,inp,inp,plan,source,prior,source_repository=root,host_environment=HOST)
+    finally:
+        path.write_bytes(original)
+        if change=='promote': (root/'study/consumer').rmdir()

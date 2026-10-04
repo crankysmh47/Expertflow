@@ -34,10 +34,13 @@ Results and scope: [STATUS.md](STATUS.md). Updated 2026-10-04.
   result; close collection at 106/107 processes without retries/discards.
 - [x] Choose the narrower validated selection/reproduction product scope
   pending end-to-end acceptance; report the narrow default-tuning gain.
-- [ ] Resolve repeatability/acceptance under a separately reviewed protocol
-  with a new justification and a fixed budget before any further native run.
+- [x] Register and implement repeatability/acceptance under a separately reviewed
+  protocol with a new justification and fixed budget before any further native run.
   [Follow-up protocol](superpowers/specs/2026-10-04-stock-repeatability.md) is
-  authorized; implementation/review underway, native freeze pending.
+  authorized; all five review findings fixed, 797 tests/seven optional source skips
+  and six pinned native source checks verified. Native freeze is next.
+- [ ] Qualify two independent paced acceptance blocks; stop on the first
+  failed/inconclusive gate and independently reconstruct all retained evidence.
 - [ ] After full acceptance, validate a fresh consumer and the untouched
   transfer workload, then consolidate public CLI/decision reports.
 

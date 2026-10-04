@@ -37,10 +37,13 @@ record completed work and blocked stages. All three fresh implementation-review
 findings were reproduced and fixed before collection at `356b660`.
 
 Follow-up execution is authorized. The [bounded repeatability protocol](superpowers/specs/2026-10-04-stock-repeatability.md)
-is being implemented/reviewed before native freeze: fixed 30-second spacing and
+passed implementation review/verification before native freeze: fixed 30-second spacing and
 diagnostics, two independently passing acceptance blocks, then conditional
 consumer/untouched transfer. Maximum 148 new native processes; first failed or
-inconclusive gate stops. No new native result is claimed at this checkpoint.
+inconclusive gate stops. All five review findings were reproduced/fixed; 797 tests
+passed, seven optional historical-source modules skipped, and six pinned native
+source checks passed separately. [Execution state](evidence/stock-repeatability-20261004/execution-state.md)
+records the next freeze. No new native result is claimed at this checkpoint.
 
 ## Verified milestones
 
