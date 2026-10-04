@@ -60,7 +60,7 @@ retain their verdicts.
 Next work follows the [bounded search plan](../../superpowers/plans/2026-10-04-bounded-stock-search.md).
 Generic candidate generation, fixed complete-block screening and temporal
 normalization/ranking passed25 synthetic contract tests after observed RED.
-No stock search native samples or cross-model results have been collected.
+The search's terminal native result and independent audit are recorded below.
 
 The reviewed numerical eligibility provider is implemented for the pinned Gemma4
 Q6 artifact and pristine runtime only. Its nine additional tests reject changed
@@ -71,3 +71,40 @@ runtime binaries and immutable source objects without launching a native model.
 A synthetic second-family provider tests the extension contract only. Q4 weights
 exist locally, but Q4 and other families remain ineligible until their own
 operation-path proof and validation are implemented.
+
+## Bounded Q6 stock search: retain incumbent
+
+The fresh search at `f22bb54` completed exactly32 owned native processes: twelve
+screening runs across threads12/16 and CUDA graphs on/off, then twenty balanced
+confirmation runs for the screening finalist, threads16/graphs on. Screening
+did not establish a gain. Independent confirmation found the challenger slower:
+incumbent22.715732TPS, challenger22.492510TPS, geometric change-0.985015%,
+CI95[-1.383026%,-0.551075%], CVs0.419660%/0.836433%. It failed the frozen
+gain>=2% and CI95 lower>0 gates. No retries, discarded runs or alternate finalist.
+
+Terminal status is `RECOMMENDED-INCUMBENT`: threads12, CUDA graphs on, pristine
+CPU-MoE/ngl99, unchanged Q6 bytes and F16KV/workload. The existing accepted plan
+hash remains `3849427ac69fdab14babedb00d0a3b3fd4c0a44420a7b8aa32963fe805cc3497`.
+The [published recommendation](recommended/execution-plan.json) and
+[search receipt](recommended/search-receipt.json) preserve the negative
+confirmation and complete space coverage; retaining an incumbent is not a new
+speedup. [Independent verification](search-verification.json) rechecked all32
+native artifact sets and unique owners, reconstructed ranking/bootstrap/gates,
+confirmed frozen source and prerequisite files unchanged and validated the plan.
+
+Coverage is four declared configurations, not a global optimum. Threads8 was
+explicitly excluded by the prior rejected hypothesis; its old rate was not
+reused as a current sample. All other thread counts and other stock controls
+remain untested/ineligible without their separate numerical contracts. This
+experiment's throughput is close to historical CLI stock22.9667TPS; that is
+descriptive, not a matched comparison. It does not reproduce the older server
+24.411/25.383TPS, explain interexperiment drift or make the quality-ineligible
+28.13TPS eligible. The original replay and static no-go verdicts remain intact.
+
+Database: `C:/models/expertflow/runs/compiler-stock-search-20261004/compiler.sqlite3`.
+Raw/frozen/report artifacts: the sibling `search/` directory. A clean checkout
+of the measured revision is preserved at
+`C:/models/expertflow/worktrees/compiler-stock-search-f22bb54`; see the
+[method guide](../../stock-configuration-method.md) for exact validation commands
+and source-preservation rules. Q4 normalization/provider/live validation and
+accepted recommendation execution remain the next Stage C work.

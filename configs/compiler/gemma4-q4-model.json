@@ -1,0 +1,9 @@
+{
+  "family": "gemma4",
+  "architecture": "gemma4-moe",
+  "quantization": "Q4_0",
+  "expert_count": 128,
+  "expert_top_k": 8,
+  "kv_kind": "standard",
+  "mtp_kind": "none"
+}

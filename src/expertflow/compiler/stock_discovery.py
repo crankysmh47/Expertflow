@@ -62,8 +62,10 @@ def _snapshot_inputs(snapshot,workload):
     return CompilerInputs(ModelIR(**model),HardwareIR(**snapshot['hardware']),workload,stock,stock,(),{})
 
 
-def _space(base,host,exclusions=None,config=None):
+def _space(base,host,exclusions=None,config=None,*,model=None):
     if config is None:
+        if model is None or (model.family,model.quantization) != ('gemma4','Q6_K'):
+            raise ValueError('this model requires an explicit search space/budget config')
         cpus = host.get('cpu',[])
         if len(cpus) != 1 or (cpus[0].get('cores'),cpus[0].get('logical_processors'),base.identities.workload.threads) != (8,16,12):
             raise ValueError('this topology requires an explicit search space/budget config')
@@ -95,7 +97,7 @@ def prepare_search(inputs, plan_path, receipt_path, source_store, output_dir, *,
         'host_environment_sha256':canonical_sha256(host_environment)}
     if any(eligibility.get(k) != v for k,v in expected.items()) or eligibility.get('allowed_controls') != ['threads','cuda_graphs']:
         raise ValueError('search eligibility identity/scope mismatch')
-    space,config = _space(plan.candidate,host_environment,excluded_threads,space_config)
+    space,config = _space(plan.candidate,host_environment,excluded_threads,space_config,model=inputs.model)
     manifest = {'schema_version':'1.0.0','protocol_version':PROTOCOL,'experiment_id':uuid.uuid4().hex,
         'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
         'source_files':_source_files(),'protocol_sha256':file_sha256(SPEC),
@@ -128,12 +130,13 @@ def _validate_manifest(manifest, host, *, registry=None):
     if not re.fullmatch('[0-9a-f]{32}',manifest['experiment_id']) or type(manifest['frozen_monotonic_ns']) is not int or manifest['frozen_monotonic_ns'] <= 0:
         raise ValueError('invalid fresh search boundary')
     plan = _decode_plan(manifest['prerequisite_plan'])
+    inputs = _snapshot_inputs(manifest['inputs'],plan.candidate.identities.workload)
     candidates = {cid:_candidate(c) for cid,c in manifest['candidates'].items()}
     config = manifest['space_config']
     if config.get('policy') == 'approved-current':
-        space,expected_config = _space(plan.candidate,host,dict(config['excluded_threads']))
+        space,expected_config = _space(plan.candidate,host,dict(config['excluded_threads']),model=inputs.model)
     else:
-        space,expected_config = _space(plan.candidate,host,config=config)
+        space,expected_config = _space(plan.candidate,host,config=config,model=inputs.model)
     if config != expected_config or manifest['excluded_threads'] != canonical_payload(space.excluded_threads):
         raise ValueError('search approved space/exclusion mismatch')
     if canonical_payload({c.candidate_id:c for c in space.candidates}) != manifest['candidates']:
@@ -148,7 +151,6 @@ def _validate_manifest(manifest, host, *, registry=None):
         'hardware_sha256':plan.candidate.identities.hardware_sha256,'host_environment_sha256':canonical_sha256(host)}
     if not proof.get('provider_id') or any(proof.get(k) != v for k,v in expected.items()) or proof.get('allowed_controls') != ['threads','cuda_graphs']:
         raise ValueError('search eligibility binding mismatch')
-    inputs = _snapshot_inputs(manifest['inputs'],plan.candidate.identities.workload)
     if inputs.identities(inputs.stock) != plan.candidate.identities:
         raise ValueError('search input snapshot identity mismatch')
     trusted = (registry or EligibilityRegistry.with_builtins()).attest(inputs,host,manifest['source_repository'])

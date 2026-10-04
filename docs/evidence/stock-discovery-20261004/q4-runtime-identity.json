@@ -1,0 +1,19 @@
+{
+  "fork": {
+    "binary_dir": "C:/models/expertflow/builds/llama-q6-placement-final/bin",
+    "cuda_runtime": "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.8/bin/cudart64_12.dll",
+    "manifest_path": "C:/sem4/expertflow/configs/compiler/runtime-fork.json"
+  },
+  "model": {
+    "path": "C:/models/expertflow/google--gemma-4-26B-A4B-it-qat-q4_0-gguf/gemma-4-26B_q4_0-it.gguf",
+    "sha256": "4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5",
+    "size_bytes": 14439361440
+  },
+  "schema_version": "1.0.0",
+  "source_path": "C:/models/expertflow/worktrees/llama-q6-placement-final",
+  "stock": {
+    "binary_dir": "C:/models/expertflow/builds/llama-a7312ae-cuda128-clean/bin",
+    "cuda_runtime": "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.8/bin/cudart64_12.dll",
+    "manifest_path": "C:/sem4/expertflow/configs/compiler/runtime-stock.json"
+  }
+}

@@ -17,6 +17,12 @@ SOURCE_OBJECTS = {
     'ggml/src/ggml-cuda/ggml-cuda.cu': '0878ab9c08afb783c6b5d459d4f9654617807d1d',
 }
 
+Q4_SOURCE_OBJECTS = {**SOURCE_OBJECTS,
+    'ggml/src/ggml-cpu/quants.c': '5e36459f8cbc5900b375d2189414307393471a6b',
+    'ggml/src/ggml-cpu/arch/x86/repack.cpp': 'af1cebad131d17118c26634faccb9a6e0c08a6f9',
+    'ggml/src/ggml-cpu/arch/x86/quants.c': 'ea54cfe44ce403fe06c8b4aa10b5a882779e7e71',
+}
+
 
 def read_source_object(repository, revision, path):
     return subprocess.check_output(['git','-C',str(Path(repository).resolve()),
@@ -59,6 +65,42 @@ class Gemma4Q6SchedulingProvider:
             'scope':'pinned Gemma4 Q6, unchanged arithmetic/placement/KV; exact native token guards required'}
 
 
+class Gemma4Q4SchedulingProvider:
+    family = 'gemma4'
+    quantization = 'Q4_0'
+
+    def attest(self, inputs, host, repository, *, source_reader=None):
+        model = inputs.model
+        if (model.family, model.architecture, model.quantization, model.identity.sha256,
+                model.identity.size_bytes, model.expert_count, model.expert_top_k) != (
+                'gemma4', 'gemma4-moe', 'Q4_0',
+                '4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5',
+                14439361440, 128, 8):
+            raise ValueError('model is outside audited Q4 scheduling scope')
+        components = (512, 142737408, 285474816)
+        if tuple(layer.layer_id for layer in model.moe_layers) != tuple(range(30)) or any(
+                (layer.expert_bundle_bytes, layer.routed_expert_bank_bytes,
+                 layer.component_bank_bytes) != (3345412, 428212736, components)
+                for layer in model.moe_layers):
+            raise ValueError('Q4 inventory is outside audited scheduling scope')
+        if host.get('architecture') not in ('AMD64', 'x86_64'):
+            raise ValueError('host architecture is outside audited scheduling scope')
+        if canonical_sha256(json.loads(inputs.stock.manifest_json)) != '326daa6e17e1293f6b7c5c9f23e85868961241f4dd00a94a3eee54e25071f629':
+            raise ValueError('runtime build is outside audited scheduling scope')
+        if 'cuda_graphs' not in canonical_payload(inputs.hardware).get('supported_features', []):
+            raise ValueError('runtime/hardware graph capability unavailable')
+        inputs.stock.verify()
+        reader = source_reader or read_source_object
+        actual = {path: reader(repository, UPSTREAM, path) for path in Q4_SOURCE_OBJECTS}
+        if actual != Q4_SOURCE_OBJECTS:
+            raise ValueError('audited Q4 scheduling source object mismatch')
+        return {'provider_id': 'gemma4-q4-x86-scheduling-v1',
+            'model_ir_sha256': canonical_sha256(model), 'runtime_sha256': inputs.stock.sha256,
+            'hardware_sha256': canonical_sha256(inputs.hardware), 'upstream_commit': UPSTREAM,
+            'source_object_ids': actual, 'allowed_controls': ['threads', 'cuda_graphs'],
+            'scope': 'pinned Gemma4 Q4, unchanged AVX2 repack/arithmetic/placement/KV; exact own-reference native token guards required'}
+
+
 class EligibilityRegistry:
     """Providers are trusted reviewed code; arbitrary receipt claims are not providers."""
 
@@ -89,4 +131,5 @@ class EligibilityRegistry:
     def with_builtins(cls):
         registry = cls()
         registry.register(Gemma4Q6SchedulingProvider())
+        registry.register(Gemma4Q4SchedulingProvider())
         return registry

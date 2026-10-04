@@ -73,13 +73,13 @@ tests/test_compiler_cli.py and stock_validation tests.
 
 ### Task5: bounded stock discovery
 
-- [ ] Implement generic semantic workload/search environment/search space records
+- [x] Implement generic semantic workload/search environment/search space records
   and deterministic candidate generation with explicit numerical eligibility.
-- [ ] Freeze exact first search manifest from current CPU topology/capabilities,
+- [x] Freeze exact first search manifest from current CPU topology/capabilities,
   declared coverage, screen/confirmation budgets and stop rules before retention.
-- [ ] Screen eligible configurations, confirm finalist against incumbent with
+- [x] Screen eligible configurations, confirm finalist against incumbent with
   independent fixed balanced pairs, and accept only verified result.
-- [ ] Record older-speed comparison separately from contemporary paired gains.
+- [x] Record older-speed comparison separately from contemporary paired gains.
 
 ### Task6: MoE/hardware reuse
 
