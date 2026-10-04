@@ -10,9 +10,9 @@ ExpertFlow measures eligible runtime configurations and emits validated executio
 
 Read [current status](docs/STATUS.md), [tasks](docs/TODO.md), and the concise [placement proof and stock-tuning fallback plan](docs/superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md). The [placement feasibility audit](docs/evidence/placement-proof-20261004/feasibility.md) found no new exact mechanism under the pinned kernels.
 
-The [stock-tuning utility study](docs/evidence/stock-utility-20261004/report.md) confirmed **12.70%** gain over resolved thread/graph defaults and equivalence to an independent manual grid, at equal evaluation budgets. Its final sealed-plan equivalence check was **inconclusive**, so no new accepted plan or transfer result was published. This is a narrow defaults-tuning result on the pinned Gemma Q6 workload; product expansion awaits complete acceptance.
+The [original stock-tuning utility study](docs/evidence/stock-utility-20261004/report.md) confirmed **12.70%** gain over resolved thread/graph defaults and manual equivalence. Its final sealed-plan equivalence check was **inconclusive**, so that study remains closed without new acceptance or transfer.
 
-The authorized [repeatability follow-up](docs/superpowers/specs/2026-10-04-stock-repeatability.md) adds fixed spacing and diagnostics, with two independent acceptance blocks before consumer/transfer work. Implementation verification passed 797 tests and six pinned source checks; [native execution](docs/evidence/stock-repeatability-20261004/execution-state.md) is next. No new native result is claimed yet.
+The separate [repeatability and transfer proof](docs/evidence/stock-repeatability-20261004/report.md) **passed all 148 calls and final reconstruction**. Both independent main blocks and both fresh consumers passed. Held-out stock tuning gained **9.38%** over resolved 8-thread/graphs-on defaults, CI95 **[7.92%, 10.61%]**, and matched an independent manual grid at equal 18-evaluation budgets. This qualifies bounded stock autotuning on the pinned Q6 workloads under fixed spacing and diagnostics. Broader CLI, model/host coverage and serving performance remain next work.
 
 ## Installation and CLI
 
@@ -34,6 +34,7 @@ Use [the stock configuration method](docs/stock-configuration-method.md) for col
 | Gemma 4 26B A4B Q6_K | Stock acceptance passed; bounded search retained 12 threads/graphs on | [Q6 report](docs/evidence/stock-discovery-20261004/report.md) |
 | Gemma 4 26B A4B Q4_0 | Separate reference/product/search passed; same incumbent retained | [Q4 report](docs/evidence/stock-discovery-20261004/q4-report.md) |
 | Granite 3.1 1B-A400M Q6_K | Real second-family reference/product/search passed; GPU-resident incumbent retained | [Granite report](docs/evidence/compiler-granite-20261004/report.md) |
+| Gemma Q6 held-out stock utility | 12 threads/graphs on; +9.38% over resolved defaults, fresh product and consumer passed | [Repeatability/transfer proof](docs/evidence/stock-repeatability-20261004/report.md) |
 
 These results establish reproducible stock selection within declared spaces, with no newly accepted gain over tuned stock. Granite's small, fully resident model establishes compatibility; Q4 is a separate quantization. Neither proves quality-preserving Gemma Q6 acceleration or a global optimum.
 
@@ -80,7 +81,7 @@ uv run --no-sync python -m compileall -q src/expertflow
 git diff --check
 ```
 
-Latest full suite: 767 passed, 7 historical source-environment skips; 6 applicable pinned native source checks passed separately. Run applicable source contracts against the exact external checkout they target. CPU tests and replay do not prove native speed or quality.
+Latest full suite: 797 passed, 7 historical source-environment skips; 6 applicable pinned native source checks passed separately. See [implementation verification](docs/evidence/stock-repeatability-20261004/implementation-verification.json). Run applicable source contracts against the exact external checkout they target. CPU tests and replay do not prove native speed or quality.
 
 ## Project documentation
 

@@ -1,6 +1,6 @@
 # ExpertFlow current status
 
-Updated 2026-10-04. Branch: `ef-v2`. Prior accepted evidence checkpoint:
+Updated 2026-10-05. Branch: `ef-v2`. Prior accepted evidence checkpoint:
 `a793889`; measured Granite implementation: `7cbae5d`.
 
 ## Current decision
@@ -8,8 +8,9 @@ Updated 2026-10-04. Branch: `ef-v2`. Prior accepted evidence checkpoint:
 Prove useful, automatically selected MoE placement before expanding the product.
 If placement cannot qualify within its frozen budget, evaluate stock autotuning
 as the fallback. Both paths must demonstrate practical value. The current
-supported result is validated stock selection/reproduction; an accepted new
-quality-preserving speedup over tuned stock has not been demonstrated.
+supported result is validated stock selection/reproduction plus bounded Q6
+autotuning utility over resolved defaults. An accepted new quality-preserving
+speedup over already tuned stock has not been demonstrated.
 
 Placement feasibility: **scoped no-go**, from a read-only numerical-path audit.
 No new exact mechanism qualifies under the pinned CPU/CUDA kernels, and the
@@ -26,15 +27,13 @@ and cleanup checks passed; the independent raw audit reproduced the result.
 See the [result](evidence/stock-utility-20261004/report.md) and
 [terminal execution state](evidence/stock-utility-20261004/execution-state.md).
 
-No new accepted plan, consumer run or held-out transfer was produced. Current
-product scope stays validated configuration selection/reproduction, with the
-narrow defaults-tuning gain reported separately. CLI expansion and broader
-features are deferred. Next is a separately reviewed bounded repeatability/
-acceptance protocol with a new justification; this closed study cannot be
-resampled or have its gate waived. The [task list](TODO.md) and
+That original study produced no new accepted plan, consumer or transfer. It
+remains closed, and its unused budget cannot be used to retry or waive the gate.
+All three original implementation-review findings were fixed before collection.
+The separately registered follow-up below tests acceptance under a new timing
+and observability contract. The [task list](TODO.md) and
 [proof and fallback plan](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md)
-record completed work and blocked stages. All three fresh implementation-review
-findings were reproduced and fixed before collection at `356b660`.
+keep the studies and their verdicts separate.
 
 Follow-up execution is authorized. The [bounded repeatability protocol](superpowers/specs/2026-10-04-stock-repeatability.md)
 passed implementation review/verification before native freeze: fixed 30-second spacing and
@@ -43,7 +42,20 @@ consumer/untouched transfer. Maximum 148 new native processes; first failed or
 inconclusive gate stops. All five review findings were reproduced/fixed; 797 tests
 passed, seven optional historical-source modules skipped, and six pinned native
 source checks passed separately. [Execution state](evidence/stock-repeatability-20261004/execution-state.md)
-records the next freeze. No new native result is claimed at this checkpoint.
+records collection from `86388e7` with 41 bound files. All 148 native calls
+completed: both independent main blocks, the main consumer, untouched transfer
+utility/product and transfer consumer passed. Transfer gain was +9.38%, CI95
+[+7.92%, +10.61%], with manual equivalence and equal 18-evaluation search budgets.
+The separate raw auditor reconstructed all records and statistical gates.
+Outer verdict is **PASS-STOCK-REPEATABILITY-TRANSFER**, process exit 0; complete
+source/phase/receipt reconstruction passed before final publication. The
+[independent final audit](evidence/stock-repeatability-20261004/final-audit.json)
+matches the saved report and all 148 native records. See
+[results and costs](evidence/stock-repeatability-20261004/report.md).
+Fresh read-only CLI validation also passed with exit 0 and zero additional native
+calls; see [final verification](evidence/stock-repeatability-20261004/native-verification.json).
+Broad CLI, wider utility coverage and serving performance remain outside this
+bounded study; those are next product work, with new live budgets registered first.
 
 ## Verified milestones
 
@@ -55,6 +67,7 @@ records the next freeze. No new native result is claimed at this checkpoint.
 | Granite Q6 stock product | Real second-family reference/product passed; 68 native processes; GPU-resident incumbent retained | [Granite report](evidence/compiler-granite-20261004/report.md) |
 | Gemma phase-aware profiling | CPU expert work dominated synchronized decode; diagnostic instrumentation perturbs overlap | [Profile report](evidence/compiler-phase-profile-20261004/report.md) |
 | Gemma Q6 utility fallback | +12.70% over resolved thread/graph defaults; manual equivalence passed; final product equivalence inconclusive, no transfer | [Utility result and audit](evidence/stock-utility-20261004/report.md) |
+| Gemma Q6 repeatability/transfer | Both main blocks and consumers passed; held-out +9.38% over resolved defaults, manual equivalence and fresh product PASS; 148 calls | [Follow-up proof](evidence/stock-repeatability-20261004/report.md) |
 
 Gemma Q6/Q4 use pristine CPU-MoE; Granite uses a pristine GPU-resident baseline.
 All three retained 12 threads and CUDA graphs on in their declared search spaces.
@@ -62,9 +75,9 @@ Granite's small-model TPS and Q4's different quantization are not Q6 speedups.
 Live coverage is two families on one pinned Windows/NVIDIA host/build, not
 universal model/hardware support or a global stock optimum.
 
-Latest full suite: **767 passed, 7 historical source-environment skips**;
+Latest full suite: **797 passed, 7 historical source-environment skips**;
 **6 applicable pinned native source checks passed** separately.
-See [utility implementation verification](evidence/stock-utility-20261004/implementation-verification.json).
+See [repeatability implementation verification](evidence/stock-repeatability-20261004/implementation-verification.json).
 These tests establish implementation checks; live results come from the native
 records and independent audits linked above.
 

@@ -2,9 +2,10 @@
 
 Current priorities and accepted scope are in [STATUS.md](STATUS.md),
 [tasks](TODO.md), and the [proof/fallback plan](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md).
-This method is the existing validated foundation for the conditional
-stock-autotuning product. Its incumbent-retention results establish reliable
-selection/reproduction, not a newly accepted gain over tuned stock.
+This method provides validated stock selection/reproduction plus bounded
+autotuning utility on the pinned Q6 workloads. Its earlier incumbent-retention
+results establish reliable reproduction; utility over defaults is a separately
+measured claim, with no new gain over already tuned stock.
 
 After the scoped placement feasibility no-go, the
 [bounded utility protocol](evidence/stock-utility-20261004/protocol.md) compares
@@ -14,6 +15,29 @@ a 12.70% gain over those defaults and manual equivalence at equal evaluation
 budgets. Final sealed-plan acceptance was inconclusive, so no new accepted
 artifact, consumer or held-out run followed. The utility study is closed;
 the earlier accepted stock plans below remain separate authorities.
+
+The separate [repeatability and transfer proof](evidence/stock-repeatability-20261004/report.md)
+passed all 148 native calls and final source/phase/receipt reconstruction. Both
+main acceptance blocks and fresh consumers passed. The unchanged method applied
+to an untouched code workload selected 12 threads/graphs on, gained 9.38% over
+resolved 8-thread/graphs-on defaults, and matched an independent manual grid at
+equal 18-evaluation budgets. Fresh held-out product acceptance also passed.
+This result is qualified under fixed 30-second spacing and diagnostics, on one
+host/runtime/artifact; it does not establish universal or serving performance.
+
+Reconstruct the completed study without launching a model, from its measured
+source snapshot or unchanged frozen source files:
+
+```powershell
+uv run --no-sync python scripts/benchmark_compiler_stock_repeatability.py --action validate --output-dir C:/models/expertflow/runs/compiler-stock-repeatability-20261004
+uv run --no-sync python docs/evidence/stock-repeatability-20261004/independent_audit.py --report C:/models/expertflow/runs/compiler-stock-repeatability-20261004/report.json --output C:/models/expertflow/runs/repeatability-readonly-audit.json
+```
+
+The completed 148-call budget is closed. These are read-only commands, not
+authorization to rerun collection. Original source/artifact paths and local
+databases must remain available; archive snapshots do not relocate their
+identity bindings. Validation repeatedly reads model bytes and can take
+substantial time. Future reader reuse must preserve model/artifact checks.
 
 The compiler compares eligible configurations for one verified model, semantic
 workload, runtime and host. A result is the strongest validated configuration in
@@ -34,9 +58,9 @@ predict performance on a different host or workload.
 | Recommendation | Atomic execution-plan/search-receipt publication and artifact-backed read-only validation |
 | Live reuse coverage | Gemma Q6 search32, Q4 reference10/product20/search18, Granite reference10/product20/search38 independently audited on one host/build |
 
-Q6 scheduling search completed32 runs and retained the accepted12-thread/graphs-on
+Q6 scheduling search completed32 runs and retained the accepted 12-thread/graphs-on
 incumbent. The16-thread screening finalist was0.985% slower in independent
-confirmation, CI95[-1.383%,-0.551%]. See
+confirmation, CI95 [-1.383%,-0.551%]. See
 [the audited evidence report](evidence/stock-discovery-20261004/report.md).
 Q4 is another quantization of Gemma. Subsequent real GraniteMoE Q6 validation
 established second-family stock coverage with its own inventory, source proof,
@@ -44,8 +68,8 @@ GPU-resident reference and acceptance; see [Granite report](evidence/compiler-gr
 Synthetic topology/family fixtures still establish contracts rather than new
 live hardware or placement coverage.
 
-Q4's independent search completed18 screening processes and retained the
-accepted12-thread/graphs-on incumbent, which ranked first. Its product validation
+Q4's independent search completed 18 screening processes and retained the
+accepted 12-thread/graphs-on incumbent, which ranked first. Its product validation
 measured direct36.6095/sealed36.6385TPS with equivalence acceptance; screening
 mean36.6867TPS is descriptive. No self-confirmation was required. See the
 [Q4 evidence report](evidence/stock-discovery-20261004/q4-report.md).
@@ -70,13 +94,13 @@ mean36.6867TPS is descriptive. No self-confirmation was required. See the
    Publish coverage and exclusions alongside the configuration. Stop on partial
    collection, identity/correctness/environment failure; do not retry or discard.
 
-The current Q6 coverage is threads12/16 and graphs on/off, twelve screening
+The earlier incremental Q6 search coverage is threads 12/16 and graphs on/off, twelve screening
 processes plus optional twenty confirmation processes. Threads8 is excluded by
 the registered earlier rejected hypothesis; its old TPS is not reused as a
 current-host sample. Other thread counts are untested. This exclusion belongs
 to this experiment and is not a rule for other models or hardware.
 
-## Current Q6 commands
+## Earlier incremental Q6 search commands
 
 Run from the matching frozen source checkout. Each collection needs a fresh
 database and output directory. `generate` and `validate` launch no model process.

@@ -68,10 +68,12 @@ reconstruction. Steps 2–3 are inactive; step 4 is the active proof path.
   comparison once and independently audit all raw records. Utility comparison
   passed; fresh product equivalence was inconclusive. Retain the complete
   partial result and current validation/reproduction scope.
-- [ ] Test the method on an unseen workload or host; keep untouched test inputs separate from search. Report neutral/default-optimal cases and costs instead of promising an improvement on every input.
-- [ ] Only after complete utility/product acceptance, verify fresh consumer and
-  transfer execution, then consolidate scripts into the public CLI and provide
-  decision explanations/invalidation. Until then, retain the narrower scope.
+- [x] Test the unchanged method on the previously untouched code workload under
+  the separate repeatability protocol; report its costs and declared scope.
+- [x] Qualify both independent main blocks and fresh main/transfer consumers,
+  with full held-out utility/product acceptance and independent raw audit.
+- [ ] Consolidate scripts into public CLI/decision explanations and invalidation.
+  Preserve source snapshots and register new live validation budgets first.
 
 **Exit:** measured stock-tuning utility with honest coverage and cost, or an explicit narrower product decision.
 
@@ -82,9 +84,19 @@ equivalence limit. Correctness/identity/memory/cleanup and independent raw audit
 passed. No consumer, transfer, retry or accepted new artifact. See
 [terminal report](../../evidence/stock-utility-20261004/report.md).
 
-Next prerequisite is a separately reviewed bounded repeatability/acceptance
-protocol with a new justification. This study and its thresholds remain closed;
-CLI/product expansion is deferred despite the passing initial utility comparison.
+The separately registered [repeatability/transfer protocol](../specs/2026-10-04-stock-repeatability.md)
+subsequently passed 148 new calls and final reconstruction from 86388e7. Main
+A/B CI90 [-0.553%,+0.540%]/ [-0.641%,+1.433%] passed independently, then the fresh
+main consumer passed. Untouched-workload gain was 9.38%, CI95 [7.92%,10.61%],
+manual CI90 [-0.389%,+0.645%],18 search evaluations each. Fresh transfer product
+CI90 [-0.284%,+1.439%] and consumer passed; the independent raw audit agreed.
+See [qualified result and costs](../../evidence/stock-repeatability-20261004/report.md).
+Original studies, thresholds and quality/no-go verdicts remain closed.
+
+The bounded stock-autotuning proof is complete under fixed spacing/diagnostics.
+Next is public CLI consolidation, source-preserving reader reuse and separately
+registered wider utility coverage. It does not establish a global optimum,
+superiority to manual tuning, new placement acceleration or serving throughput.
 
 ## Tracking and verification
 

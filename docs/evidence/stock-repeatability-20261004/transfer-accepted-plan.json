@@ -1,0 +1,88 @@
+{
+  "candidate": {
+    "estimated_decode_tps": null,
+    "identities": {
+      "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+      "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+      "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+      "workload": {
+        "approximate_quality_budget": null,
+        "batch_size": 2048,
+        "bootstrap_samples": 10000,
+        "bootstrap_seed": 20261003,
+        "cache_prompt": false,
+        "completion_timeout_seconds": 300,
+        "concurrency": 1,
+        "confirmation_pairs": 10,
+        "context_size": 4096,
+        "cuda_graphs": "on",
+        "health_timeout_seconds": 180,
+        "ignore_eos": true,
+        "kv_type_k": "f16",
+        "kv_type_v": "f16",
+        "maximum_cv_pct": 10.0,
+        "measured_runs": 3,
+        "microbatch_size": 512,
+        "minimum_vram_reserve_mib": 256,
+        "objective": "decode_tps",
+        "policy": "exact",
+        "predict_tokens": 512,
+        "prompt": "Write a Python function that merges two sorted lists of integers without calling sorted. Explain how it handles duplicate values and empty lists, and give three short examples. Keep the implementation simple and state its time and space complexity.\n",
+        "replay_tolerance_pct": 2.0,
+        "runtime_interface": "server_completion",
+        "schema_version": "1.0.0",
+        "seed": 42,
+        "temperature": 0.0,
+        "threads": 12,
+        "warmup_runs": 1
+      },
+      "workload_sha256": "0313be3e18e8796c0df45bc7981531641f93b31b787c99ce31c7f2a993fb3c68"
+    },
+    "measurement_ids": [
+      "1f1a1954-74e0-4758-af4b-a287d1385c65",
+      "45233b2c-3209-4bdf-b876-5316033ae207",
+      "d4ed3896-acc4-406b-afa0-362a4cc03f36",
+      "32f1ac52-c32a-40d7-837c-a100fb87d247",
+      "16a8a3c9-6a1b-40b5-9f46-93881e8b7833",
+      "09b3844e-8b84-498e-9b1d-146a790766c8",
+      "e6ede358-b685-4afd-8b4c-653859134486",
+      "a6c58a15-63b6-4d1e-b01c-0c8c729e8fcf",
+      "c50d3278-2196-405e-b094-abb8cd784a76",
+      "e6484007-f821-4607-aded-5807fb05f1cc",
+      "0a276f8b-ae6e-484c-8ed2-7ed738204bef",
+      "38cdc246-91bb-40b7-aed1-acfea805fcb0",
+      "5d16ecac-b33a-4fd0-8b93-92161fba7a2c",
+      "12610eb1-2fa0-46ed-a02d-dfca18965009",
+      "a3ddca87-e1c4-439e-8c43-909e862ad602",
+      "a3779745-637d-427f-b403-42783bd96d2b",
+      "e245f926-fd96-4baf-bf36-89d57f9c9665",
+      "dd738b3b-f50c-4b86-9362-2058e74b51ee",
+      "e0a8a8ed-51ba-441a-8f06-f43a1a247b0a",
+      "f5a4e273-a2ad-4133-b5db-0cedbd58ea30"
+    ],
+    "rejection_reasons": [],
+    "settings": {
+      "batch_size": 2048,
+      "cpu_moe": true,
+      "cuda_graphs": "on",
+      "gpu_layers": 99,
+      "kv_type_k": "f16",
+      "kv_type_v": "f16",
+      "microbatch_size": 512,
+      "static": null
+    },
+    "status": "measured",
+    "validation": [
+      [
+        "paired_stock_product",
+        true
+      ]
+    ]
+  },
+  "compiler_version": "0.1.0",
+  "fallback": null,
+  "launcher_abi": "1.0.0",
+  "plan_sha256": "53f0987aab82e7da940d946bbb8e46ec7a8f725c7505958f49c97f30ed85fe4d",
+  "schema_version": "1.0.0",
+  "sealed_at": "2026-10-04T22:13:13.498987+00:00"
+}

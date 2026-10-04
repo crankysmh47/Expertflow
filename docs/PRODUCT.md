@@ -28,12 +28,16 @@ and `run --plan`. The older `optimize`/`serve` deployment interface below is a
 distinct historical product path.
 
 The [proof and fallback plan](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md)
-reached a scoped placement no-go and then a partial stock-tuning proof.
-The [utility result](evidence/stock-utility-20261004/report.md) confirmed 12.70%
-gain over resolved thread/graph defaults and manual equivalence, but final
-product equivalence was inconclusive. The supported product remains validated
-selection/reproduction. Consumer/transfer and CLI expansion await complete
-acceptance under a separately justified protocol. See [status](STATUS.md),
+reached a scoped placement no-go. The [original utility study](evidence/stock-utility-20261004/report.md)
+measured 12.70% defaults gain but stopped on inconclusive product equivalence.
+The separate [repeatability/transfer proof](evidence/stock-repeatability-20261004/report.md)
+passed 148 calls, both independent main blocks and fresh consumers. On the
+untouched workload, automatic tuning gained 9.38% over resolved 8-thread/graphs-on
+defaults and matched the manual grid at equal 18-evaluation budgets, then passed
+fresh product acceptance. This qualifies bounded stock autotuning under the
+registered timing/diagnostics contract on one host. It establishes no gain over
+manual tuning or already tuned stock. Public CLI consolidation, wider utility
+coverage and serving performance are next work. See [status](STATUS.md),
 [tasks](TODO.md), and [the current stock method](stock-configuration-method.md).
 
 ## Historical placement architecture

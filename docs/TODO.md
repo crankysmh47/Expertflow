@@ -1,7 +1,7 @@
 # ExpertFlow tasks
 
 Current roadmap: [placement proof and stock fallback](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md).
-Results and scope: [STATUS.md](STATUS.md). Updated 2026-10-04.
+Results and scope: [STATUS.md](STATUS.md). Updated 2026-10-05.
 
 ## Delivered
 
@@ -38,20 +38,37 @@ Results and scope: [STATUS.md](STATUS.md). Updated 2026-10-04.
   protocol with a new justification and fixed budget before any further native run.
   [Follow-up protocol](superpowers/specs/2026-10-04-stock-repeatability.md) is
   authorized; all five review findings fixed, 797 tests/seven optional source skips
-  and six pinned native source checks verified. Native freeze is next.
-- [ ] Qualify two independent paced acceptance blocks; stop on the first
+  and six pinned native source checks verified. Native collection completed
+  all 148 calls from `86388e7`; [execution state](evidence/stock-repeatability-20261004/execution-state.md).
+- [x] Qualify two independent paced acceptance blocks; stop on the first
   failed/inconclusive gate and independently reconstruct all retained evidence.
-- [ ] After full acceptance, validate a fresh consumer and the untouched
-  transfer workload, then consolidate public CLI/decision reports.
+- [x] Collect both fresh consumers and the untouched transfer's full 107-call
+  utility/product sequence; native gates passed at +9.38% held-out defaults gain.
+- [x] Finish frozen outer reconstruction and final independent raw audit: PASS,
+  148 native calls, 41 frozen files and six historical pins intact.
+- [x] Finish fresh read-only CLI validation and verified evidence/documentation;
+  exit0, no extra native calls, all source/history pins unchanged.
+- [ ] Consolidate the validated workflow into public CLI/decision reports.
 
-Placement steps 2–3 are inactive after the feasibility rejection. The fallback
-study reached **PRODUCT-VALIDATION-STOP**: product CI90 [+0.13%, +2.34%] was not
-within the fixed ±2% equivalence margin. Consumer, transfer and CLI expansion
-are blocked by this gate. Both prompts were frozen, but the transfer prompt
-remains unmeasured. See [terminal evidence](evidence/stock-utility-20261004/report.md).
-Do not reuse the closed study's unused budget to retry acceptance.
+Placement steps 2–3 are inactive after the feasibility rejection. The original
+fallback remains **PRODUCT-VALIDATION-STOP**, with product CI90 [+0.13%, +2.34%]
+outside the fixed ±2% margin. The separate follow-up has completed native gates
+and independent raw reconstruction. Outer source/phase/receipt reconstruction
+passed; the bounded method is qualified under fixed spacing/diagnostics.
+See [follow-up results](evidence/stock-repeatability-20261004/report.md)
+and [original terminal evidence](evidence/stock-utility-20261004/report.md).
+Never reuse either study's budget for additional samples or candidates.
 
-## Deferred until a proof path passes
+## Next product work
+
+- [ ] Reuse verified readers per database in future validation orchestration;
+  preserve measured source snapshots and all artifact/model checks.
+- [ ] Publish coverage, defaults scope, tuning costs and invalidation reasons
+  with the CLI workflow. Keep neutral/default-optimal outcomes explicit.
+- [ ] Register broader utility coverage before new workload/model/host runs;
+  Q4 and Granite compatibility does not establish defaults gain on those inputs.
+
+## Broader research remains deferred
 
 - [ ] Wider offload/attention/batch controls with their numerical scope proofs.
 - [ ] KV compression/TurboQuant and shared memory-budget optimization.

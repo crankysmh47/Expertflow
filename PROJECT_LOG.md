@@ -1206,3 +1206,39 @@ Reviewed source7cbae5d: separate complete Granite adapter/provider and GPU-resid
 - One fresh review found five Important issues in outer freezing, native journal/negative/partial reconstruction, consumer reference parity and elapsed-cost persistence. Reproduced and fixed all in one pass; a subsequent regression proved PASS was persisted prematurely and fixed pending-before-reconstruction. Collector freezes38 source/protocol files plus3 prerequisite artifacts; historical compiler/utility/native sources remain unchanged.
 - Focused30 tests passed196.31s; final persisted-PASS regression passed105.53s. Full post-review797 passed/7 optional historical-source module skips in798.94s; six applicable pinned native source checks passed separately. Independent bootstrap/control math check passed. These are implementation checks, not new scientific performance evidence.
 - Fresh native freeze is next after the live prerequisite/source/host check. No new model process yet. Evidence: `docs/evidence/stock-repeatability-20261004/execution-state.md`. Existing accepted plans and unrelated local files retained; no merge, push or external publication.
+
+## 2026-10-05 - bounded stock repeatability native result
+
+The separately registered follow-up passed PASS-STOCK-REPEATABILITY-TRANSFER
+at all 148 retained native calls from source 86388e7 on ef-v2. Main A/B passed
+independently: CI90 [-0.553%, +0.540%] and [-0.641%, +1.433%]. Both fresh
+consumers passed. Untouched-workload tuning selected 12 threads/graphs on,
+gained 9.38% over resolved 8-thread/graphs-on defaults, CI95 [7.92%, 10.61%],
+and matched the independent manual grid, CI90 [-0.389%, +0.645%], at 18 native
+search evaluations each. Fresh transfer product CI90 [-0.284%, +1.439%] passed.
+
+The collector reconstructed source/phase/receipt bindings before final PASS.
+Final independent raw audit and fresh read-only CLI validation both passed;
+zero extra native calls, 41 frozen files and six historical pins unchanged,
+all native token/memory/ownership/cleanup checks passed, no model servers left.
+Original utility PRODUCT-VALIDATION-STOP and placement/quality/cache no-go
+verdicts remain closed. No pooled blocks, retries, discarded samples or new
+candidates were used.
+
+Registered collection cost was 11717.250 seconds; waits 4441.791 seconds,
+native phases 5364.040 seconds. Automatic/manual search phase costs were
+685.212/667.924 seconds. Equal cost means evaluation counts, rather than lower
+wall time or human effort. Fresh read-only validation took 2191.484 seconds;
+the frozen per-attempt reader repeatedly hashes the 22.9 GB model. Future
+reader reuse must preserve source snapshots and model/artifact checks.
+
+Full post-review checks passed 797 tests with seven optional historical-source
+skips; six applicable pinned source checks passed separately. Documentation
+checks passed 24 tests. Current README/status/tasks/architecture/benchmarking/
+method/roadmap and archived raw reports, receipts, audits and logs reflect the
+bounded result. Next is public CLI consolidation and separately registered
+wider utility coverage. No custom placement, global optimum, superiority to
+manual/tuned stock, universal support, thermal cause or serving TPS claim.
+
+Evidence: docs/evidence/stock-repeatability-20261004/report.md,
+native-verification.json, final-audit.json and execution-ledger.md.

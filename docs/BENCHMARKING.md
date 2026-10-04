@@ -24,6 +24,26 @@ fallback separately proposes at least 5% over defaults and equivalence within
 protocol must freeze these gates and quality tests before running. Existing
 experimental thresholds/verdicts remain unchanged.
 
+The [bounded stock repeatability/transfer study](evidence/stock-repeatability-20261004/report.md)
+passed 148 calls and final reconstruction under fixed 30-second prelaunch spacing
+and diagnostics. Its two main blocks passed independently. Untouched-workload
+utility gained 9.38% over resolved 8-thread/graphs-on defaults, CI95 [7.92%,10.61%],
+with manual CI90 [-0.39%,+0.65%],18 search evaluations each, fresh product and
+consumer acceptance. All samples were retained; no pooling, retry or extra
+finalist was used. Defaults scope fixes CPU-MoE, placement, workload and F16
+controls; it is not an all-flags out-of-box comparison.
+
+Report the collector interval of 11,717.250 seconds, 4,441.791 seconds of waiting and
+5,364.040 seconds of native phases separately. The collector interval excludes
+input loading and read-only reconstruction. Automatic/manual native search
+phase costs were 685.212/667.924 seconds, so equal evaluation budgets do not
+establish lower wall time or human effort. Frozen validation repeatedly hashes
+the 22.9 GB model and has substantial additional cost. Decode TPS is not total
+CLI or steady-state serving throughput. Diagnostics do not prove a thermal
+cause or repair. Wider controls, workloads and hosts need separately frozen
+eligibility, gates and full native budgets; neutral/default-optimal outcomes
+must remain explicit.
+
 ## Historical placement release protocol
 
 The protocol below documents the earlier release. Its terminal placement
