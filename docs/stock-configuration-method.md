@@ -6,6 +6,12 @@ This method is the existing validated foundation for the conditional
 stock-autotuning product. Its incumbent-retention results establish reliable
 selection/reproduction, not a newly accepted gain over tuned stock.
 
+After the scoped placement feasibility no-go, the
+[bounded utility protocol](evidence/stock-utility-20261004/protocol.md) compares
+automatic tuning with resolved thread/graph defaults and an independent manual
+grid. It uses separately frozen main/held-out workloads and fixed budgets;
+implementation tests do not establish its utility result.
+
 The compiler compares eligible configurations for one verified model, semantic
 workload, runtime and host. A result is the strongest validated configuration in
 its declared search space. A small sweep cannot establish a global optimum or

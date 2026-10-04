@@ -8,7 +8,7 @@
 
 ExpertFlow measures eligible runtime configurations and emits validated execution plans. Stock selection is validated on Gemma Q6, Gemma Q4 and Granite Q6 on one Windows/NVIDIA system. Placement acceleration remains a research goal: the historical faster placement failed its quality gate.
 
-Read [current status](docs/STATUS.md), [tasks](docs/TODO.md), and the concise [placement proof and stock-tuning fallback plan](docs/superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md). Prove useful compiler-selected placement first; if it cannot qualify, evaluate stock autotuning. Broader features follow a successful proof.
+Read [current status](docs/STATUS.md), [tasks](docs/TODO.md), and the concise [placement proof and stock-tuning fallback plan](docs/superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md). The [placement feasibility audit](docs/evidence/placement-proof-20261004/feasibility.md) found no new exact mechanism under the pinned kernels. The active proof path is [stock-tuning utility](docs/evidence/stock-utility-20261004/protocol.md), compared with resolved thread/graph defaults and an independent manual grid. Broader features follow a successful proof.
 
 ## Installation and CLI
 
@@ -76,7 +76,7 @@ uv run --no-sync python -m compileall -q src/expertflow
 git diff --check
 ```
 
-Latest recorded full suite: 745 passed, 7 historical source-environment skips. Run applicable source contracts against the exact external checkout they target. CPU tests and replay do not prove native speed or quality.
+Latest full suite: 767 passed, 7 historical source-environment skips; 6 applicable pinned native source checks passed separately. Run applicable source contracts against the exact external checkout they target. CPU tests and replay do not prove native speed or quality.
 
 ## Project documentation
 

@@ -24,7 +24,7 @@ Results and scope: [STATUS.md](STATUS.md). Updated 2026-10-04.
 ## Conditional: stock-autotuning fallback
 
 - [x] Activate after scoped placement no-go; current claim remains validated selection/reproduction.
-- [ ] Freeze defaults/manual-tuning comparisons, search costs, eligible controls
+- [x] Freeze defaults/manual-tuning comparisons, search costs, eligible controls
   and unseen test inputs (step 4).
 - [ ] Prove utility or choose the narrower validation/reproduction product scope.
 - [ ] After utility passes, unify public CLI/decision reports and validate a

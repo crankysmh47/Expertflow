@@ -61,9 +61,9 @@ reconstruction. Steps 2–3 are inactive; step 4 is the active proof path.
 
 **Reuse:** `src/expertflow/compiler/{stock_reference.py,stock_validation.py,stock_eligibility.py,stock_search.py}`, `scripts/benchmark_compiler_stock_search.py`, and `docs/stock-configuration-method.md`.
 
-- [ ] On placement no-go, define the product as a hardware/workload-aware stock configuration compiler with the claim **best validated within the searched space**.
-- [ ] Admit only reviewed controls. Threads/graphs have current live coverage; offload, batching, attention and KV changes require their own numerical or quality eligibility before search.
-- [ ] Freeze a benchmark against out-of-box defaults and a documented manual-tuning baseline, using matched inputs and declared equal search budgets. Proposed utility gate: **at least 5% paired TPS gain over defaults with 95% lower bound above 0**, and **equivalence within 2% of the manual result at no greater measured tuning cost**.
+- [x] On scoped placement no-go, activate stock utility evaluation. The current supported claim remains validated configuration selection/reproduction; acceleration claims depend on utility passing.
+- [x] Admit only reviewed controls. Threads/graphs have current live coverage; offload, batching, attention and KV changes require their own numerical or quality eligibility before search.
+- [x] Freeze a benchmark against resolved thread/graph deployment defaults and a documented independent manual grid, using matched inputs and equal native evaluation budgets. Utility gate: **at least 5% paired TPS gain over defaults with 95% lower bound above 0**, and **equivalence within 2% of the manual result at no greater measured tuning cost**. See the [frozen protocol](../specs/2026-10-04-stock-utility-proof.md) for the narrower default and cost scopes.
 - [ ] Test the method on an unseen workload or host; keep untouched test inputs separate from search. Report neutral/default-optimal cases and costs instead of promising an improvement on every input.
 - [ ] Only after utility passes, consolidate scripts into the public CLI, provide decision explanations and invalidation, and verify fresh consumer execution. If utility fails, scope the product as configuration validation/reproduction rather than acceleration.
 

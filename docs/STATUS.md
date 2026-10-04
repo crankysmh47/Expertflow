@@ -1,6 +1,6 @@
 # ExpertFlow current status
 
-Updated 2026-10-04. Branch: `ef-v2`. Latest completed evidence checkpoint:
+Updated 2026-10-04. Branch: `ef-v2`. Prior accepted evidence checkpoint:
 `a793889`; measured Granite implementation: `7cbae5d`.
 
 ## Current decision
@@ -20,7 +20,8 @@ Next: the stock utility gate in step 4 of the [proof and fallback plan](superpow
 The [task list](TODO.md) tracks work; this page records results. The plan is
 approved for execution. The utility collector and independent manual-grid
 comparison are implemented; validation and source freeze precede native runs.
-Main and held-out prompts are specified before collection in the
+The corrected collector is committed at `356b660`; three independent review
+findings were reproduced and fixed. Main and held-out prompts are frozen before collection in the
 [bounded utility protocol](superpowers/specs/2026-10-04-stock-utility-proof.md).
 
 ## Verified milestones
@@ -39,9 +40,10 @@ Granite's small-model TPS and Q4's different quantization are not Q6 speedups.
 Live coverage is two families on one pinned Windows/NVIDIA host/build, not
 universal model/hardware support or a global stock optimum.
 
-Latest recorded full suite: **745 passed, 7 historical source-environment skips**.
-See [implementation verification](evidence/compiler-granite-20261004/implementation-verification.json).
-This is recorded test evidence, not a new test run for this documentation update.
+Latest full suite: **767 passed, 7 historical source-environment skips**;
+**6 applicable pinned native source checks passed** separately.
+See [utility implementation verification](evidence/stock-utility-20261004/implementation-verification.json).
+These tests establish implementation checks, not a live utility result.
 
 ## Closed results
 
