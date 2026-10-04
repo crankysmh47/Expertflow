@@ -36,6 +36,8 @@ Results and scope: [STATUS.md](STATUS.md). Updated 2026-10-04.
   pending end-to-end acceptance; report the narrow default-tuning gain.
 - [ ] Resolve repeatability/acceptance under a separately reviewed protocol
   with a new justification and a fixed budget before any further native run.
+  [Follow-up protocol](superpowers/specs/2026-10-04-stock-repeatability.md) is
+  authorized; implementation/review underway, native freeze pending.
 - [ ] After full acceptance, validate a fresh consumer and the untouched
   transfer workload, then consolidate public CLI/decision reports.
 

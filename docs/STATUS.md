@@ -36,6 +36,12 @@ resampled or have its gate waived. The [task list](TODO.md) and
 record completed work and blocked stages. All three fresh implementation-review
 findings were reproduced and fixed before collection at `356b660`.
 
+Follow-up execution is authorized. The [bounded repeatability protocol](superpowers/specs/2026-10-04-stock-repeatability.md)
+is being implemented/reviewed before native freeze: fixed 30-second spacing and
+diagnostics, two independently passing acceptance blocks, then conditional
+consumer/untouched transfer. Maximum 148 new native processes; first failed or
+inconclusive gate stops. No new native result is claimed at this checkpoint.
+
 ## Verified milestones
 
 | Work | Result and scope | Evidence |

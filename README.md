@@ -12,6 +12,8 @@ Read [current status](docs/STATUS.md), [tasks](docs/TODO.md), and the concise [p
 
 The [stock-tuning utility study](docs/evidence/stock-utility-20261004/report.md) confirmed **12.70%** gain over resolved thread/graph defaults and equivalence to an independent manual grid, at equal evaluation budgets. Its final sealed-plan equivalence check was **inconclusive**, so no new accepted plan or transfer result was published. This is a narrow defaults-tuning result on the pinned Gemma Q6 workload; product expansion awaits complete acceptance.
 
+The authorized [repeatability follow-up](docs/superpowers/specs/2026-10-04-stock-repeatability.md) adds fixed spacing and diagnostics, with two independent acceptance blocks before consumer/transfer work. It is in implementation/review; no new native result is claimed yet.
+
 ## Installation and CLI
 
 Requires Python 3.11+ and `uv`.

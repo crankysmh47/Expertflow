@@ -1,0 +1,45 @@
+{
+  "all_retained_pair_changes_pct": [
+    5.819225034650333,
+    -0.6808832680244348,
+    3.397361541383326,
+    2.9535338505337405,
+    0.06996936514336305,
+    -0.13386352410841296,
+    -0.7393420605310341,
+    -1.0089810703806434,
+    0.5929224462189131,
+    1.6573514898119868
+  ],
+  "candidate_model_runtime_settings_workload_identities_identical": true,
+  "causal_conclusion": "No established cause. Under-0.6ms preparation is outside native decode timing; missing CPU/GPU telemetry prevents thermal/load attribution.",
+  "diagnostic_sample_counts": {
+    "cpu_performance_pct": 0,
+    "cpu_reported_frequency_mhz": 0,
+    "cpu_system_utilization_pct": 0,
+    "gpu_power_mw": 0,
+    "gpu_sm_clock_mhz": 0,
+    "gpu_temperature_c": 0
+  },
+  "native_rows": 20,
+  "next_question": "Repeatability in two independent blocks under fixed30-second spacing with diagnostics; no discarded samples or historical verdict change.",
+  "normalized_native_arguments_identical": true,
+  "original_ci90_pct": [
+    0.13362366694938232,
+    2.3424490996053886
+  ],
+  "original_product_status": "INCONCLUSIVE",
+  "preparation_ms": {
+    "direct": [
+      0.000700005330145359,
+      0.00999998883344233
+    ],
+    "sealed": [
+      0.34249998861923814,
+      0.5193999968469143
+    ]
+  },
+  "requests_identical": true,
+  "source_report_sha256": "d1c81c9bfe518ce64f928121adfe4602a454af341faa467ef4852b657471574a",
+  "status": "READ-ONLY-DIAGNOSIS"
+}
