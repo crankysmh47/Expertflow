@@ -332,7 +332,7 @@ class ServerMeasurementRunner:
         self.teardown_timeout_seconds = teardown_timeout_seconds
 
     def run_once(self, candidate, model, binding, *, output_dir, measured, stage='initial',
-                 numerical_path='stock_same_runtime', comparison_ids=(), host_environment=None):
+                 numerical_path='stock_same_runtime', comparison_ids=(), host_environment=None, experiment_context=None):
         output_dir = Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=False)
         w = candidate.identities.workload
@@ -367,6 +367,7 @@ class ServerMeasurementRunner:
             host_binding = {'host_environment': actual_host}
         _write(output_dir / 'launch.json', {
             **host_binding,
+            **({'experiment_context': experiment_context} if experiment_context is not None else {}),
             'argv': launch.argv, 'environment': {k: v for k, v in launch.environment.items()
                 if k.startswith(('EXPERTFLOW', 'LLAMA_EXPERTFLOW', 'GGML_')) or k == 'PATH'},
             'runtime_binding': binding, 'candidate_id': candidate.candidate_id,

@@ -40,12 +40,13 @@ def request(tmp_path, recorded=None):
 
 class FakeRunner:
     """Search-control fixture generating complete tiny native evidence records."""
-    def __init__(self, store, fail=False, replay_tps=30):
+    def __init__(self, store, fail=False, replay_tps=30, rates=None):
         self.store, self.fail, self.replay_tps = store, fail, replay_tps
         self.calls = []
+        self.rates = rates
 
     def run_once(self, candidate, model, binding, *, output_dir, measured, stage='initial',
-                 numerical_path='stock_same_runtime', comparison_ids=(), host_environment=None):
+                 numerical_path='stock_same_runtime', comparison_ids=(), host_environment=None, experiment_context=None):
         self.calls.append((candidate.candidate_id, stage, candidate.settings.static))
         if self.fail:
             return MeasurementOutcome('environment_blocked',None,'counter unavailable',None,str(output_dir))
@@ -53,6 +54,8 @@ class FakeRunner:
         output_dir.mkdir(parents=True)
         w = candidate.identities.workload
         tps = self.replay_tps if stage == 'sealed_replay' else 30
+        if self.rates:
+            tps = self.rates(candidate,stage)
         prompt = [1,2]
         from expertflow.compiler.runner import lower_launch
         launch=lower_launch(candidate,model.identity,binding,12345,output_dir,inherited={'PATH':'path'})
@@ -81,6 +84,8 @@ class FakeRunner:
         artifacts=[]
         if host_environment is not None:
             payloads['launch']['host_environment'] = canonical_payload(host_environment)
+        if experiment_context is not None:
+            payloads['launch']['experiment_context'] = canonical_payload(experiment_context)
         for role,payload in payloads.items():
             p=(output_dir/f'{role}.json').resolve()
             p.write_text(json.dumps(payload))
