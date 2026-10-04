@@ -1,0 +1,88 @@
+{
+  "candidate": {
+    "estimated_decode_tps": null,
+    "identities": {
+      "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+      "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+      "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+      "workload": {
+        "approximate_quality_budget": null,
+        "batch_size": 2048,
+        "bootstrap_samples": 10000,
+        "bootstrap_seed": 20261003,
+        "cache_prompt": false,
+        "completion_timeout_seconds": 300,
+        "concurrency": 1,
+        "confirmation_pairs": 10,
+        "context_size": 4096,
+        "cuda_graphs": "on",
+        "health_timeout_seconds": 180,
+        "ignore_eos": true,
+        "kv_type_k": "f16",
+        "kv_type_v": "f16",
+        "maximum_cv_pct": 10.0,
+        "measured_runs": 3,
+        "microbatch_size": 512,
+        "minimum_vram_reserve_mib": 256,
+        "objective": "decode_tps",
+        "policy": "exact",
+        "predict_tokens": 512,
+        "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+        "replay_tolerance_pct": 2.0,
+        "runtime_interface": "server_completion",
+        "schema_version": "1.0.0",
+        "seed": 42,
+        "temperature": 0.0,
+        "threads": 12,
+        "warmup_runs": 1
+      },
+      "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+    },
+    "measurement_ids": [
+      "ea1c4a75-5e02-40c9-ada2-8bc53b611fb9",
+      "47daf3ed-4518-41bb-a531-95fa8b4874e9",
+      "06950061-a99d-4c34-ad6a-31e21206f7ff",
+      "d7923c55-938b-4d5f-a96f-7d934774204e",
+      "203e0c24-8fca-4340-98f9-7be398313c0b",
+      "51c7ec1c-64f4-42e4-b6a7-4b66159ecfef",
+      "77af1d56-df13-487c-9091-6750e9f4c327",
+      "e8b68d03-c0df-48ff-a953-54306cfe6f25",
+      "84333afd-efa7-4f9b-96f0-3b90785a2580",
+      "00130bb7-5110-40f4-b3b1-a2d617a17e42",
+      "ff461cff-e6f6-4204-90a9-12a211440d02",
+      "5f5fd8da-d441-416d-a37e-a6812dc6ae76",
+      "592a375a-668e-4c69-bc67-91392b028c97",
+      "adecb43d-dc43-43ca-9c8e-87cef7a03dce",
+      "2a5667ac-ebad-4703-ba7c-5d54504cee73",
+      "b2f1f2b4-7b29-458d-a2c0-9836bc01bcfb",
+      "8e1555f4-3e91-437b-ae04-f2b22628d90f",
+      "335390c1-4e66-4d9e-bcdc-ab89c1e3ca7b",
+      "a791bceb-9ad5-4311-8ba1-d50c68b6e635",
+      "5caf3777-befc-4906-a544-c63a7c99c8bb"
+    ],
+    "rejection_reasons": [],
+    "settings": {
+      "batch_size": 2048,
+      "cpu_moe": true,
+      "cuda_graphs": "on",
+      "gpu_layers": 99,
+      "kv_type_k": "f16",
+      "kv_type_v": "f16",
+      "microbatch_size": 512,
+      "static": null
+    },
+    "status": "measured",
+    "validation": [
+      [
+        "paired_stock_product",
+        true
+      ]
+    ]
+  },
+  "compiler_version": "0.1.0",
+  "fallback": null,
+  "launcher_abi": "1.0.0",
+  "plan_sha256": "3849427ac69fdab14babedb00d0a3b3fd4c0a44420a7b8aa32963fe805cc3497",
+  "schema_version": "1.0.0",
+  "sealed_at": "2026-10-04T02:06:05.847820+00:00"
+}

@@ -26,11 +26,11 @@ after the new product validation passes.
 
 ### Task1: historical speed and host audit
 
-- [ ] Create docs/evidence/stock-discovery-20261004/history-audit.json and report.md.
+- [x] Create docs/evidence/stock-discovery-20261004/history-audit.json and report.md.
   Record source hashes, mode/interface/concurrency, stock22.9667, confirmation
  24.411/replay25.383, static28.13qualitySTOP and aggregate35.6699 distinction.
-- [ ] Capture CPU topology/identity, RAM, OS and power policy without changing them.
-- [ ] Establish .superpowers/sdd/stock-configuration-discovery/progress.md as ledger
+- [x] Capture CPU topology/identity, RAM, OS and power policy without changing them.
+- [x] Establish .superpowers/sdd/stock-configuration-discovery/progress.md as ledger
   for this complete user objective; retain native process handles there.
 
 ### Task2: evidence-backed paired stock-product acceptance
@@ -38,38 +38,38 @@ after the new product validation passes.
 Files: src/expertflow/compiler/stock_validation.py, refinement.py;
 tests/test_compiler_stock_validation.py.
 
-- [ ] Write failing tests for twenty verified fresh product-stage rows, correct
+- [x] Write failing tests for twenty verified fresh product-stage rows, correct
   schedule/candidate binding, forged statistics, old A/A rejection, partial
   failure/no publication, success publication and receipt revalidation.
-- [ ] Add product validation mode to existing execute_pairs without changing
+- [x] Add product validation mode to existing execute_pairs without changing
   default A/A behavior. Freeze new protocol and complete source hashes; keep
   source evidence read-only. Record distinct product-stage IDs.
-- [ ] Add receipt publication/verification bound to plan/experiment/host and exact
+- [x] Add receipt publication/verification bound to plan/experiment/host and exact
   EvidenceStore measurements. Recompute statistics; require fresh stages and
   exact plan launch identities/settings; fail closed on altered/missing evidence.
-- [ ] Run targeted RED/GREEN and full uv dev/quality/predictor pytest suite.
+- [x] Run targeted RED/GREEN and full uv dev/quality/predictor pytest suite.
 
 ### Task3: CLI and host-aware accepted execution
 
 Files: commands.py, preflight.py, scripts/benchmark_compiler_refinement.py;
 tests/test_compiler_cli.py and stock_validation tests.
 
-- [ ] Add stock-product experiment and source-plan/database arguments to existing
+- [x] Add stock-product experiment and source-plan/database arguments to existing
   benchmark driver; add optional acceptance receipt to validate/sealed run.
-- [ ] Capture and revalidate CPU/OS/RAM/power identities; preserve legacy paths.
-- [ ] Accepted execution checks fresh tokens/memory/cleanup and returns measured
+- [x] Capture and revalidate CPU/OS/RAM/power identities; preserve legacy paths.
+- [x] Accepted execution checks fresh tokens/memory/cleanup and returns measured
   status without using the old single-sample absolute2% publication gate.
-- [ ] Verify CLI fail-closed behavior and full suite; commit before native runs.
+- [x] Verify CLI fail-closed behavior and full suite; commit before native runs.
 
 ### Task4: live stock-product validation
 
-- [ ] One fresh output/DB; exact pinned Gemma workload, source pending plan and
+- [x] One fresh output/DB; exact pinned Gemma workload, source pending plan and
   original reviewed DB; freeze new stage/protocol/host pins.
-- [ ] Execute exactly20cold processes sequentially; inspect owned process state
+- [x] Execute exactly20cold processes sequentially; inspect owned process state
   on timeout, never relaunch a live process. All failures are retained.
-- [ ] Independently reconstruct artifacts/pairs/stats; publish fresh plan and
+- [x] Independently reconstruct artifacts/pairs/stats; publish fresh plan and
   receipt only on PASS-STOCK-FALLBACK. Original result remains unchanged.
-- [ ] One final fresh review/fix pass and full checks; save report/artifact hashes.
+- [x] One final fresh review/fix pass and full checks; save report/artifact hashes.
 
 ### Task5: bounded stock discovery
 

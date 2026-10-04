@@ -1,0 +1,29 @@
+{
+  "status": "AUDITED-SOURCE-SCOPE-NOT-NATIVE-SEARCH-RESULT",
+  "provider_id": "gemma4-q6-x86-scheduling-v1",
+  "upstream_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+  "approved_runtime_manifest_sha256": "326daa6e17e1293f6b7c5c9f23e85868961241f4dd00a94a3eee54e25071f629",
+  "model_artifact_sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba",
+  "model_size_bytes": 22862575520,
+  "family": "gemma4",
+  "architecture": "gemma4-moe",
+  "quantization": "Q6_K",
+  "host_architectures": ["AMD64", "x86_64"],
+  "source_object_ids": {
+    "ggml/src/ggml-cpu/ggml-cpu.c": "2745a7dbb29ea12f45c1722f55bc913141669419",
+    "ggml/src/ggml-cpu/ops.cpp": "7c54cb6f469da40913c7a9bd4beb51359a4b7e72",
+    "ggml/src/ggml-cpu/repack.cpp": "f18758f16bb62040333418bab06ce22efe826b20",
+    "ggml/src/ggml-cuda/common.cuh": "290dc4aff259cb78a9a477dea27920fecf398c4a",
+    "ggml/src/ggml-cuda/ggml-cuda.cu": "0878ab9c08afb783c6b5d459d4f9654617807d1d"
+  },
+  "source_inspection_repository": "C:/models/expertflow/worktrees/llama-q6-placement-final",
+  "inspection_method": "git show and git rev-parse at immutable pristine upstream revision; CPU directory git diff from fork was empty",
+  "arithmetic_scope": {
+    "cpu": "Full-output vec_dot reductions, block-local Q8_K conversion and row-owned SwiGLU/scale; Q6 repack NEON path unavailable in approved x86 build",
+    "cuda_graphs": "Same node-evaluation function with capture/replay or direct launch; optional GGML_CUDA_GRAPH_OPT rewrite remains disabled by sanitized launch environment",
+    "allowed_changes": ["threads", "cuda_graphs"],
+    "required_fixed": ["model", "runtime binaries", "CPU SIMD", "CPU-MoE placement", "F16 KV", "batch shapes", "semantic workload"],
+    "native_guards": ["exact prompt and generated tokens", "owned memory and reserve", "cleanup", "frozen host and source identity"]
+  },
+  "coverage_limits": "This provider scope is the pinned current model/runtime, not arbitrary Gemma quantizations, other MoE families, new binaries, or approximate placement. Other providers require independent operation-path evidence. No screening or confirmation native result exists yet."
+}

@@ -22,10 +22,42 @@ host claims could be rewritten together, and scheme GUIDs omitted actual power
 settings. Regression tests reproduced both gaps. Each product launch now captures
 the actual host before process creation and records it in an EvidenceStore-hashed
 launch artifact; receipt reconstruction checks that independent binding. Legacy
-measurements remain unchanged. Fresh live collection has not started yet.
+measurements remain unchanged. Fixes were committed at `a527d9b` after
+538 tests passed (7 skipped).
 
 Work follows the [new complete plan](../../superpowers/plans/2026-10-04-stock-configuration-discovery.md):
 fresh paired stock-product validation, quality-preserving bounded stock search,
 then reusable model/runtime/host contracts and explicit cross-model live coverage.
 The original compiler validation stop, thread/prefetch rejections and static
-quality failure remain unchanged. No new validated plan is claimed by this audit.
+quality failure remain unchanged.
+
+## Fresh paired product validation
+
+The fixed twenty-process product experiment completed at source `a527d9b` with
+`PASS-STOCK-FALLBACK`. Direct mean22.792150TPS; sealed mean22.922946TPS;
+geometric difference+0.569334%, CI90[-0.048785%,+1.340202%], both within the
+frozen2% equivalence margin. CVs0.739741%/1.258123%. All twenty native records
+passed exact prompt/generated tokens, owned memory/reserve and cleanup, with
+unique owned process identities. No retries or discarded samples.
+
+The [independent audit](product-verification.json) reverified every record,
+recomputed the bootstrap and confirmed original plan/database unchanged. This
+is replay/product acceptance, not an optimization or historical speed recovery.
+Published plan SHA256:
+`3849427ac69fdab14babedb00d0a3b3fd4c0a44420a7b8aa32963fe805cc3497`.
+
+Live evidence database:
+`C:/models/expertflow/runs/compiler-stock-product-20261004/compiler.sqlite3`.
+Published [plan](accepted/execution-plan.json) and
+[receipt](accepted/acceptance-receipt.json) are preserved here and in that run's
+`product/accepted/`; the report and frozen
+protocol are in `product/`. Use the existing CLI `validate --acceptance` with
+these files and pinned compiler inputs to reconstruct acceptance without a
+new native run. The live CLI returned `VALIDATED-STOCK-FALLBACK` with the same
+plan hash and no extra native process. Original Phase3 and older A/A artifacts
+retain their verdicts.
+
+Next work follows the [bounded search plan](../../superpowers/plans/2026-10-04-bounded-stock-search.md).
+Generic candidate generation, fixed complete-block screening and temporal
+normalization/ranking passed25 synthetic contract tests after observed RED.
+No stock search native samples or cross-model results have been collected.
