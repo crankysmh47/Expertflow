@@ -46,15 +46,19 @@ source/protocol. PDL/static remain outside stock search. No universal claim.
 
 ## Task3: gated real-family execution
 
-- [ ] Fresh reference10 once; independent audit and actual CLI validation.
-- [ ] Fresh product20 once; audit/validate own tokens and baseline identity.
-- [ ] Fresh explicit search18/optional20 once; independently audit ranking,
+- [x] Fresh reference10 once; independent audit and actual CLI validation.
+- [x] Fresh product20 once; audit/validate own tokens and baseline identity.
+- [x] Fresh explicit search18/optional20 once; independently audit ranking,
   confirmation decision, receipt and plan; actual CLI validation.
-- [ ] Preserve measured source checkout and unchanged recommendation metadata;
+- [x] Preserve measured source checkout and unchanged recommendation metadata;
   document consumption, exclusions, unsupported cases and result uncertainty.
 
 ## Task4: completion checkpoint
 
-- [ ] Mark umbrella generalization task with actual terminal evidence.
-- [ ] Verify all owned model processes cleaned up and unrelated user files intact.
-- [ ] Checkpoint coherent changes and durable next action at any genuine blocker.
+- [x] Mark umbrella generalization task with actual terminal evidence.
+- [x] Verify all owned model processes cleaned up and unrelated user files intact.
+- [x] Checkpoint coherent changes and durable terminal state.
+
+Terminal: own reference and paired product PASS, search RECOMMENDED-INCUMBENT.
+All68registered native processes verified;16thread challenger not accepted.
+Report: `docs/evidence/compiler-granite-20261004/report.md`. No extension/retry.

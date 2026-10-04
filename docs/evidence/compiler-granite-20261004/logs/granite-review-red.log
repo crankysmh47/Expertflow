@@ -1,0 +1,81 @@
+..................FFFFFFFFFFF.....................FF                     [100%]
+================================== FAILURES ===================================
+_______ test_granite_requires_complete_tensor_accounting[missing_dense] _______
+tests\test_compiler_granite_adapter.py:90: in test_granite_requires_complete_tensor_accounting
+    with pytest.raises(ValueError): normalize(inv)
+E   Failed: DID NOT RAISE <class 'ValueError'>
+________ test_granite_requires_complete_tensor_accounting[dense_shape] ________
+tests\test_compiler_granite_adapter.py:90: in test_granite_requires_complete_tensor_accounting
+    with pytest.raises(ValueError): normalize(inv)
+E   Failed: DID NOT RAISE <class 'ValueError'>
+________ test_granite_requires_complete_tensor_accounting[dense_type] _________
+tests\test_compiler_granite_adapter.py:90: in test_granite_requires_complete_tensor_accounting
+    with pytest.raises(ValueError): normalize(inv)
+E   Failed: DID NOT RAISE <class 'ValueError'>
+________ test_granite_requires_complete_tensor_accounting[dense_bytes] ________
+tests\test_compiler_granite_adapter.py:90: in test_granite_requires_complete_tensor_accounting
+    with pytest.raises(ValueError): normalize(inv)
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_________ test_granite_requires_complete_tensor_accounting[duplicate] _________
+tests\test_compiler_granite_adapter.py:90: in test_granite_requires_complete_tensor_accounting
+    with pytest.raises(ValueError): normalize(inv)
+E   Failed: DID NOT RAISE <class 'ValueError'>
+__________ test_granite_requires_complete_tensor_accounting[offset] ___________
+tests\test_compiler_granite_adapter.py:90: in test_granite_requires_complete_tensor_accounting
+    with pytest.raises(ValueError): normalize(inv)
+E   Failed: DID NOT RAISE <class 'ValueError'>
+___________ test_granite_requires_complete_tensor_accounting[total] ___________
+tests\test_compiler_granite_adapter.py:90: in test_granite_requires_complete_tensor_accounting
+    with pytest.raises(ValueError): normalize(inv)
+E   Failed: DID NOT RAISE <class 'ValueError'>
+______ test_granite_requires_complete_tensor_accounting[nonexpert_total] ______
+tests\test_compiler_granite_adapter.py:90: in test_granite_requires_complete_tensor_accounting
+    with pytest.raises(ValueError): normalize(inv)
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_______ test_granite_requires_complete_tensor_accounting[tensor_count] ________
+tests\test_compiler_granite_adapter.py:90: in test_granite_requires_complete_tensor_accounting
+    with pytest.raises(ValueError): normalize(inv)
+E   Failed: DID NOT RAISE <class 'ValueError'>
+________ test_granite_requires_complete_tensor_accounting[provenance] _________
+tests\test_compiler_granite_adapter.py:90: in test_granite_requires_complete_tensor_accounting
+    with pytest.raises(ValueError): normalize(inv)
+E   Failed: DID NOT RAISE <class 'ValueError'>
+______ test_granite_requires_complete_tensor_accounting[attention_scale] ______
+tests\test_compiler_granite_adapter.py:90: in test_granite_requires_complete_tensor_accounting
+    with pytest.raises(ValueError): normalize(inv)
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_______ test_product_reconstruction_requires_complete_frozen_source_map _______
+tests\test_compiler_stock_validation.py:195: in test_product_reconstruction_requires_complete_frozen_source_map
+    api().reconstruct_product(report, store, host_environment=HOST)
+src\expertflow\compiler\stock_validation.py:93: in reconstruct_product
+    raise ValueError('product claimed statistics differ from reconstructed evidence')
+E   ValueError: product claimed statistics differ from reconstructed evidence
+
+During handling of the above exception, another exception occurred:
+tests\test_compiler_stock_validation.py:194: in test_product_reconstruction_requires_complete_frozen_source_map
+    with pytest.raises(ValueError, match='source'):
+E   AssertionError: Regex pattern did not match.
+E    Regex: 'source'
+E    Input: 'product claimed statistics differ from reconstructed evidence'
+__________ test_family_spec_change_stops_product_before_next_launch ___________
+tests\test_compiler_stock_validation.py:212: in test_family_spec_change_stops_product_before_next_launch
+    assert report['status'] == 'VALIDATION-STOP' and len(runner.calls) == 1
+E   AssertionError: assert ('PASS-STOCK-FALLBACK' == 'VALIDATION-STOP'
+E     
+E     - VALIDATION-STOP
+E     + PASS-STOCK-FALLBACK)
+=========================== short test summary info ===========================
+FAILED tests/test_compiler_granite_adapter.py::test_granite_requires_complete_tensor_accounting[missing_dense]
+FAILED tests/test_compiler_granite_adapter.py::test_granite_requires_complete_tensor_accounting[dense_shape]
+FAILED tests/test_compiler_granite_adapter.py::test_granite_requires_complete_tensor_accounting[dense_type]
+FAILED tests/test_compiler_granite_adapter.py::test_granite_requires_complete_tensor_accounting[dense_bytes]
+FAILED tests/test_compiler_granite_adapter.py::test_granite_requires_complete_tensor_accounting[duplicate]
+FAILED tests/test_compiler_granite_adapter.py::test_granite_requires_complete_tensor_accounting[offset]
+FAILED tests/test_compiler_granite_adapter.py::test_granite_requires_complete_tensor_accounting[total]
+FAILED tests/test_compiler_granite_adapter.py::test_granite_requires_complete_tensor_accounting[nonexpert_total]
+FAILED tests/test_compiler_granite_adapter.py::test_granite_requires_complete_tensor_accounting[tensor_count]
+FAILED tests/test_compiler_granite_adapter.py::test_granite_requires_complete_tensor_accounting[provenance]
+FAILED tests/test_compiler_granite_adapter.py::test_granite_requires_complete_tensor_accounting[attention_scale]
+FAILED tests/test_compiler_stock_validation.py::test_product_reconstruction_requires_complete_frozen_source_map
+FAILED tests/test_compiler_stock_validation.py::test_family_spec_change_stops_product_before_next_launch
+13 failed, 39 passed in 116.59s (0:01:56)

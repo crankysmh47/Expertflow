@@ -1,0 +1,46 @@
+{
+  "all_native_artifacts_reverified": true,
+  "global_optimum_proven": false,
+  "historical_gemma_plans_and_terminal_evidence_unchanged": true,
+  "live_families": [
+    "gemma4",
+    "granitemoe"
+  ],
+  "maximum_native_processes": 68,
+  "new_static_profile_cache_or_fork_coverage": false,
+  "own_model_tokens_stable": true,
+  "remaining_conditional_budget": 0,
+  "source_matches_git_revision": true,
+  "stages": {
+    "product": {
+      "audit_sha256": "84555d7c8eb743a4b12198a0a94ae74de7bdd547fb5cf6dddf5d549c6ebfc035",
+      "database_sha256": "9072f0b1b896f0385bb21111a1f2660ce6e3861d4992c9d25258d6d399c3f3f9",
+      "native_processes": 20,
+      "plan_sha256": "449f1dce2e7045523c1b4a542d89581435413cb30c10d4017ce5dfe821d79a7f",
+      "report_sha256": "987b2145601888eeaf72ab16bb89e92ced3c762ace8af4ce5283ddb5c6259397",
+      "source_commit": "7cbae5dbb0875927e7a620cf3784fcb1bb930823",
+      "status": "PASS-STOCK-FALLBACK"
+    },
+    "reference": {
+      "audit_sha256": "98b6ef17ed3cb247ea9c067ab8f2aa041cd86524b8edafe58f472796f5da3265",
+      "database_sha256": "1b7f7fc62cf71a00774f9717d7ee49da0857deb64ec4b599209c8d87bcd00ccf",
+      "native_processes": 10,
+      "plan_sha256": "ad820b31268bce882a8ecc54dee050ad8f882a753554570ab0906b9eebac8a48",
+      "report_sha256": "1b7f3a0ad4df188e51a38c1f66ce09eb50d889a646643fb973c112c317bd952d",
+      "source_commit": "7cbae5dbb0875927e7a620cf3784fcb1bb930823",
+      "status": "REFERENCE-STABLE"
+    },
+    "search": {
+      "audit_sha256": "dad294f7a74140878515e945fd01d87a132f475ecbf881cb943b27f8708116af",
+      "database_sha256": "2f854fb791bd66064650157ec2584854596fad26c2bc3117b7156289eaa50095",
+      "native_processes": 38,
+      "plan_sha256": "449f1dce2e7045523c1b4a542d89581435413cb30c10d4017ce5dfe821d79a7f",
+      "report_sha256": "ae4461f0ef7c75fd7ffc0b9eba203ffc3760b8cdee637b021962ec161ae9cc85",
+      "source_commit": "7cbae5dbb0875927e7a620cf3784fcb1bb930823",
+      "status": "RECOMMENDED-INCUMBENT"
+    }
+  },
+  "status": "VERIFIED-GRANITE-GENERALIZATION",
+  "unique_native_processes": 68,
+  "universal_support": false
+}

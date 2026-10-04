@@ -1178,3 +1178,7 @@ raw/source/statistical audits passed. Accepted Q6/Q4 plans remain unchanged.
 Evidence: docs/evidence/compiler-cuda-pdl-20261004/report.md. Frozen measured source
 checkout: C:/models/expertflow/worktrees/compiler-cuda-pdl-34a19b2. Broader real-family
 validation follows; no speedup or universal optimum is claimed.
+
+## 2026-10-04 - real Granite stock compiler generalization
+
+Reviewed source7cbae5d: separate complete Granite adapter/provider and GPU-resident baseline; historical Gemma IR/accepted plans unchanged. Final745tests passed,7source-environment skips; independent review2P2fixed/rechecked. Own reference10 and paired product20 PASS; search18+20confirmation retains12threads/graphs on after16thread change-.2861%,CI95[-1.4730,.9039]. All68unique native processes/raw/source identities independently verified, actual CLI validates published recommendation449f1dce. No retries/extra finalists; no model processes remain. Evidence: docs/evidence/compiler-granite-20261004/report.md. Gemma PDL NO-GO remains closed; live stock scope now two families, not universal/static/cache/fork coverage.

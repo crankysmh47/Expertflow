@@ -51,6 +51,10 @@ Keep all profiler failures distinct from model measurements.
   compatible artifact under2GiB and verify downloaded size/hash.
 - [x] Normalize complete real tensor inventory; TDD required family adapter and
   source eligibility extension, with explicit operation/control limits.
-- [ ] Freeze and execute its own reference10, product20 and bounded stock search,
+- [x] Freeze and execute its own reference10, product20 and bounded stock search,
   conditional on each gate. Audit and document actual coverage and exclusions.
-- [ ] Run required checks and review; checkpoint durable terminal state.
+- [x] Run required checks and review; checkpoint durable terminal state.
+
+Granite terminal evidence is in `docs/evidence/compiler-granite-20261004/report.md`:
+reference/product PASS, incumbent retained after38search runs, all68native runs
+independently verified. Final745tests passed,7historical source-environment skips.

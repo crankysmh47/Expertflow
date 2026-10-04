@@ -1,0 +1,1 @@
+{"status": "REFERENCE-STABLE", "reason": null, "native_outcomes": 10, "report": "C:\\models\\expertflow\\runs\\compiler-granite-reference-20261004\\reference\\report.json", "mean_tps": 486.2893687285578, "cv_pct": 2.813250734496988, "product_accepted": false}
