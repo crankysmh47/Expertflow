@@ -1,0 +1,2128 @@
+{
+  "frozen": {
+    "accepted_directory": "C:\\sem4\\expertflow\\docs\\evidence\\stock-discovery-20261004\\accepted",
+    "accepted_plan_sha256": "3849427ac69fdab14babedb00d0a3b3fd4c0a44420a7b8aa32963fe805cc3497",
+    "candidates": {
+      "direct": {
+        "estimated_decode_tps": null,
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measurement_ids": [],
+        "rejection_reasons": [],
+        "settings": {
+          "batch_size": 2048,
+          "cpu_moe": true,
+          "cuda_graphs": "on",
+          "gpu_layers": 99,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "microbatch_size": 512,
+          "static": null
+        },
+        "status": "unmeasured",
+        "validation": []
+      },
+      "sealed": {
+        "estimated_decode_tps": null,
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measurement_ids": [],
+        "rejection_reasons": [],
+        "settings": {
+          "batch_size": 2048,
+          "cpu_moe": true,
+          "cuda_graphs": "on",
+          "cuda_pdl": "off",
+          "gpu_layers": 99,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "microbatch_size": 512,
+          "static": null
+        },
+        "status": "unmeasured",
+        "validation": []
+      }
+    },
+    "control_proof": {
+      "allowed_control": "cuda_pdl",
+      "arithmetic": "same compiled kernel and arguments",
+      "base_scope": {
+        "allowed_controls": [
+          "threads",
+          "cuda_graphs"
+        ],
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_ir_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "provider_id": "gemma4-q6-x86-scheduling-v1",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "scope": "pinned Gemma4 Q6, unchanged arithmetic/placement/KV; exact native token guards required",
+        "source_object_ids": {
+          "ggml/src/ggml-cpu/ggml-cpu.c": "2745a7dbb29ea12f45c1722f55bc913141669419",
+          "ggml/src/ggml-cpu/ops.cpp": "7c54cb6f469da40913c7a9bd4beb51359a4b7e72",
+          "ggml/src/ggml-cpu/repack.cpp": "f18758f16bb62040333418bab06ce22efe826b20",
+          "ggml/src/ggml-cuda/common.cuh": "290dc4aff259cb78a9a477dea27920fecf398c4a",
+          "ggml/src/ggml-cuda/ggml-cuda.cu": "0878ab9c08afb783c6b5d459d4f9654617807d1d"
+        },
+        "upstream_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697"
+      },
+      "probe_sha256": "ea7c65b852ee355ebb921db660ba8dea05299acfdb2a518fc897cff718cfe7c9"
+    },
+    "experiment_root": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment",
+    "frozen_monotonic_ns": 145068703000000,
+    "host_environment": {
+      "architecture": "AMD64",
+      "cpu": [
+        {
+          "cores": 8,
+          "logical_processors": 16,
+          "name": "AMD Ryzen 7 9700X 8-Core Processor",
+          "processor_id": "178BFBFF00B40F40"
+        }
+      ],
+      "os": "10.0.26200.0",
+      "power_policy": {
+        "settings": "Power Scheme GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c  (High performance)\nGUID Alias: SCHEME_MIN\nSubgroup GUID: fea3413e-7e05-4911-9a71-700331f1c294  (Settings belonging to no subgroup)\nGUID Alias: SUB_NONE\nPower Setting GUID: 0e796bdb-100d-47d6-a2d5-f7d2daa51f51  (Require a password on wakeup)\nGUID Alias: CONSOLELOCK\nPossible Setting Index: 000\nPossible Setting Friendly Name: No\nPossible Setting Index: 001\nPossible Setting Friendly Name: Yes\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 245d8541-3943-4422-b025-13a784f679b7  (Power plan type)\nGUID Alias: PERSONALITY\nPossible Setting Index: 000\nPossible Setting Friendly Name: Power saver\nPossible Setting Index: 001\nPossible Setting Friendly Name: High performance\nPossible Setting Index: 002\nPossible Setting Friendly Name: Balanced\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 4faab71a-92e5-4726-b531-224559672d19  (Device idle policy)\nGUID Alias: DEVICEIDLE\nPossible Setting Index: 000\nPossible Setting Friendly Name: Performance\nPossible Setting Index: 001\nPossible Setting Friendly Name: Power savings\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 68afb2d9-ee95-47a8-8f50-4115088073b1  (Disconnected Standby Mode)\nGUID Alias: DISCONNECTEDSTANDBYMODE\nPossible Setting Index: 000\nPossible Setting Friendly Name: Normal\nPossible Setting Index: 001\nPossible Setting Friendly Name: Aggressive\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: f15576e8-98b7-4186-b944-eafa664402d9  (Networking connectivity in Standby)\nGUID Alias: CONNECTIVITYINSTANDBY\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disable\nPossible Setting Index: 001\nPossible Setting Friendly Name: Enable\nPossible Setting Index: 002\nPossible Setting Friendly Name: Managed by Windows\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000002\nSubgroup GUID: 0012ee47-9041-4b5d-9b77-535fba8b1442  (Hard disk)\nGUID Alias: SUB_DISK\nPower Setting GUID: 0b2d69d7-a2a1-449c-9680-f91c70521c60  (AHCI Link Power Management - HIPM/DIPM)\nPossible Setting Index: 000\nPossible Setting Friendly Name: Active\nPossible Setting Index: 001\nPossible Setting Friendly Name: HIPM\nPossible Setting Index: 002\nPossible Setting Friendly Name: HIPM+DIPM\nPossible Setting Index: 003\nPossible Setting Friendly Name: DIPM\nPossible Setting Index: 004\nPossible Setting Friendly Name: Lowest\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 51dea550-bb38-4bc4-991b-eacf37be5ec8  (Maximum Power Level)\nGUID Alias: DISKMAXPOWER\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: 6738e2c4-e8a5-4a42-b16a-e040e769756e  (Turn off hard disk after)\nGUID Alias: DISKIDLE\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x000004b0\nCurrent DC Power Setting Index: 0x000004b0\nPower Setting GUID: 80e3c60e-bb94-4ad8-bbe0-0d3195efc663  (Hard disk burst ignore time)\nGUID Alias: DISKBURSTIGNORE\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: d3d55efd-c1ff-424e-9dc3-441be7833010  (Secondary NVMe Idle Timeout)\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x0000ea60\nPossible Settings increment: 0x00000001\nPossible Settings units: milliseconds\nCurrent AC Power Setting Index: 0x000007d0\nCurrent DC Power Setting Index: 0x000007d0\nPower Setting GUID: d639518a-e56d-4345-8af2-b9f32fb26109  (Primary NVMe Idle Timeout)\nGUID Alias: NVMEPRIMARYIDLETIMEOUT\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x0000ea60\nPossible Settings increment: 0x00000001\nPossible Settings units: milliseconds\nCurrent AC Power Setting Index: 0x000000c8\nCurrent DC Power Setting Index: 0x000000c8\nPower Setting GUID: dab60367-53fe-4fbc-825e-521d069d2456  (AHCI Link Power Management - Adaptive)\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x000493e0\nPossible Settings increment: 0x00000001\nPossible Settings units: millisecond\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: dbc9e238-6de9-49e3-92cd-8c2b4946b472  (Secondary NVMe Power State Transition Latency Tolerance)\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x0000ea60\nPossible Settings increment: 0x00000001\nPossible Settings units: milliseconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: fc7372b6-ab2d-43ee-8797-15e9841f2cca  (NVMe NOPPME)\nGUID Alias: DISKNVMENOPPME\nPossible Setting Index: 000\nPossible Setting Friendly Name: Off\nPossible Setting Index: 001\nPossible Setting Friendly Name: On\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: fc95af4d-40e7-4b6d-835a-56d131dbc80e  (Primary NVMe Power State Transition Latency Tolerance)\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x0000ea60\nPossible Settings increment: 0x00000001\nPossible Settings units: milliseconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x0000000a\nSubgroup GUID: 02f815b5-a5cf-4c84-bf20-649d1f75d3d8  (Internet Explorer)\nPower Setting GUID: 4c793e7d-a264-42e1-87d3-7a0d2f523ccd  (JavaScript Timer Frequency)\nPossible Setting Index: 000\nPossible Setting Friendly Name: Maximum Power Savings\nPossible Setting Index: 001\nPossible Setting Friendly Name: Maximum Performance\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nSubgroup GUID: 0d7dbae2-4294-402a-ba8e-26777e8488cd  (Desktop background settings)\nPower Setting GUID: 309dce9b-bef4-4119-9921-a851fb12f0f4  (Slide show)\nPossible Setting Index: 000\nPossible Setting Friendly Name: Available\nPossible Setting Index: 001\nPossible Setting Friendly Name: Paused\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nSubgroup GUID: 19cbb8fa-5279-450e-9fac-8a3d5fedd0c1  (Wireless Adapter Settings)\nPower Setting GUID: 12bbebe6-58d6-4636-95bb-3217ef867c1a  (Power Saving Mode)\nPossible Setting Index: 000\nPossible Setting Friendly Name: Maximum Performance\nPossible Setting Index: 001\nPossible Setting Friendly Name: Low Power Saving\nPossible Setting Index: 002\nPossible Setting Friendly Name: Medium Power Saving\nPossible Setting Index: 003\nPossible Setting Friendly Name: Maximum Power Saving\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nSubgroup GUID: 238c9fa8-0aad-41ed-83f4-97be242c8f20  (Sleep)\nGUID Alias: SUB_SLEEP\nPower Setting GUID: 1a34bdc3-7e6b-442e-a9d0-64b6ef378e84  (Legacy RTC mitigations)\nGUID Alias: LEGACYRTCMITIGATION\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disable\nPossible Setting Index: 001\nPossible Setting Friendly Name: Enable\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 25dfa149-5dd1-4736-b5ab-e8a37b5b8187  (Allow Away Mode Policy)\nGUID Alias: AWAYMODE\nPossible Setting Index: 000\nPossible Setting Friendly Name: No\nPossible Setting Index: 001\nPossible Setting Friendly Name: Yes\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 29f6c1db-86da-48c5-9fdb-f2b67b1f44da  (Sleep after)\nGUID Alias: STANDBYIDLE\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 7bc4a2f9-d8fc-4469-b07b-33eb785aaca0  (System unattended sleep timeout)\nGUID Alias: UNATTENDSLEEP\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x00000078\nCurrent DC Power Setting Index: 0x00000078\nPower Setting GUID: 94ac6d29-73ce-41a6-809f-6363ba21b47e  (Allow hybrid sleep)\nGUID Alias: HYBRIDSLEEP\nPossible Setting Index: 000\nPossible Setting Friendly Name: Off\nPossible Setting Index: 001\nPossible Setting Friendly Name: On\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 9d7815a6-7ee4-497e-8888-515a05f02364  (Hibernate after)\nGUID Alias: HIBERNATEIDLE\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: a4b195f5-8225-47d8-8012-9d41369786e2  (Allow system required policy)\nGUID Alias: SYSTEMREQUIRED\nPossible Setting Index: 000\nPossible Setting Friendly Name: No\nPossible Setting Index: 001\nPossible Setting Friendly Name: Yes\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: abfc2519-3608-4c2a-94ea-171b0ed546ab  (Allow Standby States)\nGUID Alias: ALLOWSTANDBY\nPossible Setting Index: 000\nPossible Setting Friendly Name: Off\nPossible Setting Index: 001\nPossible Setting Friendly Name: On\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d  (Allow wake timers)\nGUID Alias: RTCWAKE\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disable\nPossible Setting Index: 001\nPossible Setting Friendly Name: Enable\nPossible Setting Index: 002\nPossible Setting Friendly Name: Important Wake Timers Only\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: d4c1d4c8-d5cc-43d3-b83e-fc51215cb04d  (Allow sleep with remote opens)\nGUID Alias: REMOTEFILESLEEP\nPossible Setting Index: 000\nPossible Setting Friendly Name: Off\nPossible Setting Index: 001\nPossible Setting Friendly Name: On\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nSubgroup GUID: 2a737441-1930-4402-8d77-b2bebba308a3  (USB settings)\nPower Setting GUID: 0853a681-27c8-4100-a2fd-82013e970683  (Hub Selective Suspend Timeout)\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x000186a0\nPossible Settings increment: 0x00000001\nPossible Settings units: Millisecond\nCurrent AC Power Setting Index: 0x00000032\nCurrent DC Power Setting Index: 0x00000032\nPower Setting GUID: 48e6b7a6-50f5-4782-a5d4-53bb8f07e226  (USB selective suspend setting)\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disabled\nPossible Setting Index: 001\nPossible Setting Friendly Name: Enabled\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 498c044a-201b-4631-a522-5c744ed4e678  (Setting IOC on all TDs)\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disabled\nPossible Setting Index: 001\nPossible Setting Friendly Name: Enabled\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: d4e98f31-5ffe-4ce1-be31-1b38b384c009  (USB 3 Link Power Mangement)\nPossible Setting Index: 000\nPossible Setting Friendly Name: Off\nPossible Setting Index: 001\nPossible Setting Friendly Name: Minimum power savings\nPossible Setting Index: 002\nPossible Setting Friendly Name: Moderate power savings\nPossible Setting Index: 003\nPossible Setting Friendly Name: Maximum power savings\nCurrent AC Power Setting Index: 0x00000002\nCurrent DC Power Setting Index: 0x00000002\nSubgroup GUID: 2e601130-5351-4d9d-8e04-252966bad054  (Idle Resiliency)\nGUID Alias: SUB_IR\nPower Setting GUID: 3166bc41-7e98-4e03-b34e-ec0f5f2b218e  (Execution Required power request timeout)\nGUID Alias: EXECTIME\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0xffffffff\nCurrent DC Power Setting Index: 0x0000012c\nPower Setting GUID: c36f0eb4-2988-4a70-8eee-0884fc2c2433  (IO coalescing timeout)\nGUID Alias: COALTIME\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Milliseconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: c42b79aa-aa3a-484b-a98f-2cf32aa90a28  (Processor Idle Resiliency Timer Resolution)\nGUID Alias: PROCIR\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x0000fde8\nPossible Settings increment: 0x00000001\nPossible Settings units: Milliseconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: d502f7ee-1dc7-4efd-a55d-f04b6f5c0545  (Deep Sleep Enabled/Disabled)\nGUID Alias: DEEPSLEEP\nPossible Setting Index: 000\nPossible Setting Friendly Name: Deep Sleep Disabled\nPossible Setting Index: 001\nPossible Setting Friendly Name: Deep Sleep Enabled\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nSubgroup GUID: 48672f38-7a9a-4bb2-8bf8-3d85be19de4e  (Interrupt Steering Settings)\nGUID Alias: SUB_INTSTEER\nPower Setting GUID: 2bfc24f9-5ea2-4801-8213-3dbae01aa39d  (Interrupt Steering Mode)\nGUID Alias: MODE\nPossible Setting Index: 000\nPossible Setting Friendly Name: Default\nPossible Setting Index: 001\nPossible Setting Friendly Name: Any processor\nPossible Setting Index: 002\nPossible Setting Friendly Name: Any unparked processor with time delay\nPossible Setting Index: 003\nPossible Setting Friendly Name: Any unparked processor\nPossible Setting Index: 004\nPossible Setting Friendly Name: Lock Interrupt Routing\nPossible Setting Index: 005\nPossible Setting Friendly Name: Processor 0\nPossible Setting Index: 006\nPossible Setting Friendly Name: Processor 1\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 73cde64d-d720-4bb2-a860-c755afe77ef2  (Target Load)\nGUID Alias: PERPROCLOAD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00002710\nPossible Settings increment: 0x00000001\nPossible Settings units: Tenths of a percent\nCurrent AC Power Setting Index: 0x00000032\nCurrent DC Power Setting Index: 0x00000032\nPower Setting GUID: d6ba4903-386f-4c2c-8adb-5c21b3328d25  (Unparked time trigger)\nGUID Alias: UNPARKTIME\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x000186a0\nPossible Settings increment: 0x00000001\nPossible Settings units: Milliseconds\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nSubgroup GUID: 4f971e89-eebd-4455-a8de-9e59040e7347  (Power buttons and lid)\nGUID Alias: SUB_BUTTONS\nPower Setting GUID: 5ca83367-6e45-459f-a27b-476b1d01c936  (Lid close action)\nGUID Alias: LIDACTION\nPossible Setting Index: 000\nPossible Setting Friendly Name: Do nothing\nPossible Setting Index: 001\nPossible Setting Friendly Name: Sleep\nPossible Setting Index: 002\nPossible Setting Friendly Name: Hibernate\nPossible Setting Index: 003\nPossible Setting Friendly Name: Shut down\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 7648efa3-dd9c-4e3e-b566-50f929386280  (Power button action)\nGUID Alias: PBUTTONACTION\nPossible Setting Index: 000\nPossible Setting Friendly Name: Do nothing\nPossible Setting Index: 001\nPossible Setting Friendly Name: Sleep\nPossible Setting Index: 002\nPossible Setting Friendly Name: Hibernate\nPossible Setting Index: 003\nPossible Setting Friendly Name: Shut down\nPossible Setting Index: 004\nPossible Setting Friendly Name: Turn off the display\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000003\nPower Setting GUID: 833a6b62-dfa4-46d1-82f8-e09e34d029d6  (Enable forced button/lid shutdown)\nGUID Alias: SHUTDOWN\nPossible Setting Index: 000\nPossible Setting Friendly Name: Off\nPossible Setting Index: 001\nPossible Setting Friendly Name: On\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 96996bc0-ad50-47ec-923b-6f41874dd9eb  (Sleep button action)\nGUID Alias: SBUTTONACTION\nPossible Setting Index: 000\nPossible Setting Friendly Name: Do nothing\nPossible Setting Index: 001\nPossible Setting Friendly Name: Sleep\nPossible Setting Index: 002\nPossible Setting Friendly Name: Hibernate\nPossible Setting Index: 003\nPossible Setting Friendly Name: Shut down\nPossible Setting Index: 004\nPossible Setting Friendly Name: Turn off the display\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 99ff10e7-23b1-4c07-a9d1-5c3206d741b4  (Lid open action)\nGUID Alias: LIDOPENWAKE\nPossible Setting Index: 000\nPossible Setting Friendly Name: Do nothing\nPossible Setting Index: 001\nPossible Setting Friendly Name: Turn on the display\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: a7066653-8d6c-40a8-910e-a1f54b84c7e5  (Start menu power button)\nGUID Alias: UIBUTTON_ACTION\nPossible Setting Index: 000\nPossible Setting Friendly Name: Sleep\nPossible Setting Index: 001\nPossible Setting Friendly Name: Hibernate\nPossible Setting Index: 002\nPossible Setting Friendly Name: Shut down\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nSubgroup GUID: 501a4d13-42af-4429-9fd1-a8218c268e20  (PCI Express)\nGUID Alias: SUB_PCIEXPRESS\nPower Setting GUID: ee12f906-d277-404b-b6da-e5fa1a576df5  (Link State Power Management)\nGUID Alias: ASPM\nPossible Setting Index: 000\nPossible Setting Friendly Name: Off\nPossible Setting Index: 001\nPossible Setting Friendly Name: Moderate power savings\nPossible Setting Index: 002\nPossible Setting Friendly Name: Maximum power savings\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nSubgroup GUID: 54533251-82be-4824-96c1-47b60b740d00  (Processor power management)\nGUID Alias: SUB_PROCESSOR\nPower Setting GUID: 06cadf0e-64ed-448a-8927-ce7bf90eb35d  (Processor performance increase threshold)\nGUID Alias: PERFINCTHRESHOLD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x0000001e\nCurrent DC Power Setting Index: 0x0000001e\nPower Setting GUID: 06cadf0e-64ed-448a-8927-ce7bf90eb35e  (Processor performance increase threshold for Processor Power Efficiency Class 1)\nGUID Alias: PERFINCTHRESHOLD1\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x0000003c\nCurrent DC Power Setting Index: 0x0000005a\nPower Setting GUID: 0cc5b647-c1df-4637-891a-dec35c318583  (Processor performance core parking min cores)\nGUID Alias: CPMINCORES\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: 0cc5b647-c1df-4637-891a-dec35c318584  (Processor performance core parking min cores for Processor Power Efficiency Class 1)\nGUID Alias: CPMINCORES1\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 12a0ab44-fe28-4fa9-b3bd-4b64f44960a6  (Processor performance decrease threshold)\nGUID Alias: PERFDECTHRESHOLD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x0000000a\nCurrent DC Power Setting Index: 0x0000000a\nPower Setting GUID: 12a0ab44-fe28-4fa9-b3bd-4b64f44960a7  (Processor performance decrease threshold for Processor Power Efficiency Class 1)\nGUID Alias: PERFDECTHRESHOLD1\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000014\nCurrent DC Power Setting Index: 0x0000001e\nPower Setting GUID: 12fd031f-53d2-4bf4-ac6d-c699fc9538c7  (Hybrid containment zone important utility percentage)\nGUID Alias: HETEROCONTAINMENTHYBRIDIMPUTILTHRESHOLD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 1a98ad09-af22-42ca-8e61-f0a5802c270a  (Processor Restriction Count)\nGUID Alias: RESTRICTIONCOUNT\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000040\nPossible Settings increment: 0x00000001\nPossible Settings units: Processor Restriction Count\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 1facfc65-a930-4bc5-9f38-504ec097bbc0  (Initial performance for Processor Power Efficiency Class 1 when unparked)\nGUID Alias: HETEROCLASS1INITIALPERF\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000032\nCurrent DC Power Setting Index: 0x00000032\nPower Setting GUID: 2430ab6f-a520-44a2-9601-f7f23b5134b1  (Processor performance core parking concurrency threshold)\nGUID Alias: CPCONCURRENCY\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000061\nCurrent DC Power Setting Index: 0x00000061\nPower Setting GUID: 2ddd5a84-5a71-437e-912a-db0b8c788732  (Processor performance core parking increase time)\nGUID Alias: CPINCREASETIME\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: Time check intervals\nCurrent AC Power Setting Index: 0x00000007\nCurrent DC Power Setting Index: 0x00000007\nPower Setting GUID: 36687f9e-e3a5-4dbf-b1dc-15eb381c6863  (Processor energy performance preference policy)\nGUID Alias: PERFEPP\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x0000000a\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 36687f9e-e3a5-4dbf-b1dc-15eb381c6864  (Processor energy performance preference policy for Processor Power Efficiency Class 1)\nGUID Alias: PERFEPP1\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 36687f9e-e3a5-4dbf-b1dc-15eb381c6865  (Processor energy performance preference policy for Processor Power Efficiency Class 2)\nGUID Alias: PERFEPP2\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 3b04d4fd-1cc7-4f23-ab1c-d1337819c4bb  (Allow Throttle States)\nGUID Alias: THROTTLING\nPossible Setting Index: 000\nPossible Setting Friendly Name: Off\nPossible Setting Index: 001\nPossible Setting Friendly Name: On\nPossible Setting Index: 002\nPossible Setting Friendly Name: Automatic\nCurrent AC Power Setting Index: 0x00000002\nCurrent DC Power Setting Index: 0x00000002\nPower Setting GUID: 4009efa7-e72d-4cba-9edf-91084ea8cbc3  (Processor performance increase time for Processor Power Efficiency Class 1)\nGUID Alias: HETEROINCREASETIME\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: Time check intervals\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 40fbefc7-2e9d-4d25-a185-0cfd8574bac6  (Processor performance decrease policy)\nGUID Alias: PERFDECPOL\nPossible Setting Index: 000\nPossible Setting Friendly Name: Ideal\nPossible Setting Index: 001\nPossible Setting Friendly Name: Single\nPossible Setting Index: 002\nPossible Setting Friendly Name: Rocket\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 40fbefc7-2e9d-4d25-a185-0cfd8574bac7  (Processor performance decrease policy for Processor Power Efficiency Class 1)\nGUID Alias: PERFDECPOL1\nPossible Setting Index: 000\nPossible Setting Friendly Name: Ideal\nPossible Setting Index: 001\nPossible Setting Friendly Name: Single\nPossible Setting Index: 002\nPossible Setting Friendly Name: Rocket\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 43f278bc-0f8a-46d0-8b31-9a23e615d713  (Long running threads' processor architecture lower limit)\nGUID Alias: LONGTHREADARCHCLASSLOWERTHRESHOLD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x000000ff\nPossible Settings increment: 0x00000001\nPossible Settings units: Processor Architecture Class\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 447235c7-6a8d-4cc0-8e24-9eaf70b96e2b  (Processor performance core parking parked performance state)\nGUID Alias: CPPERF\nPossible Setting Index: 000\nPossible Setting Friendly Name: No Preference\nPossible Setting Index: 001\nPossible Setting Friendly Name: Deepest Performance State\nPossible Setting Index: 002\nPossible Setting Friendly Name: Lightest Performance State\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 447235c7-6a8d-4cc0-8e24-9eaf70b96e2c  (Processor performance core parking parked performance state for Processor Power Efficiency Class 1)\nGUID Alias: CPPERF1\nPossible Setting Index: 000\nPossible Setting Friendly Name: No Preference\nPossible Setting Index: 001\nPossible Setting Friendly Name: Deepest Performance State\nPossible Setting Index: 002\nPossible Setting Friendly Name: Lightest Performance State\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 45bcc044-d885-43e2-8605-ee0ec6e96b59  (Processor performance boost policy)\nGUID Alias: PERFBOOSTPOL\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: 465e1f50-b610-473a-ab58-00d1077dc418  (Processor performance increase policy)\nGUID Alias: PERFINCPOL\nPossible Setting Index: 000\nPossible Setting Friendly Name: Ideal\nPossible Setting Index: 001\nPossible Setting Friendly Name: Single\nPossible Setting Index: 002\nPossible Setting Friendly Name: Rocket\nPossible Setting Index: 003\nPossible Setting Friendly Name: IdealAggressive\nCurrent AC Power Setting Index: 0x00000002\nCurrent DC Power Setting Index: 0x00000002\nPower Setting GUID: 465e1f50-b610-473a-ab58-00d1077dc419  (Processor performance increase policy for Processor Power Efficiency Class 1)\nGUID Alias: PERFINCPOL1\nPossible Setting Index: 000\nPossible Setting Friendly Name: Ideal\nPossible Setting Index: 001\nPossible Setting Friendly Name: Single\nPossible Setting Index: 002\nPossible Setting Friendly Name: Rocket\nPossible Setting Index: 003\nPossible Setting Friendly Name: IdealAggressive\nCurrent AC Power Setting Index: 0x00000003\nCurrent DC Power Setting Index: 0x00000003\nPower Setting GUID: 4b70f900-cdd9-4e66-aa26-ae8417f98173  (Latency sensitivity hint processor energy performance preference)\nGUID Alias: LATENCYHINTEPP\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: 4b70f900-cdd9-4e66-aa26-ae8417f98174  (Latency sensitivity hint processor energy performance preference for Processor Power Efficiency Class 1)\nGUID Alias: LATENCYHINTEPP1\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: 4b70f900-cdd9-4e66-aa26-ae8417f98175  (Latency sensitivity hint processor energy performance preference for Processor Power Efficiency Class 2)\nGUID Alias: LATENCYHINTEPP2\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: 4b92d758-5a24-4851-a470-815d78aee119  (Processor idle demote threshold)\nGUID Alias: IDLEDEMOTE\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000028\nCurrent DC Power Setting Index: 0x00000028\nPower Setting GUID: 4bdaf4e9-d103-46d7-a5f0-6280121616ef  (Processor performance core parking distribution threshold)\nGUID Alias: CPDISTRIBUTION\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x0000005a\nCurrent DC Power Setting Index: 0x0000005a\nPower Setting GUID: 4d2b0152-7d5c-498b-88e2-34345392a2c5  (Processor performance time check interval)\nGUID Alias: PERFCHECK\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00001388\nPossible Settings increment: 0x00000001\nPossible Settings units: Milliseconds\nCurrent AC Power Setting Index: 0x0000000f\nCurrent DC Power Setting Index: 0x0000000f\nPower Setting GUID: 4e4450b3-6179-4e91-b8f1-5bb9938f81a1  (Processor duty cycling)\nGUID Alias: PERFDUTYCYCLING\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disabled\nPossible Setting Index: 001\nPossible Setting Friendly Name: Enabled\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 53824d46-87bd-4739-aa1b-aa793fac36d6  (Short running threads' processor architecture lower limit)\nGUID Alias: SHORTTHREADARCHCLASSLOWERTHRESHOLD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x000000ff\nPossible Settings increment: 0x00000001\nPossible Settings units: Processor Architecture Class\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 5ba7419a-295c-4b02-841b-66799388d6da  (WPS minimum efficiency score for small cores)\nGUID Alias: WPSMINEFFICIENCYTHRESHOLD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x000000ff\nPossible Settings increment: 0x00000001\nPossible Settings units: WPS score\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 5d76a2ca-e8c0-402f-a133-2158492d58ad  (Processor idle disable)\nGUID Alias: IDLEDISABLE\nPossible Setting Index: 000\nPossible Setting Friendly Name: Enable idle\nPossible Setting Index: 001\nPossible Setting Friendly Name: Disable idle\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 603fe9ce-8d01-4b48-a968-1d706c28fd5c  (Processor resource priority)\nGUID Alias: RESOURCEPRIORITY\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: 603fe9ce-8d01-4b48-a968-1d706c28fd5d  (Processor resource priority for Processor Power Efficiency Class 1)\nGUID Alias: RESOURCEPRIORITY1\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: 603fe9ce-8d01-4b48-a968-1d706c28fd5e  (Processor resource priority for Processor Power Efficiency Class 2)\nGUID Alias: RESOURCEPRIORITY2\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: 60fbe21b-efd9-49f2-b066-8674d8e9f423  (Hetero containment policy.)\nGUID Alias: HETEROCONTAINMENTPOLICY\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disabled\nPossible Setting Index: 001\nPossible Setting Friendly Name: Enabled\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 616cdaa5-695e-4545-97ad-97dc2d1bdd88  (Latency sensitivity hint min unparked cores/packages)\nGUID Alias: LATENCYHINTUNPARK\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000032\nCurrent DC Power Setting Index: 0x00000032\nPower Setting GUID: 616cdaa5-695e-4545-97ad-97dc2d1bdd89  (Latency sensitivity hint min unparked cores/packages for Processor Power Efficiency Class 1)\nGUID Alias: LATENCYHINTUNPARK1\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 619b7505-003b-4e82-b7a6-4dd29c300971  (Latency sensitivity hint processor performance)\nGUID Alias: LATENCYHINTPERF\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000063\nCurrent DC Power Setting Index: 0x00000063\nPower Setting GUID: 619b7505-003b-4e82-b7a6-4dd29c300972  (Latency sensitivity hint processor performance for Processor Power Efficiency Class 1)\nGUID Alias: LATENCYHINTPERF1\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000032\nCurrent DC Power Setting Index: 0x00000032\nPower Setting GUID: 619b7505-003b-4e82-b7a6-4dd29c300973  (Latency sensitivity hint processor performance for Processor Power Efficiency Class 2)\nGUID Alias: LATENCYHINTPERF2\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000032\nCurrent DC Power Setting Index: 0x00000032\nPower Setting GUID: 64fcee6b-5b1f-45a4-a76a-19b2c36ee290  (Processor performance increase time for a containment zone)\nGUID Alias: HETEROCONTAINMENTINCREASETIME\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: Time check intervals\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 6788488b-1b90-4d11-8fa7-973e470dff47  (Processor hybrid containment concurrency threshold)\nGUID Alias: HETEROHYBRIDCONTAINMENTTHRESHOLD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 69439b22-221b-4830-bd34-f7bcece24583  (Processor efficiency containment concurrency threshold)\nGUID Alias: HETEROEFFICIENCYCONTAINMENTTHRESHOLD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 6c2993b0-8f48-481f-bcc6-00dd2742aa06  (Processor idle threshold scaling)\nGUID Alias: IDLESCALING\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disable scaling\nPossible Setting Index: 001\nPossible Setting Friendly Name: Enable scaling\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 6ece9e1f-b6dd-42bf-b1b7-5a512b10c092  (Efficiency containment zone important utility percentage)\nGUID Alias: HETEROCONTAINMENTEFFICIENCYIMPUTILTHRESHOLD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 6ff13aeb-7897-4356-9999-dd9930af065f  (Processor performance decrease time for a containment zone.)\nGUID Alias: HETEROCONTAINMENTDECREASETIME\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: Time check intervals\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 71021b41-c749-4d21-be74-a00f335d582b  (Processor performance core parking decrease policy)\nGUID Alias: CPDECREASEPOL\nPossible Setting Index: 000\nPossible Setting Friendly Name: Ideal number of cores\nPossible Setting Index: 001\nPossible Setting Friendly Name: Single core\nPossible Setting Index: 002\nPossible Setting Friendly Name: All possible cores\nPossible Setting Index: 003\nPossible Setting Friendly Name: One eighth cores\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 75b0ae3f-bce0-45a7-8c89-c9611c25e100  (Maximum processor frequency)\nGUID Alias: PROCFREQMAX\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: MHz\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 75b0ae3f-bce0-45a7-8c89-c9611c25e101  (Maximum processor frequency for Processor Power Efficiency Class 1)\nGUID Alias: PROCFREQMAX1\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: MHz\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 75b0ae3f-bce0-45a7-8c89-c9611c25e102  (Maximum processor frequency for Processor Power Efficiency Class 2)\nGUID Alias: PROCFREQMAX2\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: MHz\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 7b224883-b3cc-4d79-819f-8374152cbe7c  (Processor idle promote threshold)\nGUID Alias: IDLEPROMOTE\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x0000003c\nCurrent DC Power Setting Index: 0x0000003c\nPower Setting GUID: 7d24baa7-0b84-480f-840c-1b0743c00f5f  (Processor performance history count)\nGUID Alias: PERFHISTORY\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00000080\nPossible Settings increment: 0x00000001\nPossible Settings units: Time check intervals\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 7d24baa7-0b84-480f-840c-1b0743c00f60  (Processor performance history count for Processor Power Efficiency Class 1)\nGUID Alias: PERFHISTORY1\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00000080\nPossible Settings increment: 0x00000001\nPossible Settings units: Time check intervals\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 7f2492b6-60b1-45e5-ae55-773f8cd5caec  (Processor performance decrease time for Processor Power Efficiency Class 1)\nGUID Alias: HETERODECREASETIME\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: Time check intervals\nCurrent AC Power Setting Index: 0x00000003\nCurrent DC Power Setting Index: 0x00000003\nPower Setting GUID: 7f2f5cfa-f10c-4823-b5e1-e93ae85f46b5  (Heterogeneous policy in effect)\nGUID Alias: HETEROPOLICY\nPossible Setting Index: 000\nPossible Setting Friendly Name: Use heterogeneous policy 0\nPossible Setting Index: 001\nPossible Setting Friendly Name: Use heterogeneous policy 1\nPossible Setting Index: 002\nPossible Setting Friendly Name: Use heterogeneous policy 2\nPossible Setting Index: 003\nPossible Setting Friendly Name: Use heterogeneous policy 3\nPossible Setting Index: 004\nPossible Setting Friendly Name: Use heterogeneous policy 4\nCurrent AC Power Setting Index: 0x00000004\nCurrent DC Power Setting Index: 0x00000004\nPower Setting GUID: 828423eb-8662-4344-90f7-52bf15870f5a  (Short running threads' processor architecture upper limit)\nGUID Alias: SHORTTHREADARCHCLASSUPPERTHRESHOLD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x000000ff\nPossible Settings increment: 0x00000001\nPossible Settings units: Processor Architecture Class\nCurrent AC Power Setting Index: 0x000000ff\nCurrent DC Power Setting Index: 0x000000ff\nPower Setting GUID: 893dee8e-2bef-41e0-89c6-b55d0929964c  (Minimum processor state)\nGUID Alias: PROCTHROTTLEMIN\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000005\nPower Setting GUID: 893dee8e-2bef-41e0-89c6-b55d0929964d  (Minimum processor state for Processor Power Efficiency Class 1)\nGUID Alias: PROCTHROTTLEMIN1\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000005\nPower Setting GUID: 893dee8e-2bef-41e0-89c6-b55d0929964e  (Minimum processor state for Processor Power Efficiency Class 2)\nGUID Alias: PROCTHROTTLEMIN2\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000005\nPower Setting GUID: 8baa4a8a-14c6-4451-8e8b-14bdbd197537  (Processor performance autonomous mode)\nGUID Alias: PERFAUTONOMOUS\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disabled\nPossible Setting Index: 001\nPossible Setting Friendly Name: Enabled\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 93b8b6dc-0698-4d1c-9ee4-0644e900c85d  (Heterogeneous thread scheduling policy)\nGUID Alias: SCHEDPOLICY\nPossible Setting Index: 000\nPossible Setting Friendly Name: All processors\nPossible Setting Index: 001\nPossible Setting Friendly Name: Performant processors\nPossible Setting Index: 002\nPossible Setting Friendly Name: Prefer performant processors\nPossible Setting Index: 003\nPossible Setting Friendly Name: Efficient processors\nPossible Setting Index: 004\nPossible Setting Friendly Name: Prefer efficient processors\nPossible Setting Index: 005\nPossible Setting Friendly Name: Automatic\nCurrent AC Power Setting Index: 0x00000005\nCurrent DC Power Setting Index: 0x00000005\nPower Setting GUID: 943c8cb6-6f93-4227-ad87-e9a3feec08d1  (Processor performance core parking overutilization threshold)\nGUID Alias: CPOVERUTIL\nMinimum Possible Setting: 0x00000005\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x0000003c\nCurrent DC Power Setting Index: 0x0000003c\nPower Setting GUID: 94d3a615-a899-4ac5-ae2b-e4d8f634367f  (System cooling policy)\nGUID Alias: SYSCOOLPOL\nPossible Setting Index: 000\nPossible Setting Friendly Name: Passive\nPossible Setting Index: 001\nPossible Setting Friendly Name: Active\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 97cfac41-2217-47eb-992d-618b1977c907  (Processor performance core parking soft park latency)\nGUID Alias: SOFTPARKLATENCY\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Microseconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 984cf492-3bed-4488-a8f9-4286c97bf5aa  (Processor performance increase time)\nGUID Alias: PERFINCTIME\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: Time check intervals\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 984cf492-3bed-4488-a8f9-4286c97bf5ab  (Processor performance increase time for Processor Power Efficiency Class 1)\nGUID Alias: PERFINCTIME1\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: Time check intervals\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 9943e905-9a30-4ec1-9b99-44dd3b76f7a2  (Processor idle state maximum)\nGUID Alias: IDLESTATEMAX\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000014\nPossible Settings increment: 0x00000001\nPossible Settings units: State Type\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: b000397d-9b0b-483d-98c9-692a6060cfbf  (Processor performance level increase threshold for Processor Power Efficiency Class 1 processor count increase)\nGUID Alias: HETEROINCREASETHRESHOLD\nCurrent AC Power Setting Index: 0x000000ff\nCurrent DC Power Setting Index: 0x000000ff\nPower Setting GUID: b000397d-9b0b-483d-98c9-692a6060cfc0  (Processor performance level increase threshold for Processor Power Efficiency Class 2 processor count increase)\nGUID Alias: HETEROINCREASETHRESHOLD1\nCurrent AC Power Setting Index: 0x000000ff\nCurrent DC Power Setting Index: 0x000000ff\nPower Setting GUID: b0deaf6b-59c0-4523-8a45-ca7f40244114  (Module unpark policy)\nGUID Alias: MODULEUNPARKPOLICY\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disabled\nPossible Setting Index: 001\nPossible Setting Friendly Name: Round robin\nPossible Setting Index: 002\nPossible Setting Friendly Name: Sequential\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: b28a6829-c5f7-444e-8f61-10e24e85c532  (Smt threads unpark policy)\nGUID Alias: SMTUNPARKPOLICY\nPossible Setting Index: 000\nPossible Setting Friendly Name: Core\nPossible Setting Index: 001\nPossible Setting Friendly Name: Core per Thread\nPossible Setting Index: 002\nPossible Setting Friendly Name: Round robin\nPossible Setting Index: 003\nPossible Setting Friendly Name: Sequential\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: b669a5e9-7b1d-4132-baaa-49190abcfeb6  (Complex unpark policy)\nGUID Alias: COMPLEXUNPARKPOLICY\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disabled\nPossible Setting Index: 001\nPossible Setting Friendly Name: Round robin\nPossible Setting Index: 002\nPossible Setting Friendly Name: Sequential\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: bae08b81-2d5e-4688-ad6a-13243356654b  (Heterogeneous short running thread scheduling policy)\nGUID Alias: SHORTSCHEDPOLICY\nPossible Setting Index: 000\nPossible Setting Friendly Name: All processors\nPossible Setting Index: 001\nPossible Setting Friendly Name: Performant processors\nPossible Setting Index: 002\nPossible Setting Friendly Name: Prefer performant processors\nPossible Setting Index: 003\nPossible Setting Friendly Name: Efficient processors\nPossible Setting Index: 004\nPossible Setting Friendly Name: Prefer efficient processors\nPossible Setting Index: 005\nPossible Setting Friendly Name: Automatic\nCurrent AC Power Setting Index: 0x00000002\nCurrent DC Power Setting Index: 0x00000005\nPower Setting GUID: bc5038f7-23e0-4960-96da-33abaf5935ec  (Maximum processor state)\nGUID Alias: PROCTHROTTLEMAX\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: bc5038f7-23e0-4960-96da-33abaf5935ed  (Maximum processor state for Processor Power Efficiency Class 1)\nGUID Alias: PROCTHROTTLEMAX1\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: bc5038f7-23e0-4960-96da-33abaf5935ee  (Maximum processor state for Processor Power Efficiency Class 2)\nGUID Alias: PROCTHROTTLEMAX2\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: be337238-0d82-4146-a960-4f3749d470c7  (Processor performance boost mode)\nGUID Alias: PERFBOOSTMODE\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disabled\nPossible Setting Index: 001\nPossible Setting Friendly Name: Enabled\nPossible Setting Index: 002\nPossible Setting Friendly Name: Aggressive\nPossible Setting Index: 003\nPossible Setting Friendly Name: Efficient Enabled\nPossible Setting Index: 004\nPossible Setting Friendly Name: Efficient Aggressive\nPossible Setting Index: 005\nPossible Setting Friendly Name: Aggressive At Guaranteed\nPossible Setting Index: 006\nPossible Setting Friendly Name: Efficient Aggressive At Guaranteed\nCurrent AC Power Setting Index: 0x00000002\nCurrent DC Power Setting Index: 0x00000002\nPower Setting GUID: bf903d33-9d24-49d3-a468-e65e0325046a  (Long running threads' processor architecture upper limit)\nGUID Alias: LONGTHREADARCHCLASSUPPERTHRESHOLD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x000000ff\nPossible Settings increment: 0x00000001\nPossible Settings units: Processor Architecture Class\nCurrent AC Power Setting Index: 0x000000ff\nCurrent DC Power Setting Index: 0x000000ff\nPower Setting GUID: c4581c31-89ab-4597-8e2b-9c9cab440e6b  (Processor idle time check)\nGUID Alias: IDLECHECK\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00030d40\nPossible Settings increment: 0x00000001\nPossible Settings units: Microseconds\nCurrent AC Power Setting Index: 0x0000c350\nCurrent DC Power Setting Index: 0x0000c350\nPower Setting GUID: c7be0679-2817-4d69-9d02-519a537ed0c6  (Processor performance core parking increase policy)\nGUID Alias: CPINCREASEPOL\nPossible Setting Index: 000\nPossible Setting Friendly Name: Ideal number of cores\nPossible Setting Index: 001\nPossible Setting Friendly Name: Single core\nPossible Setting Index: 002\nPossible Setting Friendly Name: All possible cores\nPossible Setting Index: 003\nPossible Setting Friendly Name: One eighth cores\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: cfeda3d0-7697-4566-a922-a9086cd49dfa  (Processor autonomous activity window)\nGUID Alias: PERFAUTONOMOUSWINDOW\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x4bb2a980\nPossible Settings increment: 0x00000001\nPossible Settings units: Microseconds\nCurrent AC Power Setting Index: 0x00007530\nCurrent DC Power Setting Index: 0x00007530\nPower Setting GUID: d8edeb9b-95cf-4f95-a73c-b061973693c8  (Processor performance decrease time)\nGUID Alias: PERFDECTIME\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: Time check intervals\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: d8edeb9b-95cf-4f95-a73c-b061973693c9  (Processor performance decrease time for Processor Power Efficiency Class 1)\nGUID Alias: PERFDECTIME1\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: Time check intervals\nCurrent AC Power Setting Index: 0x00000002\nCurrent DC Power Setting Index: 0x00000002\nPower Setting GUID: d92998c2-6a48-49ca-85d4-8cceec294570  (Short vs. long running thread threshold)\nGUID Alias: SHORTTHREADRUNTIMETHRESHOLD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x000186a0\nPossible Settings increment: 0x00000001\nPossible Settings units: Microseconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: dfd10d17-d5eb-45dd-877a-9a34ddd15c82  (Processor performance core parking decrease time)\nGUID Alias: CPDECREASETIME\nMinimum Possible Setting: 0x00000001\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: Time check intervals\nCurrent AC Power Setting Index: 0x00000014\nCurrent DC Power Setting Index: 0x00000014\nPower Setting GUID: e0007330-f589-42ed-a401-5ddb10e785d3  (Processor performance core parking utility distribution)\nGUID Alias: DISTRIBUTEUTIL\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disabled\nPossible Setting Index: 001\nPossible Setting Friendly Name: Enabled\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: ea062031-0e34-4ff1-9b6d-eb1059334028  (Processor performance core parking max cores)\nGUID Alias: CPMAXCORES\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: ea062031-0e34-4ff1-9b6d-eb1059334029  (Processor performance core parking max cores for Processor Power Efficiency Class 1)\nGUID Alias: CPMAXCORES1\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: f735a673-2066-4f80-a0c5-ddee0cf1bf5d  (Processor performance core parking concurrency headroom threshold)\nGUID Alias: CPHEADROOM\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000014\nCurrent DC Power Setting Index: 0x00000014\nPower Setting GUID: f8861c27-95e7-475c-865b-13c0cb3f9d6b  (Processor performance level decrease threshold for Processor Power Efficiency Class 1 processor count decrease)\nGUID Alias: HETERODECREASETHRESHOLD\nCurrent AC Power Setting Index: 0x000000ff\nCurrent DC Power Setting Index: 0x000000ff\nPower Setting GUID: f8861c27-95e7-475c-865b-13c0cb3f9d6c  (Processor performance level decrease threshold for Processor Power Efficiency Class 2 processor count decrease)\nGUID Alias: HETERODECREASETHRESHOLD1\nCurrent AC Power Setting Index: 0x000000ff\nCurrent DC Power Setting Index: 0x000000ff\nPower Setting GUID: fddc842b-8364-4edc-94cf-c17f60de1c80  (A floor performance for Processor Power Efficiency Class 0 when there are Processor Power Efficiency Class 1 processors unparked)\nGUID Alias: HETEROCLASS0FLOORPERF\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nSubgroup GUID: 5fb4938d-1ee8-4b0f-9a3c-5036b0ab995c  (Graphics settings)\nGUID Alias: SUB_GRAPHICS\nPower Setting GUID: dd848b2a-8a5d-4451-9ae2-39cd41658f6c  (GPU preference policy)\nGUID Alias: GPUPREFERENCEPOLICY\nPossible Setting Index: 000\nPossible Setting Friendly Name: None\nPossible Setting Index: 001\nPossible Setting Friendly Name: Low Power\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nSubgroup GUID: 7516b95f-f776-4464-8c53-06167f40cc99  (Display)\nGUID Alias: SUB_VIDEO\nPower Setting GUID: 17aaa29b-8b43-4b94-aafe-35f64daaf1ee  (Dim display after)\nGUID Alias: VIDEODIM\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x00000375\nCurrent DC Power Setting Index: 0x00000249\nPower Setting GUID: 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e  (Turn off display after)\nGUID Alias: VIDEOIDLE\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x00000384\nCurrent DC Power Setting Index: 0x00000258\nPower Setting GUID: 684c3e69-a4f7-4014-8754-d45179a56167  (Advanced Color quality bias)\nGUID Alias: ADVANCEDCOLORQUALITYBIAS\nPossible Setting Index: 000\nPossible Setting Friendly Name: Advanced Color power saving bias\nPossible Setting Index: 001\nPossible Setting Friendly Name: Advanced Color visual quality bias\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 8ec4b3a5-6868-48c2-be75-4f3044be88a7  (Console lock display off timeout)\nGUID Alias: VIDEOCONLOCK\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x0000003c\nCurrent DC Power Setting Index: 0x0000003c\nPower Setting GUID: 90959d22-d6a1-49b9-af93-bce885ad335b  (Adaptive display)\nGUID Alias: VIDEOADAPT\nPossible Setting Index: 000\nPossible Setting Friendly Name: Off\nPossible Setting Index: 001\nPossible Setting Friendly Name: On\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: a9ceb8da-cd46-44fb-a98b-02af69de4623  (Allow display required policy)\nGUID Alias: ALLOWDISPLAY\nPossible Setting Index: 000\nPossible Setting Friendly Name: No\nPossible Setting Index: 001\nPossible Setting Friendly Name: Yes\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: aded5e82-b909-4619-9949-f5d71dac0bcb  (Display brightness)\nGUID Alias: VIDEONORMALLEVEL\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000064\nPower Setting GUID: f1fbfde2-a960-4165-9f88-50667911ce96  (Dimmed display brightness)\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000032\nCurrent DC Power Setting Index: 0x00000032\nPower Setting GUID: fbd9aa66-9553-4097-ba44-ed6e9d65eab8  (Enable adaptive brightness)\nGUID Alias: ADAPTBRIGHT\nPossible Setting Index: 000\nPossible Setting Friendly Name: Off\nPossible Setting Index: 001\nPossible Setting Friendly Name: On\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nSubgroup GUID: 8619b916-e004-4dd8-9b66-dae86f806698  (Presence Aware Power Behavior)\nGUID Alias: SUB_PRESENCE\nPower Setting GUID: 0a7d6ab6-ac83-4ad1-8282-eca5b58308f3  (Human Presence Sensor Adaptive Away Display Timeout)\nGUID Alias: HUPRVIDEOIDLE\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x0000001e\nCurrent DC Power Setting Index: 0x0000001e\nPower Setting GUID: 468fe7e5-1158-46ec-88bc-5b96c9e44fd0  (Standby Reserve Time)\nGUID Alias: STANDBYRESERVETIME\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x000004b0\nPower Setting GUID: 49cb11a5-56e2-4afb-9d38-3df47872e21b  (Standby Reset Percentage)\nGUID Alias: STANDBYRESETPERCENT\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x0000004b\nPower Setting GUID: 5adbbfbc-074e-4da1-ba38-db8b36b2c8f3  (Non-sensor Input Presence Timeout)\nGUID Alias: NSENINPUTPRETIME\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x000000f0\nCurrent DC Power Setting Index: 0x000000f0\nPower Setting GUID: 60c07fe1-0556-45cf-9903-d56e32210242  (Standby Budget Grace Period)\nGUID Alias: STANDBYBUDGETGRACEPERIOD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000384\nPower Setting GUID: 61f45dfe-1919-4180-bb46-8cc70e0b38f1  (Standby Budget Refresh Interval)\nGUID Alias: STANDBYBUDGETREFRESHINTERVAL\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x0000a8c0\nPower Setting GUID: 82011705-fb95-4d46-8d35-4042b1d20def  (User Presence Prediction mode)\nGUID Alias: USERPRESENCEPREDICTION\nPossible Setting Index: 000\nPossible Setting Friendly Name: Disabled\nPossible Setting Index: 001\nPossible Setting Friendly Name: Enabled\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 9fe527be-1b70-48da-930d-7bcf17b44990  (Standby Budget Percent)\nGUID Alias: STANDBYBUDGETPERCENT\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000005\nPower Setting GUID: a79c8e0e-f271-482d-8f8a-5db9a18312de  (Human Presence Sensor Adaptive Away Dim Timeout)\nGUID Alias: HUPRVIDEODIMAWAY\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: aca8648e-c4b1-4baa-8cce-9390ad647f8c  (Standby Budget Refresh Count)\nGUID Alias: STANDBYBUDGETREFRESHCOUNT\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: Interval Count\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000004\nPower Setting GUID: c763ee92-71e8-4127-84eb-f6ed043a3e3d  (Standby Reserve Grace Period)\nGUID Alias: STANDBYRESERVEGRACEPERIOD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x0000012c\nPower Setting GUID: cf8c6097-12b8-4279-bbdd-44601ee5209d  (Human Presence Sensor Adaptive Inattentive Dim Timeout)\nGUID Alias: HUPRVIDEODIM\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x00000005\nCurrent DC Power Setting Index: 0x00000005\nPower Setting GUID: ee16691e-6ab3-4619-bb48-1c77c9357e5a  (Human Presence Sensor Adaptive Inattentive Display Timeout)\nGUID Alias: HUPRVIDEOIDLEINATTENTIVE\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0xffffffff\nPossible Settings increment: 0x00000001\nPossible Settings units: Seconds\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nSubgroup GUID: 9596fb26-9850-41fd-ac3e-f7c3c00afd4b  (Multimedia settings)\nPower Setting GUID: 03680956-93bc-4294-bba6-4e0f09bb717f  (When sharing media)\nPossible Setting Index: 000\nPossible Setting Friendly Name: Allow the computer to sleep\nPossible Setting Index: 001\nPossible Setting Friendly Name: Prevent idling to sleep\nPossible Setting Index: 002\nPossible Setting Friendly Name: Allow the computer to enter Away Mode\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 10778347-1370-4ee0-8bbd-33bdacaade49  (Video playback quality bias)\nPossible Setting Index: 000\nPossible Setting Friendly Name: Video playback power-saving bias\nPossible Setting Index: 001\nPossible Setting Friendly Name: Video playback performance bias\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: 34c7b99f-9a6d-4b3c-8dc7-b6693b78cef4  (When playing video)\nPossible Setting Index: 000\nPossible Setting Friendly Name: Optimize video quality\nPossible Setting Index: 001\nPossible Setting Friendly Name: Balanced\nPossible Setting Index: 002\nPossible Setting Friendly Name: Optimize power savings\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nSubgroup GUID: c763b4ec-0e50-4b6b-9bed-2b92a6ee884e  (AMD Power Slider)\nPower Setting GUID: 7ec1751b-60ed-4588-afb5-9819d3d77d90  (Overlay)\nPossible Setting Index: 000\nPossible Setting Friendly Name: Battery saver\nPossible Setting Index: 001\nPossible Setting Friendly Name: Better battery\nPossible Setting Index: 002\nPossible Setting Friendly Name: Better performance\nPossible Setting Index: 003\nPossible Setting Friendly Name: Best performance\nCurrent AC Power Setting Index: 0x00000003\nCurrent DC Power Setting Index: 0x00000003\nSubgroup GUID: de830923-a562-41af-a086-e3a2c6bad2da  (Energy Saver settings)\nGUID Alias: SUB_ENERGYSAVER\nPower Setting GUID: 13d09884-f74e-474a-a852-b6bde8ad03a8  (Display brightness weight)\nGUID Alias: ESBRIGHTNESS\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000064\nCurrent DC Power Setting Index: 0x00000046\nPower Setting GUID: 5c5bb349-ad29-4ee2-9d0b-2b25270f7a81  (Energy Saver Policy)\nGUID Alias: ESPOLICY\nPossible Setting Index: 000\nPossible Setting Friendly Name: User\nPossible Setting Index: 001\nPossible Setting Friendly Name: Aggressive\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: e69653ca-cf7f-4f05-aa73-cb833fa90ad4  (Charge level)\nGUID Alias: ESBATTTHRESHOLD\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: Percent battery charge\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nSubgroup GUID: e276e160-7cb0-43c6-b20b-73f5dce39954  (Switchable Dynamic Graphics)\nPower Setting GUID: a1662ab2-9d34-4e53-ba8b-2639b9e20857  (Global Settings)\nPossible Setting Index: 000\nPossible Setting Friendly Name: Force power-saving graphics\nPossible Setting Index: 001\nPossible Setting Friendly Name: Optimize power savings\nPossible Setting Index: 002\nPossible Setting Friendly Name: Optimize performance\nPossible Setting Index: 003\nPossible Setting Friendly Name: Maximize performance\nCurrent AC Power Setting Index: 0x00000003\nCurrent DC Power Setting Index: 0x00000000\nSubgroup GUID: e73a048d-bf27-4f12-9731-8b2076e8891f  (Battery)\nGUID Alias: SUB_BATTERY\nPower Setting GUID: 5dbb7c9f-38e9-40d2-9749-4f8a0e9f640f  (Critical battery notification)\nGUID Alias: BATFLAGSCRIT\nPossible Setting Index: 000\nPossible Setting Friendly Name: Off\nPossible Setting Index: 001\nPossible Setting Friendly Name: On\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: 637ea02f-bbcb-4015-8e2c-a1c7b9c0b546  (Critical battery action)\nGUID Alias: BATACTIONCRIT\nPossible Setting Index: 000\nPossible Setting Friendly Name: Do nothing\nPossible Setting Index: 001\nPossible Setting Friendly Name: Sleep\nPossible Setting Index: 002\nPossible Setting Friendly Name: Hibernate\nPossible Setting Index: 003\nPossible Setting Friendly Name: Shut down\nCurrent AC Power Setting Index: 0x00000002\nCurrent DC Power Setting Index: 0x00000002\nPower Setting GUID: 8183ba9a-e910-48da-8769-14ae6dc1170a  (Low battery level)\nGUID Alias: BATLEVELLOW\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x0000000a\nCurrent DC Power Setting Index: 0x0000000a\nPower Setting GUID: 9a66d8d7-4ff7-4ef9-b5a2-5a326ca2a469  (Critical battery level)\nGUID Alias: BATLEVELCRIT\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000005\nCurrent DC Power Setting Index: 0x00000005\nPower Setting GUID: bcded951-187b-4d05-bccc-f7e51960c258  (Low battery notification)\nGUID Alias: BATFLAGSLOW\nPossible Setting Index: 000\nPossible Setting Friendly Name: Off\nPossible Setting Index: 001\nPossible Setting Friendly Name: On\nCurrent AC Power Setting Index: 0x00000001\nCurrent DC Power Setting Index: 0x00000001\nPower Setting GUID: d8742dcb-3e6a-4b3c-b3fe-374623cdcf06  (Low battery action)\nGUID Alias: BATACTIONLOW\nPossible Setting Index: 000\nPossible Setting Friendly Name: Do nothing\nPossible Setting Index: 001\nPossible Setting Friendly Name: Sleep\nPossible Setting Index: 002\nPossible Setting Friendly Name: Hibernate\nPossible Setting Index: 003\nPossible Setting Friendly Name: Shut down\nCurrent AC Power Setting Index: 0x00000000\nCurrent DC Power Setting Index: 0x00000000\nPower Setting GUID: f3c5027d-cd16-4930-aa6b-90db844a8f00  (Reserve battery level)\nMinimum Possible Setting: 0x00000000\nMaximum Possible Setting: 0x00000064\nPossible Settings increment: 0x00000001\nPossible Settings units: %\nCurrent AC Power Setting Index: 0x00000007\nCurrent DC Power Setting Index: 0x00000007",
+        "settings_sha256": "5484b6b88956485b0a4d99b0b4de90b9121923e427a65cf2f0683681084cb174"
+      },
+      "power_scheme": "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c",
+      "process_affinity_mask": 65535,
+      "ram": [
+        {
+          "capacity_bytes": 17179869184,
+          "configured_mhz": 5600,
+          "slot": "DIMMA2"
+        },
+        {
+          "capacity_bytes": 17179869184,
+          "configured_mhz": 5600,
+          "slot": "DIMMB2"
+        }
+      ],
+      "ram_bytes": 33396510720,
+      "system_affinity_mask": 65535,
+      "threading_environment": {}
+    },
+    "inputs": {
+      "hardware": {
+        "calibration_sha256": null,
+        "compute_capability": "12.0",
+        "cuda_runtime_sha256": "c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344",
+        "cuda_version": "12.8",
+        "driver_version": "616.92",
+        "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+        "gpu_uuid": "GPU-949ee8ea-765f-abfd-fd90-16ad3923af6e",
+        "minimum_reserve_bytes": 268435456,
+        "supported_features": [
+          "cuda_graphs"
+        ],
+        "total_vram_bytes": 17103323136,
+        "usable_vram_bytes": 14885584896
+      },
+      "model": {
+        "alignment_bytes": 256,
+        "architecture": "gemma4-moe",
+        "expert_count": 128,
+        "expert_top_k": 8,
+        "family": "gemma4",
+        "identity": {
+          "path": "C:/models/gemma-4-26b-a4b-q6/google_gemma-4-26B-A4B-it-Q6_K.gguf",
+          "sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba",
+          "size_bytes": 22862575520
+        },
+        "inventory_sha256": "c5be5979665d65cf96360e5aee15ffd775065251a18c3114da0f8ccf04f611c7",
+        "kv_kind": "standard",
+        "moe_layers": [
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 0,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 1,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 2,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 3,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 4,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 5,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 6,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 7,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 8,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 9,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 10,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 11,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 12,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 13,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 14,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 15,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 16,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 17,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 18,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 19,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 20,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 21,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 22,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 23,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 24,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 25,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 26,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 27,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 28,
+            "routed_expert_bank_bytes": 685933056
+          },
+          {
+            "component_bank_bytes": [
+              512,
+              269615104,
+              416317440
+            ],
+            "expert_bundle_bytes": 5358852,
+            "expert_count": 128,
+            "expert_top_k": 8,
+            "layer_id": 29,
+            "routed_expert_bank_bytes": 685933056
+          }
+        ],
+        "mtp_kind": "none",
+        "quantization": "Q6_K",
+        "schema_version": "1.0.0"
+      },
+      "stock": {
+        "cuda_runtime": {
+          "path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin\\cudart64_12.dll",
+          "sha256": "c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344",
+          "size_bytes": 573952
+        },
+        "dependencies": [
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\ggml-base.dll",
+            "sha256": "f555f4953da4bea9d00b3226b123474903182ca3fb4aaf0743f802246bffbd9a",
+            "size_bytes": 641536
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\ggml-cpu.dll",
+            "sha256": "ddb2bf1619053f9d64d5e4d434d8638b35f233103e4efd62e4d46b5561ceccaf",
+            "size_bytes": 878592
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\ggml-cuda.dll",
+            "sha256": "7ea4aed24056faf381186882a782076fbca526d778e5c979a11dffdebd7d196d",
+            "size_bytes": 32615424
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\ggml.dll",
+            "sha256": "a1a1809a644c9a9654c5786186866d573b83948177b6ca9591d1deb729dced9a",
+            "size_bytes": 57856
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-batched-bench-impl.dll",
+            "sha256": "ee33da8ffd71c08571dc438613345cd3e1dfcb28d6fbdaf5beff23e17f43429c",
+            "size_bytes": 123392
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-bench-impl.dll",
+            "sha256": "08732d35fa6987f857a9e52d3ca5cc023b31f0c8c993f44c50289b074cb7efc5",
+            "size_bytes": 856576
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-cli-impl.dll",
+            "sha256": "6c58364d0c513823c226d2b67ad4c058c676cc71e86a3e5b9a37593aeb4dbbb2",
+            "size_bytes": 1646592
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-common.dll",
+            "sha256": "fd3004b3d32aa3c90e934cd281b204c175a70579d211b64d842b482907381d0f",
+            "size_bytes": 9191936
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-completion-impl.dll",
+            "sha256": "1260ad9644e8013b712e786221f509749383081f89ddf2bc0bf715424f2212dd",
+            "size_bytes": 240128
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-fit-params-impl.dll",
+            "sha256": "d7e94b1b3998ddd4ce39d931b8b62e98f227d54bf362040f0cc482064645b92a",
+            "size_bytes": 109056
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-perplexity-impl.dll",
+            "sha256": "80e5205e06879a02016c60c24a7849fcd5dd576495cf86f1350ca7fea1ae7347",
+            "size_bytes": 345600
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-quantize-impl.dll",
+            "sha256": "054f46735a0051f3917fa06bf8038a674668f6d0d78e964ea159669598e70dac",
+            "size_bytes": 313344
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-server-impl.dll",
+            "sha256": "08f9094d6ed0e2c8eb74262cd235182dc359a244b4f65dba577512bd8cd20ab1",
+            "size_bytes": 13061120
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama.dll",
+            "sha256": "a6c88283f32073d8f12db225e4ad499a3deefc8d584aad31d132a8cdfbaa27af",
+            "size_bytes": 2219520
+          },
+          {
+            "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\mtmd.dll",
+            "sha256": "1831ad4fbe79a77bf5db2baeffac1b14ba5f7526a04131b4204fe5e35cbcde08",
+            "size_bytes": 982016
+          }
+        ],
+        "manifest_json": "{\"binaries\":{\"llama-cli.exe\":\"56d5cbe8fc5782595a280345e5e2f70bc1bcc79c94130e1b73bb4eb3cdeacd0f\",\"llama-server.exe\":\"0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428\"},\"build\":{\"compiler\":\"MSVC v143 14.39.33519\",\"configuration\":\"Release\",\"cuda\":\"12.8.93\",\"flags\":[\"GGML_CUDA=ON\",\"CMAKE_BUILD_TYPE=Release\"],\"generator\":\"Ninja\"},\"capabilities\":{\"max_static_layers\":0,\"max_static_shadows\":0},\"cuda_runtime_sha256\":\"c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344\",\"dependencies\":{\"ggml-base.dll\":\"f555f4953da4bea9d00b3226b123474903182ca3fb4aaf0743f802246bffbd9a\",\"ggml-cpu.dll\":\"ddb2bf1619053f9d64d5e4d434d8638b35f233103e4efd62e4d46b5561ceccaf\",\"ggml-cuda.dll\":\"7ea4aed24056faf381186882a782076fbca526d778e5c979a11dffdebd7d196d\",\"ggml.dll\":\"a1a1809a644c9a9654c5786186866d573b83948177b6ca9591d1deb729dced9a\",\"llama-batched-bench-impl.dll\":\"ee33da8ffd71c08571dc438613345cd3e1dfcb28d6fbdaf5beff23e17f43429c\",\"llama-bench-impl.dll\":\"08732d35fa6987f857a9e52d3ca5cc023b31f0c8c993f44c50289b074cb7efc5\",\"llama-cli-impl.dll\":\"6c58364d0c513823c226d2b67ad4c058c676cc71e86a3e5b9a37593aeb4dbbb2\",\"llama-common.dll\":\"fd3004b3d32aa3c90e934cd281b204c175a70579d211b64d842b482907381d0f\",\"llama-completion-impl.dll\":\"1260ad9644e8013b712e786221f509749383081f89ddf2bc0bf715424f2212dd\",\"llama-fit-params-impl.dll\":\"d7e94b1b3998ddd4ce39d931b8b62e98f227d54bf362040f0cc482064645b92a\",\"llama-perplexity-impl.dll\":\"80e5205e06879a02016c60c24a7849fcd5dd576495cf86f1350ca7fea1ae7347\",\"llama-quantize-impl.dll\":\"054f46735a0051f3917fa06bf8038a674668f6d0d78e964ea159669598e70dac\",\"llama-server-impl.dll\":\"08f9094d6ed0e2c8eb74262cd235182dc359a244b4f65dba577512bd8cd20ab1\",\"llama.dll\":\"a6c88283f32073d8f12db225e4ad499a3deefc8d584aad31d132a8cdfbaa27af\",\"mtmd.dll\":\"1831ad4fbe79a77bf5db2baeffac1b14ba5f7526a04131b4204fe5e35cbcde08\"},\"expertflow_commit\":\"a7312ae94f801fc9c6786dc56e38df57b964f697\",\"launcher_abi\":\"1.0.0\",\"patches\":[],\"schema_version\":\"1.0.0\",\"upstream_commit\":\"a7312ae94f801fc9c6786dc56e38df57b964f697\"}",
+        "server": {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-server.exe",
+          "sha256": "0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428",
+          "size_bytes": 10240
+        }
+      }
+    },
+    "manifest_sha256": "69cd1602419757fd72b38167cd7d03b366e77953889812689827d6e3b0a6d654",
+    "protocol": "cuda-pdl-paired-v1",
+    "reference_tokens": {
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d"
+    },
+    "schedule": [
+      [
+        "sealed",
+        "direct"
+      ],
+      [
+        "sealed",
+        "direct"
+      ],
+      [
+        "direct",
+        "sealed"
+      ],
+      [
+        "sealed",
+        "direct"
+      ],
+      [
+        "direct",
+        "sealed"
+      ],
+      [
+        "direct",
+        "sealed"
+      ],
+      [
+        "direct",
+        "sealed"
+      ],
+      [
+        "sealed",
+        "direct"
+      ],
+      [
+        "sealed",
+        "direct"
+      ],
+      [
+        "direct",
+        "sealed"
+      ]
+    ],
+    "source_commit": "34a19b29dfc1846d86a0ddda5d2411deba7e3fd6",
+    "source_database": "C:\\models\\expertflow\\runs\\compiler-stock-product-20261004\\compiler.sqlite3",
+    "source_database_sha256": "6831696db6a8a2fb6cde5fffc822fc99b551b60d1bc14fff74e7f111e7c6a94a",
+    "source_files": {
+      "docs\\evidence\\compiler-cuda-pdl-20261004\\feasibility.json": "1323baa0b26a3fdb0b7f556a726847d50a971701f4dcf710ca7c3cf9ad92e52e",
+      "docs\\superpowers\\specs\\2026-10-04-cuda-pdl-and-generalization.md": "07b6b37421f36a602a9b6856719daf5a542bc4d7a1fa0cdfbd020388e883aa57",
+      "scripts\\benchmark_compiler_cuda_pdl.py": "18f8d374660476a1949cd3efed87b37ed3a644711689256f9770057967ec2d73",
+      "src\\expertflow\\compiler\\__init__.py": "682e7a8b5de67d7860d06a0bedf5917314a38dfbce34d2f95ed98d27c13f6736",
+      "src\\expertflow\\compiler\\adapters\\__init__.py": "84cc32ef696f27fa4e9875ddd2fc17ffff6c63ed087978b9fe3785ae800fb7a6",
+      "src\\expertflow\\compiler\\adapters\\base.py": "d3ccc82954d79d2251b09a5fe00bdded14b8c888617f587cfcc586839670b708",
+      "src\\expertflow\\compiler\\adapters\\gemma4.py": "71976e683e5bf843ed60a3a4d37981d186c23a4258dfe597fc5ccb9f7a55c3f7",
+      "src\\expertflow\\compiler\\commands.py": "4c94b69024bd610e266199d67574023b07f01108b67c8cce0524d21ace3d2b83",
+      "src\\expertflow\\compiler\\cost_model.py": "1fe418086f42a9911c1553e0778712869c89066b295970728b7c083aa388fcc4",
+      "src\\expertflow\\compiler\\cuda_pdl.py": "3660143b1a83df2ce291877fcd49ec9b1cddee71a023677f4fe12aaad6cbb660",
+      "src\\expertflow\\compiler\\diagnostics.py": "30a9cd7d2ce663a87aa3d08340c835d57d95a4d72f4c9f4ad797764c88cfc916",
+      "src\\expertflow\\compiler\\evidence.py": "c67bb4553bcc5eed446c028222b1c535b3e198e033cc9e11dd259413d6c8f808",
+      "src\\expertflow\\compiler\\passes\\__init__.py": "5651d7e1cd27e9b162e1a718f8ac9f1632e753420cbeef5ae604949f7f261b23",
+      "src\\expertflow\\compiler\\passes\\base.py": "11cc25d1630940f77de562d02093f369c20165a77b9d3437b14a32b4877301db",
+      "src\\expertflow\\compiler\\pipeline.py": "4aad0ff0e0163a878a8005b3797ccb33589823f39e254fe98c694ea34c13b098",
+      "src\\expertflow\\compiler\\plan.py": "8ca61090587744f294b649bd51d5a1ea1a6b7d1047b1c8f685506639b048f551",
+      "src\\expertflow\\compiler\\preflight.py": "a79182c0e622ccbd741b033d628735a0109691279d210368d1826dd092d45818",
+      "src\\expertflow\\compiler\\reference.py": "9021a967b97d9d97e72ce3ff5499347080a867099834b12c994295ceb6c38dcf",
+      "src\\expertflow\\compiler\\refinement.py": "f91f2ba5a6557c7fcdf5ed3169f24add05795bf84b688e682a8e59e5c62347e2",
+      "src\\expertflow\\compiler\\runner.py": "7e128ff7194217e98cc60a499f411f21e4051c5a72cfa905f936297398f14c58",
+      "src\\expertflow\\compiler\\schema.py": "b60627d59fc109caab87d61bf574b8a9e59dad38cc7b19546888805a49489b24",
+      "src\\expertflow\\compiler\\static_placement.py": "a7ab797692ac8516fbc852c778c129f89e8ba55682d3c8092f486f178a6d5ffd",
+      "src\\expertflow\\compiler\\stock.py": "988d0b3dc56f54dfec447198e65bde57f2a57a40585f4282224573df640d7319",
+      "src\\expertflow\\compiler\\stock_discovery.py": "efaa675627eac2eed54d0fa8ca99279a253b8c5c5ced7ac0d8bac0059edd2e1d",
+      "src\\expertflow\\compiler\\stock_eligibility.py": "41a1a1469b0c61cbf5d69bb070f418d79c611001c40b162fc5d4bd183254f039",
+      "src\\expertflow\\compiler\\stock_reference.py": "2d8fc6a38a9ad11439771a2d0414a8012f925b3615d9b42e853215a22b95b19f",
+      "src\\expertflow\\compiler\\stock_search.py": "bdad61575e331347e4a331fb3fdec747e9370affca869037e3fb43fe309c0fb9",
+      "src\\expertflow\\compiler\\stock_validation.py": "a3a4e4f39aad75181930a65fa5d61088d379ddefef0b936492758bb852de923c"
+    },
+    "source_owners": [
+      "7f67ea8b722d84d0fdb0d61d7542739e98bca1c3bb50babf1ad6d97094517274",
+      "d4c5ae37effa9c190674530d732756ef67190069f63fb69fea8407d3cea270f7",
+      "9d43c8031b857259d4e5ad7e1e4bd6f4d489a2129119579dce6037e2fb80c4cd",
+      "d306408fb51eb5ab57d09c92d3709d8415a36481e62b346f85b7776a262c6cde",
+      "a64193ecde07752b7604ead4e0f8535f265c5c48b16c7f296dc35c120273c3e6",
+      "f80a9d9c11a385241f6bfadb746f3ee1e1d599c75d144504cd537e683b470218",
+      "a4bdda8658483a97769224b98b7b2365fedbe945c1b52e00f2ced18e43f8b72c",
+      "74adf7846de40eca3937b354dfbb69f2c5a4862cf08d59cc3d150aa426c2a583",
+      "87d68d6db193e068e4a3496b8e740d60cb658d02a5f31e95301ae51e4991d0c2",
+      "a511d641305e3f9761d5c923f6737f338b98f8459b4095856792a75d1a69cc53",
+      "babb53d0529f8c8f160fbd1a0242559f53838fbbcc23893e2cff869167e19ca3",
+      "134ea0852485c79dfb9f7cb10ee840b616e69febd1158fb8c374f522dfedbabf",
+      "07fc0f931d1abbfbc382d667cee843e6d14ea33919643840478633e26bbfd416",
+      "f68e196ab9933e8d06f4c36e2a1f1545fe16775f4aa8e4ba305b18c5b29ceb10",
+      "f9fb4531dafaceb18c226d7ef0e80c84a2e1dd3e108dbdce6462de4e6bfe5fb4",
+      "f8be7464ea80ed43e4bb96566e3f4feabd629d16d1bbed3073d35eafdefbfd0f",
+      "5ead50279eefa1501f1a8524d24cc30f918fc906973b0b1f35cb9a97e7b944b8",
+      "2091692a190e973534d78eee73d1050e807e05ec93359e31221e696e25a19f2e",
+      "4b8aea0690272de6eb7c3eb3a9fd578bd5f174f78f9a40f07af510f1df3c4156",
+      "acc30c05dfe1841ad1a46dfb7165ecc3937592c3ac44df803da1a331da354e53"
+    ],
+    "source_repository": "C:\\models\\expertflow\\worktrees\\llama-q6-placement-final"
+  },
+  "outcomes": [
+    {
+      "measurement_id": "18a4be25-c1b4-41a0-94cd-926948228295",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-00-sealed",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "7f3be478-5ed8-4653-b840-49243b4cd02a",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-00-direct",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "c47befef-dde6-471a-a5f1-0ce69e258085",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-01-sealed",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "6adb7f11-0ac3-4177-ae6e-4a259b5fe4cc",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-01-direct",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "acd5627b-d058-4e2d-9458-546a5436eff7",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-02-direct",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "6739fad7-03be-44f7-bae2-5046ef3d911f",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-02-sealed",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "f3ccadf5-5d78-4423-849a-44377f686025",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-03-sealed",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "96791ff1-b498-44c6-ada0-24cf44b58658",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-03-direct",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "2b6b5e7f-2437-4375-83b1-d18766665496",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-04-direct",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "d328d328-b780-471c-966c-e7b10495f3fe",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-04-sealed",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "9b53c967-8ff1-4569-93af-0fe4e1405b8f",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-05-direct",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "5d5c1e63-4ca0-4a21-8fb0-f66918322689",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-05-sealed",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "b00d803c-4a0a-49c7-ab84-98c85cae5d6a",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-06-direct",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "4802eb34-ea07-44c9-99be-5e6071cff0ef",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-06-sealed",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "8149aaf9-1b6c-4aba-88e4-3064f62d5069",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-07-sealed",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "ec2f5f0f-4b0b-45fe-ab00-069b88912317",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-07-direct",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "12897933-75d3-43c2-ad20-0bbba1b70fda",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-08-sealed",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "84bd2509-262f-4859-a639-8e8aa56daeac",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-08-direct",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "64df0d39-5c95-4d51-9d75-4de9710e619a",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-09-direct",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    },
+    {
+      "measurement_id": "064d09c3-c937-400b-af2f-b3a6a4148994",
+      "output_dir": "C:\\models\\expertflow\\runs\\compiler-cuda-pdl-20261004\\experiment\\raw\\pair-09-sealed",
+      "reason": null,
+      "resolved_placement": null,
+      "status": "measured"
+    }
+  ],
+  "product_accepted": false,
+  "rows": [
+    {
+      "arm": "sealed",
+      "candidate_id": "5b87c5e04db0a5929dd80b0b6cf1234f385ab341b6c8a859f49c5c9f15a0b458",
+      "completion_wall_ms": 30988.548,
+      "decode_tps": 21.36512820495701,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "18a4be25-c1b4-41a0-94cd-926948228295",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "b79aca071e94970af4074e5befd76fd067f4a5ca18998997527d9c0384129596",
+      "pair": 0,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "b7f8b789c94aa454792d5dbf0fe0b4267db3ce5cbcfb0a08740433f6c61a8248",
+      "stage": "pdl-00-sealed",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "direct",
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 39236.3841,
+      "decode_tps": 21.875689089547066,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "7f3be478-5ed8-4653-b840-49243b4cd02a",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "a9c5052ced118a6f6af22b9d8ba8441deb1e0d8e15121aef8bc2f5e43bd0d091",
+      "pair": 0,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "pdl-00-direct",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "sealed",
+      "candidate_id": "5b87c5e04db0a5929dd80b0b6cf1234f385ab341b6c8a859f49c5c9f15a0b458",
+      "completion_wall_ms": 37642.3659,
+      "decode_tps": 21.93418467958033,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "c47befef-dde6-471a-a5f1-0ce69e258085",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "cecac6a542afe682eb8bc8280de9b6749678d489671aeb9e626ff5077f52f142",
+      "pair": 1,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "b7f8b789c94aa454792d5dbf0fe0b4267db3ce5cbcfb0a08740433f6c61a8248",
+      "stage": "pdl-01-sealed",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "direct",
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 37827.9759,
+      "decode_tps": 21.896973286590708,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "6adb7f11-0ac3-4177-ae6e-4a259b5fe4cc",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "8f56606bffbf4f73d90773a8b85e4d60993e7724acf10036291bc9c95f017679",
+      "pair": 1,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "pdl-01-direct",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "direct",
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 37434.761,
+      "decode_tps": 21.901032740632356,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "acd5627b-d058-4e2d-9458-546a5436eff7",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "39b0d91e66919e44176dca675171ca5c89a0b305c70bac430b44d528f3b43432",
+      "pair": 2,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "pdl-02-direct",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "sealed",
+      "candidate_id": "5b87c5e04db0a5929dd80b0b6cf1234f385ab341b6c8a859f49c5c9f15a0b458",
+      "completion_wall_ms": 37941.802,
+      "decode_tps": 21.46317211011697,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "6739fad7-03be-44f7-bae2-5046ef3d911f",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "6ca482db84d46ee38fdc20318673050b37999faacbf29abe806fa5417cfe4cdf",
+      "pair": 2,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "b7f8b789c94aa454792d5dbf0fe0b4267db3ce5cbcfb0a08740433f6c61a8248",
+      "stage": "pdl-02-sealed",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "sealed",
+      "candidate_id": "5b87c5e04db0a5929dd80b0b6cf1234f385ab341b6c8a859f49c5c9f15a0b458",
+      "completion_wall_ms": 38502.0818,
+      "decode_tps": 21.891779867549598,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "f3ccadf5-5d78-4423-849a-44377f686025",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "edfcee3e626bcd38ca5aa139d0c5545ad78a5983544963c257d2824e80f45e4a",
+      "pair": 3,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "b7f8b789c94aa454792d5dbf0fe0b4267db3ce5cbcfb0a08740433f6c61a8248",
+      "stage": "pdl-03-sealed",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "direct",
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 37734.7322,
+      "decode_tps": 21.834685925314542,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "96791ff1-b498-44c6-ada0-24cf44b58658",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "75f9e05741773c50a3ec33d809a79c79b2b19e7de4b810fdabafff822e9d4267",
+      "pair": 3,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "pdl-03-direct",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "direct",
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 37317.8015,
+      "decode_tps": 21.69293807161898,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "2b6b5e7f-2437-4375-83b1-d18766665496",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "f90e01af2a839c035a8e8cfb6769a798caa3c7f887a02c1db8405e2c788e8ffc",
+      "pair": 4,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "pdl-04-direct",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "sealed",
+      "candidate_id": "5b87c5e04db0a5929dd80b0b6cf1234f385ab341b6c8a859f49c5c9f15a0b458",
+      "completion_wall_ms": 35807.9126,
+      "decode_tps": 21.90935867241953,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "d328d328-b780-471c-966c-e7b10495f3fe",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "a195a607fcfb92c6761c1c19ef1fc5b82fa99439342eed81ace6f0b1e509bd2a",
+      "pair": 4,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "b7f8b789c94aa454792d5dbf0fe0b4267db3ce5cbcfb0a08740433f6c61a8248",
+      "stage": "pdl-04-sealed",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "direct",
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 34290.187,
+      "decode_tps": 22.31928398342026,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "9b53c967-8ff1-4569-93af-0fe4e1405b8f",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "b3a3f0586e5fafb348a4b24580071c136cc1e069b349aab5a708f35609e4c89e",
+      "pair": 5,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "pdl-05-direct",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "sealed",
+      "candidate_id": "5b87c5e04db0a5929dd80b0b6cf1234f385ab341b6c8a859f49c5c9f15a0b458",
+      "completion_wall_ms": 33586.5223,
+      "decode_tps": 22.26068470474876,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "5d5c1e63-4ca0-4a21-8fb0-f66918322689",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "0b61c8075d53bb79b36968c838c895f0ddfc44edaf31a573bb4b453e69fc2c25",
+      "pair": 5,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "b7f8b789c94aa454792d5dbf0fe0b4267db3ce5cbcfb0a08740433f6c61a8248",
+      "stage": "pdl-05-sealed",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "direct",
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 33337.1129,
+      "decode_tps": 22.540596406571076,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "b00d803c-4a0a-49c7-ab84-98c85cae5d6a",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "61cf6dc2c86ea17d84678f0711cf11ec2ecf830a3c85feb578281c68c3f02121",
+      "pair": 6,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "pdl-06-direct",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "sealed",
+      "candidate_id": "5b87c5e04db0a5929dd80b0b6cf1234f385ab341b6c8a859f49c5c9f15a0b458",
+      "completion_wall_ms": 33601.1566,
+      "decode_tps": 22.186162005434916,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "4802eb34-ea07-44c9-99be-5e6071cff0ef",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "c28d5544f9674f0bc8c1cff44e6e1e8783c5515948ad16df27037893c141a7f9",
+      "pair": 6,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "b7f8b789c94aa454792d5dbf0fe0b4267db3ce5cbcfb0a08740433f6c61a8248",
+      "stage": "pdl-06-sealed",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "sealed",
+      "candidate_id": "5b87c5e04db0a5929dd80b0b6cf1234f385ab341b6c8a859f49c5c9f15a0b458",
+      "completion_wall_ms": 34103.742,
+      "decode_tps": 22.151531531796575,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "8149aaf9-1b6c-4aba-88e4-3064f62d5069",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "d9d04340774d4f6c4dcd53a293375c73d2b31532a668897cd0718c0af0b63236",
+      "pair": 7,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "b7f8b789c94aa454792d5dbf0fe0b4267db3ce5cbcfb0a08740433f6c61a8248",
+      "stage": "pdl-07-sealed",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "direct",
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 34848.7501,
+      "decode_tps": 22.38108714207418,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "ec2f5f0f-4b0b-45fe-ab00-069b88912317",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "d4f0b6e36423b9622c50f4c5d5e32ad36fbf09ac01c7d8795a0c52fc0585c2f0",
+      "pair": 7,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "pdl-07-direct",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "sealed",
+      "candidate_id": "5b87c5e04db0a5929dd80b0b6cf1234f385ab341b6c8a859f49c5c9f15a0b458",
+      "completion_wall_ms": 34244.998,
+      "decode_tps": 22.284566779752137,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "12897933-75d3-43c2-ad20-0bbba1b70fda",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "8f032fd5213167e423a36ea08d33c46895833886e4ed674cf28d518783a7aa85",
+      "pair": 8,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "b7f8b789c94aa454792d5dbf0fe0b4267db3ce5cbcfb0a08740433f6c61a8248",
+      "stage": "pdl-08-sealed",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "direct",
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 31120.0956,
+      "decode_tps": 22.826058656550916,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "84bd2509-262f-4859-a639-8e8aa56daeac",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "088d5a5f58259f1ac236397c12e450b35c0f7eea56b744dd81b8ec3fc9ceb7ab",
+      "pair": 8,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "pdl-08-direct",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "direct",
+      "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+      "completion_wall_ms": 31263.02,
+      "decode_tps": 22.890327700971486,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "64df0d39-5c95-4d51-9d75-4de9710e619a",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "1dc4016e86f3811076deb28dbc5417bae45e8b5ed4fcdba94943cb303d70a91e",
+      "pair": 9,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+      "stage": "pdl-09-direct",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    },
+    {
+      "arm": "sealed",
+      "candidate_id": "5b87c5e04db0a5929dd80b0b6cf1234f385ab341b6c8a859f49c5c9f15a0b458",
+      "completion_wall_ms": 31459.5244,
+      "decode_tps": 22.57864435085185,
+      "exit_code": 0,
+      "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measured": true,
+      "measurement_id": "064d09c3-c937-400b-af2f-b3a6a4148994",
+      "numerical_path": "stock_same_runtime",
+      "owned_run_sha256": "d72cf527e591e68346412361aab5ef605d674741cd40fd026db14faa4a358f3a",
+      "pair": 9,
+      "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+      "settings_sha256": "b7f8b789c94aa454792d5dbf0fe0b4267db3ce5cbcfb0a08740433f6c61a8248",
+      "stage": "pdl-09-sealed",
+      "validations": {
+        "cleanup": true,
+        "exact_tokens": true,
+        "memory": true
+      }
+    }
+  ],
+  "statistics": {
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 20261003,
+    "ci90_pct": [
+      -1.5450642155173184,
+      -0.3517864333587114
+    ],
+    "ci95_pct": [
+      -1.6383132680181,
+      -0.23687813272269637
+    ],
+    "direct_cv_pct": 1.9597473762960274,
+    "direct_mean_tps": 22.21586730032916,
+    "direct_tps": [
+      21.875689089547066,
+      21.896973286590708,
+      21.901032740632356,
+      21.834685925314542,
+      21.69293807161898,
+      22.31928398342026,
+      22.540596406571076,
+      22.38108714207418,
+      22.826058656550916,
+      22.890327700971486
+    ],
+    "gain_pass": false,
+    "geometric_change_pct": -0.9562071760474442,
+    "method": "percentile bootstrap of ten paired mean log ratios",
+    "one_sided95_lower_pct": -1.5450642155173184,
+    "paired_log_ratios": [
+      -0.02361586320590714,
+      0.001697942908942096,
+      -0.020195251527993285,
+      0.0026114150158607075,
+      0.009927109086804276,
+      -0.0026289526056695323,
+      -0.015849206743553168,
+      -0.01030964045563243,
+      -0.02400844063707286,
+      -0.013709930886784516
+    ],
+    "sealed_cv_pct": 1.6984139138771928,
+    "sealed_mean_tps": 22.002521290720768,
+    "sealed_tps": [
+      21.36512820495701,
+      21.93418467958033,
+      21.46317211011697,
+      21.891779867549598,
+      21.90935867241953,
+      22.26068470474876,
+      22.186162005434916,
+      22.151531531796575,
+      22.284566779752137,
+      22.57864435085185
+    ]
+  },
+  "status": "NO-GO"
+}

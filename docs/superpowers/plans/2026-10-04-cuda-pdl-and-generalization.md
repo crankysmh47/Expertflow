@@ -41,8 +41,8 @@ Keep all profiler failures distinct from model measurements.
 ## Task3: close Gemma scheduling
 
 - [x] Preserve Q4f02ccbd frozen checkout for historical validation.
-- [ ] Run the frozen20-process experiment once; audit raw native evidence.
-- [ ] Record terminal verdict and limits, retain accepted plan unless a separate
+- [x] Run the frozen20-process experiment once; audit raw native evidence.
+- [x] Record terminal verdict and limits, retain accepted plan unless a separate
   product acceptance qualifies a winning control; commit evidence.
 
 ## Task4: real-family generalization

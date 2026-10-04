@@ -1168,3 +1168,13 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Reusable trusted adapter/provider contracts, topology-derived bounded spaces, host/runtime/semantic identity invalidation and accepted recommendation execution/CLI are implemented. Independent review found one direct-runtime identity gap, reproduced and fixed; post-fix suite670passed7source-environment skips and6pinned source checks passed separately. Consumer execution is covered with native artifact fixtures; no extra native consumer measurement added to the search budget.
 - Final read-only method audit reverified all100 distinct registered native records, raw artifacts, source revisions, host/prerequisite identities and historical sources. Both models retain12threads/graphs-on in their declared spaces; other thread counts/stock controls and universal family/hardware live support are not proven. Historical Q6 server24.411/25.383TPS were not recovered or causally explained. No retries/discards, merge, push or publication.
 - Evidence: docs/evidence/stock-discovery-20261004/{report.md,q4-report.md,objective-audit.md,method-verification.json}; runnable method: docs/stock-configuration-method.md. Frozen Q6 reconstruction remains at C:/models/expertflow/worktrees/compiler-stock-search-f22bb54.
+
+## 2026-10-04 CUDA PDL terminal no-go
+
+The qualified pristine-runtime Q6 PDL control completed twenty balanced native
+runs at34a19b2. Disabling PDL was0.9562% slower, CI95[-1.6383%,-0.2369%]; all
+reference-token/ownership/memory/cleanup gates passed. Separate CLI and independent
+raw/source/statistical audits passed. Accepted Q6/Q4 plans remain unchanged.
+Evidence: docs/evidence/compiler-cuda-pdl-20261004/report.md. Frozen measured source
+checkout: C:/models/expertflow/worktrees/compiler-cuda-pdl-34a19b2. Broader real-family
+validation follows; no speedup or universal optimum is claimed.
