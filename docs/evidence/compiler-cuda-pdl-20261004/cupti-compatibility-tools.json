@@ -1,0 +1,15 @@
+{
+  "metadata_url": "https://developer.download.nvidia.com/compute/cuda/redist/redistrib_12.9.1.json",
+  "metadata_sha256": "8335301010b0023ee1ff61eb11e2600ca62002d76780de4089011ad77e0c7630",
+  "root": "C:\\models\\expertflow\\dependencies\\cuda-audit-12.9.1",
+  "packages": [
+    {
+      "package": "cuda_cupti",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cupti/windows-x86_64/cuda_cupti-windows-x86_64-12.9.79-archive.zip",
+      "sha256": "c96018456dc4db6af6d69d6db0170a2ccc656ddde8c8ce6ee05682c2c5569daa",
+      "size_bytes": 13359912
+    }
+  ],
+  "installed": false,
+  "runtime_replaced": false
+}

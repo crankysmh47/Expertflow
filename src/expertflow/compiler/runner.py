@@ -106,6 +106,8 @@ def lower_launch(candidate, model, binding, port, output_dir, *, inherited=None)
     env['PATH'] = os.pathsep.join(prefixes + [env.get('PATH', '')])
     if settings.cuda_graphs == 'off':
         env['GGML_CUDA_DISABLE_GRAPHS'] = '1'
+    if settings.cuda_pdl is not None:
+        env['GGML_CUDA_PDL'] = '1' if settings.cuda_pdl == 'on' else '0'
     if settings.static:
         env['LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER'] = ','.join(map(str, settings.static.layer_ids))
         env['LLAMA_EXPERTFLOW_STATIC_PRECOMPUTE'] = '1'

@@ -1,0 +1,44 @@
+{
+  "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+  "probe_source_sha256": "36bdd605124a6f975c3be54a2998a005aedb297f2feb75dbe126130d3df3b717",
+  "probe_executable": {
+    "path": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\probe.exe",
+    "sha256": "342b8d855bc1a4800e9f0dc2e3631f6bc51ed1436614cb3db8b0af4bbdb207cd"
+  },
+  "inference_runtime_replaced": false,
+  "on": {
+    "counts": {
+      "shapes": 18,
+      "computes": 54,
+      "pdl_launches": 84,
+      "classic_launches": 72,
+      "cuda_launch_errors": 0
+    },
+    "output_sha256": "94c35bfb01b13b6bf457c18ad3d3683ea6d27c457cdcb1c51d01023f8267d7b6",
+    "artifacts": {
+      "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\on.bin": "94c35bfb01b13b6bf457c18ad3d3683ea6d27c457cdcb1c51d01023f8267d7b6",
+      "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\on-stdout.log": "da7150811ffde52a48b1181a1340a9a9f5c381c8d68ebaa8d99f104bb32b74ab",
+      "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\on-stderr.log": "1841256d43e6f52d1e4934a4d307f818bcf62e2e8077ac5e00b4dd6df3d7a1dd",
+      "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\on-launch.json": "e1860f4034ee34492e6145c3b784f357d3afa66dd9ecbb658c08e17b39022056"
+    },
+    "launch_path": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\on-launch.json"
+  },
+  "off": {
+    "counts": {
+      "shapes": 18,
+      "computes": 54,
+      "pdl_launches": 0,
+      "classic_launches": 156,
+      "cuda_launch_errors": 0
+    },
+    "output_sha256": "94c35bfb01b13b6bf457c18ad3d3683ea6d27c457cdcb1c51d01023f8267d7b6",
+    "artifacts": {
+      "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\off.bin": "94c35bfb01b13b6bf457c18ad3d3683ea6d27c457cdcb1c51d01023f8267d7b6",
+      "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\off-stdout.log": "cb18c1348ea945c30084e2737f47059a2fb10bf9f80d0b0817848bbfd176af0d",
+      "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\off-stderr.log": "b6c10b42c99dc6709d47549513c49111e6f9945849b8d25dd05508a284602ca7",
+      "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\off-launch.json": "a037bb671771e7d1661a63003a44c69ea086cfb7264b99e4cad7c804ad09af9c"
+    },
+    "launch_path": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\off-launch.json"
+  },
+  "proof_sha256": "ea7c65b852ee355ebb921db660ba8dea05299acfdb2a518fc897cff718cfe7c9"
+}

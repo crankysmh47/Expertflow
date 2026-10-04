@@ -52,7 +52,8 @@ def canonical_payload(value):
     if isinstance(value, Enum):
         return canonical_payload(value.value)
     if is_dataclass(value) and not isinstance(value, type):
-        return {f.name: canonical_payload(getattr(value, f.name)) for f in fields(value)}
+        return {f.name: canonical_payload(getattr(value, f.name)) for f in fields(value)
+                if not (f.metadata.get('omit_if_none') and getattr(value, f.name) is None)}
     if value is None or type(value) in (str, bool, int):
         return value
     if type(value) is float:

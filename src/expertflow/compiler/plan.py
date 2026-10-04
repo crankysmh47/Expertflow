@@ -1,6 +1,6 @@
 """Candidate contracts and evidence-backed, hashed execution plans."""
 
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from datetime import datetime, timezone
 from enum import Enum
 from pathlib import Path
@@ -51,8 +51,11 @@ class RuntimeSettings:
     batch_size: int = 2048
     microbatch_size: int = 512
     static: StaticPlacement | None = None
+    cuda_pdl: str | None = field(default=None, metadata={'omit_if_none': True})
 
     def __post_init__(self):
+        if self.cuda_pdl is not None and (type(self.cuda_pdl) is not str or self.cuda_pdl not in ('on', 'off')):
+            raise ValueError('invalid CUDA PDL control')
         if not ((type(self.gpu_layers) is int and self.gpu_layers >= 0)
                 or self.gpu_layers in ('auto', 'all')):
             raise ValueError('invalid GPU layers')

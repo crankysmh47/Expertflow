@@ -80,6 +80,33 @@ def test_lowering_scrubs_inherited_controls_and_uses_frozen_settings(tmp_path):
     assert launch.request['return_tokens'] is True and launch.request['stream'] is False
 
 
+def test_pdl_setting_preserves_historical_payload_and_binds_explicit_launch(tmp_path):
+    from dataclasses import replace
+    from expertflow.compiler.schema import canonical_payload, canonical_sha256
+    candidate = stock_candidate_matrix(identities())[1]
+    historical = canonical_payload(candidate.settings)
+    assert 'cuda_pdl' not in historical
+    assert canonical_payload(replace(candidate.settings, cuda_pdl=None)) == historical
+    model = ArtifactIdentity('model.gguf', 10, 'a' * 64)
+    for mode, value in [('on', '1'), ('off', '0')]:
+        explicit = replace(candidate, settings=replace(candidate.settings, cuda_pdl=mode))
+        assert explicit.candidate_id != candidate.candidate_id
+        assert canonical_sha256(explicit.settings) != canonical_sha256(historical)
+        launch = lower_launch(explicit, model, binding(), 12345, tmp_path,
+                              inherited={'GGML_CUDA_PDL': 'wrong'})
+        assert launch.environment['GGML_CUDA_PDL'] == value
+    default = lower_launch(candidate, model, binding(), 12345, tmp_path,
+                           inherited={'ggml_cuda_pdl': '0', 'GGML_CUDA_PDL': '0'})
+    assert not any(k.upper() == 'GGML_CUDA_PDL' for k in default.environment)
+
+
+@pytest.mark.parametrize('value', [True, False, 0, 1, '0', 'auto', [], {}])
+def test_invalid_pdl_control(value):
+    from dataclasses import replace
+    with pytest.raises(ValueError, match='PDL'):
+        replace(stock_candidate_matrix(identities())[1].settings, cuda_pdl=value)
+
+
 def test_compute_idle_uses_engine_activity_not_graphics_process_listing():
     from expertflow.compiler.runner import compute_activity_by_pid
     assert compute_activity_by_pid([('pid_123_luid_0_engtype_3D', 0, 25.0)]) == {}
