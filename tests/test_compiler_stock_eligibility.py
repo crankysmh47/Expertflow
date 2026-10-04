@@ -23,7 +23,8 @@ def fixtures():
     model = replace(model_fixture(),identity=ArtifactIdentity('fixture.gguf',
         PROOF['model_size_bytes'],PROOF['model_artifact_sha256']))
     manifest = Path('configs/compiler/runtime-stock.json').read_text()
-    binding = SimpleNamespace(manifest_json=manifest, sha256='a'*64, verify=lambda: None)
+    binding = SimpleNamespace(manifest_json=manifest, sha256='a'*64, verify=lambda: None,
+        verify_manifest_bindings=lambda: None)
     hardware = {'supported_features':['cuda_graphs']}
     inputs = SimpleNamespace(model=model,stock=binding,hardware=hardware)
     host = {'architecture':'AMD64'}

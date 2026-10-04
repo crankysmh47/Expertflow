@@ -27,7 +27,7 @@ def fixtures():
         identity=ArtifactIdentity('fixture-q4.gguf', 14439361440, MODEL_SHA),
         moe_layers=tuple(MoELayerIR(i, 128, 8, bank // 128, bank, components) for i in range(30)))
     binding = SimpleNamespace(manifest_json=Path('configs/compiler/runtime-stock.json').read_text(),
-        sha256='a' * 64, verify=lambda: None)
+        sha256='a' * 64, verify=lambda: None, verify_manifest_bindings=lambda: None)
     return SimpleNamespace(model=model, stock=binding, hardware={'supported_features': ['cuda_graphs']}), {'architecture': 'AMD64'}
 
 
@@ -88,4 +88,18 @@ def test_q4_provider_does_not_admit_q6_model_bytes_under_q4_label(tmp_path):
     inp.model = replace(inp.model, identity=ArtifactIdentity('fixture.gguf', 22862575520,
         '089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba'))
     with pytest.raises(ValueError):
+        api().EligibilityRegistry.with_builtins().attest(inp, host, tmp_path, source_reader=reader)
+
+
+def test_q4_provider_rejects_self_consistent_unpinned_runtime(tmp_path):
+    from expertflow.compiler.runner import RuntimeBinding
+    from expertflow.compiler.preflight import file_sha256
+    inp, host = fixtures()
+    server = tmp_path / 'llama-server.exe'
+    server.write_bytes(b'not the audited server')
+    inp.stock = RuntimeBinding(
+        ArtifactIdentity(str(server), server.stat().st_size, file_sha256(server)),
+        Path('configs/compiler/runtime-stock.json').read_text(), (), None)
+    inp.stock.verify()  # Self-consistency alone must not establish eligibility.
+    with pytest.raises(ValueError, match='pinned runtime'):
         api().EligibilityRegistry.with_builtins().attest(inp, host, tmp_path, source_reader=reader)

@@ -37,6 +37,31 @@ class RuntimeBinding:
             if not p.is_file() or p.stat().st_size != identity.size_bytes or file_sha256(p) != identity.sha256:
                 raise ValueError(f'runtime dependency identity mismatch: {p}')
 
+    def verify_manifest_bindings(self):
+        """Enforce the manifest's full runtime inventory for direct API callers."""
+        manifest = json.loads(self.manifest_json)
+        binary_dir = Path(self.server.path).resolve().parent
+        if (Path(self.server.path).name != 'llama-server.exe' or
+                self.server.sha256 != manifest['binaries']['llama-server.exe']):
+            raise ValueError('pinned runtime server binding mismatch')
+        expected = manifest['dependencies']
+        actual = {Path(dep.path).name: dep.sha256 for dep in self.dependencies}
+        if (len(actual) != len(self.dependencies) or actual != expected or
+                any(Path(dep.path).resolve().parent != binary_dir for dep in self.dependencies) or
+                {p.name.lower() for p in binary_dir.glob('*.dll')} !=
+                {name.lower() for name in expected}):
+            raise ValueError('pinned runtime dependency inventory mismatch')
+        if self.cuda_runtime is None or self.cuda_runtime.sha256 != manifest['cuda_runtime_sha256']:
+            raise ValueError('pinned runtime CUDA binding mismatch')
+        for name, digest in manifest['binaries'].items():
+            path = binary_dir / name
+            if not path.is_file() or file_sha256(path) != digest:
+                raise ValueError(f'pinned runtime binary identity mismatch: {path}')
+        try:
+            self.verify()
+        except ValueError as exc:
+            raise ValueError(f'pinned runtime identity mismatch: {exc}') from exc
+
     @classmethod
     def from_manifest(cls, root, manifest_path, binary_dir, cuda_runtime=DEFAULT_CUDA_RUNTIME):
         manifest = load_runtime_manifest(Path(manifest_path))

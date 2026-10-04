@@ -157,10 +157,63 @@ ten-run reference, twenty-run product validation and six-configuration search
 with at most38 processes. Its total maximum is68, conditional on successive
 gates. The reference collector, CLI and Q4 source provider are implemented with
 targeted contract checks; the actual zero-native preview verified complete
-source/host/runtime/model binding. Full checks/review and Q4 native validation
-remain pending. No Q4 speed or accepted product is claimed yet.
+source/host/runtime/model binding. Independent review identified and resolved
+a direct API runtime identity gap; post-fix full checks passed670 tests, with
+seven source-environment skips and six pinned source checks passing separately.
+Q4 native validation remains pending. No Q4 speed or accepted product is claimed yet.
 
 ## Coverage and invalidation
+
+### Q4 collection commands
+
+Run from the ef-v2 checkout after reviewed source checks pass. These commands
+create fresh experiments; existing output/database paths stop execution rather
+than resume or overwrite evidence. Run each stage only after the preceding
+stage's independent audit and CLI validation succeed. Q4 is a distinct model
+artifact and provides no claim of preserving Q6 quality.
+
+```powershell
+$q4Inputs = @(
+  '--descriptor', 'configs/compiler/gemma4-q4-model.json',
+  '--inventory', 'docs/evidence/stock-discovery-20261004/q4-tensor-inventory.json',
+  '--hardware', 'docs/evidence/compiler-phase3/inputs/hardware.json',
+  '--workload', 'configs/compiler/gemma4-q6-single-request.json',
+  '--runtime-identity', 'docs/evidence/stock-discovery-20261004/q4-runtime-identity.json'
+)
+$q4Source = 'C:/models/expertflow/worktrees/llama-q6-placement-final'
+$q4Reference = 'C:/models/expertflow/runs/compiler-q4-stock-reference-20261004'
+$q4Product = 'C:/models/expertflow/runs/compiler-q4-stock-product-20261004'
+$q4Search = 'C:/models/expertflow/runs/compiler-q4-stock-search-20261004'
+
+uv run --extra dev --extra quality --extra predictor python scripts/benchmark_compiler_stock_reference.py @q4Inputs `
+  --action run --source-repository $q4Source `
+  --evidence-db "$q4Reference/compiler.sqlite3" --output-dir "$q4Reference/reference"
+uv run --extra dev --extra quality --extra predictor python docs/evidence/stock-discovery-20261004/verify_reference.py `
+  --root "$q4Reference/reference" --database "$q4Reference/compiler.sqlite3" `
+  --output docs/evidence/stock-discovery-20261004/q4-reference-verification.json
+uv run --extra dev --extra quality --extra predictor python scripts/benchmark_compiler_stock_reference.py @q4Inputs `
+  --action validate --source-repository $q4Source `
+  --evidence-db "$q4Reference/compiler.sqlite3" --reference-dir "$q4Reference/reference/diagnostic"
+
+# Only after REFERENCE-STABLE and both reference checks pass:
+uv run --extra dev --extra quality --extra predictor python scripts/benchmark_compiler_refinement.py @q4Inputs `
+  --experiment stock-product --source-plan "$q4Reference/reference/diagnostic/execution-plan.json" `
+  --source-evidence-db "$q4Reference/compiler.sqlite3" `
+  --evidence-db "$q4Product/compiler.sqlite3" --output-dir "$q4Product/product"
+
+# Only after PASS-STOCK-FALLBACK and independent product/receipt checks pass:
+uv run --extra dev --extra quality --extra predictor python scripts/benchmark_compiler_stock_search.py @q4Inputs `
+  --action run --source-repository $q4Source `
+  --source-plan "$q4Product/product/accepted/execution-plan.json" `
+  --source-receipt "$q4Product/product/accepted/acceptance-receipt.json" `
+  --source-evidence-db "$q4Product/compiler.sqlite3" `
+  --space-config configs/compiler/gemma4-q4-stock-search-space.json `
+  --evidence-db "$q4Search/compiler.sqlite3" --output-dir "$q4Search/search"
+```
+
+The explicit Q4 space includes threads8/12/16 and both graph modes on this
+host. Q6's rejected eight-thread condition is not an exclusion for Q4. Stop
+after any failed gate; preserve all failed artifacts without retries.
 
 | Change or setting | Required action |
 | --- | --- |

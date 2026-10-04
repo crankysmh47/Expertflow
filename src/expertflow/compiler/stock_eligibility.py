@@ -53,7 +53,7 @@ class Gemma4Q6SchedulingProvider:
             raise ValueError('runtime build is outside audited scheduling scope')
         if 'cuda_graphs' not in canonical_payload(inputs.hardware).get('supported_features',[]):
             raise ValueError('runtime/hardware graph capability unavailable')
-        inputs.stock.verify()
+        inputs.stock.verify_manifest_bindings()
         reader = source_reader or read_source_object
         actual = {path:reader(repository,UPSTREAM,path) for path in SOURCE_OBJECTS}
         if actual != SOURCE_OBJECTS:
@@ -89,7 +89,7 @@ class Gemma4Q4SchedulingProvider:
             raise ValueError('runtime build is outside audited scheduling scope')
         if 'cuda_graphs' not in canonical_payload(inputs.hardware).get('supported_features', []):
             raise ValueError('runtime/hardware graph capability unavailable')
-        inputs.stock.verify()
+        inputs.stock.verify_manifest_bindings()
         reader = source_reader or read_source_object
         actual = {path: reader(repository, UPSTREAM, path) for path in Q4_SOURCE_OBJECTS}
         if actual != Q4_SOURCE_OBJECTS:

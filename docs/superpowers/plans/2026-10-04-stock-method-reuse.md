@@ -47,7 +47,7 @@ No native retries or altered gates. Preserve ef-v2 and unrelated user files.
 - [x] Add evidence-backed accepted recommendation execution and an explicit CLI
   action. Test actual-input/token/host/ownership failures and tested candidate
   settings; do not append native runs to the frozen search budget.
-- [ ] Run targeted and full checks, one required independent review/fix pass,
+- [x] Run targeted and full checks, one required independent review/fix pass,
   then commit before Q4 retention. No overlapping tests and native timing.
 
 ## Task 5: independent Q4 live validation
