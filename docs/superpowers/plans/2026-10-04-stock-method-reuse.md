@@ -52,7 +52,7 @@ No native retries or altered gates. Preserve ef-v2 and unrelated user files.
 
 ## Task 5: independent Q4 live validation
 
-- [ ] One fresh ten-process reference, audit and diagnostic plan.
+- [x] One fresh ten-process reference, audit and diagnostic plan.
 - [ ] One fresh twenty-process product experiment, unchanged acceptance gates.
 - [ ] Only after product PASS, explicit six-configuration search,18 screening
   plus optional20 confirmation; publish only independently validated result.
