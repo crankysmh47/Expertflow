@@ -332,7 +332,7 @@ class ServerMeasurementRunner:
         self.teardown_timeout_seconds = teardown_timeout_seconds
 
     def run_once(self, candidate, model, binding, *, output_dir, measured, stage='initial',
-                 numerical_path='stock_same_runtime', comparison_ids=()):
+                 numerical_path='stock_same_runtime', comparison_ids=(), host_environment=None):
         output_dir = Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=False)
         w = candidate.identities.workload
@@ -358,7 +358,15 @@ class ServerMeasurementRunner:
         if not isinstance(model, ModelIR) or canonical_sha256(model) != candidate.identities.model_sha256:
             raise ValueError('model snapshot identity mismatch')
         launch = lower_launch(candidate, model.identity, binding, port, output_dir)
+        host_binding = {}
+        if host_environment is not None:
+            from .preflight import capture_host_environment
+            actual_host = capture_host_environment()
+            if canonical_payload(actual_host) != canonical_payload(host_environment):
+                raise ValueError('native launch host environment mismatch')
+            host_binding = {'host_environment': actual_host}
         _write(output_dir / 'launch.json', {
+            **host_binding,
             'argv': launch.argv, 'environment': {k: v for k, v in launch.environment.items()
                 if k.startswith(('EXPERTFLOW', 'LLAMA_EXPERTFLOW', 'GGML_')) or k == 'PATH'},
             'runtime_binding': binding, 'candidate_id': candidate.candidate_id,

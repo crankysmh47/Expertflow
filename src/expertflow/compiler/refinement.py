@@ -183,7 +183,8 @@ def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, 
                 candidate = direct if arm == 'direct' else load_execution_plan(source_plan_path, identities=identities).candidate
                 preparation_ms = (time.perf_counter() - preparation_started) * 1000
                 outcome = runner.run_once(candidate, inputs.model, inputs.stock,
-                    output_dir=output / 'raw' / f'pair-{pair:02}-{arm}', measured=True, stage=f'{stage_prefix}-{pair:02}-{arm}')
+                    output_dir=output / 'raw' / f'pair-{pair:02}-{arm}', measured=True, stage=f'{stage_prefix}-{pair:02}-{arm}',
+                    **({'host_environment': host_environment} if product else {}))
                 report['outcomes'].append(canonical_payload(outcome))
                 if outcome.status != 'measured':
                     report.update(status=outcome.status.upper().replace('_', '-'), reason=outcome.reason)

@@ -60,6 +60,9 @@ def reconstruct_product(report, store, *, host_environment):
         record = store.measurement(mid)
         verified = store.verify_measurement(mid)
         artifacts = {a.role:Path(a.identity.path) for a in record.artifacts}
+        launch = json.loads(artifacts['launch'].read_text(encoding='utf-8'))
+        if launch.get('host_environment') != canonical_payload(host_environment):
+            raise ValueError('verified native launch host environment mismatch')
         expected_root = root/'raw'/f'pair-{pair:02}-{arm}'
         if any(p.resolve().parent != expected_root for p in artifacts.values()):
             raise ValueError('product artifacts outside frozen fresh experiment')
@@ -169,7 +172,7 @@ def run_accepted_stock_plan(plan_path, receipt_path, inputs, store, output_dir, 
         runner = ServerMeasurementRunner(store, memory_sampler=sampler)
     try:
         outcome = runner.run_once(plan.candidate, inputs.model, inputs.stock,
-            output_dir=output_dir, measured=True, stage='accepted-stock-run')
+            output_dir=output_dir, measured=True, stage='accepted-stock-run', host_environment=host)
         if outcome.status != 'measured':
             return outcome.status.upper().replace('_','-'), {'reason':outcome.reason, 'outcome':canonical_payload(outcome)}
         measured = store.verify_measurement(outcome.measurement_id)

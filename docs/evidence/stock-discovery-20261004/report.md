@@ -13,7 +13,16 @@ to a specific regression. New contemporary comparisons must establish gains.
 
 The current [host snapshot](host-environment.json) adds CPU topology, RAM modules,
 OS, affinity, threading environment and active power scheme to the existing GPU/
-runtime identities. Capturing this information does not change system settings.
+runtime identities. The snapshot includes all visible and hidden AC/DC power
+settings, so edits within the same scheme invalidate reuse. Capturing this
+information does not change system settings.
+
+Independent review at `19985dc` found two important acceptance gaps: receipt-only
+host claims could be rewritten together, and scheme GUIDs omitted actual power
+settings. Regression tests reproduced both gaps. Each product launch now captures
+the actual host before process creation and records it in an EvidenceStore-hashed
+launch artifact; receipt reconstruction checks that independent binding. Legacy
+measurements remain unchanged. Fresh live collection has not started yet.
 
 Work follows the [new complete plan](../../superpowers/plans/2026-10-04-stock-configuration-discovery.md):
 fresh paired stock-product validation, quality-preserving bounded stock search,

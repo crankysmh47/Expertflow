@@ -23,6 +23,17 @@ _REQUIRED_DLLS = (
 )
 
 
+def capture_power_policy(scheme):
+    """Bind all visible and hidden AC/DC settings within the active scheme."""
+    result = subprocess.run(['powercfg', '/qh', scheme], capture_output=True,
+        text=True, timeout=10, creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0), check=True)
+    settings = '\n'.join(line.strip() for line in result.stdout.splitlines() if line.strip())
+    if not settings:
+        raise RuntimeError('active power policy settings unavailable')
+    return {'settings_sha256': hashlib.sha256(settings.encode('utf-8')).hexdigest(),
+            'settings': settings}
+
+
 def capture_host_environment():
     """Stable host controls omitted by the legacy GPU-only HardwareIR."""
     if os.name != 'nt':
@@ -50,7 +61,8 @@ $stockSystem=Get-CimInstance Win32_ComputerSystem;
     kernel.GetProcessAffinityMask.argtypes = (ctypes.c_void_p, ctypes.POINTER(ctypes.c_size_t), ctypes.POINTER(ctypes.c_size_t))
     if not kernel.GetProcessAffinityMask(kernel.GetCurrentProcess(), ctypes.byref(process_mask), ctypes.byref(system_mask)):
         raise RuntimeError('process affinity identity unavailable')
-    host.update(power_scheme=match.group().lower(), architecture=platform.machine(),
+    host.update(power_scheme=match.group().lower(), power_policy=capture_power_policy(match.group().lower()),
+        architecture=platform.machine(),
         process_affinity_mask=process_mask.value, system_affinity_mask=system_mask.value,
         threading_environment={name:value for name,value in sorted(os.environ.items())
             if name.upper().startswith(('OMP_', 'KMP_', 'GOMP_', 'MKL_', 'OPENBLAS_'))})

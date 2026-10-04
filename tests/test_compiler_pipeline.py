@@ -45,7 +45,7 @@ class FakeRunner:
         self.calls = []
 
     def run_once(self, candidate, model, binding, *, output_dir, measured, stage='initial',
-                 numerical_path='stock_same_runtime', comparison_ids=()):
+                 numerical_path='stock_same_runtime', comparison_ids=(), host_environment=None):
         self.calls.append((candidate.candidate_id, stage, candidate.settings.static))
         if self.fail:
             return MeasurementOutcome('environment_blocked',None,'counter unavailable',None,str(output_dir))
@@ -79,6 +79,8 @@ class FakeRunner:
                       'workload_sha256':candidate.identities.workload_sha256},
         }
         artifacts=[]
+        if host_environment is not None:
+            payloads['launch']['host_environment'] = canonical_payload(host_environment)
         for role,payload in payloads.items():
             p=(output_dir/f'{role}.json').resolve()
             p.write_text(json.dumps(payload))

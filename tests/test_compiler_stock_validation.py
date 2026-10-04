@@ -98,6 +98,50 @@ def test_historical_aa_experiment_cannot_publish(tmp_path):
     assert not (tmp_path/'aa/accepted').exists()
 
 
+def test_rehashed_host_claims_cannot_rebind_native_measurements(tmp_path):
+    from expertflow.compiler.schema import canonical_sha256
+    inp, _, store, _, _, _ = execute(tmp_path)
+    root = tmp_path/'product/accepted'
+    path = root/'acceptance-receipt.json'
+    receipt = json.loads(path.read_text())
+    changed = {**HOST, 'cpu': {'name': 'different CPU'}}
+    receipt['host_environment'] = changed
+    receipt['experiment']['frozen']['host_environment'] = changed
+    receipt.pop('receipt_sha256')
+    receipt['receipt_sha256'] = canonical_sha256(receipt)
+    path.write_text(json.dumps(receipt))
+    with pytest.raises(ValueError, match='host'):
+        api().load_validated_stock_plan(root/'execution-plan.json', path, store,
+            identities=inp.identities(inp.stock), host_environment=changed)
+
+
+def test_power_settings_change_with_same_scheme_invalidates_identity(monkeypatch):
+    from expertflow.compiler import preflight
+    from types import SimpleNamespace
+    outputs = iter(['scheme fixture\nAC Power Setting Index: 0x00000064',
+                    'scheme fixture\nAC Power Setting Index: 0x00000032'])
+    def query(argv, **kwargs):
+        assert argv == ['powercfg', '/qh', 'fixture']
+        return SimpleNamespace(stdout=next(outputs))
+    monkeypatch.setattr(preflight.subprocess, 'run', query)
+    assert preflight.capture_power_policy('fixture') != preflight.capture_power_policy('fixture')
+
+
+def test_native_runner_captures_host_before_launch(tmp_path, monkeypatch):
+    from expertflow.compiler import preflight
+    from expertflow.compiler.plan import load_execution_plan
+    from expertflow.compiler.runner import ServerMeasurementRunner
+    inp, source, target, _, pending = setup_execution(tmp_path)
+    plan = load_execution_plan(pending, identities=inp.identities(inp.stock), store=source)
+    monkeypatch.setattr(preflight, 'capture_host_environment', lambda: {**HOST, 'power_policy': 'changed'})
+    def forbidden_launch(*args, **kwargs):
+        pytest.fail('host mismatch must fail before creating native process')
+    runner = ServerMeasurementRunner(target, process_factory=forbidden_launch)
+    with pytest.raises(ValueError, match='host'):
+        runner.run_once(plan.candidate, inp.model, inp.stock, output_dir=tmp_path/'native',
+            measured=True, host_environment=HOST)
+
+
 def test_publication_failure_leaves_no_half_published_plan(tmp_path, monkeypatch):
     from expertflow.compiler import stock_validation
     original = stock_validation.os.rename
