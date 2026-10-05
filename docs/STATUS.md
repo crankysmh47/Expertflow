@@ -64,9 +64,10 @@ unchanged. These are descriptive timing comparisons. See
 
 The [wider utility registration](superpowers/specs/2026-10-05-stock-coverage.md)
 pins four Q4/Granite prose/code cases, 107 calls each/428 maximum, with fixed
-controls, pacing, gates, costs and stop rules. **REGISTERED-NOT-RUN**: next is
-the separate wider collector, review and immutable source/live-input freeze,
-then native collection and independent audit. No other host or serving
+controls, pacing, gates, costs and stop rules. **REGISTERED-NOT-RUN**: a separate
+wider collector/validator is being verified under the [implementation plan](superpowers/plans/2026-10-05-wider-stock-collector.md).
+Independent review and immutable source/live-input freeze precede native
+collection and independent audit. No other host or serving
 performance claim follows from registration.
 
 ## Verified milestones

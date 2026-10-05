@@ -377,3 +377,33 @@ maps the registered StageA/B/C requirements to evidence.
 rechecked all100 distinct native records, artifacts and frozen source revisions.
 This completes the registered method, not universal live support or an eligible
 Q6 speedup. Subsequent families/settings require the extension procedure above.
+
+## Registered wider utility sequence
+
+The [wider protocol](superpowers/specs/2026-10-05-stock-coverage.md) is a separate
+four-case comparison, implemented outside the closed Q6 collectors. It compares
+resolved defaults with independently selected automatic/manual controls for Q4
+and Granite, each with existing prose/code prompts. It adds no untouched-workload,
+other-host or serving claim. Implementation review and immutable source/live
+input freeze must precede collection.
+
+```powershell
+uv run --no-sync expertflow stock coverage inspect
+uv run --no-sync expertflow stock coverage run --help
+uv run --no-sync expertflow stock coverage validate --help
+```
+
+After implementation review, run the registered sequence with
+`uv run --no-sync expertflow stock coverage run`. Outputs go to the four exact
+roots in the registration; existing roots are rejected. There is no warmup,
+retry, replacement or resume operation. The 428-call maximum includes reference,
+both18-evaluation grids, confirmation, conditional product and consumer calls.
+Every call has a fixed30s prelaunch wait. A case stops at its first failed gate;
+only a statistical failure with valid raw records permits the next case.
+
+Use `uv run --no-sync expertflow stock coverage validate` for fresh read-only
+reconstruction of all retained cases. A partial grid has no interval or winner,
+and a default-optimal result remains `NO-UTILITY-GAIN`. Per-case records report
+scope, native attempts, phase/load/wait/collection/reconstruction costs, owned
+memory and device-free reserve. Each interval belongs to its case; do not pool
+results or infer a simultaneous family-wide guarantee.

@@ -21,6 +21,7 @@ DRIVERS = {
     'search': ('benchmark_compiler_stock_search.py', {'generate', 'run', 'validate', 'execute'}),
     'utility': ('benchmark_compiler_stock_utility.py', {'validate'}),
     'repeatability': ('benchmark_compiler_stock_repeatability.py', {'validate'}),
+    'coverage': ('benchmark_compiler_stock_coverage.py', {'run','validate'}),
 }
 
 
@@ -170,7 +171,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(prog='expertflow stock', add_help=False, allow_abbrev=False,
         description='Registered stock workflows in a matching research checkout. Closed studies are validation-only.')
     parser.add_argument('--project', type=Path, default=Path.cwd(), help='research checkout; relative driver paths resolve here')
-    parser.add_argument('workflow', nargs='?', choices=(*DRIVERS, 'coverage'))
+    parser.add_argument('workflow', nargs='?', choices=tuple(DRIVERS))
     parser.add_argument('action', nargs='?', help='generate, run, validate or execute as supported by the workflow')
     args, driver_args = parser.parse_known_args(argv)
     if args.workflow is None or args.action is None:
@@ -181,7 +182,7 @@ def main(argv=None):
         if any(a.startswith('--') and any(flag.startswith(a.split('=', 1)[0])
                for flag in ('--action', '--experiment')) for a in driver_args):
             raise ValueError('action/experiment override flags are not allowed; select the public workflow/action')
-        if args.workflow == 'coverage':
+        if args.workflow == 'coverage' and args.action=='inspect':
             from .coverage import inspect_registration
             return inspect_registration(args.action, driver_args, args.project)
         filename, actions = DRIVERS[args.workflow]
@@ -201,6 +202,9 @@ def main(argv=None):
             modules = [driver]
             if hasattr(driver, 'utility'):
                 modules.append(driver.utility)
+            if args.workflow=='coverage':
+                from . import wider_audit
+                modules.extend((driver.wider,wider_audit,wider_audit.repeatability))
             if args.action == 'validate':
                 with reuse_readers(*modules) as readers, redirect_stdout(captured):
                     code = driver.main(forwarded)
@@ -216,9 +220,16 @@ def main(argv=None):
                 if receipt_path.read_bytes() != receipt_bytes:
                     raise ValueError('validated receipt changed while constructing public decision scope')
                 report = json.loads(receipt_bytes)['experiment']
-            result['decision'] = _decision(result, code, args.action,
-                reconstructed=args.action == 'validate' and args.workflow in ('utility','repeatability'),
-                report=report)
+            if args.workflow=='coverage':
+                result['decision']={'evidence_verified':args.action=='validate' and result['status'] in
+                    ('COMPLETE-STOCK-COVERAGE','SEQUENCE-STOP'),
+                    'utility_gain_established':False,'family_wide_gain_established':False,
+                    'global_optimum_established':False,'serving_throughput_established':False,
+                    'cases':result.get('cases',[])}
+            else:
+                result['decision'] = _decision(result, code, args.action,
+                    reconstructed=args.action == 'validate' and args.workflow in ('utility','repeatability'),
+                    report=report)
     except (EnvironmentBlocked, RuntimeError, subprocess.TimeoutExpired) as error:
         result, code = {'status':'ENVIRONMENT-BLOCKED', 'reason':str(error)}, 3
     except (ValueError, OSError, KeyError, TypeError, sqlite3.Error) as error:

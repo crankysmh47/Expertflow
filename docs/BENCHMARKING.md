@@ -59,6 +59,18 @@ auditing. Report each case independently, including default-optimal
 not execution evidence. A separate reviewed collector and source freeze must
 precede collection, without modifying the closed Q6 protocols.
 
+The separate public sequence uses `expertflow stock coverage run` and
+`expertflow stock coverage validate`. All four live inputs, exact roots,
+eligibility/defaults proofs and the reviewed source map freeze before the first
+call. The per-case four-hour cap includes input loading and reconstruction;
+the overall cap is16hours. Every attempted call is retained before waiting,
+including failed starts and conditional product/consumer calls. Source/host
+drift during a wait blocks launch. Statistical stops continue only when every
+raw record is valid; environment, identity, memory, cleanup or resource stops
+end the sequence. Validation starts no new model process and recomputes native
+bindings, winners, intervals and costs. The registration inspector remains
+metadata-only and continues to report `execution_ready: false`.
+
 ## Historical placement release protocol
 
 The protocol below documents the earlier release. Its terminal placement

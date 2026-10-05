@@ -69,6 +69,9 @@ Never reuse either study's budget for additional samples or candidates.
   Q4 and Granite compatibility does not establish defaults gain on those inputs.
 - [ ] Implement/review the separate wider collector and freeze its source,
   live identities and all four case roots before native collection.
+  [Implementation plan](superpowers/plans/2026-10-05-wider-stock-collector.md):
+  guarded per-case journal, complete/prefix reconstruction, public sequence
+  commands and one independent implementation review.
 - [ ] Execute and independently audit the [four registered cases](superpowers/specs/2026-10-05-stock-coverage.md),
   retaining neutral/default-optimal and failed outcomes. Maximum428 new calls;
   no additional calls belong to either completed Q6 study.
