@@ -36,8 +36,10 @@ untouched workload, automatic tuning gained 9.38% over resolved 8-thread/graphs-
 defaults and matched the manual grid at equal 18-evaluation budgets, then passed
 fresh product acceptance. This qualifies bounded stock autotuning under the
 registered timing/diagnostics contract on one host. It establishes no gain over
-manual tuning or already tuned stock. Public CLI consolidation, wider utility
-coverage and serving performance are next work. See [status](STATUS.md),
+manual tuning or already tuned stock. Public `expertflow stock` workflows and
+invocation-scoped reader reuse are implemented; wider Q4/Granite utility cases
+are registered but require their own reviewed collector/source freeze before
+execution. Serving performance remains unverified. See [status](STATUS.md),
 [tasks](TODO.md), and [the current stock method](stock-configuration-method.md).
 
 ## Historical placement architecture

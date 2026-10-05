@@ -1242,3 +1242,15 @@ manual/tuned stock, universal support, thermal cause or serving TPS claim.
 
 Evidence: docs/evidence/stock-repeatability-20261004/report.md,
 native-verification.json, final-audit.json and execution-ledger.md.
+
+## 2026-10-05: public stock CLI and registered wider utility coverage
+
+Reduced repeated full-model verification through one EvidenceStore per database during public read-only validation, preserving the frozen compiler/collector bytes, stat guard and every native artifact/runtime/token/ownership/memory/cleanup check. Exact41-file measured source/prerequisite archive retained.
+
+Public expertflow stock now routes reference/product/search workflows and closed utility/repeatability validation. JSON decisions distinguish default-optimal utility from retained search incumbents, report each verified schema scope and costs, and bind validated receipt bytes. One independent review found two important reporting issues; six regressions were observed failing then passing in one fix pass.
+
+Final full suite835passed/7optional historical source-environment skips;94focused checks, six applicable pinned native source checks and six rebuilt-wheel smoke checks passed. Final read-only148-call reconstruction passed in221.152227s versus the prior2191.483952s, with five readers, all41 frozen files/six history pins unchanged and zero extra native calls. Timings are descriptive; the first207.944475s measurement is retained separately.
+
+Registered four Q4/Granite prose/code utility cases with exact inputs/controls/defaults/gates/costs/pacing and stop rules:107calls each/428maximum. StatusREGISTERED-NOT-RUN. Next is the separate wider collector, independent review and immutable source/live-input freeze, then collection/audit. No wider gain, untouched workload, new host, global optimum or serving-throughput claim. Original scientific decisions and budgets remain closed.
+
+Evidence: docs/evidence/stock-cli-20261005/report.md, implementation-verification.json and review.md; docs/superpowers/specs/2026-10-05-stock-coverage.md.

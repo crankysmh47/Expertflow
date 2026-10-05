@@ -60,7 +60,20 @@ The historical scorecard is `release/expertflow-build-week/evidence/release-scor
 
 ## Interfaces and scope
 
-Current compiler interfaces include `expertflow inspect`, `expertflow compile`, `expertflow validate`, `expertflow explain` and `expertflow run --plan`. Stock reference/search collection and recommendation execution also use scripts documented in [the method guide](docs/stock-configuration-method.md).
+Current compiler interfaces include `expertflow inspect`, `expertflow compile`, `expertflow validate`, `expertflow explain` and `expertflow run --plan`. The public `expertflow stock` interface now delegates reference, product and search workflows to their registered collectors and provides read-only utility/repeatability validation. See [the method guide](docs/stock-configuration-method.md) for prerequisite inputs and supported actions.
+
+```powershell
+uv run --no-sync expertflow stock --help
+uv run --no-sync expertflow stock search generate --help
+uv run --no-sync expertflow stock repeatability validate --output-dir C:/models/expertflow/runs/compiler-stock-repeatability-20261004
+uv run --no-sync expertflow stock coverage inspect
+```
+
+These research workflows require a matching checkout; use `stock --project C:/sem4/expertflow ...` when invoking an installed wheel elsewhere. Help works without models. Native operations also require the pinned binaries, local evidence and development source-contract checks. Closed utility/repeatability studies expose validation only. JSON decisions distinguish verified negative/neutral outcomes from invalid inputs and include covered identities, comparison costs and stop reasons.
+
+Read-only validation reuses one verified reader per database while retaining artifact/runtime/token checks and the existing model stat guard. The final adapter validated the completed study in 221 seconds versus the earlier 2,191 seconds, with five reader caches and zero new native calls; these are descriptive timings. All 41 frozen files and six historical pins remained unchanged. [Verification and source archive](docs/evidence/stock-cli-20261005/report.md).
+
+[Wider utility coverage](docs/superpowers/specs/2026-10-05-stock-coverage.md) now registers Q4 and Granite with prose/code prompts, 107 calls each/428 maximum. It is **REGISTERED-NOT-RUN**; a separate reviewed collector and immutable source freeze are the next step. Registration adds no scientific gain or new host coverage.
 
 The earlier deployment interface remains available: `expertflow doctor`, `expertflow profile`, `expertflow optimize`, positional `expertflow run`, `expertflow serve` and `expertflow compare`. Its setup is documented in the historical [judge guide](JUDGES.md) and [deployment guide](DEPLOYMENT.md). It does not promote the old placement result into current exact acceptance.
 
@@ -81,7 +94,7 @@ uv run --no-sync python -m compileall -q src/expertflow
 git diff --check
 ```
 
-Latest full suite: 797 passed, 7 historical source-environment skips; 6 applicable pinned native source checks passed separately. See [implementation verification](docs/evidence/stock-repeatability-20261004/implementation-verification.json). Run applicable source contracts against the exact external checkout they target. CPU tests and replay do not prove native speed or quality.
+Latest full suite: 835 passed, 7 historical source-environment skips; 6 applicable pinned native source checks passed separately. See [implementation verification](docs/evidence/stock-cli-20261005/implementation-verification.json). Run applicable source contracts against the exact external checkout they target. CPU tests and replay do not prove native speed or quality.
 
 ## Project documentation
 

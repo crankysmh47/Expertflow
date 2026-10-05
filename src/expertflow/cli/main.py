@@ -57,6 +57,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     commands = parser.add_subparsers(dest="command", required=True)
     add_compiler_commands(commands)
+    stock = commands.add_parser('stock', help='Generate, collect or validate registered stock workflows.')
+    stock.add_argument('stock_args', nargs=argparse.REMAINDER)
 
     baseline = commands.add_parser(
         "baseline", help="Run and measure an unmodified llama.cpp baseline."
@@ -1019,7 +1021,12 @@ def _run_deadline_eval(args: argparse.Namespace) -> int:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    args = build_parser().parse_args(argv)
+    import sys
+    actual = list(sys.argv[1:] if argv is None else argv)
+    if actual and actual[0] == 'stock':
+        from expertflow.stock.cli import main as stock_main
+        return stock_main(actual[1:])
+    args = build_parser().parse_args(actual)
     if args.command == 'run' and args.plan is None and any(getattr(args, name, None) is not None for name in
             ('descriptor', 'inventory', 'hardware', 'workload', 'runtime_identity', 'evidence_db', 'output_dir', 'acceptance')):
         print(json.dumps({'status': 'failure', 'reason': 'mixed run modes: compiler-only arguments require --plan'}))

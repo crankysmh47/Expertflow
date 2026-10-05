@@ -48,7 +48,7 @@ Results and scope: [STATUS.md](STATUS.md). Updated 2026-10-05.
   148 native calls, 41 frozen files and six historical pins intact.
 - [x] Finish fresh read-only CLI validation and verified evidence/documentation;
   exit0, no extra native calls, all source/history pins unchanged.
-- [ ] Consolidate the validated workflow into public CLI/decision reports.
+- [x] Consolidate the validated workflow into public CLI/decision reports.
 
 Placement steps 2–3 are inactive after the feasibility rejection. The original
 fallback remains **PRODUCT-VALIDATION-STOP**, with product CI90 [+0.13%, +2.34%]
@@ -61,12 +61,21 @@ Never reuse either study's budget for additional samples or candidates.
 
 ## Next product work
 
-- [ ] Reuse verified readers per database in future validation orchestration;
+- [x] Reuse verified readers per database in public read-only validation;
   preserve measured source snapshots and all artifact/model checks.
-- [ ] Publish coverage, defaults scope, tuning costs and invalidation reasons
+- [x] Publish coverage, defaults scope, tuning costs and invalidation reasons
   with the CLI workflow. Keep neutral/default-optimal outcomes explicit.
-- [ ] Register broader utility coverage before new workload/model/host runs;
+- [x] Register broader utility coverage before new workload/model/host runs;
   Q4 and Granite compatibility does not establish defaults gain on those inputs.
+- [ ] Implement/review the separate wider collector and freeze its source,
+  live identities and all four case roots before native collection.
+- [ ] Execute and independently audit the [four registered cases](superpowers/specs/2026-10-05-stock-coverage.md),
+  retaining neutral/default-optimal and failed outcomes. Maximum428 new calls;
+  no additional calls belong to either completed Q6 study.
+
+Public CLI and reader-reuse verification are recorded in
+[the implementation report](evidence/stock-cli-20261005/report.md). Wider native
+utility tests are registered, not executed; serving and other hosts remain unverified.
 
 ## Broader research remains deferred
 

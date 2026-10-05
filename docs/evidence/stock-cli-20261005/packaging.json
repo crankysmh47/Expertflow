@@ -1,0 +1,73 @@
+{
+  "checks": [
+    {
+      "command": [
+        "C:\\sem4\\expertflow\\.superpowers\\sdd\\2026-10-05-stock-cli-and-coverage\\wheel-env\\Scripts\\python.exe",
+        "-c",
+        "import expertflow.stock.cli; print(expertflow.stock.cli.__file__)"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "C:\\sem4\\expertflow\\.superpowers\\sdd\\2026-10-05-stock-cli-and-coverage\\wheel-env\\Lib\\site-packages\\expertflow\\stock\\cli.py\n"
+    },
+    {
+      "command": [
+        "C:\\sem4\\expertflow\\.superpowers\\sdd\\2026-10-05-stock-cli-and-coverage\\wheel-env\\Scripts\\expertflow.exe",
+        "--help"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "usage: expertflow [-h]\n                  {inspect,compile,validate,explain,stock,baseline,collect-pairs,doctor,profile,parity,recommend,replay,simulate,prefetch-sim,transfer-benchmark,transfer-aggregate,mover-benchmark,capacity-curve,heldout-curve,heldout-breakdown,deadline-eval,optimize,run,serve,compare,demo}\n                  ...\n\nProfile and explain sparse-MoE routing on local hardware.\n\npositional arguments:\n  {inspect,compile,validate,explain,stock,baseline,collect-pairs,doctor,profile,parity,recommend,replay,simulate,prefetch-sim,transfer-benchmark,transfer-aggregate,mover-benchmark,capacity-curve,heldout-curve,heldout-breakdown,deadline-eval,optimize,run,serve,compare,demo}\n    inspect             Normalize supported GGUF metadata into ModelIR.\n    compile             Compile, confirm and replay a measured exact execution\n                        plan.\n    validate            Verify a sealed plan, evidence and live identities.\n    explain             Export decisions without promoting estimates to\n                        measurements.\n    stock               Generate, collect or validate registered stock\n                        workflows.\n    baseline            Run and measure an unmodified llama.cpp baseline.\n    collect-pairs       Collect resumable tracing-disabled/tracing-enabled\n                        prompt pairs.\n    doctor              Record hardware, storage, and toolchain readiness.\n    profile             Create a measured locality profile from a router\n                        trace.\n    parity              Compare deterministic token sequences with and without\n                        tracing.\n    recommend           Create an evidence-bounded machine-specific\n                        recommendation.\n    replay              Render a standalone causal policy replay report.\n    simulate            Compare estimated cache policies over a router trace.\n    prefetch-sim        Estimate bounded next-step prefetch over interleaved\n                        traces.\n    transfer-benchmark  Measure CUDA host-to-device transfer latency.\n    transfer-aggregate  Pool raw CUDA transfer samples from independent\n                        trials.\n    mover-benchmark     Measure contiguous batching, queue depth, and ready\n                        latency.\n    capacity-curve      Estimate cache policy curves over one or more router\n                        traces.\n    heldout-curve       Fit static residents on training traces and score\n                        held-out traces.\n    heldout-breakdown   Report held-out policy results by conversation and\n                        domain.\n    deadline-eval       Evaluate a backend-specific oracle one-layer transfer\n                        bound.\n    optimize            Create a measured deployment manifest.\n    run                 Launch inference from a deployment manifest.\n    serve               Launch an OpenAI-compatible llama-server deployment.\n    compare             Compare stock and ExpertFlow recorded evidence.\n    demo                Replay the committed product evidence.\n\noptions:\n  -h, --help            show this help message and exit\n"
+    },
+    {
+      "command": [
+        "C:\\sem4\\expertflow\\.superpowers\\sdd\\2026-10-05-stock-cli-and-coverage\\wheel-env\\Scripts\\expertflow.exe",
+        "stock",
+        "--help"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "usage: expertflow stock [--project PROJECT]\n                        [{reference,product,search,utility,repeatability,coverage}]\n                        [action]\n\nRegistered stock workflows in a matching research checkout. Closed studies are\nvalidation-only.\n\npositional arguments:\n  {reference,product,search,utility,repeatability,coverage}\n  action                generate, run, validate or execute as supported by the\n                        workflow\n\noptions:\n  --project PROJECT     research checkout; relative driver paths resolve here\n"
+    },
+    {
+      "command": [
+        "C:\\sem4\\expertflow\\.superpowers\\sdd\\2026-10-05-stock-cli-and-coverage\\wheel-env\\Scripts\\expertflow.exe",
+        "stock",
+        "search",
+        "generate"
+      ],
+      "exit_code": 3,
+      "stderr": "",
+      "stdout": "{\n  \"action\": \"generate\",\n  \"decision\": {\n    \"evidence_verified\": false,\n    \"global_optimum_established\": false,\n    \"serving_throughput_established\": false,\n    \"utility_gain_established\": false\n  },\n  \"reason\": \"stock workflows require a research checkout; supply --project PATH\",\n  \"status\": \"ENVIRONMENT-BLOCKED\",\n  \"workflow\": \"search\"\n}\n"
+    },
+    {
+      "command": [
+        "C:\\sem4\\expertflow\\.superpowers\\sdd\\2026-10-05-stock-cli-and-coverage\\wheel-env\\Scripts\\expertflow.exe",
+        "stock",
+        "--project",
+        "C:\\sem4\\expertflow",
+        "search",
+        "generate",
+        "--help"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "usage: expertflow [-h] --action {generate,run,validate,execute}\n                  [--descriptor DESCRIPTOR] [--inventory INVENTORY]\n                  [--hardware HARDWARE] [--workload WORKLOAD]\n                  [--runtime-identity RUNTIME_IDENTITY]\n                  [--source-plan SOURCE_PLAN]\n                  [--source-receipt SOURCE_RECEIPT]\n                  [--source-evidence-db SOURCE_EVIDENCE_DB]\n                  [--source-repository SOURCE_REPOSITORY]\n                  [--exclude-threads EXCLUDE_THREADS]\n                  [--space-config SPACE_CONFIG] [--evidence-db EVIDENCE_DB]\n                  [--output-dir OUTPUT_DIR]\n                  [--manifest-output MANIFEST_OUTPUT]\n                  [--recommendation RECOMMENDATION]\n\nGenerate, execute once, or reconstruct a bounded exact stock search.\n\noptions:\n  -h, --help            show this help message and exit\n  --action {generate,run,validate,execute}\n  --descriptor DESCRIPTOR\n  --inventory INVENTORY\n  --hardware HARDWARE\n  --workload WORKLOAD\n  --runtime-identity RUNTIME_IDENTITY\n  --source-plan SOURCE_PLAN\n  --source-receipt SOURCE_RECEIPT\n  --source-evidence-db SOURCE_EVIDENCE_DB\n  --source-repository SOURCE_REPOSITORY\n  --exclude-threads EXCLUDE_THREADS\n  --space-config SPACE_CONFIG\n                        explicit alternate coverage/budget JSON; default stays\n                        in approved32-process space\n  --evidence-db EVIDENCE_DB\n  --output-dir OUTPUT_DIR\n  --manifest-output MANIFEST_OUTPUT\n  --recommendation RECOMMENDATION\n"
+    },
+    {
+      "command": [
+        "C:\\sem4\\expertflow\\.superpowers\\sdd\\2026-10-05-stock-cli-and-coverage\\wheel-env\\Scripts\\expertflow.exe",
+        "stock",
+        "--project",
+        "C:\\sem4\\expertflow",
+        "coverage",
+        "inspect"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\n  \"cases\": [\n    {\n      \"case_id\": \"gemma4-q4-prose\",\n      \"family\": \"gemma4\",\n      \"maximum_native_processes\": 107,\n      \"quantization\": \"Q4_0\",\n      \"status\": \"NOT-RUN\"\n    },\n    {\n      \"case_id\": \"gemma4-q4-code\",\n      \"family\": \"gemma4\",\n      \"maximum_native_processes\": 107,\n      \"quantization\": \"Q4_0\",\n      \"status\": \"NOT-RUN\"\n    },\n    {\n      \"case_id\": \"granite-q6-prose\",\n      \"family\": \"granitemoe\",\n      \"maximum_native_processes\": 107,\n      \"quantization\": \"Q6_K\",\n      \"status\": \"NOT-RUN\"\n    },\n    {\n      \"case_id\": \"granite-q6-code\",\n      \"family\": \"granitemoe\",\n      \"maximum_native_processes\": 107,\n      \"quantization\": \"Q6_K\",\n      \"status\": \"NOT-RUN\"\n    }\n  ],\n  \"execution_ready\": false,\n  \"input_file_pins_verified\": 17,\n  \"maximum_native_processes\": 428,\n  \"native_calls\": 0,\n  \"next\": \"Implement/review the separate wider collector and freeze all source/live identities before collection.\",\n  \"registration_sha256\": \"0376ac4d7c5e146bc594f5c22a4b1be803b446ced4c3d9d04a4cb0737af55603\",\n  \"status\": \"REGISTERED-NOT-RUN\",\n  \"utility_gain_established\": false,\n  \"weight_hashes_verified\": false\n}\n"
+    }
+  ],
+  "scope": "Wheel installed without dependencies in a separate environment; help, prerequisites and metadata inspection only.",
+  "status": "PASS"
+}

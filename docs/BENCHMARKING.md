@@ -37,12 +37,27 @@ Report the collector interval of 11,717.250 seconds, 4,441.791 seconds of waitin
 5,364.040 seconds of native phases separately. The collector interval excludes
 input loading and read-only reconstruction. Automatic/manual native search
 phase costs were 685.212/667.924 seconds, so equal evaluation budgets do not
-establish lower wall time or human effort. Frozen validation repeatedly hashes
-the 22.9 GB model and has substantial additional cost. Decode TPS is not total
+establish lower wall time or human effort. The public CLI now reuses verified
+readers within one read-only validation: 207.94 seconds, then 221.15 seconds
+after the final reporting fixes, versus the earlier 2,191.48 seconds. Five
+reader caches, zero additional native calls, all original source/history pins
+unchanged. These descriptive comparisons do not establish a
+general validation speedup. Legacy script validation retains its original
+repeated reads. Decode TPS is not total
 CLI or steady-state serving throughput. Diagnostics do not prove a thermal
 cause or repair. Wider controls, workloads and hosts need separately frozen
 eligibility, gates and full native budgets; neutral/default-optimal outcomes
 must remain explicit.
+
+The [wider coverage registration](superpowers/specs/2026-10-05-stock-coverage.md)
+defines four Q4/Granite cases with prose/code prompts and unchanged thread/graph
+controls. Each has86 utility calls and conditional product20/consumer1,
+107 maximum; total428. Use fixed30s waits,4hours per case, separate18-evaluation
+automatic/manual grids, original utility/product gates and independent raw
+auditing. Report each case independently, including default-optimal
+`NO-UTILITY-GAIN`; no case pooling, retries or new host claim. Registration is
+not execution evidence. A separate reviewed collector and source freeze must
+precede collection, without modifying the closed Q6 protocols.
 
 ## Historical placement release protocol
 

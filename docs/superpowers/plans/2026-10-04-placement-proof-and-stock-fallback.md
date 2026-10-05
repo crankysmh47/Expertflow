@@ -72,7 +72,7 @@ reconstruction. Steps 2–3 are inactive; step 4 is the active proof path.
   the separate repeatability protocol; report its costs and declared scope.
 - [x] Qualify both independent main blocks and fresh main/transfer consumers,
   with full held-out utility/product acceptance and independent raw audit.
-- [ ] Consolidate scripts into public CLI/decision explanations and invalidation.
+- [x] Consolidate scripts into public CLI/decision explanations and invalidation.
   Preserve source snapshots and register new live validation budgets first.
 
 **Exit:** measured stock-tuning utility with honest coverage and cost, or an explicit narrower product decision.
@@ -94,8 +94,10 @@ See [qualified result and costs](../../evidence/stock-repeatability-20261004/rep
 Original studies, thresholds and quality/no-go verdicts remain closed.
 
 The bounded stock-autotuning proof is complete under fixed spacing/diagnostics.
-Next is public CLI consolidation, source-preserving reader reuse and separately
-registered wider utility coverage. It does not establish a global optimum,
+Public CLI consolidation and source-preserving reader reuse are implemented;
+wider utility coverage is [registered](../specs/2026-10-05-stock-coverage.md).
+Next is a separate reviewed wider collector/source freeze, then the four
+registered comparisons and independent audits. Registration does not establish a global optimum,
 superiority to manual tuning, new placement acceleration or serving throughput.
 
 ## Tracking and verification

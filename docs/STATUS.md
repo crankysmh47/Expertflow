@@ -54,8 +54,20 @@ matches the saved report and all 148 native records. See
 [results and costs](evidence/stock-repeatability-20261004/report.md).
 Fresh read-only CLI validation also passed with exit 0 and zero additional native
 calls; see [final verification](evidence/stock-repeatability-20261004/native-verification.json).
-Broad CLI, wider utility coverage and serving performance remain outside this
-bounded study; those are next product work, with new live budgets registered first.
+Public stock CLI consolidation and source-preserving reader reuse are now
+implemented separately from that bounded study. One read-only public validation
+passed in 207.94 seconds, and the final adapter passed in 221.15 seconds, versus
+the earlier 2,191.48 seconds. Five database readers were used, with zero extra
+native calls; all 41 source/prerequisite files and six history pins remained
+unchanged. These are descriptive timing comparisons. See
+[implementation and archived source evidence](evidence/stock-cli-20261005/report.md).
+
+The [wider utility registration](superpowers/specs/2026-10-05-stock-coverage.md)
+pins four Q4/Granite prose/code cases, 107 calls each/428 maximum, with fixed
+controls, pacing, gates, costs and stop rules. **REGISTERED-NOT-RUN**: next is
+the separate wider collector, review and immutable source/live-input freeze,
+then native collection and independent audit. No other host or serving
+performance claim follows from registration.
 
 ## Verified milestones
 
@@ -75,9 +87,9 @@ Granite's small-model TPS and Q4's different quantization are not Q6 speedups.
 Live coverage is two families on one pinned Windows/NVIDIA host/build, not
 universal model/hardware support or a global stock optimum.
 
-Latest full suite: **797 passed, 7 historical source-environment skips**;
+Latest full suite: **835 passed, 7 historical source-environment skips**;
 **6 applicable pinned native source checks passed** separately.
-See [repeatability implementation verification](evidence/stock-repeatability-20261004/implementation-verification.json).
+See [stock CLI implementation verification](evidence/stock-cli-20261005/implementation-verification.json).
 These tests establish implementation checks; live results come from the native
 records and independent audits linked above.
 

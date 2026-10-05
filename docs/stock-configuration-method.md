@@ -29,15 +29,74 @@ Reconstruct the completed study without launching a model, from its measured
 source snapshot or unchanged frozen source files:
 
 ```powershell
-uv run --no-sync python scripts/benchmark_compiler_stock_repeatability.py --action validate --output-dir C:/models/expertflow/runs/compiler-stock-repeatability-20261004
+uv run --no-sync expertflow stock repeatability validate --output-dir C:/models/expertflow/runs/compiler-stock-repeatability-20261004
 uv run --no-sync python docs/evidence/stock-repeatability-20261004/independent_audit.py --report C:/models/expertflow/runs/compiler-stock-repeatability-20261004/report.json --output C:/models/expertflow/runs/repeatability-readonly-audit.json
 ```
 
 The completed 148-call budget is closed. These are read-only commands, not
 authorization to rerun collection. Original source/artifact paths and local
 databases must remain available; archive snapshots do not relocate their
-identity bindings. Validation repeatedly reads model bytes and can take
-substantial time. Future reader reuse must preserve model/artifact checks.
+identity bindings. Public validation reuses one verified reader per database,
+with the original stat guard and repeated artifact/runtime/record checks. One
+read-only validation passed in 207.94 seconds, compared with the earlier
+2,191.48-second legacy invocation. The final reporting adapter also passed in
+221.15 seconds. Five database readers were reused, with
+zero new native calls and all 41 frozen files/six historical pins unchanged.
+The exact measured sources and prerequisites are retained in the
+[source archive and verification](evidence/stock-cli-20261005/report.md).
+The original script stays unchanged and retains its original read costs.
+
+## Public stock CLI
+
+`expertflow stock [--project PATH] WORKFLOW ACTION [driver flags]` is the common
+entry point. Relative input/output paths resolve in the supplied research
+checkout. Installed compiler bytes must match that checkout's declared source;
+help works outside it. Local GGUFs, binary/runtime/source-contract prerequisites
+and evidence databases remain external. This is a research workflow, with the
+same family/quantization/numerical and original path guards as its drivers.
+
+| Workflow | Actions | Purpose |
+| --- | --- | --- |
+| reference | generate, run, validate | Prepare/collect/reconstruct a fresh stock reference |
+| product | run | Fresh ten-pair product acceptance from a verified source plan |
+| search | generate, run, validate, execute | Bounded selection, accepted recommendation and fresh execution |
+| utility | validate | Reconstruct the closed original Q6 utility study |
+| repeatability | validate | Reconstruct the closed 148-call follow-up with reader reuse |
+| coverage | inspect | Verify wider registration metadata; never launch a model |
+
+Use workflow/action help for the original input flags, for example:
+
+```powershell
+uv run --no-sync expertflow stock reference generate --help
+uv run --no-sync expertflow stock product run --help
+uv run --no-sync expertflow stock search generate --help
+uv run --no-sync expertflow stock coverage inspect
+```
+
+Product collection always selects the stock-product experiment; action/experiment
+override flags and their abbreviations are rejected. Consume an accepted
+product using the existing public `expertflow validate --plan ... --acceptance ...`
+and `expertflow run --plan ... --acceptance ...` commands. Search `execute`
+requires a fresh execution output and the existing recommendation database.
+Neither collection nor an accepted consumer adds authorization to an old study's
+closed budget. Use each receipt's matching source/input snapshot; historical
+receipts are not automatically portable to another checkout.
+
+JSON decisions show covered identities, thread/graph defaults scope, retained
+attempts and available collection/search phase costs. Automatic/manual search
+cost remains 18 independent evaluations each, not a lower wall-time claim.
+A valid reconstructed neutral/default-optimal outcome stays verified with
+`utility_gain_established: false`, `selected_default: true` and its original
+nonzero gate exit. Invalid inputs produce an identity/environment stop reason
+and acquire no statistics or gain claim. Generate outputs are preparation,
+not native performance evidence. Model digest caches last one synchronous
+validation only; native run/execute behavior is unchanged.
+
+[Wider coverage](superpowers/specs/2026-10-05-stock-coverage.md) registers Q4
+and Granite with prose/code workloads: four cases, 107 calls each, 428 maximum.
+They use the fixed existing controls/gates and report neutral/failed cases
+individually. A separate reviewed collector and immutable source/live identity
+freeze are required before running them. No wider utility result is claimed.
 
 The compiler compares eligible configurations for one verified model, semantic
 workload, runtime and host. A result is the strongest validated configuration in

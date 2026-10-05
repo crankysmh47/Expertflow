@@ -1,0 +1,25 @@
+{
+  "checks": [
+    {
+      "false_default_claim_absent": true,
+      "report": "C:\\models\\expertflow\\runs\\compiler-stock-repeatability-20261004\\block-b\\report.json",
+      "workflow": "product",
+      "workload_scope_present": true
+    },
+    {
+      "false_default_claim_absent": true,
+      "report": "C:\\models\\expertflow\\runs\\compiler-q4-stock-search-20261004\\search\\report.json",
+      "workflow": "search",
+      "workload_scope_present": true
+    },
+    {
+      "false_default_claim_absent": true,
+      "report": "docs\\evidence\\compiler-granite-20261004\\reference-diagnostic\\reference-receipt.json",
+      "workflow": "reference",
+      "workload_scope_present": true
+    }
+  ],
+  "native_calls": 0,
+  "status": "PASS-SCHEMA-CONTROLS",
+  "validation_scope": "Saved report extraction only; no native record/receipt acceptance is certified here."
+}
