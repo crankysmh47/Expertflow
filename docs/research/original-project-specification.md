@@ -1,12 +1,12 @@
-# Product Spec: ExpertFlow Local â€” Predictive Memory Hierarchy for Sparse MoE Models and Local Agents
+# Product Spec: ExpertFlow Local — Predictive Memory Hierarchy for Sparse MoE Models and Local Agents
 
 **Document type:** Product + technical design spec
-**Status:** Draft v0.11 â€” layered delivery, dual-demo contingency, and video-first deadline locked
+**Status:** Draft v0.11 — layered delivery, dual-demo contingency, and video-first deadline locked
 **Date:** 2026-07-14
 **Working name:** ExpertFlow Local
 **Primary proof-of-concept target:** Gemma 4 26B A4B, text-only, batch size 1
 **Post-hackathon research target:** Qwen3.5-35B-A3B
-**Initial hardware target:** Single 16 GB VRAM GPU, sufficient CPU RAM, CPUâ†’GPU transfer over PCIe
+**Initial hardware target:** Single 16 GB VRAM GPU, sufficient CPU RAM, CPU→GPU transfer over PCIe
 **Core principle:** Prediction affects loading order only. The true model router remains authoritative.
 **Hackathon track:** Developer tools
 **Critical-path runtime:** Hugging Face/PyTorch host runtime plus a thin custom ExpertFlow expert-cache backend; no new full inference engine
@@ -28,7 +28,7 @@
 
 ### 0.2 Prior decisions retained
 
-The following decisions remain locked from v0.6â€“v0.10:
+The following decisions remain locked from v0.6–v0.10:
 
 ```
 Gemma 4 26B A4B, text-only, batch size 1
@@ -50,7 +50,7 @@ Qwen, llama.cpp, multimodal, and learned online policy are post-hackathon
 
 ExpertFlow Local is a developer tool and runtime layer that turns sparse model weights into a **managed memory hierarchy** instead of treating insufficient GPU VRAM as a hard deployment boundary.
 
-Sparse Mixture-of-Experts models may contain far more total parameters than they activate for any one token. On a local agent machine, those routed weights compete with KV/model state, transfer buffers, and other active sessions for the same scarce VRAM. ExpertFlow measures the model's real routed working set, models the target machine's memory and PCIe behavior, recommends a cache policy, andâ€”when the live backend is enabledâ€”moves likely experts into VRAM before the real router needs them.
+Sparse Mixture-of-Experts models may contain far more total parameters than they activate for any one token. On a local agent machine, those routed weights compete with KV/model state, transfer buffers, and other active sessions for the same scarce VRAM. ExpertFlow measures the model's real routed working set, models the target machine's memory and PCIe behavior, recommends a cache policy, and—when the live backend is enabled—moves likely experts into VRAM before the real router needs them.
 
 The product therefore answers two linked questions:
 
@@ -77,7 +77,7 @@ Do not describe the project as "faster disk loading." Active decode uses GPU VRA
 
 The hackathon build is intentionally layered. Every completed layer produces a runnable artifact and a complete user-facing result.
 
-#### Layer 0 â€” Empirical gate, internal but immediate
+#### Layer 0 — Empirical gate, internal but immediate
 
 ```
 load the pinned 4-bit profile
@@ -89,7 +89,7 @@ produce PROCEED / CONDITIONAL / OBSERVATORY-ONLY decision
 
 Layer 0 exists to prevent the team from spending the week on an unsupported runtime hypothesis.
 
-#### Layer 1 â€” ExpertFlow Observatory, required
+#### Layer 1 — ExpertFlow Observatory, required
 
 ```
 expertflow doctor
@@ -101,7 +101,7 @@ Capability / Performance-potential / Mechanism report
 
 This layer answers: *Is predictive expert caching viable for this model on this machine?*
 
-#### Layer 2 â€” Recommendation + causal replay, required
+#### Layer 2 — Recommendation + causal replay, required
 
 ```
 machine-specific expert-cache recommendation
@@ -113,7 +113,7 @@ static or lightweight interactive HTML report
 
 This layer turns the research result into a developer product. It does not require a live expert-cache runtime.
 
-#### Layer 3 â€” Exact live runtime, competitive target
+#### Layer 3 — Exact live runtime, competitive target
 
 ```
 blocking reactive baseline
@@ -126,7 +126,7 @@ same-runtime measured comparison
 
 Layer 3 is built only while Layer 1 and Layer 2 remain complete and video-ready.
 
-#### Layer 4 â€” Adaptive lookahead/MTP, stretch
+#### Layer 4 — Adaptive lookahead/MTP, stretch
 
 Layer 4 begins only when Layer 3 is exact, faster, reproducible, and frozen early enough to protect the video schedule.
 
@@ -134,7 +134,7 @@ Layer 4 begins only when Layer 3 is exact, faster, reproducible, and frozen earl
 
 The public journey remains:
 
-> **Inspect hardware â†’ profile model â†’ compare policies â†’ receive recommendation â†’ replay or run â†’ verify**
+> **Inspect hardware → profile model → compare policies → receive recommendation → replay or run → verify**
 
 The CLI may expose this as separate commands:
 
@@ -171,13 +171,13 @@ The submission uses three explicit claim levels.
 
 #### Proven in the hackathon
 
-> **ExpertFlow profiles and simulates sparse expert movement on a 16 GB GPU target, andâ€”only if Layer 3 measurements passâ€”uses an exact predictive expert cache to reduce blocking transfer time versus a same-runtime reactive baseline.**
+> **ExpertFlow profiles and simulates sparse expert movement on a 16 GB GPU target, and—only if Layer 3 measurements pass—uses an exact predictive expert cache to reduce blocking transfer time versus a same-runtime reactive baseline.**
 
 Do not claim a runtime improvement until it is measured.
 
 #### Immediate product value
 
-> **ExpertFlow helps developers determine whether a sparse model is viable on their hardware, compare cache strategies, receive a machine-specific VRAM allocation, and inspect every expert transfer that caused or avoided a stallâ€”while showing how much memory remains available for active agent state or additional sessions.**
+> **ExpertFlow helps developers determine whether a sparse model is viable on their hardware, compare cache strategies, receive a machine-specific VRAM allocation, and inspect every expert transfer that caused or avoided a stall—while showing how much memory remains available for active agent state or additional sessions.**
 
 This is valuable even when a particular model has weak locality and the correct recommendation is not to enable predictive caching.
 
@@ -208,86 +208,86 @@ Potential downstream uses include private coding and research agents, longer uni
 The project has two prepared submission outcomes.
 
 ```
-Outcome A â€” Observatory product, guaranteed:
+Outcome A — Observatory product, guaranteed:
   Layer 1 + Layer 2 complete
   real Gemma traces and hardware measurements
   policy simulator and recommendation
   causal replay report
   explicit verdict on whether live predictive caching is worthwhile
 
-Outcome B â€” Runtime product, target:
+Outcome B — Runtime product, target:
   Outcome A plus Layer 3
   exact live expert cache
   measured reactive/LRU/ExpertFlow comparison
   runtime movement timeline
 
-Outcome C â€” Lookahead extension, optional:
+Outcome C — Lookahead extension, optional:
   Outcome B plus Layer 4 only when it produces a measured incremental gain
 ```
 
 Outcome A is not described as a failed runtime. It is a model-and-hardware profiler that prevents developers from committing to an offloading architecture before measuring locality, transfer deadlines, and VRAM trade-offs.
 
-### 1.7 Three-minute demo A â€” exact live runtime succeeds
+### 1.7 Three-minute demo A — exact live runtime succeeds
 
 ```
-0:00â€“0:20  Constraint
+0:00–0:20  Constraint
   A sparse model's routed weights and active agent state compete for 16 GB of VRAM.
   Show expertflow doctor and the measured memory envelope.
 
-0:20â€“0:45  Observatory
+0:20–0:45  Observatory
   Show the real router trace, layer-specific working set, and oracle headroom.
 
-0:45â€“1:15  Reactive baseline
+0:45–1:15  Reactive baseline
   Expert is requested while absent; PCIe copy starts after demand; GPU stalls.
 
-1:15â€“1:50  ExpertFlow runtime
+1:15–1:50  ExpertFlow runtime
   Expert is predicted, transferred during useful compute, then selected by the real router.
   Show READY HIT and exact output parity.
 
-1:50â€“2:20  Evidence
+1:50–2:20  Evidence
   Compare reactive, LRU, and ExpertFlow using TPS, p95 latency, blocking transfer time,
   ready-hit rate, peak VRAM, and remaining headroom.
 
-2:20â€“2:45  Product
+2:20–2:45  Product
   Show the generated machine-specific recommendation and reproduction command.
 
-2:45â€“3:00  Implication
+2:45–3:00  Implication
   Predictive sparse-weight management lowers the hardware boundary while leaving
   measured headroom that a compatible agent runtime may allocate to active state.
 ```
 
-### 1.8 Three-minute demo B â€” Observatory-only contingency
+### 1.8 Three-minute demo B — Observatory-only contingency
 
 This script must be rehearsed and asset-complete by 2026-07-18, even while Layer 3 is still being attempted.
 
 ```
-0:00â€“0:20  The expensive systems mistake
+0:00–0:20  The expensive systems mistake
   Developers see a sparse model that does not fit in VRAM and immediately begin
   implementing offload logic without knowing whether its routing is cacheable.
 
-0:20â€“0:45  One-command hardware and model inspection
+0:20–0:45  One-command hardware and model inspection
   Run expertflow doctor and profile. Show the exact 4-bit memory envelope,
   transfer bandwidth, and routed-expert trace.
 
-0:45â€“1:20  The locality result
+0:45–1:20  The locality result
   Show concentration, reuse distance, working-set size, and topic-shift behavior.
   Explain whether locality is strong, weak, or layer-dependent.
 
-1:20â€“1:55  Policy laboratory
+1:20–1:55  Policy laboratory
   Replay the same trace under reactive, static, LRU, session-aware, and oracle policies.
   Show ready, late, and blocking events on the causal timeline.
 
-1:55â€“2:25  Machine-specific recommendation
+1:55–2:25  Machine-specific recommendation
   Show the recommended expert slots, pinned-memory budget, expected cold MB/token,
   predicted stalls, uncertainty, and remaining measured VRAM headroom.
 
-2:25â€“2:45  Honest decision
+2:25–2:45  Honest decision
   State the evidence-backed verdict:
-    PROCEED â€” live predictive caching has measurable headroom;
-    CONDITIONAL â€” only selected layers/domains justify it; or
-    DO NOT ENABLE â€” locality/PCIe economics do not support it on this profile.
+    PROCEED — live predictive caching has measurable headroom;
+    CONDITIONAL — only selected layers/domains justify it; or
+    DO NOT ENABLE — locality/PCIe economics do not support it on this profile.
 
-2:45â€“3:00  Product value
+2:45–3:00  Product value
   ExpertFlow turns weeks of speculative runtime work into a reproducible hardware-aware
   decision, and its replay bundle lets any judge inspect the mechanism without our GPU.
 ```
@@ -297,13 +297,13 @@ If Layer 3 is incomplete or does not beat the baselines by the cutoff, Demo B be
 ### 1.9 Submission clock and hard freeze policy
 
 ```
-2026-07-14: Layer 0 â€” environment, INT4 load, router hook, locality dry run
+2026-07-14: Layer 0 — environment, INT4 load, router hook, locality dry run
 2026-07-15: Layer 1 evidence bundle, simulator, final runtime go/no-go decision
 2026-07-16: freeze Layer 1; complete minimum replay report and recommendation schema
 2026-07-17: freeze Layer 2; rehearse and screen-test Demo B; continue Layer 3 if justified
 2026-07-18: Layer 3 cutoff; keep only exact, measurable runtime work that already functions
 2026-07-19: all product, benchmark, README, dashboard, and demo assets freeze; rehearse both scripts
-2026-07-20: VIDEO-ONLY DAY â€” record, edit, upload, process, and verify the final video
+2026-07-20: VIDEO-ONLY DAY — record, edit, upload, process, and verify the final video
 2026-07-21: reproduction check, submission forms, link verification, and emergency corrections only
 2026-07-22 05:00 PKT: external deadline assumption; do not plan active work until this point
 ```
@@ -344,7 +344,7 @@ MVP decision:
 
 ```
 Vision encoder: excluded from MVP runtime scope
-Image inputs: unsupported in Hackathon Stages 1â€“4
+Image inputs: unsupported in Hackathon Stages 1–4
 Vision-text global priors: schema-reserved but disabled in MVP
 VRAM accounting: include an optional row for the vision encoder but do not reserve VRAM for it
 ```
@@ -379,7 +379,7 @@ Officially documented Qwen3.5-35B-A3B properties:
 | Expert count | 256 |
 | Activated experts | 8 routed + 1 shared |
 | Expert intermediate dimension | 512 |
-| Hidden layout | 10 Ã— (3 Ã— (Gated DeltaNet â†’ MoE) â†’ 1 Ã— (Gated Attention â†’ MoE)) |
+| Hidden layout | 10 × (3 × (Gated DeltaNet → MoE) → 1 × (Gated Attention → MoE)) |
 | MTP | Trained with multi-steps |
 | Native context length | 262,144 tokens |
 | Extended context length | up to 1,010,000 tokens |
@@ -390,7 +390,7 @@ https://huggingface.co/Qwen/Qwen3.5-35B-A3B
 ### 2.3 Product decision
 
 ```
-Hackathon Stages 1â€“4: Gemma 4 26B A4B only.
+Hackathon Stages 1–4: Gemma 4 26B A4B only.
 Post-hackathon Stage 5+: Qwen3.5-35B-A3B only if Gemma results are compelling.
 ```
 
@@ -576,7 +576,7 @@ The hackathon MVP must not attempt to:
 10. Depend on speculative decoding or MTP for Layer 3 correctness or speedup.
 11. Verify speculative tokens using only currently resident experts.
 12. Train a heavy neural predictor before heuristic and simulator baselines are complete.
-13. Collect a massive trace corpus before a 100â€“200 conversation pilot establishes locality.
+13. Collect a massive trace corpus before a 100–200 conversation pilot establishes locality.
 14. Build production multi-user scheduling, distributed serving, continuous batching, or multi-GPU support.
 15. Guarantee all-GPU-resident throughput.
 
@@ -619,27 +619,27 @@ ExpertFlow has a product/control plane and a runtime/data plane.
 
 ```
 expertflow doctor
-      â†“
+      ↓
 HardwareProfile
   GPU/VRAM, host RAM, PCIe bandwidth, pinned-memory budget, backend compatibility, current VRAM allocation
-      â†“
+      ↓
 expertflow profile
-      â†“
+      ↓
 RouterTrace + LocalityReport
   concentration, reuse distance, per-layer working set, deadline feasibility
-      â†“
+      ↓
 expertflow simulate
-      â†“
+      ↓
 PolicyComparison
   reactive, static, LRU, session, predictor, oracle
-      â†“
+      ↓
 expertflow recommend
-      â†“
+      ↓
 MachineSpecificConfig
   slot counts, victim cache, warm-store budget, reserved runtime/KV-state headroom, admission policy, lookahead setting
-      â†“
+      ↓
 expertflow run + expertflow verify
-      â†“
+      ↓
 MeasuredResult + ExactnessReport + ReplayableTimeline
 ```
 
@@ -650,15 +650,15 @@ A profile run that concludes predictive caching is not worthwhile is a valid pro
 ```
 Application
   chat/completion API
-      â”‚
-      â–¼
+      │
+      ▼
 Inference Runtime
   tokenizer
   prefill loop
   decode loop
   optional speculative verifier
-      â”‚
-      â–¼
+      │
+      ▼
 ExpertFlow Cache Layer
   RouterObserver
   TraceCollector
@@ -671,8 +671,8 @@ ExpertFlow Cache Layer
   MTPOrDraftWindowController
   PCIeTransferScheduler
   MetricsCollector
-      â”‚
-      â–¼
+      │
+      ▼
 GPU VRAM                         CPU RAM
   backbone blocks                  quantized routed experts
   routers                          warm pinned staging buffers
@@ -765,7 +765,7 @@ For each routed MoE layer:
 
 The Layer 3 runtime may initially use PyTorch operations for expert MLP execution. A fused CUDA/Triton kernel is a stretch only after end-to-end correctness and telemetry work.
 
-### 7A.5 Quantization/profile rule â€” 4-bit first
+### 7A.5 Quantization/profile rule — 4-bit first
 
 The first supported deployment profile is **4-bit weight-only routed experts**. This reduces host-memory footprint, PCIe bytes per miss, and the size of the reproducible 16 GB GPU target.
 
@@ -871,7 +871,7 @@ REPRODUCING.md
 
 The judges must be able to verify the mechanism without reproducing our exact workstation. The repository supports three progressively demanding modes.
 
-### 7B.1 Mode A â€” installation and collector smoke test
+### 7B.1 Mode A — installation and collector smoke test
 
 Purpose: verify installation, router observation, schemas, parity checks, and CLI behavior without downloading the full checkpoint.
 
@@ -891,9 +891,9 @@ trace integrity validator passes
 CPU-only tests run where possible; CUDA-specific tests are skipped with a clear reason
 ```
 
-### 7B.2 Mode B â€” bundled trace replay and simulator
+### 7B.2 Mode B — bundled trace replay and simulator
 
-Purpose: verify the projectâ€™s main analysis, policy comparison, evaluator, and dashboard without the full model or a 16 GB GPU.
+Purpose: verify the project’s main analysis, policy comparison, evaluator, and dashboard without the full model or a 16 GB GPU.
 
 ```
 ./scripts/run_replay.sh
@@ -909,7 +909,7 @@ opens or exports the expert-movement dashboard
 clearly labels all replay/simulator numbers as estimated or previously measured
 ```
 
-### 7B.3 Mode C â€” full live 4-bit benchmark
+### 7B.3 Mode C — full live 4-bit benchmark
 
 Purpose: reproduce the measured Layer 3 claim on compatible NVIDIA hardware.
 
@@ -955,7 +955,7 @@ GPU name, compute capability, driver, VRAM, PCIe link
 CPU, RAM, OS, and storage mode
 ```
 
-Do not depend on a developerâ€™s globally installed packages. Do not silently upgrade the quantization backend.
+Do not depend on a developer’s globally installed packages. Do not silently upgrade the quantization backend.
 
 ### 7B.5 CLI and product-flow contract
 
@@ -1218,8 +1218,8 @@ If an approximate mode is implemented later, it must be explicitly labeled and m
 The cache policy uses two separate tables:
 
 ```
-1. Global prior table â€” learned from offline traces, useful for cold start.
-2. Session table â€” built from scratch for the current conversation.
+1. Global prior table — learned from offline traces, useful for cold start.
+2. Session table — built from scratch for the current conversation.
 ```
 
 The global prior prevents empty-cache startup. The session table prevents a bad global prior from dominating the current session.
@@ -1275,8 +1275,8 @@ struct LayerCoactivationMatrix {
 Memory:
 
 ```
-128 Ã— 128 Ã— 4 bytes = 64 KB per layer
-64 KB Ã— 30 layers â‰ˆ 1.9 MB per domain table
+128 × 128 × 4 bytes = 64 KB per layer
+64 KB × 30 layers ≈ 1.9 MB per domain table
 ```
 
 Usage:
@@ -1337,10 +1337,10 @@ Reuse distance is heavy-tailed. Do not use a single fixed-decay EMA.
 
 ```
 bucket 0: reused within 1 token
-bucket 1: reused within 2â€“4 tokens
-bucket 2: reused within 5â€“16 tokens
-bucket 3: reused within 17â€“64 tokens
-bucket 4: reused within 65â€“256 tokens
+bucket 1: reused within 2–4 tokens
+bucket 2: reused within 5–16 tokens
+bucket 3: reused within 17–64 tokens
+bucket 4: reused within 65–256 tokens
 bucket 5: reused after >256 tokens or not yet reused
 ```
 
@@ -1350,9 +1350,9 @@ The simulator exports p50/p90 reuse distance per (layer, expert, domain) and use
 
 ```
 effective_score =
-    0.55 Ã— session_score
-  + 0.30 Ã— domain_prior_score
-  + 0.15 Ã— predictor_score
+    0.55 × session_score
+  + 0.30 × domain_prior_score
+  + 0.15 × predictor_score
   - eviction_penalty
 ```
 
@@ -1371,28 +1371,28 @@ Coefficients are defaults. Tune only after the Layer 1 simulator produces traces
 
 ```
 effective_score =
-    Î± Ã— global_prior_score
-  + Î² Ã— session_recent_score
-  + Î³ Ã— predictor_score
-  + Î´ Ã— current_prefetch_urgency
-  + Îµ Ã— coactivation_score
-  - Î» Ã— memory_cost
-  - Î¼ Ã— transfer_cost
-  - Î½ Ã— pollution_risk
+    α × global_prior_score
+  + β × session_recent_score
+  + γ × predictor_score
+  + δ × current_prefetch_urgency
+  + ε × coactivation_score
+  - λ × memory_cost
+  - μ × transfer_cost
+  - ν × pollution_risk
 ```
 
 Do not use the expanded formula until trace data proves each term adds value.
 
-### 10.5 Î±/Î² blending schedule
+### 10.5 α/β blending schedule
 
 ```
-startup:          Î±=0.70, Î²=0.30
-after prefill:    Î±=0.40, Î²=0.60
-stable session:   Î±=0.10â€“0.20, Î²=0.80â€“0.90
-topic shift:      temporarily raise Î±
+startup:          α=0.70, β=0.30
+after prefill:    α=0.40, β=0.60
+stable session:   α=0.10–0.20, β=0.80–0.90
+topic shift:      temporarily raise α
 ```
 
-Hard floor: `Î±_min = 0.10`. The global prior remains useful during topic shifts when the session table is stale.
+Hard floor: `α_min = 0.10`. The global prior remains useful during topic shifts when the session table is stale.
 
 ### 10.6 Prior-vs-session comparison
 
@@ -1407,15 +1407,15 @@ wasted resident experts from prior
 wasted resident experts from session
 ```
 
-If the prior is weak for this session: lower Î±, increase session quota, stop pinning prior experts aggressively.
+If the prior is weak for this session: lower α, increase session quota, stop pinning prior experts aggressively.
 
-If the session table is sparse or a topic shift is detected: raise Î± temporarily, use domain prior to restabilize.
+If the session table is sparse or a topic shift is detected: raise α temporarily, use domain prior to restabilize.
 
 ---
 
 ## 11. Domain Classifier
 
-The domain classifier affects which global prior tables are active, which predictor heads run, topic-shift detection, Î±/Î² schedule adjustments, prefetch aggressiveness, and MTP/draft window size.
+The domain classifier affects which global prior tables are active, which predictor heads run, topic-shift detection, α/β schedule adjustments, prefetch aggressiveness, and MTP/draft window size.
 
 ### 11.1 Classifier output
 
@@ -1527,7 +1527,7 @@ For layer L and upcoming token position T, which experts are likely to be needed
 
 ### 12.2 Gated mixture-of-predictors
 
-Use the domain classifier to activate at most 1â€“2 predictor heads per token. Do not run all heads every token.
+Use the domain classifier to activate at most 1–2 predictor heads per token. Do not run all heads every token.
 
 ```
 Domain: english_chat + code
@@ -1697,7 +1697,7 @@ Planning numbers for modeling:
 
 ```
 PCIe 4.0 x16 theoretical: ~32 GB/s
-practical sustained DMA: ~20â€“28 GB/s
+practical sustained DMA: ~20–28 GB/s
 MVP planning number: 25 GB/s = 25 MB/ms
 ```
 
@@ -1706,8 +1706,8 @@ MVP planning number: 25 GB/s = 25 MB/ms
 If no-cache routed expert traffic is X MB/token (X is a placeholder until Layer 1 measures actual expert-object sizes):
 
 ```
-cold_MB_per_token = X Ã— (1 - H)
-transfer_ms_per_token â‰ˆ cold_MB_per_token / 25
+cold_MB_per_token = X × (1 - H)
+transfer_ms_per_token ≈ cold_MB_per_token / 25
 
 80% hit rate: 0.20X / 25 ms
 90% hit rate: 0.10X / 25 ms
@@ -1756,10 +1756,10 @@ Proceed to Layer 3 only if traces and the event-driven simulator satisfy the Lay
 ```
 cache hit rate >= 90% for stable single-domain sessions
 or transfer stalls can be hidden behind compute/prefill/speculation
-or throughput improvement over naive CPU offload >= 1.5Ã—
+or throughput improvement over naive CPU offload >= 1.5×
 ```
 
-Stretch target: >= 2Ã— throughput over naive reactive offload.
+Stretch target: >= 2× throughput over naive reactive offload.
 
 ---
 
@@ -1784,7 +1784,7 @@ runtime fragmentation margin
 ### 15.2 Rough prior estimate before measurement
 
 ```
-25.2B params Ã— 4 bits â‰ˆ 12.6 GB raw 4-bit weight payload
+25.2B params × 4 bits ≈ 12.6 GB raw 4-bit weight payload
 + quantization metadata
 + alignment/fragments
 + runtime buffers
@@ -1794,9 +1794,9 @@ runtime fragmentation margin
 Gemma has 128 total routed experts with only 8 active per layer, so a large fraction of total parameters is routed expert storage. A plausible Layer 1 planning hypothesis:
 
 ```
-text-only non-expert/shared/router/embedding/runtime: ~3â€“5 GB at 4-bit
+text-only non-expert/shared/router/embedding/runtime: ~3–5 GB at 4-bit
 routed expert storage: majority of remaining weight payload, in CPU RAM
-initial available VRAM for expert cache: unknown, possibly 2â€“6 GB depending on context length and runtime format
+initial available VRAM for expert cache: unknown, possibly 2–6 GB depending on context length and runtime format
 ```
 
 This is a hypothesis only. Replace with measured tensor accounting before Layer 3.
@@ -1828,10 +1828,10 @@ remaining configurable VRAM headroom            ?
 If available expert-cache budget is B:
 
 ```
-session hot cache:   55â€“75% of B
-global-prior cache:  10â€“30% of B
+session hot cache:   55–75% of B
+global-prior cache:  10–30% of B
 victim cache:        trace-derived
-prefetch buffer:     5â€“15% of B
+prefetch buffer:     5–15% of B
 ```
 
 Actual splits must be simulator-driven.
@@ -1877,8 +1877,8 @@ if predicted cold expert union is large: shrink window
 ### 16.4 Dynamic window policy
 
 ```
-cache hit rate high and acceptance rate high: increase window to 2â€“4
-cache hit rate low or expert diversity high: reduce window to 1â€“2
+cache hit rate high and acceptance rate high: increase window to 2–4
+cache hit rate low or expert diversity high: reduce window to 1–2
 thrashing detected: disable speculation or use window 1
 ```
 
@@ -1981,10 +1981,10 @@ Expected value:
 ```
 expected_value =
     P(expert needed)
-  Ã— P(token accepted if speculative)
-  Ã— miss_cost_saved
-  Ã— urgency
-  Ã· transfer_cost
+  × P(token accepted if speculative)
+  × miss_cost_saved
+  × urgency
+  ÷ transfer_cost
 ```
 
 ---
@@ -2007,12 +2007,12 @@ track copy/compute overlap
 Priority order:
 
 ```
-1. TrueRouterRequired â€” blocking miss
+1. TrueRouterRequired — blocking miss
 2. expert required by scheduled exact verifier pass
 3. SessionTableHot + predictor agreement
 4. GlobalPriorDomain prefetch
 5. CoactivationInference prefetch
-6. SpeculativeOnly â€” drop first under pressure
+6. SpeculativeOnly — drop first under pressure
 ```
 
 Source tracking is mandatory. The runtime must report prefetch usefulness broken down by `PredictionSource` so bad sources can be downweighted rather than globally reducing prefetching.
@@ -2075,7 +2075,7 @@ for each generated token:
 Reference distributions:
 
 ```
-P_recent: smoothed expert/domain distribution over latest 32â€“128 tokens
+P_recent: smoothed expert/domain distribution over latest 32–128 tokens
 P_session_ema: exponentially weighted running distribution over current topic phase
 shift_score: Jensen-Shannon divergence between P_recent and P_session_ema
 ```
@@ -2088,7 +2088,7 @@ When a shift is confirmed:
 
 ```
 assign new topic_phase_id
-raise Î± temporarily
+raise α temporarily
 reduce MTP window
 decay old session records faster
 increase prefetch exploration budget
@@ -2245,7 +2245,7 @@ This makes token-to-router-event alignment explicit. A later high-throughput col
 
 ### 23A.4 Two-stage validation
 
-Stage A â€” schema and hook validation:
+Stage A — schema and hook validation:
 
 ```
 model: tiny-random/gemma-4-moe
@@ -2253,7 +2253,7 @@ purpose: verify module discovery, hook output order, shapes, token mapping,
          prefill/decode labeling, and JSON/Parquet writing
 ```
 
-Stage B â€” target collection:
+Stage B — target collection:
 
 ```
 model: google/gemma-4-26B-A4B-it
@@ -2300,7 +2300,7 @@ Recommended order:
 
 ```
 1. Validate collector with tiny-random Gemma locally.
-2. Run a small BF16/FP16 Gemma trace sample on rented 48â€“80 GB GPU capacity.
+2. Run a small BF16/FP16 Gemma trace sample on rented 48–80 GB GPU capacity.
 3. Validate routing stability against the intended quantized deployment path.
 4. Collect the main trace corpus using the closest practical deployment configuration.
 5. Recollect a calibration subset whenever checkpoint, quantization, router precision,
@@ -2313,7 +2313,7 @@ Because quantized expert outputs affect later hidden states, they can indirectly
 
 Support three modes:
 
-**Mode 1 â€” full-context replay**
+**Mode 1 — full-context replay**
 
 ```
 Feed an existing multi-turn conversation as the prompt.
@@ -2321,7 +2321,7 @@ Generate a continuation.
 Fastest way to collect broad prefill and decode traces.
 ```
 
-**Mode 2 â€” turn-by-turn reconstruction**
+**Mode 2 — turn-by-turn reconstruction**
 
 ```
 Feed each user turn in sequence.
@@ -2330,7 +2330,7 @@ Preserve the accumulated conversation state.
 Preferred for realistic session-cache and topic-shift research.
 ```
 
-**Mode 3 â€” scripted topic-shift scenarios**
+**Mode 3 — scripted topic-shift scenarios**
 
 ```
 Construct conversations that intentionally move between chat, code, math,
@@ -2425,7 +2425,7 @@ struct RouterTraceEvent {
 
 ### 23B.4 Storage tiers
 
-**Core tier â€” always collect**
+**Core tier — always collect**
 
 ```
 request/conversation IDs
@@ -2448,7 +2448,7 @@ session/global priors
 basic multi-label training
 ```
 
-**Enhanced tier â€” collect on training shards**
+**Enhanced tier — collect on training shards**
 
 ```
 router top-M IDs and probabilities, recommended M=16 or 32
@@ -2459,7 +2459,7 @@ feature availability ordering
 
 Use for linear/MLP predictor training and calibration.
 
-**Debug tier â€” limited subset only**
+**Debug tier — limited subset only**
 
 ```
 full 128-way router probability vector
@@ -2512,8 +2512,8 @@ For every request:
 router-event layer IDs must match discovered MoE layers
 selected expert count must equal configured top-k
 expert IDs must be in [0, num_experts)
-prefill event rows must equal prompt_tokens Ã— MoE_layers
-decode event rows must equal processed_decode_tokens Ã— MoE_layers
+prefill event rows must equal prompt_tokens × MoE_layers
+decode event rows must equal processed_decode_tokens × MoE_layers
 hook order must be strictly increasing
 no duplicate (request, forward, token, layer) events
 request summary token counts must match trace counts
@@ -2564,12 +2564,12 @@ This is an experiment plan, not a final production distribution. Reweight after 
 Include:
 
 ```
-short: 1â€“2 turns
-medium: 3â€“8 turns
+short: 1–2 turns
+medium: 3–8 turns
 long: 9+ turns
 short context: <=2K tokens
-medium context: 2Kâ€“8K tokens
-longer research subset: 8Kâ€“32K tokens
+medium context: 2K–8K tokens
+longer research subset: 8K–32K tokens
 ```
 
 Do not begin with 256K contexts. Long context materially increases collection cost and is not necessary to establish basic routing locality.
@@ -2580,7 +2580,7 @@ For every source conversation, trace:
 
 ```
 prefill over the available conversation context
-at least 32â€“128 generated tokens when feasible
+at least 32–128 generated tokens when feasible
 longer generation for reasoning/code subsets
 multiple deterministic seeds for a small variance study
 ```
@@ -2633,16 +2633,16 @@ The first empirical result is not a learned predictor. It is a fast, stratified 
 
 ### 23C-FAST.1 Minimum probe corpus
 
-Use 24â€“40 independent conversations, not only five near-duplicates:
+Use 24–40 independent conversations, not only five near-duplicates:
 
 ```
-6â€“8 stable general-chat sessions
-6â€“8 code generation/debugging sessions
-6â€“8 math or structured-reasoning sessions
-4â€“8 translation, multilingual, structured-output, or scripted topic-shift sessions
+6–8 stable general-chat sessions
+6–8 code generation/debugging sessions
+6–8 math or structured-reasoning sessions
+4–8 translation, multilingual, structured-output, or scripted topic-shift sessions
 ```
 
-Use deterministic decoding for the core probe, 64â€“128 generated tokens where feasible, and the same model revision, chat template, router precision, expert precision, and quantization path planned for the live run. Include prompt/prefill routing because prefill may establish the initial hot set, but report prefill and decode separately.
+Use deterministic decoding for the core probe, 64–128 generated tokens where feasible, and the same model revision, chat template, router precision, expert precision, and quantization path planned for the live run. Include prompt/prefill routing because prefill may establish the initial hot set, but report prefill and decode separately.
 
 ### 23C-FAST.2 Required next-day evidence bundle
 
@@ -2815,13 +2815,13 @@ prefill/decode flag
 cache-residency bitmap or compact summary
 ```
 
-Model A â€” required first experiment:
+Model A — required first experiment:
 
 ```
 per-layer logistic regression / linear 128-output classifier
 ```
 
-Model B â€” only after Model A:
+Model B — only after Model A:
 
 ```
 shared feature encoder
@@ -2838,7 +2838,7 @@ Do not begin with a transformer predictor.
 Do not train multiple full models initially. Use a shared general predictor plus optional small residual heads:
 
 ```text
-final_logits = general_logits + domain_weight Ã— domain_residual_logits
+final_logits = general_logits + domain_weight × domain_residual_logits
 ```
 
 Activate at most one or two residual heads. Add a residual head only when:
@@ -2882,10 +2882,10 @@ Predictor output:
 
 Scheduler value:
   probability
-  Ã— miss cost saved
-  Ã— reuse probability
-  Ã— urgency
-  Ã· transfer bytes
+  × miss cost saved
+  × reuse probability
+  × urgency
+  ÷ transfer bytes
 ```
 
 Do not force the first predictor to learn PCIe cost, cache eviction, deadlines, and expert probability in one opaque objective.
@@ -2947,8 +2947,8 @@ Neural weights remain frozen. New predictor versions are trained offline from ve
 Scale by independent contexts and processed tokens:
 
 ```
-Fast dry run:       24â€“40 conversations; directional locality decision only
-Layer 1 pilot:      100â€“300 conversations; cache/simulator report and confidence intervals
+Fast dry run:       24–40 conversations; directional locality decision only
+Layer 1 pilot:      100–300 conversations; cache/simulator report and confidence intervals
 Overnight expansion target after PASS:
                     >=250k processed tokens minimum
                     ~500k processed tokens target
@@ -2959,7 +2959,7 @@ Post-hackathon:     expand only from learning curves and rare-expert/domain cove
 
 With 30 routed layers, 250k processed tokens already produce roughly 7.5 million layer-token router events; 500k produce roughly 15 million. Those events are highly correlated within a conversation and must not be treated as millions of independent samples.
 
-A 12â€“20 hour GPU collection run is allowed only after the fast locality gate passes. Before launching it:
+A 12–20 hour GPU collection run is allowed only after the fast locality gate passes. Before launching it:
 
 ```
 freeze conversation-level train/validation/test membership
@@ -3078,7 +3078,7 @@ Trace manifest binds data to model/runtime profile.
 ### 23E.4 Predictor baseline gate
 
 ```
-B0â€“B6 baselines reproduced.
+B0–B6 baselines reproduced.
 Oracle predictor upper bound measured.
 Linear predictor evaluated at fixed byte/prefetch budgets.
 Calibration measured.
@@ -3104,37 +3104,37 @@ its probabilities are sufficiently calibrated for expected-value scheduling
 The sequence protects next-day evidence, the Observatory contingency, and a full video-only day.
 
 ```
-LAYER 0 â€” 2026-07-14
+LAYER 0 — 2026-07-14
 1. Create the repository, locked environment, experiment ledger, and task log.
 2. Run hardware/CUDA/model-access diagnostics.
 3. Validate router hooks and parity on tiny-random/gemma-4-moe.
 4. Attempt the pinned 4-bit target load and record the real memory profile.
-5. Run the 24â€“40 conversation stratified locality probe.
+5. Run the 24–40 conversation stratified locality probe.
 6. Generate concentration, reuse, overlap, working-set, and first cache curves.
 7. Publish PROCEED / CONDITIONAL / OBSERVATORY-ONLY memo.
 8. Start the balanced overnight trace run only after a positive or conditional gate.
 
-LAYER 1 â€” COMPLETE BY 2026-07-15, FREEZE 2026-07-16
+LAYER 1 — COMPLETE BY 2026-07-15, FREEZE 2026-07-16
 9. Validate overnight data and freeze conversation-level manifests.
 10. Complete measured expert-size and PCIe microbenchmarks.
 11. Complete reactive/static/LRU/session/oracle event-driven simulations.
 12. Publish the evidence bundle and runtime go/no-go decision.
 13. Generate the minimum static replay report while the GPU continues collecting.
 
-LAYER 2 â€” COMPLETE AND FREEZE BY 2026-07-17
+LAYER 2 — COMPLETE AND FREEZE BY 2026-07-17
 14. Generate a machine-specific recommendation from the same simulator artifacts.
 15. Add measured VRAM allocation/headroom reporting; do not add KV experiments.
 16. Make one causal timeline understandable without MoE expertise.
 17. Bundle the tiny-model smoke test, trace replay, manifests, and one-command evaluator.
 18. Rehearse and screen-test the complete Observatory-only demo.
 
-LAYER 3 â€” ATTEMPT 2026-07-16 TO 2026-07-18 ONLY
+LAYER 3 — ATTEMPT 2026-07-16 TO 2026-07-18 ONLY
 19. Implement the thin Gemma adapter and exact blocking reactive baseline.
 20. Add preallocated expert slots, per-layer LRU/session residency, async copy, and telemetry.
 21. Stop immediately if exactness, slot execution, or measurable baseline comparison remains unresolved at cutoff.
 22. Add no neural predictor unless the simulator proves a material heuristic gap and the runtime is already stable.
 
-FREEZE AND MEDIA â€” 2026-07-19 TO 2026-07-21
+FREEZE AND MEDIA — 2026-07-19 TO 2026-07-21
 23. On July 19, freeze code, prompts, manifests, claims, scorecards, README, and both scripts.
 24. Select Demo A only when Layer 3 passes; otherwise select Demo B without apology or ambiguity.
 25. Use July 20 exclusively for recording, editing, uploading, processing, and link verification.
@@ -3340,7 +3340,7 @@ Do not build both during the hackathon.
 ```
 1. window = 1, telemetry only
 2. window = 1, speculative prefetch enabled
-3. dynamic window 1â€“2
+3. dynamic window 1–2
 4. larger window only if cold expert union remains within byte budget
 ```
 
@@ -3638,7 +3638,7 @@ The dashboard fails the product test if these answers require reading raw logs o
 
 ## 29. Success Criteria
 
-### 29.1 Layer 0 â€” empirical gate
+### 29.1 Layer 0 — empirical gate
 
 ```
 pinned 4-bit profile load succeeds or fails with a reproducible diagnostic
@@ -3648,7 +3648,7 @@ expert sizes and first transfer measurements are available
 PROCEED / CONDITIONAL / OBSERVATORY-ONLY decision is written by 2026-07-15
 ```
 
-### 29.2 Layer 1 â€” Observatory core, required
+### 29.2 Layer 1 — Observatory core, required
 
 ```
 real-model trace pilot is valid and reproducible
@@ -3658,7 +3658,7 @@ locality and working-set conclusions use held-out conversations where applicable
 all estimates are tied to a hardware/model/runtime manifest
 ```
 
-### 29.3 Layer 2 â€” recommendation and replay product, required
+### 29.3 Layer 2 — recommendation and replay product, required
 
 ```
 machine-specific recommendation is generated from measured/simulated artifacts
@@ -3670,7 +3670,7 @@ Demo B can be recorded end-to-end by 2026-07-18
 
 Layers 1 and 2 define a complete Observatory submission.
 
-### 29.4 Layer 3 â€” exact live runtime, target
+### 29.4 Layer 3 — exact live runtime, target
 
 Required correctness:
 
@@ -3700,7 +3700,7 @@ stretch: >= 2.00x decode TPS
 
 The same-runtime per-layer LRU baseline must be reported. If ExpertFlow does not improve cold MB/token, stall time, p95 latency, or throughput beyond LRU, frame the result as an exact dynamic offload implementation rather than a predictive-cache win.
 
-### 29.5 Layer 4 â€” adaptive lookahead/MTP, optional
+### 29.5 Layer 4 — adaptive lookahead/MTP, optional
 
 ```
 Layer 3 already passed and is frozen
@@ -3728,20 +3728,20 @@ No last-minute hybrid story is allowed. The selected script, scorecards, README 
 ### 29.7 Winning proof hierarchy
 
 ```
-OBSERVATORY PROOF â€” required
+OBSERVATORY PROOF — required
   real hardware and router measurements
   model-specific locality verdict
   event-driven policy comparison
   machine-specific recommendation
   causal replay and judge reproduction
 
-RUNTIME PROOF â€” target
+RUNTIME PROOF — target
   exact live execution in the declared envelope
   material same-runtime improvement
   more experts ready before deadlines
   remaining VRAM headroom reported under the same profile
 
-TRUST â€” required in both outcomes
+TRUST — required in both outcomes
   measured and estimated results visibly separated
   unsupported claims and future-model implications labeled
   exactness claimed only with parity artifacts
@@ -3872,7 +3872,7 @@ adaptive_learning_post_hackathon:
 
 The product is built from independently shippable layers. Later layers may improve the submission but may never invalidate or delay earlier ones.
 
-### Layer 0 â€” Empirical gate
+### Layer 0 — Empirical gate
 
 ```
 4-bit load and slot feasibility
@@ -3882,7 +3882,7 @@ expert-size and PCIe measurements
 written runtime decision
 ```
 
-### Layer 1 â€” Observatory core, must ship
+### Layer 1 — Observatory core, must ship
 
 ```
 trace collector and validator
@@ -3892,7 +3892,7 @@ reactive/static/LRU/session/oracle policies
 ready/late/blocking metrics
 ```
 
-### Layer 2 â€” Recommendation and replay, must ship
+### Layer 2 — Recommendation and replay, must ship
 
 ```
 shared analysis artifact pipeline
@@ -3916,7 +3916,7 @@ MTP controller
 multiple installation methods beyond one locked primary path plus replay
 ```
 
-### Layer 3 â€” Exact live runtime, target
+### Layer 3 — Exact live runtime, target
 
 ```
 Hugging Face Gemma adapter
@@ -3929,13 +3929,13 @@ exact fallback and runtime telemetry
 same-runtime verification
 ```
 
-### Layer 4 â€” Adaptive lookahead/MTP, stretch
+### Layer 4 — Adaptive lookahead/MTP, stretch
 
 ```
 one lookahead provider
 window-1 telemetry
 cold-union-aware transfer decisions
-window 1â€“2 only if beneficial
+window 1–2 only if beneficial
 automatic disable path
 ```
 
@@ -3978,7 +3978,7 @@ Mitigation: Gemma VRAM breakdown first, short-to-medium context initially, quant
 Mitigation: measure useful_prefetch_rate, cap prefetch buffer, penalize bad predictors by source, require admission threshold.
 
 ### 32.5 Topic shifts
-Mitigation: domain classifier, JS-divergence shift detector, Î± floor, faster session decay on shift, victim cache.
+Mitigation: domain classifier, JS-divergence shift detector, α floor, faster session decay on shift, victim cache.
 
 ### 32.6 Speculation increases expert diversity
 Mitigation: cold-expert-union budget, partial prefix acceptance, dynamic window control, and speculation only in Layer 4.
@@ -4036,7 +4036,7 @@ ExpertFlow Local is a developer tool for turning sparse routed weights into a **
 
 The product thesis is:
 
-> **A sparse model's total parameter count should not automatically determine its minimum GPU tierâ€”or consume the entire VRAM budget of a local agent. The relevant systems question is whether its active routed working set can be kept ready before compute deadlines while preserving useful headroom for model state and sessions.**
+> **A sparse model's total parameter count should not automatically determine its minimum GPU tier—or consume the entire VRAM budget of a local agent. The relevant systems question is whether its active routed working set can be kept ready before compute deadlines while preserving useful headroom for model state and sessions.**
 
 The product loop is:
 
@@ -4080,63 +4080,63 @@ A polished Observatory is a complete developer product. A successful Layer 3 run
 
 ## 35. External Sources and Implementation References
 
-Primary technical and product-framing references reviewed for v0.5â€“v0.9:
+Primary technical and product-framing references reviewed for v0.5–v0.9:
 
-1. Hugging Face Transformers Gemma 4 documentation  
+1. Hugging Face Transformers Gemma 4 documentation
    https://huggingface.co/docs/transformers/model_doc/gemma4
 
-2. Hugging Face Transformers Gemma 4 implementation (`Gemma4TextRouter`)  
+2. Hugging Face Transformers Gemma 4 implementation (`Gemma4TextRouter`)
    https://github.com/huggingface/transformers/blob/main/src/transformers/models/gemma4/modeling_gemma4.py
 
-3. MoE-Beyond paper  
+3. MoE-Beyond paper
    https://arxiv.org/abs/2508.17137
 
-4. MoE-Beyond repository, collector scripts, example traces, and training data  
+4. MoE-Beyond repository, collector scripts, example traces, and training data
    https://github.com/ngavhane/moe-beyond
 
-5. MoE-Infinity paper  
+5. MoE-Infinity paper
    https://arxiv.org/abs/2401.14361
 
-6. MoE-Infinity repository  
+6. MoE-Infinity repository
    https://github.com/EfficientMoE/MoE-Infinity
 
-7. Public MoE Expert Selection Trace dataset  
+7. Public MoE Expert Selection Trace dataset
    https://huggingface.co/datasets/core12345/MoE_expert_selection_trace
 
-8. Tiny random Gemma 4 MoE integration-test checkpoint  
+8. Tiny random Gemma 4 MoE integration-test checkpoint
    https://huggingface.co/tiny-random/gemma-4-moe
 
 Candidate public conversation sources:
 
-9. Pure-Dove  
+9. Pure-Dove
    https://huggingface.co/datasets/LDJnr/Pure-Dove
 
-10. OpenAssistant OASST1  
+10. OpenAssistant OASST1
     https://huggingface.co/datasets/OpenAssistant/oasst1
 
-11. UltraChat 200k  
+11. UltraChat 200k
     https://huggingface.co/datasets/HuggingFaceH4/ultrachat_200k
 
-12. WildChat  
+12. WildChat
     https://huggingface.co/datasets/allenai/WildChat
 
-13. Capybara  
+13. Capybara
     https://huggingface.co/datasets/LDJnr/Capybara
 
 
-14. llama.cpp repository â€” quantization and CPU+GPU hybrid inference reference; not the hackathon critical path  
+14. llama.cpp repository — quantization and CPU+GPU hybrid inference reference; not the hackathon critical path
     https://github.com/ggml-org/llama.cpp
 
-15. KTransformers repository â€” heterogeneous expert placement and CPU/GPU scheduling reference  
+15. KTransformers repository — heterogeneous expert placement and CPU/GPU scheduling reference
     https://github.com/kvcache-ai/ktransformers
 
-16. PyTorch CUDA semantics â€” streams and events for asynchronous transfer instrumentation  
+16. PyTorch CUDA semantics — streams and events for asynchronous transfer instrumentation
     https://pytorch.org/docs/stable/notes/cuda.html
 
-17. NVIDIA CUDA C Programming Guide â€” asynchronous copies, streams, and event timing  
+17. NVIDIA CUDA C Programming Guide — asynchronous copies, streams, and event timing
     https://docs.nvidia.com/cuda/cuda-c-programming-guide/
 
-18. TorchAO repository and INT4 weight-only configuration â€” first 4-bit backend candidate  
+18. TorchAO repository and INT4 weight-only configuration — first 4-bit backend candidate
     https://github.com/pytorch/ao
 
 The source list is not a blanket redistribution permission. Verify each artifact's current license, access conditions, and dataset terms before use or publication.
@@ -4144,8 +4144,8 @@ The source list is not a blanket redistribution permission. Verify each artifact
 
 Product and submission references added in v0.9:
 
-- OpenAI Build Week rules and judging criteria  
+- OpenAI Build Week rules and judging criteria
   https://openai.devpost.com/rules
 
-- NVIDIA RTX PRO 6000 Blackwell product family, used only as a future workstation-class illustration; not a tested ExpertFlow target  
+- NVIDIA RTX PRO 6000 Blackwell product family, used only as a future workstation-class illustration; not a tested ExpertFlow target
   https://www.nvidia.com/en-us/design-visualization/rtx-pro-6000-blackwell-workstation-edition/
