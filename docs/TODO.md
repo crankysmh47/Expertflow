@@ -22,7 +22,7 @@ research task history is preserved in [the archived roadmap](research/TODO.md).
 - [x] Organize current docs and archive historical research under `docs/research`.
 - [x] Remove tool authorship, session dumps and obsolete presentation naming.
 - [x] Verify the final reorganized tree and checksummed kit (988 passed, 7 external-source skips).
-- [ ] Integrate through a checked PR into `main`.
+- [x] Integrate through [PR #1](https://github.com/crankysmh47/Expertflow/pull/1) into `main`; remote checks passed.
 
 ## First-user use
 

@@ -32,4 +32,9 @@ without extras, Ubuntu WSL help/doctor, source installation and reproducible kit
 checks passed. Native receipts cover dense GPU/RAM long prompts, Gemma Q4 and
 Granite operations; final wheel 8K/multi-turn/disconnect/cleanup passed.
 
+[PR #1](https://github.com/crankysmh47/Expertflow/pull/1) is merged into `main`.
+Windows/Linux Python 3.11/3.12 artifact contracts and Windows/Linux/macOS
+model-free replay checks passed on GitHub. Native qualification remains the
+Windows host described above.
+
 Earlier results and open compiler questions are in [research status](research/STATUS.md).
