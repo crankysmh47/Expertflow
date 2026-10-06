@@ -159,7 +159,7 @@ def test_committed_historical_replay_is_diagnostic_and_never_runs_or_seals(tmp_p
     monkeypatch.setattr('expertflow.compiler.pipeline.load_compiler_inputs',lambda *a,**k:inp)
     store=EvidenceStore(tmp_path/'store.sqlite3')
     runner=FakeRunner(store,fail=True)
-    result=compile_phase3(request(tmp_path, Path('docs/evidence/q6-placement-final/results.json')),runner,store)
+    result=compile_phase3(request(tmp_path, Path('docs/research/evidence/q6-placement-final/results.json')),runner,store)
     assert result.status == 'RECORDED-DIAGNOSTIC'
     assert result.report['historical_cli']['mean_decode_tps'] == {'off':22.28,'on':28.13}
     assert result.report['earlier_strongest_stock_decode_tps'] == 22.966667

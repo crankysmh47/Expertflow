@@ -17,8 +17,8 @@ ROOT = Path(__file__).resolve().parents[1]
 @pytest.fixture
 def evidence_root(tmp_path):
     root = tmp_path / 'repo'
-    for relative in ['docs/evidence/q6-placement-final', 'docs/evidence/q6-download',
-                     'configs/compiler', 'release/expertflow-build-week/patches/llama.cpp']:
+    for relative in ['docs/research/evidence/q6-placement-final', 'docs/research/evidence/q6-download',
+                     'configs/compiler', 'docs/research/release/expertflow-build-week/patches/llama.cpp']:
         shutil.copytree(ROOT / relative, root / relative)
     (root / 'configs/baseline-prompt.txt').write_bytes(b'A fixed product prompt.\n')
     return root
@@ -29,7 +29,7 @@ def tiny_external(evidence_root):
     root = evidence_root
     model = root / 'tiny.gguf'
     model.write_bytes(b'GGUF tiny fixture')
-    manifest_path = root / 'docs/evidence/q6-download/model-manifest.json'
+    manifest_path = root / 'docs/research/evidence/q6-download/model-manifest.json'
     manifest = json.loads(manifest_path.read_text())
     manifest['exact_bytes'] = model.stat().st_size
     manifest['sha256'] = hashlib.sha256(model.read_bytes()).hexdigest()
@@ -77,7 +77,7 @@ def test_historical_static_is_report_only():
 
 @pytest.mark.parametrize('change', ['empty', 'invalid_tps', 'duplicate_pair', 'bad_hash', 'invalid_run'])
 def test_malformed_historical_runs_cannot_be_imported(evidence_root, change):
-    path = evidence_root / 'docs/evidence/q6-placement-final/run-pairs.csv'
+    path = evidence_root / 'docs/research/evidence/q6-placement-final/run-pairs.csv'
     with path.open(newline='') as stream:
         rows = list(csv.DictReader(stream))
     fields = list(rows[0])
@@ -100,7 +100,7 @@ def test_malformed_historical_runs_cannot_be_imported(evidence_root, change):
 
 
 def test_changed_summary_cannot_override_actual_measurements(evidence_root):
-    path = evidence_root / 'docs/evidence/q6-placement-final/results.json'
+    path = evidence_root / 'docs/research/evidence/q6-placement-final/results.json'
     value = json.loads(path.read_text())
     value['performance']['expertflow_mean_decode_tps'] = 35
     path.write_text(json.dumps(value))
@@ -109,7 +109,7 @@ def test_changed_summary_cannot_override_actual_measurements(evidence_root):
 
 
 def test_matching_text_hashes_still_do_not_supply_native_token_evidence(evidence_root):
-    path = evidence_root / 'docs/evidence/q6-placement-final/run-pairs.csv'
+    path = evidence_root / 'docs/research/evidence/q6-placement-final/run-pairs.csv'
     text = path.read_text().replace(
         'd486092ed666a0bbb5b8eaf0517996b6a4ab1b129b00d5f81bd65017a0887e5a',
         '7a5b8b8b055b3a6a884349ce7971b42827c736e2391b3e204178ccd23e21903d',
@@ -155,7 +155,7 @@ def test_identity_mismatch_never_reports_ready(tiny_external, artifact):
     elif artifact == 'cuda_dll':
         cuda.write_bytes(b'changed CUDA dependency')
     else:
-        path = next((root / 'release/expertflow-build-week/patches/llama.cpp').glob('0001-*'))
+        path = next((root / 'docs/research/release/expertflow-build-week/patches/llama.cpp').glob('0001-*'))
         path.write_bytes(b'changed patch')
     result = run_fixture(tiny_external)
     assert result['status'] == 'IDENTITY-STOP'

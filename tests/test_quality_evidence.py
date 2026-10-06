@@ -7,8 +7,8 @@ from expertflow.quality.manifest import canonical_manifest_hash
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "docs/evidence/q6-quality-preserving/quality-manifest.json"
-RESULTS = ROOT / "docs/evidence/q6-quality-preserving/q1-quality-results.json"
+MANIFEST = ROOT / "docs/research/evidence/q6-quality-preserving/quality-manifest.json"
+RESULTS = ROOT / "docs/research/evidence/q6-quality-preserving/q1-quality-results.json"
 
 
 def test_quality_manifest_is_frozen_and_complete() -> None:

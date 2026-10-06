@@ -20,8 +20,8 @@ GATES = {'minimum_defaults_gain_pct':5, 'defaults_ci95_lower_strictly_above_pct'
     'owned_memory_reserve_cleanup':True}
 CASES = (('gemma4-q4-prose','gemma4','Q4_0'), ('gemma4-q4-code','gemma4','Q4_0'),
          ('granite-q6-prose','granitemoe','Q6_K'), ('granite-q6-code','granitemoe','Q6_K'))
-HOST_REFERENCE = 'docs/evidence/stock-repeatability-20261004/main-frozen-manifest.json'
-DEFAULT_REFERENCE = 'docs/evidence/stock-repeatability-20261004/transfer-frozen-manifest.json'
+HOST_REFERENCE = 'docs/research/evidence/stock-repeatability-20261004/main-frozen-manifest.json'
+DEFAULT_REFERENCE = 'docs/research/evidence/stock-repeatability-20261004/transfer-frozen-manifest.json'
 
 
 def verify_registration(data, project):

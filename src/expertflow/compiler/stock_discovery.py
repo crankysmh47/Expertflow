@@ -22,7 +22,7 @@ from .stock_search import scheduling_space, semantic_fingerprint, screening_sche
 from .stock_validation import load_validated_stock_plan
 
 PROTOCOL = 'bounded-stock-search-v1'
-SPEC = Path('docs/superpowers/specs/2026-10-04-bounded-stock-search.md')
+SPEC = Path('docs/research/protocols/specs/2026-10-04-bounded-stock-search.md')
 
 
 def _candidate(payload):
@@ -43,7 +43,7 @@ def _checksum(payload, name):
 
 def _source_files():
     paths = [*sorted(Path('src/expertflow/compiler').rglob('*.py')),SPEC]
-    family_spec = Path('docs/superpowers/specs/2026-10-04-granite-generalization.md')
+    family_spec = Path('docs/research/protocols/specs/2026-10-04-granite-generalization.md')
     if family_spec.is_file():
         paths.append(family_spec)
     driver = Path('scripts/benchmark_compiler_stock_search.py')

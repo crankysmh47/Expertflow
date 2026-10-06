@@ -6,7 +6,7 @@ ROOT = Path(__file__).parents[1]
 
 
 def test_vercel_routes_root_and_dashboard_to_the_static_observatory() -> None:
-    config = json.loads((ROOT / "vercel.json").read_text(encoding="utf-8"))
+    config = json.loads((ROOT / "docs/research/vercel.json").read_text(encoding="utf-8"))
     rewrites = {(item["source"], item["destination"]) for item in config["rewrites"]}
     assert ("/dashboard", "/") in rewrites
     assert all(source != "/" for source, _ in rewrites)
@@ -15,13 +15,13 @@ def test_vercel_routes_root_and_dashboard_to_the_static_observatory() -> None:
 
 
 def test_vercel_public_artifact_matches_dashboard_source() -> None:
-    source = (ROOT / "docs/evidence/product-release/dashboard.html").read_bytes()
-    deployed = (ROOT / "public/index.html").read_bytes()
+    source = (ROOT / "docs/research/evidence/product-release/dashboard.html").read_bytes()
+    deployed = (ROOT / "docs/research/public/index.html").read_bytes()
     assert deployed == source
 
 
 def test_deployment_guide_covers_public_replay_and_live_hardware_paths() -> None:
-    guide = (ROOT / "DEPLOYMENT.md").read_text(encoding="utf-8")
+    guide = (ROOT / "docs/research/DEPLOYMENT.md").read_text(encoding="utf-8")
     for text in (
         "https://github.com/crankysmh47/Expertflow",
         "npx vercel --prod",

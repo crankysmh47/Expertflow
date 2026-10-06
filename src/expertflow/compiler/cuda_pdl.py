@@ -15,8 +15,8 @@ from .stock_discovery import _candidate, _checksum, _snapshot_inputs
 from .stock_eligibility import Gemma4Q6SchedulingProvider
 from .stock_validation import load_validated_stock_plan
 
-SPEC = Path('docs/superpowers/specs/2026-10-04-cuda-pdl-and-generalization.md')
-PROBE = Path('docs/evidence/compiler-cuda-pdl-20261004/feasibility.json')
+SPEC = Path('docs/research/protocols/specs/2026-10-04-cuda-pdl-and-generalization.md')
+PROBE = Path('docs/research/evidence/compiler-cuda-pdl-20261004/feasibility.json')
 
 
 def source_files():

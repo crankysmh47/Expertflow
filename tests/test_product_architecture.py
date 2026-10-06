@@ -5,7 +5,7 @@ ROOT = Path(__file__).parents[1]
 
 
 def test_canonical_product_guide_explains_architecture_and_evidence_boundaries() -> None:
-    guide_path = ROOT / "docs/PRODUCT.md"
+    guide_path = ROOT / "docs/research/PRODUCT.md"
     assert guide_path.exists()
     guide = guide_path.read_text(encoding="utf-8")
     for text in (
@@ -22,9 +22,7 @@ def test_canonical_product_guide_explains_architecture_and_evidence_boundaries()
         "22.967",
         "10,966.801 MiB",
         "No eviction",
-        "GPT-5.6",
-        "Codex",
-        "docs/evidence/product-release/release-scorecard.json",
+        "evidence/product-release/release-scorecard.json",
     ):
         assert text in guide
     for asset in (
@@ -38,7 +36,7 @@ def test_canonical_product_guide_explains_architecture_and_evidence_boundaries()
 
 def test_product_guide_is_linked_and_packaged() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    dashboard = (ROOT / "docs/evidence/product-release/dashboard.html").read_text(encoding="utf-8")
+    dashboard = (ROOT / "docs/research/evidence/product-release/dashboard.html").read_text(encoding="utf-8")
     builder = (ROOT / "scripts/build_product_release.py").read_text(encoding="utf-8")
     assert "docs/PRODUCT.md" in readme
     assert 'href="https://github.com/crankysmh47/Expertflow/blob/main/docs/PRODUCT.md"' in dashboard
@@ -46,12 +44,12 @@ def test_product_guide_is_linked_and_packaged() -> None:
 
 
 def test_readme_uses_dashboard_gallery_instead_of_retired_visual_cards() -> None:
-    readme = (ROOT / "docs/research-overview.md").read_text(encoding="utf-8")
-    assert "docs/assets/dashboard-architecture.png" in readme
-    assert (ROOT / "docs/assets/dashboard-architecture.png").exists()
+    readme = (ROOT / "docs/research/README.md").read_text(encoding="utf-8")
+    assert "assets/dashboard-architecture.png" in readme
+    assert (ROOT / "docs/research/assets/dashboard-architecture.png").exists()
     for retired in (
         "architecture.svg", "result.svg", "placement-map.svg", "cache-decision.svg",
-        "profile-cards.svg", "submission/demo-video-assets/codex-workflow.svg",
+        "profile-cards.svg", "docs/research/submission/demo-video-assets/engineering-workflow.svg",
     ):
         assert retired not in readme
     for label in ("Repository", "Product architecture", "Live dashboard", "Deployment guide"):

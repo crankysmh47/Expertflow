@@ -1,6 +1,6 @@
 # Contributing
 
-Work against the active development branch `ef-v2`. Preserve unrelated changes
+Branch from `main` and propose changes through a pull request. Preserve unrelated changes
 and the immutable evidence/source archives for completed studies.
 
 ```powershell

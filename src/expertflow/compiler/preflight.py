@@ -78,7 +78,7 @@ def file_sha256(path: Path) -> str:
 
 
 def audit_historical_evidence(root: Path) -> dict:
-    directory = root / 'docs/evidence/q6-placement-final'
+    directory = root / 'docs/research/evidence/q6-placement-final'
     paths = {name: directory / name for name in ('results.json', 'run-pairs.csv', 'quality-results.json')}
     summary = read_json(paths['results.json'])
     quality = read_json(paths['quality-results.json'])
@@ -157,7 +157,7 @@ def verify_external_artifacts(
     *, cuda_runtime: Path = DEFAULT_CUDA_RUNTIME,
 ) -> dict:
     missing, errors, runtimes = {}, [], {}
-    manifest = read_json(root / 'docs/evidence/q6-download/model-manifest.json')
+    manifest = read_json(root / 'docs/research/evidence/q6-download/model-manifest.json')
     spec = ArtifactSpec(
         repository=manifest['repository'], revision=manifest['revision'],
         filename=manifest['filename'], size_bytes=manifest['exact_bytes'],
@@ -185,6 +185,8 @@ def verify_external_artifacts(
                 errors.append(f'{label}:{name}: binary SHA-256 mismatch')
         for patch in runtime['patches']:
             path = root / patch['path']
+            if not path.is_file() and patch['path'].startswith('release/'):
+                path = root / 'docs/research' / patch['path']
             if not path.is_file():
                 missing[f'patch:{patch["path"]}'] = str(path)
                 continue

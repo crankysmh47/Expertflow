@@ -11,7 +11,7 @@ hardware, saves the runtime and settings that loaded successfully, measures a
 baseline within a fixed budget, and starts local chat or an API for your client.
 No account, telemetry, or prompt upload is required.
 
-The Windows/NVIDIA alpha is being qualified. The tested machine is an RTX 5060
+The Windows/NVIDIA alpha is ready for first-user testing. The tested machine is an RTX 5060
 Ti with 16 GB VRAM; another GPU capacity and independent pilot results remain
 open. See the [support matrix](docs/support-matrix.md) for actual tested models
 and limits. This package does not promise automatic speedups.
@@ -20,7 +20,7 @@ and limits. This package does not promise automatic speedups.
 
 Python 3.11+ and a local GGUF are required. Bring a llama.cpp directory containing
 both `llama-cli` and `llama-server`, including its runtime dependencies. Model
-weights and native binaries are not bundled. The alpha wheel is a local build;
+weights and native binaries are not bundled. Build a checksummed kit with `uv run python scripts/build_local_release.py --output release/local-alpha-0.2.0a1`. The alpha wheel is a local build;
 there is no published PyPI installation promised here.
 
 ```powershell
@@ -84,14 +84,10 @@ upstream chat UI are available without another interface to maintain.
 and useful bug reports. [Tasks](docs/TODO.md) tracks delivered work and open
 hardware/human gates. [Changelog](CHANGELOG.md) describes compatibility changes.
 
-The earlier compiler studies remain available in the
-[research overview](docs/research-overview.md), [Product architecture](docs/PRODUCT.md),
-and [current evidence status](docs/STATUS.md). They retain their original
-quality gates and negative verdicts. Historical replay, judge packaging, and the
-[Live dashboard](https://expertflow-zeta.vercel.app) are separate from this alpha;
-the [Deployment guide](DEPLOYMENT.md) describes that earlier interface.
+[Architecture](docs/PRODUCT.md) and [documentation](docs/README.md) covers the current architecture, support scope,
+and benchmarking procedure. The earlier compiler studies, protocols, presentation,
+and scientific receipts are preserved in the [research archive](docs/research/README.md).
+Their negative results and quality limits remain part of the record.
 
 [Repository](https://github.com/crankysmh47/Expertflow). MIT; see [LICENSE](LICENSE)
-and [third-party notices](THIRD_PARTY_NOTICES.md). Codex with GPT-5.6-sol
-managed the engineering workflow of the earlier research; the human chose the evidence
-gates and product direction.
+and [third-party notices](THIRD_PARTY_NOTICES.md).

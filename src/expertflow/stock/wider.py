@@ -36,18 +36,18 @@ def sources():
         Path('scripts/benchmark_compiler_stock_utility.py'),
         Path('scripts/benchmark_compiler_stock_repeatability.py'),
         Path('scripts/benchmark_compiler_stock_coverage.py'),
-        Path('docs/evidence/stock-coverage-20261005/run-registered.ps1'),
-        Path('docs/superpowers/specs/2026-10-05-stock-coverage.md'),
-        Path('docs/superpowers/specs/2026-10-04-stock-configuration-discovery.md'),
+        Path('docs/research/evidence/stock-coverage-20261005/run-registered.ps1'),
+        Path('docs/research/protocols/specs/2026-10-05-stock-coverage.md'),
+        Path('docs/research/protocols/specs/2026-10-04-stock-configuration-discovery.md'),
         *Path('tests').glob('test_stock_wider*.py')]
     registration = Path('configs/compiler/stock-coverage-20261005.json')
     paths.append(registration)
     data = json.loads(registration.read_text())
     paths.extend(Path(p) for p in data['input_files'])
-    review = Path('docs/evidence/stock-coverage-20261005/implementation-review.md')
+    review = Path('docs/research/evidence/stock-coverage-20261005/implementation-review.md')
     if review.is_file():
         paths.append(review)
-    auditor=Path('docs/evidence/stock-coverage-20261005/independent_audit.py')
+    auditor=Path('docs/research/evidence/stock-coverage-20261005/independent_audit.py')
     if auditor.is_file():
         paths.append(auditor)
     return {str(p.resolve()):file_sha256(p) for p in sorted(set(paths)) if p.is_file()}

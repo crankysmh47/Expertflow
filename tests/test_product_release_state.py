@@ -6,7 +6,7 @@ from expertflow.product.commands import sha256_canonical_json
 
 
 ROOT = Path(__file__).parents[1]
-EVIDENCE = ROOT / "docs/evidence/product-release"
+EVIDENCE = ROOT / "docs/research/evidence/product-release"
 
 
 def test_frozen_release_state_reconstructs_verified_q6_result() -> None:
@@ -35,7 +35,7 @@ def test_frozen_release_state_reconstructs_verified_q6_result() -> None:
 def test_release_state_evidence_hashes_match_committed_files() -> None:
     state = json.loads((EVIDENCE / "release-state.json").read_text(encoding="utf-8"))
     for item in state["evidence"]:
-        path = ROOT / item["path"]
+        path = ROOT / item["path"].replace("docs/evidence/", "docs/research/evidence/", 1)
         assert path.is_file(), item["path"]
         assert sha256_canonical_json(path) == item["sha256"]
 

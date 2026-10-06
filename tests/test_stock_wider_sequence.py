@@ -168,7 +168,7 @@ def test_four_complete_neutral_cases_reconstruct_without_native_calls(completed_
 
 def test_independent_raw_auditor_rebuilds_four_neutral_gates(completed_sequence):
     import runpy
-    auditor=runpy.run_path('docs/evidence/stock-coverage-20261005/independent_audit.py')['audit']
+    auditor=runpy.run_path('docs/research/evidence/stock-coverage-20261005/independent_audit.py')['audit']
     report=completed_sequence[2]
     result=auditor(Path(report['manifest']['experiment_root'])/'report.json')
     assert result['status']=='RAW-AUDIT-PASS' and result['native_processes']==344
@@ -177,7 +177,7 @@ def test_independent_raw_auditor_rebuilds_four_neutral_gates(completed_sequence)
 
 def test_independent_bootstrap_rejects_incomplete_rates():
     import runpy
-    paired=runpy.run_path('docs/evidence/stock-coverage-20261005/independent_audit.py')['paired']
+    paired=runpy.run_path('docs/research/evidence/stock-coverage-20261005/independent_audit.py')['paired']
     with pytest.raises(ValueError):paired([20]*9,[22]*10)
     result=paired([20]*10,[22]*10)
     assert result['geometric_change_pct']==pytest.approx(10)

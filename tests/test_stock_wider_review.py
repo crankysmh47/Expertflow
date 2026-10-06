@@ -130,7 +130,7 @@ def test_committed_source_attestation_preserves_only_equivalent_line_endings(tmp
     from expertflow.compiler.preflight import file_sha256
     from scripts.benchmark_compiler_stock_coverage import require_committed_sources
     subprocess.run(['git','init','-q',str(tmp_path)],check=True)
-    marker=tmp_path/'docs/evidence/stock-coverage-20261005/implementation-review.md'
+    marker=tmp_path/'docs/research/evidence/stock-coverage-20261005/implementation-review.md'
     marker.parent.mkdir(parents=True)
     marker.write_text('reviewed\n')
     (tmp_path/'.gitattributes').write_text('*.json text eol=lf\n')
@@ -190,7 +190,7 @@ def test_failed_native_requires_bound_context_and_owned_cleanup(tmp_path, mutati
     else:
         import runpy
         from expertflow.compiler.schema import canonical_sha256
-        raw_audit=runpy.run_path('docs/evidence/stock-coverage-20261005/independent_audit.py')['audit']
+        raw_audit=runpy.run_path('docs/research/evidence/stock-coverage-20261005/independent_audit.py')['audit']
         case={'case_id':'failure','planned_root':str(root)}
         sequence={'registration':{'cases':[case]},'source_files':{},'host_environment':{}}
         sequence['manifest_sha256']=canonical_sha256(sequence)

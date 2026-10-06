@@ -10,15 +10,15 @@ import zipfile
 
 
 ROOT = Path(__file__).parents[1].resolve()
-DEFAULT_OUTPUT = ROOT / "release" / "expertflow-build-week"
+DEFAULT_OUTPUT = ROOT / "docs" / "research" / "release" / "expertflow-build-week"
 ZIP_EPOCH = (2026, 7, 19, 0, 0, 0)
 UPSTREAM = "a7312ae94f801fc9c6786dc56e38df57b964f697"
 LLAMA_COMMIT = "451224ab4d12a616dc3e16e8c8063f4b331f531c"
 EXTERNAL_SHA_SUFFIX = ".zip.sha256"
 ALLOWLIST = (
-    ("README.md", "README.md"), ("JUDGES.md", "JUDGES.md"), ("LICENSE", "LICENSE"),
+    ("README.md", "README.md"), ("docs/research/JUDGES.md", "docs/research/JUDGES.md"), ("LICENSE", "LICENSE"),
     ("THIRD_PARTY_NOTICES.md", "THIRD_PARTY_NOTICES.md"),
-    ("DEPLOYMENT.md", "DEPLOYMENT.md"),
+    ("docs/research/DEPLOYMENT.md", "docs/research/DEPLOYMENT.md"),
     ("pyproject.toml", "pyproject.toml"), ("uv.lock", "uv.lock"),
     (".env.example", ".env.example"), ("src/expertflow", "src/expertflow"),
     ("deployments", "deployments"), ("examples/openai_client.py", "examples/openai_client.py"),
@@ -39,27 +39,27 @@ ALLOWLIST = (
     ("docs/assets", "docs/assets"),
     ("docs/product-reproduction.md", "docs/product-reproduction.md"),
     ("docs/product-troubleshooting.md", "docs/product-troubleshooting.md"),
-    ("docs/evidence/product-release/release-state.json", "docs/evidence/product-release/release-state.json"),
-    ("docs/evidence/product-release/replay-data.json", "docs/evidence/product-release/replay-data.json"),
-    ("docs/evidence/product-release/deployment-result.json", "docs/evidence/product-release/deployment-result.json"),
-    ("docs/evidence/product-release/throughput-profile.json", "docs/evidence/product-release/throughput-profile.json"),
-    ("docs/evidence/product-release/context-profile.json", "docs/evidence/product-release/context-profile.json"),
-    ("docs/evidence/product-release/agentic-demo.json", "docs/evidence/product-release/agentic-demo.json"),
-    ("docs/evidence/product-release/benchmark-report.md", "docs/evidence/product-release/benchmark-report.md"),
-    ("docs/evidence/product-release/release-scorecard.json", "docs/evidence/product-release/release-scorecard.json"),
-    ("docs/evidence/product-release/release-scorecard.json", "evidence/release-scorecard.json"),
-    ("docs/evidence/product-release/dashboard.html", "dashboard.html"),
-    ("submission/final-devpost-draft.md", "submission/final-devpost-draft.md"),
-    ("submission/demo-video-script.md", "submission/demo-video-script.md"),
-    ("submission/demo-shot-list.md", "submission/demo-shot-list.md"),
-    ("submission/judge-test-guide.md", "submission/judge-test-guide.md"),
-    ("submission/architecture.md", "submission/architecture.md"),
-    ("submission/claims-ledger.md", "submission/claims-ledger.md"),
-    ("submission/demo-video-script-final.md", "submission/demo-video-script-final.md"),
-    ("submission/demo-video-shot-list-final.md", "submission/demo-video-shot-list-final.md"),
-    ("submission/demo-video-fallback-plan.md", "submission/demo-video-fallback-plan.md"),
-    ("submission/demo-video-slideshow.html", "submission/demo-video-slideshow.html"),
-    ("submission/demo-video-assets", "submission/demo-video-assets"),
+    ("docs/research/evidence/product-release/release-state.json", "docs/research/evidence/product-release/release-state.json"),
+    ("docs/research/evidence/product-release/replay-data.json", "docs/research/evidence/product-release/replay-data.json"),
+    ("docs/research/evidence/product-release/deployment-result.json", "docs/research/evidence/product-release/deployment-result.json"),
+    ("docs/research/evidence/product-release/throughput-profile.json", "docs/research/evidence/product-release/throughput-profile.json"),
+    ("docs/research/evidence/product-release/context-profile.json", "docs/research/evidence/product-release/context-profile.json"),
+    ("docs/research/evidence/product-release/agentic-demo.json", "docs/research/evidence/product-release/agentic-demo.json"),
+    ("docs/research/evidence/product-release/benchmark-report.md", "docs/research/evidence/product-release/benchmark-report.md"),
+    ("docs/research/evidence/product-release/release-scorecard.json", "docs/research/evidence/product-release/release-scorecard.json"),
+    ("docs/research/evidence/product-release/release-scorecard.json", "evidence/release-scorecard.json"),
+    ("docs/research/evidence/product-release/dashboard.html", "dashboard.html"),
+    ("docs/research/submission/final-devpost-draft.md", "docs/research/submission/final-devpost-draft.md"),
+    ("docs/research/submission/demo-video-script.md", "docs/research/submission/demo-video-script.md"),
+    ("docs/research/submission/demo-shot-list.md", "docs/research/submission/demo-shot-list.md"),
+    ("docs/research/submission/judge-test-guide.md", "docs/research/submission/judge-test-guide.md"),
+    ("docs/research/submission/architecture.md", "docs/research/submission/architecture.md"),
+    ("docs/research/submission/claims-ledger.md", "docs/research/submission/claims-ledger.md"),
+    ("docs/research/submission/demo-video-script-final.md", "docs/research/submission/demo-video-script-final.md"),
+    ("docs/research/submission/demo-video-shot-list-final.md", "docs/research/submission/demo-video-shot-list-final.md"),
+    ("docs/research/submission/demo-video-fallback-plan.md", "docs/research/submission/demo-video-fallback-plan.md"),
+    ("docs/research/submission/demo-video-slideshow.html", "docs/research/submission/demo-video-slideshow.html"),
+    ("docs/research/submission/demo-video-assets", "docs/research/submission/demo-video-assets"),
 )
 
 
@@ -160,9 +160,9 @@ def _write_zip(output: Path) -> Path:
 
 def build(output: Path, llama_repo: Path) -> tuple[Path, Path]:
     output = output.resolve()
-    release_root = (ROOT / "release").resolve()
+    release_root = (ROOT / "docs" / "research" / "release").resolve()
     if output.parent != release_root or output.name != "expertflow-build-week":
-        raise ValueError("release output must be release/expertflow-build-week")
+        raise ValueError("release output must be docs/research/release/expertflow-build-week")
     if output.exists():
         shutil.rmtree(output)
     output.mkdir(parents=True)

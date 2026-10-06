@@ -28,3 +28,8 @@ cmake-build-*/
 Thumbs.db
 
 .vercel
+
+# Local test environments and distribution output
+.superpowers/
+dist/
+/release/

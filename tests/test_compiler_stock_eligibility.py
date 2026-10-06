@@ -11,7 +11,7 @@ from expertflow.compiler.schema import ArtifactIdentity, canonical_sha256
 from test_compiler_schema import model_fixture
 
 
-PROOF = json.loads(Path('docs/evidence/stock-discovery-20261004/scheduling-source-proof.json').read_text())
+PROOF = json.loads(Path('docs/research/evidence/stock-discovery-20261004/scheduling-source-proof.json').read_text())
 
 
 def api():

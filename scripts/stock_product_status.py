@@ -10,7 +10,7 @@ import sys
 import time
 
 PROJECT = Path(__file__).resolve().parents[1]
-CATALOGUE = PROJECT/'docs/evidence/stock-followthrough-20261006/catalogue.json'
+CATALOGUE = PROJECT/'docs/research/evidence/stock-followthrough-20261006/catalogue.json'
 CATALOGUE_SHA256 = '4dfeaa11fe240014310b548e3949ad5ef36eeef7d519e991f20eb694e66d04f8'
 STATUSES = {'q6': 'PASS-STOCK-REPEATABILITY-TRANSFER', 'wider': 'COMPLETE-STOCK-COVERAGE'}
 COUNTS = {'q6': 148, 'wider': 344}

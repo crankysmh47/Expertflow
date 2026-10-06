@@ -73,7 +73,10 @@ class RuntimeBinding:
             return ArtifactIdentity(str(path), path.stat().st_size, expected)
 
         for patch in manifest['patches']:
-            identity(Path(root) / patch['path'], patch['sha256'])
+            patch_path = Path(root) / patch['path']
+            if not patch_path.is_file() and patch['path'].startswith('release/'):
+                patch_path = Path(root) / 'docs/research' / patch['path']
+            identity(patch_path, patch['sha256'])
         binary_dir = Path(binary_dir)
         if {p.name.lower() for p in binary_dir.glob('*.dll')} != {name.lower() for name in manifest['dependencies']}:
             raise ValueError('runtime contains missing or unpinned DLLs')

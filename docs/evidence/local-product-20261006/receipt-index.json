@@ -48,5 +48,19 @@
     "model_processes": 1,
     "receipt_directory": "jobs/review-fixed-native-smoke-01",
     "report_sha256": "7130251d04d184b3468258fe9673f2e6b395a17098a6937d184602c0c8ca3bea"
+  },
+  {
+    "job": "engineering-wheel-check",
+    "status": "INCONCLUSIVE",
+    "model_processes": 2,
+    "receipt_directory": "jobs/engineering-wheel-check",
+    "report_sha256": "35b94623196f98a16f6356af3f68402efc0c39895ad369546b818c443d24cf77"
+  },
+  {
+    "job": "settle-wheel-check",
+    "status": "PASS-OPERATIONAL",
+    "model_processes": 2,
+    "receipt_directory": "jobs/settle-wheel-check",
+    "report_sha256": "3b02f6ca16220477522bbf9c364687cb78a89eeae8de2898c6252e9674b07964"
   }
 ]

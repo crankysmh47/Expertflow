@@ -7,7 +7,7 @@ import pytest
 
 from test_compiler_granite_adapter import normalize
 
-AUDIT = json.loads(Path('docs/evidence/compiler-granite-20261004/scheduling-source-audit.json').read_text())
+AUDIT = json.loads(Path('docs/research/evidence/compiler-granite-20261004/scheduling-source-audit.json').read_text())
 
 
 def inputs():

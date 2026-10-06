@@ -67,7 +67,7 @@ def test_family_and_inventory_provenance():
 
 
 def test_real_inventory_normalizes_thirty_layers():
-    inventory = json.loads(Path('docs/evidence/q6-download/tensor-inventory.json').read_text())
+    inventory = json.loads(Path('docs/research/evidence/q6-download/tensor-inventory.json').read_text())
     identity = ArtifactIdentity(inventory['model']['path'], inventory['model']['bytes'], inventory['model']['sha256'])
     model = Gemma4Adapter().normalize(descriptor_fixture(), inventory, identity)
     assert len(model.moe_layers) == 30

@@ -23,7 +23,7 @@ from expertflow.compiler.stock_eligibility import EligibilityRegistry, UPSTREAM
 from expertflow.compiler.stock_search import rank_screening, scheduling_space, screening_schedule, topology_anchors
 
 
-SPEC = Path('docs/superpowers/specs/2026-10-04-stock-utility-proof.md')
+SPEC = Path('docs/research/protocols/specs/2026-10-04-stock-utility-proof.md')
 PROTOCOL = 'stock-utility-proof-v1'
 Q6_SHA256 = '089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba'
 

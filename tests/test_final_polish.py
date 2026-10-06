@@ -11,7 +11,7 @@ from expertflow.cli.main import main
 
 
 ROOT = Path(__file__).parents[1]
-SCORECARD = ROOT / "release/expertflow-build-week/evidence/release-scorecard.json"
+SCORECARD = ROOT / "docs/research/release/expertflow-build-week/evidence/release-scorecard.json"
 
 
 def test_release_scorecard_is_the_documentation_source_of_truth() -> None:
@@ -29,7 +29,7 @@ def test_release_scorecard_is_the_documentation_source_of_truth() -> None:
 
 
 def test_judge_docs_preserve_headline_metrics_and_caveats() -> None:
-    paths = [ROOT / "docs/research-overview.md", ROOT / "JUDGES.md", ROOT / "submission/final-devpost-draft.md"]
+    paths = [ROOT / "docs/research/README.md", ROOT / "docs/research/JUDGES.md", ROOT / "docs/research/submission/final-devpost-draft.md"]
     for path in paths:
         text = path.read_text(encoding="utf-8")
         assert "28.13" in text, path
@@ -58,8 +58,8 @@ def test_portable_judge_scripts_and_replay_ci_exist() -> None:
 
 
 def test_dashboard_and_claims_ledger_use_scorecard_precision_and_classes() -> None:
-    dashboard = (ROOT / "docs/evidence/product-release/dashboard.html").read_text(encoding="utf-8")
-    ledger = (ROOT / "submission/claims-ledger.md").read_text(encoding="utf-8")
+    dashboard = (ROOT / "docs/research/evidence/product-release/dashboard.html").read_text(encoding="utf-8")
+    ledger = (ROOT / "docs/research/submission/claims-ledger.md").read_text(encoding="utf-8")
     for text in (dashboard, ledger):
         assert "28.13" in text
         assert "22.967" in text
@@ -72,7 +72,7 @@ def test_dashboard_and_claims_ledger_use_scorecard_precision_and_classes() -> No
 
 
 def test_readme_relative_links_resolve() -> None:
-    for document in (ROOT / "README.md", ROOT / "JUDGES.md"):
+    for document in (ROOT / "README.md", ROOT / "docs/research/JUDGES.md"):
         text = document.read_text(encoding="utf-8")
         for target in re.findall(r"\[[^]]+\]\(([^)]+)\)", text):
             if "://" in target or target.startswith("#"):
@@ -82,7 +82,7 @@ def test_readme_relative_links_resolve() -> None:
 
 def test_archive_extracts_and_verifies_from_path_with_spaces(tmp_path: Path) -> None:
     destination = tmp_path / "judge path with spaces"
-    with zipfile.ZipFile(ROOT / "release/expertflow-build-week.zip") as archive:
+    with zipfile.ZipFile(ROOT / "docs/research/release/expertflow-build-week.zip") as archive:
         archive.extractall(destination)
     release = destination / "expertflow-build-week"
     verified = subprocess.run(
@@ -119,35 +119,35 @@ def test_archive_extracts_and_verifies_from_path_with_spaces(tmp_path: Path) -> 
 def test_local_visual_and_video_assets_exist() -> None:
     required = [
         "docs/assets/expertflow-logo.png",
-        "docs/assets/architecture.svg",
-        "docs/assets/placement-map.svg",
-        "docs/assets/result.svg",
-        "docs/assets/profile-cards.svg",
-        "docs/assets/cache-decision.svg",
-        "submission/demo-video-script-final.md",
-        "submission/demo-video-shot-list-final.md",
-        "submission/demo-video-fallback-plan.md",
-        "submission/demo-video-assets/title.svg",
-        "submission/demo-video-assets/architecture.svg",
-        "submission/demo-video-assets/result.svg",
-        "submission/demo-video-assets/codex-workflow.svg",
-        "submission/demo-video-assets/limitations.svg",
-        "submission/demo-video-assets/reproduction.svg",
-        "submission/demo-video-assets/final-summary.svg",
+        "docs/research/assets/architecture.svg",
+        "docs/research/assets/placement-map.svg",
+        "docs/research/assets/result.svg",
+        "docs/research/assets/profile-cards.svg",
+        "docs/research/assets/cache-decision.svg",
+        "docs/research/submission/demo-video-script-final.md",
+        "docs/research/submission/demo-video-shot-list-final.md",
+        "docs/research/submission/demo-video-fallback-plan.md",
+        "docs/research/submission/demo-video-assets/title.svg",
+        "docs/research/submission/demo-video-assets/architecture.svg",
+        "docs/research/submission/demo-video-assets/result.svg",
+        "docs/research/submission/demo-video-assets/engineering-workflow.svg",
+        "docs/research/submission/demo-video-assets/limitations.svg",
+        "docs/research/submission/demo-video-assets/reproduction.svg",
+        "docs/research/submission/demo-video-assets/final-summary.svg",
     ]
     for relative in required:
         assert (ROOT / relative).is_file(), relative
 
 
-def test_visual_identity_and_codex_attribution_are_explicit() -> None:
+def test_visual_identity_and_project_documentation_are_clean() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "docs/assets/expertflow-logo.png" in readme
-    assert "GPT-5.6-sol" in readme
-    assert "managed the engineering workflow" in readme
+    assert "GPT-" not in readme
+    assert "Codex" not in readme
 
     svg_paths = [
         *sorted((ROOT / "docs/assets").glob("*.svg")),
-        *sorted((ROOT / "submission/demo-video-assets").glob("*.svg")),
+        *sorted((ROOT / "docs/research/submission/demo-video-assets").glob("*.svg")),
     ]
     for path in svg_paths:
         svg = path.read_text(encoding="utf-8").lower()

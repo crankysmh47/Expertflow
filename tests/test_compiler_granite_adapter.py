@@ -8,7 +8,7 @@ import pytest
 from expertflow.compiler.adapters import AdapterRegistry, ModelDescriptor
 from expertflow.compiler.schema import ArtifactIdentity, canonical_sha256
 
-INVENTORY = json.loads(Path('docs/evidence/compiler-granite-20261004/tensor-inventory.json').read_text())
+INVENTORY = json.loads(Path('docs/research/evidence/compiler-granite-20261004/tensor-inventory.json').read_text())
 
 
 def normalize(inventory=None, descriptor=None):
@@ -61,8 +61,8 @@ def test_wrong_family_descriptor_is_not_reinterpreted():
 
 def test_current_gemma_ir_hash_is_unchanged():
     from test_compiler_gemma4_adapter import descriptor_fixture
-    inv = json.loads(Path('docs/evidence/q6-download/tensor-inventory.json').read_text())
-    runtime = json.loads(Path('docs/evidence/compiler-phase3/inputs/runtime-identity.json').read_text())
+    inv = json.loads(Path('docs/research/evidence/q6-download/tensor-inventory.json').read_text())
+    runtime = json.loads(Path('docs/research/evidence/compiler-phase3/inputs/runtime-identity.json').read_text())
     identity = ArtifactIdentity(**runtime['model'])
     model = AdapterRegistry.with_builtins().resolve('gemma4').normalize(descriptor_fixture(), inv, identity)
     assert canonical_sha256(model) == '3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424'

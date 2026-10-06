@@ -21,7 +21,7 @@ def reconstruct_product(report, store, *, host_environment):
     if freeze.get('protocol_version') != PROTOCOL:
         raise ValueError('not fresh stock-product protocol evidence')
     from .preflight import file_sha256
-    protocol_path = Path('docs/superpowers/specs/2026-10-04-stock-configuration-discovery.md')
+    protocol_path = Path('docs/research/protocols/specs/2026-10-04-stock-configuration-discovery.md')
     if freeze.get('protocol_sha256') != file_sha256(protocol_path):
         raise ValueError('product frozen protocol identity mismatch')
     if freeze.get('source_files') != paired_source_files(product=True):

@@ -28,6 +28,6 @@ jobs:
       - name: Portable release checks
         run: uv run pytest -q tests/test_final_polish.py tests/test_product_release_state.py tests/test_product_dashboard.py tests/test_product_deployments.py tests/test_product_packaging.py
       - name: Archive hash manifest
-        run: uv run python release/expertflow-build-week/scripts/verify_release.py
+        run: uv run python docs/research/release/expertflow-build-week/scripts/verify_release.py
 
 # This matrix proves model-free portability only. It does not claim CUDA acceleration.

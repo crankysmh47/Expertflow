@@ -11,7 +11,7 @@ from expertflow.compiler.schema import ArtifactIdentity, MoELayerIR, canonical_s
 from test_compiler_schema import model_fixture
 
 
-AUDIT = json.loads(Path('docs/evidence/stock-discovery-20261004/q4-scheduling-source-audit.json').read_text())
+AUDIT = json.loads(Path('docs/research/evidence/stock-discovery-20261004/q4-scheduling-source-audit.json').read_text())
 MODEL_SHA = '4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5'
 
 

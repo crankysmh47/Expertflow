@@ -34,7 +34,7 @@ def load_case_inputs(case,registration):
 
 def require_committed_sources(source_files):
     root=Path.cwd().resolve()
-    review=root/'docs/evidence/stock-coverage-20261005/implementation-review.md'
+    review=root/'docs/research/evidence/stock-coverage-20261005/implementation-review.md'
     if not review.is_file():
         raise ValueError('independent reviewed implementation record required before collection')
     for name,digest in source_files.items():

@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -12,7 +13,7 @@ import tomllib
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-DOCS = ["local-quickstart.md", "support-matrix.md", "local-product-pilot.md", "runtime-updates.md"]
+DOCS = ["local-quickstart.md", "support-matrix.md", "local-product-pilot.md", "runtime-updates.md", "README.md", "PRODUCT.md", "BENCHMARKING.md", "STATUS.md", "TODO.md"]
 
 
 def checksums(directory: Path) -> dict:
@@ -60,6 +61,25 @@ def main():
         "Python 3.11+ and your local GGUF/llama.cpp runtime are required.\n"
         "No runtime, model weights, account or telemetry are bundled.\n"
         "This kit is for testing; see docs/support-matrix.md for qualification limits.\n",encoding="utf-8")
+    # A standalone kit links to repository material that is outside its allowlist.
+    for document in args.output.rglob("*.md"):
+        def repository_link(match):
+            target = match.group(1)
+            if "://" in target or target.startswith("#") or " " in target:
+                return match.group(0)
+            filename, marker, anchor = target.partition("#")
+            if (document.parent / filename).exists():
+                return match.group(0)
+            original = ROOT / document.relative_to(args.output)
+            if document.name == "START-HERE.md":
+                return match.group(0)
+            resolved = (original.parent / filename).resolve()
+            if not resolved.is_relative_to(ROOT):
+                return match.group(0)
+            relative = resolved.relative_to(ROOT).as_posix()
+            return "](https://github.com/crankysmh47/Expertflow/blob/main/" + relative + (marker + anchor if marker else "") + ")"
+        document.write_text(re.sub(r"\]\(([^)]+)\)", repository_link,
+                           document.read_text(encoding="utf-8")), encoding="utf-8")
     audit_payload(args.output)
     (args.output / "release.json").write_text(json.dumps({"schema_version":1,"version":version,
         "scope":"Private Windows/NVIDIA alpha; one native host tested; human pilot and broader hardware gates open.",

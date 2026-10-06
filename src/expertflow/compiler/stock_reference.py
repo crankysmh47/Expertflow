@@ -21,7 +21,7 @@ from .stock_eligibility import EligibilityRegistry
 from .stock_search import topology_anchors
 
 PROTOCOL = 'bounded-stock-reference-v1'
-SPEC = Path('docs/superpowers/specs/2026-10-04-stock-method-reuse.md')
+SPEC = Path('docs/research/protocols/specs/2026-10-04-stock-method-reuse.md')
 
 
 def _sources():

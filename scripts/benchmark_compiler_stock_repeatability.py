@@ -22,7 +22,7 @@ if __package__:
 else:
     import benchmark_compiler_stock_utility as utility
 
-SPEC = Path('docs/superpowers/specs/2026-10-04-stock-repeatability.md')
+SPEC = Path('docs/research/protocols/specs/2026-10-04-stock-repeatability.md')
 PROTOCOL = 'paced-stock-repeatability-v1'
 PRIOR_REPORT_SHA256 = '1475cb9830b4e572004b5a7b4bd60fe0c2e7e7b3877391a5f3a6105bd7b8c128'
 WAIT_SECONDS = 30
@@ -36,7 +36,7 @@ def snapshot(inputs):
 def sources():
     result = utility.sources()
     result.update({str(Path(path).resolve()): digest for path, digest in paired_source_files(product=True).items()})
-    for path in (SPEC, Path(__file__), Path('docs/evidence/stock-utility-20261004/independent_audit.py')):
+    for path in (SPEC, Path(__file__), Path('docs/research/evidence/stock-utility-20261004/independent_audit.py')):
         result[str(path.resolve())] = file_sha256(path)
     return result
 
@@ -57,7 +57,7 @@ def verify_prerequisite(inputs, transfer_inputs, source_plan, source_store, prio
     if (plan.candidate.candidate_id != prior['automatic_id'] or plan.candidate.measurement_ids != confirmation
             or inputs.workload.threads != 12 or plan.candidate.settings.cuda_graphs != 'on'):
         raise ValueError('repeatability input differs from the fixed utility selection')
-    auditor = runpy.run_path('docs/evidence/stock-utility-20261004/independent_audit.py')['audit']
+    auditor = runpy.run_path('docs/research/evidence/stock-utility-20261004/independent_audit.py')['audit']
     audit = auditor(Path(prior_path), source_store.path)
     if audit['actual_native_processes'] != 106 or audit['utility_verdict'] != 'PASS-STOCK-UTILITY':
         raise ValueError('original raw utility/product prerequisite is incomplete')
@@ -269,7 +269,7 @@ def verify_block(block, root, store, source_path, source_store, entries, host, o
     freeze = block['frozen']
     source = load_execution_plan(source_path, store=source_store)
     expected = {'protocol_version':'paired-stock-product-v1',
-        'protocol_sha256':file_sha256(Path('docs/superpowers/specs/2026-10-04-stock-configuration-discovery.md')),
+        'protocol_sha256':file_sha256(Path('docs/research/protocols/specs/2026-10-04-stock-configuration-discovery.md')),
         'source_files':paired_source_files(product=True), 'source_commit':outer['source_commit'],
         'source_plan':canonical_payload(source), 'source_plan_sha256':source.plan_sha256,
         'source_plan_file_sha256':file_sha256(source_path), 'source_candidate_id':source.candidate.candidate_id,
@@ -557,9 +557,9 @@ def verify_transfer(root, outer_report, inputs, repository, host, outer, take_ph
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--action', choices=('run','validate'), required=True)
-    defaults = {'descriptor':'configs/compiler/gemma4-q6-model.json','inventory':'docs/evidence/q6-download/tensor-inventory.json',
-        'hardware':'docs/evidence/compiler-phase3/inputs/hardware.json','workload':'configs/compiler/gemma4-q6-single-request.json',
-        'transfer-workload':'configs/compiler/gemma4-q6-utility-transfer.json','runtime-identity':'docs/evidence/compiler-phase3/inputs/runtime-identity.json',
+    defaults = {'descriptor':'configs/compiler/gemma4-q6-model.json','inventory':'docs/research/evidence/q6-download/tensor-inventory.json',
+        'hardware':'docs/research/evidence/compiler-phase3/inputs/hardware.json','workload':'configs/compiler/gemma4-q6-single-request.json',
+        'transfer-workload':'configs/compiler/gemma4-q6-utility-transfer.json','runtime-identity':'docs/research/evidence/compiler-phase3/inputs/runtime-identity.json',
         'source-plan':'C:/models/expertflow/runs/compiler-stock-utility-main-20261004/utility/selected-plan.json',
         'source-evidence-db':'C:/models/expertflow/runs/compiler-stock-utility-main-20261004/utility.sqlite3',
         'prior-report':'C:/models/expertflow/runs/compiler-stock-utility-main-20261004/utility/report.json',

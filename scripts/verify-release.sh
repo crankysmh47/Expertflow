@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 set -eu
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-if [ -d "$SCRIPT_DIR/../release/expertflow-build-week" ]; then
-  RELEASE=$(CDPATH= cd -- "$SCRIPT_DIR/../release/expertflow-build-week" && pwd)
+if [ -d "$SCRIPT_DIR/../docs/research/release/expertflow-build-week" ]; then
+  RELEASE=$(CDPATH= cd -- "$SCRIPT_DIR/../docs/research/release/expertflow-build-week" && pwd)
 else
   RELEASE=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 fi

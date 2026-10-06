@@ -21,8 +21,8 @@ def paired_source_files(*, product=False):
     sources = [*sorted(Path('src/expertflow/compiler').rglob('*.py')),
                Path('scripts/benchmark_compiler_refinement.py')]
     if product:
-        sources.append(Path('docs/superpowers/specs/2026-10-04-stock-configuration-discovery.md'))
-        family_spec = Path('docs/superpowers/specs/2026-10-04-granite-generalization.md')
+        sources.append(Path('docs/research/protocols/specs/2026-10-04-stock-configuration-discovery.md'))
+        family_spec = Path('docs/research/protocols/specs/2026-10-04-granite-generalization.md')
         if family_spec.exists():
             sources.append(family_spec)
     return {str(path): file_sha256(path) for path in sources}
@@ -160,8 +160,8 @@ def execute_pairs(inputs, source_plan_path, source_store, target_store, runner, 
         raise ValueError('source plan lacks ten confirmation records')
     baseline = source_store.verify_measurement(plan.candidate.measurement_ids[0])
     target_store.prime_model(inputs.model)
-    protocol_path = Path('docs/superpowers/specs/2026-10-04-stock-configuration-discovery.md' if product else
-                         'docs/superpowers/specs/2026-10-03-compiler-measurement-refinement.md')
+    protocol_path = Path('docs/research/protocols/specs/2026-10-04-stock-configuration-discovery.md' if product else
+                         'docs/research/protocols/specs/2026-10-03-compiler-measurement-refinement.md')
     freeze = {'protocol_sha256': file_sha256(protocol_path),
               'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
               'source_plan_file_sha256': file_sha256(source_plan_path), 'source_plan_sha256': plan.plan_sha256,
@@ -263,7 +263,7 @@ def execute_thread_pairs(inputs, aa_report_path, aa_store, target_store, runner,
     target_store.prime_model(inputs.model)
     output = Path(output_dir)
     output.mkdir(parents=True, exist_ok=False)
-    protocol = Path('docs/superpowers/specs/2026-10-03-compiler-eight-thread-experiment.md')
+    protocol = Path('docs/research/protocols/specs/2026-10-03-compiler-eight-thread-experiment.md')
     sources = [*sorted(Path('src/expertflow/compiler').rglob('*.py')),
                Path('scripts/benchmark_compiler_refinement.py'), protocol]
     freeze = {'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),

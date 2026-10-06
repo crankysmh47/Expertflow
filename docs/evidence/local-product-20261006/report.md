@@ -25,7 +25,19 @@ Each study used a fresh directory and fixed process budget. Memory sampling
 starts after healthy load; it does not establish a load-time peak. Timing
 numbers retain their recorded workload and host.
 
-Final release-artifact validation, whole-branch review, Gemma local-workflow
-coverage, human pilot timings and return use remain open. No new accepted tuning
+Gemma Q4 passed a separately registered 256-token chat budget after the original
+32-token attempt produced no answer text (retained INCONCLUSIVE). The passing
+one-process protocol processed 4097 prompt tokens, completed two chat turns and
+disconnect/recovery, and cleaned up in 38.172 seconds. Q6 local-product operational
+coverage remains unverified; historical acceptance is a separate contract.
+
+Whole-change review is complete and its correctness findings were fixed. A fresh
+installed-wheel idle-settle check passed benchmark, zero-native receipt verification,
+redacted export, zero-launch unsupported tuning, API/UI and identity status/stop:
+two owned processes, 12.328 seconds. The earlier busy-GPU refusal remains closed
+with zero benchmark launches; it was not resumed or counted as a success.
+See [artifact check](jobs/settle-wheel-check/outcome.json).
+
+Independent pilot timings and return use remain open. No new accepted tuning
 improvement was demonstrated. Human feedback must establish setup/diagnosis
-utility; an agent demonstration cannot count as a pilot participant.
+utility; automated demonstrations do not count as pilot participants.

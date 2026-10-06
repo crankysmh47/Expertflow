@@ -35,13 +35,13 @@ def test_release_builder_is_allowlist_based() -> None:
     assert '"__pycache__"' in source
     assert '"*.pyc"' in source
     for portable_asset in (
-        "JUDGES.md",
+        "docs/research/JUDGES.md",
         "docs/BENCHMARKING.md",
         "docs/assets",
         "evidence/release-scorecard.json",
         "scripts/judge-replay.sh",
         "scripts/verify-release.ps1",
-        "submission/demo-video-script-final.md",
+        "docs/research/submission/demo-video-script-final.md",
     ):
         assert portable_asset in source
     assert ".zip.sha256" in source
