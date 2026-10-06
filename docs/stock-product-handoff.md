@@ -45,6 +45,13 @@ the helper creates no new plan and changes no provider policy.
 
 ## Independent-user acceptance procedure
 
+Current state (2026-10-06): the user reported **"Not tried yet"**. No actual task
+results or user timings are available; see the
+[recorded state](evidence/stock-followthrough-20261006/usability-state.json).
+Both studies passed agent-run fresh local qualification with zero model calls;
+that [receipt](evidence/stock-followthrough-20261006/verification.json) does not
+complete this independent-user gate.
+
 The agent can demonstrate commands and validate evidence, but independent-user
 usability remains unmeasured. Have an actual intended user, without coaching,
 perform these five tasks on the prepared matching environment:

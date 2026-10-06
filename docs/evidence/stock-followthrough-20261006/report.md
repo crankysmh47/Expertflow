@@ -55,10 +55,33 @@ and wider 63 files/344 starts remained unchanged.
 A reproducing registration-argument control failed before the one-line binding
 fix. Corrected focused verification: **55 passed**, including 29 helper controls,
 in 134.24 seconds. The corrected helper binds the fixed project registration
-file; the existing public CLI attests it. Corrected live qualification uses a
-separate fresh directory and is recorded before final acceptance.
+file; the existing public CLI attests it.
+
+Corrected live qualification from `c9d2f9700e59d45eac47d92ebd64c1ce98717deb`
+passed **PASS-LOCAL-STOCK-QUALIFICATION** in 331.65 seconds, with **zero
+additional native calls**. Q6 reconstruction passed in 212.65 seconds using
+five readers/model-cache entries; wider reconstruction passed in 118.90 seconds
+using four. Both public validators exited 0 and verified their expected report
+identities. These are read-only reconstruction costs, not inference speedups.
+Before/after report, frozen-source and native-start inventory digests match.
+
+The [verification receipt](verification.json), [Q6 output](q6-stdout.json),
+[wider output](wider-stdout.json) and empty stderr logs are byte-identical copies
+of the separate corrected output directory. The [publication manifest](publication.json)
+binds their hashes and measured helper commit; the
+[raw helper snapshot](corrected-helper-source-snapshot.json) binds the helper,
+tests and catalogue. The [publication verifier](verify_publication.py) passed
+[source and qualification bindings](publication-verification.json), including
+the unchanged original 41 files/six pins/148 starts and wider 344 starts.
+The initial failed attempt remains preserved; total helper overhead across both
+attempts was 554.51 seconds, without new model outputs.
 
 The [user handoff](../../stock-product-handoff.md) supplies executable status and
 verification commands and a five-task independent-user procedure. This is a
-prepared research prototype. Actual user success, demand, portability and launch
-readiness remain unmeasured; agent tests must not stand in for those observations.
+locally qualified research prototype. The user reported **"Not tried yet"**;
+[usability state](usability-state.json) records no actual task results or timings.
+The next gate requires an intended user to complete the five tasks unaided.
+On pass, continue scoped packaging/onboarding; on fail, fix the observed workflow
+problem and repeat with a fresh user session. Actual user success, demand,
+portability and launch readiness remain unmeasured; agent tests must not stand
+in for those observations.

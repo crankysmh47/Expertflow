@@ -46,11 +46,11 @@ Interfaces: `snapshot(project: Path, catalogue: Path) -> dict`, `verify(project:
 
 ### Task 3: Qualification and next product gate
 
-- [ ] Run one fresh live read-only qualification of both studies; preserve costs, logs and before/after digests, with zero extra native calls.
+- [x] Run fresh live read-only qualification of both studies; preserve the failed prefix and corrected costs/logs/digests, with zero extra native calls.
 - [x] Obtain one independent review; fix material findings with reproducing controls.
-- [ ] Update README, method, status, TODO and project log with result, scope and path continuation.
+- [x] Update README, method, status, TODO and project log with result, scope and path continuation.
 - [x] Publish an executable independent-user usability procedure and required evidence; no fabricated user results.
-- [ ] Verify links, unchanged measured/history/user files and staged diff; commit on `ef-v2` and leave unrelated files untouched.
+- [x] Verify links, unchanged measured/history/user files and staged diff; commit on `ef-v2` and leave unrelated files untouched.
 
 ## Execution ledger
 
@@ -80,3 +80,16 @@ duplicate read-only validation overhead; no model call or scientific budget reus
 Corrected focused gate: 55 passed in 134.24 seconds, including all 29 helper
 controls. Commit the correction and preserve its raw helper snapshot before
 the separately identified fresh read-only qualification.
+
+Corrected live gate from `c9d2f97`: PASS-LOCAL-STOCK-QUALIFICATION, 331.65 seconds;
+Q6 public validation 212.65 seconds and wider 118.90 seconds, both exit 0 with
+verified evidence. Zero additional native calls; source/report/start inventories
+match before and after. Raw logs, helper snapshot, publication hashes and a
+passing publication-binding verifier are retained. The fail research branch
+has completed local prototype qualification and continued into user handoff.
+
+The user reported "Not tried yet" for the five-task procedure. Actual user task
+results and timings are unavailable. All independent repository work is complete;
+the next product gate depends on actual intended-user execution. Continue scoped
+onboarding on pass, or fix only observed workflow failures and repeat on fail.
+Neither outcome reopens the closed native studies or establishes market demand.

@@ -102,9 +102,13 @@ none met the practical utility gate. Serving and other hosts remain unverified.
   its fix pass and a live argument-binding correction. No compiler/provider changes.
 - [x] Prepare executable status/verification commands and a five-task
   [independent-user handoff](stock-product-handoff.md).
+- [x] Qualify both studies through fresh public read-only validation:
+  [PASS-LOCAL-STOCK-QUALIFICATION](evidence/stock-followthrough-20261006/verification.json),
+  331.65 seconds, zero extra native calls; failed initial attempt preserved.
 - [ ] Obtain actual independent-user usability results; continue onboarding
   on pass, or fix the observed workflow problem on fail. Agent checks do not
-  complete this product gate.
+  complete this product gate. User reported **not tried yet** on 2026-10-06;
+  [state](evidence/stock-followthrough-20261006/usability-state.json) has no task results.
 - [ ] KV compression/TurboQuant and shared memory-budget optimization.
 - [ ] MTP/speculation, two-table dynamic residency and joint search.
 - [ ] Broad family/hardware coverage, serving integration and presentation polish.

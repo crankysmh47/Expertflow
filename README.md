@@ -93,7 +93,7 @@ uv run --no-sync python scripts/stock_product_status.py status
 uv run --no-sync python scripts/stock_product_status.py verify --output-dir C:/models/expertflow/runs/stock-product-user-check-01
 ```
 
-Verification requires a fresh output directory and the original local artifacts. The helper launches zero model processes, retains failed diagnostics, and preserves each positive or negative outcome. See the [prepared-user handoff and acceptance procedure](docs/stock-product-handoff.md). Independent-user usability and portability remain unmeasured.
+Verification requires a fresh output directory and the original local artifacts. The helper launches zero model processes, retains failed diagnostics, and preserves each positive or negative outcome. Fresh local qualification of both studies passed in 331.65 seconds with zero additional native calls; see the [receipt](docs/evidence/stock-followthrough-20261006/verification.json). The next gate is the [five-task independent-user handoff](docs/stock-product-handoff.md), reported **not tried yet**. Independent-user usability and portability remain unmeasured.
 
 The earlier deployment interface remains available: `expertflow doctor`, `expertflow profile`, `expertflow optimize`, positional `expertflow run`, `expertflow serve` and `expertflow compare`. Its setup is documented in the historical [judge guide](JUDGES.md) and [deployment guide](DEPLOYMENT.md). It does not promote the old placement result into current exact acceptance.
 

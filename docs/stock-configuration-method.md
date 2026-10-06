@@ -432,3 +432,9 @@ Use `uv run --no-sync python scripts/stock_product_status.py status` or the
 fresh-output `verify` procedure in [the handoff](stock-product-handoff.md).
 Archived display is not fresh model/runtime/artifact validation. Local
 reconstruction is not portability, user acceptance or a new performance study.
+
+Fresh local qualification from helper commit `c9d2f97` passed both public
+validators in 331.65 seconds with zero extra native calls and unchanged bound
+source/report/start inventories. The [receipt](evidence/stock-followthrough-20261006/verification.json)
+and preserved failed prefix distinguish the two attempts. The independent-user
+procedure is **not tried yet**; no user success or timing is inferred.

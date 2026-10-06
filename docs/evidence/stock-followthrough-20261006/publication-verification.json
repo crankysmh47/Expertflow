@@ -1,0 +1,13 @@
+{
+  "status": "PASS-PUBLISHED-SOURCE-AND-QUALIFICATION-BINDINGS",
+  "helper_source_commit": "c9d2f9700e59d45eac47d92ebd64c1ce98717deb",
+  "qualification_seconds": 331.65444160000334,
+  "additional_native_calls": 0,
+  "original_frozen_files": 41,
+  "original_history_pins": 6,
+  "original_native_starts": 148,
+  "original_report_sha256": "464defd327d43c4f510f3768266d1dacaefc77d25c239afefef5cc4226c1d0c5",
+  "wider_native_starts": 344,
+  "user_acceptance": "NOT-TRIED",
+  "limits": "Verifies retained read-only qualification and current source/inventory bindings; no new model outputs or user observations."
+}

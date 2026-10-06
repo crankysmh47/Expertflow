@@ -88,9 +88,13 @@ supported GPU kernel. No native quality or speed experiment followed. The fail
 path produced a readable archived-status helper and delegated public verification,
 with 55 passing helper/CLI/reader controls after one independent review, its fix
 pass and a live registration-argument correction. The failed initial read-only
-qualification is preserved. Compiler/provider sources remain unchanged. The
-[user handoff](stock-product-handoff.md) is prepared; actual independent-user
-workflow acceptance, demand and portability remain unmeasured.
+qualification is preserved. Corrected fresh local qualification from `c9d2f97`
+passed both public validators in 331.65 seconds (Q6 212.65; wider 118.90), with
+zero additional native calls and unchanged source/report/start digests; see the
+[receipt](evidence/stock-followthrough-20261006/verification.json).
+Compiler/provider sources remain unchanged. The [user handoff](stock-product-handoff.md)
+is prepared; the user reported **not tried yet**, with no actual task results.
+Independent-user workflow acceptance, demand and portability remain unmeasured.
 
 ## Verified milestones
 

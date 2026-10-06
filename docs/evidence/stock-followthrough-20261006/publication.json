@@ -1,0 +1,15 @@
+{
+  "status": "PUBLISHED-LOCAL-QUALIFICATION",
+  "helper_source_commit": "c9d2f9700e59d45eac47d92ebd64c1ce98717deb",
+  "original_root": "C:\\models\\expertflow\\runs\\stock-product-qualification-20261006-corrected",
+  "files": {
+    "verification.json": "5a28a95ddfb4373c6037b057fe6be096eb869c51a02b1b8c76fd48f829c1371f",
+    "q6-stdout.json": "34c34c3aa788ae57aabd19c345f0ea6dd233cdd01c0f855400c61a0c99d06341",
+    "q6-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "wider-stdout.json": "111b997a7b91fba4302ec3843ef3a190012ead4e729a2b457806974f24ea878b",
+    "wider-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "qualification_seconds": 331.65444160000334,
+  "additional_native_calls": 0,
+  "limits": "Read-only reconstruction on the prepared host; no new speed/quality, portability or user-acceptance measurement."
+}
