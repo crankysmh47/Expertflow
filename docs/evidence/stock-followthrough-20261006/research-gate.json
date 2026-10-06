@@ -1,0 +1,12 @@
+{
+  "status": "NO-NEW-SUPPORTED-FUSED-DECODE-MECHANISM",
+  "candidate": "explicit flash-attention enabled versus tuned pristine stock AUTO",
+  "upstream_revision": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+  "source_objects": 3,
+  "local_bound_runner": 1,
+  "launches_checked": 492,
+  "additional_native_calls": 0,
+  "source_reason": "AUTO already enables fused attention when its support probe accepts backend placement; explicit enable supplies no new supported GPU kernel when the probe rejects it.",
+  "limits": "Conditional source-path rejection of this explicit-enable rationale, not measured speed/quality, not proof that every attention control is useless; resolved per-layer baseline modes remain unmeasured.",
+  "next_path": "bounded stock prototype qualification; no alternate attention candidate or native budget reuse"
+}

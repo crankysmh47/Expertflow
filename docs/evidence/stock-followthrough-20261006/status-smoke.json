@@ -1,0 +1,13 @@
+{
+  "status": "PASS-OUTSIDE-CWD-STATUS",
+  "command": [
+    "C:\\sem4\\expertflow\\.venv\\Scripts\\python.exe",
+    "C:\\sem4\\expertflow\\scripts\\stock_product_status.py",
+    "status",
+    "--json"
+  ],
+  "exit_code": 0,
+  "cases": 5,
+  "fresh_validation": false,
+  "additional_native_calls": 0
+}

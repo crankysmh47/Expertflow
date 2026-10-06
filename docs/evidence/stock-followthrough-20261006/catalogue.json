@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "studies": {
+    "q6": {
+      "report": "C:/models/expertflow/runs/compiler-stock-repeatability-20261004/report.json",
+      "sha256": "464defd327d43c4f510f3768266d1dacaefc77d25c239afefef5cc4226c1d0c5"
+    },
+    "wider": {
+      "report": "C:/models/expertflow/runs/compiler-stock-coverage-20261005/report.json",
+      "sha256": "4a74d814daceb07be0d7d3319127e513003dcee9f49f306c4c6fd452745762c9"
+    }
+  }
+}
