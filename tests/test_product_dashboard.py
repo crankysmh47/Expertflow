@@ -73,5 +73,7 @@ def test_judge_docs_and_readme_expose_all_product_commands() -> None:
     guide = (ROOT / "submission/judge-test-guide.md").read_text(encoding="utf-8")
     for command in ("doctor", "profile", "optimize", "run", "serve", "compare", "demo --replay"):
         assert f"expertflow {command}" in readme or f"expertflow {command}" in guide
-    assert "A hardware-aware configuration compiler for quantized MoE inference." in readme
+    archived = (ROOT / "docs/research-overview.md").read_text(encoding="utf-8")
+    assert "A hardware-aware configuration compiler for quantized MoE inference." in archived
+    assert "expertflow local setup" in readme
     assert "GGUF is not included" in guide

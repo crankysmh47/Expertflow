@@ -46,7 +46,7 @@ def test_product_guide_is_linked_and_packaged() -> None:
 
 
 def test_readme_uses_dashboard_gallery_instead_of_retired_visual_cards() -> None:
-    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    readme = (ROOT / "docs/research-overview.md").read_text(encoding="utf-8")
     assert "docs/assets/dashboard-architecture.png" in readme
     assert (ROOT / "docs/assets/dashboard-architecture.png").exists()
     for retired in (

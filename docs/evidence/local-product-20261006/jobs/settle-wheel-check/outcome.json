@@ -1,0 +1,37 @@
+{
+  "status": "PASS-OPERATIONAL",
+  "results": [
+    {
+      "command": "bench",
+      "exit": 0,
+      "status": "MEASURED"
+    },
+    {
+      "command": "verify",
+      "exit": 0,
+      "status": "VERIFIED-RECEIPTS"
+    },
+    {
+      "command": "support",
+      "exit": 0,
+      "status": "EXPORTED"
+    },
+    {
+      "command": "tune",
+      "exit": 2,
+      "status": "UNSUPPORTED"
+    },
+    {
+      "command": "status",
+      "exit": 0,
+      "status": "RUNNING"
+    },
+    {
+      "command": "stop",
+      "exit": 0,
+      "status": "STOPPED"
+    }
+  ],
+  "model_processes": 2,
+  "wall_seconds": 12.328000000001339
+}

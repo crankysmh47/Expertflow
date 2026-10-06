@@ -1,0 +1,27 @@
+{
+  "pid": 7184,
+  "creation_identity": 134357793658628522,
+  "creation_kind": "GetProcessTimes",
+  "command": [
+    "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-server.exe",
+    "--model",
+    "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\models\\qwen2.5-0.5b-instruct-q4_k_m.gguf",
+    "--ctx-size",
+    "8192",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "59832",
+    "--parallel",
+    "1",
+    "--n-gpu-layers",
+    "0",
+    "--cache-type-k",
+    "f16",
+    "--cache-type-v",
+    "f16",
+    "--fit",
+    "on"
+  ],
+  "started_at": 1791305765.891126
+}

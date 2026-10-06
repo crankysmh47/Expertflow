@@ -1,0 +1,78 @@
+{
+  "kind": "installed-wheel-operational-v1",
+  "wheel_sha256": "f3616a884e50812280250c42fd9c0effe80a7259b7682df0008d7519f0198f57",
+  "maximum_model_processes": 4,
+  "wall_budget_seconds": 300,
+  "commands": [
+    [
+      "local",
+      "doctor",
+      "--json"
+    ],
+    [
+      "local",
+      "setup",
+      "--model",
+      "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\models\\qwen2.5-0.5b-instruct-q4_k_m.gguf",
+      "--runtime",
+      "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin",
+      "--dll-dir",
+      "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin",
+      "--context",
+      "4096",
+      "--gpu-layers",
+      "99",
+      "--output",
+      "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\engineering-wheel-check\\profile.json",
+      "--json"
+    ],
+    [
+      "local",
+      "run",
+      "--profile",
+      "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\engineering-wheel-check\\profile.json",
+      "--prompt",
+      "Explain VRAM in one sentence.",
+      "--predict",
+      "64",
+      "--output-dir",
+      "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\engineering-wheel-check\\chat",
+      "--json"
+    ],
+    [
+      "local",
+      "bench",
+      "--profile",
+      "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\engineering-wheel-check\\profile.json",
+      "--predict",
+      "64",
+      "--repeats",
+      "2",
+      "--budget-seconds",
+      "120",
+      "--output-dir",
+      "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\engineering-wheel-check\\bench",
+      "--json"
+    ],
+    [
+      "local",
+      "verify-job",
+      "--job-dir",
+      "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\engineering-wheel-check\\bench",
+      "--json"
+    ],
+    [
+      "local",
+      "tune",
+      "--profile",
+      "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\engineering-wheel-check\\profile.json",
+      "--budget-seconds",
+      "30",
+      "--output-dir",
+      "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\engineering-wheel-check\\unsupported-tune",
+      "--json"
+    ]
+  ],
+  "serving_check": "one foreground server, one API chat, UI GET, identity status/stop",
+  "scope": "Operational artifact check only; benchmark descriptive and dense tuning unsupported; no improvement claim."
+}

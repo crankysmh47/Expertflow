@@ -1,0 +1,8 @@
+{
+  "status": "INCONCLUSIVE",
+  "model_processes": 0,
+  "model_attempts": 1,
+  "registration_sha256": "d9a4906e32e8e4c4c26b86b16034f157630a0c5eec00ea1d46b5b039e9119b03",
+  "reason": "GPU is busy; idle other GPU applications before a fresh measurement. No application was closed.",
+  "wall_seconds": 0.125
+}

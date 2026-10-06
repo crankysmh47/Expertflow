@@ -1,0 +1,10 @@
+{
+  "status": "INCONCLUSIVE",
+  "records": [],
+  "memory": {},
+  "cleanup": false,
+  "reason": "GPU is busy; idle other GPU applications before a fresh measurement. No application was closed.",
+  "artifact_sha256": {
+    "profile-input.json": "ba1b1a8db3c20986fc5fa37e06df406bdeecb033b3e30802b4510c1dbd34ea6b"
+  }
+}

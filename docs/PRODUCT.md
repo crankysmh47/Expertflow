@@ -1,5 +1,17 @@
 # ExpertFlow Product and Architecture Guide
 
+## Local product implementation
+
+The user authorized the [remaining product roadmap](TODO.md) on 2026-10-06.
+The product direction is portable local GGUF setup, measured configuration,
+reusable profiles and reliable run/serve workflows for local-model enthusiasts.
+The initial qualification target is Windows/NVIDIA; Linux needs native evidence.
+The optional TUI follows observed pilot friction. Exact tuning remains the default.
+Implementation is underway; the historical results below remain scoped evidence,
+and do not establish new-product usability, dense-family or serving acceptance.
+The independent [pilot task sheet](local-product-pilot.md) is prepared; no human
+results have been collected. See the roadmap for release gates.
+
 ExpertFlow compiles measured, eligible MoE runtime configurations into validated execution plans. The current accepted path is stock selection on Gemma Q6, Gemma Q4 and Granite Q6 on one pinned Windows/NVIDIA system. Quality-preserving placement acceleration remains unproven.
 
 ## Current compiler architecture and next decision

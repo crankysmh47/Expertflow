@@ -1,0 +1,40 @@
+{
+  "status": "INSPECTED",
+  "hardware": {
+    "schema_version": "1.0.0",
+    "measurement_kind": "measured",
+    "created_at": "2026-10-06T19:09:02.952754+00:00",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.11",
+    "system_ram_bytes": 33396510720,
+    "artifact_root": "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\empty-cwd",
+    "artifact_disk": {
+      "total_bytes": 999171289088,
+      "used_bytes": 898305736704,
+      "free_bytes": 100865552384
+    },
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "driver_version": "616.92",
+        "memory_total_mib": 16311,
+        "memory_used_mib": 1342,
+        "memory_free_mib": 14709
+      }
+    ],
+    "gpu_error": null,
+    "tools": {
+      "nvidia-smi": "C:\\WINDOWS\\system32\\nvidia-smi.EXE",
+      "cmake": "C:\\Program Files\\CMake\\bin\\cmake.EXE",
+      "ninja": "C:\\msys64\\ucrt64\\bin\\ninja.EXE",
+      "nvcc": null,
+      "gcc": "C:\\msys64\\ucrt64\\bin\\gcc.EXE",
+      "g++": "C:\\msys64\\ucrt64\\bin\\g++.EXE",
+      "aria2c": "C:\\Users\\Hank47\\scoop\\shims\\aria2c.EXE",
+      "curl": "C:\\WINDOWS\\system32\\curl.EXE"
+    }
+  },
+  "state_directory": "C:\\Users\\Hank47\\AppData\\Local\\ExpertFlow",
+  "next_action": "Use local setup with a GGUF and the runtime bin directory."
+}

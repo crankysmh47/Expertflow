@@ -59,6 +59,8 @@ def build_parser() -> argparse.ArgumentParser:
     add_compiler_commands(commands)
     stock = commands.add_parser('stock', help='Generate, collect or validate registered stock workflows.')
     stock.add_argument('stock_args', nargs=argparse.REMAINDER)
+    local = commands.add_parser('local', help='Set up, measure and run local GGUF models.')
+    local.add_argument('local_args', nargs=argparse.REMAINDER)
 
     baseline = commands.add_parser(
         "baseline", help="Run and measure an unmodified llama.cpp baseline."
@@ -1023,6 +1025,9 @@ def _run_deadline_eval(args: argparse.Namespace) -> int:
 def main(argv: Sequence[str] | None = None) -> int:
     import sys
     actual = list(sys.argv[1:] if argv is None else argv)
+    if actual and actual[0] == 'local':
+        from expertflow.product.local_cli import main as local_main
+        return local_main(actual[1:])
     if actual and actual[0] == 'stock':
         from expertflow.stock.cli import main as stock_main
         return stock_main(actual[1:])

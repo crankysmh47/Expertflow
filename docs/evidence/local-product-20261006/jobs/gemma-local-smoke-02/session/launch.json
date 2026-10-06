@@ -1,0 +1,28 @@
+{
+  "pid": 22752,
+  "creation_identity": 134357799187903126,
+  "creation_kind": "GetProcessTimes",
+  "command": [
+    "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-server.exe",
+    "--model",
+    "C:\\models\\expertflow\\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\\gemma-4-26B_q4_0-it.gguf",
+    "--ctx-size",
+    "8192",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "59997",
+    "--parallel",
+    "1",
+    "--n-gpu-layers",
+    "99",
+    "--cpu-moe",
+    "--cache-type-k",
+    "f16",
+    "--cache-type-v",
+    "f16",
+    "--fit",
+    "on"
+  ],
+  "started_at": 1791306318.8754673
+}

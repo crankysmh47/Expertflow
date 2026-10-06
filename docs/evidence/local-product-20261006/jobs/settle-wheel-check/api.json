@@ -1,0 +1,36 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Hello! How can I assist you today?"
+      }
+    }
+  ],
+  "created": 1791314188,
+  "model": "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\models\\qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b10002-a7312ae9",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 10,
+    "prompt_tokens": 32,
+    "total_tokens": 42,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "id": "chatcmpl-4JaMUbWqexlj7AJIbgY9aWvRAERJCrRK",
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 32,
+    "prompt_ms": 33.719,
+    "prompt_per_token_ms": 1.05371875,
+    "prompt_per_second": 949.0198404460393,
+    "predicted_n": 10,
+    "predicted_ms": 24.568,
+    "predicted_per_token_ms": 2.4568000000000003,
+    "predicted_per_second": 407.03353956366004
+  }
+}

@@ -5,9 +5,11 @@ Updated 2026-10-06. Branch: `ef-v2`. Prior accepted evidence checkpoint:
 
 ## Current decision
 
-Prove useful, automatically selected MoE placement before expanding the product.
-If placement cannot qualify within its frozen budget, evaluate stock autotuning
-as the fallback. Both paths must demonstrate practical value. The current
+The user authorized implementation of the [local product roadmap](TODO.md) on
+2026-10-06: portable setup, baseline profiles, bounded tuning, run/serve,
+packaging and independent acceptance. Windows/NVIDIA is the first qualification
+target; optional TUI/research expansion follows demonstrated needs. This direction
+does not reopen closed studies or establish user readiness by itself. The current
 supported result is validated stock selection/reproduction plus bounded Q6
 autotuning utility over resolved defaults. An accepted new quality-preserving
 speedup over already tuned stock has not been demonstrated.

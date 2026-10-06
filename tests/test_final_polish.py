@@ -29,7 +29,7 @@ def test_release_scorecard_is_the_documentation_source_of_truth() -> None:
 
 
 def test_judge_docs_preserve_headline_metrics_and_caveats() -> None:
-    paths = [ROOT / "README.md", ROOT / "JUDGES.md", ROOT / "submission/final-devpost-draft.md"]
+    paths = [ROOT / "docs/research-overview.md", ROOT / "JUDGES.md", ROOT / "submission/final-devpost-draft.md"]
     for path in paths:
         text = path.read_text(encoding="utf-8")
         assert "28.13" in text, path

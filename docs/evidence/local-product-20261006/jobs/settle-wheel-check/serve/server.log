@@ -1,0 +1,13 @@
+0.00.023.101 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.113.423 I srv    load_model: loading model 'C:\sem4\expertflow\.superpowers\sdd\local-product\models\qwen2.5-0.5b-instruct-q4_k_m.gguf'
+0.00.456.888 W load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.00.689.639 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 4096, kv_unified = 'false'
+0.00.693.948 I srv  llama_server: model loaded
+0.00.693.955 I srv  llama_server: listening on http://127.0.0.1:58562
+0.00.773.374 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+0.00.773.413 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.00.831.716 I slot print_timing: id  0 | task 0 | prompt eval time =      33.72 ms /    32 tokens (    1.05 ms per token,   949.02 tokens per second)
+0.00.831.722 I slot print_timing: id  0 | task 0 |        eval time =      24.57 ms /    10 tokens (    2.46 ms per token,   407.03 tokens per second)
+0.00.831.722 I slot print_timing: id  0 | task 0 |       total time =      58.29 ms /    42 tokens
+0.00.831.723 I slot print_timing: id  0 | task 0 |    graphs reused =          9
+0.00.831.745 I slot      release: id  0 | task 0 | stop processing: n_tokens = 41, truncated = 0
