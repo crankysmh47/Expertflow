@@ -97,7 +97,7 @@ def test_archive_extracts_and_verifies_from_path_with_spaces(tmp_path: Path) -> 
     powershell = shutil.which("pwsh") or shutil.which("powershell")
     if powershell:
         wrapper = subprocess.run(
-            [powershell, "-NoProfile", "-File", str(release / "scripts/verify-release.ps1")],
+            [powershell, "-NoProfile", "-File", str(release / "scripts/verify-release.ps1"), "-Interpreter", sys.executable],
             cwd=release,
             capture_output=True,
             text=True,
@@ -170,6 +170,8 @@ def test_doctor_reports_replay_only_with_actionable_cross_platform_status(monkey
 
 
 def test_doctor_resolves_live_paths_from_environment(tmp_path: Path, monkeypatch, capsys) -> None:
+    monkeypatch.setattr(commands.platform, "system", lambda: "Windows")
+    monkeypatch.setattr(commands.platform, "machine", lambda: "AMD64")
     model = tmp_path / "model.gguf"
     cli = tmp_path / "llama-cli.exe"
     server = tmp_path / "llama-server.exe"

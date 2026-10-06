@@ -258,8 +258,8 @@
     },
     {
       "path": "scripts/verify-release.ps1",
-      "bytes": 463,
-      "sha256": "4222ff3f3db996ac1ecc1b435f458d1c8cb8f97cee64872cf2841777327aa114"
+      "bytes": 948,
+      "sha256": "0d99cab2cacbbec838b227aff71d83dce69068566b253c58e3d7775a0ea3fee0"
     },
     {
       "path": "scripts/verify-release.sh",
