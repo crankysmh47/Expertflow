@@ -1,0 +1,35 @@
+{
+  "kind": "chat-serve-operational",
+  "maximum_model_processes": 1,
+  "profile_sha256": "3b57f79e6efa12eae95b02a9284305809e501fd88b9b41c9c2534a4c5367ce54",
+  "duration_limit_seconds": 60,
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Say hello in one short sentence."
+      }
+    ],
+    "max_tokens": 32,
+    "temperature": 0.0,
+    "seed": 42,
+    "stream": false
+  },
+  "sources": {
+    "src/expertflow/product/__init__.py": "20010f3372fd93151c51c9026c41d98e048218ed6357ad9021638f3ce224ac00",
+    "src/expertflow/product/benchmark.py": "2199d552230960e5ac2d8bb8afc1b01f47ae750c8f7e2ff844ed2d194773c919",
+    "src/expertflow/product/commands.py": "aa69a7d08ee0b04d3e579a67c58dd164b562b76149b0101557a4576a39c9a1cf",
+    "src/expertflow/product/local_cli.py": "80736680401c4e262e527f23dbf984c2d5e8bb52d41898cc74c2f064f603696b",
+    "src/expertflow/product/models.py": "d8500632c29f1486db50275c812f949829024caf79ed3d339bd3e75754f00e92",
+    "src/expertflow/product/paths.py": "5cbe66c3806734daeff43c018bde48ca77b7f56be1feddd8c2540639632a967b",
+    "src/expertflow/product/profiles.py": "fd4e08172d31c7be5019c33332af827a17aa6e74811dc086b55c125c05312d98",
+    "src/expertflow/product/qualification.py": "baa14e0f1ff1ee102579d4c0a11abd04db3fa70a12ef12d9e518de189f1b06cc",
+    "src/expertflow/product/runtime.py": "a22c8a183d91ca2161b08a1bfbab8eb6ff951941c0a961e375d3738910bd4aad",
+    "src/expertflow/product/server.py": "3b157bf55c19f77f4bb152c02829a5844afc78653277afabb65c54b7941df169",
+    "src/expertflow/product/service_control.py": "ed4643f5c3e116b6245435a03fcfe5bdee892053ee8d13cbb309ec78840be715",
+    "src/expertflow/product/session.py": "8d0d63d01f7918729901023632e4cabd8ce81168ceae43d3e993d89581bac445",
+    "src/expertflow/product/setup.py": "1b9988fcc5b9d9df0e06ab895835f306bc939a5e87d55aa881f9f80ecb8e0220",
+    "src/expertflow/product/tuning.py": "d0fe5eb7c3e971a77934747f911a84da8f11657739dbead1f1b7c8b6835111e3",
+    "src/expertflow/cli/main.py": "2ee11bfcc62b59152c7c3c7d704d03e8af673c3799788e96afc904fcc4239a3d"
+  }
+}

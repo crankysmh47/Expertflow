@@ -1,0 +1,53 @@
+.F.                                                                      [100%]
+================================== FAILURES ===================================
+_ test_committed_source_attestation_preserves_only_equivalent_line_endings[crlf] _
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1395/test_committed_source_attestat1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002D9D90BC250>
+change = 'crlf'
+
+    @pytest.mark.parametrize('change', ['lf','crlf','content'])
+    def test_committed_source_attestation_preserves_only_equivalent_line_endings(tmp_path,monkeypatch,change):
+        from expertflow.compiler.preflight import file_sha256
+        from scripts.benchmark_compiler_stock_coverage import require_committed_sources
+        subprocess.run(['git','init','-q',str(tmp_path)],check=True)
+        marker=tmp_path/'docs/evidence/stock-coverage-20261005/implementation-review.md'
+        marker.parent.mkdir(parents=True)
+        marker.write_text('reviewed\n')
+        (tmp_path/'.gitattributes').write_text('*.json text eol=lf\n')
+        source=tmp_path/'input.json'
+        source.write_bytes(b'{"value":1}\n')
+        subprocess.run(['git','-C',str(tmp_path),'add','.'],check=True)
+        subprocess.run(['git','-C',str(tmp_path),'-c','user.email=fixture@example.invalid',
+                        '-c','user.name=Fixture','commit','-qm','fixture'],check=True)
+        if change=='crlf':source.write_bytes(b'{"value":1}\r\n')
+        if change=='content':source.write_bytes(b'{"value":2}\r\n')
+        before=source.read_bytes()
+        monkeypatch.chdir(tmp_path)
+        if change=='content':
+            with pytest.raises(ValueError,match='committed'):require_committed_sources({str(source):file_sha256(source)})
+        else:
+>           require_committed_sources({str(source):file_sha256(source)})
+
+C:\sem4\expertflow\tests\test_stock_wider_review.py:149: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source_files = {'C:\\Users\\Hank47\\AppData\\Local\\Temp\\pytest-of-Hank47\\pytest-1395\\test_committed_source_attestat1\\input.json': 'deb84ff11c8e71e5396abb0d75bb7930332e0ad45efa4a52ab8426b846bbaa3a'}
+
+    def require_committed_sources(source_files):
+        root=Path.cwd().resolve()
+        review=root/'docs/evidence/stock-coverage-20261005/implementation-review.md'
+        if not review.is_file():
+            raise ValueError('independent reviewed implementation record required before collection')
+        for name,digest in source_files.items():
+            relative=Path(name).resolve().relative_to(root).as_posix()
+            blob=subprocess.check_output(['git','show','HEAD:'+relative])
+            import hashlib
+            if hashlib.sha256(blob).hexdigest()!=digest:
+>               raise ValueError('reviewed source must be committed before collection: '+relative)
+E               ValueError: reviewed source must be committed before collection: input.json
+
+C:\sem4\expertflow\scripts\benchmark_compiler_stock_coverage.py:40: ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_stock_wider_review.py::test_committed_source_attestation_preserves_only_equivalent_line_endings[crlf]
+1 failed, 2 passed, 17 deselected in 0.44s

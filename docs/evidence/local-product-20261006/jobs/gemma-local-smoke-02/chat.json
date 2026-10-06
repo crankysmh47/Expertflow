@@ -1,0 +1,14 @@
+{
+  "turns": [
+    {
+      "response": "Jade.",
+      "ttft_seconds": 7.889999999999418,
+      "wall_seconds": 7.953000000001339
+    },
+    {
+      "response": "Jade.",
+      "ttft_seconds": 2.9839999999967404,
+      "wall_seconds": 3.061999999998079
+    }
+  ]
+}

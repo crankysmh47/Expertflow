@@ -1,0 +1,1636 @@
+{
+  "action": "validate",
+  "attempts": 344,
+  "cases": [
+    {
+      "all_raw_records_valid": true,
+      "attempts": 86,
+      "automatic_id": "ebcb1f649ed18a9fd068e30e33441e4da46c9e11c18f371fbfea0e4cffa397f7",
+      "case_id": "gemma4-q4-prose",
+      "case_wall_seconds": 5208.6089999999995,
+      "collection_wall_seconds": 5176.656,
+      "complete_utility": true,
+      "input_load_seconds": 8.547,
+      "manual_id": "ebcb1f649ed18a9fd068e30e33441e4da46c9e11c18f371fbfea0e4cffa397f7",
+      "minimum_device_free_bytes": 13667614720,
+      "native_phase_seconds": 1869.9572592999937,
+      "native_processes": 86,
+      "peak_owned_bytes": 2469031936,
+      "phase_costs": {
+        "automatic-screen": {
+          "attempts": 18,
+          "completion_seconds": 297.5017692999999,
+          "load_health_seconds": 82.91735059999974,
+          "native_calls": 18,
+          "teardown_seconds": 18.458664200002204,
+          "tokenize_seconds": 0.11404090000360156,
+          "wait_seconds": 540.204
+        },
+        "defaults-pair": {
+          "attempts": 20,
+          "completion_seconds": 314.6697709999999,
+          "load_health_seconds": 92.37538849999964,
+          "native_calls": 20,
+          "teardown_seconds": 20.69542519999959,
+          "tokenize_seconds": 0.1847723999981099,
+          "wait_seconds": 600.312
+        },
+        "manual-pair": {
+          "attempts": 20,
+          "completion_seconds": 314.41713980000003,
+          "load_health_seconds": 92.65338989999691,
+          "native_calls": 20,
+          "teardown_seconds": 20.79617700000199,
+          "tokenize_seconds": 0.10101239999676181,
+          "wait_seconds": 600.3739999999999
+        },
+        "manual-screen": {
+          "attempts": 18,
+          "completion_seconds": 297.9877934,
+          "load_health_seconds": 82.81323539999903,
+          "native_calls": 18,
+          "teardown_seconds": 18.49653899999703,
+          "tokenize_seconds": 0.12820930000088993,
+          "wait_seconds": 540.2360000000001
+        },
+        "reference": {
+          "attempts": 10,
+          "completion_seconds": 157.7221985,
+          "load_health_seconds": 47.60249959999874,
+          "native_calls": 10,
+          "teardown_seconds": 10.221101899998757,
+          "tokenize_seconds": 0.10078100000100676,
+          "wait_seconds": 300.09299999999996
+        }
+      },
+      "raw_utility_product_gate_pass": false,
+      "reconstruction_finished_monotonic_ns": 9727937000000,
+      "reconstruction_started_monotonic_ns": 9704546000000,
+      "reconstruction_wall_seconds": 23.391,
+      "resource_budget_pass": true,
+      "scope": {
+        "case_id": "gemma4-q4-prose",
+        "host_environment_sha256": "428ac2955dab54e43f491e258e455b57d20ccf5223c0d294eda14d320962ff2c",
+        "model": {
+          "path": "C:/models/expertflow/google--gemma-4-26B-A4B-it-qat-q4_0-gguf/gemma-4-26B_q4_0-it.gguf",
+          "sha256": "4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5",
+          "size_bytes": 14439361440
+        },
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+      },
+      "selected_default": false,
+      "statistics": {
+        "automatic_evaluations": 18,
+        "cost_unit": "independent native candidate evaluations",
+        "gain": {
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "ci90_pct": [
+            0.9031656768845316,
+            1.1661193934911385
+          ],
+          "ci95_pct": [
+            0.8820475951369215,
+            1.1931413451301915
+          ],
+          "direct_cv_pct": 0.23555076549492815,
+          "direct_mean_tps": 37.153298501235405,
+          "direct_tps": [
+            37.13021712184542,
+            37.15721741210431,
+            37.19163359674259,
+            37.19554592055307,
+            37.14088051017062,
+            36.955784569141024,
+            37.08253986717063,
+            37.27968127037504,
+            37.21801447853454,
+            37.1814702657168
+          ],
+          "geometric_change_pct": 1.0294817985819156,
+          "method": "percentile bootstrap of ten paired mean log ratios",
+          "one_sided95_lower_pct": 0.9031656768845316,
+          "paired_log_ratios": [
+            0.00955892661301716,
+            0.006954820715679766,
+            0.007424707582332601,
+            0.00965181577441987,
+            0.008693828511507018,
+            0.0152495118696101,
+            0.013186474861153652,
+            0.009008475257298976,
+            0.012270416562334407,
+            0.010422894800699911
+          ],
+          "sealed_cv_pct": 0.21034087618337147,
+          "sealed_mean_tps": 37.53576579749083,
+          "sealed_tps": [
+            37.48684391159109,
+            37.41653992300962,
+            37.468798260745224,
+            37.55628858780286,
+            37.46518463567413,
+            37.52366116016711,
+            37.57476607873411,
+            37.61703158126131,
+            37.67750834516336,
+            37.57103549075954
+          ]
+        },
+        "manual_equivalence": {
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "ci90_pct": [
+            -1.014155413749197,
+            0.11137024293821224
+          ],
+          "ci95_pct": [
+            -1.1100731423224037,
+            0.1460442239598219
+          ],
+          "direct_cv_pct": 0.9087902939968854,
+          "direct_mean_tps": 37.45841160509849,
+          "direct_tps": [
+            37.45173426034178,
+            37.608109542433446,
+            37.571060303753214,
+            37.625861077384194,
+            37.49020916095228,
+            37.590366470097926,
+            36.507199369452216,
+            37.67030361676117,
+            37.53059531514082,
+            37.53867693466789
+          ],
+          "geometric_change_pct": -0.343481939713735,
+          "method": "percentile bootstrap of ten paired mean log ratios",
+          "one_sided95_lower_pct": -1.014155413749197,
+          "paired_log_ratios": [
+            0.002910104458923257,
+            -0.0015290104245688774,
+            0.0015956208167522412,
+            -0.00226849846906374,
+            0.002845832686910743,
+            -0.035180646107178415,
+            0.003994739918736112,
+            -0.005764274709956663,
+            -0.0002423068681007834,
+            -0.0007688806240397916
+          ],
+          "sealed_cv_pct": 1.2405485119559647,
+          "sealed_mean_tps": 37.33095915659668,
+          "sealed_tps": [
+            37.56088145705115,
+            37.5506502899871,
+            37.631057323198526,
+            37.54060360891314,
+            37.59705197990702,
+            36.29090505973185,
+            36.65332781433486,
+            37.45378627055386,
+            37.52150249580283,
+            37.50982526648643
+          ]
+        },
+        "manual_evaluations": 18,
+        "native_evaluation_cost_pass": true,
+        "status": "NO-UTILITY-GAIN",
+        "wall_time_scope": "native load/tokenize/completion/teardown phases reported separately; no lower wall-time or human-effort claim"
+      },
+      "status": "NO-UTILITY-GAIN",
+      "utility_gain_established": false,
+      "utility_gate_pass": false,
+      "wait_seconds": 2581.219
+    },
+    {
+      "all_raw_records_valid": true,
+      "attempts": 86,
+      "automatic_id": "dcbf8a3f31b8da275ce2e96b6d1eea890feb017522524a3ea119f998fdcc12f4",
+      "case_id": "gemma4-q4-code",
+      "case_wall_seconds": 5184.077,
+      "collection_wall_seconds": 5152.172,
+      "complete_utility": true,
+      "input_load_seconds": 8.515,
+      "manual_id": "dcbf8a3f31b8da275ce2e96b6d1eea890feb017522524a3ea119f998fdcc12f4",
+      "minimum_device_free_bytes": 13667614720,
+      "native_phase_seconds": 1845.7175568999905,
+      "native_processes": 86,
+      "peak_owned_bytes": 2469031936,
+      "phase_costs": {
+        "automatic-screen": {
+          "attempts": 18,
+          "completion_seconds": 294.59165179999997,
+          "load_health_seconds": 82.8039312000019,
+          "native_calls": 18,
+          "teardown_seconds": 17.19782269999996,
+          "tokenize_seconds": 0.10090459999810264,
+          "wait_seconds": 540.235
+        },
+        "defaults-pair": {
+          "attempts": 20,
+          "completion_seconds": 310.91831,
+          "load_health_seconds": 92.39759779999804,
+          "native_calls": 20,
+          "teardown_seconds": 19.2012302000021,
+          "tokenize_seconds": 0.21180439999625378,
+          "wait_seconds": 600.3
+        },
+        "manual-pair": {
+          "attempts": 20,
+          "completion_seconds": 310.30028359999994,
+          "load_health_seconds": 92.20189969999956,
+          "native_calls": 20,
+          "teardown_seconds": 19.1340067000001,
+          "tokenize_seconds": 0.06278359999669192,
+          "wait_seconds": 600.453
+        },
+        "manual-screen": {
+          "attempts": 18,
+          "completion_seconds": 294.3214298,
+          "load_health_seconds": 83.13219709999794,
+          "native_calls": 18,
+          "teardown_seconds": 17.200771200004965,
+          "tokenize_seconds": 0.1332751999998436,
+          "wait_seconds": 540.25
+        },
+        "reference": {
+          "attempts": 10,
+          "completion_seconds": 155.83360050000002,
+          "load_health_seconds": 46.33890059999976,
+          "native_calls": 10,
+          "teardown_seconds": 9.559093699999721,
+          "tokenize_seconds": 0.07606249999480497,
+          "wait_seconds": 300.094
+        }
+      },
+      "raw_utility_product_gate_pass": false,
+      "reconstruction_finished_monotonic_ns": 14903515000000,
+      "reconstruction_started_monotonic_ns": 14880125000000,
+      "reconstruction_wall_seconds": 23.39,
+      "resource_budget_pass": true,
+      "scope": {
+        "case_id": "gemma4-q4-code",
+        "host_environment_sha256": "428ac2955dab54e43f491e258e455b57d20ccf5223c0d294eda14d320962ff2c",
+        "model": {
+          "path": "C:/models/expertflow/google--gemma-4-26B-A4B-it-qat-q4_0-gguf/gemma-4-26B_q4_0-it.gguf",
+          "sha256": "4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5",
+          "size_bytes": 14439361440
+        },
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload_sha256": "803b0161b113bcf38ab4dbb3e427e1d716bd51abff293db00c84de1320c32743"
+      },
+      "selected_default": false,
+      "statistics": {
+        "automatic_evaluations": 18,
+        "cost_unit": "independent native candidate evaluations",
+        "gain": {
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "ci90_pct": [
+            0.6507457045722658,
+            0.9107715670191555
+          ],
+          "ci95_pct": [
+            0.6262919371896855,
+            0.9332598509993749
+          ],
+          "direct_cv_pct": 0.1842064330415107,
+          "direct_mean_tps": 37.392091286058296,
+          "direct_tps": [
+            37.504360248132365,
+            37.425078574391044,
+            37.299316744996446,
+            37.388110420234334,
+            37.41786613948401,
+            37.29011292713476,
+            37.35808851502912,
+            37.34487834687061,
+            37.44550837470258,
+            37.44759256960772
+          ],
+          "geometric_change_pct": 0.7818498083470878,
+          "method": "percentile bootstrap of ten paired mean log ratios",
+          "one_sided95_lower_pct": 0.6507457045722658,
+          "paired_log_ratios": [
+            0.0037908681138190126,
+            0.008295386198368337,
+            0.011265912260017164,
+            0.0077801140377329325,
+            0.007161579331980139,
+            0.011399760072336118,
+            0.008355669109221697,
+            0.009700696914720641,
+            0.0043645257147999494,
+            0.00576640835744513
+          ],
+          "sealed_cv_pct": 0.10282675506695803,
+          "sealed_mean_tps": 37.68440166886541,
+          "sealed_tps": [
+            37.6468041539719,
+            37.73682529670395,
+            37.72190351798009,
+            37.68012867763943,
+            37.68679899885608,
+            37.71764351066101,
+            37.67154809976103,
+            37.70891253093678,
+            37.6092974296763,
+            37.664154472467544
+          ]
+        },
+        "manual_equivalence": {
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "ci90_pct": [
+            -0.2011448558954105,
+            0.08272361697442496
+          ],
+          "ci95_pct": [
+            -0.22386984930352236,
+            0.10830939434443533
+          ],
+          "direct_cv_pct": 0.2209445985533668,
+          "direct_mean_tps": 37.631720888981256,
+          "direct_tps": [
+            37.62985146718571,
+            37.6728508760667,
+            37.76469306561313,
+            37.69158200477255,
+            37.6829407413677,
+            37.557980131828515,
+            37.48541125632722,
+            37.61871201759145,
+            37.671240435956314,
+            37.541946893103265
+          ],
+          "geometric_change_pct": -0.05855899161205161,
+          "method": "percentile bootstrap of ten paired mean log ratios",
+          "one_sided95_lower_pct": -0.2011448558954105,
+          "paired_log_ratios": [
+            9.349103238909251e-05,
+            -0.0006105993570506563,
+            -0.0050027200047466636,
+            -0.001703062422096835,
+            -0.0034933263481544685,
+            0.002724681538698981,
+            0.0035216223637331012,
+            0.0004887218170015473,
+            -0.003530589284113983,
+            0.0016541662557316705
+          ],
+          "sealed_cv_pct": 0.11029104563563784,
+          "sealed_mean_tps": 37.609622075354174,
+          "sealed_tps": [
+            37.633369685306384,
+            37.64985487892851,
+            37.576238665479885,
+            37.62744551755339,
+            37.551531592756284,
+            37.66045320677656,
+            37.61765343575915,
+            37.63710159621006,
+            37.53847326923444,
+            37.60409890553711
+          ]
+        },
+        "manual_evaluations": 18,
+        "native_evaluation_cost_pass": true,
+        "status": "NO-UTILITY-GAIN",
+        "wall_time_scope": "native load/tokenize/completion/teardown phases reported separately; no lower wall-time or human-effort claim"
+      },
+      "status": "NO-UTILITY-GAIN",
+      "utility_gain_established": false,
+      "utility_gate_pass": false,
+      "wait_seconds": 2581.332
+    },
+    {
+      "all_raw_records_valid": true,
+      "attempts": 86,
+      "automatic_id": "74d1ba8cb4119acee0a422a75f8bb524cb3a91dd5895df16a009e12805c393ad",
+      "case_id": "granite-q6-prose",
+      "case_wall_seconds": 3670.813,
+      "collection_wall_seconds": 3653.141,
+      "complete_utility": true,
+      "input_load_seconds": 1.438,
+      "manual_id": "f12b559962dced00ce1330f41bfafce375c73161b84bf712ff975153f01d52b1",
+      "minimum_device_free_bytes": 14649212928,
+      "native_phase_seconds": 355.2680411000304,
+      "native_processes": 86,
+      "peak_owned_bytes": 1487540224,
+      "phase_costs": {
+        "automatic-screen": {
+          "attempts": 18,
+          "completion_seconds": 28.8207858,
+          "load_health_seconds": 47.884100899995246,
+          "native_calls": 18,
+          "teardown_seconds": 2.3792483000015636,
+          "tokenize_seconds": 0.19508360000509128,
+          "wait_seconds": 540.235
+        },
+        "defaults-pair": {
+          "attempts": 20,
+          "completion_seconds": 22.6250498,
+          "load_health_seconds": 53.326151400000526,
+          "native_calls": 20,
+          "teardown_seconds": 2.6073148000068613,
+          "tokenize_seconds": 0.2885449000095832,
+          "wait_seconds": 600.345
+        },
+        "manual-pair": {
+          "attempts": 20,
+          "completion_seconds": 22.645967799999998,
+          "load_health_seconds": 53.04792360000283,
+          "native_calls": 20,
+          "teardown_seconds": 2.6222264999960316,
+          "tokenize_seconds": 0.2038914000004297,
+          "wait_seconds": 600.391
+        },
+        "manual-screen": {
+          "attempts": 18,
+          "completion_seconds": 28.846511699999994,
+          "load_health_seconds": 47.72147170000426,
+          "native_calls": 18,
+          "teardown_seconds": 2.3417124999996304,
+          "tokenize_seconds": 0.26935050001156924,
+          "wait_seconds": 540.265
+        },
+        "reference": {
+          "attempts": 10,
+          "completion_seconds": 11.385056900000002,
+          "load_health_seconds": 26.61757989999751,
+          "native_calls": 10,
+          "teardown_seconds": 1.3323219999983849,
+          "tokenize_seconds": 0.10774710000077903,
+          "wait_seconds": 300.10999999999996
+        }
+      },
+      "raw_utility_product_gate_pass": false,
+      "reconstruction_finished_monotonic_ns": 18572890000000,
+      "reconstruction_started_monotonic_ns": 18556671000000,
+      "reconstruction_wall_seconds": 16.219,
+      "resource_budget_pass": true,
+      "scope": {
+        "case_id": "granite-q6-prose",
+        "host_environment_sha256": "428ac2955dab54e43f491e258e455b57d20ccf5223c0d294eda14d320962ff2c",
+        "model": {
+          "path": "C:/models/expertflow/models/granite-3.1-1b-a400m-q6/granite-3.1-1b-a400m-instruct-Q6_K.gguf",
+          "sha256": "4566cfa92be10888026bd3663c83d64e91cd91f874dfb3607596587ff1c8f67f",
+          "size_bytes": 1099212096
+        },
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+      },
+      "selected_default": true,
+      "statistics": {
+        "automatic_evaluations": 18,
+        "cost_unit": "independent native candidate evaluations",
+        "gain": {
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "ci90_pct": [
+            -0.12626730003913766,
+            0.06943465925693378
+          ],
+          "ci95_pct": [
+            -0.1483346591388183,
+            0.08629683041138075
+          ],
+          "direct_cv_pct": 0.19041538363773414,
+          "direct_mean_tps": 513.949384037602,
+          "direct_tps": [
+            513.3969531094107,
+            512.6936745416548,
+            513.0347911737975,
+            513.3645229018732,
+            513.041988278193,
+            514.0231952966877,
+            514.9698310154662,
+            515.4177350007902,
+            515.0651527238597,
+            514.4859963342873
+          ],
+          "geometric_change_pct": -0.02428767293806148,
+          "method": "percentile bootstrap of ten paired mean log ratios",
+          "one_sided95_lower_pct": -0.12626730003913766,
+          "paired_log_ratios": [
+            0.001230101312368781,
+            -0.001534899752419605,
+            -0.00030556973714812585,
+            -0.0011824454346465174,
+            -0.004417220918283782,
+            0.002674083307774744,
+            0.000503026722332045,
+            -0.0009780099486107474,
+            3.82282224924424e-05,
+            0.0015436439390406065
+          ],
+          "sealed_cv_pct": 0.3202140908407226,
+          "sealed_mean_tps": 513.8260935414007,
+          "sealed_tps": [
+            514.0288719576167,
+            511.9073447705965,
+            512.8780472168352,
+            512.7578561113326,
+            510.7807663108161,
+            515.3995756006619,
+            515.2289397655105,
+            514.9138977473523,
+            515.0848431254785,
+            515.2807928078073
+          ]
+        },
+        "manual_equivalence": {
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "ci90_pct": [
+            -0.11830377253102674,
+            0.03549795893435659
+          ],
+          "ci95_pct": [
+            -0.1306707337366597,
+            0.05169159810316632
+          ],
+          "direct_cv_pct": 0.16572241946447852,
+          "direct_mean_tps": 514.1438063609974,
+          "direct_tps": [
+            513.7658130996234,
+            514.8439982463126,
+            515.0382104031683,
+            513.2477051712714,
+            512.786614666899,
+            513.1448261070448,
+            514.344381691751,
+            514.7818812864721,
+            515.1257832527779,
+            514.3588496846538
+          ],
+          "geometric_change_pct": -0.04532442959572995,
+          "method": "percentile bootstrap of ten paired mean log ratios",
+          "one_sided95_lower_pct": -0.11830377253102674,
+          "paired_log_ratios": [
+            0.0016218844425388568,
+            -0.0008443094051031608,
+            -0.0025347562831168347,
+            -0.0011891852678136416,
+            -0.00014621361835676083,
+            -0.0016543247029723318,
+            0.0005245277110077495,
+            -0.0019546617256969157,
+            -0.000758315610269733,
+            0.0024018840377779682
+          ],
+          "sealed_cv_pct": 0.20968116371126563,
+          "sealed_mean_tps": 513.9111552328154,
+          "sealed_tps": [
+            514.5997579773014,
+            514.4094940702249,
+            513.7343672237473,
+            512.6377213253287,
+            512.711643761541,
+            512.2966197428311,
+            514.6142403409319,
+            513.7766396198052,
+            514.7353034022797,
+            515.5957648641627
+          ]
+        },
+        "manual_evaluations": 18,
+        "native_evaluation_cost_pass": true,
+        "status": "NO-UTILITY-GAIN",
+        "wall_time_scope": "native load/tokenize/completion/teardown phases reported separately; no lower wall-time or human-effort claim"
+      },
+      "status": "NO-UTILITY-GAIN",
+      "utility_gain_established": false,
+      "utility_gate_pass": false,
+      "wait_seconds": 2581.346
+    },
+    {
+      "all_raw_records_valid": true,
+      "attempts": 86,
+      "automatic_id": "c519ab9ed33ae92f5849b9d6c6d17193fab1cb44df9f46d9c7e804ca3d2e7251",
+      "case_id": "granite-q6-code",
+      "case_wall_seconds": 3672.907,
+      "collection_wall_seconds": 3655.328,
+      "complete_utility": true,
+      "input_load_seconds": 1.407,
+      "manual_id": "f265be7969bab7c918ddde511540e64741b0895218a564ac4fbceebeaaaa04c8",
+      "minimum_device_free_bytes": 14649278464,
+      "native_phase_seconds": 356.52846500000237,
+      "native_processes": 86,
+      "peak_owned_bytes": 1487540224,
+      "phase_costs": {
+        "automatic-screen": {
+          "attempts": 18,
+          "completion_seconds": 28.7297367,
+          "load_health_seconds": 47.798225899998215,
+          "native_calls": 18,
+          "teardown_seconds": 2.3859406000010495,
+          "tokenize_seconds": 0.24132820000158972,
+          "wait_seconds": 540.172
+        },
+        "defaults-pair": {
+          "attempts": 20,
+          "completion_seconds": 22.766096700000002,
+          "load_health_seconds": 53.62395380000817,
+          "native_calls": 20,
+          "teardown_seconds": 2.5946360000016284,
+          "tokenize_seconds": 0.3175252999899385,
+          "wait_seconds": 600.36
+        },
+        "manual-pair": {
+          "attempts": 20,
+          "completion_seconds": 22.8113609,
+          "load_health_seconds": 52.91922420000628,
+          "native_calls": 20,
+          "teardown_seconds": 2.621092699992005,
+          "tokenize_seconds": 0.2290922999927716,
+          "wait_seconds": 600.327
+        },
+        "manual-screen": {
+          "attempts": 18,
+          "completion_seconds": 28.9002073,
+          "load_health_seconds": 48.43032040000253,
+          "native_calls": 18,
+          "teardown_seconds": 2.430489000002126,
+          "tokenize_seconds": 0.24084420000144746,
+          "wait_seconds": 540.315
+        },
+        "reference": {
+          "attempts": 10,
+          "completion_seconds": 11.2836527,
+          "load_health_seconds": 26.720927400005166,
+          "native_calls": 10,
+          "teardown_seconds": 1.3189147999983106,
+          "tokenize_seconds": 0.16489590000128374,
+          "wait_seconds": 300.078
+        }
+      },
+      "raw_utility_product_gate_pass": false,
+      "reconstruction_finished_monotonic_ns": 22244406000000,
+      "reconstruction_started_monotonic_ns": 22228250000000,
+      "reconstruction_wall_seconds": 16.156,
+      "resource_budget_pass": true,
+      "scope": {
+        "case_id": "granite-q6-code",
+        "host_environment_sha256": "428ac2955dab54e43f491e258e455b57d20ccf5223c0d294eda14d320962ff2c",
+        "model": {
+          "path": "C:/models/expertflow/models/granite-3.1-1b-a400m-q6/granite-3.1-1b-a400m-instruct-Q6_K.gguf",
+          "sha256": "4566cfa92be10888026bd3663c83d64e91cd91f874dfb3607596587ff1c8f67f",
+          "size_bytes": 1099212096
+        },
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload_sha256": "803b0161b113bcf38ab4dbb3e427e1d716bd51abff293db00c84de1320c32743"
+      },
+      "selected_default": true,
+      "statistics": {
+        "automatic_evaluations": 18,
+        "cost_unit": "independent native candidate evaluations",
+        "gain": {
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "ci90_pct": [
+            -0.36137643348422593,
+            -0.10794339892819273
+          ],
+          "ci95_pct": [
+            -0.3823163256853225,
+            -0.08235746063018386
+          ],
+          "direct_cv_pct": 0.17447457980636805,
+          "direct_mean_tps": 514.599510720355,
+          "direct_tps": [
+            516.5789558647855,
+            514.6256199127951,
+            514.7689421397698,
+            514.5392512046951,
+            514.6463113328737,
+            514.0345487439284,
+            513.7147799354244,
+            513.3598903495359,
+            514.3516155864613,
+            515.3751921332808
+          ],
+          "geometric_change_pct": -0.23496794908614585,
+          "method": "percentile bootstrap of ten paired mean log ratios",
+          "one_sided95_lower_pct": -0.36137643348422593,
+          "paired_log_ratios": [
+            -0.004085932997679009,
+            -0.002891589562589836,
+            -0.0015421117525464823,
+            0.0006886342945593427,
+            -0.0018678680008035187,
+            0.0019817986579884206,
+            -0.0034775745735258212,
+            -0.0011604021624167515,
+            -0.0064946541939860936,
+            -0.00467474290439629
+          ],
+          "sealed_cv_pct": 0.2514458071085341,
+          "sealed_mean_tps": 513.3911257970066,
+          "sealed_tps": [
+            514.4725550998097,
+            513.1396832364682,
+            513.9757226779742,
+            514.8937026086606,
+            513.6859171801854,
+            515.0542718319635,
+            511.93140119224023,
+            512.7645319170883,
+            511.0219040755993,
+            512.9715681500762
+          ]
+        },
+        "manual_equivalence": {
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "ci90_pct": [
+            -0.20126252380921814,
+            0.038732558714943924
+          ],
+          "ci95_pct": [
+            -0.22466613915662687,
+            0.06339902638731926
+          ],
+          "direct_cv_pct": 0.24836763259965786,
+          "direct_mean_tps": 514.3033227433716,
+          "direct_tps": [
+            514.6463113328737,
+            515.9906718561354,
+            515.8970865921168,
+            513.9860420665451,
+            515.1019439062031,
+            515.1563630363236,
+            513.7039560221253,
+            512.1562076433312,
+            513.5833775529959,
+            512.8112674250665
+          ],
+          "geometric_change_pct": -0.08108079902603388,
+          "method": "percentile bootstrap of ten paired mean log ratios",
+          "one_sided95_lower_pct": -0.20126252380921814,
+          "paired_log_ratios": [
+            -0.0005125046212475226,
+            -0.002799760699378595,
+            -0.0026565625636321144,
+            0.0029356313985955396,
+            0.0004025043877007306,
+            -0.004937116867878011,
+            -0.002140815509871885,
+            0.0029362006489952464,
+            -0.0008773210088524053,
+            -0.00046162389287740524
+          ],
+          "sealed_cv_pct": 0.21805421085254373,
+          "sealed_mean_tps": 513.8859939403299,
+          "sealed_tps": [
+            514.3826202972167,
+            514.5480419035061,
+            514.5283925208474,
+            515.4971325472002,
+            515.3093164301142,
+            512.6192440468085,
+            512.6053869620022,
+            513.6622109145194,
+            513.1329976588307,
+            512.5745961222531
+          ]
+        },
+        "manual_evaluations": 18,
+        "native_evaluation_cost_pass": true,
+        "status": "NO-UTILITY-GAIN",
+        "wall_time_scope": "native load/tokenize/completion/teardown phases reported separately; no lower wall-time or human-effort claim"
+      },
+      "status": "NO-UTILITY-GAIN",
+      "utility_gain_established": false,
+      "utility_gate_pass": false,
+      "wait_seconds": 2581.252
+    }
+  ],
+  "decision": {
+    "cases": [
+      {
+        "all_raw_records_valid": true,
+        "attempts": 86,
+        "automatic_id": "ebcb1f649ed18a9fd068e30e33441e4da46c9e11c18f371fbfea0e4cffa397f7",
+        "case_id": "gemma4-q4-prose",
+        "case_wall_seconds": 5208.6089999999995,
+        "collection_wall_seconds": 5176.656,
+        "complete_utility": true,
+        "input_load_seconds": 8.547,
+        "manual_id": "ebcb1f649ed18a9fd068e30e33441e4da46c9e11c18f371fbfea0e4cffa397f7",
+        "minimum_device_free_bytes": 13667614720,
+        "native_phase_seconds": 1869.9572592999937,
+        "native_processes": 86,
+        "peak_owned_bytes": 2469031936,
+        "phase_costs": {
+          "automatic-screen": {
+            "attempts": 18,
+            "completion_seconds": 297.5017692999999,
+            "load_health_seconds": 82.91735059999974,
+            "native_calls": 18,
+            "teardown_seconds": 18.458664200002204,
+            "tokenize_seconds": 0.11404090000360156,
+            "wait_seconds": 540.204
+          },
+          "defaults-pair": {
+            "attempts": 20,
+            "completion_seconds": 314.6697709999999,
+            "load_health_seconds": 92.37538849999964,
+            "native_calls": 20,
+            "teardown_seconds": 20.69542519999959,
+            "tokenize_seconds": 0.1847723999981099,
+            "wait_seconds": 600.312
+          },
+          "manual-pair": {
+            "attempts": 20,
+            "completion_seconds": 314.41713980000003,
+            "load_health_seconds": 92.65338989999691,
+            "native_calls": 20,
+            "teardown_seconds": 20.79617700000199,
+            "tokenize_seconds": 0.10101239999676181,
+            "wait_seconds": 600.3739999999999
+          },
+          "manual-screen": {
+            "attempts": 18,
+            "completion_seconds": 297.9877934,
+            "load_health_seconds": 82.81323539999903,
+            "native_calls": 18,
+            "teardown_seconds": 18.49653899999703,
+            "tokenize_seconds": 0.12820930000088993,
+            "wait_seconds": 540.2360000000001
+          },
+          "reference": {
+            "attempts": 10,
+            "completion_seconds": 157.7221985,
+            "load_health_seconds": 47.60249959999874,
+            "native_calls": 10,
+            "teardown_seconds": 10.221101899998757,
+            "tokenize_seconds": 0.10078100000100676,
+            "wait_seconds": 300.09299999999996
+          }
+        },
+        "raw_utility_product_gate_pass": false,
+        "reconstruction_finished_monotonic_ns": 9727937000000,
+        "reconstruction_started_monotonic_ns": 9704546000000,
+        "reconstruction_wall_seconds": 23.391,
+        "resource_budget_pass": true,
+        "scope": {
+          "case_id": "gemma4-q4-prose",
+          "host_environment_sha256": "428ac2955dab54e43f491e258e455b57d20ccf5223c0d294eda14d320962ff2c",
+          "model": {
+            "path": "C:/models/expertflow/google--gemma-4-26B-A4B-it-qat-q4_0-gguf/gemma-4-26B_q4_0-it.gguf",
+            "sha256": "4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5",
+            "size_bytes": 14439361440
+          },
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+        },
+        "selected_default": false,
+        "statistics": {
+          "automatic_evaluations": 18,
+          "cost_unit": "independent native candidate evaluations",
+          "gain": {
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "ci90_pct": [
+              0.9031656768845316,
+              1.1661193934911385
+            ],
+            "ci95_pct": [
+              0.8820475951369215,
+              1.1931413451301915
+            ],
+            "direct_cv_pct": 0.23555076549492815,
+            "direct_mean_tps": 37.153298501235405,
+            "direct_tps": [
+              37.13021712184542,
+              37.15721741210431,
+              37.19163359674259,
+              37.19554592055307,
+              37.14088051017062,
+              36.955784569141024,
+              37.08253986717063,
+              37.27968127037504,
+              37.21801447853454,
+              37.1814702657168
+            ],
+            "geometric_change_pct": 1.0294817985819156,
+            "method": "percentile bootstrap of ten paired mean log ratios",
+            "one_sided95_lower_pct": 0.9031656768845316,
+            "paired_log_ratios": [
+              0.00955892661301716,
+              0.006954820715679766,
+              0.007424707582332601,
+              0.00965181577441987,
+              0.008693828511507018,
+              0.0152495118696101,
+              0.013186474861153652,
+              0.009008475257298976,
+              0.012270416562334407,
+              0.010422894800699911
+            ],
+            "sealed_cv_pct": 0.21034087618337147,
+            "sealed_mean_tps": 37.53576579749083,
+            "sealed_tps": [
+              37.48684391159109,
+              37.41653992300962,
+              37.468798260745224,
+              37.55628858780286,
+              37.46518463567413,
+              37.52366116016711,
+              37.57476607873411,
+              37.61703158126131,
+              37.67750834516336,
+              37.57103549075954
+            ]
+          },
+          "manual_equivalence": {
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "ci90_pct": [
+              -1.014155413749197,
+              0.11137024293821224
+            ],
+            "ci95_pct": [
+              -1.1100731423224037,
+              0.1460442239598219
+            ],
+            "direct_cv_pct": 0.9087902939968854,
+            "direct_mean_tps": 37.45841160509849,
+            "direct_tps": [
+              37.45173426034178,
+              37.608109542433446,
+              37.571060303753214,
+              37.625861077384194,
+              37.49020916095228,
+              37.590366470097926,
+              36.507199369452216,
+              37.67030361676117,
+              37.53059531514082,
+              37.53867693466789
+            ],
+            "geometric_change_pct": -0.343481939713735,
+            "method": "percentile bootstrap of ten paired mean log ratios",
+            "one_sided95_lower_pct": -1.014155413749197,
+            "paired_log_ratios": [
+              0.002910104458923257,
+              -0.0015290104245688774,
+              0.0015956208167522412,
+              -0.00226849846906374,
+              0.002845832686910743,
+              -0.035180646107178415,
+              0.003994739918736112,
+              -0.005764274709956663,
+              -0.0002423068681007834,
+              -0.0007688806240397916
+            ],
+            "sealed_cv_pct": 1.2405485119559647,
+            "sealed_mean_tps": 37.33095915659668,
+            "sealed_tps": [
+              37.56088145705115,
+              37.5506502899871,
+              37.631057323198526,
+              37.54060360891314,
+              37.59705197990702,
+              36.29090505973185,
+              36.65332781433486,
+              37.45378627055386,
+              37.52150249580283,
+              37.50982526648643
+            ]
+          },
+          "manual_evaluations": 18,
+          "native_evaluation_cost_pass": true,
+          "status": "NO-UTILITY-GAIN",
+          "wall_time_scope": "native load/tokenize/completion/teardown phases reported separately; no lower wall-time or human-effort claim"
+        },
+        "status": "NO-UTILITY-GAIN",
+        "utility_gain_established": false,
+        "utility_gate_pass": false,
+        "wait_seconds": 2581.219
+      },
+      {
+        "all_raw_records_valid": true,
+        "attempts": 86,
+        "automatic_id": "dcbf8a3f31b8da275ce2e96b6d1eea890feb017522524a3ea119f998fdcc12f4",
+        "case_id": "gemma4-q4-code",
+        "case_wall_seconds": 5184.077,
+        "collection_wall_seconds": 5152.172,
+        "complete_utility": true,
+        "input_load_seconds": 8.515,
+        "manual_id": "dcbf8a3f31b8da275ce2e96b6d1eea890feb017522524a3ea119f998fdcc12f4",
+        "minimum_device_free_bytes": 13667614720,
+        "native_phase_seconds": 1845.7175568999905,
+        "native_processes": 86,
+        "peak_owned_bytes": 2469031936,
+        "phase_costs": {
+          "automatic-screen": {
+            "attempts": 18,
+            "completion_seconds": 294.59165179999997,
+            "load_health_seconds": 82.8039312000019,
+            "native_calls": 18,
+            "teardown_seconds": 17.19782269999996,
+            "tokenize_seconds": 0.10090459999810264,
+            "wait_seconds": 540.235
+          },
+          "defaults-pair": {
+            "attempts": 20,
+            "completion_seconds": 310.91831,
+            "load_health_seconds": 92.39759779999804,
+            "native_calls": 20,
+            "teardown_seconds": 19.2012302000021,
+            "tokenize_seconds": 0.21180439999625378,
+            "wait_seconds": 600.3
+          },
+          "manual-pair": {
+            "attempts": 20,
+            "completion_seconds": 310.30028359999994,
+            "load_health_seconds": 92.20189969999956,
+            "native_calls": 20,
+            "teardown_seconds": 19.1340067000001,
+            "tokenize_seconds": 0.06278359999669192,
+            "wait_seconds": 600.453
+          },
+          "manual-screen": {
+            "attempts": 18,
+            "completion_seconds": 294.3214298,
+            "load_health_seconds": 83.13219709999794,
+            "native_calls": 18,
+            "teardown_seconds": 17.200771200004965,
+            "tokenize_seconds": 0.1332751999998436,
+            "wait_seconds": 540.25
+          },
+          "reference": {
+            "attempts": 10,
+            "completion_seconds": 155.83360050000002,
+            "load_health_seconds": 46.33890059999976,
+            "native_calls": 10,
+            "teardown_seconds": 9.559093699999721,
+            "tokenize_seconds": 0.07606249999480497,
+            "wait_seconds": 300.094
+          }
+        },
+        "raw_utility_product_gate_pass": false,
+        "reconstruction_finished_monotonic_ns": 14903515000000,
+        "reconstruction_started_monotonic_ns": 14880125000000,
+        "reconstruction_wall_seconds": 23.39,
+        "resource_budget_pass": true,
+        "scope": {
+          "case_id": "gemma4-q4-code",
+          "host_environment_sha256": "428ac2955dab54e43f491e258e455b57d20ccf5223c0d294eda14d320962ff2c",
+          "model": {
+            "path": "C:/models/expertflow/google--gemma-4-26B-A4B-it-qat-q4_0-gguf/gemma-4-26B_q4_0-it.gguf",
+            "sha256": "4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5",
+            "size_bytes": 14439361440
+          },
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload_sha256": "803b0161b113bcf38ab4dbb3e427e1d716bd51abff293db00c84de1320c32743"
+        },
+        "selected_default": false,
+        "statistics": {
+          "automatic_evaluations": 18,
+          "cost_unit": "independent native candidate evaluations",
+          "gain": {
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "ci90_pct": [
+              0.6507457045722658,
+              0.9107715670191555
+            ],
+            "ci95_pct": [
+              0.6262919371896855,
+              0.9332598509993749
+            ],
+            "direct_cv_pct": 0.1842064330415107,
+            "direct_mean_tps": 37.392091286058296,
+            "direct_tps": [
+              37.504360248132365,
+              37.425078574391044,
+              37.299316744996446,
+              37.388110420234334,
+              37.41786613948401,
+              37.29011292713476,
+              37.35808851502912,
+              37.34487834687061,
+              37.44550837470258,
+              37.44759256960772
+            ],
+            "geometric_change_pct": 0.7818498083470878,
+            "method": "percentile bootstrap of ten paired mean log ratios",
+            "one_sided95_lower_pct": 0.6507457045722658,
+            "paired_log_ratios": [
+              0.0037908681138190126,
+              0.008295386198368337,
+              0.011265912260017164,
+              0.0077801140377329325,
+              0.007161579331980139,
+              0.011399760072336118,
+              0.008355669109221697,
+              0.009700696914720641,
+              0.0043645257147999494,
+              0.00576640835744513
+            ],
+            "sealed_cv_pct": 0.10282675506695803,
+            "sealed_mean_tps": 37.68440166886541,
+            "sealed_tps": [
+              37.6468041539719,
+              37.73682529670395,
+              37.72190351798009,
+              37.68012867763943,
+              37.68679899885608,
+              37.71764351066101,
+              37.67154809976103,
+              37.70891253093678,
+              37.6092974296763,
+              37.664154472467544
+            ]
+          },
+          "manual_equivalence": {
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "ci90_pct": [
+              -0.2011448558954105,
+              0.08272361697442496
+            ],
+            "ci95_pct": [
+              -0.22386984930352236,
+              0.10830939434443533
+            ],
+            "direct_cv_pct": 0.2209445985533668,
+            "direct_mean_tps": 37.631720888981256,
+            "direct_tps": [
+              37.62985146718571,
+              37.6728508760667,
+              37.76469306561313,
+              37.69158200477255,
+              37.6829407413677,
+              37.557980131828515,
+              37.48541125632722,
+              37.61871201759145,
+              37.671240435956314,
+              37.541946893103265
+            ],
+            "geometric_change_pct": -0.05855899161205161,
+            "method": "percentile bootstrap of ten paired mean log ratios",
+            "one_sided95_lower_pct": -0.2011448558954105,
+            "paired_log_ratios": [
+              9.349103238909251e-05,
+              -0.0006105993570506563,
+              -0.0050027200047466636,
+              -0.001703062422096835,
+              -0.0034933263481544685,
+              0.002724681538698981,
+              0.0035216223637331012,
+              0.0004887218170015473,
+              -0.003530589284113983,
+              0.0016541662557316705
+            ],
+            "sealed_cv_pct": 0.11029104563563784,
+            "sealed_mean_tps": 37.609622075354174,
+            "sealed_tps": [
+              37.633369685306384,
+              37.64985487892851,
+              37.576238665479885,
+              37.62744551755339,
+              37.551531592756284,
+              37.66045320677656,
+              37.61765343575915,
+              37.63710159621006,
+              37.53847326923444,
+              37.60409890553711
+            ]
+          },
+          "manual_evaluations": 18,
+          "native_evaluation_cost_pass": true,
+          "status": "NO-UTILITY-GAIN",
+          "wall_time_scope": "native load/tokenize/completion/teardown phases reported separately; no lower wall-time or human-effort claim"
+        },
+        "status": "NO-UTILITY-GAIN",
+        "utility_gain_established": false,
+        "utility_gate_pass": false,
+        "wait_seconds": 2581.332
+      },
+      {
+        "all_raw_records_valid": true,
+        "attempts": 86,
+        "automatic_id": "74d1ba8cb4119acee0a422a75f8bb524cb3a91dd5895df16a009e12805c393ad",
+        "case_id": "granite-q6-prose",
+        "case_wall_seconds": 3670.813,
+        "collection_wall_seconds": 3653.141,
+        "complete_utility": true,
+        "input_load_seconds": 1.438,
+        "manual_id": "f12b559962dced00ce1330f41bfafce375c73161b84bf712ff975153f01d52b1",
+        "minimum_device_free_bytes": 14649212928,
+        "native_phase_seconds": 355.2680411000304,
+        "native_processes": 86,
+        "peak_owned_bytes": 1487540224,
+        "phase_costs": {
+          "automatic-screen": {
+            "attempts": 18,
+            "completion_seconds": 28.8207858,
+            "load_health_seconds": 47.884100899995246,
+            "native_calls": 18,
+            "teardown_seconds": 2.3792483000015636,
+            "tokenize_seconds": 0.19508360000509128,
+            "wait_seconds": 540.235
+          },
+          "defaults-pair": {
+            "attempts": 20,
+            "completion_seconds": 22.6250498,
+            "load_health_seconds": 53.326151400000526,
+            "native_calls": 20,
+            "teardown_seconds": 2.6073148000068613,
+            "tokenize_seconds": 0.2885449000095832,
+            "wait_seconds": 600.345
+          },
+          "manual-pair": {
+            "attempts": 20,
+            "completion_seconds": 22.645967799999998,
+            "load_health_seconds": 53.04792360000283,
+            "native_calls": 20,
+            "teardown_seconds": 2.6222264999960316,
+            "tokenize_seconds": 0.2038914000004297,
+            "wait_seconds": 600.391
+          },
+          "manual-screen": {
+            "attempts": 18,
+            "completion_seconds": 28.846511699999994,
+            "load_health_seconds": 47.72147170000426,
+            "native_calls": 18,
+            "teardown_seconds": 2.3417124999996304,
+            "tokenize_seconds": 0.26935050001156924,
+            "wait_seconds": 540.265
+          },
+          "reference": {
+            "attempts": 10,
+            "completion_seconds": 11.385056900000002,
+            "load_health_seconds": 26.61757989999751,
+            "native_calls": 10,
+            "teardown_seconds": 1.3323219999983849,
+            "tokenize_seconds": 0.10774710000077903,
+            "wait_seconds": 300.10999999999996
+          }
+        },
+        "raw_utility_product_gate_pass": false,
+        "reconstruction_finished_monotonic_ns": 18572890000000,
+        "reconstruction_started_monotonic_ns": 18556671000000,
+        "reconstruction_wall_seconds": 16.219,
+        "resource_budget_pass": true,
+        "scope": {
+          "case_id": "granite-q6-prose",
+          "host_environment_sha256": "428ac2955dab54e43f491e258e455b57d20ccf5223c0d294eda14d320962ff2c",
+          "model": {
+            "path": "C:/models/expertflow/models/granite-3.1-1b-a400m-q6/granite-3.1-1b-a400m-instruct-Q6_K.gguf",
+            "sha256": "4566cfa92be10888026bd3663c83d64e91cd91f874dfb3607596587ff1c8f67f",
+            "size_bytes": 1099212096
+          },
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload_sha256": "42dcfcf3d87361361a0ee6e07e4cdc87ece93050dbdca42d4ae885691e9bf0e1"
+        },
+        "selected_default": true,
+        "statistics": {
+          "automatic_evaluations": 18,
+          "cost_unit": "independent native candidate evaluations",
+          "gain": {
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "ci90_pct": [
+              -0.12626730003913766,
+              0.06943465925693378
+            ],
+            "ci95_pct": [
+              -0.1483346591388183,
+              0.08629683041138075
+            ],
+            "direct_cv_pct": 0.19041538363773414,
+            "direct_mean_tps": 513.949384037602,
+            "direct_tps": [
+              513.3969531094107,
+              512.6936745416548,
+              513.0347911737975,
+              513.3645229018732,
+              513.041988278193,
+              514.0231952966877,
+              514.9698310154662,
+              515.4177350007902,
+              515.0651527238597,
+              514.4859963342873
+            ],
+            "geometric_change_pct": -0.02428767293806148,
+            "method": "percentile bootstrap of ten paired mean log ratios",
+            "one_sided95_lower_pct": -0.12626730003913766,
+            "paired_log_ratios": [
+              0.001230101312368781,
+              -0.001534899752419605,
+              -0.00030556973714812585,
+              -0.0011824454346465174,
+              -0.004417220918283782,
+              0.002674083307774744,
+              0.000503026722332045,
+              -0.0009780099486107474,
+              3.82282224924424e-05,
+              0.0015436439390406065
+            ],
+            "sealed_cv_pct": 0.3202140908407226,
+            "sealed_mean_tps": 513.8260935414007,
+            "sealed_tps": [
+              514.0288719576167,
+              511.9073447705965,
+              512.8780472168352,
+              512.7578561113326,
+              510.7807663108161,
+              515.3995756006619,
+              515.2289397655105,
+              514.9138977473523,
+              515.0848431254785,
+              515.2807928078073
+            ]
+          },
+          "manual_equivalence": {
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "ci90_pct": [
+              -0.11830377253102674,
+              0.03549795893435659
+            ],
+            "ci95_pct": [
+              -0.1306707337366597,
+              0.05169159810316632
+            ],
+            "direct_cv_pct": 0.16572241946447852,
+            "direct_mean_tps": 514.1438063609974,
+            "direct_tps": [
+              513.7658130996234,
+              514.8439982463126,
+              515.0382104031683,
+              513.2477051712714,
+              512.786614666899,
+              513.1448261070448,
+              514.344381691751,
+              514.7818812864721,
+              515.1257832527779,
+              514.3588496846538
+            ],
+            "geometric_change_pct": -0.04532442959572995,
+            "method": "percentile bootstrap of ten paired mean log ratios",
+            "one_sided95_lower_pct": -0.11830377253102674,
+            "paired_log_ratios": [
+              0.0016218844425388568,
+              -0.0008443094051031608,
+              -0.0025347562831168347,
+              -0.0011891852678136416,
+              -0.00014621361835676083,
+              -0.0016543247029723318,
+              0.0005245277110077495,
+              -0.0019546617256969157,
+              -0.000758315610269733,
+              0.0024018840377779682
+            ],
+            "sealed_cv_pct": 0.20968116371126563,
+            "sealed_mean_tps": 513.9111552328154,
+            "sealed_tps": [
+              514.5997579773014,
+              514.4094940702249,
+              513.7343672237473,
+              512.6377213253287,
+              512.711643761541,
+              512.2966197428311,
+              514.6142403409319,
+              513.7766396198052,
+              514.7353034022797,
+              515.5957648641627
+            ]
+          },
+          "manual_evaluations": 18,
+          "native_evaluation_cost_pass": true,
+          "status": "NO-UTILITY-GAIN",
+          "wall_time_scope": "native load/tokenize/completion/teardown phases reported separately; no lower wall-time or human-effort claim"
+        },
+        "status": "NO-UTILITY-GAIN",
+        "utility_gain_established": false,
+        "utility_gate_pass": false,
+        "wait_seconds": 2581.346
+      },
+      {
+        "all_raw_records_valid": true,
+        "attempts": 86,
+        "automatic_id": "c519ab9ed33ae92f5849b9d6c6d17193fab1cb44df9f46d9c7e804ca3d2e7251",
+        "case_id": "granite-q6-code",
+        "case_wall_seconds": 3672.907,
+        "collection_wall_seconds": 3655.328,
+        "complete_utility": true,
+        "input_load_seconds": 1.407,
+        "manual_id": "f265be7969bab7c918ddde511540e64741b0895218a564ac4fbceebeaaaa04c8",
+        "minimum_device_free_bytes": 14649278464,
+        "native_phase_seconds": 356.52846500000237,
+        "native_processes": 86,
+        "peak_owned_bytes": 1487540224,
+        "phase_costs": {
+          "automatic-screen": {
+            "attempts": 18,
+            "completion_seconds": 28.7297367,
+            "load_health_seconds": 47.798225899998215,
+            "native_calls": 18,
+            "teardown_seconds": 2.3859406000010495,
+            "tokenize_seconds": 0.24132820000158972,
+            "wait_seconds": 540.172
+          },
+          "defaults-pair": {
+            "attempts": 20,
+            "completion_seconds": 22.766096700000002,
+            "load_health_seconds": 53.62395380000817,
+            "native_calls": 20,
+            "teardown_seconds": 2.5946360000016284,
+            "tokenize_seconds": 0.3175252999899385,
+            "wait_seconds": 600.36
+          },
+          "manual-pair": {
+            "attempts": 20,
+            "completion_seconds": 22.8113609,
+            "load_health_seconds": 52.91922420000628,
+            "native_calls": 20,
+            "teardown_seconds": 2.621092699992005,
+            "tokenize_seconds": 0.2290922999927716,
+            "wait_seconds": 600.327
+          },
+          "manual-screen": {
+            "attempts": 18,
+            "completion_seconds": 28.9002073,
+            "load_health_seconds": 48.43032040000253,
+            "native_calls": 18,
+            "teardown_seconds": 2.430489000002126,
+            "tokenize_seconds": 0.24084420000144746,
+            "wait_seconds": 540.315
+          },
+          "reference": {
+            "attempts": 10,
+            "completion_seconds": 11.2836527,
+            "load_health_seconds": 26.720927400005166,
+            "native_calls": 10,
+            "teardown_seconds": 1.3189147999983106,
+            "tokenize_seconds": 0.16489590000128374,
+            "wait_seconds": 300.078
+          }
+        },
+        "raw_utility_product_gate_pass": false,
+        "reconstruction_finished_monotonic_ns": 22244406000000,
+        "reconstruction_started_monotonic_ns": 22228250000000,
+        "reconstruction_wall_seconds": 16.156,
+        "resource_budget_pass": true,
+        "scope": {
+          "case_id": "granite-q6-code",
+          "host_environment_sha256": "428ac2955dab54e43f491e258e455b57d20ccf5223c0d294eda14d320962ff2c",
+          "model": {
+            "path": "C:/models/expertflow/models/granite-3.1-1b-a400m-q6/granite-3.1-1b-a400m-instruct-Q6_K.gguf",
+            "sha256": "4566cfa92be10888026bd3663c83d64e91cd91f874dfb3607596587ff1c8f67f",
+            "size_bytes": 1099212096
+          },
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload_sha256": "803b0161b113bcf38ab4dbb3e427e1d716bd51abff293db00c84de1320c32743"
+        },
+        "selected_default": true,
+        "statistics": {
+          "automatic_evaluations": 18,
+          "cost_unit": "independent native candidate evaluations",
+          "gain": {
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "ci90_pct": [
+              -0.36137643348422593,
+              -0.10794339892819273
+            ],
+            "ci95_pct": [
+              -0.3823163256853225,
+              -0.08235746063018386
+            ],
+            "direct_cv_pct": 0.17447457980636805,
+            "direct_mean_tps": 514.599510720355,
+            "direct_tps": [
+              516.5789558647855,
+              514.6256199127951,
+              514.7689421397698,
+              514.5392512046951,
+              514.6463113328737,
+              514.0345487439284,
+              513.7147799354244,
+              513.3598903495359,
+              514.3516155864613,
+              515.3751921332808
+            ],
+            "geometric_change_pct": -0.23496794908614585,
+            "method": "percentile bootstrap of ten paired mean log ratios",
+            "one_sided95_lower_pct": -0.36137643348422593,
+            "paired_log_ratios": [
+              -0.004085932997679009,
+              -0.002891589562589836,
+              -0.0015421117525464823,
+              0.0006886342945593427,
+              -0.0018678680008035187,
+              0.0019817986579884206,
+              -0.0034775745735258212,
+              -0.0011604021624167515,
+              -0.0064946541939860936,
+              -0.00467474290439629
+            ],
+            "sealed_cv_pct": 0.2514458071085341,
+            "sealed_mean_tps": 513.3911257970066,
+            "sealed_tps": [
+              514.4725550998097,
+              513.1396832364682,
+              513.9757226779742,
+              514.8937026086606,
+              513.6859171801854,
+              515.0542718319635,
+              511.93140119224023,
+              512.7645319170883,
+              511.0219040755993,
+              512.9715681500762
+            ]
+          },
+          "manual_equivalence": {
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "ci90_pct": [
+              -0.20126252380921814,
+              0.038732558714943924
+            ],
+            "ci95_pct": [
+              -0.22466613915662687,
+              0.06339902638731926
+            ],
+            "direct_cv_pct": 0.24836763259965786,
+            "direct_mean_tps": 514.3033227433716,
+            "direct_tps": [
+              514.6463113328737,
+              515.9906718561354,
+              515.8970865921168,
+              513.9860420665451,
+              515.1019439062031,
+              515.1563630363236,
+              513.7039560221253,
+              512.1562076433312,
+              513.5833775529959,
+              512.8112674250665
+            ],
+            "geometric_change_pct": -0.08108079902603388,
+            "method": "percentile bootstrap of ten paired mean log ratios",
+            "one_sided95_lower_pct": -0.20126252380921814,
+            "paired_log_ratios": [
+              -0.0005125046212475226,
+              -0.002799760699378595,
+              -0.0026565625636321144,
+              0.0029356313985955396,
+              0.0004025043877007306,
+              -0.004937116867878011,
+              -0.002140815509871885,
+              0.0029362006489952464,
+              -0.0008773210088524053,
+              -0.00046162389287740524
+            ],
+            "sealed_cv_pct": 0.21805421085254373,
+            "sealed_mean_tps": 513.8859939403299,
+            "sealed_tps": [
+              514.3826202972167,
+              514.5480419035061,
+              514.5283925208474,
+              515.4971325472002,
+              515.3093164301142,
+              512.6192440468085,
+              512.6053869620022,
+              513.6622109145194,
+              513.1329976588307,
+              512.5745961222531
+            ]
+          },
+          "manual_evaluations": 18,
+          "native_evaluation_cost_pass": true,
+          "status": "NO-UTILITY-GAIN",
+          "wall_time_scope": "native load/tokenize/completion/teardown phases reported separately; no lower wall-time or human-effort claim"
+        },
+        "status": "NO-UTILITY-GAIN",
+        "utility_gain_established": false,
+        "utility_gate_pass": false,
+        "wait_seconds": 2581.252
+      }
+    ],
+    "evidence_verified": true,
+    "family_wide_gain_established": false,
+    "global_optimum_established": false,
+    "serving_throughput_established": false,
+    "utility_gain_established": false
+  },
+  "family_wide_gain_established": false,
+  "native_processes": 344,
+  "reason": null,
+  "report": "C:\\models\\expertflow\\runs\\compiler-stock-coverage-20261005\\report.json",
+  "status": "COMPLETE-STOCK-COVERAGE",
+  "validation": {
+    "artifact_and_record_checks": "repeated normally",
+    "cache_lifetime": "this invocation",
+    "database_readers": 4,
+    "model_digest_cache_entries": 4,
+    "native_calls": 0
+  },
+  "workflow": "coverage"
+}

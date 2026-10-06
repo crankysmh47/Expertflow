@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "objective": "decode_tps",
+  "concurrency": 1,
+  "policy": "exact",
+  "runtime_interface": "historical_cli",
+  "prompt": "Caching.",
+  "context_size": 2048,
+  "predict_tokens": 512,
+  "threads": 12,
+  "seed": 42,
+  "temperature": 0.0,
+  "ignore_eos": true,
+  "cpu_moe": true,
+  "gpu_layers": "99",
+  "cuda_graphs": "on",
+  "static_layers": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20],
+  "static_precompute": true,
+  "runtime_arguments": ["-c", "2048", "-ngl", "99", "--threads", "12", "--seed", "42", "--temp", "0", "--ignore-eos", "--cpu-moe", "--single-turn"],
+  "environment": {
+    "LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER": "0,1,2,3,4,5,6,7,8,9,15,20",
+    "LLAMA_EXPERTFLOW_STATIC_PRECOMPUTE": "1",
+    "GGML_CUDA_DISABLE_GRAPHS": null
+  },
+  "exact_plan_eligible": false
+}

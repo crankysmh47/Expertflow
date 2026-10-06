@@ -1,0 +1,15 @@
+{
+  "heldout_prompt_sha256": "db06dbe3251f7b615550a81324c7753a0bc809a76a898914e05637e7f3cb47ab",
+  "history_pins6_unchanged": true,
+  "main_prompt_sha256": "91a5f0213640da6b1c8dd8bc304fa831aec7b2bc616b3cc5ecb7469390785dfa",
+  "model_sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba",
+  "new_native_model_processes": 0,
+  "prerequisite": {
+    "original_report_sha256": "1475cb9830b4e572004b5a7b4bd60fe0c2e7e7b3877391a5f3a6105bd7b8c128",
+    "original_terminal_status": "PRODUCT-VALIDATION-STOP",
+    "source_plan_sha256": "cb0e4914813e54c5a97d5f7ddb1dcee0c1ea7c051389efd32ac3e7b4e6629e18",
+    "utility_verdict": "PASS-STOCK-UTILITY"
+  },
+  "source_freeze32_unchanged": true,
+  "status": "READ-ONLY-PREFLIGHT-PASS"
+}

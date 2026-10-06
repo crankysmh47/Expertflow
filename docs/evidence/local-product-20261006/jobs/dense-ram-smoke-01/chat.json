@@ -1,0 +1,14 @@
+{
+  "turns": [
+    {
+      "response": "Jade is a precious stone, a symbol of beauty and elegance. It is known for its smooth texture, lustrous color, and unique properties. In",
+      "ttft_seconds": 0.09399999999732245,
+      "wall_seconds": 0.39099999999598367
+    },
+    {
+      "response": "I did not ask you to remember anything. I was created to assist you with any questions or tasks you may have.",
+      "ttft_seconds": 0.07800000000133878,
+      "wall_seconds": 0.3120000000053551
+    }
+  ]
+}

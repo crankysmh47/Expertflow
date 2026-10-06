@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "launcher_abi": "1.0.0",
+  "upstream_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+  "expertflow_commit": "2a6d7c0ab9463feab827c193cee817d1297e23a7",
+  "patches": [
+    {
+      "path": "docs/evidence/compiler-cpu-prefetch-20261004/0001-cpu-expert-row-prefetch.patch",
+      "sha256": "117fbfd3b669ac196ccc67d0d4fd0f8a8ceb161eb7a26ffd3354a7dd0a07a56e"
+    }
+  ],
+  "build": {
+    "generator": "Ninja",
+    "configuration": "Release",
+    "compiler": "MSVC v143 14.39.33519",
+    "cuda": "12.8.93",
+    "flags": [
+      "GGML_CUDA=ON",
+      "CMAKE_BUILD_TYPE=Release",
+      "GGML_NATIVE=OFF",
+      "GGML_AVX2=ON",
+      "GGML_AVX512=OFF",
+      "kernel-only replacement of pristine ggml-cpu.dll"
+    ]
+  },
+  "capabilities": {
+    "max_static_layers": 0,
+    "max_static_shadows": 0
+  },
+  "binaries": {
+    "llama-cli.exe": "56d5cbe8fc5782595a280345e5e2f70bc1bcc79c94130e1b73bb4eb3cdeacd0f",
+    "llama-server.exe": "0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428"
+  },
+  "dependencies": {
+    "ggml-base.dll": "f555f4953da4bea9d00b3226b123474903182ca3fb4aaf0743f802246bffbd9a",
+    "ggml-cpu.dll": "ae299da337e7990d69a703951d1935bfab819cb8ec5c4ca00b049843e8bfb306",
+    "ggml-cuda.dll": "7ea4aed24056faf381186882a782076fbca526d778e5c979a11dffdebd7d196d",
+    "ggml.dll": "a1a1809a644c9a9654c5786186866d573b83948177b6ca9591d1deb729dced9a",
+    "llama-batched-bench-impl.dll": "ee33da8ffd71c08571dc438613345cd3e1dfcb28d6fbdaf5beff23e17f43429c",
+    "llama-bench-impl.dll": "08732d35fa6987f857a9e52d3ca5cc023b31f0c8c993f44c50289b074cb7efc5",
+    "llama-cli-impl.dll": "6c58364d0c513823c226d2b67ad4c058c676cc71e86a3e5b9a37593aeb4dbbb2",
+    "llama-common.dll": "fd3004b3d32aa3c90e934cd281b204c175a70579d211b64d842b482907381d0f",
+    "llama-completion-impl.dll": "1260ad9644e8013b712e786221f509749383081f89ddf2bc0bf715424f2212dd",
+    "llama-fit-params-impl.dll": "d7e94b1b3998ddd4ce39d931b8b62e98f227d54bf362040f0cc482064645b92a",
+    "llama-perplexity-impl.dll": "80e5205e06879a02016c60c24a7849fcd5dd576495cf86f1350ca7fea1ae7347",
+    "llama-quantize-impl.dll": "054f46735a0051f3917fa06bf8038a674668f6d0d78e964ea159669598e70dac",
+    "llama-server-impl.dll": "08f9094d6ed0e2c8eb74262cd235182dc359a244b4f65dba577512bd8cd20ab1",
+    "llama.dll": "a6c88283f32073d8f12db225e4ad499a3deefc8d584aad31d132a8cdfbaa27af",
+    "mtmd.dll": "1831ad4fbe79a77bf5db2baeffac1b14ba5f7526a04131b4204fe5e35cbcde08"
+  },
+  "cuda_runtime_sha256": "c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344"
+}

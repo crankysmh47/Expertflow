@@ -1,0 +1,269 @@
+diff --git a/common/common.cpp b/common/common.cpp
+index 8f13217a..937a48f1 100644
+--- a/common/common.cpp
++++ b/common/common.cpp
+@@ -1420,6 +1420,7 @@ common_init_result_ptr common_init_from_params(common_params & params, bool mode
+     }
+ 
+     if (params.warmup) {
++        llama_set_expertflow_profile_phase(lctx, 1);
+         COM_TRC("%s", "warming up the model with an empty run - please wait ... (--no-warmup to disable)\n");
+ 
+         std::vector<llama_token> tmp;
+@@ -1452,6 +1453,7 @@ common_init_result_ptr common_init_from_params(common_params & params, bool mode
+         llama_memory_clear(llama_get_memory(lctx), true);
+         llama_synchronize(lctx);
+         llama_perf_context_reset(lctx);
++        llama_set_expertflow_profile_phase(lctx, 0);
+ 
+         // reset samplers to reset RNG state after warmup to the seeded state
+         res->reset_samplers();
+diff --git a/ggml/CMakeLists.txt b/ggml/CMakeLists.txt
+index 5381c213..409567b2 100644
+--- a/ggml/CMakeLists.txt
++++ b/ggml/CMakeLists.txt
+@@ -434,6 +434,10 @@ if (MSVC)
+     )
+     function(configure_msvc_target target_name)
+         if(TARGET ${target_name})
++            get_target_property(is_imported ${target_name} IMPORTED)
++            if(is_imported)
++                return()
++            endif()
+             target_compile_options(${target_name} PRIVATE ${MSVC_WARNING_FLAGS})
+             target_compile_options(${target_name} PRIVATE ${MSVC_COMPILE_OPTIONS})
+         endif()
+diff --git a/ggml/include/ggml-backend.h b/ggml/include/ggml-backend.h
+index 2924fdbe..9ec657c4 100644
+--- a/ggml/include/ggml-backend.h
++++ b/ggml/include/ggml-backend.h
+@@ -426,6 +426,10 @@ extern "C" {
+     GGML_API enum ggml_status ggml_backend_tensor_alloc(ggml_backend_buffer_t buffer, struct ggml_tensor * tensor, void * addr);
+     GGML_API enum ggml_status ggml_backend_view_init(struct ggml_tensor * tensor);
+ 
++    // Diagnostic only: explicit request phases, no-op when split profiling is disabled.
++    GGML_API void ggml_backend_sched_profile_set_phase(ggml_backend_sched_t sched, int phase);
++    GGML_API void ggml_backend_sched_profile_note_tokens(ggml_backend_sched_t sched, int64_t tokens);
++
+     // CPU buffer types are always available
+     GGML_API ggml_backend_buffer_t      ggml_backend_cpu_buffer_from_ptr(void * ptr, size_t size);
+     GGML_API ggml_backend_buffer_type_t ggml_backend_cpu_buffer_type(void);
+diff --git a/ggml/src/CMakeLists.txt b/ggml/src/CMakeLists.txt
+index 11583474..a3ba1dee 100644
+--- a/ggml/src/CMakeLists.txt
++++ b/ggml/src/CMakeLists.txt
+@@ -313,7 +313,21 @@ function(ggml_add_backend backend)
+     string(TOUPPER "GGML_${backend}" backend_id)
+     if (${backend_id})
+         string(TOLOWER "ggml-${backend}" backend_target)
+-        add_subdirectory(${backend_target})
++        if (DEFINED EXPERTFLOW_FROZEN_BACKEND_BUILD AND (backend STREQUAL "CPU" OR backend STREQUAL "CUDA"))
++            # Diagnostic-only host instrumentation build: preserve original numerical kernel DLLs.
++            add_library(${backend_target} SHARED IMPORTED GLOBAL)
++            set_target_properties(${backend_target} PROPERTIES
++                IMPORTED_LOCATION "${EXPERTFLOW_FROZEN_BACKEND_BUILD}/bin/${backend_target}.dll"
++                IMPORTED_IMPLIB "${EXPERTFLOW_FROZEN_BACKEND_BUILD}/ggml/src/${backend_target}/${backend_target}.lib"
++                INTERFACE_LINK_LIBRARIES ggml-base)
++            if(backend STREQUAL "CPU")
++                set_target_properties(${backend_target} PROPERTIES
++                    IMPORTED_IMPLIB "${EXPERTFLOW_FROZEN_BACKEND_BUILD}/ggml/src/ggml-cpu.lib")
++            endif()
++            target_link_libraries(ggml PUBLIC ${backend_target})
++        else()
++            add_subdirectory(${backend_target})
++        endif()
+         message(STATUS "Including ${backend} backend")
+         if (NOT GGML_BACKEND_DL)
+             string(TOUPPER "GGML_USE_${backend}" backend_use)
+@@ -466,7 +480,7 @@ if (GGML_CPU_ALL_VARIANTS)
+     else()
+         message(FATAL_ERROR "GGML_CPU_ALL_VARIANTS not yet supported with ${GGML_SYSTEM_ARCH} on ${CMAKE_SYSTEM_NAME}")
+     endif()
+-elseif (GGML_CPU)
++elseif (GGML_CPU AND NOT DEFINED EXPERTFLOW_FROZEN_BACKEND_BUILD)
+     ggml_add_cpu_backend_variant_impl("")
+ endif()
+ 
+diff --git a/ggml/src/ggml-backend.cpp b/ggml/src/ggml-backend.cpp
+index 25d0f975..b3fcc664 100644
+--- a/ggml/src/ggml-backend.cpp
++++ b/ggml/src/ggml-backend.cpp
+@@ -848,8 +848,11 @@ struct ggml_backend_sched {
+ 
+     bool expertflow_split_profile_enabled;
+     char expertflow_split_profile_path[1024];
+-    int expertflow_split_profile_n_records;
+-    struct expertflow_split_profile_record expertflow_split_profile_records[EXPERTFLOW_SPLIT_PROFILE_MAX_RECORDS];
++    int expertflow_split_profile_phase;
++    int expertflow_split_profile_n_records[5];
++    int64_t expertflow_split_profile_tokens[5];
++    int64_t expertflow_split_profile_graph_calls[5];
++    struct expertflow_split_profile_record expertflow_split_profile_records[5][EXPERTFLOW_SPLIT_PROFILE_MAX_RECORDS];
+ 
+     char * context_buffer;
+     size_t context_buffer_size;
+@@ -868,6 +871,17 @@ struct ggml_backend_sched {
+ #define hash_id(tensor) ggml_hash_find_or_insert(&sched->hash_set, tensor)
+ #define tensor_backend_id(tensor) sched->hv_tensor_backend_ids[hash_id(tensor)]
+ #define tensor_id_copy(id, backend_id, copy_id) sched->hv_tensor_copies[(id) * sched->n_backends * sched->n_copies + (backend_id) * sched->n_copies + (copy_id)]
++void ggml_backend_sched_profile_set_phase(ggml_backend_sched_t sched, int phase) {
++    if (!sched || !sched->expertflow_split_profile_enabled) { return; }
++    sched->expertflow_split_profile_phase = phase >= 0 && phase < 5 ? phase : 4;
++}
++
++void ggml_backend_sched_profile_note_tokens(ggml_backend_sched_t sched, int64_t tokens) {
++    if (!sched || !sched->expertflow_split_profile_enabled) { return; }
++    GGML_ASSERT(tokens >= 0);
++    sched->expertflow_split_profile_tokens[sched->expertflow_split_profile_phase] += tokens;
++}
++
+ #define tensor_copy(tensor, backend_id, copy_id) tensor_id_copy(hash_id(tensor), backend_id, copy_id)
+ 
+ static void expertflow_json_write_string(FILE * file, const char * value) {
+@@ -896,7 +910,8 @@ static void expertflow_split_profile_record(
+         GGML_ABORT("ExpertFlow split profile capacity exceeded: %d\n", split_id);
+     }
+ 
+-    struct expertflow_split_profile_record * record = &sched->expertflow_split_profile_records[split_id];
++    const int phase = sched->expertflow_split_profile_phase;
++    struct expertflow_split_profile_record * record = &sched->expertflow_split_profile_records[phase][split_id];
+     if (record->calls == 0) {
+         record->split_id = split_id;
+         record->n_nodes = graph->n_nodes;
+@@ -906,11 +921,11 @@ static void expertflow_split_profile_record(
+             snprintf(record->first_node, sizeof(record->first_node), "%s", graph->nodes[0]->name);
+             snprintf(record->last_node, sizeof(record->last_node), "%s", graph->nodes[graph->n_nodes - 1]->name);
+         }
+-        sched->expertflow_split_profile_n_records = std::max(sched->expertflow_split_profile_n_records, split_id + 1);
++        sched->expertflow_split_profile_n_records[phase] = std::max(sched->expertflow_split_profile_n_records[phase], split_id + 1);
+     }
+ 
+     record->calls++;
+-    if (graph->n_nodes > 0 && graph->nodes[graph->n_nodes - 1]->ne[1] == 1) {
++    if (phase == 3) {
+         record->decode_calls++;
+     }
+     record->input_boundary_us += input_boundary_us;
+@@ -928,25 +943,33 @@ static void expertflow_split_profile_write(ggml_backend_sched_t sched) {
+         GGML_LOG_ERROR("failed to open ExpertFlow split profile: %s\n", sched->expertflow_split_profile_path);
+         return;
+     }
+-    fprintf(file, "{\"schema_version\":\"1.0.0\",\"diagnostic_synchronization\":true,\"records\":[");
+-    for (int i = 0; i < sched->expertflow_split_profile_n_records; ++i) {
+-        const struct expertflow_split_profile_record * record = &sched->expertflow_split_profile_records[i];
+-        if (i > 0) {
+-            fputc(',', file);
+-        }
+-        fprintf(file, "{\"split_id\":%d,\"backend\":", record->split_id);
++    static const char * phases[] = {"initialization_or_other", "warmup", "prefill", "decode", "mixed"};
++    fprintf(file, "{\"schema_version\":\"2.0.0\",\"diagnostic_synchronization\":true,\"phases\":[");
++    for (int phase = 0; phase < 5; ++phase) {
++        if (phase) { fputc(',', file); }
++        fprintf(file, "{\"phase\":\"%s\",\"tokens\":%lld,\"graph_calls\":%lld,\"split_count\":%d}", phases[phase],
++                (long long) sched->expertflow_split_profile_tokens[phase],
++                (long long) sched->expertflow_split_profile_graph_calls[phase],
++                sched->expertflow_split_profile_n_records[phase]);
++    }
++    fputs("],\"records\":[", file);
++    bool first = true;
++    for (int phase = 0; phase < 5; ++phase) {
++      for (int i = 0; i < sched->expertflow_split_profile_n_records[phase]; ++i) {
++        const struct expertflow_split_profile_record * record = &sched->expertflow_split_profile_records[phase][i];
++        if (record->calls == 0) { continue; }
++        if (!first) { fputc(',', file); }
++        first = false;
++        fprintf(file, "{\"phase\":\"%s\",\"split_id\":%d,\"backend\":", phases[phase], record->split_id);
+         expertflow_json_write_string(file, record->backend);
+-        fprintf(file, ",\"first_node\":");
+-        expertflow_json_write_string(file, record->first_node);
+-        fprintf(file, ",\"last_node\":");
+-        expertflow_json_write_string(file, record->last_node);
+-        fprintf(file,
+-                ",\"first_op\":\"%s\",\"n_nodes\":%d,\"calls\":%lld,\"decode_calls\":%lld"
++        fputs(",\"first_node\":", file); expertflow_json_write_string(file, record->first_node);
++        fputs(",\"last_node\":", file); expertflow_json_write_string(file, record->last_node);
++        fprintf(file, ",\"first_op\":\"%s\",\"n_nodes\":%d,\"calls\":%lld,\"decode_calls\":%lld"
+                 ",\"input_boundary_us\":%lld,\"compute_submit_us\":%lld,\"completion_us\":%lld,\"total_us\":%lld}",
+-                ggml_op_name(record->first_op), record->n_nodes,
+-                (long long) record->calls, (long long) record->decode_calls,
+-                (long long) record->input_boundary_us, (long long) record->compute_submit_us,
+-                (long long) record->completion_us, (long long) record->total_us);
++                ggml_op_name(record->first_op), record->n_nodes, (long long) record->calls,
++                (long long) record->decode_calls, (long long) record->input_boundary_us,
++                (long long) record->compute_submit_us, (long long) record->completion_us, (long long) record->total_us);
++      }
+     }
+     fputs("]}\n", file);
+     fclose(file);
+@@ -2183,6 +2206,9 @@ enum ggml_status ggml_backend_sched_graph_compute_async(ggml_backend_sched_t sch
+         }
+     }
+ 
++    if (sched->expertflow_split_profile_enabled) {
++        sched->expertflow_split_profile_graph_calls[sched->expertflow_split_profile_phase]++;
++    }
+     return ggml_backend_sched_compute_splits(sched);
+ }
+ 
+diff --git a/include/llama.h b/include/llama.h
+index a311ac20..c19e0908 100644
+--- a/include/llama.h
++++ b/include/llama.h
+@@ -963,6 +963,9 @@ extern "C" {
+     //    2 - aborted     (processed ubatches will remain in the context's memory)
+     //   -1 - invalid input batch
+     // < -1 - fatal error (processed ubatches will remain in the context's memory)
++    // Diagnostic profile phases: 0 initialization/other, 1 warmup, 2 prefill, 3 decode, 4 mixed.
++    LLAMA_API void llama_set_expertflow_profile_phase(struct llama_context * ctx, int phase);
++
+     LLAMA_API int32_t llama_decode(
+             struct llama_context * ctx,
+               struct llama_batch   batch);
+diff --git a/src/llama-context.cpp b/src/llama-context.cpp
+index 39446b37..845eab41 100644
+--- a/src/llama-context.cpp
++++ b/src/llama-context.cpp
+@@ -1470,6 +1470,7 @@ llm_graph_result * llama_context::process_ubatch(const llama_ubatch & ubatch, ll
+         //LLAMA_LOG_INFO("graph set inputs time: %.3f ms\n", (ggml_time_us() - t_start_us)/1000.0);
+     }
+ 
++    ggml_backend_sched_profile_note_tokens(sched.get(), ubatch.n_tokens);
+     const auto status = graph_compute(res->get_gf(), ubatch.n_tokens > 1);
+     if (status != GGML_STATUS_SUCCESS) {
+         LLAMA_LOG_ERROR("%s: failed to compute graph, compute status: %d\n", __func__, status);
+@@ -3777,6 +3778,10 @@ void llama_set_causal_attn(llama_context * ctx, bool causal_attn) {
+     ctx->set_causal_attn(causal_attn);
+ }
+ 
++void llama_set_expertflow_profile_phase(llama_context * ctx, int phase) {
++    ggml_backend_sched_profile_set_phase(ctx->get_sched(), phase);
++}
++
+ void llama_set_warmup(llama_context * ctx, bool warmup) {
+     ctx->set_warmup(warmup);
+ }
+diff --git a/tools/server/server-context.cpp b/tools/server/server-context.cpp
+index 5fadc1c8..a0acdc8d 100644
+--- a/tools/server/server-context.cpp
++++ b/tools/server/server-context.cpp
+@@ -3587,6 +3587,20 @@ private:
+             n_empty_consecutive = 0;
+         }
+ 
++        int profile_phase = -1;
++        if (batch_view.seq_id && batch_view.n_seq_id) {
++            for (int token = 0; token < batch_view.n_tokens; ++token) {
++                for (int seq = 0; seq < batch_view.n_seq_id[token]; ++seq) {
++                    for (const auto & slot : slots) {
++                        if (batch_view.seq_id[token][seq] == slot.id) {
++                            const int phase = slot.state == SLOT_STATE_GENERATING ? 3 : 2;
++                            profile_phase = profile_phase < 0 ? phase : profile_phase == phase ? phase : 4;
++                        }
++                    }
++                }
++            }
++        }
++        llama_set_expertflow_profile_phase(ctx_tgt, profile_phase < 0 ? 0 : profile_phase);
+         const int ret = llama_decode(ctx_tgt, batch_view);
+ 
+         metrics.on_decoded(slots);

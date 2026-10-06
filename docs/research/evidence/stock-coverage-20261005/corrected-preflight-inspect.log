@@ -1,0 +1,41 @@
+{
+  "cases": [
+    {
+      "case_id": "gemma4-q4-prose",
+      "family": "gemma4",
+      "maximum_native_processes": 107,
+      "quantization": "Q4_0",
+      "status": "NOT-RUN"
+    },
+    {
+      "case_id": "gemma4-q4-code",
+      "family": "gemma4",
+      "maximum_native_processes": 107,
+      "quantization": "Q4_0",
+      "status": "NOT-RUN"
+    },
+    {
+      "case_id": "granite-q6-prose",
+      "family": "granitemoe",
+      "maximum_native_processes": 107,
+      "quantization": "Q6_K",
+      "status": "NOT-RUN"
+    },
+    {
+      "case_id": "granite-q6-code",
+      "family": "granitemoe",
+      "maximum_native_processes": 107,
+      "quantization": "Q6_K",
+      "status": "NOT-RUN"
+    }
+  ],
+  "execution_ready": false,
+  "input_file_pins_verified": 17,
+  "maximum_native_processes": 428,
+  "native_calls": 0,
+  "next": "Implement/review the separate wider collector and freeze all source/live identities before collection.",
+  "registration_sha256": "0376ac4d7c5e146bc594f5c22a4b1be803b446ced4c3d9d04a4cb0737af55603",
+  "status": "REGISTERED-NOT-RUN",
+  "utility_gain_established": false,
+  "weight_hashes_verified": false
+}

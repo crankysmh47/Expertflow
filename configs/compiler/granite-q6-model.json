@@ -1,0 +1,9 @@
+{
+  "family": "granitemoe",
+  "architecture": "granitemoe",
+  "quantization": "Q6_K",
+  "expert_count": 32,
+  "expert_top_k": 8,
+  "kv_kind": "standard",
+  "mtp_kind": "none"
+}

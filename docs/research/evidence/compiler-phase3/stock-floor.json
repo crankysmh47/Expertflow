@@ -1,0 +1,76 @@
+{
+  "candidate": {
+    "estimated_decode_tps": null,
+    "identities": {
+      "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+      "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+      "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+      "workload": {
+        "approximate_quality_budget": null,
+        "batch_size": 2048,
+        "bootstrap_samples": 10000,
+        "bootstrap_seed": 20261003,
+        "cache_prompt": false,
+        "completion_timeout_seconds": 300,
+        "concurrency": 1,
+        "confirmation_pairs": 10,
+        "context_size": 4096,
+        "cuda_graphs": "on",
+        "health_timeout_seconds": 180,
+        "ignore_eos": true,
+        "kv_type_k": "f16",
+        "kv_type_v": "f16",
+        "maximum_cv_pct": 10.0,
+        "measured_runs": 3,
+        "microbatch_size": 512,
+        "minimum_vram_reserve_mib": 256,
+        "objective": "decode_tps",
+        "policy": "exact",
+        "predict_tokens": 512,
+        "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+        "replay_tolerance_pct": 2.0,
+        "runtime_interface": "server_completion",
+        "schema_version": "1.0.0",
+        "seed": 42,
+        "temperature": 0.0,
+        "threads": 12,
+        "warmup_runs": 1
+      },
+      "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+    },
+    "measurement_ids": [
+      "5117213e-89b7-496d-b0f3-4313e04b8b72",
+      "0aa64158-815d-46c1-be2f-9c97d28560cd",
+      "d7479007-8280-46ca-8178-a186c9ca4812"
+    ],
+    "rejection_reasons": [],
+    "settings": {
+      "batch_size": 2048,
+      "cpu_moe": true,
+      "cuda_graphs": "on",
+      "gpu_layers": 99,
+      "kv_type_k": "f16",
+      "kv_type_v": "f16",
+      "microbatch_size": 512,
+      "static": null
+    },
+    "status": "measured",
+    "validation": []
+  },
+  "cleanup": true,
+  "decode_tps": [
+    25.65885628454549,
+    24.19200361670454,
+    25.020929372122747
+  ],
+  "exact": true,
+  "exit_code": 0,
+  "key_sha256": "f195aedbd1fb56cd57728f0ba7547c0bb5f65bbd46dcfbe26890c1a4ec0bf309",
+  "measurement_ids": [
+    "5117213e-89b7-496d-b0f3-4313e04b8b72",
+    "0aa64158-815d-46c1-be2f-9c97d28560cd",
+    "d7479007-8280-46ca-8178-a186c9ca4812"
+  ],
+  "peak_bytes": 3289026560,
+  "status": "measured"
+}

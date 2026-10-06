@@ -1,0 +1,46 @@
+
+
+Loading model... 
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b10003-29857466
+model      : C:\models\expertflow\google--gemma-4-26B-A4B-it-qat-q4_0-gguf\gemma-4-26B_q4_0-it.gguf
+ftype      : Q4_0
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+
+> Explain in one sentence why reproducible measurements matter.
+
+[Start thinking]
+
+*   Topic: Why reproducible measurements matter.
+    *   Constraint: One sentence.
+    *   Goal: Explain the importance/significance.
+
+    *   Reliability/Trust: If you can't repeat it, it's not a fact.
+    *   Scientific Integrity: It's the foundation of the scientific method.
+    *   Validation: It proves that results aren't due to chance or error.
+    *   Progress: It allows others to build on findings.
+    *   Error detection: It helps identify outliers or mistakes.
+
+    *   *Draft
+
+[ Prompt: 24.5 t/s | Generation: 26.6 t/s ]
+
+
+Exiting...

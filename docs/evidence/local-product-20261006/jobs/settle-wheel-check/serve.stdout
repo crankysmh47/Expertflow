@@ -1,0 +1,6 @@
+{
+  "status": "SERVING",
+  "reason": "Local API: http://127.0.0.1:58562/v1 \u2014 web UI: http://127.0.0.1:58562",
+  "next_action": "Press Ctrl+C, or run: expertflow local stop --session-dir \"C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\settle-wheel-check\\serve\"",
+  "session_directory": "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\settle-wheel-check\\serve"
+}

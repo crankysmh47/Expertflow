@@ -1,0 +1,16 @@
+diff --git a/ggml/src/ggml-cpu/ggml-cpu.c b/ggml/src/ggml-cpu/ggml-cpu.c
+index 2745a7db..9baeeb82 100644
+--- a/ggml/src/ggml-cpu/ggml-cpu.c
++++ b/ggml/src/ggml-cpu/ggml-cpu.c
+@@ -1514,6 +1514,11 @@ static void ggml_compute_forward_mul_mat_id_one_chunk(
+                 float * dst_col = (float *) ((char *) dst->data + (i1*nb1 + i2*nb2));
+ 
+                 for (int64_t ir0 = iir0; ir0 < iir0 + blck_0 && ir0 < ir0_end; ++ir0) {
++#if defined(__AVX__) || defined(__AVX2__)
++                    if (type == GGML_TYPE_Q6_K && ir0 + 1 < ir0_end) {
++                        _mm_prefetch(src0_cur + (ir0 + 1)*nb01, _MM_HINT_T0);
++                    }
++#endif
+                     vec_dot(ne00, &tmp[ir0 - iir0], 0, src0_cur + ir0*nb01, 0, src1_col, 0, 1);
+                 }
+ 

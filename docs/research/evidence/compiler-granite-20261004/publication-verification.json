@@ -1,0 +1,23 @@
+{
+  "actual_cli_validation": "VALIDATED-STOCK-RECOMMENDATION",
+  "logs": {
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-full-suite-post-review.log": "6f31161611b05b9fa159ab8394107e17b6d7dbfbf405839008a6952dd132db10",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-generalization-audit.log": "4de4a02bec102514e2d15aa5ecf3d0551acc60af927b1597e709751d72924dbe",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-product-audit.log": "707d71d22e84be68f41ae58557449948d1e75e67ee03d6d3cbea89c4702224f7",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-product-cli-validation.log": "597b69255ffc43c47780e7b50e2ed354fb26f454775cbcd4fe34b85129afd6b5",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-product-native.log": "38fd66a2d22cb51272a56d08be4300b765b3f687c36a41b3c9424aed0e79dd8a",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-published-copy-cli-validation.log": "53e1e33614ce439cc66925507b32c7bf2694d0ab1cc53374f1352e9decdce1f5",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-reference-audit.log": "11c5b8d1bb65d4d0e0016092095639cba1522864860e823be203a63e74dbc85f",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-reference-cli-validation.log": "4ab0a55cbb629163acbfc54a3c3aa39729ddd54d2599dc48bd18c72b8d67dfa6",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-reference-native.log": "6cb255216ae24fd7865e79c4bf852be8eba833f4c1a7092cabe7763b0df53487",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-reference-reviewed-preview.log": "78e25ac07ea478c44edc2994e0b9d1ea5ae9803dfa5029604410c01a4c54b042",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-review-green.log": "cb19e7aaafbae9e30e198e2e5b8c84182a463fa52c6e51aa27e0ee2be0e6c71b",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-review-red.log": "e82d7363584974790d71a30de0bce464211ff5f567fc427bf707caabd07fe83d",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-search-audit.log": "49e6ca2bd3f493bfb2803d135fff07d55e640dedcbf9514881dec103b7c2736b",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-search-cli-validation.log": "53e1e33614ce439cc66925507b32c7bf2694d0ab1cc53374f1352e9decdce1f5",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-search-native.log": "2bbd2fcb36382d9c5ed4e90c0c5e1ff757da4894867ac1db7972a2a32b346abe",
+    "docs\\evidence\\compiler-granite-20261004\\logs\\granite-search-reviewed-preview.log": "bd30362beb195a1824cc65df20aa49ad5644435d5a5b770835c1ed08ad1183cd"
+  },
+  "plan_sha256": "449f1dce2e7045523c1b4a542d89581435413cb30c10d4017ce5dfe821d79a7f",
+  "status": "VERIFIED-PUBLISHED-METADATA"
+}

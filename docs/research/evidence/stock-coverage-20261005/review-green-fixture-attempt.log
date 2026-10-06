@@ -1,0 +1,259 @@
+..............FFF                                                        [100%]
+================================== FAILURES ===================================
+___ test_failed_native_requires_bound_context_and_owned_cleanup[raw-launch] ___
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1391/test_failed_native_requires_bo3')
+mutation = 'launch', backend = 'raw'
+
+    @pytest.mark.parametrize('mutation', ['launch', 'owner', 'teardown'])
+    @pytest.mark.parametrize('backend', ['public','raw'])
+    def test_failed_native_requires_bound_context_and_owned_cleanup(tmp_path, mutation, backend):
+        from expertflow.stock.wider_audit import audit_attempts
+        root = tmp_path.resolve(); output = root/'raw/one'; output.mkdir(parents=True)
+        identity = {'pid': 1, 'creation_time_100ns': 2, 'creation_source': 'GetProcessTimes',
+                    'run_id': 'failed-owned-run', 'started_monotonic_ns': 31_000_000_000}
+        launch = {'host_environment': {}, 'experiment_context': {'manifest_sha256': 'a'*64}}
+        process = {'pid': 1, 'run_id': identity['run_id'], 'creation_time_100ns': 2,
+                   'exited': True, 'cleanup': True, 'memory_settled': True, 'forced_kill': False}
+        memory = {'teardown_reading': {'pid': 1, 'state': 'absent', 'counter_available': True,
+                                      'dedicated_bytes': 0}}
+        for name, payload in [('run-start', identity), ('launch', launch), ('process', process), ('memory', memory)]:
+            (output/f'{name}.json').write_text(json.dumps(payload))
+        report = {'manifest': {'experiment_root': str(root), 'frozen_monotonic_ns': 1,
+            'case_started_monotonic_ns': 1, 'sequence_started_monotonic_ns': 1,
+            'input_load_seconds': 0, 'host_environment': {}, 'manifest_sha256': 'a'*64},
+            'attempts': [{'output_dir': str(output), 'database': str(root/'utility.sqlite3'),
+            'wait_started_monotonic_ns': 1_000_000_000, 'wait_finished_monotonic_ns': 31_000_000_000,
+            'wait_elapsed_ns': 30_000_000_000, 'wait_seconds': 30,
+            'finished_monotonic_ns': 32_000_000_000, 'native_started': True,
+            'process_identity': identity, 'status': 'environment_blocked'}]}
+        if backend=='public':
+            audit=lambda: audit_attempts(report)
+        else:
+            import runpy
+            from expertflow.compiler.schema import canonical_sha256
+            raw_audit=runpy.run_path('docs/evidence/stock-coverage-20261005/independent_audit.py')['audit']
+            case={'case_id':'failure','planned_root':str(root)}
+            sequence={'registration':{'cases':[case]},'source_files':{},'host_environment':{}}
+            sequence['manifest_sha256']=canonical_sha256(sequence)
+            report['manifest'].update(case=case,sequence_manifest_sha256=sequence['manifest_sha256'])
+            report['manifest']['manifest_sha256']=canonical_sha256(report['manifest'])
+            launch['experiment_context']['manifest_sha256']=report['manifest']['manifest_sha256']
+            (output/'launch.json').write_text(json.dumps(launch))
+            report.update(status='ENVIRONMENT-BLOCKED',rows=[])
+            (root/'report.json').write_text(json.dumps(report))
+            outer=tmp_path/'outer.json'
+            outer.write_text(json.dumps({'manifest':sequence,'native_processes':1}))
+            audit=lambda:raw_audit(outer)
+>       audit()
+
+tests\test_stock_wider_review.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_stock_wider_review.py:179: in <lambda>
+    audit=lambda:raw_audit(outer)
+                 ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1391/test_failed_native_requires_bo3/outer.json')
+
+    def audit(path):
+        outer=json.loads(Path(path).read_text())
+        sequence=outer['manifest']
+        payload=dict(sequence)
+        claimed=payload.pop('manifest_sha256')
+        if canonical_sha256(payload)!=claimed:
+            raise ValueError('outer freeze checksum mismatch')
+        for filename,digest in sequence['source_files'].items():
+            if file_sha256(Path(filename))!=digest:
+                raise ValueError('audited source changed: '+filename)
+        stores={}
+        owners=set()
+        results=[]
+        total=0
+        for case in sequence['registration']['cases']:
+            root=Path(case['planned_root'])
+            if not (root/'report.json').is_file():
+                results.append({'case_id':case['case_id'],'status':'NOT-RUN'})
+                continue
+            report=json.loads((root/'report.json').read_text())
+            manifest=report['manifest']
+            payload=dict(manifest)
+            claimed=payload.pop('manifest_sha256')
+            if canonical_sha256(payload)!=claimed or manifest['case']!=case or manifest['sequence_manifest_sha256']!=sequence['manifest_sha256']:
+>               raise ValueError('case freeze differs from registered sequence')
+E               ValueError: case freeze differs from registered sequence
+
+docs\evidence\stock-coverage-20261005\independent_audit.py:51: ValueError
+___ test_failed_native_requires_bound_context_and_owned_cleanup[raw-owner] ____
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1391/test_failed_native_requires_bo4')
+mutation = 'owner', backend = 'raw'
+
+    @pytest.mark.parametrize('mutation', ['launch', 'owner', 'teardown'])
+    @pytest.mark.parametrize('backend', ['public','raw'])
+    def test_failed_native_requires_bound_context_and_owned_cleanup(tmp_path, mutation, backend):
+        from expertflow.stock.wider_audit import audit_attempts
+        root = tmp_path.resolve(); output = root/'raw/one'; output.mkdir(parents=True)
+        identity = {'pid': 1, 'creation_time_100ns': 2, 'creation_source': 'GetProcessTimes',
+                    'run_id': 'failed-owned-run', 'started_monotonic_ns': 31_000_000_000}
+        launch = {'host_environment': {}, 'experiment_context': {'manifest_sha256': 'a'*64}}
+        process = {'pid': 1, 'run_id': identity['run_id'], 'creation_time_100ns': 2,
+                   'exited': True, 'cleanup': True, 'memory_settled': True, 'forced_kill': False}
+        memory = {'teardown_reading': {'pid': 1, 'state': 'absent', 'counter_available': True,
+                                      'dedicated_bytes': 0}}
+        for name, payload in [('run-start', identity), ('launch', launch), ('process', process), ('memory', memory)]:
+            (output/f'{name}.json').write_text(json.dumps(payload))
+        report = {'manifest': {'experiment_root': str(root), 'frozen_monotonic_ns': 1,
+            'case_started_monotonic_ns': 1, 'sequence_started_monotonic_ns': 1,
+            'input_load_seconds': 0, 'host_environment': {}, 'manifest_sha256': 'a'*64},
+            'attempts': [{'output_dir': str(output), 'database': str(root/'utility.sqlite3'),
+            'wait_started_monotonic_ns': 1_000_000_000, 'wait_finished_monotonic_ns': 31_000_000_000,
+            'wait_elapsed_ns': 30_000_000_000, 'wait_seconds': 30,
+            'finished_monotonic_ns': 32_000_000_000, 'native_started': True,
+            'process_identity': identity, 'status': 'environment_blocked'}]}
+        if backend=='public':
+            audit=lambda: audit_attempts(report)
+        else:
+            import runpy
+            from expertflow.compiler.schema import canonical_sha256
+            raw_audit=runpy.run_path('docs/evidence/stock-coverage-20261005/independent_audit.py')['audit']
+            case={'case_id':'failure','planned_root':str(root)}
+            sequence={'registration':{'cases':[case]},'source_files':{},'host_environment':{}}
+            sequence['manifest_sha256']=canonical_sha256(sequence)
+            report['manifest'].update(case=case,sequence_manifest_sha256=sequence['manifest_sha256'])
+            report['manifest']['manifest_sha256']=canonical_sha256(report['manifest'])
+            launch['experiment_context']['manifest_sha256']=report['manifest']['manifest_sha256']
+            (output/'launch.json').write_text(json.dumps(launch))
+            report.update(status='ENVIRONMENT-BLOCKED',rows=[])
+            (root/'report.json').write_text(json.dumps(report))
+            outer=tmp_path/'outer.json'
+            outer.write_text(json.dumps({'manifest':sequence,'native_processes':1}))
+            audit=lambda:raw_audit(outer)
+>       audit()
+
+tests\test_stock_wider_review.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_stock_wider_review.py:179: in <lambda>
+    audit=lambda:raw_audit(outer)
+                 ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1391/test_failed_native_requires_bo4/outer.json')
+
+    def audit(path):
+        outer=json.loads(Path(path).read_text())
+        sequence=outer['manifest']
+        payload=dict(sequence)
+        claimed=payload.pop('manifest_sha256')
+        if canonical_sha256(payload)!=claimed:
+            raise ValueError('outer freeze checksum mismatch')
+        for filename,digest in sequence['source_files'].items():
+            if file_sha256(Path(filename))!=digest:
+                raise ValueError('audited source changed: '+filename)
+        stores={}
+        owners=set()
+        results=[]
+        total=0
+        for case in sequence['registration']['cases']:
+            root=Path(case['planned_root'])
+            if not (root/'report.json').is_file():
+                results.append({'case_id':case['case_id'],'status':'NOT-RUN'})
+                continue
+            report=json.loads((root/'report.json').read_text())
+            manifest=report['manifest']
+            payload=dict(manifest)
+            claimed=payload.pop('manifest_sha256')
+            if canonical_sha256(payload)!=claimed or manifest['case']!=case or manifest['sequence_manifest_sha256']!=sequence['manifest_sha256']:
+>               raise ValueError('case freeze differs from registered sequence')
+E               ValueError: case freeze differs from registered sequence
+
+docs\evidence\stock-coverage-20261005\independent_audit.py:51: ValueError
+__ test_failed_native_requires_bound_context_and_owned_cleanup[raw-teardown] __
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1391/test_failed_native_requires_bo5')
+mutation = 'teardown', backend = 'raw'
+
+    @pytest.mark.parametrize('mutation', ['launch', 'owner', 'teardown'])
+    @pytest.mark.parametrize('backend', ['public','raw'])
+    def test_failed_native_requires_bound_context_and_owned_cleanup(tmp_path, mutation, backend):
+        from expertflow.stock.wider_audit import audit_attempts
+        root = tmp_path.resolve(); output = root/'raw/one'; output.mkdir(parents=True)
+        identity = {'pid': 1, 'creation_time_100ns': 2, 'creation_source': 'GetProcessTimes',
+                    'run_id': 'failed-owned-run', 'started_monotonic_ns': 31_000_000_000}
+        launch = {'host_environment': {}, 'experiment_context': {'manifest_sha256': 'a'*64}}
+        process = {'pid': 1, 'run_id': identity['run_id'], 'creation_time_100ns': 2,
+                   'exited': True, 'cleanup': True, 'memory_settled': True, 'forced_kill': False}
+        memory = {'teardown_reading': {'pid': 1, 'state': 'absent', 'counter_available': True,
+                                      'dedicated_bytes': 0}}
+        for name, payload in [('run-start', identity), ('launch', launch), ('process', process), ('memory', memory)]:
+            (output/f'{name}.json').write_text(json.dumps(payload))
+        report = {'manifest': {'experiment_root': str(root), 'frozen_monotonic_ns': 1,
+            'case_started_monotonic_ns': 1, 'sequence_started_monotonic_ns': 1,
+            'input_load_seconds': 0, 'host_environment': {}, 'manifest_sha256': 'a'*64},
+            'attempts': [{'output_dir': str(output), 'database': str(root/'utility.sqlite3'),
+            'wait_started_monotonic_ns': 1_000_000_000, 'wait_finished_monotonic_ns': 31_000_000_000,
+            'wait_elapsed_ns': 30_000_000_000, 'wait_seconds': 30,
+            'finished_monotonic_ns': 32_000_000_000, 'native_started': True,
+            'process_identity': identity, 'status': 'environment_blocked'}]}
+        if backend=='public':
+            audit=lambda: audit_attempts(report)
+        else:
+            import runpy
+            from expertflow.compiler.schema import canonical_sha256
+            raw_audit=runpy.run_path('docs/evidence/stock-coverage-20261005/independent_audit.py')['audit']
+            case={'case_id':'failure','planned_root':str(root)}
+            sequence={'registration':{'cases':[case]},'source_files':{},'host_environment':{}}
+            sequence['manifest_sha256']=canonical_sha256(sequence)
+            report['manifest'].update(case=case,sequence_manifest_sha256=sequence['manifest_sha256'])
+            report['manifest']['manifest_sha256']=canonical_sha256(report['manifest'])
+            launch['experiment_context']['manifest_sha256']=report['manifest']['manifest_sha256']
+            (output/'launch.json').write_text(json.dumps(launch))
+            report.update(status='ENVIRONMENT-BLOCKED',rows=[])
+            (root/'report.json').write_text(json.dumps(report))
+            outer=tmp_path/'outer.json'
+            outer.write_text(json.dumps({'manifest':sequence,'native_processes':1}))
+            audit=lambda:raw_audit(outer)
+>       audit()
+
+tests\test_stock_wider_review.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_stock_wider_review.py:179: in <lambda>
+    audit=lambda:raw_audit(outer)
+                 ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1391/test_failed_native_requires_bo5/outer.json')
+
+    def audit(path):
+        outer=json.loads(Path(path).read_text())
+        sequence=outer['manifest']
+        payload=dict(sequence)
+        claimed=payload.pop('manifest_sha256')
+        if canonical_sha256(payload)!=claimed:
+            raise ValueError('outer freeze checksum mismatch')
+        for filename,digest in sequence['source_files'].items():
+            if file_sha256(Path(filename))!=digest:
+                raise ValueError('audited source changed: '+filename)
+        stores={}
+        owners=set()
+        results=[]
+        total=0
+        for case in sequence['registration']['cases']:
+            root=Path(case['planned_root'])
+            if not (root/'report.json').is_file():
+                results.append({'case_id':case['case_id'],'status':'NOT-RUN'})
+                continue
+            report=json.loads((root/'report.json').read_text())
+            manifest=report['manifest']
+            payload=dict(manifest)
+            claimed=payload.pop('manifest_sha256')
+            if canonical_sha256(payload)!=claimed or manifest['case']!=case or manifest['sequence_manifest_sha256']!=sequence['manifest_sha256']:
+>               raise ValueError('case freeze differs from registered sequence')
+E               ValueError: case freeze differs from registered sequence
+
+docs\evidence\stock-coverage-20261005\independent_audit.py:51: ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_stock_wider_review.py::test_failed_native_requires_bound_context_and_owned_cleanup[raw-launch]
+FAILED tests/test_stock_wider_review.py::test_failed_native_requires_bound_context_and_owned_cleanup[raw-owner]
+FAILED tests/test_stock_wider_review.py::test_failed_native_requires_bound_context_and_owned_cleanup[raw-teardown]
+3 failed, 14 passed in 187.18s (0:03:07)

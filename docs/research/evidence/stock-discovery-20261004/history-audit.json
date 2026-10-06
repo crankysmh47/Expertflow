@@ -1,0 +1,108 @@
+{
+  "decision": "recover strongest eligible pristine stock; never promote static quality failure or aggregate TPS as exact single-request speed",
+  "historical_cpu_environment": "not sufficiently pinned by GPU-only compiler HardwareIR; no attribution of inter-experiment speed drift",
+  "host_environment": {
+    "architecture": "AMD64",
+    "cpu": [
+      {
+        "cores": 8,
+        "logical_processors": 16,
+        "name": "AMD Ryzen 7 9700X 8-Core Processor",
+        "processor_id": "178BFBFF00B40F40"
+      }
+    ],
+    "os": "10.0.26200.0",
+    "power_scheme": "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c",
+    "process_affinity_mask": 65535,
+    "ram": [
+      {
+        "capacity_bytes": 17179869184,
+        "configured_mhz": 5600,
+        "slot": "DIMMA2"
+      },
+      {
+        "capacity_bytes": 17179869184,
+        "configured_mhz": 5600,
+        "slot": "DIMMB2"
+      }
+    ],
+    "ram_bytes": 33396510720,
+    "system_affinity_mask": 65535,
+    "threading_environment": {}
+  },
+  "records": [
+    {
+      "concurrency": 1,
+      "eligible_quality": true,
+      "interface": "llama-cli",
+      "mean_decode_tps": 22.966667,
+      "name": "historical pristine stock",
+      "processes": 3,
+      "stock": true
+    },
+    {
+      "concurrency": 1,
+      "eligible_quality": true,
+      "interface": "server_completion",
+      "mean_decode_tps": 24.411,
+      "name": "original stock confirmation",
+      "note": "rounded historical report mean; product publication failed replay repeatability",
+      "processes": 10,
+      "stock": true
+    },
+    {
+      "concurrency": 1,
+      "eligible_quality": true,
+      "interface": "server_completion",
+      "mean_decode_tps": 25.383,
+      "name": "original stock replay",
+      "note": "rounded historical report; exceeds original absolute2% gate; not a paired speedup",
+      "processes": 1,
+      "stock": true
+    },
+    {
+      "concurrency": 1,
+      "eligible_quality": false,
+      "interface": "llama-cli",
+      "mean_decode_tps": 28.13,
+      "name": "static placement champion",
+      "ppl_ci95_pct": [
+        -8.030848917138528,
+        2.252937265598369
+      ],
+      "quality_verdict": "QUALITY STOP",
+      "stock": false
+    },
+    {
+      "aggregate_generated_tps": 35.66992607360984,
+      "concurrency": 4,
+      "eligible_quality": false,
+      "interface": "continuous_batching",
+      "name": "concurrent product profile",
+      "note": "aggregate throughput; nondeterministic responses; distinct objective",
+      "stock": false
+    },
+    {
+      "concurrency": 1,
+      "eligible_quality": true,
+      "interface": "server_completion",
+      "mean_decode_tps": 22.669733245399055,
+      "name": "latest paired pristine control",
+      "note": "current retained control sample, not comparable as matched gain against old experiments",
+      "processes": 10,
+      "stock": true
+    }
+  ],
+  "schema_version": "1.0.0",
+  "sources": {
+    "docs\\evidence\\compiler-cpu-prefetch-20261004\\report.json": "d8f1549cc18066858c1f21ceb6d711c4212d90533a882d66634b3fe8e833b34f",
+    "docs\\evidence\\compiler-phase3\\README.md": "b5a230ed8b70b39bc6fbe4778b8740fba8196e396c60699f644e835e5eb227ed",
+    "docs\\evidence\\compiler-phase3\\verification.json": "6bba928f23beaf93f8a67a5d65b51f43c1543eae8ba139ab8401513110a51528",
+    "docs\\evidence\\compiler-refinement\\report.md": "1bb91158cd924d0b9621d2c85ab95619b40cc01599177e83bf6c7cf1117cabe5",
+    "docs\\evidence\\product-release\\throughput-profile.json": "00892d5a983372632bd6a4760618e56276fcbce269959ebca94b9b20310642c9",
+    "docs\\evidence\\q6-placement-final\\quality-results.json": "bc335425f40d6b74b64a5afdf388f66e6dcdaa337665b9d912ff8f930818bf8e",
+    "docs\\evidence\\q6-runtime-final\\baseline-audit.md": "862db49cd0ad2b4614182ae1d48dc2c22946fd71c5702a31987f5f2c4874560d",
+    "docs\\evidence\\q6-runtime-final\\baseline-results.json": "7a413e93a5e5469105cadd01246c6494f432d95b2c6fc16a26f07a9f67a1325e"
+  },
+  "status": "HISTORICAL-AUDIT"
+}

@@ -1,0 +1,379 @@
+{
+  "alignment_bytes": 256,
+  "architecture": "gemma4-moe",
+  "expert_count": 128,
+  "expert_top_k": 8,
+  "family": "gemma4",
+  "identity": {
+    "path": "C:/models/gemma-4-26b-a4b-q6/google_gemma-4-26B-A4B-it-Q6_K.gguf",
+    "sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba",
+    "size_bytes": 22862575520
+  },
+  "inventory_sha256": "c5be5979665d65cf96360e5aee15ffd775065251a18c3114da0f8ccf04f611c7",
+  "kv_kind": "standard",
+  "moe_layers": [
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 0,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 1,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 2,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 3,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 4,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 5,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 6,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 7,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 8,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 9,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 10,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 11,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 12,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 13,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 14,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 15,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 16,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 17,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 18,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 19,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 20,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 21,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 22,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 23,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 24,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 25,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 26,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 27,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 28,
+      "routed_expert_bank_bytes": 685933056
+    },
+    {
+      "component_bank_bytes": [
+        512,
+        269615104,
+        416317440
+      ],
+      "expert_bundle_bytes": 5358852,
+      "expert_count": 128,
+      "expert_top_k": 8,
+      "layer_id": 29,
+      "routed_expert_bank_bytes": 685933056
+    }
+  ],
+  "mtp_kind": "none",
+  "quantization": "Q6_K",
+  "schema_version": "1.0.0"
+}

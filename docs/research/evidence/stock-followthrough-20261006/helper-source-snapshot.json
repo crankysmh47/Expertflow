@@ -1,0 +1,28 @@
+{
+  "source_commit": "c41672eb92464ee5181f050b4a922c58a81ded12",
+  "entries": [
+    {
+      "path": "scripts/stock_product_status.py",
+      "sha256": "0b4b467e7369fd60e871d11a845feebb4708cfa2816fdc1a9b4033e9d0e24e10",
+      "size_bytes": 12803,
+      "git_blob_sha256": "0b4b467e7369fd60e871d11a845feebb4708cfa2816fdc1a9b4033e9d0e24e10",
+      "git_lf_equivalent": false
+    },
+    {
+      "path": "tests/test_stock_product_status.py",
+      "sha256": "e2d2bf782173d16eeb2328df26bae0a0abd4bffad6171e369d737fe072a14288",
+      "size_bytes": 12871,
+      "git_blob_sha256": "e2d2bf782173d16eeb2328df26bae0a0abd4bffad6171e369d737fe072a14288",
+      "git_lf_equivalent": false
+    },
+    {
+      "path": "docs/evidence/stock-followthrough-20261006/catalogue.json",
+      "sha256": "4dfeaa11fe240014310b548e3949ad5ef36eeef7d519e991f20eb694e66d04f8",
+      "size_bytes": 437,
+      "git_blob_sha256": "4dfeaa11fe240014310b548e3949ad5ef36eeef7d519e991f20eb694e66d04f8",
+      "git_lf_equivalent": false
+    }
+  ],
+  "archive_sha256": "be1134935bb0f4398a23f43739bfd64744bb094f239da29786886eeb1046c8c1",
+  "scope": "Committed helper, regression tests and independently pinned catalogue; raw bytes preserved. Existing public/measurement source bindings are checked separately."
+}

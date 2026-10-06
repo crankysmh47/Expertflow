@@ -1,0 +1,15 @@
+{
+  "calibration_sha256": null,
+  "compute_capability": "12.0",
+  "cuda_runtime_sha256": "c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344",
+  "cuda_version": "12.8",
+  "driver_version": "616.92",
+  "gpu_name": "NVIDIA GeForce RTX 5060 Ti",
+  "gpu_uuid": "GPU-949ee8ea-765f-abfd-fd90-16ad3923af6e",
+  "minimum_reserve_bytes": 268435456,
+  "supported_features": [
+    "cuda_graphs"
+  ],
+  "total_vram_bytes": 17103323136,
+  "usable_vram_bytes": 14885584896
+}

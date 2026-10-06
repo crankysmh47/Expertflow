@@ -1,0 +1,41 @@
+{
+  "historical_quality_reconstruction": {
+    "block_count": 64,
+    "block_size": 128,
+    "bootstrap_95pct": {
+      "lower": -0.08030848917138528,
+      "upper": 0.022529372655983686
+    },
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 20260719,
+    "bootstrap_standard_error": 0.026269327340362962,
+    "candidate_mean_nll": 9.606694146664815,
+    "gate_pass": false,
+    "point_gate_pass": true,
+    "reference_mean_nll": 9.636279597231015,
+    "relative_perplexity_change": -0.029152085407372328,
+    "threshold": 0.01,
+    "token_count": 8184,
+    "upper_bound_gate_pass": false
+  },
+  "historical_raw_sha256": {
+    "C:\\models\\expertflow\\runs\\q6-placement-final\\stage8-quality\\ppl-off\\nll.jsonl": "04774b1e651c4370759199a99acf0d907711edd263682c286679ff5a43ed478f",
+    "C:\\models\\expertflow\\runs\\q6-placement-final\\stage8-quality\\ppl-on\\nll.jsonl": "02e68fe952a4ecd75f2521a1971f7901032bca23cd66ecf74b5dd3bc3462dac1"
+  },
+  "native_revision": "451224ab4d12a616dc3e16e8c8063f4b331f531c",
+  "native_source_sha256": {
+    "common/arg.cpp": "6f2380517b49e69a7ba69ab8a12566ed0c8047b76afd65335c220a6ea8fcb63b",
+    "common/common.cpp": "4b041bb61251f7cf6583afeeeb449150d87cdbabb4580cb7ad45bb3420f9d141",
+    "ggml/src/ggml-backend.cpp": "3dc8577149dbc0dd1e152b2337553f93494bdb8b59b7ffcab8cfbbdb4280187c",
+    "ggml/src/ggml-cpu/ggml-cpu.c": "149369487188440b670c89d6cd46452846d70da4f928735b544729e84d3c33a7",
+    "ggml/src/ggml-cpu/ops.cpp": "aaaeccd8e112542abc195f113a0e68137f5592ce450e6e35c986b89be3e588ca",
+    "ggml/src/ggml-cuda/ggml-cuda.cu": "04987b82f83f3c81311c3f92a970d6815a8287fbe53f84f557b4a95f315daabd",
+    "ggml/src/ggml-cuda/mmvq.cu": "7dd8df4666d524a749c0e1aafe8f6fb99a3ea565b4a2fc3ce957a406ab3d4776",
+    "ggml/src/ggml-cuda/vecdotq.cuh": "69ee2488c89da7e6d31a91d2f33f3312d7c66dbcb60b4c42f154bdf775c4436a",
+    "src/llama-model-loader.cpp": "c647b037af76291989082ad739d881a70a48ab2caf4cdc35bdc8e96223335cb5"
+  },
+  "new_native_processes": 0,
+  "next": "conditional stock utility proof",
+  "scope": "existing pinned CPU/CUDA operations and exact policy; no universal placement impossibility claim",
+  "status": "PLACEMENT-FEASIBILITY-NO-GO-CURRENT-EXACT-SCOPE"
+}

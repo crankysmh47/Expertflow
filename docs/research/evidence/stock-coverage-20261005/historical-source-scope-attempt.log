@@ -1,0 +1,25 @@
+..FF....                                                                 [100%]
+================================== FAILURES ===================================
+_______________ test_phase_markers_are_explicit_and_default_off _______________
+
+    def test_phase_markers_are_explicit_and_default_off():
+        server=(LLAMA/'tools/server/server-context.cpp').read_text(encoding='utf-8')
+        common=(LLAMA/'common/common.cpp').read_text(encoding='utf-8')
+        backend=(LLAMA/'ggml/src/ggml-backend.cpp').read_text(encoding='utf-8')
+        context=(LLAMA/'src/llama-context.cpp').read_text(encoding='utf-8')
+>       assert 'llama_set_expertflow_profile_phase(ctx_tgt' in server
+E       assert 'llama_set_expertflow_profile_phase(ctx_tgt' in '#include "server-context.h"\n#include "server-chat.h"\n#include "server-common.h"\n#include "server-http.h"\n#include...(is_oai) {\n        response["object"] = "response.input_tokens";\n    }\n    res->ok(response);\n    return res;\n}\n'
+
+tests\test_phase_profile_source_contract.py:9: AssertionError
+_____________ test_server_phase_only_considers_batch_token_owners _____________
+
+    def test_server_phase_only_considers_batch_token_owners():
+        server=(LLAMA/'tools/server/server-context.cpp').read_text(encoding='utf-8')
+>       assert 'batch_view.seq_id[token][seq] == slot.id' in server
+E       assert 'batch_view.seq_id[token][seq] == slot.id' in '#include "server-context.h"\n#include "server-chat.h"\n#include "server-common.h"\n#include "server-http.h"\n#include...(is_oai) {\n        response["object"] = "response.input_tokens";\n    }\n    res->ok(response);\n    return res;\n}\n'
+
+tests\test_phase_profile_source_contract.py:20: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_phase_profile_source_contract.py::test_phase_markers_are_explicit_and_default_off
+FAILED tests/test_phase_profile_source_contract.py::test_server_phase_only_considers_batch_token_owners
+2 failed, 6 passed in 0.13s

@@ -1,0 +1,9 @@
+{
+  "manifest_sha256": "83549df9ec3e6eb09a4e8fceb57dfe5f5db91d6dfb2b40b7fc7d17467652f2f3",
+  "maximum_native_processes": 10,
+  "model_ir_sha256": "15f95044ec1aaa21e08795b817bf71adb8c90e809a5d87e8a72552fa865067d5",
+  "native_samples": 0,
+  "reviewed_native_freeze": true,
+  "source_commit": "53c346fc3ccb64b21616db2ed9b1f96ee4df7c9d",
+  "status": "VERIFIED-Q4-REVIEWED-PREVIEW-NO-NATIVE"
+}

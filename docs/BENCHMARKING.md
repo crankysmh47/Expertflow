@@ -1,22 +1,48 @@
-# Benchmarking ExpertFlow
+# Measure a local profile
 
-The headline comparison uses `google_gemma-4-26B-A4B-it-Q6_K.gguf` (22,862,575,520 bytes, SHA-256 `089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba`) on a Windows 11 x64 machine with an NVIDIA RTX 5060 Ti 16 GB, driver 591.86, CUDA 12.8.93, and MSVC v143 14.39.33519.
+Create a working baseline with `local setup`, then close or idle competing GPU
+work yourself. The collector checks for three consecutive idle utilization samples
+within five seconds. It does not close applications. Every job needs a fresh
+output directory and an absolute wall budget; failures retain diagnostics.
 
-The runtime is llama.cpp `451224ab4d12a616dc3e16e8c8063f4b331f531c`, based on upstream `a7312ae94f801fc9c6786dc56e38df57b964f697`. Stock and ExpertFlow used the same binary, Q6 model, prompt, `-ngl 99`, `--cpu-moe`, 12 threads, seed 42, temperature 0, 2,048-token context, and CUDA graph mode. Batch and ubatch were not overridden for the generation comparison, so the pinned runtime defaults applied equally to both modes.
-
-Stock ran without ExpertFlow environment variables. ExpertFlow added:
-
-```text
-LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER=0,1,2,3,4,5,6,7,8,9,15,20
-LLAMA_EXPERTFLOW_STATIC_PRECOMPUTE=1
+```powershell
+expertflow local bench --profile profile.json --budget-seconds 120 --output-dir bench-01
+expertflow local verify-job --job-dir bench-01
+expertflow local support --job-dir bench-01 --output support.json
 ```
 
-Ten matched cold-process pairs generated 512 decode tokens per run. Decode TPS is generated tokens divided by the runtime's measured decode duration. Process-owned peak VRAM came from `nvidia-smi` PID sampling, not global device allocation. The strongest fair stock reference was 22.967 TPS; ExpertFlow averaged 28.13 TPS, a 22.48% improvement against that reference.
+A default benchmark uses one owned process, a 16-token warmup and three
+256-token completions on a fixed public prompt. Reports include decode tokens per
+second, observed streaming first-token latency, complete token/timing receipts,
+and memory samples after healthy load. Memory is a sampled resident peak, not a
+load-allocation maximum. Decode speed is not total request latency or serving capacity.
 
-The four-slot result used one loaded server, four concurrent requests, 512 generated tokens per repetition, and five cold-server repetitions. Its 35.6699 TPS is aggregate throughput and must not be compared with a single-stream number as if the protocols were identical.
+## Reviewed exact tuning
 
-The 262,144-token context result is an allocation test. It processed 385 prompt tokens and 32 generated tokens, 417 total. It is not evidence that a 262,144-token prompt was filled and evaluated.
+```powershell
+expertflow local tune --profile profile.json --budget-seconds 600 --output-dir tune-01
+```
 
-Public Q4, MTP, cloud, prompt-processing, different-backend, and aggregate-throughput results answer different questions. They are useful references, but a direct speed comparison requires the same model quantization, hardware, runtime, workload, token count, concurrency, CUDA settings, and placement policy.
+Only the bundled audited Gemma Q6/Q4 and Granite Q6 identities on the pinned
+Windows runtime qualify. Setup must use upstream thread defaults; create a fresh
+profile without `--threads` if needed. Tuning preserves placement, arithmetic,
+quantization, context and F16 KV, searching threads 8, 12 and 16. It permits at
+most 14 native launches with 30-second spacing and never extends a closed budget.
 
-Machine-readable values live in `release/expertflow-build-week/evidence/release-scorecard.json`.
+An apparent candidate proceeds to two held-out prompts in five alternating pairs.
+Token identity and host/workload guards must pass; paired variance above 10% is
+inconclusive. Selection requires the lower 95% paired bootstrap gain bound above
+5%. Successful selection writes a separate `selected-profile.json`; input profiles
+are never overwritten. Break-even estimates cover comparable decode savings only.
+
+| Outcome | Meaning and next action |
+| --- | --- |
+| MEASURED | Baseline observation; reuse the working profile. |
+| VERIFIED-IMPROVEMENT | Confirmation passed within the stated contract; inspect the selected profile. |
+| NO-MEASURABLE-GAIN | Completed comparison did not find an accepted improvement; keep the baseline. |
+| INCONCLUSIVE | Budget, variance, token or environment guard prevented a conclusion; keep the baseline. |
+| UNSUPPORTED | No reviewed tuning contract; use untuned run/serve/bench. |
+
+The first Granite search ended `NO-MEASURABLE-GAIN` after four processes and
+124.89 seconds. See [native receipts](evidence/local-product-20261006/report.md).
+There is no speedup guarantee, global-optimum claim or quality-changing search.

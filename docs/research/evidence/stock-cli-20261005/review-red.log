@@ -1,0 +1,178 @@
+FFFFFF                                                                   [100%]
+================================== FAILURES ===================================
+_ test_search_reports_incumbent_retention_without_a_default_claim[incumbent] __
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1369/test_search_reports_incumbent_0')
+recommended = 'incumbent'
+
+    @pytest.mark.parametrize('recommended', ['incumbent','alternate'])
+    def test_search_reports_incumbent_retention_without_a_default_claim(tmp_path, recommended):
+        from expertflow.stock.cli import _decision
+        _, candidate, inputs = scoped_fixture()
+        report = tmp_path/'search.json'
+        report.write_text(json.dumps({'status':'RECOMMENDED-INCUMBENT','recommended_id':recommended,
+            'statistics':None,'manifest':{'incumbent_id':'incumbent','inputs':inputs,
+            'candidates':{'incumbent':candidate,'alternate':candidate}}}))
+        decision = _decision({'status':'RECOMMENDED-INCUMBENT','report':str(report)},0,'run')
+>       assert 'selected_default' not in decision
+E       AssertionError: assert 'selected_default' not in {'cost': {'retained_attempts': 0}, 'coverage': {'host_environment_sha256': '44136fa355b3678a1146ad16f7e8649e94fb4fc21f...7164e3c0e92701d2', 'quantization': 'Q4_0', ...}}}, 'evidence_verified': True, 'global_optimum_established': False, ...}
+
+tests\test_stock_cli.py:167: AssertionError
+_ test_search_reports_incumbent_retention_without_a_default_claim[alternate] __
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1369/test_search_reports_incumbent_1')
+recommended = 'alternate'
+
+    @pytest.mark.parametrize('recommended', ['incumbent','alternate'])
+    def test_search_reports_incumbent_retention_without_a_default_claim(tmp_path, recommended):
+        from expertflow.stock.cli import _decision
+        _, candidate, inputs = scoped_fixture()
+        report = tmp_path/'search.json'
+        report.write_text(json.dumps({'status':'RECOMMENDED-INCUMBENT','recommended_id':recommended,
+            'statistics':None,'manifest':{'incumbent_id':'incumbent','inputs':inputs,
+            'candidates':{'incumbent':candidate,'alternate':candidate}}}))
+        decision = _decision({'status':'RECOMMENDED-INCUMBENT','report':str(report)},0,'run')
+>       assert 'selected_default' not in decision
+E       AssertionError: assert 'selected_default' not in {'cost': {'retained_attempts': 0}, 'coverage': {'host_environment_sha256': '44136fa355b3678a1146ad16f7e8649e94fb4fc21f...7164e3c0e92701d2', 'quantization': 'Q4_0', ...}}}, 'evidence_verified': True, 'global_optimum_established': False, ...}
+
+tests\test_stock_cli.py:167: AssertionError
+__________ test_product_report_scope_uses_its_frozen_plan_identities __________
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1369/test_product_report_scope_uses0')
+
+    def test_product_report_scope_uses_its_frozen_plan_identities(tmp_path):
+        from expertflow.stock.cli import _decision
+        identities, candidate, _ = scoped_fixture()
+        report = tmp_path/'product.json'
+        report.write_text(json.dumps({'frozen':{'identities':identities,'settings':candidate['settings'],
+            'source_plan':{'candidate':candidate}},'geometric_change_pct':0.1,'ci90_pct':[-0.1,0.3],
+            'outcomes':[{}]*20}))
+        decision = _decision({'status':'PASS-STOCK-FALLBACK','report':str(report)},0,'run')
+>       assert decision['coverage']['inputs']['source_plan']['model_ir_sha256'] == identities['model_sha256']
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'source_plan'
+
+tests\test_stock_cli.py:180: KeyError
+_ test_public_validation_reports_scope_from_the_validated_receipt[reference---reference-dir-reference-receipt.json] _
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1369/test_public_validation_reports0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000252F8FB0510>
+capsys = <_pytest.capture.CaptureFixture object at 0x00000252F6B29B10>
+workflow = 'reference', flag = '--reference-dir'
+receipt_name = 'reference-receipt.json'
+
+    @pytest.mark.parametrize('workflow,flag,receipt_name', [
+        ('reference','--reference-dir','reference-receipt.json'),
+        ('search','--recommendation','search-receipt.json')])
+    def test_public_validation_reports_scope_from_the_validated_receipt(tmp_path, monkeypatch, capsys,
+            workflow, flag, receipt_name):
+        from expertflow.stock import cli
+        from expertflow.compiler.evidence import EvidenceStore
+        identities, candidate, inputs = scoped_fixture()
+        manifest = {'inputs':inputs,'candidate':candidate} if workflow == 'reference' else {
+            'inputs':inputs,'incumbent_id':'incumbent','candidates':{'incumbent':candidate}}
+        receipt = {'experiment':{'manifest':manifest,'recommended_id':'incumbent','outcomes':[{}]*10}}
+        (tmp_path/receipt_name).write_text(json.dumps(receipt))
+        @contextmanager
+        def load(*args):
+            def validate(argv):
+                print(json.dumps({'status':'VALIDATED-STOCK-'+workflow.upper(),'plan_sha256':'e'*64}))
+                return 0
+            yield SimpleNamespace(main=validate,EvidenceStore=EvidenceStore)
+        monkeypatch.setattr(cli,'_load_driver',load)
+        monkeypatch.setattr(cli,'_check_project',lambda path:path)
+        assert cli.main([workflow,'validate',flag,str(tmp_path)]) == 0
+        result = json.loads(capsys.readouterr().out)
+>       assert result['decision']['coverage']['inputs']['inputs']['workload_sha256'] == identities['workload_sha256']
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'coverage'
+
+tests\test_stock_cli.py:207: KeyError
+_ test_public_validation_reports_scope_from_the_validated_receipt[search---recommendation-search-receipt.json] _
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1369/test_public_validation_reports1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000252F8F72F50>
+capsys = <_pytest.capture.CaptureFixture object at 0x00000252F8F72790>
+workflow = 'search', flag = '--recommendation'
+receipt_name = 'search-receipt.json'
+
+    @pytest.mark.parametrize('workflow,flag,receipt_name', [
+        ('reference','--reference-dir','reference-receipt.json'),
+        ('search','--recommendation','search-receipt.json')])
+    def test_public_validation_reports_scope_from_the_validated_receipt(tmp_path, monkeypatch, capsys,
+            workflow, flag, receipt_name):
+        from expertflow.stock import cli
+        from expertflow.compiler.evidence import EvidenceStore
+        identities, candidate, inputs = scoped_fixture()
+        manifest = {'inputs':inputs,'candidate':candidate} if workflow == 'reference' else {
+            'inputs':inputs,'incumbent_id':'incumbent','candidates':{'incumbent':candidate}}
+        receipt = {'experiment':{'manifest':manifest,'recommended_id':'incumbent','outcomes':[{}]*10}}
+        (tmp_path/receipt_name).write_text(json.dumps(receipt))
+        @contextmanager
+        def load(*args):
+            def validate(argv):
+                print(json.dumps({'status':'VALIDATED-STOCK-'+workflow.upper(),'plan_sha256':'e'*64}))
+                return 0
+            yield SimpleNamespace(main=validate,EvidenceStore=EvidenceStore)
+        monkeypatch.setattr(cli,'_load_driver',load)
+        monkeypatch.setattr(cli,'_check_project',lambda path:path)
+        assert cli.main([workflow,'validate',flag,str(tmp_path)]) == 0
+        result = json.loads(capsys.readouterr().out)
+>       assert result['decision']['coverage']['inputs']['inputs']['workload_sha256'] == identities['workload_sha256']
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'coverage'
+
+tests\test_stock_cli.py:207: KeyError
+______ test_receipt_changed_during_validation_cannot_supply_public_scope ______
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1369/test_receipt_changed_during_va0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000252F6D091D0>
+capsys = <_pytest.capture.CaptureFixture object at 0x00000252F6D09710>
+
+    def test_receipt_changed_during_validation_cannot_supply_public_scope(tmp_path, monkeypatch, capsys):
+        from expertflow.stock import cli
+        from expertflow.compiler.evidence import EvidenceStore
+        receipt = tmp_path/'search-receipt.json'
+        receipt.write_text('{"experiment":{}}')
+        @contextmanager
+        def load(*args):
+            def validate(argv):
+                receipt.write_text('{"changed":true}')
+                print(json.dumps({'status':'VALIDATED-STOCK-RECOMMENDATION'}))
+                return 0
+            yield SimpleNamespace(main=validate,EvidenceStore=EvidenceStore)
+        monkeypatch.setattr(cli,'_load_driver',load)
+        monkeypatch.setattr(cli,'_check_project',lambda path:path)
+>       assert cli.main(['search','validate','--recommendation',str(tmp_path)]) == 2
+E       AssertionError: assert 0 == 2
+E        +  where 0 = <function main at 0x00000252F86F11C0>(['search', 'validate', '--recommendation', 'C:\\Users\\Hank47\\AppData\\Local\\Temp\\pytest-of-Hank47\\pytest-1369\\test_receipt_changed_during_va0'])
+E        +    where <function main at 0x00000252F86F11C0> = <module 'expertflow.stock.cli' from 'C:\\sem4\\expertflow\\src\\expertflow\\stock\\cli.py'>.main
+
+tests\test_stock_cli.py:225: AssertionError
+---------------------------- Captured stdout call -----------------------------
+{
+  "action": "validate",
+  "decision": {
+    "evidence_verified": true,
+    "global_optimum_established": false,
+    "serving_throughput_established": false,
+    "utility_gain_established": false
+  },
+  "status": "VALIDATED-STOCK-RECOMMENDATION",
+  "validation": {
+    "artifact_and_record_checks": "repeated normally",
+    "cache_lifetime": "this invocation",
+    "database_readers": 0,
+    "model_digest_cache_entries": 0,
+    "native_calls": 0
+  },
+  "workflow": "search"
+}
+=========================== short test summary info ===========================
+FAILED tests/test_stock_cli.py::test_search_reports_incumbent_retention_without_a_default_claim[incumbent]
+FAILED tests/test_stock_cli.py::test_search_reports_incumbent_retention_without_a_default_claim[alternate]
+FAILED tests/test_stock_cli.py::test_product_report_scope_uses_its_frozen_plan_identities
+FAILED tests/test_stock_cli.py::test_public_validation_reports_scope_from_the_validated_receipt[reference---reference-dir-reference-receipt.json]
+FAILED tests/test_stock_cli.py::test_public_validation_reports_scope_from_the_validated_receipt[search---recommendation-search-receipt.json]
+FAILED tests/test_stock_cli.py::test_receipt_changed_during_validation_cannot_supply_public_scope
+6 failed, 15 deselected in 0.13s

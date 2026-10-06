@@ -1,0 +1,15 @@
+{
+  "repository": "bartowski/granite-3.1-1b-a400m-instruct-GGUF",
+  "revision": "940d2e1f9f65330615c7c8e980e6c5ac73d3360c",
+  "filename": "granite-3.1-1b-a400m-instruct-Q6_K.gguf",
+  "size_bytes": 1099212096,
+  "sha256": "4566cfa92be10888026bd3663c83d64e91cd91f874dfb3607596587ff1c8f67f",
+  "path": "C:\\models\\expertflow\\models\\granite-3.1-1b-a400m-q6\\granite-3.1-1b-a400m-instruct-Q6_K.gguf",
+  "transfer_budget_bytes": 2147483648,
+  "official_base_repository": "ibm-granite/granite-3.1-1b-a400m-instruct",
+  "official_base_revision": "0da7a48b0276d500ce5922fd2b33944091fc6c09",
+  "official_config_url": "https://huggingface.co/ibm-granite/granite-3.1-1b-a400m-instruct/resolve/0da7a48b0276d500ce5922fd2b33944091fc6c09/config.json",
+  "official_config_sha256": "f1b64813debfabeb9cc20f1a13ed8248da6774fe54e532d19912d4b3f2ab335d",
+  "status": "VERIFIED-GGUF-BYTES",
+  "transferred_bytes": 1099212096
+}

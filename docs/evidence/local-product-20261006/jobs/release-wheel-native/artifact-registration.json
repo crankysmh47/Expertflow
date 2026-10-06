@@ -1,0 +1,6 @@
+{
+  "wheel_sha256": "6a4f5ebbfbadb198dcc2043a83ec020f1d5817406410f1c407343fabb1b1b75c",
+  "scope": "final archive-resolver wheel operational check; no performance claim",
+  "maximum_model_processes": 1,
+  "wall_budget_seconds": 300
+}

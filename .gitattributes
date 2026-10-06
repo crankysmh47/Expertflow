@@ -6,6 +6,9 @@
 *.svg text eol=lf
 *.html text eol=lf
 *.patch text eol=lf
+# Blank context lines in this unified patch require a literal leading space.
+docs/research/release/expertflow-build-week/patches/llama.cpp/0007-feat-phase-aware-diagnostic-profile.patch whitespace=-blank-at-eol
+docs/research/evidence/compiler-cpu-prefetch-20261004/0001-cpu-expert-row-prefetch.patch whitespace=-blank-at-eol,-blank-at-eof
 *.toml text eol=lf
 *.lock text eol=lf
 *.csv text eol=lf
@@ -17,3 +20,21 @@
 *.yaml text eol=lf
 *.ps1 text eol=lf
 LICENSE text eol=lf
+# These audit outputs/logs are hash-bound evidence; retain their original bytes.
+docs/research/evidence/compiler-granite-20261004/*-verification.json -text !eol whitespace=cr-at-eol
+docs/research/evidence/compiler-granite-20261004/logs/* -text !eol whitespace=-blank-at-eol,cr-at-eol
+docs/research/evidence/stock-utility-20261004/*.log -text !eol whitespace=-blank-at-eol,cr-at-eol
+docs/research/evidence/stock-repeatability-20261004/*.log -text !eol whitespace=-blank-at-eol,cr-at-eol
+docs/research/evidence/stock-cli-20261005/*.log -text !eol whitespace=-blank-at-eol,cr-at-eol
+docs/research/evidence/stock-coverage-20261005/*.log -text !eol whitespace=-blank-at-eol,cr-at-eol
+docs/research/evidence/stock-coverage-20261005/*-supervisor.json -text !eol whitespace=cr-at-eol
+.gitattributes text eol=lf
+
+# Native receipts are byte-bound and must survive checkout unchanged.
+docs/evidence/local-product-20261006/** -text !eol whitespace=-blank-at-eol,cr-at-eol
+
+# Historical raw receipts and snapshots keep their physical bytes across platforms.
+docs/research/evidence/** -text !eol whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+
+# Frozen legacy distribution manifest binds exact bytes, including line endings.
+docs/research/release/** -text !eol whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol

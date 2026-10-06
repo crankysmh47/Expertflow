@@ -1,0 +1,32 @@
+name: local companion contracts and artifacts
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  portable:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        python: ['3.11', '3.12']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: uv sync --frozen --extra dev
+      - run: uv build --out-dir dist
+      - name: Local contracts and exact wheel outside checkout
+        shell: pwsh
+        run: |
+          $env:EXPERTFLOW_TEST_WHEEL = (Get-ChildItem dist/*.whl).FullName
+          $tests = @(Get-ChildItem tests/test_local_*.py | ForEach-Object {$_.FullName})
+          uv run --no-sync pytest -q @tests
+      - uses: actions/upload-artifact@v4
+        with:
+          name: local-alpha-${{ matrix.os }}-${{ matrix.python }}
+          path: dist/*
+# Model-free CI does not qualify native inference. No unattended GPU study,
+# downloads, publication or changes to closed research registrations occur here.

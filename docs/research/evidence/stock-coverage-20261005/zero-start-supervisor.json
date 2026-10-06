@@ -1,0 +1,8 @@
+{
+  "status": "COMPLETED",
+  "pid": 5820,
+  "started_at_utc": "2026-10-06T04:08:10.4737817Z",
+  "command": "uv run --no-sync expertflow stock coverage run",
+  "exit_code": 2,
+  "finished_at_utc": "2026-10-06T04:08:34.2481678Z"
+}

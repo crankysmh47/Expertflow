@@ -1,0 +1,79 @@
+{
+  "adapter_source_files": {
+    "src/expertflow/cli/main.py": "fabac691932deefce770ccf2b435e326d2e454b1dc82f6cfad95c0af1c62f35d",
+    "src/expertflow/stock/__init__.py": "2e52dea33f694cc6d95c5d55ca0e76227820bfe441abe31e9f5b9d8bcfa974cf",
+    "src/expertflow/stock/cli.py": "6dc5b88b7800e723b0a339e03b67bdf5d7eb8961c4df2242e782ee60f66bca4f",
+    "src/expertflow/stock/coverage.py": "f1662b0d2f194e72320e2a0ed74c1fe481d428b2b4256057fca57be3cacda723",
+    "src/expertflow/stock/readers.py": "27e227293c3e39d4f48885ae564dc97ec4943e825e424d665ed39a18b6f4570c"
+  },
+  "applicable_native_source_checks": 6,
+  "artifact_sha256": {
+    "check_docs.py": "d5e1f41260d89e6b965060f9676a6dc9040d342ec25ddb1cda96329171dedfe1",
+    "check_report_shapes.py": "f87d9ff090a064b8646bebd9478e801b518eaa362a3a2862f4a0170095d9f71a",
+    "execution-ledger.md": "e5e5f9b83fb67eff03222f32db66853e49846f064df6bfdacba8f3d971437366",
+    "final-public-validation-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "final-public-validation.log": "dff4f474fe2321c584ce1ea52f9ec105358df5883a0a9b6b8642191ea0eddba6",
+    "final-validation.json": "49e1700b2a0860e54fc469cf49d2941f50e266fdf06d64434e1dfb17b92bad9a",
+    "finalize_evidence.py": "e3787b9fba778c729adc8d213e157a9019bae512f3c6a287ec10ef371d546b50",
+    "focused-final.log": "f3760853686c1db727bf31dca58a554f0fb169e4f18176417b3b918c759d6cc8",
+    "full-suite-final.log": "b8c5de68768df7a3ac7f69c77e72159c4f27bb8c4a9c8f7b13d38cc516218b51",
+    "full-suite.log": "6f230c9c86cc5c665f0422b6dc99718d240327da0e23f7f889a34a6156a03b92",
+    "measured-source-snapshot.zip": "843df61fa1728ab301b174d71c6e37f3fd74c85c04393dd48bb0c966f94ec24a",
+    "native-source-checks.log": "e3efff56d786494f28c6951465233882c59bd071d972193c9720788ba10b97da",
+    "packaging-final.json": "9545ed68e10fdd584539880aae6d8517a02cdbe37f908c091e4ed536e7d41302",
+    "packaging.json": "49ee5330342fc719a9739af44724ea2abb2e1a48b29d1c262a449bc4ccee81a1",
+    "public-validation-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "public-validation.log": "e13b63a956c5866105bd219ec95bc14a04e985994551c70f4a830fc2cc34d77d",
+    "register_coverage.py": "4b5d82a3bf134f50d3269c80216c7d7b6892dfd1b57ba56062fca8f0f24b903d",
+    "report-shape-controls.json": "c73ed977d5ca4eb00b7086b0a860d8b94ff2a5f3514e3ed1d65fc4d56d101ec2",
+    "report.md": "1c699d3f79f39a6243d6cc23f4c303edf8c666302f434dff1a40b24a2dfdf9f1",
+    "review-green.log": "aa0320772840d1e3da13368d28135c6d0d184a4452a4876f0c147d6a184adc2c",
+    "review-red.log": "a0154aa6b33537a5c73faf98ab92e10d2d36ba9b8b833639102112408ae06273",
+    "review.md": "272516dd449242ce1b397471fc7c88c14c168af2fe1bba97d61bd936ab4a9d7f",
+    "source-snapshot.json": "7d34219cfda0dab41157f2a367695607218bda349f76af4880b45c6186e69dd1",
+    "stage_project_log.py": "ed2e12dc1386e5d5f97236c86713c07f6c09731afcbde6c11238ef3e6042909b",
+    "validate_live.py": "4acf5e33f0504f3206f6506cba509e7d830fbb27b0dfc9b9325fe2e60eb6c810",
+    "validation.json": "861d7313208083ca70c0714a52b6680fa9e41559266794b83c0666497984d48e",
+    "verify_package.py": "2b5f0681463994574f3da8f7c813eb97b06c44673fee2fe1bdce36aa7d8dc5d7"
+  },
+  "base_commit": "20711c0",
+  "branch": "ef-v2",
+  "coverage_registration": {
+    "cases": 4,
+    "execution_ready": false,
+    "maximum_native_processes": 428,
+    "status": "REGISTERED-NOT-RUN"
+  },
+  "final_public_validation": {
+    "additional_native_calls": 0,
+    "database_readers": 5,
+    "frozen_files_unchanged": 41,
+    "historical_pins_unchanged": 6,
+    "status": "PASS-STOCK-REPEATABILITY-TRANSFER",
+    "wall_seconds": 221.15222709998488
+  },
+  "focused_checks": 94,
+  "full_suite": {
+    "passed": 835,
+    "seconds": 1025.99,
+    "skip_scope": "Seven optional historical external-source environment checks",
+    "skipped": 7
+  },
+  "independent_review": {
+    "critical": 0,
+    "deferred_minor": 0,
+    "important_fixed": 2,
+    "native_calls": 0,
+    "regression_cases_red_then_green": 6,
+    "reviewer_cpu_checks": 31
+  },
+  "scope": "Implementation checks and read-only reconstruction of old evidence; wider native utility remains unmeasured.",
+  "scratch_cleanup": {
+    "alternate_deletion_attempted": false,
+    "path": "C:/sem4/expertflow/.superpowers/sdd/2026-10-05-stock-cli-and-coverage",
+    "reason": "blocked by policy",
+    "required_evidence_archived": true,
+    "status": "RETAINED-AUTOMATIC-APPROVAL-REJECTION"
+  },
+  "status": "VERIFIED"
+}

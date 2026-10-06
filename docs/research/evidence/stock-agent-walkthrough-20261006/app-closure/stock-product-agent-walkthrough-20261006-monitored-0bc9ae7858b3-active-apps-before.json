@@ -1,0 +1,47 @@
+[
+  {
+    "sample": 0,
+    "time_utc": "2026-10-06T15:14:45.9673734Z",
+    "pid": 9712,
+    "name": "WindowsTerminal",
+    "path": "C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.24.12741.0_x64__8wekyb3d8bbwe\\WindowsTerminal.exe",
+    "engine": "pid_9712_luid_0x00000000_0x0000FFF0_phys_0_eng_0_engtype_3D",
+    "gpu_percent": 7
+  },
+  {
+    "sample": 1,
+    "time_utc": "2026-10-06T15:14:48.3112592Z",
+    "pid": 860,
+    "name": "dwm",
+    "path": null,
+    "engine": "pid_860_luid_0x00000000_0x0000FFF0_phys_0_eng_0_engtype_3D",
+    "gpu_percent": 1
+  },
+  {
+    "sample": 1,
+    "time_utc": "2026-10-06T15:14:48.3157761Z",
+    "pid": 9712,
+    "name": "WindowsTerminal",
+    "path": "C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.24.12741.0_x64__8wekyb3d8bbwe\\WindowsTerminal.exe",
+    "engine": "pid_9712_luid_0x00000000_0x0000FFF0_phys_0_eng_0_engtype_3D",
+    "gpu_percent": 4
+  },
+  {
+    "sample": 2,
+    "time_utc": "2026-10-06T15:14:50.6333383Z",
+    "pid": 860,
+    "name": "dwm",
+    "path": null,
+    "engine": "pid_860_luid_0x00000000_0x0000FFF0_phys_0_eng_0_engtype_3D",
+    "gpu_percent": 1
+  },
+  {
+    "sample": 2,
+    "time_utc": "2026-10-06T15:14:50.6348833Z",
+    "pid": 9712,
+    "name": "WindowsTerminal",
+    "path": "C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.24.12741.0_x64__8wekyb3d8bbwe\\WindowsTerminal.exe",
+    "engine": "pid_9712_luid_0x00000000_0x0000FFF0_phys_0_eng_0_engtype_3D",
+    "gpu_percent": 4
+  }
+]

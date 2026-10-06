@@ -1,0 +1,7 @@
+{
+  "kind": "installed-wheel-idle-fix-check-v1",
+  "wheel_sha256": "f1a6f2b14b90212d6c57082b3e58e8bb3c603bd5f2458a2a68e3660942041e3b",
+  "maximum_model_processes": 2,
+  "wall_budget_seconds": 180,
+  "scope": "one baseline benchmark and one serving lifecycle; no tuning retry or speedup claim"
+}

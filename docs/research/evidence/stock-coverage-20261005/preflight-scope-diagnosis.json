@@ -1,0 +1,134 @@
+{
+  "case_id": "granite-q6-prose",
+  "differences": {
+    "candidate_ids": {
+      "live": [
+        "0d5e75c9ef385e8b3e0ba2ec515f76655807fcad61f1a884b95a6b531130b920",
+        "4e769e3b4e92ad95586a180b4b28cac34856bf134c7e6722fdeaed4ab9c949c0",
+        "f9a22190f44fa63481486996b1e43f6b216cfd3c1f888b5ee5578634bde85c8d",
+        "1964162fc59b8bc7d9c772f7462a514ea8b09844f61883ca90b29587d8ad29fc",
+        "d1c9ee177289d85686281dbb023f6e7f110994ee18c0148d9ae518a63e1c486b",
+        "5fe30f45f6cf468f96ef5aa09be7ee0db82c1b17e094e512f22f67a0c26dd98f"
+      ],
+      "registered": [
+        "74d1ba8cb4119acee0a422a75f8bb524cb3a91dd5895df16a009e12805c393ad",
+        "8b2e5c6235692649eaf16b73fee1663302088ac24f55ac28cb80c81ce1af8dc0",
+        "a7cad27c49e63a9b336d5271b63b397648058eb475197d6d917542076315fe78",
+        "317b058832c313788cde8b349ba77a04d1ebb21ca588441bcff777ae93ac939a",
+        "f12b559962dced00ce1330f41bfafce375c73161b84bf712ff975153f01d52b1",
+        "84519e0aecf15ced3cfe40d388f85a35f4901a908549cb37d7249aff40d7c5f5"
+      ]
+    },
+    "default_id": {
+      "live": "0d5e75c9ef385e8b3e0ba2ec515f76655807fcad61f1a884b95a6b531130b920",
+      "registered": "74d1ba8cb4119acee0a422a75f8bb524cb3a91dd5895df16a009e12805c393ad"
+    },
+    "model_artifact": {
+      "live": {
+        "path": "C:\\models\\expertflow\\models\\granite-3.1-1b-a400m-q6\\granite-3.1-1b-a400m-instruct-Q6_K.gguf",
+        "sha256": "4566cfa92be10888026bd3663c83d64e91cd91f874dfb3607596587ff1c8f67f",
+        "size_bytes": 1099212096
+      },
+      "registered": {
+        "path": "C:/models/expertflow/models/granite-3.1-1b-a400m-q6/granite-3.1-1b-a400m-instruct-Q6_K.gguf",
+        "sha256": "4566cfa92be10888026bd3663c83d64e91cd91f874dfb3607596587ff1c8f67f",
+        "size_bytes": 1099212096
+      }
+    },
+    "model_ir_sha256": {
+      "live": "54f52d76dba171c90ee73150688351fd8a88aa96373af6b4c66b8e00aa1fbbce",
+      "registered": "8d4ee3922cd016d14661d6cec521b0745bf9856dd1f8e16e2e43e68989c92827"
+    },
+    "screening_schedule": {
+      "live": [
+        [
+          "d1c9ee177289d85686281dbb023f6e7f110994ee18c0148d9ae518a63e1c486b",
+          "5fe30f45f6cf468f96ef5aa09be7ee0db82c1b17e094e512f22f67a0c26dd98f",
+          "f9a22190f44fa63481486996b1e43f6b216cfd3c1f888b5ee5578634bde85c8d",
+          "4e769e3b4e92ad95586a180b4b28cac34856bf134c7e6722fdeaed4ab9c949c0",
+          "0d5e75c9ef385e8b3e0ba2ec515f76655807fcad61f1a884b95a6b531130b920",
+          "1964162fc59b8bc7d9c772f7462a514ea8b09844f61883ca90b29587d8ad29fc"
+        ],
+        [
+          "4e769e3b4e92ad95586a180b4b28cac34856bf134c7e6722fdeaed4ab9c949c0",
+          "0d5e75c9ef385e8b3e0ba2ec515f76655807fcad61f1a884b95a6b531130b920",
+          "5fe30f45f6cf468f96ef5aa09be7ee0db82c1b17e094e512f22f67a0c26dd98f",
+          "f9a22190f44fa63481486996b1e43f6b216cfd3c1f888b5ee5578634bde85c8d",
+          "1964162fc59b8bc7d9c772f7462a514ea8b09844f61883ca90b29587d8ad29fc",
+          "d1c9ee177289d85686281dbb023f6e7f110994ee18c0148d9ae518a63e1c486b"
+        ],
+        [
+          "1964162fc59b8bc7d9c772f7462a514ea8b09844f61883ca90b29587d8ad29fc",
+          "f9a22190f44fa63481486996b1e43f6b216cfd3c1f888b5ee5578634bde85c8d",
+          "0d5e75c9ef385e8b3e0ba2ec515f76655807fcad61f1a884b95a6b531130b920",
+          "4e769e3b4e92ad95586a180b4b28cac34856bf134c7e6722fdeaed4ab9c949c0",
+          "d1c9ee177289d85686281dbb023f6e7f110994ee18c0148d9ae518a63e1c486b",
+          "5fe30f45f6cf468f96ef5aa09be7ee0db82c1b17e094e512f22f67a0c26dd98f"
+        ]
+      ],
+      "registered": [
+        [
+          "a7cad27c49e63a9b336d5271b63b397648058eb475197d6d917542076315fe78",
+          "8b2e5c6235692649eaf16b73fee1663302088ac24f55ac28cb80c81ce1af8dc0",
+          "f12b559962dced00ce1330f41bfafce375c73161b84bf712ff975153f01d52b1",
+          "84519e0aecf15ced3cfe40d388f85a35f4901a908549cb37d7249aff40d7c5f5",
+          "317b058832c313788cde8b349ba77a04d1ebb21ca588441bcff777ae93ac939a",
+          "74d1ba8cb4119acee0a422a75f8bb524cb3a91dd5895df16a009e12805c393ad"
+        ],
+        [
+          "84519e0aecf15ced3cfe40d388f85a35f4901a908549cb37d7249aff40d7c5f5",
+          "317b058832c313788cde8b349ba77a04d1ebb21ca588441bcff777ae93ac939a",
+          "8b2e5c6235692649eaf16b73fee1663302088ac24f55ac28cb80c81ce1af8dc0",
+          "f12b559962dced00ce1330f41bfafce375c73161b84bf712ff975153f01d52b1",
+          "74d1ba8cb4119acee0a422a75f8bb524cb3a91dd5895df16a009e12805c393ad",
+          "a7cad27c49e63a9b336d5271b63b397648058eb475197d6d917542076315fe78"
+        ],
+        [
+          "74d1ba8cb4119acee0a422a75f8bb524cb3a91dd5895df16a009e12805c393ad",
+          "f12b559962dced00ce1330f41bfafce375c73161b84bf712ff975153f01d52b1",
+          "317b058832c313788cde8b349ba77a04d1ebb21ca588441bcff777ae93ac939a",
+          "84519e0aecf15ced3cfe40d388f85a35f4901a908549cb37d7249aff40d7c5f5",
+          "a7cad27c49e63a9b336d5271b63b397648058eb475197d6d917542076315fe78",
+          "8b2e5c6235692649eaf16b73fee1663302088ac24f55ac28cb80c81ce1af8dc0"
+        ]
+      ]
+    }
+  },
+  "eligibility": {
+    "allowed_controls": [
+      "threads",
+      "cuda_graphs"
+    ],
+    "baseline_cpu_moe": false,
+    "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+    "host_environment_sha256": "428ac2955dab54e43f491e258e455b57d20ccf5223c0d294eda14d320962ff2c",
+    "model_ir_sha256": "54f52d76dba171c90ee73150688351fd8a88aa96373af6b4c66b8e00aa1fbbce",
+    "protocol_version": "stock-scheduling-eligibility-v1",
+    "provider_id": "granitemoe-q6-gpu-scheduling-v1",
+    "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+    "scope": "pinned Granite Q6 GPU-resident baseline; unchanged kernels/placement/KV, threads/graphs only; own-reference exact tokens required",
+    "source_object_ids": {
+      "ggml/src/ggml-cpu/ggml-cpu.c": "2745a7dbb29ea12f45c1722f55bc913141669419",
+      "ggml/src/ggml-cpu/ops.cpp": "7c54cb6f469da40913c7a9bd4beb51359a4b7e72",
+      "ggml/src/ggml-cpu/quants.c": "5e36459f8cbc5900b375d2189414307393471a6b",
+      "ggml/src/ggml-cuda/common.cuh": "290dc4aff259cb78a9a477dea27920fecf398c4a",
+      "ggml/src/ggml-cuda/getrows.cu": "0e15707093fc6b150e620e67d503d37b0139cbdd",
+      "ggml/src/ggml-cuda/ggml-cuda.cu": "0878ab9c08afb783c6b5d459d4f9654617807d1d",
+      "ggml/src/ggml-cuda/mmq.cuh": "607e433bf1f3904a9fea0d2b3c040f4f7e705ca0",
+      "ggml/src/ggml-cuda/mmvq.cuh": "5605bf7a4e60348c047844c771e7171849ba2eec",
+      "ggml/src/ggml-cuda/norm.cu": "09d9f3a7d624160b291351f0fbf050fa153657b3",
+      "ggml/src/ggml-cuda/quantize.cu": "39a500a170414a9dfeb798d22f562585fdbf3a84",
+      "ggml/src/ggml-cuda/softmax.cu": "285c0e9543a2a6a2e61682b7b98f482910bffbb5",
+      "ggml/src/ggml-cuda/vecdotq.cuh": "d1741cc8d7babdf6726f9928a3c908ae2df12dd6",
+      "src/llama-arch.cpp": "72968607db809f91ff87afb68a222b4ef52a6cf7",
+      "src/llama-graph.cpp": "c8ecb0a2854cc2a43ca3102ebafea89e386d917f",
+      "src/llama-model.cpp": "eaf3f35d2d8e86722d130be89430298b991babfc",
+      "src/models/granite-moe.cpp": "115263c418faefb2d07e7d8501b9c16ee4ad6895",
+      "src/models/granite.cpp": "4a75c5ff3cc3d073fea4a87b961d25bf6df42ccd",
+      "src/models/models.h": "beab9f6bc7df422c2e35f79d03ef223f02a40035"
+    },
+    "upstream_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697"
+  },
+  "native_calls": 0,
+  "scope": "Diagnostic input re-read only; original sequence remains closed, zero native starts."
+}

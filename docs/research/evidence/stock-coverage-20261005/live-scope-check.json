@@ -1,0 +1,40 @@
+{
+  "cases": [
+    {
+      "candidate_count": 6,
+      "case_id": "gemma4-q4-prose",
+      "default_id": "57ecc01dc1a6f2093ea3adf3e895fb0c63b8b1e044249862cf3e11740a584daa",
+      "live_weight_hash_verified": true,
+      "provider_id": "gemma4-q4-x86-scheduling-v1",
+      "registered_inputs_and_grid_match": true
+    },
+    {
+      "candidate_count": 6,
+      "case_id": "gemma4-q4-code",
+      "default_id": "c06325e5ed9352683beb395e9fa59beeb83ef91faaf4df564d66329cadc96909",
+      "live_weight_hash_verified": true,
+      "provider_id": "gemma4-q4-x86-scheduling-v1",
+      "registered_inputs_and_grid_match": true
+    },
+    {
+      "candidate_count": 6,
+      "case_id": "granite-q6-prose",
+      "default_id": "74d1ba8cb4119acee0a422a75f8bb524cb3a91dd5895df16a009e12805c393ad",
+      "live_weight_hash_verified": true,
+      "provider_id": "granitemoe-q6-gpu-scheduling-v1",
+      "registered_inputs_and_grid_match": true
+    },
+    {
+      "candidate_count": 6,
+      "case_id": "granite-q6-code",
+      "default_id": "c519ab9ed33ae92f5849b9d6c6d17193fab1cb44df9f46d9c7e804ca3d2e7251",
+      "live_weight_hash_verified": true,
+      "provider_id": "granitemoe-q6-gpu-scheduling-v1",
+      "registered_inputs_and_grid_match": true
+    }
+  ],
+  "native_calls": 0,
+  "scope": "Diagnostic full input identity/scope check only; no collected utility evidence or case roots.",
+  "status": "PASS",
+  "wall_seconds": 20.082300900000064
+}

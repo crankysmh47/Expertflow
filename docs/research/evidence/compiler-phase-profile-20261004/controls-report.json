@@ -1,0 +1,162 @@
+{
+  "diagnostic_only": true,
+  "inputs": {
+    "hardware_preflight": {
+      "gpu_fields": [
+        "GPU-949ee8ea-765f-abfd-fd90-16ad3923af6e",
+        "NVIDIA GeForce RTX 5060 Ti",
+        "12.0",
+        "616.92",
+        "16311",
+        "14136",
+        "3"
+      ]
+    },
+    "input_hashes": {
+      "C:\\models\\expertflow\\runs\\compiler-phase-profile-20261004\\runtime-identity.json": "87587950182ab3230aa150e7c93421e007ef4244fc91401e51025ea7deed176a",
+      "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q6-model.json": "1676efffaba68987183f4a9b9e7218d56cb9595e782d1306b51aabfe19d12d1c",
+      "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q6-single-request.json": "66e57710f995fae21b94d71241a4b6dfee0dcdf3064878db40ceeb1e61a68bb7",
+      "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\inputs\\hardware.json": "391249a0aa9c61ec234501b7853e0f00b1336c1601af7b9e24e3cb885b3582dd",
+      "C:\\sem4\\expertflow\\docs\\evidence\\q6-download\\tensor-inventory.json": "22e51eae9787a400490ad98542b70e56af15c87fbe765e1346fb24233244e8b2"
+    },
+    "source_contracts": {
+      "exit_code": 0,
+      "output": "......                                                                   [100%]\n6 passed in 0.08s\n"
+    }
+  },
+  "probe_sha256": "fa04408725f7be495e6f7daa70be532652408c75900febd2b929b819fd87796d",
+  "runs": [
+    {
+      "arm": "stock",
+      "outcome": {
+        "measurement_id": "2d094dda-0368-41c5-874c-447208a0c847",
+        "output_dir": "C:\\models\\expertflow\\runs\\compiler-phase-profile-20261004\\controls\\stock",
+        "reason": null,
+        "resolved_placement": null,
+        "status": "measured"
+      },
+      "verified": {
+        "candidate_id": "c516a694f3a566a1ec414e8199412baf08f640f4d188725e0ba701817c7bc396",
+        "completion_wall_ms": 28515.7027,
+        "decode_tps": 23.17003766579248,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": false,
+        "numerical_path": "stock_same_runtime",
+        "owned_run_sha256": "04cbd1f65fa417d78e8a8a45af11612a6545b99cdc57c8e165ddb66786dd2e6f",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "profile-control-stock",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    },
+    {
+      "arm": "fork-off",
+      "outcome": {
+        "measurement_id": "37703d07-6f5f-4ec4-ab5e-e8e0950a4d79",
+        "output_dir": "C:\\models\\expertflow\\runs\\compiler-phase-profile-20261004\\controls\\fork-off",
+        "reason": null,
+        "resolved_placement": null,
+        "status": "measured"
+      },
+      "verified": {
+        "candidate_id": "b8b9ec5401fdb098e518bfc7e806e5885c700d14f764fbc410620d59e94ea128",
+        "completion_wall_ms": 38343.0143,
+        "decode_tps": 22.750556499940636,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "66d97665365706ee3d1b3dfd3a0f23ba34a228b0fc4c91ee76da4023ae9d064b",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": false,
+        "numerical_path": "fork_off_vs_pristine",
+        "owned_run_sha256": "bd5b2dd02905782cf78b03f2910d62df2990394bdd88a871869d321b28fe8737",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "profile-control-fork-off",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  ],
+  "source_commit": "566a8d7fe8988e7d649003ec9a414a1b669c2a63",
+  "status": "PASS-CONTROLS"
+}

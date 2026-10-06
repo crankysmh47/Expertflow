@@ -1,0 +1,76 @@
+{
+  "status": "AUDITED-SOURCE-SCOPE-NOT-NATIVE-VALIDATION",
+  "proposed_provider_id": "gemma4-q4-x86-scheduling-v1",
+  "upstream_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+  "approved_runtime_manifest_sha256": "326daa6e17e1293f6b7c5c9f23e85868961241f4dd00a94a3eee54e25071f629",
+  "source_repository": "C:/models/expertflow/worktrees/llama-q6-placement-final",
+  "inspection_method": "Read operation implementations and immutable upstream object IDs; CPU directory diff from upstream is empty",
+  "source_object_ids": {
+    "ggml/src/ggml-cpu/ggml-cpu.c": "2745a7dbb29ea12f45c1722f55bc913141669419",
+    "ggml/src/ggml-cpu/ops.cpp": "7c54cb6f469da40913c7a9bd4beb51359a4b7e72",
+    "ggml/src/ggml-cpu/repack.cpp": "f18758f16bb62040333418bab06ce22efe826b20",
+    "ggml/src/ggml-cpu/quants.c": "5e36459f8cbc5900b375d2189414307393471a6b",
+    "ggml/src/ggml-cpu/arch/x86/repack.cpp": "af1cebad131d17118c26634faccb9a6e0c08a6f9",
+    "ggml/src/ggml-cpu/arch/x86/quants.c": "ea54cfe44ce403fe06c8b4aa10b5a882779e7e71",
+    "ggml/src/ggml-cuda/common.cuh": "290dc4aff259cb78a9a477dea27920fecf398c4a",
+    "ggml/src/ggml-cuda/ggml-cuda.cu": "0878ab9c08afb783c6b5d459d4f9654617807d1d"
+  },
+  "header_observation": {
+    "family": "gemma4",
+    "architecture": "gemma4-moe",
+    "quantization": "Q4_0",
+    "file_bytes": 14439361440,
+    "routed_layers": 30,
+    "experts": 128,
+    "top_k": 8,
+    "routed_weight_banks": 60,
+    "routed_weight_type": "Q4_0",
+    "expert_scale_tensors": 30,
+    "expert_scale_type": "F32",
+    "mixed_output_weight_type": "Q6_K",
+    "weights_sha256_verified_this_stage": true,
+    "weights_sha256": "4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5"
+  },
+  "operation_audit": [
+    {
+      "operation": "CPU Q4 expert repack dispatch",
+      "source": "ggml/src/ggml-cpu/repack.cpp:4573",
+      "mechanism": "Approved AVX2 runtime selects Q4_0 8x8 Q8_0 repack for output dimension divisible by8. Tensor_traits dispatch covers host F32 input MUL_MAT_ID. Repack format is selected by tensor shape and CPU ISA, not worker count. Actual routed bank output dimensions are divisible by8.",
+      "required_fixed": ["actual tensor inventory", "CPU ISA", "runtime binaries", "CPU-MoE placement"]
+    },
+    {
+      "operation": "CPU routed multiplication",
+      "source": "ggml/src/ggml-cpu/repack.cpp:4391",
+      "mechanism": "forward_mul_mat_id quantizes full F32 rows to Q8_0, with each row assigned to one worker. Thread0 creates deterministic expert row mapping before a barrier. Threads partition only output columns, with adjacent boundaries both rounded up to8; each assigned output evaluates full ne00 with GEMV. Input reductions and output accumulation are not split among threads. Prompt rows use the same per-row GEMV path.",
+      "required_fixed": ["expert routing", "input shapes", "quantization", "repack block width"]
+    },
+    {
+      "operation": "AVX2 repacked Q4 GEMV",
+      "source": "ggml/src/ggml-cpu/arch/x86/repack.cpp:522",
+      "mechanism": "gemv_q4_b32_8x8_q8_0_lut_avx processes each group of8 outputs with its own accumulator across all input blocks in fixed order. The function receives no thread count; each worker passes a block-aligned output subset. Q4_0_8x8 wrapper selects this same AVX2 implementation for all admitted thread settings. Changing the number of complete output groups does not change each group's reduction.",
+      "required_fixed": ["AVX2 implementation", "quant block sizes", "full input reduction", "aligned output boundaries"]
+    },
+    {
+      "operation": "Q8_0 input conversion",
+      "source": "ggml/src/ggml-cpu/arch/x86/quants.c:302",
+      "mechanism": "quantize_row_q8_0 computes max and scale independently per fixed32-element block with a fixed SIMD reduction. Scheduling changes full-row ownership, not block boundaries or conversion arithmetic. The fallback Q4_0/Q8_0 dot likewise evaluates complete outputs.",
+      "required_fixed": ["CPU SIMD", "row shape", "conversion implementation"]
+    },
+    {
+      "operation": "Nonrouted CPU repack prompt path",
+      "source": "ggml/src/ggml-cpu/repack.cpp:4252",
+      "mechanism": "forward_mul_mat converts fixed groups of4 input rows and remaining individual rows; nth changes which worker owns the fixed groups. src1 is chunked only into full planes. GEMM versus GEMV depends on full-plane row count rather than worker count. Output boundaries align to8. Admission still requires verified actual placement and exact native prompt/generated token guards.",
+      "required_fixed": ["batch shapes", "prompt workload", "CPU ISA", "placement"]
+    },
+    {
+      "operation": "Expert elementwise operations and CUDA graphs",
+      "source": "Existing pinned ops.cpp and CUDA graph implementation inspected in Q6 source audit",
+      "mechanism": "Row-owned elementwise SwiGLU/scale retains its arithmetic. Graph capture/replay and direct launch use the same node evaluation functions. The optional graph rewrite remains disabled by sanitized runner environment; mixed Q6_K output tensor does not become a different kernel under these scheduling controls.",
+      "required_fixed": ["graph optimization disabled", "all arithmetic kernels", "F16 KV", "model bytes"]
+    }
+  ],
+  "allowed_controls_if_admitted": ["threads", "cuda_graphs"],
+  "required_native_guards": ["fresh Q4 reference", "exact prompt and generated tokens", "owned memory and reserve", "cleanup", "frozen source and host", "unique fresh owned processes"],
+  "remaining_gates": ["full compiler checks and independent review", "fixed Q4 reference/product/search native validation"],
+  "coverage_limits": "Independent source inspection for the actual Q4 header and pinned AVX2 build. This file is not an eligibility provider, PASS receipt or native performance result. Other quantizations, builds, placement/KV changes and model families remain unsupported without separate evidence."
+}

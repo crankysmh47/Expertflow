@@ -1,0 +1,12 @@
+{
+  "status": "PASS-WALKTHROUGH-ARCHIVE-AND-INTEGRITY",
+  "attempts_retained": 4,
+  "latest_qualification": "PASS-LOCAL-STOCK-QUALIFICATION",
+  "additional_native_starts": 0,
+  "original_starts": 148,
+  "wider_starts": 344,
+  "source_commit": "136f4cc7e7f445ad97de0379eeec183d981b3158",
+  "helper_source_commit": "c9d2f9700e59d45eac47d92ebd64c1ce98717deb",
+  "original_report_sha256": "464defd327d43c4f510f3768266d1dacaefc77d25c239afefef5cc4226c1d0c5",
+  "independent_user_acceptance_established": false
+}

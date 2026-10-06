@@ -1,0 +1,43 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+________ test_outer_freeze_includes_all_later_paired_collector_sources ________
+
+    def test_outer_freeze_includes_all_later_paired_collector_sources():
+        from expertflow.compiler.refinement import paired_source_files
+        outer = api().sources()
+        for name, digest in paired_source_files(product=True).items():
+>           assert outer.get(str(Path(name).resolve())) == digest, name
+E           AssertionError: scripts\benchmark_compiler_refinement.py
+E           assert None == 'd3b08c80140e6200e59bd122fca9c7cba8e9b42d017af5b23ab2e7ef1e93188d'
+E            +  where None = <built-in method get of dict object at 0x000001F9FFD2DA80>('C:\\sem4\\expertflow\\scripts\\benchmark_compiler_refinement.py')
+E            +    where <built-in method get of dict object at 0x000001F9FFD2DA80> = {'C:\\sem4\\expertflow\\configs\\baseline-prompt.txt': '91a5f0213640da6b1c8dd8bc304fa831aec7b2bc616b3cc5ecb7469390785d...\\compiler\\stock-utility-heldout-prompt.txt': 'db06dbe3251f7b615550a81324c7753a0bc809a76a898914e05637e7f3cb47ab', ...}.get
+E            +    and   'C:\\sem4\\expertflow\\scripts\\benchmark_compiler_refinement.py' = str(WindowsPath('C:/sem4/expertflow/scripts/benchmark_compiler_refinement.py'))
+E            +      where WindowsPath('C:/sem4/expertflow/scripts/benchmark_compiler_refinement.py') = resolve()
+E            +        where resolve = WindowsPath('scripts/benchmark_compiler_refinement.py').resolve
+E            +          where WindowsPath('scripts/benchmark_compiler_refinement.py') = Path('scripts\\benchmark_compiler_refinement.py')
+
+tests\test_compiler_stock_repeatability.py:177: AssertionError
+________ test_last_native_return_cannot_escape_original_source_freeze _________
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1341/test_last_native_return_cannot0')
+
+    def test_last_native_return_cannot_escape_original_source_freeze(tmp_path):
+        runner, report, events = guard_setup(tmp_path)
+        original = runner.runner.run_once
+    
+        def drift(*args, **kwargs):
+            outcome = original(*args, **kwargs)
+            runner.source_capture = lambda: {'tracked': 'changed'}
+            return outcome
+    
+        runner.runner.run_once = drift
+>       with pytest.raises(ValueError, match='source/host changed'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests\test_compiler_stock_repeatability.py:190: Failed
+---------------------------- Captured stdout call -----------------------------
+{"process": 1, "stage": "last", "status": "environment_blocked"}
+=========================== short test summary info ===========================
+FAILED tests/test_compiler_stock_repeatability.py::test_outer_freeze_includes_all_later_paired_collector_sources
+FAILED tests/test_compiler_stock_repeatability.py::test_last_native_return_cannot_escape_original_source_freeze
+2 failed, 16 deselected in 0.26s

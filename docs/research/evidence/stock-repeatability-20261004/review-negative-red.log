@@ -1,0 +1,109 @@
+F.FF                                                                     [100%]
+================================== FAILURES ===================================
+_ test_negative_block_reconstructs_full_evidence_and_prevents_promotion[statistics] _
+
+stopped = (WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1344/stock-repeatability-stop0'), (CompilerIn...Temp\\pytest-of-Hank47\\pytest-1344\\stock-repeatability-stop0\\study', ...}, 'reason': 'block-a: INCONCLUSIVE', ...}))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A8DB33C9D0>
+change = 'statistics'
+
+    @pytest.mark.parametrize('change',['statistics','schedule','outcome','promote'])
+    def test_negative_block_reconstructs_full_evidence_and_prevents_promotion(stopped,monkeypatch,change):
+        root,(inp,source,plan,prior,_,report)=stopped
+        patch_validation(monkeypatch)
+        assert api().validate_followup(report,inp,inp,plan,source,prior,source_repository=root,host_environment=HOST)['status']=='REPEATABILITY-STOP'
+        path=root/'study/block-a/report.json'
+        original=path.read_bytes()
+        block=json.loads(original)
+        changed=deepcopy(report)
+        if change=='statistics': block['ci90_pct']=[-99,99]
+        elif change=='schedule': block['rows'][0]['arm']='sealed' if block['rows'][0]['arm']=='direct' else 'direct'
+        elif change=='outcome': block['outcomes'][0]['status']='exception'
+        else:
+            (root/'study/consumer').mkdir()
+        try:
+            path.write_text(json.dumps(block))
+            changed['blocks'][0]['report_sha256']=api().file_sha256(path)
+>           with pytest.raises(ValueError):
+E           Failed: DID NOT RAISE <class 'ValueError'>
+
+tests\test_compiler_stock_repeatability.py:363: Failed
+---------------------------- Captured stdout setup ----------------------------
+{"process": 1, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-00-sealed", "status": "measured"}
+{"process": 2, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-00-direct", "status": "measured"}
+{"process": 3, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-01-sealed", "status": "measured"}
+{"process": 4, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-01-direct", "status": "measured"}
+{"process": 5, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-02-direct", "status": "measured"}
+{"process": 6, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-02-sealed", "status": "measured"}
+{"process": 7, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-03-sealed", "status": "measured"}
+{"process": 8, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-03-direct", "status": "measured"}
+{"process": 9, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-04-direct", "status": "measured"}
+{"process": 10, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-04-sealed", "status": "measured"}
+{"process": 11, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-05-direct", "status": "measured"}
+{"process": 12, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-05-sealed", "status": "measured"}
+{"process": 13, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-06-direct", "status": "measured"}
+{"process": 14, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-06-sealed", "status": "measured"}
+{"process": 15, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-07-sealed", "status": "measured"}
+{"process": 16, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-07-direct", "status": "measured"}
+{"process": 17, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-08-sealed", "status": "measured"}
+{"process": 18, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-08-direct", "status": "measured"}
+{"process": 19, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-09-direct", "status": "measured"}
+{"process": 20, "stage": "product-fa1a88ba8bf644da907416f8235dd6e0-09-sealed", "status": "measured"}
+_ test_negative_block_reconstructs_full_evidence_and_prevents_promotion[outcome] _
+
+stopped = (WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1344/stock-repeatability-stop0'), (CompilerIn...Temp\\pytest-of-Hank47\\pytest-1344\\stock-repeatability-stop0\\study', ...}, 'reason': 'block-a: INCONCLUSIVE', ...}))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A8DBBBC390>
+change = 'outcome'
+
+    @pytest.mark.parametrize('change',['statistics','schedule','outcome','promote'])
+    def test_negative_block_reconstructs_full_evidence_and_prevents_promotion(stopped,monkeypatch,change):
+        root,(inp,source,plan,prior,_,report)=stopped
+        patch_validation(monkeypatch)
+        assert api().validate_followup(report,inp,inp,plan,source,prior,source_repository=root,host_environment=HOST)['status']=='REPEATABILITY-STOP'
+        path=root/'study/block-a/report.json'
+        original=path.read_bytes()
+        block=json.loads(original)
+        changed=deepcopy(report)
+        if change=='statistics': block['ci90_pct']=[-99,99]
+        elif change=='schedule': block['rows'][0]['arm']='sealed' if block['rows'][0]['arm']=='direct' else 'direct'
+        elif change=='outcome': block['outcomes'][0]['status']='exception'
+        else:
+            (root/'study/consumer').mkdir()
+        try:
+            path.write_text(json.dumps(block))
+            changed['blocks'][0]['report_sha256']=api().file_sha256(path)
+>           with pytest.raises(ValueError):
+E           Failed: DID NOT RAISE <class 'ValueError'>
+
+tests\test_compiler_stock_repeatability.py:363: Failed
+_ test_negative_block_reconstructs_full_evidence_and_prevents_promotion[promote] _
+
+stopped = (WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1344/stock-repeatability-stop0'), (CompilerIn...Temp\\pytest-of-Hank47\\pytest-1344\\stock-repeatability-stop0\\study', ...}, 'reason': 'block-a: INCONCLUSIVE', ...}))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A8DBC4CB90>
+change = 'promote'
+
+    @pytest.mark.parametrize('change',['statistics','schedule','outcome','promote'])
+    def test_negative_block_reconstructs_full_evidence_and_prevents_promotion(stopped,monkeypatch,change):
+        root,(inp,source,plan,prior,_,report)=stopped
+        patch_validation(monkeypatch)
+        assert api().validate_followup(report,inp,inp,plan,source,prior,source_repository=root,host_environment=HOST)['status']=='REPEATABILITY-STOP'
+        path=root/'study/block-a/report.json'
+        original=path.read_bytes()
+        block=json.loads(original)
+        changed=deepcopy(report)
+        if change=='statistics': block['ci90_pct']=[-99,99]
+        elif change=='schedule': block['rows'][0]['arm']='sealed' if block['rows'][0]['arm']=='direct' else 'direct'
+        elif change=='outcome': block['outcomes'][0]['status']='exception'
+        else:
+            (root/'study/consumer').mkdir()
+        try:
+            path.write_text(json.dumps(block))
+            changed['blocks'][0]['report_sha256']=api().file_sha256(path)
+>           with pytest.raises(ValueError):
+E           Failed: DID NOT RAISE <class 'ValueError'>
+
+tests\test_compiler_stock_repeatability.py:363: Failed
+=========================== short test summary info ===========================
+FAILED tests/test_compiler_stock_repeatability.py::test_negative_block_reconstructs_full_evidence_and_prevents_promotion[statistics]
+FAILED tests/test_compiler_stock_repeatability.py::test_negative_block_reconstructs_full_evidence_and_prevents_promotion[outcome]
+FAILED tests/test_compiler_stock_repeatability.py::test_negative_block_reconstructs_full_evidence_and_prevents_promotion[promote]
+3 failed, 1 passed, 24 deselected in 14.15s

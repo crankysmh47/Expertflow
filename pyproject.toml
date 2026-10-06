@@ -4,8 +4,10 @@ build-backend = "hatchling.build"
 
 [project]
 name = "expertflow-local"
-version = "0.1.0"
-description = "Hardware-aware routing observatory for local sparse MoE inference"
+version = "0.2.0a1"
+description = "Inspect, measure and run local GGUF models with reproducible llama.cpp profiles"
+readme = "README.md"
+license = "MIT"
 requires-python = ">=3.11"
 dependencies = []
 
@@ -24,12 +26,17 @@ predictor = [
 quality = [
     "huggingface-hub>=0.36,<1",
     "pyarrow>=20,<22",
+    "pandas>=2.2,<3",
 ]
 
 [tool.pytest.ini_options]
 addopts = "-ra"
-pythonpath = ["src"]
+pythonpath = [".", "src"]
 testpaths = ["tests"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/expertflow"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/src/expertflow", "/tests/test_local_*.py", "/tests/local_helpers.py", "/pyproject.toml", "/uv.lock", "/README.md", "/LICENSE", "/THIRD_PARTY_NOTICES.md", "/CHANGELOG.md", "/CONTRIBUTING.md", "/docs/local-quickstart.md", "/docs/support-matrix.md", "/docs/local-product-pilot.md", "/docs/runtime-updates.md", "/docs/README.md", "/docs/PRODUCT.md", "/docs/BENCHMARKING.md", "/docs/STATUS.md", "/docs/TODO.md", "/scripts/local_native_smoke.py", "/scripts/build_local_release.py"]
+exclude = ["**/__pycache__", "**/*.pyc"]

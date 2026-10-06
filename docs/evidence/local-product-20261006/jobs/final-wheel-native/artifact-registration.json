@@ -1,0 +1,6 @@
+{
+  "wheel_sha256": "2f9c5db03677fb5e19a3d620c50a5aed3bac214488af0d029f2bcb905be331f7",
+  "scope": "installed final wheel operational check while model-free suite active; no performance claim",
+  "maximum_model_processes": 1,
+  "wall_budget_seconds": 300
+}

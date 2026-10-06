@@ -1,0 +1,46 @@
+{
+  "earlier_strongest_stock_decode_tps": 22.966667,
+  "historical_cli": {
+    "cross_mode_response_identity": false,
+    "exact_plan_eligible": false,
+    "input_hashes": {
+      "docs/evidence/q6-placement-final/quality-results.json": "bc335425f40d6b74b64a5afdf388f66e6dcdaa337665b9d912ff8f930818bf8e",
+      "docs/evidence/q6-placement-final/results.json": "b87bd872c1b04ac8a4144ba61c12412057d8fc743c229ffd584334232fbf58a6",
+      "docs/evidence/q6-placement-final/run-pairs.csv": "65643b621b87ae40154fdd5636b2d4f954a704ce6dc9eb92e91cdfbb9ed4c180"
+    },
+    "mean_decode_tps": {
+      "off": 22.28,
+      "on": 28.13
+    },
+    "measurement_kind": "historical_cli_summary",
+    "native_token_evidence_available": false,
+    "ppl_95_upper_pct": 2.252937265598369,
+    "rejection_reasons": [
+      "missing_native_token_ids",
+      "numerical_path_change",
+      "cross_mode_output_divergence",
+      "strict_quality_gate_failed"
+    ],
+    "repetitions_per_mode": 10,
+    "required_ppl_upper_pct": 1.0,
+    "response_hashes": {
+      "off": [
+        "7a5b8b8b055b3a6a884349ce7971b42827c736e2391b3e204178ccd23e21903d"
+      ],
+      "on": [
+        "d486092ed666a0bbb5b8eaf0517996b6a4ab1b129b00d5f81bd65017a0887e5a"
+      ]
+    },
+    "strict_quality_gate_pass": false
+  },
+  "mode": "recorded_replay",
+  "objective": "decode_tps",
+  "rejected_candidates": [
+    {
+      "reason": "historical_summary_without_native_token_evidence"
+    }
+  ],
+  "sealed": false,
+  "source_sha256": "b87bd872c1b04ac8a4144ba61c12412057d8fc743c229ffd584334232fbf58a6",
+  "status": "RECORDED-DIAGNOSTIC"
+}

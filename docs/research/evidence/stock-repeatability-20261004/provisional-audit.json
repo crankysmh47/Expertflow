@@ -1,0 +1,231 @@
+{
+  "actual_native_processes": 148,
+  "auditor_sha256": "73eb1aafc2676216401dd129a226f3e54d056d1274f9dce0e34d8ce209ac936e",
+  "blocks": {
+    "block-a": {
+      "ci90_pct": [
+        -0.5529460386412122,
+        0.5396279234245362
+      ],
+      "ci95_pct": [
+        -0.6071037988127413,
+        0.669998185164019
+      ],
+      "direct_cv_pct": 0.7031698573092243,
+      "direct_mean_tps": 24.09534858305369,
+      "equivalent": true,
+      "geometric_change_pct": -0.08249937517706514,
+      "noninferior": true,
+      "one_sided95_lower_pct": -0.5529460386412122,
+      "sealed_cv_pct": 1.4130922148387066,
+      "sealed_mean_tps": 24.077059574801837,
+      "status": "PASS-MEASUREMENT",
+      "variance_pass": true
+    },
+    "block-b": {
+      "ci90_pct": [
+        -0.6408186832078482,
+        1.432922982900204
+      ],
+      "ci95_pct": [
+        -0.7643130017077634,
+        1.6742852270189976
+      ],
+      "direct_cv_pct": 1.1657515843763326,
+      "direct_mean_tps": 24.172352599982904,
+      "equivalent": true,
+      "geometric_change_pct": 0.2741111198771318,
+      "noninferior": true,
+      "one_sided95_lower_pct": -0.6408186832078482,
+      "sealed_cv_pct": 1.8745177657417293,
+      "sealed_mean_tps": 24.240905893859566,
+      "status": "PASS-MEASUREMENT",
+      "variance_pass": true
+    }
+  },
+  "complete_measured_records": 148,
+  "cost": {
+    "collector_seconds": 11717.25,
+    "minimum_wait_seconds": 30.0,
+    "native_phase_seconds": 5364.040022299903,
+    "native_phase_seconds_by_phase": {
+      "block-a": 739.4323166000477,
+      "block-b": 734.9416009999804,
+      "consumer": 37.344723000009274,
+      "transfer": 3852.3213816998646
+    },
+    "prelaunch_wait_seconds": 4441.791000000001
+  },
+  "cpu_temperature": "unavailable; no trusted sensor",
+  "diagnostics": {
+    "cpu.owned_cpu_time_100ns": {
+      "count": 21434,
+      "max": 3454375000,
+      "mean": 945274075.3592423,
+      "min": 66562500
+    },
+    "cpu.performance_pct": {
+      "count": 21425,
+      "max": 164.8273615635179,
+      "mean": 135.45912421792076,
+      "min": 96.27331189710611
+    },
+    "cpu.reported_frequency_mhz": {
+      "count": 21434,
+      "max": 3800.0,
+      "mean": 3800.0,
+      "min": 3800.0
+    },
+    "cpu.system_utilization_pct": {
+      "count": 21434,
+      "max": 100.0,
+      "mean": 51.97784755238815,
+      "min": 0.0
+    },
+    "gpu.gpu_utilization_pct": {
+      "count": 21434,
+      "max": 74,
+      "mean": 19.007651394979938,
+      "min": 0
+    },
+    "gpu.memory_clock_mhz": {
+      "count": 21434,
+      "max": 13801,
+      "mean": 11868.023374078566,
+      "min": 405
+    },
+    "gpu.memory_utilization_pct": {
+      "count": 21434,
+      "max": 37,
+      "mean": 12.302183446860129,
+      "min": 0
+    },
+    "gpu.power_mw": {
+      "count": 21434,
+      "max": 50513,
+      "mean": 36555.98353083886,
+      "min": 10536
+    },
+    "gpu.sm_clock_mhz": {
+      "count": 21434,
+      "max": 2827,
+      "mean": 2347.897872538957,
+      "min": 345
+    },
+    "gpu.temperature_c": {
+      "count": 21434,
+      "max": 49,
+      "mean": 45.17859475599515,
+      "min": 39
+    }
+  },
+  "max_owned_memory_mib": 3136.66015625,
+  "min_device_free_mib": 10975.0,
+  "report_sha256": "6cde23826387268e56f0731818b4b812bd83e0407c4ae8b7646c4ef3afa37b4d",
+  "scope": "independent raw native TPS, main and held-out paired bootstrap gates, held-out automatic/manual ranking and native phase costs, kernel owners, tokens, source context, waits and diagnostics; production validator separately reconstructs complete phase/state/source/receipt bindings",
+  "status": "AUDITED",
+  "terminal_status": "PENDING-RECONSTRUCTION",
+  "transfer": {
+    "comparisons": {
+      "defaults": {
+        "ci90_pct": [
+          8.166427415356313,
+          10.44003788867641
+        ],
+        "ci95_pct": [
+          7.923766295439615,
+          10.6129831270326
+        ],
+        "direct_cv_pct": 3.026418873241894,
+        "direct_mean_tps": 22.00342916717969,
+        "equivalent": false,
+        "geometric_change_pct": 9.375596996174446,
+        "noninferior": true,
+        "one_sided95_lower_pct": 8.166427415356313,
+        "sealed_cv_pct": 1.2833750073828514,
+        "sealed_mean_tps": 24.058411041404725,
+        "status": "INCONCLUSIVE",
+        "variance_pass": true
+      },
+      "manual": {
+        "ci90_pct": [
+          -0.3890232988562566,
+          0.6452811605106383
+        ],
+        "ci95_pct": [
+          -0.4633246635235617,
+          0.765431027023789
+        ],
+        "direct_cv_pct": 1.0183483769887793,
+        "direct_mean_tps": 24.09388194063321,
+        "equivalent": true,
+        "geometric_change_pct": 0.10065073269763031,
+        "noninferior": true,
+        "one_sided95_lower_pct": -0.3890232988562566,
+        "sealed_cv_pct": 0.6984294141287388,
+        "sealed_mean_tps": 24.117526571959836,
+        "status": "PASS-MEASUREMENT",
+        "variance_pass": true
+      }
+    },
+    "complete_utility_records": 86,
+    "consumer_status": "MEASURED-ACCEPTED-STOCK",
+    "product_comparison": {
+      "ci90_pct": [
+        -0.2838150620775634,
+        1.4385750870619125
+      ],
+      "ci95_pct": [
+        -0.3303385339763205,
+        1.5386904638709118
+      ],
+      "direct_cv_pct": 0.17428256732079722,
+      "direct_mean_tps": 24.234301392387856,
+      "equivalent": true,
+      "geometric_change_pct": 0.3676363115376019,
+      "noninferior": true,
+      "one_sided95_lower_pct": -0.2838150620775634,
+      "sealed_cv_pct": 1.663882203464232,
+      "sealed_mean_tps": 24.32631320866618,
+      "status": "PASS-MEASUREMENT",
+      "variance_pass": true
+    },
+    "reference_cv_pct": 4.713462121640754,
+    "selection": {
+      "automatic": {
+        "candidate_id": "6bb2a6c6b0db7f3419dba7ad93c7c3ce2b08dcc49aaac470841e9858a9afcedd",
+        "scores": {
+          "25546fa6e9aa794b6bf9f6a63478795307918c1fd129d5fda6dcfaffd4193f39": 1.0847915056178237,
+          "29e69e6faab0f9a1c41d4a3dc2d391a20dcb462b4acc7a1f1aa2297485754a16": 1.0,
+          "39f7c14e830fcd54d28bc9d216529fe2f07ac74449bc570d28c3778b428aa638": 1.0209992251632933,
+          "67eadd060ad2a7b94c88433ca6f8c3e25b3f755297e20c7b8edf2c9cd23c9578": 0.9435958267119462,
+          "6bb2a6c6b0db7f3419dba7ad93c7c3ce2b08dcc49aaac470841e9858a9afcedd": 1.1101567704223125,
+          "b0d7440160e07256019727ff1eec6c7300a24c634fab0d004a4155f72c3bde1e": 1.0339299338875005
+        }
+      },
+      "manual": {
+        "candidate_id": "6bb2a6c6b0db7f3419dba7ad93c7c3ce2b08dcc49aaac470841e9858a9afcedd",
+        "scores": {
+          "25546fa6e9aa794b6bf9f6a63478795307918c1fd129d5fda6dcfaffd4193f39": 23.76639032145242,
+          "29e69e6faab0f9a1c41d4a3dc2d391a20dcb462b4acc7a1f1aa2297485754a16": 21.62073773473723,
+          "39f7c14e830fcd54d28bc9d216529fe2f07ac74449bc570d28c3778b428aa638": 22.406599262820894,
+          "67eadd060ad2a7b94c88433ca6f8c3e25b3f755297e20c7b8edf2c9cd23c9578": 20.36274054076219,
+          "6bb2a6c6b0db7f3419dba7ad93c7c3ce2b08dcc49aaac470841e9858a9afcedd": 23.969217637729724,
+          "b0d7440160e07256019727ff1eec6c7300a24c634fab0d004a4155f72c3bde1e": 22.41560596068631
+        }
+      }
+    },
+    "terminal_status": "PASS-STOCK-UTILITY-PRODUCT",
+    "tuning_cost": {
+      "automatic": {
+        "native_evaluations": 18,
+        "native_phase_seconds": 685.2119226998622
+      },
+      "manual": {
+        "native_evaluations": 18,
+        "native_phase_seconds": 667.9237227998872
+      }
+    },
+    "utility_verdict": "PASS-STOCK-UTILITY"
+  }
+}

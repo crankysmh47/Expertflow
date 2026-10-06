@@ -1,0 +1,7 @@
+{
+  "status": "INCONCLUSIVE",
+  "reason": "GPU idle gate blocked bench before launch; original attempt closed.",
+  "model_processes": 2,
+  "bench_model_processes": 0,
+  "planned_maximum": 4
+}

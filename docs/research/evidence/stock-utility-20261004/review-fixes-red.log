@@ -1,0 +1,571 @@
+..............FFFFFFFF                                                   [100%]
+================================== FAILURES ===================================
+___ test_original_freeze_guards_every_product_and_consumer_launch[0-source] ___
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1326/test_original_freeze_guards_ev0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024ADA662710>
+drift_at = 0, kind = 'source'
+
+    @pytest.mark.parametrize('drift_at,kind',[(0,'source'),(3,'host'),(20,'source')])
+    def test_original_freeze_guards_every_product_and_consumer_launch(tmp_path,monkeypatch,drift_at,kind):
+        from test_compiler_pipeline import FakeRunner
+        from test_compiler_refinement import setup_execution
+        from test_compiler_stock_discovery import FixtureEligibility,HOST
+        inputs,old,store,runner,pending=setup_execution(tmp_path)
+        rates=lambda candidate,stage:22 if candidate.identities.workload.threads==12 else 20
+        current=deepcopy(HOST)
+        product_calls=[]
+        class DriftRunner(FakeRunner):
+            def run_once(self,*args,**kwargs):
+                product_calls.append(kwargs['stage'])
+                result=super().run_once(*args,**kwargs)
+                if len(product_calls)==drift_at:
+                    if kind=='source':monkeypatch.setattr(api(),'sources',lambda:{'changed':'source'})
+                    else:current['process_affinity_mask']=255
+                return result
+        def factory(target):
+            if drift_at==0:
+                monkeypatch.setattr(api(),'sources',lambda:{'changed':'source'})
+            return DriftRunner(target,rates=rates)
+        report=api().execute_utility(inputs,store,FakeRunner(store,rates=rates),tmp_path/'utility',
+            source_repository=tmp_path,host_capture=lambda:deepcopy(current),registry=FixtureEligibility(),
+            default_source_proof={'scope':'synthetic test fixture'},product_runner_factory=factory)
+>       assert report['status']!='PASS-STOCK-UTILITY-PRODUCT'
+E       AssertionError: assert 'PASS-STOCK-UTILITY-PRODUCT' != 'PASS-STOCK-UTILITY-PRODUCT'
+
+tests\test_compiler_stock_utility.py:168: AssertionError
+---------------------------- Captured stdout call -----------------------------
+{"process": 1, "label": "reference-00", "tps": 20.0}
+{"process": 2, "label": "reference-01", "tps": 20.0}
+{"process": 3, "label": "reference-02", "tps": 20.0}
+{"process": 4, "label": "reference-03", "tps": 20.0}
+{"process": 5, "label": "reference-04", "tps": 20.0}
+{"process": 6, "label": "reference-05", "tps": 20.0}
+{"process": 7, "label": "reference-06", "tps": 20.0}
+{"process": 8, "label": "reference-07", "tps": 20.0}
+{"process": 9, "label": "reference-08", "tps": 20.0}
+{"process": 10, "label": "reference-09", "tps": 20.0}
+{"process": 11, "label": "automatic-screen-00-bd590de0e850606c0bdf6ee5cc477b5c6734f81fa1d8b48f4fcadd610ad6b4b0", "tps": 22.0}
+{"process": 12, "label": "automatic-screen-00-acb28d3891965cf0f4d404af2c7dd240b64a63b53df7a9e3fc390da747a0169b", "tps": 20.0}
+{"process": 13, "label": "automatic-screen-00-d5bf4b18d2d10e0b2e01357f8a75da4eca3a8627fcd67ab7e21f461ed891bb39", "tps": 22.0}
+{"process": 14, "label": "automatic-screen-00-91e8ffb97ec47a6daada8c5eb711c551543d7c5428fbf701c7a74a0ae7d00f4d", "tps": 20.0}
+{"process": 15, "label": "automatic-screen-00-224b0cfa22e8a3d31b44d7d4b8fc20fd19f22c8415dd530f89520e84f2ac7708", "tps": 20.0}
+{"process": 16, "label": "automatic-screen-00-6eceec48274024b5621cc582369a035bf9de4e7d714a4b9fb2b7e2d8e5530cd7", "tps": 20.0}
+{"process": 17, "label": "automatic-screen-01-91e8ffb97ec47a6daada8c5eb711c551543d7c5428fbf701c7a74a0ae7d00f4d", "tps": 20.0}
+{"process": 18, "label": "automatic-screen-01-224b0cfa22e8a3d31b44d7d4b8fc20fd19f22c8415dd530f89520e84f2ac7708", "tps": 20.0}
+{"process": 19, "label": "automatic-screen-01-acb28d3891965cf0f4d404af2c7dd240b64a63b53df7a9e3fc390da747a0169b", "tps": 20.0}
+{"process": 20, "label": "automatic-screen-01-d5bf4b18d2d10e0b2e01357f8a75da4eca3a8627fcd67ab7e21f461ed891bb39", "tps": 22.0}
+{"process": 21, "label": "automatic-screen-01-6eceec48274024b5621cc582369a035bf9de4e7d714a4b9fb2b7e2d8e5530cd7", "tps": 20.0}
+{"process": 22, "label": "automatic-screen-01-bd590de0e850606c0bdf6ee5cc477b5c6734f81fa1d8b48f4fcadd610ad6b4b0", "tps": 22.0}
+{"process": 23, "label": "automatic-screen-02-6eceec48274024b5621cc582369a035bf9de4e7d714a4b9fb2b7e2d8e5530cd7", "tps": 20.0}
+{"process": 24, "label": "automatic-screen-02-d5bf4b18d2d10e0b2e01357f8a75da4eca3a8627fcd67ab7e21f461ed891bb39", "tps": 22.0}
+{"process": 25, "label": "automatic-screen-02-224b0cfa22e8a3d31b44d7d4b8fc20fd19f22c8415dd530f89520e84f2ac7708", "tps": 20.0}
+{"process": 26, "label": "automatic-screen-02-91e8ffb97ec47a6daada8c5eb711c551543d7c5428fbf701c7a74a0ae7d00f4d", "tps": 20.0}
+{"process": 27, "label": "automatic-screen-02-bd590de0e850606c0bdf6ee5cc477b5c6734f81fa1d8b48f4fcadd610ad6b4b0", "tps": 22.0}
+{"process": 28, "label": "automatic-screen-02-acb28d3891965cf0f4d404af2c7dd240b64a63b53df7a9e3fc390da747a0169b", "tps": 20.0}
+{"process": 29, "label": "manual-screen-00-bd590de0e850606c0bdf6ee5cc477b5c6734f81fa1d8b48f4fcadd610ad6b4b0", "tps": 22.0}
+{"process": 30, "label": "manual-screen-00-acb28d3891965cf0f4d404af2c7dd240b64a63b53df7a9e3fc390da747a0169b", "tps": 20.0}
+{"process": 31, "label": "manual-screen-00-d5bf4b18d2d10e0b2e01357f8a75da4eca3a8627fcd67ab7e21f461ed891bb39", "tps": 22.0}
+{"process": 32, "label": "manual-screen-00-91e8ffb97ec47a6daada8c5eb711c551543d7c5428fbf701c7a74a0ae7d00f4d", "tps": 20.0}
+{"process": 33, "label": "manual-screen-00-224b0cfa22e8a3d31b44d7d4b8fc20fd19f22c8415dd530f89520e84f2ac7708", "tps": 20.0}
+{"process": 34, "label": "manual-screen-00-6eceec48274024b5621cc582369a035bf9de4e7d714a4b9fb2b7e2d8e5530cd7", "tps": 20.0}
+{"process": 35, "label": "manual-screen-01-91e8ffb97ec47a6daada8c5eb711c551543d7c5428fbf701c7a74a0ae7d00f4d", "tps": 20.0}
+{"process": 36, "label": "manual-screen-01-224b0cfa22e8a3d31b44d7d4b8fc20fd19f22c8415dd530f89520e84f2ac7708", "tps": 20.0}
+{"process": 37, "label": "manual-screen-01-acb28d3891965cf0f4d404af2c7dd240b64a63b53df7a9e3fc390da747a0169b", "tps": 20.0}
+{"process": 38, "label": "manual-screen-01-d5bf4b18d2d10e0b2e01357f8a75da4eca3a8627fcd67ab7e21f461ed891bb39", "tps": 22.0}
+{"process": 39, "label": "manual-screen-01-6eceec48274024b5621cc582369a035bf9de4e7d714a4b9fb2b7e2d8e5530cd7", "tps": 20.0}
+{"process": 40, "label": "manual-screen-01-bd590de0e850606c0bdf6ee5cc477b5c6734f81fa1d8b48f4fcadd610ad6b4b0", "tps": 22.0}
+{"process": 41, "label": "manual-screen-02-6eceec48274024b5621cc582369a035bf9de4e7d714a4b9fb2b7e2d8e5530cd7", "tps": 20.0}
+{"process": 42, "label": "manual-screen-02-d5bf4b18d2d10e0b2e01357f8a75da4eca3a8627fcd67ab7e21f461ed891bb39", "tps": 22.0}
+{"process": 43, "label": "manual-screen-02-224b0cfa22e8a3d31b44d7d4b8fc20fd19f22c8415dd530f89520e84f2ac7708", "tps": 20.0}
+{"process": 44, "label": "manual-screen-02-91e8ffb97ec47a6daada8c5eb711c551543d7c5428fbf701c7a74a0ae7d00f4d", "tps": 20.0}
+{"process": 45, "label": "manual-screen-02-bd590de0e850606c0bdf6ee5cc477b5c6734f81fa1d8b48f4fcadd610ad6b4b0", "tps": 22.0}
+{"process": 46, "label": "manual-screen-02-acb28d3891965cf0f4d404af2c7dd240b64a63b53df7a9e3fc390da747a0169b", "tps": 20.0}
+{"process": 47, "label": "defaults-pair-00-sealed", "tps": 22.0}
+{"process": 48, "label": "defaults-pair-00-direct", "tps": 20.0}
+{"process": 49, "label": "defaults-pair-01-sealed", "tps": 22.0}
+{"process": 50, "label": "defaults-pair-01-direct", "tps": 20.0}
+{"process": 51, "label": "defaults-pair-02-direct", "tps": 20.0}
+{"process": 52, "label": "defaults-pair-02-sealed", "tps": 22.0}
+{"process": 53, "label": "defaults-pair-03-sealed", "tps": 22.0}
+{"process": 54, "label": "defaults-pair-03-direct", "tps": 20.0}
+{"process": 55, "label": "defaults-pair-04-direct", "tps": 20.0}
+{"process": 56, "label": "defaults-pair-04-sealed", "tps": 22.0}
+{"process": 57, "label": "defaults-pair-05-direct", "tps": 20.0}
+{"process": 58, "label": "defaults-pair-05-sealed", "tps": 22.0}
+{"process": 59, "label": "defaults-pair-06-direct", "tps": 20.0}
+{"process": 60, "label": "defaults-pair-06-sealed", "tps": 22.0}
+{"process": 61, "label": "defaults-pair-07-sealed", "tps": 22.0}
+{"process": 62, "label": "defaults-pair-07-direct", "tps": 20.0}
+{"process": 63, "label": "defaults-pair-08-sealed", "tps": 22.0}
+{"process": 64, "label": "defaults-pair-08-direct", "tps": 20.0}
+{"process": 65, "label": "defaults-pair-09-direct", "tps": 20.0}
+{"process": 66, "label": "defaults-pair-09-sealed", "tps": 22.0}
+{"process": 67, "label": "manual-pair-00-sealed", "tps": 22.0}
+{"process": 68, "label": "manual-pair-00-direct", "tps": 22.0}
+{"process": 69, "label": "manual-pair-01-sealed", "tps": 22.0}
+{"process": 70, "label": "manual-pair-01-direct", "tps": 22.0}
+{"process": 71, "label": "manual-pair-02-direct", "tps": 22.0}
+{"process": 72, "label": "manual-pair-02-sealed", "tps": 22.0}
+{"process": 73, "label": "manual-pair-03-sealed", "tps": 22.0}
+{"process": 74, "label": "manual-pair-03-direct", "tps": 22.0}
+{"process": 75, "label": "manual-pair-04-direct", "tps": 22.0}
+{"process": 76, "label": "manual-pair-04-sealed", "tps": 22.0}
+{"process": 77, "label": "manual-pair-05-direct", "tps": 22.0}
+{"process": 78, "label": "manual-pair-05-sealed", "tps": 22.0}
+{"process": 79, "label": "manual-pair-06-direct", "tps": 22.0}
+{"process": 80, "label": "manual-pair-06-sealed", "tps": 22.0}
+{"process": 81, "label": "manual-pair-07-sealed", "tps": 22.0}
+{"process": 82, "label": "manual-pair-07-direct", "tps": 22.0}
+{"process": 83, "label": "manual-pair-08-sealed", "tps": 22.0}
+{"process": 84, "label": "manual-pair-08-direct", "tps": 22.0}
+{"process": 85, "label": "manual-pair-09-direct", "tps": 22.0}
+{"process": 86, "label": "manual-pair-09-sealed", "tps": 22.0}
+____ test_original_freeze_guards_every_product_and_consumer_launch[3-host] ____
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1326/test_original_freeze_guards_ev1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024AD8576990>
+drift_at = 3, kind = 'host'
+
+    @pytest.mark.parametrize('drift_at,kind',[(0,'source'),(3,'host'),(20,'source')])
+    def test_original_freeze_guards_every_product_and_consumer_launch(tmp_path,monkeypatch,drift_at,kind):
+        from test_compiler_pipeline import FakeRunner
+        from test_compiler_refinement import setup_execution
+        from test_compiler_stock_discovery import FixtureEligibility,HOST
+        inputs,old,store,runner,pending=setup_execution(tmp_path)
+        rates=lambda candidate,stage:22 if candidate.identities.workload.threads==12 else 20
+        current=deepcopy(HOST)
+        product_calls=[]
+        class DriftRunner(FakeRunner):
+            def run_once(self,*args,**kwargs):
+                product_calls.append(kwargs['stage'])
+                result=super().run_once(*args,**kwargs)
+                if len(product_calls)==drift_at:
+                    if kind=='source':monkeypatch.setattr(api(),'sources',lambda:{'changed':'source'})
+                    else:current['process_affinity_mask']=255
+                return result
+        def factory(target):
+            if drift_at==0:
+                monkeypatch.setattr(api(),'sources',lambda:{'changed':'source'})
+            return DriftRunner(target,rates=rates)
+        report=api().execute_utility(inputs,store,FakeRunner(store,rates=rates),tmp_path/'utility',
+            source_repository=tmp_path,host_capture=lambda:deepcopy(current),registry=FixtureEligibility(),
+            default_source_proof={'scope':'synthetic test fixture'},product_runner_factory=factory)
+        assert report['status']!='PASS-STOCK-UTILITY-PRODUCT'
+        assert len(product_calls)==drift_at
+>       assert len(report['attempts'])==86+drift_at
+                   ^^^^^^^^^^^^^^^^^^
+E       KeyError: 'attempts'
+
+tests\test_compiler_stock_utility.py:170: KeyError
+---------------------------- Captured stdout call -----------------------------
+{"process": 1, "label": "reference-00", "tps": 20.0}
+{"process": 2, "label": "reference-01", "tps": 20.0}
+{"process": 3, "label": "reference-02", "tps": 20.0}
+{"process": 4, "label": "reference-03", "tps": 20.0}
+{"process": 5, "label": "reference-04", "tps": 20.0}
+{"process": 6, "label": "reference-05", "tps": 20.0}
+{"process": 7, "label": "reference-06", "tps": 20.0}
+{"process": 8, "label": "reference-07", "tps": 20.0}
+{"process": 9, "label": "reference-08", "tps": 20.0}
+{"process": 10, "label": "reference-09", "tps": 20.0}
+{"process": 11, "label": "automatic-screen-00-add26338bcce7b3436ebbb016c3e8c0b5bbfee2887e623edbb38ac8eb7cad7eb", "tps": 20.0}
+{"process": 12, "label": "automatic-screen-00-9e5c9f6ac9e3cb6c147f69b986d240542ab744172251b8351e9fbf584e4b75de", "tps": 20.0}
+{"process": 13, "label": "automatic-screen-00-e99c2e7c8aee76ab5d447546305b4b3512a9dc032d7c0cc6e9326c4a00dd1e26", "tps": 20.0}
+{"process": 14, "label": "automatic-screen-00-7c630abd1c936db8d7bf2c675401de9ae7319ff4984fb9407cc55dd22ecf8dd4", "tps": 20.0}
+{"process": 15, "label": "automatic-screen-00-119e4cc459c5990a4e0d73d6055cda67a76f9cbb5440f21c118060842b3858a5", "tps": 22.0}
+{"process": 16, "label": "automatic-screen-00-6d948b6600e910e4d05648486fc9a0c06483db075a24d2f4907e3fb8bf896745", "tps": 22.0}
+{"process": 17, "label": "automatic-screen-01-7c630abd1c936db8d7bf2c675401de9ae7319ff4984fb9407cc55dd22ecf8dd4", "tps": 20.0}
+{"process": 18, "label": "automatic-screen-01-119e4cc459c5990a4e0d73d6055cda67a76f9cbb5440f21c118060842b3858a5", "tps": 22.0}
+{"process": 19, "label": "automatic-screen-01-9e5c9f6ac9e3cb6c147f69b986d240542ab744172251b8351e9fbf584e4b75de", "tps": 20.0}
+{"process": 20, "label": "automatic-screen-01-e99c2e7c8aee76ab5d447546305b4b3512a9dc032d7c0cc6e9326c4a00dd1e26", "tps": 20.0}
+{"process": 21, "label": "automatic-screen-01-6d948b6600e910e4d05648486fc9a0c06483db075a24d2f4907e3fb8bf896745", "tps": 22.0}
+{"process": 22, "label": "automatic-screen-01-add26338bcce7b3436ebbb016c3e8c0b5bbfee2887e623edbb38ac8eb7cad7eb", "tps": 20.0}
+{"process": 23, "label": "automatic-screen-02-6d948b6600e910e4d05648486fc9a0c06483db075a24d2f4907e3fb8bf896745", "tps": 22.0}
+{"process": 24, "label": "automatic-screen-02-e99c2e7c8aee76ab5d447546305b4b3512a9dc032d7c0cc6e9326c4a00dd1e26", "tps": 20.0}
+{"process": 25, "label": "automatic-screen-02-119e4cc459c5990a4e0d73d6055cda67a76f9cbb5440f21c118060842b3858a5", "tps": 22.0}
+{"process": 26, "label": "automatic-screen-02-7c630abd1c936db8d7bf2c675401de9ae7319ff4984fb9407cc55dd22ecf8dd4", "tps": 20.0}
+{"process": 27, "label": "automatic-screen-02-add26338bcce7b3436ebbb016c3e8c0b5bbfee2887e623edbb38ac8eb7cad7eb", "tps": 20.0}
+{"process": 28, "label": "automatic-screen-02-9e5c9f6ac9e3cb6c147f69b986d240542ab744172251b8351e9fbf584e4b75de", "tps": 20.0}
+{"process": 29, "label": "manual-screen-00-add26338bcce7b3436ebbb016c3e8c0b5bbfee2887e623edbb38ac8eb7cad7eb", "tps": 20.0}
+{"process": 30, "label": "manual-screen-00-9e5c9f6ac9e3cb6c147f69b986d240542ab744172251b8351e9fbf584e4b75de", "tps": 20.0}
+{"process": 31, "label": "manual-screen-00-e99c2e7c8aee76ab5d447546305b4b3512a9dc032d7c0cc6e9326c4a00dd1e26", "tps": 20.0}
+{"process": 32, "label": "manual-screen-00-7c630abd1c936db8d7bf2c675401de9ae7319ff4984fb9407cc55dd22ecf8dd4", "tps": 20.0}
+{"process": 33, "label": "manual-screen-00-119e4cc459c5990a4e0d73d6055cda67a76f9cbb5440f21c118060842b3858a5", "tps": 22.0}
+{"process": 34, "label": "manual-screen-00-6d948b6600e910e4d05648486fc9a0c06483db075a24d2f4907e3fb8bf896745", "tps": 22.0}
+{"process": 35, "label": "manual-screen-01-7c630abd1c936db8d7bf2c675401de9ae7319ff4984fb9407cc55dd22ecf8dd4", "tps": 20.0}
+{"process": 36, "label": "manual-screen-01-119e4cc459c5990a4e0d73d6055cda67a76f9cbb5440f21c118060842b3858a5", "tps": 22.0}
+{"process": 37, "label": "manual-screen-01-9e5c9f6ac9e3cb6c147f69b986d240542ab744172251b8351e9fbf584e4b75de", "tps": 20.0}
+{"process": 38, "label": "manual-screen-01-e99c2e7c8aee76ab5d447546305b4b3512a9dc032d7c0cc6e9326c4a00dd1e26", "tps": 20.0}
+{"process": 39, "label": "manual-screen-01-6d948b6600e910e4d05648486fc9a0c06483db075a24d2f4907e3fb8bf896745", "tps": 22.0}
+{"process": 40, "label": "manual-screen-01-add26338bcce7b3436ebbb016c3e8c0b5bbfee2887e623edbb38ac8eb7cad7eb", "tps": 20.0}
+{"process": 41, "label": "manual-screen-02-6d948b6600e910e4d05648486fc9a0c06483db075a24d2f4907e3fb8bf896745", "tps": 22.0}
+{"process": 42, "label": "manual-screen-02-e99c2e7c8aee76ab5d447546305b4b3512a9dc032d7c0cc6e9326c4a00dd1e26", "tps": 20.0}
+{"process": 43, "label": "manual-screen-02-119e4cc459c5990a4e0d73d6055cda67a76f9cbb5440f21c118060842b3858a5", "tps": 22.0}
+{"process": 44, "label": "manual-screen-02-7c630abd1c936db8d7bf2c675401de9ae7319ff4984fb9407cc55dd22ecf8dd4", "tps": 20.0}
+{"process": 45, "label": "manual-screen-02-add26338bcce7b3436ebbb016c3e8c0b5bbfee2887e623edbb38ac8eb7cad7eb", "tps": 20.0}
+{"process": 46, "label": "manual-screen-02-9e5c9f6ac9e3cb6c147f69b986d240542ab744172251b8351e9fbf584e4b75de", "tps": 20.0}
+{"process": 47, "label": "defaults-pair-00-sealed", "tps": 22.0}
+{"process": 48, "label": "defaults-pair-00-direct", "tps": 20.0}
+{"process": 49, "label": "defaults-pair-01-sealed", "tps": 22.0}
+{"process": 50, "label": "defaults-pair-01-direct", "tps": 20.0}
+{"process": 51, "label": "defaults-pair-02-direct", "tps": 20.0}
+{"process": 52, "label": "defaults-pair-02-sealed", "tps": 22.0}
+{"process": 53, "label": "defaults-pair-03-sealed", "tps": 22.0}
+{"process": 54, "label": "defaults-pair-03-direct", "tps": 20.0}
+{"process": 55, "label": "defaults-pair-04-direct", "tps": 20.0}
+{"process": 56, "label": "defaults-pair-04-sealed", "tps": 22.0}
+{"process": 57, "label": "defaults-pair-05-direct", "tps": 20.0}
+{"process": 58, "label": "defaults-pair-05-sealed", "tps": 22.0}
+{"process": 59, "label": "defaults-pair-06-direct", "tps": 20.0}
+{"process": 60, "label": "defaults-pair-06-sealed", "tps": 22.0}
+{"process": 61, "label": "defaults-pair-07-sealed", "tps": 22.0}
+{"process": 62, "label": "defaults-pair-07-direct", "tps": 20.0}
+{"process": 63, "label": "defaults-pair-08-sealed", "tps": 22.0}
+{"process": 64, "label": "defaults-pair-08-direct", "tps": 20.0}
+{"process": 65, "label": "defaults-pair-09-direct", "tps": 20.0}
+{"process": 66, "label": "defaults-pair-09-sealed", "tps": 22.0}
+{"process": 67, "label": "manual-pair-00-sealed", "tps": 22.0}
+{"process": 68, "label": "manual-pair-00-direct", "tps": 22.0}
+{"process": 69, "label": "manual-pair-01-sealed", "tps": 22.0}
+{"process": 70, "label": "manual-pair-01-direct", "tps": 22.0}
+{"process": 71, "label": "manual-pair-02-direct", "tps": 22.0}
+{"process": 72, "label": "manual-pair-02-sealed", "tps": 22.0}
+{"process": 73, "label": "manual-pair-03-sealed", "tps": 22.0}
+{"process": 74, "label": "manual-pair-03-direct", "tps": 22.0}
+{"process": 75, "label": "manual-pair-04-direct", "tps": 22.0}
+{"process": 76, "label": "manual-pair-04-sealed", "tps": 22.0}
+{"process": 77, "label": "manual-pair-05-direct", "tps": 22.0}
+{"process": 78, "label": "manual-pair-05-sealed", "tps": 22.0}
+{"process": 79, "label": "manual-pair-06-direct", "tps": 22.0}
+{"process": 80, "label": "manual-pair-06-sealed", "tps": 22.0}
+{"process": 81, "label": "manual-pair-07-sealed", "tps": 22.0}
+{"process": 82, "label": "manual-pair-07-direct", "tps": 22.0}
+{"process": 83, "label": "manual-pair-08-sealed", "tps": 22.0}
+{"process": 84, "label": "manual-pair-08-direct", "tps": 22.0}
+{"process": 85, "label": "manual-pair-09-direct", "tps": 22.0}
+{"process": 86, "label": "manual-pair-09-sealed", "tps": 22.0}
+__ test_original_freeze_guards_every_product_and_consumer_launch[20-source] ___
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1326/test_original_freeze_guards_ev2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024ADA8C7590>
+drift_at = 20, kind = 'source'
+
+    @pytest.mark.parametrize('drift_at,kind',[(0,'source'),(3,'host'),(20,'source')])
+    def test_original_freeze_guards_every_product_and_consumer_launch(tmp_path,monkeypatch,drift_at,kind):
+        from test_compiler_pipeline import FakeRunner
+        from test_compiler_refinement import setup_execution
+        from test_compiler_stock_discovery import FixtureEligibility,HOST
+        inputs,old,store,runner,pending=setup_execution(tmp_path)
+        rates=lambda candidate,stage:22 if candidate.identities.workload.threads==12 else 20
+        current=deepcopy(HOST)
+        product_calls=[]
+        class DriftRunner(FakeRunner):
+            def run_once(self,*args,**kwargs):
+                product_calls.append(kwargs['stage'])
+                result=super().run_once(*args,**kwargs)
+                if len(product_calls)==drift_at:
+                    if kind=='source':monkeypatch.setattr(api(),'sources',lambda:{'changed':'source'})
+                    else:current['process_affinity_mask']=255
+                return result
+        def factory(target):
+            if drift_at==0:
+                monkeypatch.setattr(api(),'sources',lambda:{'changed':'source'})
+            return DriftRunner(target,rates=rates)
+        report=api().execute_utility(inputs,store,FakeRunner(store,rates=rates),tmp_path/'utility',
+            source_repository=tmp_path,host_capture=lambda:deepcopy(current),registry=FixtureEligibility(),
+            default_source_proof={'scope':'synthetic test fixture'},product_runner_factory=factory)
+>       assert report['status']!='PASS-STOCK-UTILITY-PRODUCT'
+E       AssertionError: assert 'PASS-STOCK-UTILITY-PRODUCT' != 'PASS-STOCK-UTILITY-PRODUCT'
+
+tests\test_compiler_stock_utility.py:168: AssertionError
+---------------------------- Captured stdout call -----------------------------
+{"process": 1, "label": "reference-00", "tps": 20.0}
+{"process": 2, "label": "reference-01", "tps": 20.0}
+{"process": 3, "label": "reference-02", "tps": 20.0}
+{"process": 4, "label": "reference-03", "tps": 20.0}
+{"process": 5, "label": "reference-04", "tps": 20.0}
+{"process": 6, "label": "reference-05", "tps": 20.0}
+{"process": 7, "label": "reference-06", "tps": 20.0}
+{"process": 8, "label": "reference-07", "tps": 20.0}
+{"process": 9, "label": "reference-08", "tps": 20.0}
+{"process": 10, "label": "reference-09", "tps": 20.0}
+{"process": 11, "label": "automatic-screen-00-c1293de89e5a9bfb8faa85d2372529a58fce6f19b0e8a811241bfaafc6dea3e2", "tps": 20.0}
+{"process": 12, "label": "automatic-screen-00-806fdd820b2ab81e0ad93f212c0e51c5b75253a4105a8305afc3b92d1bf9b05b", "tps": 22.0}
+{"process": 13, "label": "automatic-screen-00-ca4b8e09677e5bc554bf7dc88236f2c8cd7892f5208df76fcb7fab3bc48121fa", "tps": 20.0}
+{"process": 14, "label": "automatic-screen-00-65fa7f84970e919f5151ac127418e2a7d78547084f0005764b2299f754246ec2", "tps": 20.0}
+{"process": 15, "label": "automatic-screen-00-18098ba70543d8577d842eb630c5eb118aab7273be8f5f4d664a85a20875d748", "tps": 20.0}
+{"process": 16, "label": "automatic-screen-00-5486ecf9295768a2a401e939a662a96a314fa8cf5b975d33f396af8b8945186d", "tps": 22.0}
+{"process": 17, "label": "automatic-screen-01-65fa7f84970e919f5151ac127418e2a7d78547084f0005764b2299f754246ec2", "tps": 20.0}
+{"process": 18, "label": "automatic-screen-01-18098ba70543d8577d842eb630c5eb118aab7273be8f5f4d664a85a20875d748", "tps": 20.0}
+{"process": 19, "label": "automatic-screen-01-806fdd820b2ab81e0ad93f212c0e51c5b75253a4105a8305afc3b92d1bf9b05b", "tps": 22.0}
+{"process": 20, "label": "automatic-screen-01-ca4b8e09677e5bc554bf7dc88236f2c8cd7892f5208df76fcb7fab3bc48121fa", "tps": 20.0}
+{"process": 21, "label": "automatic-screen-01-5486ecf9295768a2a401e939a662a96a314fa8cf5b975d33f396af8b8945186d", "tps": 22.0}
+{"process": 22, "label": "automatic-screen-01-c1293de89e5a9bfb8faa85d2372529a58fce6f19b0e8a811241bfaafc6dea3e2", "tps": 20.0}
+{"process": 23, "label": "automatic-screen-02-5486ecf9295768a2a401e939a662a96a314fa8cf5b975d33f396af8b8945186d", "tps": 22.0}
+{"process": 24, "label": "automatic-screen-02-ca4b8e09677e5bc554bf7dc88236f2c8cd7892f5208df76fcb7fab3bc48121fa", "tps": 20.0}
+{"process": 25, "label": "automatic-screen-02-18098ba70543d8577d842eb630c5eb118aab7273be8f5f4d664a85a20875d748", "tps": 20.0}
+{"process": 26, "label": "automatic-screen-02-65fa7f84970e919f5151ac127418e2a7d78547084f0005764b2299f754246ec2", "tps": 20.0}
+{"process": 27, "label": "automatic-screen-02-c1293de89e5a9bfb8faa85d2372529a58fce6f19b0e8a811241bfaafc6dea3e2", "tps": 20.0}
+{"process": 28, "label": "automatic-screen-02-806fdd820b2ab81e0ad93f212c0e51c5b75253a4105a8305afc3b92d1bf9b05b", "tps": 22.0}
+{"process": 29, "label": "manual-screen-00-c1293de89e5a9bfb8faa85d2372529a58fce6f19b0e8a811241bfaafc6dea3e2", "tps": 20.0}
+{"process": 30, "label": "manual-screen-00-806fdd820b2ab81e0ad93f212c0e51c5b75253a4105a8305afc3b92d1bf9b05b", "tps": 22.0}
+{"process": 31, "label": "manual-screen-00-ca4b8e09677e5bc554bf7dc88236f2c8cd7892f5208df76fcb7fab3bc48121fa", "tps": 20.0}
+{"process": 32, "label": "manual-screen-00-65fa7f84970e919f5151ac127418e2a7d78547084f0005764b2299f754246ec2", "tps": 20.0}
+{"process": 33, "label": "manual-screen-00-18098ba70543d8577d842eb630c5eb118aab7273be8f5f4d664a85a20875d748", "tps": 20.0}
+{"process": 34, "label": "manual-screen-00-5486ecf9295768a2a401e939a662a96a314fa8cf5b975d33f396af8b8945186d", "tps": 22.0}
+{"process": 35, "label": "manual-screen-01-65fa7f84970e919f5151ac127418e2a7d78547084f0005764b2299f754246ec2", "tps": 20.0}
+{"process": 36, "label": "manual-screen-01-18098ba70543d8577d842eb630c5eb118aab7273be8f5f4d664a85a20875d748", "tps": 20.0}
+{"process": 37, "label": "manual-screen-01-806fdd820b2ab81e0ad93f212c0e51c5b75253a4105a8305afc3b92d1bf9b05b", "tps": 22.0}
+{"process": 38, "label": "manual-screen-01-ca4b8e09677e5bc554bf7dc88236f2c8cd7892f5208df76fcb7fab3bc48121fa", "tps": 20.0}
+{"process": 39, "label": "manual-screen-01-5486ecf9295768a2a401e939a662a96a314fa8cf5b975d33f396af8b8945186d", "tps": 22.0}
+{"process": 40, "label": "manual-screen-01-c1293de89e5a9bfb8faa85d2372529a58fce6f19b0e8a811241bfaafc6dea3e2", "tps": 20.0}
+{"process": 41, "label": "manual-screen-02-5486ecf9295768a2a401e939a662a96a314fa8cf5b975d33f396af8b8945186d", "tps": 22.0}
+{"process": 42, "label": "manual-screen-02-ca4b8e09677e5bc554bf7dc88236f2c8cd7892f5208df76fcb7fab3bc48121fa", "tps": 20.0}
+{"process": 43, "label": "manual-screen-02-18098ba70543d8577d842eb630c5eb118aab7273be8f5f4d664a85a20875d748", "tps": 20.0}
+{"process": 44, "label": "manual-screen-02-65fa7f84970e919f5151ac127418e2a7d78547084f0005764b2299f754246ec2", "tps": 20.0}
+{"process": 45, "label": "manual-screen-02-c1293de89e5a9bfb8faa85d2372529a58fce6f19b0e8a811241bfaafc6dea3e2", "tps": 20.0}
+{"process": 46, "label": "manual-screen-02-806fdd820b2ab81e0ad93f212c0e51c5b75253a4105a8305afc3b92d1bf9b05b", "tps": 22.0}
+{"process": 47, "label": "defaults-pair-00-sealed", "tps": 22.0}
+{"process": 48, "label": "defaults-pair-00-direct", "tps": 20.0}
+{"process": 49, "label": "defaults-pair-01-sealed", "tps": 22.0}
+{"process": 50, "label": "defaults-pair-01-direct", "tps": 20.0}
+{"process": 51, "label": "defaults-pair-02-direct", "tps": 20.0}
+{"process": 52, "label": "defaults-pair-02-sealed", "tps": 22.0}
+{"process": 53, "label": "defaults-pair-03-sealed", "tps": 22.0}
+{"process": 54, "label": "defaults-pair-03-direct", "tps": 20.0}
+{"process": 55, "label": "defaults-pair-04-direct", "tps": 20.0}
+{"process": 56, "label": "defaults-pair-04-sealed", "tps": 22.0}
+{"process": 57, "label": "defaults-pair-05-direct", "tps": 20.0}
+{"process": 58, "label": "defaults-pair-05-sealed", "tps": 22.0}
+{"process": 59, "label": "defaults-pair-06-direct", "tps": 20.0}
+{"process": 60, "label": "defaults-pair-06-sealed", "tps": 22.0}
+{"process": 61, "label": "defaults-pair-07-sealed", "tps": 22.0}
+{"process": 62, "label": "defaults-pair-07-direct", "tps": 20.0}
+{"process": 63, "label": "defaults-pair-08-sealed", "tps": 22.0}
+{"process": 64, "label": "defaults-pair-08-direct", "tps": 20.0}
+{"process": 65, "label": "defaults-pair-09-direct", "tps": 20.0}
+{"process": 66, "label": "defaults-pair-09-sealed", "tps": 22.0}
+{"process": 67, "label": "manual-pair-00-sealed", "tps": 22.0}
+{"process": 68, "label": "manual-pair-00-direct", "tps": 22.0}
+{"process": 69, "label": "manual-pair-01-sealed", "tps": 22.0}
+{"process": 70, "label": "manual-pair-01-direct", "tps": 22.0}
+{"process": 71, "label": "manual-pair-02-direct", "tps": 22.0}
+{"process": 72, "label": "manual-pair-02-sealed", "tps": 22.0}
+{"process": 73, "label": "manual-pair-03-sealed", "tps": 22.0}
+{"process": 74, "label": "manual-pair-03-direct", "tps": 22.0}
+{"process": 75, "label": "manual-pair-04-direct", "tps": 22.0}
+{"process": 76, "label": "manual-pair-04-sealed", "tps": 22.0}
+{"process": 77, "label": "manual-pair-05-direct", "tps": 22.0}
+{"process": 78, "label": "manual-pair-05-sealed", "tps": 22.0}
+{"process": 79, "label": "manual-pair-06-direct", "tps": 22.0}
+{"process": 80, "label": "manual-pair-06-sealed", "tps": 22.0}
+{"process": 81, "label": "manual-pair-07-sealed", "tps": 22.0}
+{"process": 82, "label": "manual-pair-07-direct", "tps": 22.0}
+{"process": 83, "label": "manual-pair-08-sealed", "tps": 22.0}
+{"process": 84, "label": "manual-pair-08-direct", "tps": 22.0}
+{"process": 85, "label": "manual-pair-09-direct", "tps": 22.0}
+{"process": 86, "label": "manual-pair-09-sealed", "tps": 22.0}
+___ test_native_exception_retains_attempt_identity_and_terminal_report[os] ____
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1326/test_native_exception_retains_0')
+failure = 'os'
+
+    @pytest.mark.parametrize('failure',['os','timeout','verification'])
+    def test_native_exception_retains_attempt_identity_and_terminal_report(tmp_path,failure):
+        import subprocess
+        from test_compiler_pipeline import FakeRunner
+        from test_compiler_refinement import setup_execution
+        from test_compiler_stock_discovery import FixtureEligibility,HOST
+        inputs,old,store,runner,pending=setup_execution(tmp_path)
+        class BrokenRunner(FakeRunner):
+            def run_once(self,*args,**kwargs):
+                outcome=super().run_once(*args,**kwargs)
+                if failure=='timeout':raise subprocess.TimeoutExpired('owned-server',30)
+                if failure=='os':raise OSError('post-native artifact error')
+                (kwargs['output_dir']/'completion.json').write_text('{}')
+                return outcome
+        report=api().execute_utility(inputs,store,BrokenRunner(store),tmp_path/'utility',
+            source_repository=tmp_path,host_capture=lambda:deepcopy(HOST),registry=FixtureEligibility(),
+            default_source_proof={'scope':'synthetic test fixture'},include_product=False)
+        assert report['status']=='VALIDATION-STOP'
+>       assert len(report['attempts'])==1 and len(report['outcomes'])==1
+                   ^^^^^^^^^^^^^^^^^^
+E       KeyError: 'attempts'
+
+tests\test_compiler_stock_utility.py:192: KeyError
+_ test_native_exception_retains_attempt_identity_and_terminal_report[timeout] _
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1326/test_native_exception_retains_1')
+failure = 'timeout'
+
+    @pytest.mark.parametrize('failure',['os','timeout','verification'])
+    def test_native_exception_retains_attempt_identity_and_terminal_report(tmp_path,failure):
+        import subprocess
+        from test_compiler_pipeline import FakeRunner
+        from test_compiler_refinement import setup_execution
+        from test_compiler_stock_discovery import FixtureEligibility,HOST
+        inputs,old,store,runner,pending=setup_execution(tmp_path)
+        class BrokenRunner(FakeRunner):
+            def run_once(self,*args,**kwargs):
+                outcome=super().run_once(*args,**kwargs)
+                if failure=='timeout':raise subprocess.TimeoutExpired('owned-server',30)
+                if failure=='os':raise OSError('post-native artifact error')
+                (kwargs['output_dir']/'completion.json').write_text('{}')
+                return outcome
+>       report=api().execute_utility(inputs,store,BrokenRunner(store),tmp_path/'utility',
+            source_repository=tmp_path,host_capture=lambda:deepcopy(HOST),registry=FixtureEligibility(),
+            default_source_proof={'scope':'synthetic test fixture'},include_product=False)
+
+tests\test_compiler_stock_utility.py:188: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\benchmark_compiler_stock_utility.py:323: in execute_utility
+    row=collect(f'reference-{n:02}',default.candidate_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts\benchmark_compiler_stock_utility.py:304: in collect
+    outcome=runner.run_once(candidates[cid],inputs.model,inputs.stock,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <test_compiler_stock_utility.test_native_exception_retains_attempt_identity_and_terminal_report.<locals>.BrokenRunner object at 0x0000024AD8288E90>
+args = (CandidatePlan(identities=PlanIdentities(model_sha256='971e2f2e5d702c53889ec5cdfd0dbf4243cdbfedc19317595594a6304a1a92f...c61adb1e9263f78e4f7bace1b955014a2d17872cfe4064d'), manifest_json='{"patches":[]}', dependencies=(), cuda_runtime=None))
+kwargs = {'experiment_context': {'manifest_sha256': '4beffb88a83741d4dbf509597dfd93e50c82e32e14bdb6b3f39b18d484767343'}, 'host_...Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1326/test_native_exception_retains_1/utility/raw/reference-00'), ...}
+outcome = MeasurementOutcome(status='measured', measurement_id='8e648c8a-b024-4b33-b98a-55c01d07972b', reason=None, resolved_pla...k47\\AppData\\Local\\Temp\\pytest-of-Hank47\\pytest-1326\\test_native_exception_retains_1\\utility\\raw\\reference-00')
+
+    def run_once(self,*args,**kwargs):
+        outcome=super().run_once(*args,**kwargs)
+>       if failure=='timeout':raise subprocess.TimeoutExpired('owned-server',30)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       subprocess.TimeoutExpired: Command 'owned-server' timed out after 30 seconds
+
+tests\test_compiler_stock_utility.py:184: TimeoutExpired
+_ test_native_exception_retains_attempt_identity_and_terminal_report[verification] _
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1326/test_native_exception_retains_2')
+failure = 'verification'
+
+    @pytest.mark.parametrize('failure',['os','timeout','verification'])
+    def test_native_exception_retains_attempt_identity_and_terminal_report(tmp_path,failure):
+        import subprocess
+        from test_compiler_pipeline import FakeRunner
+        from test_compiler_refinement import setup_execution
+        from test_compiler_stock_discovery import FixtureEligibility,HOST
+        inputs,old,store,runner,pending=setup_execution(tmp_path)
+        class BrokenRunner(FakeRunner):
+            def run_once(self,*args,**kwargs):
+                outcome=super().run_once(*args,**kwargs)
+                if failure=='timeout':raise subprocess.TimeoutExpired('owned-server',30)
+                if failure=='os':raise OSError('post-native artifact error')
+                (kwargs['output_dir']/'completion.json').write_text('{}')
+                return outcome
+        report=api().execute_utility(inputs,store,BrokenRunner(store),tmp_path/'utility',
+            source_repository=tmp_path,host_capture=lambda:deepcopy(HOST),registry=FixtureEligibility(),
+            default_source_proof={'scope':'synthetic test fixture'},include_product=False)
+        assert report['status']=='VALIDATION-STOP'
+>       assert len(report['attempts'])==1 and len(report['outcomes'])==1
+                   ^^^^^^^^^^^^^^^^^^
+E       KeyError: 'attempts'
+
+tests\test_compiler_stock_utility.py:192: KeyError
+___________ test_live_protocol_accepts_only_registered_q6_workloads ___________
+
+completed = (CompilerInputs(model=ModelIR(schema_version='1.0.0', identity=ArtifactIdentity(path='C:\\Users\\Hank47\\AppData\\Loca...ngs_sha256': 'dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd'}, 'process_affinity_mask': 65535, ...})
+trusted_test_dependencies = None
+
+    def test_live_protocol_accepts_only_registered_q6_workloads(completed,trusted_test_dependencies):
+        from expertflow.compiler.reference import load_reference_workload
+        inputs,store,root,report,host=completed
+        production_scope=trusted_test_dependencies
+>       assert callable(production_scope)
+E       assert False
+E        +  where False = callable(None)
+
+tests\test_compiler_stock_utility.py:202: AssertionError
+_____________ test_reconstruction_rejects_rehashed_protocol_scope _____________
+
+completed = (CompilerInputs(model=ModelIR(schema_version='1.0.0', identity=ArtifactIdentity(path='C:\\Users\\Hank47\\AppData\\Loca...ngs_sha256': 'dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd'}, 'process_affinity_mask': 65535, ...})
+
+    def test_reconstruction_rejects_rehashed_protocol_scope(completed):
+        inputs,store,root,original,host=completed
+        changed=deepcopy(original)
+        changed['manifest']['protocol_scope']={'scope':'different registered workload'}
+        payload=dict(changed['manifest'])
+        payload.pop('manifest_sha256')
+        changed['manifest']['manifest_sha256']=api().canonical_sha256(payload)
+        with pytest.raises(ValueError,match='scope'):
+>           api().reconstruct_utility(changed,store,host_environment=host)
+
+tests\test_compiler_stock_utility.py:224: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\benchmark_compiler_stock_utility.py:237: in reconstruct_utility
+    refs=[take(f'reference-{n:02}',m['default_id']) for n in range(10)]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts\benchmark_compiler_stock_utility.py:237: in <listcomp>
+    refs=[take(f'reference-{n:02}',m['default_id']) for n in range(10)]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts\benchmark_compiler_stock_utility.py:233: in take
+    verified=verify_row(row,candidates[cid],store,m,owners,reference)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+row = {'candidate_id': '1397286fb0279895675a7c8cfb5d8c7fb633638914be12372f8675e6eb48f0ef', 'completion_wall_ms': 100.0, 'decode_tps': 20.0, 'exit_code': 0, ...}
+candidate = CandidatePlan(identities=PlanIdentities(model_sha256='4492f5d72c7ac0a576f73a73fd6628deb274281c785a0f930e45eca14eccb298...teStatus.UNMEASURED: 'unmeasured'>, estimated_decode_tps=None, measurement_ids=(), rejection_reasons=(), validation=())
+store = <expertflow.compiler.evidence.EvidenceStore object at 0x0000024AD9C93410>
+manifest = {'candidates': {'1397286fb0279895675a7c8cfb5d8c7fb633638914be12372f8675e6eb48f0ef': {'estimated_decode_tps': None, 'id..., 'default_controls': [8, 'on'], 'default_id': '1397286fb0279895675a7c8cfb5d8c7fb633638914be12372f8675e6eb48f0ef', ...}
+owners = {'97c7affc7983d11e654830c12cdaf7eaa2a9d3d1baef20559b22252e84260e28'}
+reference = None
+
+    def verify_row(row, candidate, store, manifest, owners, reference=None):
+        mid = row['measurement_id']
+        native = store.verify_measurement(mid)
+        record = store.measurement(mid)
+        if native['measured'] is not True or native['exit_code'] != 0 or any(native['validations'].get(k) is not True for k in ('exact_tokens','memory','cleanup')):
+            raise ValueError('utility requires complete passing native evidence')
+        if record.stage != measurement_stage(row['label'],manifest) or record.numerical_path != 'stock_same_runtime':
+            raise ValueError('utility stage/numerical path mismatch')
+        if native['candidate_id'] != candidate.candidate_id or native['identities'] != canonical_payload(candidate.identities) or native['settings_sha256'] != canonical_sha256(candidate.settings):
+            raise ValueError('utility candidate binding mismatch')
+        if any(canonical_payload(row.get(k)) != canonical_payload(v) for k,v in native.items()):
+            raise ValueError('utility row differs from immutable native evidence')
+        if row['run_wall_seconds'] != native_phase_seconds(store,mid):
+            raise ValueError('native phase wall metric mismatch')
+        if native['owned_run_sha256'] in owners:
+            raise ValueError('utility reused native owner')
+        owners.add(native['owned_run_sha256'])
+        artifacts = {a.role:Path(a.identity.path) for a in record.artifacts}
+        expected_root = Path(manifest['experiment_root'])/'raw'/row['label']
+        if any(p.resolve().parent != expected_root.resolve() for p in artifacts.values()):
+            raise ValueError('utility artifacts outside frozen root')
+        launch = json.loads(artifacts['launch'].read_text())
+        if launch.get('host_environment') != manifest['host_environment'] or launch.get('experiment_context') != {'manifest_sha256':manifest['manifest_sha256']}:
+>           raise ValueError('utility native launch does not bind host/protocol')
+E           ValueError: utility native launch does not bind host/protocol
+
+scripts\benchmark_compiler_stock_utility.py:119: ValueError
+
+During handling of the above exception, another exception occurred:
+
+completed = (CompilerInputs(model=ModelIR(schema_version='1.0.0', identity=ArtifactIdentity(path='C:\\Users\\Hank47\\AppData\\Loca...ngs_sha256': 'dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd'}, 'process_affinity_mask': 65535, ...})
+
+    def test_reconstruction_rejects_rehashed_protocol_scope(completed):
+        inputs,store,root,original,host=completed
+        changed=deepcopy(original)
+        changed['manifest']['protocol_scope']={'scope':'different registered workload'}
+        payload=dict(changed['manifest'])
+        payload.pop('manifest_sha256')
+        changed['manifest']['manifest_sha256']=api().canonical_sha256(payload)
+>       with pytest.raises(ValueError,match='scope'):
+E       AssertionError: Regex pattern did not match.
+E        Regex: 'scope'
+E        Input: 'utility native launch does not bind host/protocol'
+
+tests\test_compiler_stock_utility.py:223: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_compiler_stock_utility.py::test_original_freeze_guards_every_product_and_consumer_launch[0-source]
+FAILED tests/test_compiler_stock_utility.py::test_original_freeze_guards_every_product_and_consumer_launch[3-host]
+FAILED tests/test_compiler_stock_utility.py::test_original_freeze_guards_every_product_and_consumer_launch[20-source]
+FAILED tests/test_compiler_stock_utility.py::test_native_exception_retains_attempt_identity_and_terminal_report[os]
+FAILED tests/test_compiler_stock_utility.py::test_native_exception_retains_attempt_identity_and_terminal_report[timeout]
+FAILED tests/test_compiler_stock_utility.py::test_native_exception_retains_attempt_identity_and_terminal_report[verification]
+FAILED tests/test_compiler_stock_utility.py::test_live_protocol_accepts_only_registered_q6_workloads
+FAILED tests/test_compiler_stock_utility.py::test_reconstruction_rejects_rehashed_protocol_scope
+8 failed, 14 passed in 152.65s (0:02:32)

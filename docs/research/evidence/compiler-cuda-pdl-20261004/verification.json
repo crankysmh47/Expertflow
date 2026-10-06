@@ -1,0 +1,13 @@
+{
+  "status": "VERIFIED-NATIVE-PDL-NO-GO",
+  "native_runs": 20,
+  "unique_owners": 20,
+  "source_commit": "34a19b29dfc1846d86a0ddda5d2411deba7e3fd6",
+  "source_files_checked": 28,
+  "geometric_change_pct": -0.9562071760474429,
+  "ci95_pct": [
+    -1.6383132680181016,
+    -0.23687813272268965
+  ],
+  "accepted_plan_changed": false
+}

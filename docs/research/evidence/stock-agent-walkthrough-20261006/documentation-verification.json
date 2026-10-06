@@ -1,0 +1,13 @@
+{
+  "status": "PASS-DOCUMENTATION-AND-PRESERVATION",
+  "markdown_files": 9,
+  "local_links_checked": 165,
+  "unrelated_sha256": {
+    "docs/evidence/live-cache/r1-mover-result.md": "be4ee698e2771a8fed9e86906d9006da9c30792bf2277376f7ef3abc7aa56161",
+    "docs/evidence/stock-discovery-20261004/search-preview.json": "488d1882dc5e91cbf0f979606e3b42674695badae7301001f5fd6b32c5e013c5",
+    "opencode-session-ses_fc71df774ffe3157nhMVMJn0Uk.md": "ae78baccd45b199480f74c709bd4a81227601cd6da87925720523646f18749a8"
+  },
+  "product_source_changes": false,
+  "test_suite_rerun": false,
+  "validation_and_archive_checks": "Fresh public validation and retained byte/source/inventory checks passed; no product code changed."
+}

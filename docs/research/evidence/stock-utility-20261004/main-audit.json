@@ -1,0 +1,73 @@
+{
+  "actual_native_processes": 106,
+  "audit_scope": "all complete utility/product native records, independent raw timing/statistics/cost, original source/host/context, retained owners and terminal product gate; no consumer after product stop",
+  "auditor_sha256": "55c27cc2055df10e2b73dbc77bb2161a385bf6ecf94aa57cd560482015df2f88",
+  "comparisons": {
+    "defaults": {
+      "ci90_pct": [
+        12.486481038468492,
+        12.943730841506259
+      ],
+      "ci95_pct": [
+        12.452222449356736,
+        12.99340615966718
+      ],
+      "control_cv_pct": 0.32344664438027787,
+      "control_mean_tps": 20.642049223379008,
+      "geometric_change_pct": 12.702874737773401,
+      "selected_cv_pct": 0.24338052074597716,
+      "selected_mean_tps": 23.264135571370744
+    },
+    "manual": {
+      "ci90_pct": [
+        -0.7897460724403225,
+        0.22492362001375427
+      ],
+      "ci95_pct": [
+        -0.9075393580465807,
+        0.3059115296832542
+      ],
+      "control_cv_pct": 1.9174649237776618,
+      "control_mean_tps": 22.25676788278545,
+      "geometric_change_pct": -0.25893313052522327,
+      "selected_cv_pct": 2.0838483559431227,
+      "selected_mean_tps": 22.199771144828976
+    }
+  },
+  "complete_utility_records": 86,
+  "database_sha256": "4ececa55a02151d28db7c72cb551222be7043811049d7642f335366cab0571ad",
+  "max_owned_memory_mib": 3136.66015625,
+  "min_device_free_mib": 10556.02734375,
+  "product_comparison": {
+    "ci90_pct": [
+      0.13362366694938232,
+      2.3424490996053886
+    ],
+    "ci95_pct": [
+      -0.046632853811310875,
+      2.5994098648339388
+    ],
+    "control_cv_pct": 0.6376048106555006,
+    "control_mean_tps": 21.691062732659425,
+    "equivalent": false,
+    "geometric_change_pct": 1.1707411669671663,
+    "reported_status": "INCONCLUSIVE",
+    "selected_cv_pct": 2.5078919836490514,
+    "selected_mean_tps": 21.950690759193655,
+    "variance_pass": true
+  },
+  "report_sha256": "1475cb9830b4e572004b5a7b4bd60fe0c2e7e7b3877391a5f3a6105bd7b8c128",
+  "status": "AUDITED",
+  "terminal_status": "PRODUCT-VALIDATION-STOP",
+  "tuning_cost": {
+    "automatic": {
+      "native_evaluations": 18,
+      "native_phase_seconds": 740.3239268998383
+    },
+    "manual": {
+      "native_evaluations": 18,
+      "native_phase_seconds": 772.0556542001059
+    }
+  },
+  "utility_verdict": "PASS-STOCK-UTILITY"
+}

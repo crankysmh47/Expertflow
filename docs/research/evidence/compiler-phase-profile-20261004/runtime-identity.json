@@ -1,0 +1,19 @@
+{
+  "fork": {
+    "binary_dir": "C:/models/expertflow/builds/llama-phase-profile-20261004/bin",
+    "cuda_runtime": "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.8/bin/cudart64_12.dll",
+    "manifest_path": "C:/sem4/expertflow/configs/compiler/runtime-phase-profile.json"
+  },
+  "model": {
+    "path": "C:/models/gemma-4-26b-a4b-q6/google_gemma-4-26B-A4B-it-Q6_K.gguf",
+    "sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba",
+    "size_bytes": 22862575520
+  },
+  "schema_version": "1.0.0",
+  "source_path": "C:/models/expertflow/worktrees/llama-phase-profile-20261004",
+  "stock": {
+    "binary_dir": "C:/models/expertflow/builds/llama-a7312ae-cuda128-clean/bin",
+    "cuda_runtime": "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.8/bin/cudart64_12.dll",
+    "manifest_path": "C:/sem4/expertflow/configs/compiler/runtime-stock.json"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "blockers": [
+    "counters merge warmup/prefill/decode",
+    "CPU expert decode_calls is an invalid tensor-shape phase heuristic",
+    "input_boundary_us includes synchronization and routing, not pure transfer time",
+    "forced per-split synchronization perturbs execution"
+  ],
+  "diagnostic_only": true,
+  "mean_gpu_utilization_pct": 16.32105802063579,
+  "mean_owned_cpu_busy_cores": 7.597985187566296,
+  "native_profile_tps_diagnostic_only": [
+    24.084121319998005,
+    22.627090000664673,
+    22.866507917126416
+  ],
+  "optimization_selected": null,
+  "product_plan_published": false,
+  "runs": [
+    {
+      "all_input_boundary_share_pct": 26.906092254808538,
+      "backend_buckets_us": {
+        "CPU": {
+          "completion_us": 41147,
+          "compute_submit_us": 15312549,
+          "input_boundary_us": 4026352,
+          "total_us": 19380048
+        },
+        "CUDA0": {
+          "completion_us": 4380310,
+          "compute_submit_us": 543366,
+          "input_boundary_us": 3437811,
+          "total_us": 8361487
+        }
+      },
+      "calls_per_expert_split": 515,
+      "cpu_backend_total_share_pct": 69.85932105054749,
+      "cpu_compute_share_pct": 55.19719438740502,
+      "cpu_expert_compute_us": 15309066,
+      "cuda_completion_share_pct": 15.789717475979609,
+      "generated_tokens": 512,
+      "prompt_tokens": 39,
+      "reported_expert_decode_calls": 0,
+      "run": 1,
+      "total_graph_us": 27741535
+    },
+    {
+      "all_input_boundary_share_pct": 38.8584664897645,
+      "backend_buckets_us": {
+        "CPU": {
+          "completion_us": 41556,
+          "compute_submit_us": 16789824,
+          "input_boundary_us": 7799519,
+          "total_us": 24630899
+        },
+        "CUDA0": {
+          "completion_us": 4459244,
+          "compute_submit_us": 478583,
+          "input_boundary_us": 6035888,
+          "total_us": 10973715
+        }
+      },
+      "calls_per_expert_split": 515,
+      "cpu_backend_total_share_pct": 69.17895248070938,
+      "cpu_compute_share_pct": 47.156315189935775,
+      "cpu_expert_compute_us": 16786460,
+      "cuda_completion_share_pct": 12.52434305284141,
+      "generated_tokens": 512,
+      "prompt_tokens": 39,
+      "reported_expert_decode_calls": 0,
+      "run": 2,
+      "total_graph_us": 35604614
+    },
+    {
+      "all_input_boundary_share_pct": 40.61322360756442,
+      "backend_buckets_us": {
+        "CPU": {
+          "completion_us": 40686,
+          "compute_submit_us": 16657197,
+          "input_boundary_us": 8418622,
+          "total_us": 25116505
+        },
+        "CUDA0": {
+          "completion_us": 4463314,
+          "compute_submit_us": 479162,
+          "input_boundary_us": 6380712,
+          "total_us": 11323188
+        }
+      },
+      "calls_per_expert_split": 515,
+      "cpu_backend_total_share_pct": 68.92622558592906,
+      "cpu_compute_share_pct": 45.71168313629865,
+      "cpu_expert_compute_us": 16653970,
+      "cuda_completion_share_pct": 12.248495068276235,
+      "generated_tokens": 512,
+      "prompt_tokens": 39,
+      "reported_expert_decode_calls": 0,
+      "run": 3,
+      "total_graph_us": 36439693
+    }
+  ],
+  "status": "PHASE-ATTRIBUTION-BLOCKED"
+}

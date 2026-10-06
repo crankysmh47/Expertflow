@@ -1,0 +1,11 @@
+{
+  "status": "UNSUPPORTED",
+  "model_processes": 0,
+  "search": [],
+  "pairs": [],
+  "baseline_retained": true,
+  "registration_sha256": "cb531042068e9254a227bb9cf34187a4195e8825d6331dd478a277ba9a4c73b4",
+  "reason": "No reviewed exact scheduling policy matches this model/runtime/placement. Run or benchmark the untuned baseline; no optimization processes were launched.",
+  "model_attempts": 0,
+  "wall_seconds": 0.0
+}

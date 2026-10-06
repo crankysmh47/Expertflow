@@ -1,0 +1,20 @@
+{
+  "status": "PRESERVED-READONLY-INTEGRATION-STOP",
+  "helper_source_commit": "c41672eb92464ee5181f050b4a922c58a81ded12",
+  "original_root": "C:\\models\\expertflow\\runs\\stock-product-qualification-20261006",
+  "files": {
+    "verification.json": "a877089845af12d7ae5663d93b666125c04f45b24c58976ff8396f8176bb4940",
+    "q6-stdout.json": "34c34c3aa788ae57aabd19c345f0ea6dd233cdd01c0f855400c61a0c99d06341",
+    "q6-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "q6_public_validation": "PASS-STOCK-REPEATABILITY-TRANSFER",
+  "q6_validation_seconds": 222.841496800007,
+  "helper_wall_seconds": 222.85367639999458,
+  "overall_fresh_validation": false,
+  "wider_validator_started": false,
+  "additional_native_calls": 0,
+  "original_files": 41,
+  "history_pins": 6,
+  "wider_source_files": 63,
+  "reason": "Embedded registration object was passed as a filename; Windows 206 prevented wider subprocess creation. No benchmark sample or model process was launched."
+}

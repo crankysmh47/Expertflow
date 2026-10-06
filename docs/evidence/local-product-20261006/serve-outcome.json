@@ -1,0 +1,32 @@
+{
+  "status": "PASS-CHAT-SERVE-OPERATIONAL",
+  "wall_seconds": 3.735000000000582,
+  "model_processes": 1,
+  "response_excerpt": "Hello! It's a pleasure to assist you.",
+  "usage": {
+    "completion_tokens": 12,
+    "prompt_tokens": 49,
+    "total_tokens": 61,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "ui_bytes": 12638,
+  "status_check": {
+    "status": "RUNNING",
+    "pid": 26304,
+    "port": 50259,
+    "session_directory": "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\granite-serve-01\\session"
+  },
+  "stop": {
+    "status": "STOPPED",
+    "pid": 26304,
+    "reason": "Owned process identity verified; model/runtime files retained."
+  },
+  "cleanup_receipt": {
+    "pid": 26304,
+    "exit_code": 0,
+    "cleanup": true,
+    "wall_seconds": 1.5
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "status": "AUDIT-EVIDENCE-VERIFIED",
+  "upstream_revision": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+  "upstream_objects": 16,
+  "verified_operation_excerpts": 17,
+  "wider_source_files_unchanged": 63,
+  "wider_native_starts": 344,
+  "wider_report_sha256": "4a74d814daceb07be0d7d3319127e513003dcee9f49f306c4c6fd452745762c9",
+  "original_frozen_files": 41,
+  "original_history_pins": 6,
+  "original_native_starts": 148,
+  "original_report_sha256": "464defd327d43c4f510f3768266d1dacaefc77d25c239afefef5cc4226c1d0c5",
+  "additional_native_calls": 0,
+  "limits": "Verifies source/shape provenance, not new arithmetic equivalence or performance."
+}

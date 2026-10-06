@@ -13,7 +13,7 @@ from typing import Any, Mapping
 
 
 ROOT = Path(__file__).resolve().parents[3]
-EVIDENCE_ROOT = ROOT / "docs" / "evidence" / "product-release"
+EVIDENCE_ROOT = ROOT / "docs" / "research" / "evidence" / "product-release"
 DEFAULT_DEPLOYMENT = EVIDENCE_ROOT / "deployment-result.json"
 RELEASE_STATE = EVIDENCE_ROOT / "release-state.json"
 
@@ -44,6 +44,8 @@ def verify_release_evidence() -> tuple[bool, list[dict[str, object]]]:
     checks = []
     for item in state["evidence"]:
         path = ROOT / item["path"]
+        if not path.is_file() and item["path"].startswith("docs/evidence/"):
+            path = ROOT / "docs/research/evidence" / item["path"][len("docs/evidence/"): ]
         actual = sha256_canonical_json(path) if path.is_file() else None
         checks.append({
             "path": item["path"],
@@ -112,11 +114,11 @@ def profile_report(model: Path) -> dict[str, object]:
         "routed_layer_count": 30,
         "experts_per_layer": state["placement"]["experts_per_layer"],
         "expert_bank_bytes_per_layer": state["placement"]["shadow_bytes_per_layer"],
-        "cpu_expert_bottleneck_evidence": "docs/evidence/q6-placement-final/layer-profile.json",
+        "cpu_expert_bottleneck_evidence": "docs/research/evidence/q6-placement-final/layer-profile.json",
         "recommended_static_layers": state["placement"]["layers"],
         "recommended_profile": "max-performance",
         "available_vram_mib": 16311,
-        "evidence_source": "docs/evidence/q6-placement-final/results.json",
+        "evidence_source": "docs/research/evidence/q6-placement-final/results.json",
     }
 
 
@@ -192,7 +194,7 @@ def doctor_report(model: Path | None, runtime: Path | None, server: Path | None)
     free = shutil.disk_usage(ROOT).free
     checks.append({"name": "free_disk", "status": "pass" if free >= 1024 ** 3 else "warning", "free_bytes": free, "next_command": None if free >= 1024 ** 3 else "Free at least 1 GiB for release outputs."})
     writable = os.access(EVIDENCE_ROOT, os.W_OK)
-    checks.append({"name": "writable_evidence_directory", "status": "pass" if writable else "failure", "path": str(EVIDENCE_ROOT), "next_command": None if writable else "Grant write access to docs/evidence/product-release."})
+    checks.append({"name": "writable_evidence_directory", "status": "pass" if writable else "failure", "path": str(EVIDENCE_ROOT), "next_command": None if writable else "Grant write access to docs/research/evidence/product-release."})
     deployment_ok = all(load_json(path).get("schema_version") == "1.0.0" for path in (ROOT / "deployments").glob("max-*.json"))
     checks.append({"name": "deployment_schema", "status": "pass" if deployment_ok else "failure", "version": "1.0.0", "next_command": None if deployment_ok else "Restore the measured deployment manifests."})
     port_free = False

@@ -1,0 +1,1 @@
+{"status": "PASS-OPERATIONAL-SOAK", "reason": null, "model_processes": 1, "generation_requests": 6, "actual_prompt_tokens": 8192, "wall_seconds": 3.764999999999418, "cleanup": true}

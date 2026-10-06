@@ -13,6 +13,12 @@ from typing import Any
 
 
 CUDA_MEMCPY_HOST_TO_DEVICE = 1
+CUDA_MEMCPY_DEVICE_TO_HOST = 2
+CUDA_HOST_ALLOC_DEFAULT = 0x00
+CUDA_HOST_ALLOC_WRITE_COMBINED = 0x04
+CUDA_ERROR_NOT_READY = 600
+
+_STAGING_MODES = frozenset({"pageable", "pinned", "pinned_wc"})
 
 
 def summarize_latency_samples(
@@ -95,6 +101,11 @@ class CudaRuntime:
         self._cuda_free_host = self._bind(
             "cudaFreeHost", ctypes.c_int, [void_pointer]
         )
+        self._cuda_host_alloc = self._bind(
+            "cudaHostAlloc",
+            ctypes.c_int,
+            [pointer_to_void, ctypes.c_size_t, ctypes.c_uint],
+        )
         self._cuda_memcpy_async = self._bind(
             "cudaMemcpyAsync",
             ctypes.c_int,
@@ -125,6 +136,50 @@ class CudaRuntime:
             ctypes.c_int,
             [ctypes.POINTER(ctypes.c_float), void_pointer, void_pointer],
         )
+        self._cuda_event_query = self._bind(
+            "cudaEventQuery", ctypes.c_int, [void_pointer]
+        )
+        self._cuda_stream_create = self._bind(
+            "cudaStreamCreate", ctypes.c_int, [pointer_to_void]
+        )
+        self._cuda_stream_destroy = self._bind(
+            "cudaStreamDestroy", ctypes.c_int, [void_pointer]
+        )
+        self._cuda_stream_synchronize = self._bind(
+            "cudaStreamSynchronize", ctypes.c_int, [void_pointer]
+        )
+
+    def _allocate_host(
+        self, payload_bytes: int, source_memory: str
+    ) -> tuple[ctypes.c_void_p, Any | None]:
+        pointer = ctypes.c_void_p()
+        if source_memory == "pinned":
+            self._check(
+                self._cuda_malloc_host(ctypes.byref(pointer), payload_bytes),
+                "cudaMallocHost",
+            )
+            return pointer, None
+        if source_memory == "pinned_wc":
+            self._check(
+                self._cuda_host_alloc(
+                    ctypes.byref(pointer),
+                    payload_bytes,
+                    CUDA_HOST_ALLOC_WRITE_COMBINED,
+                ),
+                "cudaHostAlloc(write-combined)",
+            )
+            return pointer, None
+        owner = (ctypes.c_ubyte * payload_bytes)()
+        return ctypes.cast(owner, ctypes.c_void_p), owner
+
+    def _release_host(self, pointer: ctypes.c_void_p) -> None:
+        if pointer.value:
+            self._cuda_free_host(pointer)
+
+    def _fill_source(
+        self, pointer: ctypes.c_void_p, payload_bytes: int
+    ) -> None:
+        ctypes.memset(pointer, 0xA5, payload_bytes)
 
     def _check(self, code: int, operation: str) -> None:
         if code == 0:
@@ -395,6 +450,382 @@ class CudaRuntime:
                 self._cuda_free(device_pointer)
             del pageable_owner
 
+    def measure_contiguous_batch(
+        self,
+        slot_bytes: int,
+        slot_count: int,
+        *,
+        source_memory: str,
+        batches: int,
+        warmup_copies: int,
+    ) -> dict[str, list[float]]:
+        """Compare one contiguous N-slot copy against N separate copies."""
+
+        if (
+            source_memory not in _STAGING_MODES
+            or slot_bytes <= 0
+            or slot_count <= 0
+            or batches <= 0
+            or warmup_copies < 0
+        ):
+            raise ValueError("contiguous-batch measurement contract is invalid")
+
+        total_bytes = slot_bytes * slot_count
+        device_pointer = ctypes.c_void_p()
+        host_pointer = ctypes.c_void_p()
+        start_event = ctypes.c_void_p()
+        end_event = ctypes.c_void_p()
+        pageable_owner: Any | None = None
+        try:
+            self._check(
+                self._cuda_malloc(ctypes.byref(device_pointer), total_bytes),
+                "cudaMalloc",
+            )
+            host_pointer, pageable_owner = self._allocate_host(
+                total_bytes, source_memory
+            )
+            self._fill_source(host_pointer, total_bytes)
+            self._check(
+                self._cuda_event_create(ctypes.byref(start_event)),
+                "cudaEventCreate(start)",
+            )
+            self._check(
+                self._cuda_event_create(ctypes.byref(end_event)),
+                "cudaEventCreate(end)",
+            )
+
+            def timed_run(copy_action: Any) -> float:
+                self._check(
+                    self._cuda_event_record(start_event, None),
+                    "cudaEventRecord(start)",
+                )
+                copy_action()
+                self._check(
+                    self._cuda_event_record(end_event, None),
+                    "cudaEventRecord(end)",
+                )
+                self._check(
+                    self._cuda_event_synchronize(end_event),
+                    "cudaEventSynchronize(end)",
+                )
+                event_elapsed_ms = ctypes.c_float()
+                self._check(
+                    self._cuda_event_elapsed_time(
+                        ctypes.byref(event_elapsed_ms),
+                        start_event,
+                        end_event,
+                    ),
+                    "cudaEventElapsedTime",
+                )
+                return event_elapsed_ms.value
+
+            def destination_at(offset: int) -> ctypes.c_void_p:
+                return ctypes.c_void_p(device_pointer.value + offset)
+
+            def source_at(offset: int) -> ctypes.c_void_p:
+                return ctypes.c_void_p(host_pointer.value + offset)
+
+            for _ in range(warmup_copies):
+                self._copy(destination_at(0), source_at(0), total_bytes)
+            self._check(
+                self._cuda_event_record(end_event, None),
+                "cudaEventRecord(warmup)",
+            )
+            self._check(
+                self._cuda_event_synchronize(end_event),
+                "cudaEventSynchronize(warmup)",
+            )
+
+            batched_samples: list[float] = []
+            individual_samples: list[float] = []
+            for _ in range(batches):
+                batched_samples.append(
+                    timed_run(
+                        lambda: self._copy(
+                            destination_at(0), source_at(0), total_bytes
+                        )
+                    )
+                )
+                individual_samples.append(
+                    timed_run(
+                        lambda: [
+                            self._copy(
+                                destination_at(index * slot_bytes),
+                                source_at(index * slot_bytes),
+                                slot_bytes,
+                            )
+                            for index in range(slot_count)
+                        ]
+                    )
+                )
+            return {
+                "batched": batched_samples,
+                "individual": individual_samples,
+            }
+        finally:
+            if end_event.value:
+                self._cuda_event_destroy(end_event)
+            if start_event.value:
+                self._cuda_event_destroy(start_event)
+            self._release_host(host_pointer)
+            if device_pointer.value:
+                self._cuda_free(device_pointer)
+            del pageable_owner
+
+    def measure_queue_depth(
+        self,
+        slot_bytes: int,
+        depth: int,
+        *,
+        source_memory: str,
+        batches: int,
+        warmup_copies: int,
+    ) -> tuple[list[float], list[float]]:
+        """Enqueue depth copies without syncing and time each with events."""
+
+        if (
+            source_memory not in _STAGING_MODES
+            or slot_bytes <= 0
+            or depth <= 0
+            or batches <= 0
+            or warmup_copies < 0
+        ):
+            raise ValueError("queue-depth measurement contract is invalid")
+
+        device_pointer = ctypes.c_void_p()
+        host_pointer = ctypes.c_void_p()
+        markers: list[ctypes.c_void_p] = []
+        pageable_owner: Any | None = None
+        try:
+            self._check(
+                self._cuda_malloc(ctypes.byref(device_pointer), slot_bytes),
+                "cudaMalloc",
+            )
+            host_pointer, pageable_owner = self._allocate_host(
+                slot_bytes, source_memory
+            )
+            self._fill_source(host_pointer, slot_bytes)
+            for index in range(depth + 1):
+                marker = ctypes.c_void_p()
+                self._check(
+                    self._cuda_event_create(ctypes.byref(marker)),
+                    f"cudaEventCreate(marker-{index})",
+                )
+                markers.append(marker)
+            for _ in range(warmup_copies):
+                self._copy(device_pointer, host_pointer, slot_bytes)
+            self._check(
+                self._cuda_event_record(markers[depth], None),
+                "cudaEventRecord(warmup)",
+            )
+            self._check(
+                self._cuda_event_synchronize(markers[depth]),
+                "cudaEventSynchronize(warmup)",
+            )
+
+            per_copy_samples: list[float] = []
+            batch_wall_samples: list[float] = []
+            elapsed_ms = ctypes.c_float()
+            for _ in range(batches):
+                wall_started = time.perf_counter_ns()
+                self._check(
+                    self._cuda_event_record(markers[0], None),
+                    "cudaEventRecord(queue-start)",
+                )
+                for index in range(depth):
+                    self._copy(device_pointer, host_pointer, slot_bytes)
+                    self._check(
+                        self._cuda_event_record(markers[index + 1], None),
+                        f"cudaEventRecord(marker-{index + 1})",
+                    )
+                self._check(
+                    self._cuda_event_synchronize(markers[depth]),
+                    "cudaEventSynchronize(queue-end)",
+                )
+                batch_wall_samples.append(
+                    (time.perf_counter_ns() - wall_started) / 1_000_000
+                )
+                for index in range(depth):
+                    self._check(
+                        self._cuda_event_elapsed_time(
+                            ctypes.byref(elapsed_ms),
+                            markers[index],
+                            markers[index + 1],
+                        ),
+                        "cudaEventElapsedTime",
+                    )
+                    per_copy_samples.append(elapsed_ms.value)
+            return per_copy_samples, batch_wall_samples
+        finally:
+            for marker in reversed(markers):
+                if marker.value:
+                    self._cuda_event_destroy(marker)
+            self._release_host(host_pointer)
+            if device_pointer.value:
+                self._cuda_free(device_pointer)
+            del pageable_owner
+
+    def measure_ready_latency(
+        self,
+        slot_bytes: int,
+        *,
+        source_memory: str,
+        background_bytes: int,
+        background_copies: int,
+        samples: int,
+        warmup_copies: int,
+    ) -> list[float]:
+        """Measure enqueue-to-ready latency while a copy queue may be busy."""
+
+        if (
+            source_memory not in _STAGING_MODES
+            or slot_bytes <= 0
+            or background_bytes < 0
+            or background_copies < 0
+            or samples <= 0
+            or warmup_copies < 0
+        ):
+            raise ValueError("ready-latency measurement contract is invalid")
+        if (background_bytes > 0) != (background_copies > 0):
+            raise ValueError(
+                "background_bytes and background_copies must both be positive or both zero"
+            )
+
+        probe_device = ctypes.c_void_p()
+        probe_host = ctypes.c_void_p()
+        load_device = ctypes.c_void_p()
+        load_host = ctypes.c_void_p()
+        ready_event = ctypes.c_void_p()
+        load_stream = ctypes.c_void_p()
+        probe_stream = ctypes.c_void_p()
+        probe_pageable: Any | None = None
+        load_pageable: Any | None = None
+        try:
+            self._check(
+                self._cuda_malloc(ctypes.byref(probe_device), slot_bytes),
+                "cudaMalloc(probe)",
+            )
+            probe_host, probe_pageable = self._allocate_host(
+                slot_bytes, source_memory
+            )
+            self._fill_source(probe_host, slot_bytes)
+            self._check(
+                self._cuda_event_create(ctypes.byref(ready_event)),
+                "cudaEventCreate(ready)",
+            )
+            self._check(
+                self._cuda_stream_create(ctypes.byref(load_stream)),
+                "cudaStreamCreate(load)",
+            )
+            self._check(
+                self._cuda_stream_create(ctypes.byref(probe_stream)),
+                "cudaStreamCreate(probe)",
+            )
+            if background_bytes > 0:
+                self._check(
+                    self._cuda_malloc(
+                        ctypes.byref(load_device), background_bytes
+                    ),
+                    "cudaMalloc(load)",
+                )
+                load_host, load_pageable = self._allocate_host(
+                    background_bytes, "pinned"
+                )
+                self._fill_source(load_host, background_bytes)
+                for _ in range(warmup_copies):
+                    self._check(
+                        self._cuda_memcpy_async(
+                            load_device,
+                            load_host,
+                            background_bytes,
+                            CUDA_MEMCPY_HOST_TO_DEVICE,
+                            load_stream,
+                        ),
+                        "cudaMemcpyAsync(load-warmup)",
+                    )
+                self._check(
+                    self._cuda_stream_synchronize(load_stream),
+                    "cudaStreamSynchronize(load-warmup)",
+                )
+            else:
+                for _ in range(warmup_copies):
+                    self._check(
+                        self._cuda_memcpy_async(
+                            probe_device,
+                            probe_host,
+                            slot_bytes,
+                            CUDA_MEMCPY_HOST_TO_DEVICE,
+                            probe_stream,
+                        ),
+                        "cudaMemcpyAsync(probe-warmup)",
+                    )
+                self._check(
+                    self._cuda_stream_synchronize(probe_stream),
+                    "cudaStreamSynchronize(probe-warmup)",
+                )
+
+            ready_samples: list[float] = []
+            for _ in range(samples):
+                for _ in range(background_copies):
+                    self._check(
+                        self._cuda_memcpy_async(
+                            load_device,
+                            load_host,
+                            background_bytes,
+                            CUDA_MEMCPY_HOST_TO_DEVICE,
+                            load_stream,
+                        ),
+                        "cudaMemcpyAsync(load)",
+                    )
+                enqueue_started = time.perf_counter_ns()
+                self._check(
+                    self._cuda_memcpy_async(
+                        probe_device,
+                        probe_host,
+                        slot_bytes,
+                        CUDA_MEMCPY_HOST_TO_DEVICE,
+                        probe_stream,
+                    ),
+                    "cudaMemcpyAsync(probe)",
+                )
+                self._check(
+                    self._cuda_event_record(ready_event, probe_stream),
+                    "cudaEventRecord(ready)",
+                )
+                while True:
+                    code = self._cuda_event_query(ready_event)
+                    if code == 0:
+                        break
+                    if code != CUDA_ERROR_NOT_READY:
+                        self._check(code, "cudaEventQuery(ready)")
+                ready_samples.append(
+                    (time.perf_counter_ns() - enqueue_started) / 1_000_000
+                )
+                self._check(
+                    self._cuda_stream_synchronize(load_stream),
+                    "cudaStreamSynchronize(load-drain)",
+                )
+                self._check(
+                    self._cuda_stream_synchronize(probe_stream),
+                    "cudaStreamSynchronize(probe-drain)",
+                )
+            return ready_samples
+        finally:
+            if probe_stream.value:
+                self._cuda_stream_destroy(probe_stream)
+            if load_stream.value:
+                self._cuda_stream_destroy(load_stream)
+            if ready_event.value:
+                self._cuda_event_destroy(ready_event)
+            if load_device.value:
+                self._cuda_free(load_device)
+            self._release_host(load_host)
+            self._release_host(probe_host)
+            if probe_device.value:
+                self._cuda_free(probe_device)
+            del load_pageable
+            del probe_pageable
+
     def _copy(
         self,
         destination: ctypes.c_void_p,
@@ -529,6 +960,214 @@ def benchmark_cuda_transfers(
             ),
         },
         "runs": runs,
+    }
+
+
+def _validated_mover_contract(
+    *,
+    slot_bytes_values: tuple[int, ...],
+    slot_counts: tuple[int, ...],
+    queue_depths: tuple[int, ...],
+    batches: int,
+    warmup_copies: int,
+    ready_samples: int,
+    background_bytes: int,
+    background_copies: int,
+    staging_mode: str,
+    device: int,
+) -> None:
+    if (
+        not slot_bytes_values
+        or any(size <= 0 for size in slot_bytes_values)
+        or not slot_counts
+        or any(count <= 0 for count in slot_counts)
+        or not queue_depths
+        or any(depth <= 0 for depth in queue_depths)
+        or batches <= 0
+        or warmup_copies < 0
+        or ready_samples <= 0
+        or background_bytes < 0
+        or background_copies < 0
+        or device < 0
+    ):
+        raise ValueError("mover benchmark iteration contract is invalid")
+    if staging_mode not in _STAGING_MODES:
+        raise ValueError("staging_mode must be pageable, pinned, or pinned_wc")
+    if (background_bytes > 0) != (background_copies > 0):
+        raise ValueError(
+            "background_bytes and background_copies must both be positive or both zero"
+        )
+
+
+def benchmark_mover(
+    runtime: Path,
+    *,
+    slot_bytes_values: tuple[int, ...],
+    slot_counts: tuple[int, ...],
+    queue_depths: tuple[int, ...],
+    batches: int,
+    warmup_copies: int,
+    ready_samples: int,
+    background_bytes: int,
+    background_copies: int,
+    staging_mode: str = "pinned",
+    device: int = 0,
+) -> dict[str, object]:
+    """Measure contiguous batching, queue depth, and ready-latency modes."""
+
+    _validated_mover_contract(
+        slot_bytes_values=slot_bytes_values,
+        slot_counts=slot_counts,
+        queue_depths=queue_depths,
+        batches=batches,
+        warmup_copies=warmup_copies,
+        ready_samples=ready_samples,
+        background_bytes=background_bytes,
+        background_copies=background_copies,
+        staging_mode=staging_mode,
+        device=device,
+    )
+
+    resolved_runtime = runtime.resolve()
+    cuda = CudaRuntime(resolved_runtime, device=device)
+
+    contiguous_runs: list[dict[str, object]] = []
+    for size in slot_bytes_values:
+        for count in slot_counts:
+            samples = cuda.measure_contiguous_batch(
+                size,
+                count,
+                source_memory=staging_mode,
+                batches=batches,
+                warmup_copies=warmup_copies,
+            )
+            batched_summary = summarize_latency_samples(
+                size * count, samples["batched"]
+            )
+            individual_summary = summarize_latency_samples(
+                size * count, samples["individual"]
+            )
+            contiguous_runs.append(
+                {
+                    "slot_bytes": size,
+                    "slot_count": count,
+                    "payload_bytes": size * count,
+                    "source_memory": staging_mode,
+                    "batched": {
+                        **batched_summary,
+                        "raw_cuda_event_ms_per_copy": samples["batched"],
+                    },
+                    "individual": {
+                        **individual_summary,
+                        "raw_cuda_event_ms_per_copy": samples["individual"],
+                    },
+                    "speedup_ratio": (
+                        individual_summary["mean_ms"]
+                        / batched_summary["mean_ms"]
+                    ),
+                }
+            )
+
+    queue_runs: list[dict[str, object]] = []
+    for size in slot_bytes_values:
+        for depth in queue_depths:
+            per_copy, batch_wall = cuda.measure_queue_depth(
+                size,
+                depth,
+                source_memory=staging_mode,
+                batches=batches,
+                warmup_copies=warmup_copies,
+            )
+            queue_runs.append(
+                {
+                    "slot_bytes": size,
+                    "queue_depth": depth,
+                    "source_memory": staging_mode,
+                    "per_copy_event": summarize_latency_samples(size, per_copy),
+                    "batch_wall_total": summarize_latency_samples(
+                        size * depth, batch_wall
+                    ),
+                    "raw_per_copy_event_ms": per_copy,
+                    "raw_batch_wall_ms": batch_wall,
+                }
+            )
+
+    ready_runs: list[dict[str, object]] = []
+    for size in slot_bytes_values:
+        idle = cuda.measure_ready_latency(
+            size,
+            source_memory=staging_mode,
+            background_bytes=0,
+            background_copies=0,
+            samples=ready_samples,
+            warmup_copies=warmup_copies,
+        )
+        ready_runs.append(
+            {
+                "slot_bytes": size,
+                "load": "idle",
+                "host_ready_latency": summarize_latency_samples(1, [
+                    max(sample, 1e-9) for sample in idle
+                ]),
+                "raw_host_ready_ms": idle,
+            }
+        )
+        if background_bytes > 0:
+            loaded = cuda.measure_ready_latency(
+                size,
+                source_memory=staging_mode,
+                background_bytes=background_bytes,
+                background_copies=background_copies,
+                samples=ready_samples,
+                warmup_copies=warmup_copies,
+            )
+            ready_runs.append(
+                {
+                    "slot_bytes": size,
+                    "load": "copy_engine_busy",
+                    "host_ready_latency": summarize_latency_samples(1, [
+                        max(sample, 1e-9) for sample in loaded
+                    ]),
+                    "raw_host_ready_ms": loaded,
+                }
+            )
+
+    return {
+        "schema_version": "1.0.0",
+        "measurement_kind": "measured",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "runtime": {
+            "path": str(resolved_runtime),
+            "sha256": _sha256(resolved_runtime),
+            "versions": cuda.versions(),
+        },
+        "device_index": device,
+        "contract": {
+            "slot_bytes_values": list(slot_bytes_values),
+            "slot_counts": list(slot_counts),
+            "queue_depths": list(queue_depths),
+            "batches": batches,
+            "warmup_copies": warmup_copies,
+            "ready_samples": ready_samples,
+            "background_bytes": background_bytes,
+            "background_copies": background_copies,
+            "staging_mode": staging_mode,
+            "contiguous_sample_unit": (
+                "one CUDA-event-bracketed copy round; batched moves all slots "
+                "in one memcpy, individual issues one memcpy per slot"
+            ),
+            "queue_sample_unit": (
+                "per-copy CUDA-event delta between consecutive markers inside "
+                "one unsynchronized enqueue burst"
+            ),
+            "ready_sample_unit": (
+                "host wall time from cudaMemcpyAsync enqueue until "
+                "cudaEventQuery first reports completion"
+            ),
+        },
+        "contiguous_batch": contiguous_runs,
+        "queue_depth": queue_runs,
+        "ready_latency": ready_runs,
     }
 
 

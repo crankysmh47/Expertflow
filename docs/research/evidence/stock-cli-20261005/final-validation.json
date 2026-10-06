@@ -1,0 +1,208 @@
+{
+  "adapter_source_files": {
+    "src/expertflow/cli/main.py": "fabac691932deefce770ccf2b435e326d2e454b1dc82f6cfad95c0af1c62f35d",
+    "src/expertflow/stock/__init__.py": "2e52dea33f694cc6d95c5d55ca0e76227820bfe441abe31e9f5b9d8bcfa974cf",
+    "src/expertflow/stock/cli.py": "6dc5b88b7800e723b0a339e03b67bdf5d7eb8961c4df2242e782ee60f66bca4f",
+    "src/expertflow/stock/coverage.py": "f1662b0d2f194e72320e2a0ed74c1fe481d428b2b4256057fca57be3cacda723",
+    "src/expertflow/stock/readers.py": "27e227293c3e39d4f48885ae564dc97ec4943e825e424d665ed39a18b6f4570c"
+  },
+  "additional_native_calls": 0,
+  "command": [
+    "C:\\sem4\\expertflow\\.venv\\Scripts\\expertflow.exe",
+    "stock",
+    "--project",
+    "C:\\sem4\\expertflow",
+    "repeatability",
+    "validate",
+    "--output-dir",
+    "C:\\models\\expertflow\\runs\\compiler-stock-repeatability-20261004"
+  ],
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-05T14:26:01.680554+00:00",
+  "frozen_files_unchanged": 41,
+  "historical_pins_unchanged": 6,
+  "native_start_count": 148,
+  "original_cli_wall_seconds": 2191.483952,
+  "performance_scope": "One same-host read-only invocation; timing comparison is descriptive, not a controlled performance study.",
+  "result": {
+    "action": "validate",
+    "decision": {
+      "cost": {
+        "collector_seconds": 11717.25,
+        "retained_attempts": 148
+      },
+      "coverage": {
+        "host_environment_sha256": "428ac2955dab54e43f491e258e455b57d20ccf5223c0d294eda14d320962ff2c",
+        "inputs": {
+          "main_inputs": {
+            "family": "gemma4",
+            "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+            "model_ir_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+            "quantization": "Q6_K",
+            "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+            "weights_sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba",
+            "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+          },
+          "transfer_inputs": {
+            "family": "gemma4",
+            "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+            "model_ir_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+            "quantization": "Q6_K",
+            "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+            "weights_sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba",
+            "workload_sha256": "0313be3e18e8796c0df45bc7981531641f93b31b787c99ce31c7f2a993fb3c68"
+          }
+        },
+        "maximum_native_processes": 148,
+        "protocol_version": "paced-stock-repeatability-v1"
+      },
+      "evidence_verified": true,
+      "global_optimum_established": false,
+      "scope_note": "Only the reported model/workload/runtime/host and controls are covered.",
+      "serving_throughput_established": false,
+      "statistics": {
+        "main_blocks": [
+          {
+            "status": "PASS-MEASUREMENT"
+          },
+          {
+            "status": "PASS-MEASUREMENT"
+          }
+        ],
+        "transfer_utility": {
+          "automatic_evaluations": 18,
+          "cost_unit": "independent native candidate evaluations",
+          "gain": {
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "ci90_pct": [
+              8.166427415356313,
+              10.44003788867641
+            ],
+            "ci95_pct": [
+              7.923766295439615,
+              10.6129831270326
+            ],
+            "direct_cv_pct": 3.026418873241894,
+            "direct_mean_tps": 22.00342916717969,
+            "direct_tps": [
+              21.434584056663326,
+              21.402615382878995,
+              21.544214387487255,
+              21.77776025348632,
+              21.266956503715676,
+              22.03985675642786,
+              22.386216806312355,
+              23.448358676719355,
+              22.332276533950427,
+              22.401452314155343
+            ],
+            "geometric_change_pct": 9.375596996174446,
+            "method": "percentile bootstrap of ten paired mean log ratios",
+            "one_sided95_lower_pct": 8.166427415356313,
+            "paired_log_ratios": [
+              0.10324315850467425,
+              0.11728770557231627,
+              0.10866201401939346,
+              0.08956954648627402,
+              0.10016282584319658,
+              0.08208682549510016,
+              0.0843690364522045,
+              0.03925624354358259,
+              0.08799691730472858,
+              0.08354189603381679
+            ],
+            "sealed_cv_pct": 1.2833750073828514,
+            "sealed_mean_tps": 24.058411041404725,
+            "sealed_tps": [
+              23.76583044518924,
+              24.066018729849116,
+              24.017177911232604,
+              23.818410300680913,
+              23.507449152515136,
+              23.92536780580078,
+              24.356883141002758,
+              24.38715949369018,
+              24.386505536641724,
+              24.353307897444797
+            ]
+          },
+          "manual_equivalence": {
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "ci90_pct": [
+              -0.3890232988562566,
+              0.6452811605106383
+            ],
+            "ci95_pct": [
+              -0.4633246635235617,
+              0.765431027023789
+            ],
+            "direct_cv_pct": 1.0183483769887793,
+            "direct_mean_tps": 24.09388194063321,
+            "direct_tps": [
+              24.32771754265535,
+              24.141229967376336,
+              24.220678385249002,
+              24.283394422037905,
+              24.17182009556367,
+              23.481417301658613,
+              24.204438630756798,
+              23.989893132991487,
+              23.94453361029177,
+              24.17369631775115
+            ],
+            "geometric_change_pct": 0.10065073269763031,
+            "method": "percentile bootstrap of ten paired mean log ratios",
+            "one_sided95_lower_pct": -0.3890232988562566,
+            "paired_log_ratios": [
+              -0.00271450718916455,
+              -0.01473493307931939,
+              0.0014065923358947963,
+              -0.004497381832837988,
+              -0.0030759910825337577,
+              0.023685465587390375,
+              0.0013940501380300674,
+              -0.004978934792133405,
+              0.012270317187315527,
+              0.0013053341083923975
+            ],
+            "sealed_cv_pct": 0.6984294141287388,
+            "sealed_mean_tps": 24.117526571959836,
+            "sealed_tps": [
+              24.261769327437218,
+              23.78811848527297,
+              24.254770977404267,
+              24.174427940728272,
+              24.09758202885168,
+              24.04422446692381,
+              24.238204361863705,
+              23.87074587875302,
+              24.240150580572912,
+              24.20527167179051
+            ]
+          },
+          "manual_evaluations": 18,
+          "native_evaluation_cost_pass": true,
+          "status": "PASS-STOCK-UTILITY",
+          "wall_time_scope": "native load/tokenize/completion/teardown phases reported separately; no lower wall-time or human-effort claim"
+        }
+      },
+      "utility_gain_established": true
+    },
+    "reason": null,
+    "report": "C:\\models\\expertflow\\runs\\compiler-stock-repeatability-20261004\\report.json",
+    "status": "PASS-STOCK-REPEATABILITY-TRANSFER",
+    "validation": {
+      "artifact_and_record_checks": "repeated normally",
+      "cache_lifetime": "this invocation",
+      "database_readers": 5,
+      "model_digest_cache_entries": 5,
+      "native_calls": 0
+    },
+    "workflow": "repeatability"
+  },
+  "started_at_utc": "2026-10-05T14:22:20.549140+00:00",
+  "study_report_sha256": "464defd327d43c4f510f3768266d1dacaefc77d25c239afefef5cc4226c1d0c5",
+  "wall_seconds": 221.15222709998488
+}

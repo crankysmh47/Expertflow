@@ -1,0 +1,111 @@
+{
+  "all_raw_hashes_and_phase_analyses_reverified": true,
+  "applicable_source_contracts": {
+    "passed": 8
+  },
+  "control_database_unchanged": true,
+  "cpu_graph_smoke": "compiled expert-shaped 8-row graph; explicit warmup/prefill/decode counts and arithmetic passed",
+  "current_analysis_source_sha256": "a885bbdc4dcbb15a28ead874b9ed45d3094aaa2c0b9ea6f7889163d305adb207",
+  "default_off_smoke": "passed; profile file unchanged and no profiling-enabled log",
+  "files": [
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase-profile-20261004\\controls.sqlite3",
+      "sha256": "2b980b011c161d4ae0bcd7f00375d5932ffd9b12f88108b2251793c971f9db6f",
+      "size_bytes": 57344
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase-profile-20261004\\profiles.sqlite3",
+      "sha256": "1e22a3012fa607d4b14aea7bd7e71650363ee0b74fa49ea7377f2dae4349d0bf",
+      "size_bytes": 86016
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase-profile-20261004\\controls-stdout.log",
+      "sha256": "81114d8790d1ec118ba1979c0ac2d659d106d0ac7f91dd36e34edd411d5a8a20",
+      "size_bytes": 56
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase-profile-20261004\\profiles-stdout.log",
+      "sha256": "e6acf4717c6b9beaf5ce35773bae0f9b96e9e078dc1943f83f08e8e7024198a3",
+      "size_bytes": 61
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase-profile-20261004\\controls-exit.txt",
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "size_bytes": 3
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase-profile-20261004\\profiles-exit.txt",
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "size_bytes": 3
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase-profile-20261004\\controls-frozen.json",
+      "sha256": "f283b87bb25522eef30292b9edfb86fa90c5c503b86b04aa4effb25407038beb",
+      "size_bytes": 1424
+    },
+    {
+      "path": "C:\\models\\expertflow\\runs\\compiler-phase-profile-20261004\\profiles-frozen.json",
+      "sha256": "bdf27a7845a66f84200c22051b072a610f9225825a9d4b78a0217b924e8e88c4",
+      "size_bytes": 4376
+    },
+    {
+      "path": ".superpowers\\sdd\\phase-profile-cpu.log",
+      "sha256": "55f5c2bd94e0c7b933206c748d3e91cb4e7ac326752a32083fcbed853457d14e",
+      "size_bytes": 898
+    },
+    {
+      "path": ".superpowers\\sdd\\phase-profile-build.log",
+      "sha256": "78144940c93dc4df737df3522b7eba9434a4511a0d67adcd598230db900cb9f2",
+      "size_bytes": 2849
+    },
+    {
+      "path": ".superpowers\\sdd\\phase-profile-review.md",
+      "sha256": "9860dcf238bf164260ce56b4bfe8ec2617e010eb35a4465106a8959956e54890",
+      "size_bytes": 3772
+    },
+    {
+      "path": ".superpowers\\sdd\\phase-review-red.log",
+      "sha256": "9f587aef383f7f0f016e90294222d0e9cd482dbec7bd7f61a8360efd4f73e157",
+      "size_bytes": 4040
+    },
+    {
+      "path": ".superpowers\\sdd\\phase-marker-red.log",
+      "sha256": "c114d864a20a63772eccc3db685dfc0eddd3e7c7d7698060bc5cf925de8cf210",
+      "size_bytes": 1048
+    },
+    {
+      "path": ".superpowers\\sdd\\phase-default-off.log",
+      "sha256": "6a970d1ff8c600a1097a524b084f85ec00c6890f24da69b4bf4e107001d3c0a4",
+      "size_bytes": 35
+    },
+    {
+      "path": ".superpowers\\sdd\\phase-native-smoke-build.log",
+      "sha256": "6c40fe3d4196b541aeb7797b847af2805746c825a24306ac08b126a1bdd5db8f",
+      "size_bytes": 324
+    },
+    {
+      "path": ".superpowers\\sdd\\phase-profile-cpu-final.log",
+      "sha256": "91f3e73ad13d90171310ad15af79d03f4d5332404a8c9a4cb26f95893bf3634f",
+      "size_bytes": 898
+    }
+  ],
+  "frozen_kernel_DLLs_preserved": true,
+  "full_cpu_suite": {
+    "passed": 519,
+    "seconds": 53.3,
+    "skipped": 7
+  },
+  "native_kernel_source_unchanged": true,
+  "native_profile_children_exit_code": 0,
+  "native_source_commit": "92811cbc13ff93b66e2162ebdcfbf7f2e8d59f9e",
+  "optimization_run": false,
+  "post_collection_guard": "Reject a nonempty phase with zero declared splits; regression RED then GREEN; all three analyses recomputed unchanged. No native source/binary changes or reruns.",
+  "product_plan_published": false,
+  "profile_count": 3,
+  "retained_control_count": 2,
+  "retry_count": 0,
+  "review": "one fresh review; split coverage, empty-phase accounting, batch-owner marker findings reproduced and fixed",
+  "source_commit": "566a8d7fe8988e7d649003ec9a414a1b669c2a63",
+  "tokens_memory_cleanup_passed": true,
+  "unique_owned_runs": 5
+}

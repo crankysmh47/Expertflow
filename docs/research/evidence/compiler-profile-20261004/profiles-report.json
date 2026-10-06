@@ -1,0 +1,508 @@
+{
+  "candidate": {
+    "estimated_decode_tps": null,
+    "identities": {
+      "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+      "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+      "runtime_sha256": "ce82fcecf4e27e3e460c0e4b523083abe84efcd8a7a8d9c9bdde39638627af7b",
+      "workload": {
+        "approximate_quality_budget": null,
+        "batch_size": 2048,
+        "bootstrap_samples": 10000,
+        "bootstrap_seed": 20261003,
+        "cache_prompt": false,
+        "completion_timeout_seconds": 300,
+        "concurrency": 1,
+        "confirmation_pairs": 10,
+        "context_size": 4096,
+        "cuda_graphs": "on",
+        "health_timeout_seconds": 180,
+        "ignore_eos": true,
+        "kv_type_k": "f16",
+        "kv_type_v": "f16",
+        "maximum_cv_pct": 10.0,
+        "measured_runs": 3,
+        "microbatch_size": 512,
+        "minimum_vram_reserve_mib": 256,
+        "objective": "decode_tps",
+        "policy": "exact",
+        "predict_tokens": 512,
+        "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+        "replay_tolerance_pct": 2.0,
+        "runtime_interface": "server_completion",
+        "schema_version": "1.0.0",
+        "seed": 42,
+        "temperature": 0.0,
+        "threads": 12,
+        "warmup_runs": 1
+      },
+      "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+    },
+    "measurement_ids": [],
+    "rejection_reasons": [],
+    "settings": {
+      "batch_size": 2048,
+      "cpu_moe": true,
+      "cuda_graphs": "on",
+      "gpu_layers": 99,
+      "kv_type_k": "f16",
+      "kv_type_v": "f16",
+      "microbatch_size": 512,
+      "static": null
+    },
+    "status": "unmeasured",
+    "validation": []
+  },
+  "controls_database_sha256": "1684d87d98565c96d06a508d148ee1976cdc69883c7100c122dfdfbe1e89f9bd",
+  "diagnostic_only": true,
+  "fixed_profile_budget": 3,
+  "inputs": {
+    "hardware_preflight": {
+      "gpu_fields": [
+        "GPU-949ee8ea-765f-abfd-fd90-16ad3923af6e",
+        "NVIDIA GeForce RTX 5060 Ti",
+        "12.0",
+        "616.92",
+        "16311",
+        "13884",
+        "2"
+      ]
+    },
+    "input_hashes": {
+      "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q6-model.json": "1676efffaba68987183f4a9b9e7218d56cb9595e782d1306b51aabfe19d12d1c",
+      "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q6-single-request.json": "66e57710f995fae21b94d71241a4b6dfee0dcdf3064878db40ceeb1e61a68bb7",
+      "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\inputs\\hardware.json": "391249a0aa9c61ec234501b7853e0f00b1336c1601af7b9e24e3cb885b3582dd",
+      "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\inputs\\runtime-identity.json": "665357b25342b634ea028f7683ba23bd768d7c25313f61efa91624ce616067c0",
+      "C:\\sem4\\expertflow\\docs\\evidence\\q6-download\\tensor-inventory.json": "22e51eae9787a400490ad98542b70e56af15c87fbe765e1346fb24233244e8b2"
+    },
+    "source_contracts": {
+      "exit_code": 0,
+      "output": "......                                                                   [100%]\n6 passed in 0.08s\n"
+    }
+  },
+  "phase_limitation": "native counters aggregate initialization, warmup, prefill and decode; decode_calls is a tensor-shape heuristic, not a trustworthy phase label",
+  "profile_policy": "isolated throwaway lower_launch override permits only the frozen fork profiling output path; measured=False; ordinary product verifier rejects profiling controls",
+  "runs": [
+    {
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 134,
+          "max": 140.12183192530014,
+          "mean": 135.87621418694772,
+          "min": 125.09675077146487
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 134,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 134,
+          "max": 92.80255082205234,
+          "mean": 58.66152725453568,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 134,
+          "max": 32,
+          "mean": 18.78358208955224,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 134,
+          "max": 13801,
+          "mean": 11974.134328358208,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 134,
+          "max": 27,
+          "mean": 15.014925373134329,
+          "min": 3
+        },
+        "gpu_power_mw": {
+          "count": 134,
+          "max": 49070,
+          "mean": 38763.23880597015,
+          "min": 14664
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 134,
+          "max": 2820,
+          "mean": 2313.507462686567,
+          "min": 555
+        },
+        "gpu_temperature_c": {
+          "count": 134,
+          "max": 46,
+          "mean": 43.507462686567166,
+          "min": 40
+        },
+        "measurement_samples": 134,
+        "minimum_device_free_bytes": 11267039232,
+        "owned_cpu_busy_cores_mean": 8.799177826277843,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6915.726499995799,
+          "teardown_ms": 2038.3172999863746,
+          "tokenize_ms": 14.949699994758703
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "outcome": {
+        "measurement_id": "62cef6a5-57d5-4e12-b325-13b51c45bb51",
+        "output_dir": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\profiles\\run-1",
+        "reason": null,
+        "resolved_placement": null,
+        "status": "measured"
+      },
+      "profile": {
+        "path": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\profiles\\run-1\\split-profile.json",
+        "sha256": "d2ef23e21268aa04321ed0ac4500e3b7db584d5dac4d47a65c020ceae3f720b6",
+        "size_bytes": 16379
+      },
+      "verified": {
+        "candidate_id": "dad4555b97c2e5b1e5dd0d451b296c6b5a10bc91d01fb473687fe97e8e6039fc",
+        "completion_wall_ms": 27025.7643,
+        "decode_tps": 24.084121319998005,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "ce82fcecf4e27e3e460c0e4b523083abe84efcd8a7a8d9c9bdde39638627af7b",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": false,
+        "numerical_path": "fork_off_vs_pristine",
+        "owned_run_sha256": "1d22e5866baeec89a200dffc45dc5886ef6967273860d7df85869a8d3362bba0",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "synchronized-profile-1",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    },
+    {
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 171,
+          "max": 140.1997710864589,
+          "mean": 132.9552665396637,
+          "min": 120.59349877665151
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 171,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 171,
+          "max": 92.88302824391023,
+          "mean": 48.99333367176462,
+          "min": 1.0601481236133248
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 171,
+          "max": 33,
+          "mean": 15.321637426900585,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 171,
+          "max": 13801,
+          "mean": 11096.906432748538,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 171,
+          "max": 25,
+          "mean": 12.67251461988304,
+          "min": 1
+        },
+        "gpu_power_mw": {
+          "count": 171,
+          "max": 49281,
+          "mean": 33860.4269005848,
+          "min": 14202
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 171,
+          "max": 2820,
+          "mean": 1941.4035087719299,
+          "min": 352
+        },
+        "gpu_temperature_c": {
+          "count": 171,
+          "max": 47,
+          "mean": 44.31578947368421,
+          "min": 41
+        },
+        "measurement_samples": 171,
+        "minimum_device_free_bytes": 11264417792,
+        "owned_cpu_busy_cores_mean": 7.151904892321668,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6086.321700000553,
+          "teardown_ms": 1934.9432999879355,
+          "tokenize_ms": 14.581199997337535
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "outcome": {
+        "measurement_id": "b7ca148f-839c-44f2-94ea-3897ae8cff43",
+        "output_dir": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\profiles\\run-2",
+        "reason": null,
+        "resolved_placement": null,
+        "status": "measured"
+      },
+      "profile": {
+        "path": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\profiles\\run-2\\split-profile.json",
+        "sha256": "9439e9eafdf53e4ec57ae6735f8fe017879fdd323ccc8c0719da8589bb7c475f",
+        "size_bytes": 16405
+      },
+      "verified": {
+        "candidate_id": "dad4555b97c2e5b1e5dd0d451b296c6b5a10bc91d01fb473687fe97e8e6039fc",
+        "completion_wall_ms": 34679.3617,
+        "decode_tps": 22.627090000664673,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "ce82fcecf4e27e3e460c0e4b523083abe84efcd8a7a8d9c9bdde39638627af7b",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": false,
+        "numerical_path": "fork_off_vs_pristine",
+        "owned_run_sha256": "bbc8223909f92a43055caf95c665188084962ed5399f4024a60026ede1e84242",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "synchronized-profile-2",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    },
+    {
+      "diagnostics": {
+        "actual_offloaded_layers": null,
+        "cpu_performance_pct": {
+          "count": 176,
+          "max": 140.83087651160739,
+          "mean": 132.8242958215627,
+          "min": 118.65291479820628
+        },
+        "cpu_reported_frequency_mhz": {
+          "count": 176,
+          "max": 3800.0,
+          "mean": 3800.0,
+          "min": 3800.0
+        },
+        "cpu_system_utilization_pct": {
+          "count": 176,
+          "max": 86.59339301587737,
+          "mean": 46.619103812327744,
+          "min": 0.0
+        },
+        "cpu_temperature_c": null,
+        "cpu_temperature_reason": "no trusted CPU sensor",
+        "gpu_gpu_utilization_pct": {
+          "count": 176,
+          "max": 33,
+          "mean": 14.857954545454545,
+          "min": 1
+        },
+        "gpu_memory_clock_mhz": {
+          "count": 176,
+          "max": 13801,
+          "mean": 10787.363636363636,
+          "min": 7001
+        },
+        "gpu_memory_utilization_pct": {
+          "count": 176,
+          "max": 30,
+          "mean": 12.488636363636363,
+          "min": 2
+        },
+        "gpu_power_mw": {
+          "count": 176,
+          "max": 49407,
+          "mean": 33526.16477272727,
+          "min": 14279
+        },
+        "gpu_sm_clock_mhz": {
+          "count": 176,
+          "max": 2827,
+          "mean": 1899.215909090909,
+          "min": 352
+        },
+        "gpu_temperature_c": {
+          "count": 176,
+          "max": 48,
+          "mean": 45.14204545454545,
+          "min": 42
+        },
+        "measurement_samples": 176,
+        "minimum_device_free_bytes": 11264417792,
+        "owned_cpu_busy_cores_mean": 6.842872844099377,
+        "peak_owned_bytes": 3289026560,
+        "phase_wall_ms": {
+          "load_health_ms": 6090.9562000015285,
+          "teardown_ms": 1950.6316000042716,
+          "tokenize_ms": 1.0335999977542087
+        },
+        "placement_note": "unknown; owned bytes are diagnostic only"
+      },
+      "outcome": {
+        "measurement_id": "4b18f51d-d168-4466-8045-0840f27a1a3d",
+        "output_dir": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\profiles\\run-3",
+        "reason": null,
+        "resolved_placement": null,
+        "status": "measured"
+      },
+      "profile": {
+        "path": "C:\\models\\expertflow\\runs\\compiler-profile-20261004\\profiles\\run-3\\split-profile.json",
+        "sha256": "da988ead1e028d6a6379abb51f54c40c59f1b67e88fb41e1bf9afe8f72db539b",
+        "size_bytes": 16408
+      },
+      "verified": {
+        "candidate_id": "dad4555b97c2e5b1e5dd0d451b296c6b5a10bc91d01fb473687fe97e8e6039fc",
+        "completion_wall_ms": 35480.6306,
+        "decode_tps": 22.866507917126416,
+        "exit_code": 0,
+        "generated_tokens_sha256": "4bd2ef0662738bc6feca3b27ad3199d8f299c836a519b172553148a2b26b8f91",
+        "identities": {
+          "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+          "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+          "runtime_sha256": "ce82fcecf4e27e3e460c0e4b523083abe84efcd8a7a8d9c9bdde39638627af7b",
+          "workload": {
+            "approximate_quality_budget": null,
+            "batch_size": 2048,
+            "bootstrap_samples": 10000,
+            "bootstrap_seed": 20261003,
+            "cache_prompt": false,
+            "completion_timeout_seconds": 300,
+            "concurrency": 1,
+            "confirmation_pairs": 10,
+            "context_size": 4096,
+            "cuda_graphs": "on",
+            "health_timeout_seconds": 180,
+            "ignore_eos": true,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16",
+            "maximum_cv_pct": 10.0,
+            "measured_runs": 3,
+            "microbatch_size": 512,
+            "minimum_vram_reserve_mib": 256,
+            "objective": "decode_tps",
+            "policy": "exact",
+            "predict_tokens": 512,
+            "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+            "replay_tolerance_pct": 2.0,
+            "runtime_interface": "server_completion",
+            "schema_version": "1.0.0",
+            "seed": 42,
+            "temperature": 0.0,
+            "threads": 12,
+            "warmup_runs": 1
+          },
+          "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+        },
+        "measured": false,
+        "numerical_path": "fork_off_vs_pristine",
+        "owned_run_sha256": "5d846d22dbfbd3ec0cd062a18f9b1904920f7eb4ff3398bbaa181773ab8562e8",
+        "prompt_tokens_sha256": "7232741c02d5dbe421d19f66dbc835fdb5a65fd80d3eb1ac8baa3ae244d1ec7d",
+        "settings_sha256": "4f8da719322b21c1da452a6ee7e9996d47b019b99aeae2e95e6fae224fcc69e3",
+        "stage": "synchronized-profile-3",
+        "validations": {
+          "cleanup": true,
+          "exact_tokens": true,
+          "memory": true
+        }
+      }
+    }
+  ],
+  "source_commit": "c879e52c33f1ea35000f5edd02b64bcc13ce6f79",
+  "source_files": {
+    "C:\\sem4\\expertflow\\.superpowers\\profiling-spike-20261004\\console_stop.py": "12b48c5ef3b8479839f351b9a041433ba878dda5add7f035b2f0df408f2da89a",
+    "C:\\sem4\\expertflow\\.superpowers\\profiling-spike-20261004\\profiles.py": "052998e642279325f4874668821aa1cde7f8ca954cbbdcdb891b78a30dba51e3",
+    "src\\expertflow\\compiler\\runner.py": "9a326df6a5de6ccd5df5613b3e6fd42ec41649819ceaccee46fe290d970974c1"
+  },
+  "status": "PROFILED-AGGREGATE"
+}

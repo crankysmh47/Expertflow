@@ -1,0 +1,10 @@
+{
+  "all_registered_scope_and_candidate_fields_match": true,
+  "native_calls": 0,
+  "normalized_model_ir_sha256": "8d4ee3922cd016d14661d6cec521b0745bf9856dd1f8e16e2e43e68989c92827",
+  "only_model_path_changed": true,
+  "raw_weight_sha256": "4566cfa92be10888026bd3663c83d64e91cd91f874dfb3607596587ff1c8f67f",
+  "registered_model_ir_sha256": "8d4ee3922cd016d14661d6cec521b0745bf9856dd1f8e16e2e43e68989c92827",
+  "same_physical_file": true,
+  "status": "PASS"
+}

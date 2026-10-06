@@ -1,0 +1,20 @@
+{
+  "evidence_kind": "AGENT-WALKTHROUGH",
+  "agent": "/root/luna_stock_walkthrough",
+  "requested_model": "gpt-6-luna",
+  "read_only": true,
+  "status_command_completed": true,
+  "elapsed_seconds_reported_approximately": 120,
+  "elapsed_time_kind": "Agent estimate; not a measured human task time",
+  "task_findings": {
+    "1": "Gemma Q6 held-out gain +9.38% over resolved eight-thread/graphs-on defaults; CI95 [+7.92%, +10.61%]; selected twelve threads/graphs on; equivalent manual grid with 18 evaluations each.",
+    "2": "Q4 prose +1.03%, Q4 code +0.78%, Granite Q6 prose -0.02%, Granite Q6 code -0.23%; all fail the fixed utility gate. Positive Q4 gains remain below 5%; Granite selected defaults.",
+    "3": "Status checks pinned archived report digests; verify freshly reconstructs native evidence and checks current model/runtime/host identities without launching models.",
+    "4": "verification.json retains decisions, costs, exit codes and hashes. Only validators that start have per-study stdout/stderr logs; a Q6 stop means no wider logs. Parent performs the fresh validation.",
+    "5": "Evidence is limited to pinned model artifacts/workloads on one Windows/NVIDIA host/build. Preserve failures and resolve environmental blockers before fresh read-only reconstruction; no native replacement samples, threshold changes or closed-budget reuse."
+  },
+  "documentation_observation": "No-retry language in native collection protocols does not prohibit read-only reconstruction into a new directory; GPU-block troubleshooting should make that distinction clear.",
+  "independent_user_acceptance_established": false,
+  "human_task_timings_available": false,
+  "portability_or_demand_established": false
+}

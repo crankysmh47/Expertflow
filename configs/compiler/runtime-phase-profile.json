@@ -1,0 +1,69 @@
+{
+  "binaries": {
+    "llama-cli.exe": "1bfa855786c527e3c3ca0c2c49eddac21aa976f08adec9b90bf2ba99fb435466",
+    "llama-server.exe": "315d9495f0ea642ed60b13443d760b3b315da5cdff5b05f2b874b289f661d7ff"
+  },
+  "build": {
+    "compiler": "MSVC v143 14.39.33519",
+    "configuration": "Release",
+    "cuda": "12.8.93",
+    "flags": [
+      "CMAKE_BUILD_TYPE=Release",
+      "GGML_CUDA=ON",
+      "GGML_NATIVE=ON",
+      "GGML_BACKEND_DL=OFF",
+      "EXPERTFLOW_FROZEN_BACKEND_BUILD=C:/models/expertflow/builds/llama-q6-placement-final"
+    ],
+    "generator": "Ninja"
+  },
+  "capabilities": {
+    "max_static_layers": 12,
+    "max_static_shadows": 48
+  },
+  "cuda_runtime_sha256": "c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344",
+  "dependencies": {
+    "ggml-base.dll": "64f176aa9fd6d2b661102a77a791ee020219b60e8a728a8fe1e10928a8010693",
+    "ggml-cpu.dll": "7197380061b7f25b7c4863ba0b5ca636a38c28d98fd59cd8a9e927c61894ddd1",
+    "ggml-cuda.dll": "703a0de235ee9eafa7ab8181ee50899e3524c3436691a77946b6c55bd312cbcd",
+    "ggml.dll": "c5b808b4edd15aad728d6ab475d294ceea478c211784ffdf73b4095d6375a2d5",
+    "llama-cli-impl.dll": "0b327037b60ddf39caac0b1e3f4e10d056211696fc749292cab63f424254e3eb",
+    "llama-common.dll": "2e8f4970e3b065adf1ad59abc66b7b53f4b6f71ab2fb419813abf2a8be0e48af",
+    "llama-server-impl.dll": "c4c25d3a2466f3e6af691b2d142fdb6169d43190dbe8654c2578a0d7eda3c7be",
+    "llama.dll": "996f578794176ac5f01bf27f903a0d8f04273d04f379429aa0790d2fd63740f3",
+    "mtmd.dll": "6e97771d1a74a40022050256eea4769f6285bfe56fd2b06749e51110c68d08bc"
+  },
+  "expertflow_commit": "92811cbc13ff93b66e2162ebdcfbf7f2e8d59f9e",
+  "launcher_abi": "1.0.0",
+  "patches": [
+    {
+      "path": "release/expertflow-build-week/patches/llama.cpp/0001-feat-restore-disabled-static-CUDA-expert-island.patch",
+      "sha256": "14b3042c8626a1a99e9d63b2dcc3ea88a92168e505672fa56ee3f987215f87f8"
+    },
+    {
+      "path": "release/expertflow-build-week/patches/llama.cpp/0002-feat-capture-exact-Q1b-token-NLL.patch",
+      "sha256": "38c690098d907b7228e3180516c2f541dd07944ece452824b02964ff09711ecb"
+    },
+    {
+      "path": "release/expertflow-build-week/patches/llama.cpp/0003-feat-bound-static-islands-to-four-layers.patch",
+      "sha256": "3278c45582df1cd6af4c3dac41756484269619a639903d78dd7b926dd3610e7c"
+    },
+    {
+      "path": "release/expertflow-build-week/patches/llama.cpp/0004-feat-add-bounded-Q6-split-profiler.patch",
+      "sha256": "58211a1e6bc82c76705b1f3af6628f98fdd0c2eea7e7278915ae222da1bfe461"
+    },
+    {
+      "path": "release/expertflow-build-week/patches/llama.cpp/0005-feat-expand-bounded-static-island-capacity.patch",
+      "sha256": "27f31cbce0369847dc616f6c5ca9ad96ed488a7014300a4b54825d59f20bf52d"
+    },
+    {
+      "path": "release/expertflow-build-week/patches/llama.cpp/0006-perf-precompute-static-layer-membership.patch",
+      "sha256": "b95870aa8937506b6476af7291eceec7987cb59c3c54671ddc358ffaf87a1c4e"
+    },
+    {
+      "path": "release/expertflow-build-week/patches/llama.cpp/0007-feat-phase-aware-diagnostic-profile.patch",
+      "sha256": "56992c43e9730aff85b8b3c6756d3cc2ac554491ff259316666d370f35a6b87d"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "upstream_commit": "a7312ae94f801fc9c6786dc56e38df57b964f697"
+}

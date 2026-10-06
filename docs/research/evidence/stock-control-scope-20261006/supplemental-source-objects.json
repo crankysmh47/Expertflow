@@ -1,0 +1,22 @@
+{
+  "upstream_revision": "a7312ae94f801fc9c6786dc56e38df57b964f697",
+  "source_objects": {
+    "src/llama-model-loader.cpp": {
+      "git_blob": "28f8bb7934bbc807a08dc13ad58724ec77281903",
+      "sha256": "c647b037af76291989082ad739d881a70a48ab2caf4cdc35bdc8e96223335cb5",
+      "size_bytes": 73711
+    },
+    "common/common.cpp": {
+      "git_blob": "8f13217ab442a34b85bcf5dd44300d88275f15fd",
+      "sha256": "4b041bb61251f7cf6583afeeeb449150d87cdbabb4580cb7ad45bb3420f9d141",
+      "size_bytes": 72992
+    },
+    "tools/server/server-context.cpp": {
+      "git_blob": "5fadc1c8d98ec1ce0d7d56e5a81e8fd2fa614ccc",
+      "sha256": "f9871b95385aa1cc8d196c08f5c2ef51087ac5a1d06d6766826b09303cf160d2",
+      "size_bytes": 217279
+    }
+  },
+  "archive_sha256": "c44e92324f95a7f764da7f65954da1440609dd7517b432c4df6c42682dd0e21d",
+  "additional_native_calls": 0
+}

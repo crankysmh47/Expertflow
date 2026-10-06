@@ -1,0 +1,401 @@
+{
+  "bootstrap_samples": 10000,
+  "candidates": {
+    "prefetch": {
+      "estimated_decode_tps": null,
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "a71ceefcfb464562f02f888490386430c90dccef916d13498cf12520c672b296",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measurement_ids": [],
+      "rejection_reasons": [],
+      "settings": {
+        "batch_size": 2048,
+        "cpu_moe": true,
+        "cuda_graphs": "on",
+        "gpu_layers": 99,
+        "kv_type_k": "f16",
+        "kv_type_v": "f16",
+        "microbatch_size": 512,
+        "static": null
+      },
+      "status": "unmeasured",
+      "validation": []
+    },
+    "stock": {
+      "estimated_decode_tps": null,
+      "identities": {
+        "hardware_sha256": "3fe606ad77d7cca4ef54dacfe795ffacc90f1aa15e629a09e3ecc59185ac4b00",
+        "model_sha256": "3cda0fb02589028b7fce410f7cb3dd42a5322e911e42207be7f157ecb082c424",
+        "runtime_sha256": "d13355831e463b73536253b5fc9204e1fba3537f918c2ac9cf6e172bb33d59cc",
+        "workload": {
+          "approximate_quality_budget": null,
+          "batch_size": 2048,
+          "bootstrap_samples": 10000,
+          "bootstrap_seed": 20261003,
+          "cache_prompt": false,
+          "completion_timeout_seconds": 300,
+          "concurrency": 1,
+          "confirmation_pairs": 10,
+          "context_size": 4096,
+          "cuda_graphs": "on",
+          "health_timeout_seconds": 180,
+          "ignore_eos": true,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16",
+          "maximum_cv_pct": 10.0,
+          "measured_runs": 3,
+          "microbatch_size": 512,
+          "minimum_vram_reserve_mib": 256,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512,
+          "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+          "replay_tolerance_pct": 2.0,
+          "runtime_interface": "server_completion",
+          "schema_version": "1.0.0",
+          "seed": 42,
+          "temperature": 0.0,
+          "threads": 12,
+          "warmup_runs": 1
+        },
+        "workload_sha256": "3088cb99147c6969483d695dc73cf54a35b3ce88f5928337ae27f0cbadd371e2"
+      },
+      "measurement_ids": [],
+      "rejection_reasons": [],
+      "settings": {
+        "batch_size": 2048,
+        "cpu_moe": true,
+        "cuda_graphs": "on",
+        "gpu_layers": 99,
+        "kv_type_k": "f16",
+        "kv_type_v": "f16",
+        "microbatch_size": 512,
+        "static": null
+      },
+      "status": "unmeasured",
+      "validation": []
+    }
+  },
+  "imported_reference_records": 1,
+  "inputs": {
+    "hardware_preflight": {
+      "gpu_fields": [
+        "GPU-949ee8ea-765f-abfd-fd90-16ad3923af6e",
+        "NVIDIA GeForce RTX 5060 Ti",
+        "12.0",
+        "616.92",
+        "16311",
+        "14010",
+        "1"
+      ]
+    },
+    "input_hashes": {
+      "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\runtime-identity.json": "f24face8cd7cb082173f01e793b2526e26312080f36f36c65c9a65d7d34d9531",
+      "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q6-model.json": "1676efffaba68987183f4a9b9e7218d56cb9595e782d1306b51aabfe19d12d1c",
+      "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q6-single-request.json": "66e57710f995fae21b94d71241a4b6dfee0dcdf3064878db40ceeb1e61a68bb7",
+      "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\inputs\\hardware.json": "391249a0aa9c61ec234501b7853e0f00b1336c1601af7b9e24e3cb885b3582dd",
+      "C:\\sem4\\expertflow\\docs\\evidence\\q6-download\\tensor-inventory.json": "22e51eae9787a400490ad98542b70e56af15c87fbe765e1346fb24233244e8b2"
+    }
+  },
+  "maximum_cv_pct": 10,
+  "minimum_point_gain_pct": 5,
+  "minimum_two_sided_ci95_lower_pct": 0,
+  "native_budget": 20,
+  "native_source_commit": "2a6d7c0ab9463feab827c193cee817d1297e23a7",
+  "pairs": 10,
+  "prior_hashes": {
+    "aa_database": "49d97d46663c7c25494d4a1abb5f9433e580cf9c8319d75599c98341f297c222",
+    "aa_report": "66438d5bd01755e1fe35644f85ee5b302bbfba5c575ca80a2f6681c12494df9a"
+  },
+  "reference_measurement_id": "6021f0e3-c342-46a1-8461-6fa1ef004063",
+  "runtime_bindings": {
+    "prefetch": {
+      "cuda_runtime": {
+        "path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin\\cudart64_12.dll",
+        "sha256": "c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344",
+        "size_bytes": 573952
+      },
+      "dependencies": [
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\ggml-base.dll",
+          "sha256": "f555f4953da4bea9d00b3226b123474903182ca3fb4aaf0743f802246bffbd9a",
+          "size_bytes": 641536
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\ggml-cpu.dll",
+          "sha256": "ae299da337e7990d69a703951d1935bfab819cb8ec5c4ca00b049843e8bfb306",
+          "size_bytes": 878592
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\ggml-cuda.dll",
+          "sha256": "7ea4aed24056faf381186882a782076fbca526d778e5c979a11dffdebd7d196d",
+          "size_bytes": 32615424
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\ggml.dll",
+          "sha256": "a1a1809a644c9a9654c5786186866d573b83948177b6ca9591d1deb729dced9a",
+          "size_bytes": 57856
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-batched-bench-impl.dll",
+          "sha256": "ee33da8ffd71c08571dc438613345cd3e1dfcb28d6fbdaf5beff23e17f43429c",
+          "size_bytes": 123392
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-bench-impl.dll",
+          "sha256": "08732d35fa6987f857a9e52d3ca5cc023b31f0c8c993f44c50289b074cb7efc5",
+          "size_bytes": 856576
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-cli-impl.dll",
+          "sha256": "6c58364d0c513823c226d2b67ad4c058c676cc71e86a3e5b9a37593aeb4dbbb2",
+          "size_bytes": 1646592
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-common.dll",
+          "sha256": "fd3004b3d32aa3c90e934cd281b204c175a70579d211b64d842b482907381d0f",
+          "size_bytes": 9191936
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-completion-impl.dll",
+          "sha256": "1260ad9644e8013b712e786221f509749383081f89ddf2bc0bf715424f2212dd",
+          "size_bytes": 240128
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-fit-params-impl.dll",
+          "sha256": "d7e94b1b3998ddd4ce39d931b8b62e98f227d54bf362040f0cc482064645b92a",
+          "size_bytes": 109056
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-perplexity-impl.dll",
+          "sha256": "80e5205e06879a02016c60c24a7849fcd5dd576495cf86f1350ca7fea1ae7347",
+          "size_bytes": 345600
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-quantize-impl.dll",
+          "sha256": "054f46735a0051f3917fa06bf8038a674668f6d0d78e964ea159669598e70dac",
+          "size_bytes": 313344
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-server-impl.dll",
+          "sha256": "08f9094d6ed0e2c8eb74262cd235182dc359a244b4f65dba577512bd8cd20ab1",
+          "size_bytes": 13061120
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama.dll",
+          "sha256": "a6c88283f32073d8f12db225e4ad499a3deefc8d584aad31d132a8cdfbaa27af",
+          "size_bytes": 2219520
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\mtmd.dll",
+          "sha256": "1831ad4fbe79a77bf5db2baeffac1b14ba5f7526a04131b4204fe5e35cbcde08",
+          "size_bytes": 982016
+        }
+      ],
+      "manifest_json": "{\"binaries\":{\"llama-cli.exe\":\"56d5cbe8fc5782595a280345e5e2f70bc1bcc79c94130e1b73bb4eb3cdeacd0f\",\"llama-server.exe\":\"0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428\"},\"build\":{\"compiler\":\"MSVC v143 14.39.33519\",\"configuration\":\"Release\",\"cuda\":\"12.8.93\",\"flags\":[\"GGML_CUDA=ON\",\"CMAKE_BUILD_TYPE=Release\",\"GGML_NATIVE=OFF\",\"GGML_AVX2=ON\",\"GGML_AVX512=OFF\",\"kernel-only replacement of pristine ggml-cpu.dll\"],\"generator\":\"Ninja\"},\"capabilities\":{\"max_static_layers\":0,\"max_static_shadows\":0},\"cuda_runtime_sha256\":\"c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344\",\"dependencies\":{\"ggml-base.dll\":\"f555f4953da4bea9d00b3226b123474903182ca3fb4aaf0743f802246bffbd9a\",\"ggml-cpu.dll\":\"ae299da337e7990d69a703951d1935bfab819cb8ec5c4ca00b049843e8bfb306\",\"ggml-cuda.dll\":\"7ea4aed24056faf381186882a782076fbca526d778e5c979a11dffdebd7d196d\",\"ggml.dll\":\"a1a1809a644c9a9654c5786186866d573b83948177b6ca9591d1deb729dced9a\",\"llama-batched-bench-impl.dll\":\"ee33da8ffd71c08571dc438613345cd3e1dfcb28d6fbdaf5beff23e17f43429c\",\"llama-bench-impl.dll\":\"08732d35fa6987f857a9e52d3ca5cc023b31f0c8c993f44c50289b074cb7efc5\",\"llama-cli-impl.dll\":\"6c58364d0c513823c226d2b67ad4c058c676cc71e86a3e5b9a37593aeb4dbbb2\",\"llama-common.dll\":\"fd3004b3d32aa3c90e934cd281b204c175a70579d211b64d842b482907381d0f\",\"llama-completion-impl.dll\":\"1260ad9644e8013b712e786221f509749383081f89ddf2bc0bf715424f2212dd\",\"llama-fit-params-impl.dll\":\"d7e94b1b3998ddd4ce39d931b8b62e98f227d54bf362040f0cc482064645b92a\",\"llama-perplexity-impl.dll\":\"80e5205e06879a02016c60c24a7849fcd5dd576495cf86f1350ca7fea1ae7347\",\"llama-quantize-impl.dll\":\"054f46735a0051f3917fa06bf8038a674668f6d0d78e964ea159669598e70dac\",\"llama-server-impl.dll\":\"08f9094d6ed0e2c8eb74262cd235182dc359a244b4f65dba577512bd8cd20ab1\",\"llama.dll\":\"a6c88283f32073d8f12db225e4ad499a3deefc8d584aad31d132a8cdfbaa27af\",\"mtmd.dll\":\"1831ad4fbe79a77bf5db2baeffac1b14ba5f7526a04131b4204fe5e35cbcde08\"},\"expertflow_commit\":\"2a6d7c0ab9463feab827c193cee817d1297e23a7\",\"launcher_abi\":\"1.0.0\",\"patches\":[{\"path\":\"docs/evidence/compiler-cpu-prefetch-20261004/0001-cpu-expert-row-prefetch.patch\",\"sha256\":\"117fbfd3b669ac196ccc67d0d4fd0f8a8ceb161eb7a26ffd3354a7dd0a07a56e\"}],\"schema_version\":\"1.0.0\",\"upstream_commit\":\"a7312ae94f801fc9c6786dc56e38df57b964f697\"}",
+      "server": {
+        "path": "C:\\models\\expertflow\\builds\\llama-cpu-prefetch-20261004\\bin\\llama-server.exe",
+        "sha256": "0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428",
+        "size_bytes": 10240
+      }
+    },
+    "stock": {
+      "cuda_runtime": {
+        "path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin\\cudart64_12.dll",
+        "sha256": "c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344",
+        "size_bytes": 573952
+      },
+      "dependencies": [
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\ggml-base.dll",
+          "sha256": "f555f4953da4bea9d00b3226b123474903182ca3fb4aaf0743f802246bffbd9a",
+          "size_bytes": 641536
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\ggml-cpu.dll",
+          "sha256": "ddb2bf1619053f9d64d5e4d434d8638b35f233103e4efd62e4d46b5561ceccaf",
+          "size_bytes": 878592
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\ggml-cuda.dll",
+          "sha256": "7ea4aed24056faf381186882a782076fbca526d778e5c979a11dffdebd7d196d",
+          "size_bytes": 32615424
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\ggml.dll",
+          "sha256": "a1a1809a644c9a9654c5786186866d573b83948177b6ca9591d1deb729dced9a",
+          "size_bytes": 57856
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-batched-bench-impl.dll",
+          "sha256": "ee33da8ffd71c08571dc438613345cd3e1dfcb28d6fbdaf5beff23e17f43429c",
+          "size_bytes": 123392
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-bench-impl.dll",
+          "sha256": "08732d35fa6987f857a9e52d3ca5cc023b31f0c8c993f44c50289b074cb7efc5",
+          "size_bytes": 856576
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-cli-impl.dll",
+          "sha256": "6c58364d0c513823c226d2b67ad4c058c676cc71e86a3e5b9a37593aeb4dbbb2",
+          "size_bytes": 1646592
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-common.dll",
+          "sha256": "fd3004b3d32aa3c90e934cd281b204c175a70579d211b64d842b482907381d0f",
+          "size_bytes": 9191936
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-completion-impl.dll",
+          "sha256": "1260ad9644e8013b712e786221f509749383081f89ddf2bc0bf715424f2212dd",
+          "size_bytes": 240128
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-fit-params-impl.dll",
+          "sha256": "d7e94b1b3998ddd4ce39d931b8b62e98f227d54bf362040f0cc482064645b92a",
+          "size_bytes": 109056
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-perplexity-impl.dll",
+          "sha256": "80e5205e06879a02016c60c24a7849fcd5dd576495cf86f1350ca7fea1ae7347",
+          "size_bytes": 345600
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-quantize-impl.dll",
+          "sha256": "054f46735a0051f3917fa06bf8038a674668f6d0d78e964ea159669598e70dac",
+          "size_bytes": 313344
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-server-impl.dll",
+          "sha256": "08f9094d6ed0e2c8eb74262cd235182dc359a244b4f65dba577512bd8cd20ab1",
+          "size_bytes": 13061120
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama.dll",
+          "sha256": "a6c88283f32073d8f12db225e4ad499a3deefc8d584aad31d132a8cdfbaa27af",
+          "size_bytes": 2219520
+        },
+        {
+          "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\mtmd.dll",
+          "sha256": "1831ad4fbe79a77bf5db2baeffac1b14ba5f7526a04131b4204fe5e35cbcde08",
+          "size_bytes": 982016
+        }
+      ],
+      "manifest_json": "{\"binaries\":{\"llama-cli.exe\":\"56d5cbe8fc5782595a280345e5e2f70bc1bcc79c94130e1b73bb4eb3cdeacd0f\",\"llama-server.exe\":\"0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428\"},\"build\":{\"compiler\":\"MSVC v143 14.39.33519\",\"configuration\":\"Release\",\"cuda\":\"12.8.93\",\"flags\":[\"GGML_CUDA=ON\",\"CMAKE_BUILD_TYPE=Release\"],\"generator\":\"Ninja\"},\"capabilities\":{\"max_static_layers\":0,\"max_static_shadows\":0},\"cuda_runtime_sha256\":\"c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344\",\"dependencies\":{\"ggml-base.dll\":\"f555f4953da4bea9d00b3226b123474903182ca3fb4aaf0743f802246bffbd9a\",\"ggml-cpu.dll\":\"ddb2bf1619053f9d64d5e4d434d8638b35f233103e4efd62e4d46b5561ceccaf\",\"ggml-cuda.dll\":\"7ea4aed24056faf381186882a782076fbca526d778e5c979a11dffdebd7d196d\",\"ggml.dll\":\"a1a1809a644c9a9654c5786186866d573b83948177b6ca9591d1deb729dced9a\",\"llama-batched-bench-impl.dll\":\"ee33da8ffd71c08571dc438613345cd3e1dfcb28d6fbdaf5beff23e17f43429c\",\"llama-bench-impl.dll\":\"08732d35fa6987f857a9e52d3ca5cc023b31f0c8c993f44c50289b074cb7efc5\",\"llama-cli-impl.dll\":\"6c58364d0c513823c226d2b67ad4c058c676cc71e86a3e5b9a37593aeb4dbbb2\",\"llama-common.dll\":\"fd3004b3d32aa3c90e934cd281b204c175a70579d211b64d842b482907381d0f\",\"llama-completion-impl.dll\":\"1260ad9644e8013b712e786221f509749383081f89ddf2bc0bf715424f2212dd\",\"llama-fit-params-impl.dll\":\"d7e94b1b3998ddd4ce39d931b8b62e98f227d54bf362040f0cc482064645b92a\",\"llama-perplexity-impl.dll\":\"80e5205e06879a02016c60c24a7849fcd5dd576495cf86f1350ca7fea1ae7347\",\"llama-quantize-impl.dll\":\"054f46735a0051f3917fa06bf8038a674668f6d0d78e964ea159669598e70dac\",\"llama-server-impl.dll\":\"08f9094d6ed0e2c8eb74262cd235182dc359a244b4f65dba577512bd8cd20ab1\",\"llama.dll\":\"a6c88283f32073d8f12db225e4ad499a3deefc8d584aad31d132a8cdfbaa27af\",\"mtmd.dll\":\"1831ad4fbe79a77bf5db2baeffac1b14ba5f7526a04131b4204fe5e35cbcde08\"},\"expertflow_commit\":\"a7312ae94f801fc9c6786dc56e38df57b964f697\",\"launcher_abi\":\"1.0.0\",\"patches\":[],\"schema_version\":\"1.0.0\",\"upstream_commit\":\"a7312ae94f801fc9c6786dc56e38df57b964f697\"}",
+      "server": {
+        "path": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin\\llama-server.exe",
+        "sha256": "0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428",
+        "size_bytes": 10240
+      }
+    }
+  },
+  "schedule": [
+    [
+      "prefetch",
+      "stock"
+    ],
+    [
+      "prefetch",
+      "stock"
+    ],
+    [
+      "stock",
+      "prefetch"
+    ],
+    [
+      "prefetch",
+      "stock"
+    ],
+    [
+      "stock",
+      "prefetch"
+    ],
+    [
+      "stock",
+      "prefetch"
+    ],
+    [
+      "stock",
+      "prefetch"
+    ],
+    [
+      "prefetch",
+      "stock"
+    ],
+    [
+      "prefetch",
+      "stock"
+    ],
+    [
+      "stock",
+      "prefetch"
+    ]
+  ],
+  "seed": 20261003,
+  "source_commit": "cb68b4c33b122469613c272bd578625da37bb9cf",
+  "source_hashes": {
+    ".superpowers\\sdd\\cpu-expert-prefetch-20261004\\numerical-gate.json": "0d39834b5f898f946d301c59308fb994d9e6742be1883fb7fd73a9bfbe953aa0",
+    "C:\\models\\expertflow\\runs\\compiler-cpu-prefetch-20261004\\runtime-identity.json": "f24face8cd7cb082173f01e793b2526e26312080f36f36c65c9a65d7d34d9531",
+    "C:\\sem4\\expertflow\\docs\\evidence\\compiler-cpu-prefetch-20261004\\probe.py": "e266486172c08d4936079bc96814405b655e4520d44005bd5e7f0c571c0b1c12",
+    "configs\\compiler\\runtime-cpu-prefetch.json": "9b680bce52a280ea1670e7d354624083253f5b46e29f98da90bba015f4f453af",
+    "configs\\compiler\\runtime-stock.json": "e46120718c551dc8fce984f40c52ac7338f89642828f5283ad19ed0697418eed",
+    "docs\\evidence\\compiler-cpu-prefetch-20261004\\0001-cpu-expert-row-prefetch.patch": "117fbfd3b669ac196ccc67d0d4fd0f8a8ceb161eb7a26ffd3354a7dd0a07a56e",
+    "docs\\superpowers\\plans\\2026-10-04-cpu-expert-prefetch-experiment.md": "452b8405197c953f1c9e9a6a2ba42f7ba5647c5bd87b8d89e9b1d313b41bd591",
+    "docs\\superpowers\\specs\\2026-10-04-cpu-expert-prefetch-experiment.md": "6299aaf47bf158b4f12360ccedc4a32265af14946522da03b75baac7af0e1ce1",
+    "src\\expertflow\\compiler\\__init__.py": "682e7a8b5de67d7860d06a0bedf5917314a38dfbce34d2f95ed98d27c13f6736",
+    "src\\expertflow\\compiler\\adapters\\__init__.py": "84cc32ef696f27fa4e9875ddd2fc17ffff6c63ed087978b9fe3785ae800fb7a6",
+    "src\\expertflow\\compiler\\adapters\\base.py": "d3ccc82954d79d2251b09a5fe00bdded14b8c888617f587cfcc586839670b708",
+    "src\\expertflow\\compiler\\adapters\\gemma4.py": "71976e683e5bf843ed60a3a4d37981d186c23a4258dfe597fc5ccb9f7a55c3f7",
+    "src\\expertflow\\compiler\\commands.py": "987950daa84270123c2e815932da650f8ddb4052cf4aefc2ed52a4fcb624c75e",
+    "src\\expertflow\\compiler\\cost_model.py": "1fe418086f42a9911c1553e0778712869c89066b295970728b7c083aa388fcc4",
+    "src\\expertflow\\compiler\\diagnostics.py": "30a9cd7d2ce663a87aa3d08340c835d57d95a4d72f4c9f4ad797764c88cfc916",
+    "src\\expertflow\\compiler\\evidence.py": "c67bb4553bcc5eed446c028222b1c535b3e198e033cc9e11dd259413d6c8f808",
+    "src\\expertflow\\compiler\\passes\\__init__.py": "5651d7e1cd27e9b162e1a718f8ac9f1632e753420cbeef5ae604949f7f261b23",
+    "src\\expertflow\\compiler\\passes\\base.py": "11cc25d1630940f77de562d02093f369c20165a77b9d3437b14a32b4877301db",
+    "src\\expertflow\\compiler\\pipeline.py": "35b7e3dc7cf925bfd64f029dc19a253e2733cd249e1bddedb9c1b93b232d3a35",
+    "src\\expertflow\\compiler\\plan.py": "5b49935b36b493762574c0387a2cb686a52c2504501e03c5d2af1b277768658f",
+    "src\\expertflow\\compiler\\preflight.py": "ab1b102fe0b423555f986b12dd37bee4e0615375228cbd61e3b0ca6185b94b40",
+    "src\\expertflow\\compiler\\reference.py": "9021a967b97d9d97e72ce3ff5499347080a867099834b12c994295ceb6c38dcf",
+    "src\\expertflow\\compiler\\refinement.py": "b0c8bfef1398ac943f20f442abb6240fd4a7b53dacb73ef4bf29d35b6bac1910",
+    "src\\expertflow\\compiler\\runner.py": "9a326df6a5de6ccd5df5613b3e6fd42ec41649819ceaccee46fe290d970974c1",
+    "src\\expertflow\\compiler\\schema.py": "f3e360489a7922ab156da64dd722364b0aef566971a15a556f50db8f28bfc14d",
+    "src\\expertflow\\compiler\\static_placement.py": "a7ab797692ac8516fbc852c778c129f89e8ba55682d3c8092f486f178a6d5ffd",
+    "src\\expertflow\\compiler\\stock.py": "988d0b3dc56f54dfec447198e65bde57f2a57a40585f4282224573df640d7319",
+    "tests\\native\\cpu_expert_prefetch_parity.cpp": "08464cc96cea83ba0ffc2a1f7e0243b1b1d5e5be4cbd8f80784efe2ef3a9b7ec"
+  }
+}

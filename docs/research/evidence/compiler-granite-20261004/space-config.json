@@ -1,0 +1,5 @@
+{
+  "policy": "explicit",
+  "excluded_threads": [],
+  "maximum_native_processes": 38
+}

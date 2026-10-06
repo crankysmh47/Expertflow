@@ -24,7 +24,7 @@ def test_demo_replay_is_model_free_and_verifies_hashes(capsys) -> None:
 
 
 def test_compare_reports_frozen_stock_and_expertflow(capsys) -> None:
-    deployment = ROOT / "docs/evidence/product-release/deployment-result.json"
+    deployment = ROOT / "docs/research/evidence/product-release/deployment-result.json"
     assert main(["compare", str(deployment)]) == 0
     report = _last_json(capsys)
     assert report["status"] == "pass"
@@ -66,7 +66,7 @@ def test_profile_gguf_uses_committed_measured_profile(capsys) -> None:
 
 
 def test_runtime_command_preserves_manifest_order_and_environment(tmp_path: Path) -> None:
-    deployment = json.loads((ROOT / "docs/evidence/product-release/deployment-result.json").read_text(encoding="utf-8"))
+    deployment = json.loads((ROOT / "docs/research/evidence/product-release/deployment-result.json").read_text(encoding="utf-8"))
     runtime = tmp_path / "llama-cli.exe"
     model = tmp_path / "model.gguf"
     runtime.write_bytes(b"runtime")

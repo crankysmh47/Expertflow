@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Three ways to verify ExpertFlow</title>
+  <desc id="desc">Offline evidence replay, a live matched Q6 benchmark, and a clean pinned source rebuild.</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="44%" r="72%"><stop stop-color="#123d23"/><stop offset=".62" stop-color="#0b1e13"/><stop offset="1" stop-color="#080b09"/></radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="#8cf59b" opacity=".08"/><circle cx="5" cy="4" r=".45" fill="#d6a84a" opacity=".06"/></pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/><rect width="1920" height="1080" fill="url(#grain)"/>
+  <text x="960" y="170" text-anchor="middle" fill="#8cf59b" font-family="Consolas,monospace" font-size="26" font-weight="700" letter-spacing="8">THREE WAYS TO VERIFY</text>
+  <path d="M330 550H1590" stroke="#315d3d" stroke-width="12"/><path d="M330 550H1590" stroke="#8cf59b" stroke-width="2" stroke-dasharray="8 24" opacity=".72"/>
+  <g font-family="Segoe UI,Arial,sans-serif" text-anchor="middle">
+    <g transform="translate(330 550)"><circle r="164" fill="#0b1710" stroke="#4fbf68" stroke-width="4"/><circle r="130" fill="none" stroke="#234e30" stroke-width="2" stroke-dasharray="5 12"/><circle r="13" fill="#8cf59b" filter="url(#glow)"/><text y="-42" fill="#f4f2e9" font-size="42" font-weight="750">REPLAY</text><text y="55" fill="#9fb9a5" font-family="Consolas,monospace" font-size="22">NO GPU REQUIRED</text></g>
+    <g transform="translate(960 550)"><circle r="184" fill="#0b1710" stroke="#d6a84a" stroke-width="5"/><circle r="145" fill="none" stroke="#6e572a" stroke-width="2" stroke-dasharray="6 13"/><circle r="15" fill="#d6a84a" filter="url(#glow)"/><text y="-45" fill="#f4f2e9" font-size="46" font-weight="800">LIVE</text><text y="58" fill="#d6a84a" font-family="Consolas,monospace" font-size="23">MATCHED Q6 TPS</text></g>
+    <g transform="translate(1590 550)"><circle r="164" fill="#0b1710" stroke="#4fbf68" stroke-width="4"/><circle r="130" fill="none" stroke="#234e30" stroke-width="2" stroke-dasharray="5 12"/><circle r="13" fill="#8cf59b" filter="url(#glow)"/><text y="-42" fill="#f4f2e9" font-size="42" font-weight="750">REBUILD</text><text y="55" fill="#9fb9a5" font-family="Consolas,monospace" font-size="22">PINNED PATCH SERIES</text></g>
+  </g>
+  <g fill="#8cf59b" filter="url(#glow)"><circle cx="530" cy="550" r="5"/><circle cx="650" cy="550" r="5"/><circle cx="1240" cy="550" r="5"/><circle cx="1370" cy="550" r="5"/></g>
+  <text x="960" y="900" text-anchor="middle" fill="#d6a84a" font-family="Consolas,monospace" font-size="25" font-weight="700" letter-spacing="5">HASHED EVIDENCE · EXACT COMMANDS · CLEAN-CHECKOUT PATH</text>
+</svg>

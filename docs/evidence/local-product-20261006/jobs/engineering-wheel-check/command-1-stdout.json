@@ -1,0 +1,14 @@
+{
+  "status": "RUNNABLE-UNTUNED",
+  "profile_path": "C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\engineering-wheel-check\\profile.json",
+  "memory_estimate": {
+    "kind": "ESTIMATE",
+    "weights_bytes": 491400032,
+    "kv_bytes": 50331648,
+    "runtime_reserve_bytes": 1073741824,
+    "resident_total_bytes": 1615473504,
+    "uncertainty": "F16 KV estimate; architecture-specific/sliding/recurrent caches and runtime buffers may differ. A real load probe is required."
+  },
+  "load_verified": true,
+  "next_action": "Run: expertflow local run --profile \"C:\\sem4\\expertflow\\.superpowers\\sdd\\local-product\\engineering-wheel-check\\profile.json\""
+}

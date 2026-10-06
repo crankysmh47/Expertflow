@@ -1,0 +1,53 @@
+{
+  "action": "run",
+  "attempts": 0,
+  "cases": [
+    {
+      "case_id": "gemma4-q4-prose",
+      "status": "NOT-RUN"
+    },
+    {
+      "case_id": "gemma4-q4-code",
+      "status": "NOT-RUN"
+    },
+    {
+      "case_id": "granite-q6-prose",
+      "status": "NOT-RUN"
+    },
+    {
+      "case_id": "granite-q6-code",
+      "status": "NOT-RUN"
+    }
+  ],
+  "decision": {
+    "cases": [
+      {
+        "case_id": "gemma4-q4-prose",
+        "status": "NOT-RUN"
+      },
+      {
+        "case_id": "gemma4-q4-code",
+        "status": "NOT-RUN"
+      },
+      {
+        "case_id": "granite-q6-prose",
+        "status": "NOT-RUN"
+      },
+      {
+        "case_id": "granite-q6-code",
+        "status": "NOT-RUN"
+      }
+    ],
+    "evidence_verified": false,
+    "family_wide_gain_established": false,
+    "global_optimum_established": false,
+    "serving_throughput_established": false,
+    "utility_gain_established": false
+  },
+  "family_wide_gain_established": false,
+  "native_processes": 0,
+  "reason": "live inputs/grid outside registered wider case",
+  "report": "C:\\models\\expertflow\\runs\\compiler-stock-coverage-20261005\\report.json",
+  "status": "IDENTITY-STOP",
+  "workflow": "coverage"
+}

@@ -1,0 +1,220 @@
+{
+  "evidence_kind": "AGENT-WALKTHROUGH-AND-READONLY-RECONSTRUCTION",
+  "source_commit": "136f4cc7e7f445ad97de0379eeec183d981b3158",
+  "attempts": [
+    {
+      "copy_directory": "user-attempt",
+      "original_root": "C:\\models\\expertflow\\runs\\stock-product-user-check-01",
+      "status": "VALIDATION-STOP",
+      "fresh_validation": false,
+      "wall_seconds": 230.966139199998,
+      "raw_additional_native_calls": null,
+      "checks": [
+        {
+          "study": "q6",
+          "status": "PASS-STOCK-REPEATABILITY-TRANSFER",
+          "exit_code": 0,
+          "wall_seconds": 219.23231849999866
+        },
+        {
+          "study": "wider",
+          "status": "ENVIRONMENT-BLOCKED",
+          "exit_code": 3,
+          "wall_seconds": 11.724406799999997
+        }
+      ]
+    },
+    {
+      "copy_directory": "agent-first",
+      "original_root": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-74d30f13617d",
+      "status": "VALIDATION-STOP",
+      "fresh_validation": false,
+      "wall_seconds": 14.333142100003897,
+      "raw_additional_native_calls": null,
+      "checks": [
+        {
+          "study": "q6",
+          "status": "ENVIRONMENT-BLOCKED",
+          "exit_code": 3,
+          "wall_seconds": 14.328982999999425
+        }
+      ]
+    },
+    {
+      "copy_directory": "agent-monitored",
+      "original_root": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-monitored-0bc9ae7858b3",
+      "status": "VALIDATION-STOP",
+      "fresh_validation": false,
+      "wall_seconds": 27.812282699997013,
+      "raw_additional_native_calls": null,
+      "checks": [
+        {
+          "study": "q6",
+          "status": "ENVIRONMENT-BLOCKED",
+          "exit_code": 3,
+          "wall_seconds": 27.8114768000014
+        }
+      ]
+    },
+    {
+      "copy_directory": "agent-after-close",
+      "original_root": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-after-close-dfdbe90df824",
+      "status": "PASS-LOCAL-STOCK-QUALIFICATION",
+      "fresh_validation": true,
+      "wall_seconds": 313.50706390000414,
+      "raw_additional_native_calls": 0,
+      "checks": [
+        {
+          "study": "q6",
+          "status": "PASS-STOCK-REPEATABILITY-TRANSFER",
+          "exit_code": 0,
+          "wall_seconds": 203.70862150000175
+        },
+        {
+          "study": "wider",
+          "status": "COMPLETE-STOCK-COVERAGE",
+          "exit_code": 0,
+          "wall_seconds": 109.68530669999745
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-user-check-01\\q6-stderr.log",
+      "copy": "user-attempt/q6-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-user-check-01\\q6-stdout.json",
+      "copy": "user-attempt/q6-stdout.json",
+      "sha256": "34c34c3aa788ae57aabd19c345f0ea6dd233cdd01c0f855400c61a0c99d06341"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-user-check-01\\verification.json",
+      "copy": "user-attempt/verification.json",
+      "sha256": "ecfcffdb39bbf0787502e55b9a0ca6eb9dd57533ddfcefb044a8ee8f0db39bcd"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-user-check-01\\wider-stderr.log",
+      "copy": "user-attempt/wider-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-user-check-01\\wider-stdout.json",
+      "copy": "user-attempt/wider-stdout.json",
+      "sha256": "d732c65b5c8016352167ba8b1f57277c14ba9e58f365f0c4e348f8889015e0dc"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-74d30f13617d\\launcher-stderr.log",
+      "copy": "agent-first/launcher-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-74d30f13617d\\launcher-stdout.json",
+      "copy": "agent-first/launcher-stdout.json",
+      "sha256": "3600cdff52bc6b36840fa4f858f7c07949f26a1497d16bdc02c33701f4096fdb"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-74d30f13617d\\q6-stderr.log",
+      "copy": "agent-first/q6-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-74d30f13617d\\q6-stdout.json",
+      "copy": "agent-first/q6-stdout.json",
+      "sha256": "4429d6679bef771ff55eacb8be203ceed1f26d630d1ab137ae8c5b4b987861a8"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-74d30f13617d\\verification.json",
+      "copy": "agent-first/verification.json",
+      "sha256": "3600cdff52bc6b36840fa4f858f7c07949f26a1497d16bdc02c33701f4096fdb"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-monitored-0bc9ae7858b3\\gpu-telemetry.jsonl",
+      "copy": "agent-monitored/gpu-telemetry.jsonl",
+      "sha256": "d82a9271f547e0467a24deff132f07ccfaa35e3b6f5f4003f4add83e47dba178"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-monitored-0bc9ae7858b3\\launcher-stderr.log",
+      "copy": "agent-monitored/launcher-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-monitored-0bc9ae7858b3\\launcher-stdout.json",
+      "copy": "agent-monitored/launcher-stdout.json",
+      "sha256": "d395c8f73fb513f701e2f9b7c402382cc00ce0b00e634318da947fe8af445a21"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-monitored-0bc9ae7858b3\\q6-stderr.log",
+      "copy": "agent-monitored/q6-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-monitored-0bc9ae7858b3\\q6-stdout.json",
+      "copy": "agent-monitored/q6-stdout.json",
+      "sha256": "4429d6679bef771ff55eacb8be203ceed1f26d630d1ab137ae8c5b4b987861a8"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-monitored-0bc9ae7858b3\\verification.json",
+      "copy": "agent-monitored/verification.json",
+      "sha256": "d395c8f73fb513f701e2f9b7c402382cc00ce0b00e634318da947fe8af445a21"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-after-close-dfdbe90df824\\gpu-telemetry.jsonl",
+      "copy": "agent-after-close/gpu-telemetry.jsonl",
+      "sha256": "ff15f35a4fbed53fdabd252c08130cfae2f3ff569f2345c50c29bd9597c8c2aa"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-after-close-dfdbe90df824\\launcher-stderr.log",
+      "copy": "agent-after-close/launcher-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-after-close-dfdbe90df824\\launcher-stdout.json",
+      "copy": "agent-after-close/launcher-stdout.json",
+      "sha256": "8bc02b2f15edbe4480d08081c322bc4692999b85a6a7f95151312c5bbc3f968b"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-after-close-dfdbe90df824\\q6-stderr.log",
+      "copy": "agent-after-close/q6-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-after-close-dfdbe90df824\\q6-stdout.json",
+      "copy": "agent-after-close/q6-stdout.json",
+      "sha256": "34c34c3aa788ae57aabd19c345f0ea6dd233cdd01c0f855400c61a0c99d06341"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-after-close-dfdbe90df824\\verification.json",
+      "copy": "agent-after-close/verification.json",
+      "sha256": "8bc02b2f15edbe4480d08081c322bc4692999b85a6a7f95151312c5bbc3f968b"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-after-close-dfdbe90df824\\wider-stderr.log",
+      "copy": "agent-after-close/wider-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-after-close-dfdbe90df824\\wider-stdout.json",
+      "copy": "agent-after-close/wider-stdout.json",
+      "sha256": "111b997a7b91fba4302ec3843ef3a190012ead4e729a2b457806974f24ea878b"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-monitored-0bc9ae7858b3-active-apps-before.json",
+      "copy": "app-closure/stock-product-agent-walkthrough-20261006-monitored-0bc9ae7858b3-active-apps-before.json",
+      "sha256": "35687117a1d86ffccbf181902da954bdcf3ac8b531902caaa65b7ae3323b3bb9"
+    },
+    {
+      "original": "C:\\models\\expertflow\\runs\\stock-product-agent-walkthrough-20261006-monitored-0bc9ae7858b3-stopped-apps.json",
+      "copy": "app-closure/stock-product-agent-walkthrough-20261006-monitored-0bc9ae7858b3-stopped-apps.json",
+      "sha256": "412fbfa5fe81398cb94f45e4d475578bd7ff09305890986a6822a59e7633be5b"
+    }
+  ],
+  "integrity_sha256": "5d7f5a39830ab32a242ab0d3a1df704fd745eca25395e59da945846a8a7360a2",
+  "agent_validation_seconds": 355.65248870000505,
+  "user_validation_seconds": 230.966139199998,
+  "additional_native_starts": 0,
+  "independent_user_acceptance_established": false,
+  "limits": "Failed raw receipts retain null native-call fields; unchanged source/run-start inventory and read-only commands establish zero extra native starts. Agent observations do not establish human acceptance."
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "kind": "redacted-local-support",
+  "status": "MEASURED",
+  "model_processes": 1,
+  "wall_seconds": 8.344000000004598,
+  "registration_sha256": "eeb1420d8c3aead30ff6a3ac9f773296f362ff206121e033672a465739b1dccf",
+  "report_sha256": "d4d1f7a185cb2251118d3fc5e76a34ac9e932baeeabb1cd268eae89081c7716e",
+  "context": 4096,
+  "privacy": "No prompts, responses, logs, names, local paths or environment variables included."
+}

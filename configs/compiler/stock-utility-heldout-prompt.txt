@@ -1,0 +1,1 @@
+Write a Python function that merges two sorted lists of integers without calling sorted. Explain how it handles duplicate values and empty lists, and give three short examples. Keep the implementation simple and state its time and space complexity.

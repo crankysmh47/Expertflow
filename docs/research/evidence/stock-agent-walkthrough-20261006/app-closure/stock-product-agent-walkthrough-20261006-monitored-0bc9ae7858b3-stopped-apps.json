@@ -1,0 +1,104 @@
+[
+  {
+    "pid": 9712,
+    "name": "WindowsTerminal",
+    "path": "C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.24.12741.0_x64__8wekyb3d8bbwe\\WindowsTerminal.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7087111Z"
+  },
+  {
+    "pid": 1800,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7186577Z"
+  },
+  {
+    "pid": 2132,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7261678Z"
+  },
+  {
+    "pid": 5564,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7385810Z"
+  },
+  {
+    "pid": 10444,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7404328Z"
+  },
+  {
+    "pid": 11672,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7427379Z"
+  },
+  {
+    "pid": 12764,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7444601Z"
+  },
+  {
+    "pid": 19904,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7461258Z"
+  },
+  {
+    "pid": 20112,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7495884Z"
+  },
+  {
+    "pid": 21628,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7540672Z"
+  },
+  {
+    "pid": 21832,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7554675Z"
+  },
+  {
+    "pid": 21856,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7573110Z"
+  },
+  {
+    "pid": 22864,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7633749Z"
+  },
+  {
+    "pid": 23012,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7640501Z"
+  },
+  {
+    "pid": 23444,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7646811Z"
+  },
+  {
+    "pid": 26828,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7652926Z"
+  },
+  {
+    "pid": 29084,
+    "name": "zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "stopped_at_utc": "2026-10-06T15:15:37.7665823Z"
+  }
+]

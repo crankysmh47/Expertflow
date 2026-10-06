@@ -1,0 +1,18 @@
+{
+  "status": "INCONCLUSIVE",
+  "generation_requests": 3,
+  "registration_sha256": "3d02ef2cd53b632b3e3dcc035bbb3795ada201a5c2da30a53670904df6196be2",
+  "reason": "Chat produced no text.",
+  "wall_seconds": 33.95300000000134,
+  "model_processes": 1,
+  "artifact_sha256": {
+    "long-response.json": "1880035368ecf900704a3d9d938005330fcc76097c3713363ee791e58546ab67",
+    "probe.json": "8b499c9606f5835be071615fbe0d209df69af680301934313b19d4392bb35083",
+    "registration.json": "3d02ef2cd53b632b3e3dcc035bbb3795ada201a5c2da30a53670904df6196be2",
+    "source.zip": "00b8364523be2420cdca3b808d7fbd5c368c1da33c69ce62ea2de1d09b2f09b6",
+    "session/launch.json": "34072f2890de529228fc71152632a3679277cf69e6f263391ba396e6f93d1788",
+    "session/process-receipt.json": "ab658d9f5db7397417214233c28fca136fe7940b7213c8d0e40c55d638b016d8",
+    "session/server.log": "f1b2da33755e1321973cf7a813ca9fab1031d0f015cc5987e108f1b9120992ec",
+    "session/session-state.json": "202692d31afffeefcd3020d3f95361f9976cdbed9ac7931b8e2cae1044f9eab0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "host_matches_registration": true,
+  "registration_sha256": "0376ac4d7c5e146bc594f5c22a4b1be803b446ced4c3d9d04a4cb0737af55603",
+  "registration_file_sha256": "7f4a9662a7de7b1263e153c3660aaaccfe1c2e5cacf27cbf809583480ee2f4b9",
+  "sequence_root_unused": "C:\\models\\expertflow\\runs\\compiler-stock-coverage-20261005",
+  "original_frozen_files": 41,
+  "original_history_pins": 6,
+  "original_native_starts": 148,
+  "original_report_sha256": "464defd327d43c4f510f3768266d1dacaefc77d25c239afefef5cc4226c1d0c5",
+  "inspection_wall_seconds": 0.22492160000000183,
+  "full_weight_hashes_verified": false,
+  "new_native_calls": 0
+}

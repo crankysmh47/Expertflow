@@ -1,0 +1,226 @@
+{
+  "created_at": "2026-10-03T14:13:45.037235+00:00",
+  "external_artifacts": {
+    "cuda_runtime": {
+      "path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8\\bin\\cudart64_12.dll",
+      "sha256": "c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344"
+    },
+    "identity_errors": [],
+    "missing_artifacts": {},
+    "model": {
+      "expected_bytes": 22862575520,
+      "expected_sha256": "089ecf3bbad0b18b187ff1b3de171413f8a5d8fb246bc1b776a68c95ad9a07ba",
+      "path": "C:\\models\\gemma-4-26b-a4b-q6\\google_gemma-4-26B-A4B-it-Q6_K.gguf",
+      "verified": true
+    },
+    "runtimes": {
+      "fork": {
+        "binary_hashes": {
+          "llama-cli.exe": "5d68046dcd26e2fd018aaeaad5f99cdb7d88eca6fc10935925f1d660f7009407",
+          "llama-server.exe": "22ecc4f64f91dcbe3a1cfe7d9d4617e43467ea7f3c6fa1ba2c6ad8d07e89334e"
+        },
+        "build": {
+          "compiler": "MSVC v143 14.39.33519",
+          "configuration": "Release",
+          "cuda": "12.8.93",
+          "flags": [
+            "GGML_CUDA=ON",
+            "CMAKE_BUILD_TYPE=Release"
+          ],
+          "generator": "Ninja"
+        },
+        "capabilities": {
+          "max_static_layers": 12,
+          "max_static_shadows": 48
+        },
+        "dependency_hashes": {
+          "ggml-base.dll": "5d1b22f132341c568f3fcbed9236129c071c206fa6081220ad65e58bc123c2ea",
+          "ggml-cpu.dll": "7197380061b7f25b7c4863ba0b5ca636a38c28d98fd59cd8a9e927c61894ddd1",
+          "ggml-cuda.dll": "703a0de235ee9eafa7ab8181ee50899e3524c3436691a77946b6c55bd312cbcd",
+          "ggml.dll": "e8f7011469e4dbd1268868a7a9b8847a6ed22dbb91d2b163c1ffc669106c80fe",
+          "llama-cli-impl.dll": "42eb676065495247b9dbe14d6bdd65d8c5fa3b5407ea2d298387906d303e1591",
+          "llama-common.dll": "0707416cf8d28b0e0b8125d36afbefc6fce989ea92be8b5861ac79811fa04bb8",
+          "llama-perplexity-impl.dll": "3d9b5bfec3995e7357fce9fe70216a9991ef77c95bc7e752beb7503b3e4c13e7",
+          "llama-server-impl.dll": "57162aaa887ed58d6ce816d6a780c5313a8a04a81c6955898bbfb44a0b149aa9",
+          "llama.dll": "4e086dafad05cd852eec1d620709affdfea8c759687158edf137377af7589430",
+          "mtmd.dll": "4df318d74362eeb431a99164651ff2e23b6e40032274944bceda328eaa96a95c"
+        },
+        "dependency_identity_kind": "verified_against_frozen_local_build_manifest",
+        "directory": "C:\\models\\expertflow\\builds\\llama-q6-placement-final\\bin",
+        "manifest_sha256": "574d7906d6ac55bb0d952d9a3052fbdacb3a67c814fa31108e4ee93899534d08",
+        "patch_hashes": {
+          "release/expertflow-build-week/patches/llama.cpp/0001-feat-restore-disabled-static-CUDA-expert-island.patch": "14b3042c8626a1a99e9d63b2dcc3ea88a92168e505672fa56ee3f987215f87f8",
+          "release/expertflow-build-week/patches/llama.cpp/0002-feat-capture-exact-Q1b-token-NLL.patch": "38c690098d907b7228e3180516c2f541dd07944ece452824b02964ff09711ecb",
+          "release/expertflow-build-week/patches/llama.cpp/0003-feat-bound-static-islands-to-four-layers.patch": "3278c45582df1cd6af4c3dac41756484269619a639903d78dd7b926dd3610e7c",
+          "release/expertflow-build-week/patches/llama.cpp/0004-feat-add-bounded-Q6-split-profiler.patch": "58211a1e6bc82c76705b1f3af6628f98fdd0c2eea7e7278915ae222da1bfe461",
+          "release/expertflow-build-week/patches/llama.cpp/0005-feat-expand-bounded-static-island-capacity.patch": "27f31cbce0369847dc616f6c5ca9ad96ed488a7014300a4b54825d59f20bf52d",
+          "release/expertflow-build-week/patches/llama.cpp/0006-perf-precompute-static-layer-membership.patch": "b95870aa8937506b6476af7291eceec7987cb59c3c54671ddc358ffaf87a1c4e"
+        }
+      },
+      "stock": {
+        "binary_hashes": {
+          "llama-cli.exe": "56d5cbe8fc5782595a280345e5e2f70bc1bcc79c94130e1b73bb4eb3cdeacd0f",
+          "llama-server.exe": "0edd53620e0227f6e67c5b4ce1b9b1f40ae3db0eb4b98c8eac54762de44cb428"
+        },
+        "build": {
+          "compiler": "MSVC v143 14.39.33519",
+          "configuration": "Release",
+          "cuda": "12.8.93",
+          "flags": [
+            "GGML_CUDA=ON",
+            "CMAKE_BUILD_TYPE=Release"
+          ],
+          "generator": "Ninja"
+        },
+        "capabilities": {
+          "max_static_layers": 0,
+          "max_static_shadows": 0
+        },
+        "dependency_hashes": {
+          "ggml-base.dll": "f555f4953da4bea9d00b3226b123474903182ca3fb4aaf0743f802246bffbd9a",
+          "ggml-cpu.dll": "ddb2bf1619053f9d64d5e4d434d8638b35f233103e4efd62e4d46b5561ceccaf",
+          "ggml-cuda.dll": "7ea4aed24056faf381186882a782076fbca526d778e5c979a11dffdebd7d196d",
+          "ggml.dll": "a1a1809a644c9a9654c5786186866d573b83948177b6ca9591d1deb729dced9a",
+          "llama-batched-bench-impl.dll": "ee33da8ffd71c08571dc438613345cd3e1dfcb28d6fbdaf5beff23e17f43429c",
+          "llama-bench-impl.dll": "08732d35fa6987f857a9e52d3ca5cc023b31f0c8c993f44c50289b074cb7efc5",
+          "llama-cli-impl.dll": "6c58364d0c513823c226d2b67ad4c058c676cc71e86a3e5b9a37593aeb4dbbb2",
+          "llama-common.dll": "fd3004b3d32aa3c90e934cd281b204c175a70579d211b64d842b482907381d0f",
+          "llama-completion-impl.dll": "1260ad9644e8013b712e786221f509749383081f89ddf2bc0bf715424f2212dd",
+          "llama-fit-params-impl.dll": "d7e94b1b3998ddd4ce39d931b8b62e98f227d54bf362040f0cc482064645b92a",
+          "llama-perplexity-impl.dll": "80e5205e06879a02016c60c24a7849fcd5dd576495cf86f1350ca7fea1ae7347",
+          "llama-quantize-impl.dll": "054f46735a0051f3917fa06bf8038a674668f6d0d78e964ea159669598e70dac",
+          "llama-server-impl.dll": "08f9094d6ed0e2c8eb74262cd235182dc359a244b4f65dba577512bd8cd20ab1",
+          "llama.dll": "a6c88283f32073d8f12db225e4ad499a3deefc8d584aad31d132a8cdfbaa27af",
+          "mtmd.dll": "1831ad4fbe79a77bf5db2baeffac1b14ba5f7526a04131b4204fe5e35cbcde08"
+        },
+        "dependency_identity_kind": "verified_against_frozen_local_build_manifest",
+        "directory": "C:\\models\\expertflow\\builds\\llama-a7312ae-cuda128-clean\\bin",
+        "manifest_sha256": "e46120718c551dc8fce984f40c52ac7338f89642828f5283ad19ed0697418eed",
+        "patch_hashes": {}
+      }
+    }
+  },
+  "historical_static": {
+    "cross_mode_response_identity": false,
+    "exact_plan_eligible": false,
+    "input_hashes": {
+      "docs/evidence/q6-placement-final/quality-results.json": "bc335425f40d6b74b64a5afdf388f66e6dcdaa337665b9d912ff8f930818bf8e",
+      "docs/evidence/q6-placement-final/results.json": "b87bd872c1b04ac8a4144ba61c12412057d8fc743c229ffd584334232fbf58a6",
+      "docs/evidence/q6-placement-final/run-pairs.csv": "65643b621b87ae40154fdd5636b2d4f954a704ce6dc9eb92e91cdfbb9ed4c180"
+    },
+    "mean_decode_tps": {
+      "off": 22.28,
+      "on": 28.13
+    },
+    "measurement_kind": "historical_cli_summary",
+    "native_token_evidence_available": false,
+    "ppl_95_upper_pct": 2.252937265598369,
+    "rejection_reasons": [
+      "missing_native_token_ids",
+      "numerical_path_change",
+      "cross_mode_output_divergence",
+      "strict_quality_gate_failed"
+    ],
+    "repetitions_per_mode": 10,
+    "required_ppl_upper_pct": 1.0,
+    "response_hashes": {
+      "off": [
+        "7a5b8b8b055b3a6a884349ce7971b42827c736e2391b3e204178ccd23e21903d"
+      ],
+      "on": [
+        "d486092ed666a0bbb5b8eaf0517996b6a4ab1b129b00d5f81bd65017a0887e5a"
+      ]
+    },
+    "strict_quality_gate_pass": false
+  },
+  "historical_workload": {
+    "concurrency": 1,
+    "context_size": 2048,
+    "cpu_moe": true,
+    "cuda_graphs": "on",
+    "environment": {
+      "GGML_CUDA_DISABLE_GRAPHS": null,
+      "LLAMA_EXPERTFLOW_STATIC_ISLAND_LAYER": "0,1,2,3,4,5,6,7,8,9,15,20",
+      "LLAMA_EXPERTFLOW_STATIC_PRECOMPUTE": "1"
+    },
+    "exact_plan_eligible": false,
+    "gpu_layers": "99",
+    "ignore_eos": true,
+    "objective": "decode_tps",
+    "policy": "exact",
+    "predict_tokens": 512,
+    "prompt": "Caching.",
+    "runtime_arguments": [
+      "-c",
+      "2048",
+      "-ngl",
+      "99",
+      "--threads",
+      "12",
+      "--seed",
+      "42",
+      "--temp",
+      "0",
+      "--ignore-eos",
+      "--cpu-moe",
+      "--single-turn"
+    ],
+    "runtime_interface": "historical_cli",
+    "schema_version": "1.0.0",
+    "seed": 42,
+    "sha256": "77a16f11316d680c271ede7148bad15ee1c04dd90870267ce24cf72d2c833703",
+    "static_layers": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      15,
+      20
+    ],
+    "static_precompute": true,
+    "temperature": 0.0,
+    "threads": 12
+  },
+  "live_measurements_performed": false,
+  "phase": "artifact_preflight",
+  "product_workload": {
+    "batch_size": 2048,
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 20261003,
+    "cache_prompt": false,
+    "completion_timeout_seconds": 300,
+    "concurrency": 1,
+    "confirmation_pairs": 10,
+    "context_size": 4096,
+    "cuda_graphs": "on",
+    "health_timeout_seconds": 180,
+    "ignore_eos": true,
+    "kv_type_k": "f16",
+    "kv_type_v": "f16",
+    "maximum_cv_pct": 10.0,
+    "measured_runs": 3,
+    "microbatch_size": 512,
+    "minimum_vram_reserve_mib": 256,
+    "objective": "decode_tps",
+    "policy": "exact",
+    "predict_tokens": 512,
+    "prompt": "An engineer has a 16 GB GPU and runs a sparse mixture-of-experts model. Explain in three concise bullet points why expert-routing locality matters for latency and memory.\n",
+    "prompt_file": "configs/baseline-prompt.txt",
+    "replay_tolerance_pct": 2.0,
+    "runtime_interface": "server_completion",
+    "schema_version": "1.0.0",
+    "seed": 42,
+    "sha256": "f72846fc15e8299af951142c7cb60e7152f5caca18c106456f65fea8d7b27270",
+    "temperature": 0.0,
+    "threads": 12,
+    "warmup_runs": 1
+  },
+  "schema_version": "1.0.0",
+  "status": "READY"
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004\\on-stderr.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004--on-stderr.log",
+    "sha256": "697ddf3b7c2dbb173937100e02e5fde8bd9f6b97276840bcfccbc5f55e354e19"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004\\on-stdout.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004--on-stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-detach-diagnostic\\on-stderr.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-detach-diagnostic--on-stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-detach-diagnostic\\on-stdout.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-detach-diagnostic--on-stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-detach-diagnostic-cuda-path\\on-stderr.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-detach-diagnostic-cuda-path--on-stderr.log",
+    "sha256": "465a6b3db9c3997beae62d9256959f714da72998ade57ea34def5b5901b69b0c"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-detach-diagnostic-cuda-path\\on-stdout.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-detach-diagnostic-cuda-path--on-stdout.log",
+    "sha256": "76dff2ebe9b85e0ccdd18f1030833550e030252479fb84f32b1076642f88438e"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-state-diagnostic\\on-stderr.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-state-diagnostic--on-stderr.log",
+    "sha256": "e52e2bb884b0895253de2a012a75355c93d7173134a50007d998f6e6431108be"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-state-diagnostic\\on-stdout.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-state-diagnostic--on-stdout.log",
+    "sha256": "76dff2ebe9b85e0ccdd18f1030833550e030252479fb84f32b1076642f88438e"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-cupti129\\1-stderr.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-cupti129--1-stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-cupti129\\1-stdout.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-cupti129--1-stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-cupti129-abi\\0-stderr.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-cupti129-abi--0-stderr.log",
+    "sha256": "69c0673b1eec3d350afabe969fc37d9008ab12445e71cbd4df00c437ef792610"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-cupti129-abi\\0-stdout.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-cupti129-abi--0-stdout.log",
+    "sha256": "cb18c1348ea945c30084e2737f47059a2fb10bf9f80d0b0817848bbfd176af0d"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-cupti129-abi\\1-stderr.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-cupti129-abi--1-stderr.log",
+    "sha256": "fcd8e7af188ce726f2b1ae4653786890ab4151e0cda306782f63d1386c3f08c4"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-cupti129-abi\\1-stdout.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-cupti129-abi--1-stdout.log",
+    "sha256": "da7150811ffde52a48b1181a1340a9a9f5c381c8d68ebaa8d99f104bb32b74ab"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\off-stderr.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-qualified--off-stderr.log",
+    "sha256": "b6c10b42c99dc6709d47549513c49111e6f9945849b8d25dd05508a284602ca7"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\off-stdout.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-qualified--off-stdout.log",
+    "sha256": "cb18c1348ea945c30084e2737f47059a2fb10bf9f80d0b0817848bbfd176af0d"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\on-stderr.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-qualified--on-stderr.log",
+    "sha256": "1841256d43e6f52d1e4934a4d307f818bcf62e2e8077ac5e00b4dd6df3d7a1dd"
+  },
+  {
+    "source": "C:\\models\\expertflow\\runs\\cuda-pdl-feasibility-20261004-qualified\\on-stdout.log",
+    "copy": "docs\\evidence\\compiler-cuda-pdl-20261004\\diagnostics\\cuda-pdl-feasibility-20261004-qualified--on-stdout.log",
+    "sha256": "da7150811ffde52a48b1181a1340a9a9f5c381c8d68ebaa8d99f104bb32b74ab"
+  }
+]

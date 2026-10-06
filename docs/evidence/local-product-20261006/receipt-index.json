@@ -1,0 +1,80 @@
+[
+  {
+    "job": "granite-bench-01",
+    "status": "MEASURED",
+    "model_processes": 1,
+    "receipt_directory": "jobs/granite-bench-01",
+    "report_sha256": "abb3b2d4a84f896be158e32bbfb08e190339d5bfc9389693469c3e71d212332e"
+  },
+  {
+    "job": "granite-tune-01",
+    "status": "NO-MEASURABLE-GAIN",
+    "model_processes": 4,
+    "receipt_directory": "jobs/granite-tune-01",
+    "report_sha256": "584fb0544caab99290b1392e0e9bba20dcf023ede23e4cd0217ebf9a4cb9052d"
+  },
+  {
+    "job": "dense-resident-smoke-01",
+    "status": "PASS-OPERATIONAL-SOAK",
+    "model_processes": 1,
+    "receipt_directory": "jobs/dense-resident-smoke-01",
+    "report_sha256": "b1b693c52c69ce7c4adb0e692defc19dba11619f7b8b1701a24bacdc6d9ff9fe"
+  },
+  {
+    "job": "dense-ram-smoke-01",
+    "status": "PASS-OPERATIONAL-SOAK",
+    "model_processes": 1,
+    "receipt_directory": "jobs/dense-ram-smoke-01",
+    "report_sha256": "96452eb36d656f5d697917b291cb48bfdfa7e79b02bcfdbb09513ff5152cf08c"
+  },
+  {
+    "job": "gemma-local-smoke-01",
+    "status": "INCONCLUSIVE",
+    "model_processes": 1,
+    "receipt_directory": "jobs/gemma-local-smoke-01",
+    "report_sha256": "edc6b58b21db6aeb8926d4ea6a61806e06a451e63d44b26e7613629bf6a0548d",
+    "reason": "Chat produced no text under the fixed32tokenbudget; cleanup receipt confirms owned child termination."
+  },
+  {
+    "job": "gemma-local-smoke-02",
+    "status": "PASS-OPERATIONAL-SOAK",
+    "model_processes": 1,
+    "receipt_directory": "jobs/gemma-local-smoke-02",
+    "report_sha256": "740ab363c06469f496ab4e8732e48925a4eb030ae20dba5f1edf7aaf06dbf14e"
+  },
+  {
+    "job": "review-fixed-native-smoke-01",
+    "status": "PASS-OPERATIONAL-SOAK",
+    "model_processes": 1,
+    "receipt_directory": "jobs/review-fixed-native-smoke-01",
+    "report_sha256": "7130251d04d184b3468258fe9673f2e6b395a17098a6937d184602c0c8ca3bea"
+  },
+  {
+    "job": "engineering-wheel-check",
+    "status": "INCONCLUSIVE",
+    "model_processes": 2,
+    "receipt_directory": "jobs/engineering-wheel-check",
+    "report_sha256": "35b94623196f98a16f6356af3f68402efc0c39895ad369546b818c443d24cf77"
+  },
+  {
+    "job": "settle-wheel-check",
+    "status": "PASS-OPERATIONAL",
+    "model_processes": 2,
+    "receipt_directory": "jobs/settle-wheel-check",
+    "report_sha256": "3b02f6ca16220477522bbf9c364687cb78a89eeae8de2898c6252e9674b07964"
+  },
+  {
+    "job": "final-wheel-native",
+    "status": "PASS-OPERATIONAL-SOAK",
+    "model_processes": 1,
+    "receipt_directory": "jobs/final-wheel-native",
+    "report_sha256": "20f8abf39e79c27619e52909d9cce09931291fa18648833b7635cb7815b88d24"
+  },
+  {
+    "job": "release-wheel-native",
+    "status": "PASS-OPERATIONAL-SOAK",
+    "model_processes": 1,
+    "receipt_directory": "jobs/release-wheel-native",
+    "report_sha256": "294691b5c085eb7e7e5c76b7c08723a987f03b1bb8e5c359986a5efee519d527"
+  }
+]
