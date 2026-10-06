@@ -1,0 +1,14 @@
+# Independent audit of aborted zero-start preflight
+
+Audited 2026-10-06, against commit `337615a226b8c0746c2cb268ac90ac180599371c`. This is an evidence audit, not another implementation review. Result: **PASS; no material discrepancies found**.
+
+- The original sequence root contains exactly `report.json` (SHA-256 `6ed753eb99f88e0e500ce4c5a50d1f7c41e91726a9a39331f9d3dcfcb2c5d469`), with no freeze, case roots, databases, or run-start records. All four cases remain NOT-RUN. Report and public log agree on IDENTITY-STOP, zero attempts/native starts, and the scope-mismatch reason. The last successful loaded case is gemma4-q4-code.
+- Monotonic subtraction exactly reproduces 23.391 seconds. Supervisor exit code is 2; its UTC interval is 23.774386 seconds, consistent with small launcher/CLI overhead. The saved supervisor PID was absent when checked.
+- All 63 source-snapshot entries match their saved hashes/sizes, the archive checksum, and commit337615a blobs. Three differences are exclusively declared LF/CRLF normalization: runtime-stock.json, q4-runtime-identity.json, and q4-tensor-inventory.json. The archive predates the supervisor start. Post-stop dirty test/loader work is outside this archived attempt and was not treated as execution drift.
+- The registration's raw bytes still match the archive and base5da6786. Canonical registration SHA remains `0376ac4d7c5e146bc594f5c22a4b1be803b446ced4c3d9d04a4cb0737af55603`; raw file SHA remains `7f4a9662a7de7b1263e153c3660aaaccfe1c2e5cacf27cbf809583480ee2f4b9`. All17 registered small-input hashes match.
+- All41 original frozen-file hashes and six history pins match. The original study still has148 run-start artifacts and148 measured attempts; each saved process identity matches its raw start record. Original report SHA remains `464defd327d43c4f510f3768266d1dacaefc77d25c239afefef5cc4226c1d0c5`.
+- Independently rebuilt both Granite case model identities/candidate grids/screening schedules from small metadata. Changing only the path's slash spelling reproduces the reported live model-IR mismatch; normalization restores the registered IR/default/candidate IDs and schedules. Both spellings resolve to the same physical1099212096-byte file. Digest values agree across registration, metadata and saved diagnostic evidence.
+
+Limits: no sequence freeze exists, so source provenance is established through the prelaunch archive and supervisor evidence rather than a nonexistent sequence manifest. No full weight hash was freshly read. No scientific utility/product result exists. No native launch, full suite, tracked-file edit, branch/index mutation, or output-root alteration was performed.
+
+Reproducible read-only audit script: `audit_zero_start.py`; machine-readable results: `zero-start-preflight-independent-audit.json` in this directory. The original root was left intact throughout the audit. Preserve this zero-start record separately from any later documented fresh execution decision.

@@ -1,0 +1,45 @@
+F.                                                                       [100%]
+================================== FAILURES ===================================
+_ test_live_loader_normalizes_model_path_without_changing_other_inputs[native] _
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1399/test_live_loader_normalizes_mo0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000170F2A46490>
+path_spelling = 'native'
+
+    @pytest.mark.parametrize('path_spelling',['native','posix'])
+    def test_live_loader_normalizes_model_path_without_changing_other_inputs(tmp_path,monkeypatch,path_spelling):
+        from dataclasses import replace
+        from test_compiler_pipeline import inputs as make_inputs
+        from expertflow.compiler.schema import canonical_sha256
+        module=driver()
+        raw=make_inputs(tmp_path)
+        canonical_path=Path(raw.model.identity.path).resolve().as_posix()
+        if path_spelling=='posix':
+            raw=replace(raw,model=replace(raw.model,identity=replace(raw.model.identity,path=canonical_path)))
+        calls=[]
+        def live_loader(request,*,live):
+            calls.append(live)
+            return raw
+        monkeypatch.setattr(module,'load_compiler_inputs',live_loader)
+        case={'planned_root':str(tmp_path/'case'),'descriptor':'descriptor','inventory':'inventory',
+            'workload':'workload','runtime_identity':'runtime'}
+        loaded=module.load_case_inputs(case,{'hardware':'hardware'})
+        expected=replace(raw,model=replace(raw.model,identity=replace(raw.model.identity,path=canonical_path)))
+>       assert calls==[True] and loaded==expected
+E       AssertionError: assert ([True] == [True]
+E         
+E         Use -v to get more diff and CompilerInput...provenance={}) == CompilerInput...provenance={})
+E         
+E         Omitting 6 identical items, use -vv to show
+E         Differing attributes:
+E         ['model']
+E         
+E         Drill down into differing attribute model:
+E           model: ModelIR(schema_version='1.0.0', identity=ArtifactIdentity(path='C:\\Users\\Hank47\\AppData\\Local\\Temp\\pytest-of-Hank47\\pytest-1399\\test_live_loader_normalizes_mo0\\model.gguf', size_bytes=12004, sha256='c1669bc1051c04a460a272e6c0a7217a84340f64d0fab2138e3d680bb8f47b48'), family='gemma4', architecture='gemma4-moe', quantization='Q6_K', expert_count=128, expert_top_k=8, moe_layers=(MoELayerIR(layer_id=0, expert_count=128, expert_top_k=8, expert_b...
+E         
+E         ...Full output truncated (19 lines hidden), use '-vv' to show)
+
+tests\test_stock_wider_sequence.py:94: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_stock_wider_sequence.py::test_live_loader_normalizes_model_path_without_changing_other_inputs[native]
+1 failed, 1 passed, 18 deselected in 0.12s

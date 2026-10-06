@@ -1,0 +1,8 @@
+{
+  "status": "COMPLETED",
+  "pid": 18264,
+  "started_at_utc": "2026-10-06T04:20:04.2956888Z",
+  "command": "uv run pytest -q",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-06T04:46:55.4031124Z"
+}

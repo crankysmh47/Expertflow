@@ -1,0 +1,29 @@
+{
+  "attempts": 0,
+  "cases": [
+    {
+      "case_id": "gemma4-q4-prose",
+      "status": "NOT-RUN"
+    },
+    {
+      "case_id": "gemma4-q4-code",
+      "status": "NOT-RUN"
+    },
+    {
+      "case_id": "granite-q6-prose",
+      "status": "NOT-RUN"
+    },
+    {
+      "case_id": "granite-q6-code",
+      "status": "NOT-RUN"
+    }
+  ],
+  "exception_type": "ValueError",
+  "last_loaded_case": "gemma4-q4-code",
+  "native_processes": 0,
+  "reason": "live inputs/grid outside registered wider case",
+  "sequence_finished_monotonic_ns": 2107875000000,
+  "sequence_started_monotonic_ns": 2084484000000,
+  "sequence_wall_seconds": 23.391,
+  "status": "IDENTITY-STOP"
+}

@@ -31,3 +31,13 @@ Base: `5da6786`; implementation candidate: `6a0eed4` on `ef-v2`.
 - Ruling: accept only declared Git LF normalization during commit attestation while preserving raw frozen input bytes and source-map hashes. Cost if wrong: commit-to-worktree byte equivalence is limited to line endings; arbitrary content changes still fail and live raw digests remain authoritative.
 - Ruling: use logged hidden supervisors for long verification/collection so a session restart can recover owned job state. Cost if wrong: background process ownership must be checked from saved PID/time, reports and artifacts before any further launch.
 - The daemon interrupted the first latest test job with an empty log and no surviving process. Only that unfinished check was restarted; final current suite passed **889 tests, 7 expected skips, 1,374.07 seconds**, with the launcher/source-attribute pins included. Seven rebuilt wheel checks passed. Native collection remains unstarted at this gate.
+
+## Zero-start preflight correction
+
+- The live preflight at commit337615a stopped before any freeze or native call: IDENTITY-STOP, zero attempts/starts,23.391s collector and23.774386s launcher wall. Its one-file root, original source snapshot, supervisor and log are preserved separately. Independent zero-start evidence audit: PASS.
+- Granite live loading fully verified the registered weights/runtime, but its Windows path spelling differed from metadata inspection. Path-only normalization after the unchanged live loader restores registered IR/default/candidates/schedules. Native-spelling regression RED failed, both native/POSIX GREEN controls passed.
+- Fresh read-only full live scope verification: all4 cases PASS, zero calls,20.0823009s. Seven installed-wheel checks PASS; current host/registration/unused roots and original41source/sixhistory/148starts integrity PASS.
+- Ruling: preserve the audited zero-start root and permit a fresh precollection attempt after full verification and committed freeze under the unchanged registration — the resolved prerequisite mismatch spent no native budget and produced no samples — cost if wrong: two separately identified preflight attempts and retained overhead. No native retry, resume, discard or scientific budget reuse is permitted. See precollection-decision.md.
+- Final normalization full suite running under hidden supervisor PID18264, started2026-10-06T04:20:04Z. No wider native model has been launched.
+
+Final correction suite completed:891 passed,7 expected skips,1607.12s,exit0. Supervisor PID18264 is absent. Source normalization and gates unchanged throughout verification. Corrected source must now be committed and raw-archived before native launch.

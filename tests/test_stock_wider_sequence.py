@@ -72,6 +72,31 @@ def test_case_walltime_includes_reconstruction():
         finished_ns=11_000_000_000)==15
 
 
+@pytest.mark.parametrize('path_spelling',['native','posix'])
+def test_live_loader_normalizes_model_path_without_changing_other_inputs(tmp_path,monkeypatch,path_spelling):
+    from dataclasses import replace
+    from test_compiler_pipeline import inputs as make_inputs
+    from expertflow.compiler.schema import canonical_sha256
+    module=driver()
+    raw=make_inputs(tmp_path)
+    canonical_path=Path(raw.model.identity.path).resolve().as_posix()
+    if path_spelling=='posix':
+        raw=replace(raw,model=replace(raw.model,identity=replace(raw.model.identity,path=canonical_path)))
+    calls=[]
+    def live_loader(request,*,live):
+        calls.append(live)
+        return raw
+    monkeypatch.setattr(module,'load_compiler_inputs',live_loader)
+    case={'planned_root':str(tmp_path/'case'),'descriptor':'descriptor','inventory':'inventory',
+        'workload':'workload','runtime_identity':'runtime'}
+    loaded=module.load_case_inputs(case,{'hardware':'hardware'})
+    expected=replace(raw,model=replace(raw.model,identity=replace(raw.model.identity,path=canonical_path)))
+    assert calls==[True] and loaded==expected
+    assert loaded.model.identity.sha256==raw.model.identity.sha256
+    assert Path(loaded.model.identity.path).samefile(raw.model.identity.path)
+    assert canonical_sha256(loaded.model)==canonical_sha256(expected.model)
+
+
 def test_reconstruction_wall_cap_removes_accepted_gain_claim():
     report={'manifest':{'input_load_seconds':0,'case_started_monotonic_ns':1_000_000_000}}
     raw={'status':'PASS-STOCK-UTILITY-PRODUCT','utility_gain_established':True}

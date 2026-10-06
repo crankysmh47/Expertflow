@@ -1,5 +1,6 @@
 """Execute/reconstruct only the four registered wider stock utility cases."""
 import argparse
+from dataclasses import replace
 import json
 from pathlib import Path
 import subprocess
@@ -24,7 +25,11 @@ def load_case_inputs(case,registration):
     root=Path(case['planned_root'])
     request=CompilationRequest(Path(case['descriptor']),Path(case['inventory']),Path(registration['hardware']),
         Path(case['workload']),Path(case['runtime_identity']),(),root/'utility.sqlite3',root)
-    return load_compiler_inputs(request,live=True)
+    inputs=load_compiler_inputs(request,live=True)
+    # Match inspect_model's registered canonical path after the unchanged live
+    # loader has verified the actual model bytes and runtime dependencies.
+    identity=replace(inputs.model.identity,path=Path(inputs.model.identity.path).resolve().as_posix())
+    return replace(inputs,model=replace(inputs.model,identity=identity))
 
 
 def require_committed_sources(source_files):
