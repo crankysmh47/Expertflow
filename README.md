@@ -12,7 +12,7 @@ Read [current status](docs/STATUS.md), [tasks](docs/TODO.md), and the concise [p
 
 The [original stock-tuning utility study](docs/evidence/stock-utility-20261004/report.md) confirmed **12.70%** gain over resolved thread/graph defaults and manual equivalence. Its final sealed-plan equivalence check was **inconclusive**, so that study remains closed without new acceptance or transfer.
 
-The separate [repeatability and transfer proof](docs/evidence/stock-repeatability-20261004/report.md) **passed all 148 calls and final reconstruction**. Both independent main blocks and both fresh consumers passed. Held-out stock tuning gained **9.38%** over resolved 8-thread/graphs-on defaults, CI95 **[7.92%, 10.61%]**, and matched an independent manual grid at equal 18-evaluation budgets. This qualifies bounded stock autotuning on the pinned Q6 workloads under fixed spacing and diagnostics. Wider model/workload utility, other-host coverage and serving performance remain pending.
+The separate [repeatability and transfer proof](docs/evidence/stock-repeatability-20261004/report.md) **passed all 148 calls and final reconstruction**. Both independent main blocks and both fresh consumers passed. Held-out stock tuning gained **9.38%** over resolved 8-thread/graphs-on defaults, CI95 **[7.92%, 10.61%]**, and matched an independent manual grid at equal 18-evaluation budgets. This qualifies bounded stock autotuning on the pinned Q6 workloads under fixed spacing and diagnostics. The [wider Q4/Granite comparison](docs/evidence/stock-coverage-20261005/report.md) completed 344 calls; all four cases were **NO-UTILITY-GAIN** under the fixed 5% gate. Other hosts and serving performance remain unverified.
 
 ## Installation and CLI
 
@@ -73,14 +73,14 @@ These research workflows require a matching checkout; use `stock --project C:/se
 
 Read-only validation reuses one verified reader per database while retaining artifact/runtime/token checks and the existing model stat guard. The final adapter validated the completed study in 221 seconds versus the earlier 2,191 seconds, with five reader caches and zero new native calls; these are descriptive timings. All 41 frozen files and six historical pins remained unchanged. [Verification and source archive](docs/evidence/stock-cli-20261005/report.md).
 
-[Wider utility coverage](docs/superpowers/specs/2026-10-05-stock-coverage.md) registers Q4 and Granite with prose/code prompts, 107 calls each/428 maximum. The separate collector freezes all four live inputs and roots before the first call, waits 30 seconds before every call and reconstructs retained failures as well as complete gates. Native coverage remains pending implementation review and immutable source freeze. Registration and CPU controls add no scientific gain or new host coverage.
+[Wider utility coverage](docs/evidence/stock-coverage-20261005/report.md) completed four Q4/Granite prose/code cases with 86 calls each, fixed 30-second spacing and 63 frozen source/input files. Q4 gains of +1.03%/+0.78% fell below the 5% gate; Granite retained the default with −0.02%/−0.23% paired changes. No new product or consumer ran. Fresh public validation passed in 93.40 seconds with zero extra native calls, and the independent final raw audit passed. The immutable registration inspector describes protocol pins, not live execution progress.
 
 ```powershell
 uv run --no-sync expertflow stock coverage run --help
 uv run --no-sync expertflow stock coverage validate --help
 ```
 
-After review, `coverage run` executes the exact registered sequence at its fixed local roots. It refuses existing outputs and has no retry/resume option. `coverage validate` is read-only and reports each case separately; a neutral/default-optimal case remains `NO-UTILITY-GAIN`. See the [collector plan](docs/superpowers/plans/2026-10-05-wider-stock-collector.md).
+The registered sequence is closed. Use `uv run --no-sync expertflow stock coverage validate` to reconstruct its four outcomes. `coverage run` refuses the occupied fixed roots and has no retry/resume operation; further experiments require a separate registration. A neutral/default-optimal case remains `NO-UTILITY-GAIN`. See the [collector plan](docs/superpowers/plans/2026-10-05-wider-stock-collector.md).
 
 The earlier deployment interface remains available: `expertflow doctor`, `expertflow profile`, `expertflow optimize`, positional `expertflow run`, `expertflow serve` and `expertflow compare`. Its setup is documented in the historical [judge guide](JUDGES.md) and [deployment guide](DEPLOYMENT.md). It does not promote the old placement result into current exact acceptance.
 
@@ -101,7 +101,7 @@ uv run --no-sync python -m compileall -q src/expertflow
 git diff --check
 ```
 
-Latest full suite: 835 passed, 7 historical source-environment skips; 6 applicable pinned native source checks passed separately. See [implementation verification](docs/evidence/stock-cli-20261005/implementation-verification.json). Run applicable source contracts against the exact external checkout they target. CPU tests and replay do not prove native speed or quality.
+Latest full suite: **891 passed, 7 historical source-environment skips**; six applicable pinned native source checks and seven installed-wheel checks passed separately. See [wider implementation verification](docs/evidence/stock-coverage-20261005/implementation-review.md). Run applicable source contracts against the exact external checkout they target. CPU tests and replay do not prove native speed or quality.
 
 ## Project documentation
 

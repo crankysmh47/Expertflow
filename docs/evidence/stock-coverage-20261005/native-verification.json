@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "command": [
+    "uv",
+    "run",
+    "--no-sync",
+    "expertflow",
+    "stock",
+    "coverage",
+    "validate"
+  ],
+  "exit_code": 0,
+  "started_at_utc": "2026-10-06T09:46:03.534072+00:00",
+  "finished_at_utc": "2026-10-06T09:47:36.982705+00:00",
+  "public_cli_wall_seconds": 93.39996959999917,
+  "additional_native_calls": 0,
+  "before": {
+    "wider_native_starts": 344,
+    "wider_report_sha256": "4a74d814daceb07be0d7d3319127e513003dcee9f49f306c4c6fd452745762c9",
+    "original_frozen_files": 41,
+    "original_history_pins": 6,
+    "original_native_starts": 148,
+    "original_report_sha256": "464defd327d43c4f510f3768266d1dacaefc77d25c239afefef5cc4226c1d0c5",
+    "frozen_source_files": 63
+  },
+  "after": {
+    "wider_native_starts": 344,
+    "wider_report_sha256": "4a74d814daceb07be0d7d3319127e513003dcee9f49f306c4c6fd452745762c9",
+    "original_frozen_files": 41,
+    "original_history_pins": 6,
+    "original_native_starts": 148,
+    "original_report_sha256": "464defd327d43c4f510f3768266d1dacaefc77d25c239afefef5cc4226c1d0c5",
+    "frozen_source_files": 63
+  },
+  "validation": {
+    "artifact_and_record_checks": "repeated normally",
+    "cache_lifetime": "this invocation",
+    "database_readers": 4,
+    "model_digest_cache_entries": 4,
+    "native_calls": 0
+  },
+  "source_commit": "78ad5f0063f2bc372a528e37ec1f45d8be1ceb11",
+  "scope": "Fresh public reconstruction, full live input verification, unchanged raw/source/history evidence."
+}

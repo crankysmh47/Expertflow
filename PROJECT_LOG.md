@@ -1254,3 +1254,13 @@ Final full suite835passed/7optional historical source-environment skips;94focuse
 Registered four Q4/Granite prose/code utility cases with exact inputs/controls/defaults/gates/costs/pacing and stop rules:107calls each/428maximum. StatusREGISTERED-NOT-RUN. Next is the separate wider collector, independent review and immutable source/live-input freeze, then collection/audit. No wider gain, untouched workload, new host, global optimum or serving-throughput claim. Original scientific decisions and budgets remain closed.
 
 Evidence: docs/evidence/stock-cli-20261005/report.md, implementation-verification.json and review.md; docs/superpowers/specs/2026-10-05-stock-coverage.md.
+
+## 2026-10-06: Wider stock utility closed at four negative cases
+
+Executed the immutable four-case sequence from 78ad5f0 on ef-v2 after 891 tests/seven expected skips, six pinned native source checks and seven installed-wheel checks. The earlier zero-start identity preflight was independently audited and archived before a documented path-only correction; no native budget or samples were reused.
+
+COMPLETE-STOCK-COVERAGE, exit0: 344 retained attempts/unique starts, 86 per case, four NO-UTILITY-GAIN outcomes. Q4 prose/code gains +1.03%/+0.78% were below the fixed 5% gate; Granite selected the 8-thread/graphs-on default with paired changes-0.02%/-0.23%. All manual CI90 intervals were strictly within +/-2%, equal 18/18 searches. No conditional product/consumer; 84 unused calls remain closed to reuse. Sequence 17741.438s, waits 10325.149s, native phases 4427.471s; separate zero-start overhead preserved.
+
+Final independent raw audit PASS: all 344 records/3440 artifact hashes, tokens, owners, waits, memory, cleanup, source/registration/history and chronology/caps; no material discrepancies. Fresh public validation PASS in 93.399970s, exit0, four readers/model-digest cache entries, zero extra native calls; 63 sources and original 41 files/six history pins/148 records unchanged. Raw report SHA 4a74d814daceb07be0d7d3319127e513003dcee9f49f306c4c6fd452745762c9. README, status, TODO, product/method/benchmarking guides and plans updated. See docs/evidence/stock-coverage-20261005/report.md.
+
+The positive Q6 held-out proof remains scoped at +9.38%; these cases add no practical tuning gain, global optimum, placement acceleration or serving evidence. Next: a read-only offload/attention/batch numerical-eligibility audit before any new native protocol. Keep ef-v2 in place; no merge or push is requested.

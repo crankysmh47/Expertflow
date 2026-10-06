@@ -1,7 +1,7 @@
 # ExpertFlow tasks
 
 Current roadmap: [placement proof and stock fallback](superpowers/plans/2026-10-04-placement-proof-and-stock-fallback.md).
-Results and scope: [STATUS.md](STATUS.md). Updated 2026-10-05.
+Results and scope: [STATUS.md](STATUS.md). Updated 2026-10-06.
 
 ## Delivered
 
@@ -67,22 +67,30 @@ Never reuse either study's budget for additional samples or candidates.
   with the CLI workflow. Keep neutral/default-optimal outcomes explicit.
 - [x] Register broader utility coverage before new workload/model/host runs;
   Q4 and Granite compatibility does not establish defaults gain on those inputs.
-- [ ] Implement/review the separate wider collector and freeze its source,
+- [x] Implement/review the separate wider collector and freeze its source,
   live identities and all four case roots before native collection.
   [Implementation plan](superpowers/plans/2026-10-05-wider-stock-collector.md):
   guarded per-case journal, complete/prefix reconstruction, public sequence
   commands and one independent implementation review.
-- [ ] Execute and independently audit the [four registered cases](superpowers/specs/2026-10-05-stock-coverage.md),
-  retaining neutral/default-optimal and failed outcomes. Maximum428 new calls;
-  no additional calls belong to either completed Q6 study.
+- [x] Execute the [four registered cases](superpowers/specs/2026-10-05-stock-coverage.md)
+  from `78ad5f0`; retain all 344 calls and four NO-UTILITY-GAIN outcomes.
+  No conditional product/consumer ran; 84 unspent calls cannot fund retries.
+- [x] Run fresh public read-only reconstruction: PASS, 93.40 seconds, zero new
+  calls; all 63 source files and original 41 files/six history pins/148 records unchanged.
+- [x] Finish independent raw audit: PASS, all 344 records/3,440 artifact hashes,
+  no material discrepancies; publish the final wider evidence/docs.
 
 Public CLI and reader-reuse verification are recorded in
 [the implementation report](evidence/stock-cli-20261005/report.md). Wider native
-utility tests are registered, not executed; serving and other hosts remain unverified.
+results are [recorded separately](evidence/stock-coverage-20261005/report.md);
+none met the practical utility gate. Serving and other hosts remain unverified.
 
-## Broader research remains deferred
+## Next research gate; other expansion remains deferred
 
-- [ ] Wider offload/attention/batch controls with their numerical scope proofs.
+- [ ] Next: audit wider offload/attention/batch operation paths and numerical
+  eligibility before designing any new native experiment. Retain an explicit
+  no-go if no setting qualifies under the current exact profile; do not retune
+  the completed thread/graph study.
 - [ ] KV compression/TurboQuant and shared memory-budget optimization.
 - [ ] MTP/speculation, two-table dynamic residency and joint search.
 - [ ] Broad family/hardware coverage, serving integration and presentation polish.

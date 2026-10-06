@@ -68,11 +68,19 @@ uv run expertflow stock coverage validate
 
 Files: create `docs/evidence/stock-coverage-20261005/` records; update README/STATUS/TODO/BENCHMARKING/PROJECT_LOG with verified outcomes.
 
-- [ ] Verify reviewed source/map, original historical integrity, live weights/binaries/host, trusted eligibility/defaults and absence of foreign model processes. Freeze all roots/databases and both schedules before any call.
-- [ ] Execute the four cases in registered order within fixed budgets, retaining every attempt and stopping as prescribed. Native logs live at registered absolute roots.
-- [ ] Independently audit raw retained artifacts and run public read-only validation; verify unchanged historical study and native-start counts before/after validation.
-- [ ] Record four separate measured/partial/unrun verdicts, selection, defaults/manual intervals and all costs; never infer a family-wide gain.
-- [ ] Commit durable evidence/docs on ef-v2. Preserve ignored scratch if automatic cleanup review blocks deletion; do not evade that rejection.
+- [x] Verify reviewed source/map, original historical integrity, live weights/binaries/host, trusted eligibility/defaults and absence of foreign model processes. Freeze all roots/databases and both schedules before any call.
+- [x] Execute the four cases in registered order within fixed budgets, retaining every attempt and stopping as prescribed. Native logs live at registered absolute roots.
+- [x] Independently audit raw retained artifacts and run public read-only validation; verify unchanged historical study and native-start counts before/after validation.
+- [x] Record four separate measured/partial/unrun verdicts, selection, defaults/manual intervals and all costs; never infer a family-wide gain.
+- [x] Commit durable evidence/docs on ef-v2. Preserve ignored scratch if automatic cleanup review blocks deletion; do not evade that rejection.
+
+Terminal source: `78ad5f0`, 63 raw frozen files. All four cases completed 86 calls
+and NO-UTILITY-GAIN; 344 total, no conditional product/consumer. Independent
+final raw audit PASS; public validation exit0 in 93.40 seconds, zero extra calls,
+original 41 files/six history pins/148 records unchanged. [Results](../../evidence/stock-coverage-20261005/report.md).
+The audited zero-start preflight is preserved under its documented corrective
+decision, separately from the successful terminal sequence. Next: read-only
+offload/attention/batch numerical eligibility before any new registration.
 
 ```python
 assert sequence['attempts'] <= 428

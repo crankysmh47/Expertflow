@@ -1,0 +1,407 @@
+{
+  "cases": [
+    {
+      "attempts": 86,
+      "automatic_selection": {
+        "candidate_id": "ebcb1f649ed18a9fd068e30e33441e4da46c9e11c18f371fbfea0e4cffa397f7",
+        "cuda_graphs": "on",
+        "evaluations": 18,
+        "threads": 12
+      },
+      "case_id": "gemma4-q4-prose",
+      "case_wall_seconds": 5208.6089999999995,
+      "collection_wall_seconds": 5176.656,
+      "consumer_calls": 0,
+      "defaults_comparison": {
+        "ci95_pct": [
+          0.8820475951369215,
+          1.1931413451301915
+        ],
+        "direct_cv_pct": 0.23555076549492815,
+        "direct_mean_tps": 37.153298501235405,
+        "geometric_change_pct": 1.0294817985819156,
+        "sealed_cv_pct": 0.21034087618337147,
+        "sealed_mean_tps": 37.53576579749083
+      },
+      "input_load_seconds": 8.547,
+      "manual_comparison": {
+        "ci90_pct": [
+          -1.014155413749197,
+          0.11137024293821224
+        ],
+        "direct_cv_pct": 0.9087902939968854,
+        "geometric_change_pct": -0.343481939713735,
+        "sealed_cv_pct": 1.2405485119559647
+      },
+      "manual_selection": {
+        "candidate_id": "ebcb1f649ed18a9fd068e30e33441e4da46c9e11c18f371fbfea0e4cffa397f7",
+        "cuda_graphs": "on",
+        "evaluations": 18,
+        "threads": 12
+      },
+      "minimum_device_free_bytes": 13667614720,
+      "native_phase_seconds": 1869.9572592999937,
+      "native_processes": 86,
+      "peak_owned_bytes": 2469031936,
+      "phase_costs": {
+        "automatic-screen": {
+          "attempts": 18,
+          "completion_seconds": 297.5017692999999,
+          "load_health_seconds": 82.91735059999974,
+          "native_calls": 18,
+          "teardown_seconds": 18.458664200002204,
+          "tokenize_seconds": 0.11404090000360156,
+          "wait_seconds": 540.204
+        },
+        "defaults-pair": {
+          "attempts": 20,
+          "completion_seconds": 314.6697709999999,
+          "load_health_seconds": 92.37538849999964,
+          "native_calls": 20,
+          "teardown_seconds": 20.69542519999959,
+          "tokenize_seconds": 0.1847723999981099,
+          "wait_seconds": 600.312
+        },
+        "manual-pair": {
+          "attempts": 20,
+          "completion_seconds": 314.41713980000003,
+          "load_health_seconds": 92.65338989999691,
+          "native_calls": 20,
+          "teardown_seconds": 20.79617700000199,
+          "tokenize_seconds": 0.10101239999676181,
+          "wait_seconds": 600.3739999999999
+        },
+        "manual-screen": {
+          "attempts": 18,
+          "completion_seconds": 297.9877934,
+          "load_health_seconds": 82.81323539999903,
+          "native_calls": 18,
+          "teardown_seconds": 18.49653899999703,
+          "tokenize_seconds": 0.12820930000088993,
+          "wait_seconds": 540.2360000000001
+        },
+        "reference": {
+          "attempts": 10,
+          "completion_seconds": 157.7221985,
+          "load_health_seconds": 47.60249959999874,
+          "native_calls": 10,
+          "teardown_seconds": 10.221101899998757,
+          "tokenize_seconds": 0.10078100000100676,
+          "wait_seconds": 300.09299999999996
+        }
+      },
+      "product_calls": 0,
+      "reconstruction_wall_seconds": 23.391,
+      "selected_default": false,
+      "status": "NO-UTILITY-GAIN",
+      "utility_gain_established": false,
+      "wait_seconds": 2581.219
+    },
+    {
+      "attempts": 86,
+      "automatic_selection": {
+        "candidate_id": "dcbf8a3f31b8da275ce2e96b6d1eea890feb017522524a3ea119f998fdcc12f4",
+        "cuda_graphs": "on",
+        "evaluations": 18,
+        "threads": 12
+      },
+      "case_id": "gemma4-q4-code",
+      "case_wall_seconds": 5184.077,
+      "collection_wall_seconds": 5152.172,
+      "consumer_calls": 0,
+      "defaults_comparison": {
+        "ci95_pct": [
+          0.6262919371896855,
+          0.9332598509993749
+        ],
+        "direct_cv_pct": 0.1842064330415107,
+        "direct_mean_tps": 37.392091286058296,
+        "geometric_change_pct": 0.7818498083470878,
+        "sealed_cv_pct": 0.10282675506695803,
+        "sealed_mean_tps": 37.68440166886541
+      },
+      "input_load_seconds": 8.515,
+      "manual_comparison": {
+        "ci90_pct": [
+          -0.2011448558954105,
+          0.08272361697442496
+        ],
+        "direct_cv_pct": 0.2209445985533668,
+        "geometric_change_pct": -0.05855899161205161,
+        "sealed_cv_pct": 0.11029104563563784
+      },
+      "manual_selection": {
+        "candidate_id": "dcbf8a3f31b8da275ce2e96b6d1eea890feb017522524a3ea119f998fdcc12f4",
+        "cuda_graphs": "on",
+        "evaluations": 18,
+        "threads": 12
+      },
+      "minimum_device_free_bytes": 13667614720,
+      "native_phase_seconds": 1845.7175568999905,
+      "native_processes": 86,
+      "peak_owned_bytes": 2469031936,
+      "phase_costs": {
+        "automatic-screen": {
+          "attempts": 18,
+          "completion_seconds": 294.59165179999997,
+          "load_health_seconds": 82.8039312000019,
+          "native_calls": 18,
+          "teardown_seconds": 17.19782269999996,
+          "tokenize_seconds": 0.10090459999810264,
+          "wait_seconds": 540.235
+        },
+        "defaults-pair": {
+          "attempts": 20,
+          "completion_seconds": 310.91831,
+          "load_health_seconds": 92.39759779999804,
+          "native_calls": 20,
+          "teardown_seconds": 19.2012302000021,
+          "tokenize_seconds": 0.21180439999625378,
+          "wait_seconds": 600.3
+        },
+        "manual-pair": {
+          "attempts": 20,
+          "completion_seconds": 310.30028359999994,
+          "load_health_seconds": 92.20189969999956,
+          "native_calls": 20,
+          "teardown_seconds": 19.1340067000001,
+          "tokenize_seconds": 0.06278359999669192,
+          "wait_seconds": 600.453
+        },
+        "manual-screen": {
+          "attempts": 18,
+          "completion_seconds": 294.3214298,
+          "load_health_seconds": 83.13219709999794,
+          "native_calls": 18,
+          "teardown_seconds": 17.200771200004965,
+          "tokenize_seconds": 0.1332751999998436,
+          "wait_seconds": 540.25
+        },
+        "reference": {
+          "attempts": 10,
+          "completion_seconds": 155.83360050000002,
+          "load_health_seconds": 46.33890059999976,
+          "native_calls": 10,
+          "teardown_seconds": 9.559093699999721,
+          "tokenize_seconds": 0.07606249999480497,
+          "wait_seconds": 300.094
+        }
+      },
+      "product_calls": 0,
+      "reconstruction_wall_seconds": 23.39,
+      "selected_default": false,
+      "status": "NO-UTILITY-GAIN",
+      "utility_gain_established": false,
+      "wait_seconds": 2581.332
+    },
+    {
+      "attempts": 86,
+      "automatic_selection": {
+        "candidate_id": "74d1ba8cb4119acee0a422a75f8bb524cb3a91dd5895df16a009e12805c393ad",
+        "cuda_graphs": "on",
+        "evaluations": 18,
+        "threads": 8
+      },
+      "case_id": "granite-q6-prose",
+      "case_wall_seconds": 3670.813,
+      "collection_wall_seconds": 3653.141,
+      "consumer_calls": 0,
+      "defaults_comparison": {
+        "ci95_pct": [
+          -0.1483346591388183,
+          0.08629683041138075
+        ],
+        "direct_cv_pct": 0.19041538363773414,
+        "direct_mean_tps": 513.949384037602,
+        "geometric_change_pct": -0.02428767293806148,
+        "sealed_cv_pct": 0.3202140908407226,
+        "sealed_mean_tps": 513.8260935414007
+      },
+      "input_load_seconds": 1.438,
+      "manual_comparison": {
+        "ci90_pct": [
+          -0.11830377253102674,
+          0.03549795893435659
+        ],
+        "direct_cv_pct": 0.16572241946447852,
+        "geometric_change_pct": -0.04532442959572995,
+        "sealed_cv_pct": 0.20968116371126563
+      },
+      "manual_selection": {
+        "candidate_id": "f12b559962dced00ce1330f41bfafce375c73161b84bf712ff975153f01d52b1",
+        "cuda_graphs": "on",
+        "evaluations": 18,
+        "threads": 16
+      },
+      "minimum_device_free_bytes": 14649212928,
+      "native_phase_seconds": 355.2680411000304,
+      "native_processes": 86,
+      "peak_owned_bytes": 1487540224,
+      "phase_costs": {
+        "automatic-screen": {
+          "attempts": 18,
+          "completion_seconds": 28.8207858,
+          "load_health_seconds": 47.884100899995246,
+          "native_calls": 18,
+          "teardown_seconds": 2.3792483000015636,
+          "tokenize_seconds": 0.19508360000509128,
+          "wait_seconds": 540.235
+        },
+        "defaults-pair": {
+          "attempts": 20,
+          "completion_seconds": 22.6250498,
+          "load_health_seconds": 53.326151400000526,
+          "native_calls": 20,
+          "teardown_seconds": 2.6073148000068613,
+          "tokenize_seconds": 0.2885449000095832,
+          "wait_seconds": 600.345
+        },
+        "manual-pair": {
+          "attempts": 20,
+          "completion_seconds": 22.645967799999998,
+          "load_health_seconds": 53.04792360000283,
+          "native_calls": 20,
+          "teardown_seconds": 2.6222264999960316,
+          "tokenize_seconds": 0.2038914000004297,
+          "wait_seconds": 600.391
+        },
+        "manual-screen": {
+          "attempts": 18,
+          "completion_seconds": 28.846511699999994,
+          "load_health_seconds": 47.72147170000426,
+          "native_calls": 18,
+          "teardown_seconds": 2.3417124999996304,
+          "tokenize_seconds": 0.26935050001156924,
+          "wait_seconds": 540.265
+        },
+        "reference": {
+          "attempts": 10,
+          "completion_seconds": 11.385056900000002,
+          "load_health_seconds": 26.61757989999751,
+          "native_calls": 10,
+          "teardown_seconds": 1.3323219999983849,
+          "tokenize_seconds": 0.10774710000077903,
+          "wait_seconds": 300.10999999999996
+        }
+      },
+      "product_calls": 0,
+      "reconstruction_wall_seconds": 16.219,
+      "selected_default": true,
+      "status": "NO-UTILITY-GAIN",
+      "utility_gain_established": false,
+      "wait_seconds": 2581.346
+    },
+    {
+      "attempts": 86,
+      "automatic_selection": {
+        "candidate_id": "c519ab9ed33ae92f5849b9d6c6d17193fab1cb44df9f46d9c7e804ca3d2e7251",
+        "cuda_graphs": "on",
+        "evaluations": 18,
+        "threads": 8
+      },
+      "case_id": "granite-q6-code",
+      "case_wall_seconds": 3672.907,
+      "collection_wall_seconds": 3655.328,
+      "consumer_calls": 0,
+      "defaults_comparison": {
+        "ci95_pct": [
+          -0.3823163256853225,
+          -0.08235746063018386
+        ],
+        "direct_cv_pct": 0.17447457980636805,
+        "direct_mean_tps": 514.599510720355,
+        "geometric_change_pct": -0.23496794908614585,
+        "sealed_cv_pct": 0.2514458071085341,
+        "sealed_mean_tps": 513.3911257970066
+      },
+      "input_load_seconds": 1.407,
+      "manual_comparison": {
+        "ci90_pct": [
+          -0.20126252380921814,
+          0.038732558714943924
+        ],
+        "direct_cv_pct": 0.24836763259965786,
+        "geometric_change_pct": -0.08108079902603388,
+        "sealed_cv_pct": 0.21805421085254373
+      },
+      "manual_selection": {
+        "candidate_id": "f265be7969bab7c918ddde511540e64741b0895218a564ac4fbceebeaaaa04c8",
+        "cuda_graphs": "on",
+        "evaluations": 18,
+        "threads": 16
+      },
+      "minimum_device_free_bytes": 14649278464,
+      "native_phase_seconds": 356.52846500000237,
+      "native_processes": 86,
+      "peak_owned_bytes": 1487540224,
+      "phase_costs": {
+        "automatic-screen": {
+          "attempts": 18,
+          "completion_seconds": 28.7297367,
+          "load_health_seconds": 47.798225899998215,
+          "native_calls": 18,
+          "teardown_seconds": 2.3859406000010495,
+          "tokenize_seconds": 0.24132820000158972,
+          "wait_seconds": 540.172
+        },
+        "defaults-pair": {
+          "attempts": 20,
+          "completion_seconds": 22.766096700000002,
+          "load_health_seconds": 53.62395380000817,
+          "native_calls": 20,
+          "teardown_seconds": 2.5946360000016284,
+          "tokenize_seconds": 0.3175252999899385,
+          "wait_seconds": 600.36
+        },
+        "manual-pair": {
+          "attempts": 20,
+          "completion_seconds": 22.8113609,
+          "load_health_seconds": 52.91922420000628,
+          "native_calls": 20,
+          "teardown_seconds": 2.621092699992005,
+          "tokenize_seconds": 0.2290922999927716,
+          "wait_seconds": 600.327
+        },
+        "manual-screen": {
+          "attempts": 18,
+          "completion_seconds": 28.9002073,
+          "load_health_seconds": 48.43032040000253,
+          "native_calls": 18,
+          "teardown_seconds": 2.430489000002126,
+          "tokenize_seconds": 0.24084420000144746,
+          "wait_seconds": 540.315
+        },
+        "reference": {
+          "attempts": 10,
+          "completion_seconds": 11.2836527,
+          "load_health_seconds": 26.720927400005166,
+          "native_calls": 10,
+          "teardown_seconds": 1.3189147999983106,
+          "tokenize_seconds": 0.16489590000128374,
+          "wait_seconds": 300.078
+        }
+      },
+      "product_calls": 0,
+      "reconstruction_wall_seconds": 16.156,
+      "selected_default": true,
+      "status": "NO-UTILITY-GAIN",
+      "utility_gain_established": false,
+      "wait_seconds": 2581.252
+    }
+  ],
+  "created_at_utc": "2026-10-06T09:48:33.268356+00:00",
+  "limits": "Four registered existing prose/code cases, one host, six thread/graph candidates; no product, consumer, family-wide utility, global-optimum, or serving claim.",
+  "maximum_native_processes": 428,
+  "native_attempts": 344,
+  "native_report_sha256": "4a74d814daceb07be0d7d3319127e513003dcee9f49f306c4c6fd452745762c9",
+  "native_starts": 344,
+  "sequence_wall_seconds": 17741.438,
+  "source_commit": "78ad5f0063f2bc372a528e37ec1f45d8be1ceb11",
+  "status": "COMPLETE-STOCK-COVERAGE",
+  "supervisor_wall_seconds": 17741.901247,
+  "total_case_reconstruction_seconds": 79.156,
+  "total_input_load_seconds": 19.907,
+  "total_native_phase_seconds": 4427.471322300017,
+  "total_wait_seconds": 10325.149,
+  "unused_conditional_budget": 84
+}

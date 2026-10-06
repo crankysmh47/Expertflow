@@ -41,3 +41,6 @@ Base: `5da6786`; implementation candidate: `6a0eed4` on `ef-v2`.
 - Final normalization full suite running under hidden supervisor PID18264, started2026-10-06T04:20:04Z. No wider native model has been launched.
 
 Final correction suite completed:891 passed,7 expected skips,1607.12s,exit0. Supervisor PID18264 is absent. Source normalization and gates unchanged throughout verification. Corrected source must now be committed and raw-archived before native launch.
+
+Task 3: complete (native source78ad5f0; public coverage validate PASS exit0,93.399970s; independent raw audit PASS344 records; zero extra calls; four NO-UTILITY-GAIN outcomes). Keep active ef-v2 in place; no integration requested.
+Final collection wall17741.438s; original41/sixhistory/148 unchanged. The zero-start attempt and all rulings remain separately preserved. Documentation formatting inspection caught a UTF-8/cp1252 round trip; it was reversed before staging, without touching any measured source/input/artifact.

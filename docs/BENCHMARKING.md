@@ -56,8 +56,14 @@ controls. Each has86 utility calls and conditional product20/consumer1,
 automatic/manual grids, original utility/product gates and independent raw
 auditing. Report each case independently, including default-optimal
 `NO-UTILITY-GAIN`; no case pooling, retries or new host claim. Registration is
-not execution evidence. A separate reviewed collector and source freeze must
-precede collection, without modifying the closed Q6 protocols.
+not execution evidence. The separate reviewed collector froze 63 source/input
+files and completed all four cases from `78ad5f0` on 2026-10-06 without changing
+the closed Q6 protocols:344 retained calls, four NO-UTILITY-GAIN outcomes,
+no conditional product/consumer. Q4 changes +1.03%/+0.78% were below 5%; Granite
+retained the default. The sequence took 17,741.438 seconds, including 10,325.149
+seconds of fixed waits; native phases totaled 4,427.471 seconds. Fresh public
+validation passed in 93.40 seconds with zero additional calls. Final independent
+raw audit passed. See [per-case intervals, costs and scope](evidence/stock-coverage-20261005/report.md).
 
 The separate public sequence uses `expertflow stock coverage run` and
 `expertflow stock coverage validate`. All four live inputs, exact roots,
@@ -70,6 +76,11 @@ raw record is valid; environment, identity, memory, cleanup or resource stops
 end the sequence. Validation starts no new model process and recomputes native
 bindings, winners, intervals and costs. The registration inspector remains
 metadata-only and continues to report `execution_ready: false`.
+
+The completed registered roots are occupied: use `coverage validate` for
+read-only reconstruction. Do not reissue collection or spend the 84 unused
+conditional calls on retries, replacements or new candidates. Inspector status
+describes the immutable registration rather than current measured progress.
 
 ## Historical placement release protocol
 

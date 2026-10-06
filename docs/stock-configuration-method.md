@@ -393,9 +393,10 @@ uv run --no-sync expertflow stock coverage run --help
 uv run --no-sync expertflow stock coverage validate --help
 ```
 
-After implementation review, run the registered sequence with
-`uv run --no-sync expertflow stock coverage run`. Outputs go to the four exact
-roots in the registration; existing roots are rejected. There is no warmup,
+The registered sequence completed from `78ad5f0` on 2026-10-06:344 retained calls,
+four NO-UTILITY-GAIN outcomes and no new product/consumer. The run operation
+implements the four exact roots in the registration; those roots are now
+occupied and collection is closed. Existing roots are rejected. There is no warmup,
 retry, replacement or resume operation. The 428-call maximum includes reference,
 both18-evaluation grids, confirmation, conditional product and consumer calls.
 Every call has a fixed30s prelaunch wait. A case stops at its first failed gate;
@@ -407,3 +408,9 @@ and a default-optimal result remains `NO-UTILITY-GAIN`. Per-case records report
 scope, native attempts, phase/load/wait/collection/reconstruction costs, owned
 memory and device-free reserve. Each interval belongs to its case; do not pool
 results or infer a simultaneous family-wide guarantee.
+
+Fresh public validation passed in 93.40 seconds, using four readers with zero
+new native calls and unchanged source/history pins. Final independent raw audit
+passed. See [separate results and costs](evidence/stock-coverage-20261005/report.md).
+Further control-space expansion requires a numerical-scope audit and a separate
+registration; it cannot reuse this study's 84 unspent conditional calls.

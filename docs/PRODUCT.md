@@ -37,9 +37,13 @@ defaults and matched the manual grid at equal 18-evaluation budgets, then passed
 fresh product acceptance. This qualifies bounded stock autotuning under the
 registered timing/diagnostics contract on one host. It establishes no gain over
 manual tuning or already tuned stock. Public `expertflow stock` workflows and
-invocation-scoped reader reuse are implemented; wider Q4/Granite utility cases
-are registered but require their own reviewed collector/source freeze before
-execution. Serving performance remains unverified. See [status](STATUS.md),
+invocation-scoped reader reuse are implemented. The separate wider Q4/Granite
+utility comparison completed 344 calls: all four cases were NO-UTILITY-GAIN
+under the fixed 5% gate. Q4 gains were +1.03%/+0.78%; Granite retained the default.
+No new product/consumer followed. Public reconstruction and the independent
+final raw audit passed. These outcomes keep practical tuning utility
+limited to the qualified Q6 workloads. Serving performance remains unverified.
+See [wider results](evidence/stock-coverage-20261005/report.md), [status](STATUS.md),
 [tasks](TODO.md), and [the current stock method](stock-configuration-method.md).
 
 ## Historical placement architecture

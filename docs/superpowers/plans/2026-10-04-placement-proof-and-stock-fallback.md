@@ -95,9 +95,12 @@ Original studies, thresholds and quality/no-go verdicts remain closed.
 
 The bounded stock-autotuning proof is complete under fixed spacing/diagnostics.
 Public CLI consolidation and source-preserving reader reuse are implemented;
-wider utility coverage is [registered](../specs/2026-10-05-stock-coverage.md).
-Next is a separate reviewed wider collector/source freeze, then the four
-registered comparisons and independent audits. Registration does not establish a global optimum,
+wider utility coverage completed the [four registered comparisons](../../evidence/stock-coverage-20261005/report.md)
+from `78ad5f0`: 344 retained calls and four NO-UTILITY-GAIN outcomes, with
+fresh public reconstruction and final independent raw audit passing.
+Q4's gains were below the 5% gate; Granite retained the default. No new product
+or consumer followed. Next is a read-only offload/attention/batch numerical-scope
+audit before any new protocol. These results establish no global optimum,
 superiority to manual tuning, new placement acceleration or serving throughput.
 
 ## Tracking and verification

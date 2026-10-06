@@ -1,0 +1,451 @@
+{
+  "archive_sha256": "2009f45f0a7245d3c696dd9555e3b1299722d062f8b045fa03e9970fec0452eb",
+  "created_at_utc": "2026-10-06T04:48:28.484263+00:00",
+  "entries": [
+    {
+      "member": ".gitattributes",
+      "original_path": "C:\\sem4\\expertflow\\.gitattributes",
+      "sha256": "1c4617057cc7b57803e0f9a2f08141bf43cb6713e2e518ea2ec0e426eeb5125a",
+      "size_bytes": 1410
+    },
+    {
+      "member": "configs/baseline-prompt.txt",
+      "original_path": "C:\\sem4\\expertflow\\configs\\baseline-prompt.txt",
+      "sha256": "91a5f0213640da6b1c8dd8bc304fa831aec7b2bc616b3cc5ecb7469390785dfa",
+      "size_bytes": 171
+    },
+    {
+      "member": "configs/compiler/gemma4-q4-code-coverage.json",
+      "original_path": "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q4-code-coverage.json",
+      "sha256": "c1025ad26a8bffb6577cbcf4fc56d84c081ddcbd9029d14760d5687f6a9daed8",
+      "size_bytes": 772
+    },
+    {
+      "member": "configs/compiler/gemma4-q4-model.json",
+      "original_path": "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q4-model.json",
+      "sha256": "1646fe01814e980ed0a12adeff49c3877598cac2e330c0b8a3470c43f1bab9bd",
+      "size_bytes": 174
+    },
+    {
+      "member": "configs/compiler/gemma4-q4-prose-coverage.json",
+      "original_path": "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q4-prose-coverage.json",
+      "sha256": "1226a23a518a35ba8636957d099f43d5f992d8e3090a4bed4000d6cf6f9a587b",
+      "size_bytes": 750
+    },
+    {
+      "member": "configs/compiler/granite-q6-code-coverage.json",
+      "original_path": "C:\\sem4\\expertflow\\configs\\compiler\\granite-q6-code-coverage.json",
+      "sha256": "c1025ad26a8bffb6577cbcf4fc56d84c081ddcbd9029d14760d5687f6a9daed8",
+      "size_bytes": 772
+    },
+    {
+      "member": "configs/compiler/granite-q6-model.json",
+      "original_path": "C:\\sem4\\expertflow\\configs\\compiler\\granite-q6-model.json",
+      "sha256": "de8275950bcbeaa0752ee41e57e99a163acffac09c0495276c6e57fbd80cd131",
+      "size_bytes": 177
+    },
+    {
+      "member": "configs/compiler/granite-q6-prose-coverage.json",
+      "original_path": "C:\\sem4\\expertflow\\configs\\compiler\\granite-q6-prose-coverage.json",
+      "sha256": "1226a23a518a35ba8636957d099f43d5f992d8e3090a4bed4000d6cf6f9a587b",
+      "size_bytes": 750
+    },
+    {
+      "member": "configs/compiler/runtime-stock.json",
+      "original_path": "C:\\sem4\\expertflow\\configs\\compiler\\runtime-stock.json",
+      "sha256": "e46120718c551dc8fce984f40c52ac7338f89642828f5283ad19ed0697418eed",
+      "size_bytes": 2269
+    },
+    {
+      "member": "configs/compiler/stock-coverage-20261005.json",
+      "original_path": "C:\\sem4\\expertflow\\configs\\compiler\\stock-coverage-20261005.json",
+      "sha256": "7f4a9662a7de7b1263e153c3660aaaccfe1c2e5cacf27cbf809583480ee2f4b9",
+      "size_bytes": 96717
+    },
+    {
+      "member": "configs/compiler/stock-utility-heldout-prompt.txt",
+      "original_path": "C:\\sem4\\expertflow\\configs\\compiler\\stock-utility-heldout-prompt.txt",
+      "sha256": "db06dbe3251f7b615550a81324c7753a0bc809a76a898914e05637e7f3cb47ab",
+      "size_bytes": 249
+    },
+    {
+      "member": "docs/evidence/compiler-granite-20261004/runtime-identity.json",
+      "original_path": "C:\\sem4\\expertflow\\docs\\evidence\\compiler-granite-20261004\\runtime-identity.json",
+      "sha256": "e8139a1c253a537524ce5a06d940232728212fe31990d39885065aea4a8859b4",
+      "size_bytes": 898
+    },
+    {
+      "member": "docs/evidence/compiler-granite-20261004/tensor-inventory.json",
+      "original_path": "C:\\sem4\\expertflow\\docs\\evidence\\compiler-granite-20261004\\tensor-inventory.json",
+      "sha256": "fd4961265036e7884c18b5973aabbb15c04955d75ec662e05f121bea726e3009",
+      "size_bytes": 105503
+    },
+    {
+      "member": "docs/evidence/compiler-phase3/inputs/hardware.json",
+      "original_path": "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\inputs\\hardware.json",
+      "sha256": "391249a0aa9c61ec234501b7853e0f00b1336c1601af7b9e24e3cb885b3582dd",
+      "size_bytes": 474
+    },
+    {
+      "member": "docs/evidence/stock-coverage-20261005/implementation-review.md",
+      "original_path": "C:\\sem4\\expertflow\\docs\\evidence\\stock-coverage-20261005\\implementation-review.md",
+      "sha256": "5f9ae21949dd1495a31431c24c4b88886244c539a7d09095f5d4796316844fed",
+      "size_bytes": 4222
+    },
+    {
+      "member": "docs/evidence/stock-coverage-20261005/independent_audit.py",
+      "original_path": "C:\\sem4\\expertflow\\docs\\evidence\\stock-coverage-20261005\\independent_audit.py",
+      "sha256": "451758561f28a06b97d12c5c4da6f74b1358bf53ad471c2d0d16e6f457eb4509",
+      "size_bytes": 11343
+    },
+    {
+      "member": "docs/evidence/stock-coverage-20261005/run-registered.ps1",
+      "original_path": "C:\\sem4\\expertflow\\docs\\evidence\\stock-coverage-20261005\\run-registered.ps1",
+      "sha256": "ec543c17185b7e922d38816527b5914151636097424e9de08741fb78d6e9a253",
+      "size_bytes": 1023
+    },
+    {
+      "member": "docs/evidence/stock-discovery-20261004/q4-runtime-identity.json",
+      "original_path": "C:\\sem4\\expertflow\\docs\\evidence\\stock-discovery-20261004\\q4-runtime-identity.json",
+      "sha256": "8d307212eb09d653155ba84efdca34053c8153c36b2926b2b91ba7a400716a1b",
+      "size_bytes": 908
+    },
+    {
+      "member": "docs/evidence/stock-discovery-20261004/q4-tensor-inventory.json",
+      "original_path": "C:\\sem4\\expertflow\\docs\\evidence\\stock-discovery-20261004\\q4-tensor-inventory.json",
+      "sha256": "11cc6e653c9511e4c27b9a9542d6d3a86efc3611dfe41646e691ae104a26cf5b",
+      "size_bytes": 272662
+    },
+    {
+      "member": "docs/evidence/stock-repeatability-20261004/main-frozen-manifest.json",
+      "original_path": "C:\\sem4\\expertflow\\docs\\evidence\\stock-repeatability-20261004\\main-frozen-manifest.json",
+      "sha256": "ddc145ee1c28310831e38b9ee2bc1a75aaa944096d29bb3f8cfe2c7015e68ab9",
+      "size_bytes": 116335
+    },
+    {
+      "member": "docs/evidence/stock-repeatability-20261004/transfer-frozen-manifest.json",
+      "original_path": "C:\\sem4\\expertflow\\docs\\evidence\\stock-repeatability-20261004\\transfer-frozen-manifest.json",
+      "sha256": "3b6b10f83b5995bd3208b4b3740a4aeec1b2b2b9300f965b84ca54c104f0da86",
+      "size_bytes": 112322
+    },
+    {
+      "member": "docs/superpowers/specs/2026-10-04-stock-configuration-discovery.md",
+      "original_path": "C:\\sem4\\expertflow\\docs\\superpowers\\specs\\2026-10-04-stock-configuration-discovery.md",
+      "sha256": "aa26a0902c21bb36dc8fd860b9f5f31fb82d9120eb24fd006849a6aacd951aad",
+      "size_bytes": 6354
+    },
+    {
+      "member": "docs/superpowers/specs/2026-10-05-stock-coverage.md",
+      "original_path": "C:\\sem4\\expertflow\\docs\\superpowers\\specs\\2026-10-05-stock-coverage.md",
+      "sha256": "43abca97a1014c798e50a72bf24d00ce6d90a18d32a4b08ca61400002adc2b19",
+      "size_bytes": 7053
+    },
+    {
+      "member": "scripts/benchmark_compiler_stock_coverage.py",
+      "original_path": "C:\\sem4\\expertflow\\scripts\\benchmark_compiler_stock_coverage.py",
+      "sha256": "d93ac6152d7cb27bda3799424fc7b9d9432ec606cb2f460d35b0954128f61017",
+      "size_bytes": 18394
+    },
+    {
+      "member": "scripts/benchmark_compiler_stock_repeatability.py",
+      "original_path": "C:\\sem4\\expertflow\\scripts\\benchmark_compiler_stock_repeatability.py",
+      "sha256": "41c5947cb9537ffe1f5006d3fcf134bdbcf0f9ed8afdc47a722e92dfc412985d",
+      "size_bytes": 40642
+    },
+    {
+      "member": "scripts/benchmark_compiler_stock_utility.py",
+      "original_path": "C:\\sem4\\expertflow\\scripts\\benchmark_compiler_stock_utility.py",
+      "sha256": "8dc6fb7db2582dbfb09b64b4b544b28d1358c2925642d11d872f46ff296479d6",
+      "size_bytes": 31370
+    },
+    {
+      "member": "src/expertflow/artifacts.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\artifacts.py",
+      "sha256": "88ae02b9cd51550e08bdc1820fd0bdbfef76b1be9837c410bb62604220c9f6fc",
+      "size_bytes": 1813
+    },
+    {
+      "member": "src/expertflow/cli/main.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\cli\\main.py",
+      "sha256": "fabac691932deefce770ccf2b435e326d2e454b1dc82f6cfad95c0af1c62f35d",
+      "size_bytes": 42760
+    },
+    {
+      "member": "src/expertflow/compiler/__init__.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\__init__.py",
+      "sha256": "682e7a8b5de67d7860d06a0bedf5917314a38dfbce34d2f95ed98d27c13f6736",
+      "size_bytes": 403
+    },
+    {
+      "member": "src/expertflow/compiler/adapters/__init__.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\adapters\\__init__.py",
+      "sha256": "84cc32ef696f27fa4e9875ddd2fc17ffff6c63ed087978b9fe3785ae800fb7a6",
+      "size_bytes": 182
+    },
+    {
+      "member": "src/expertflow/compiler/adapters/base.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\adapters\\base.py",
+      "sha256": "a94f7aa8812a6d5b6479af1ca5a663bbcb29dd963ab602dc4e8bedde27734972",
+      "size_bytes": 4145
+    },
+    {
+      "member": "src/expertflow/compiler/adapters/gemma4.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\adapters\\gemma4.py",
+      "sha256": "f79ce8c9abbd3c36db81f94b90785c3dafc816d5bf1095c168c0cb72d4b3ead6",
+      "size_bytes": 1149
+    },
+    {
+      "member": "src/expertflow/compiler/adapters/granitemoe.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\adapters\\granitemoe.py",
+      "sha256": "407170fae962699cca268a4b7e9fdee4dcc2f8229f21b1c2755e0be4422f7eaf",
+      "size_bytes": 8005
+    },
+    {
+      "member": "src/expertflow/compiler/commands.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\commands.py",
+      "sha256": "4c94b69024bd610e266199d67574023b07f01108b67c8cce0524d21ace3d2b83",
+      "size_bytes": 6649
+    },
+    {
+      "member": "src/expertflow/compiler/cost_model.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\cost_model.py",
+      "sha256": "1fe418086f42a9911c1553e0778712869c89066b295970728b7c083aa388fcc4",
+      "size_bytes": 5538
+    },
+    {
+      "member": "src/expertflow/compiler/cuda_pdl.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\cuda_pdl.py",
+      "sha256": "3660143b1a83df2ce291877fcd49ec9b1cddee71a023677f4fe12aaad6cbb660",
+      "size_bytes": 14460
+    },
+    {
+      "member": "src/expertflow/compiler/diagnostics.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\diagnostics.py",
+      "sha256": "30a9cd7d2ce663a87aa3d08340c835d57d95a4d72f4c9f4ad797764c88cfc916",
+      "size_bytes": 5221
+    },
+    {
+      "member": "src/expertflow/compiler/evidence.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\evidence.py",
+      "sha256": "c67bb4553bcc5eed446c028222b1c535b3e198e033cc9e11dd259413d6c8f808",
+      "size_bytes": 20499
+    },
+    {
+      "member": "src/expertflow/compiler/passes/__init__.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\passes\\__init__.py",
+      "sha256": "5651d7e1cd27e9b162e1a718f8ac9f1632e753420cbeef5ae604949f7f261b23",
+      "size_bytes": 145
+    },
+    {
+      "member": "src/expertflow/compiler/passes/base.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\passes\\base.py",
+      "sha256": "11cc25d1630940f77de562d02093f369c20165a77b9d3437b14a32b4877301db",
+      "size_bytes": 4297
+    },
+    {
+      "member": "src/expertflow/compiler/pipeline.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\pipeline.py",
+      "sha256": "4aad0ff0e0163a878a8005b3797ccb33589823f39e254fe98c694ea34c13b098",
+      "size_bytes": 23076
+    },
+    {
+      "member": "src/expertflow/compiler/plan.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\plan.py",
+      "sha256": "8ca61090587744f294b649bd51d5a1ea1a6b7d1047b1c8f685506639b048f551",
+      "size_bytes": 11308
+    },
+    {
+      "member": "src/expertflow/compiler/preflight.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\preflight.py",
+      "sha256": "a79182c0e622ccbd741b033d628735a0109691279d210368d1826dd092d45818",
+      "size_bytes": 13435
+    },
+    {
+      "member": "src/expertflow/compiler/reference.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\reference.py",
+      "sha256": "9021a967b97d9d97e72ce3ff5499347080a867099834b12c994295ceb6c38dcf",
+      "size_bytes": 9605
+    },
+    {
+      "member": "src/expertflow/compiler/refinement.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\refinement.py",
+      "sha256": "8aa37191a4a7c652b283a94a271b278fecab3308aba4d8e0352e23ffe8234836",
+      "size_bytes": 21233
+    },
+    {
+      "member": "src/expertflow/compiler/runner.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\runner.py",
+      "sha256": "7e128ff7194217e98cc60a499f411f21e4051c5a72cfa905f936297398f14c58",
+      "size_bytes": 30612
+    },
+    {
+      "member": "src/expertflow/compiler/schema.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\schema.py",
+      "sha256": "b60627d59fc109caab87d61bf574b8a9e59dad38cc7b19546888805a49489b24",
+      "size_bytes": 9716
+    },
+    {
+      "member": "src/expertflow/compiler/static_placement.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\static_placement.py",
+      "sha256": "a7ab797692ac8516fbc852c778c129f89e8ba55682d3c8092f486f178a6d5ffd",
+      "size_bytes": 6629
+    },
+    {
+      "member": "src/expertflow/compiler/stock.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\stock.py",
+      "sha256": "988d0b3dc56f54dfec447198e65bde57f2a57a40585f4282224573df640d7319",
+      "size_bytes": 3785
+    },
+    {
+      "member": "src/expertflow/compiler/stock_discovery.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\stock_discovery.py",
+      "sha256": "34e93183cbef4b2ccc61911bed3a52e295e1cdf5f064108a3580249f7d0e9d84",
+      "size_bytes": 30267
+    },
+    {
+      "member": "src/expertflow/compiler/stock_eligibility.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\stock_eligibility.py",
+      "sha256": "37d4d11cbc1fbc3aa10b2cc5800a57dd9c48807bada58a2dc4c8c4201cac9ffd",
+      "size_bytes": 11231
+    },
+    {
+      "member": "src/expertflow/compiler/stock_reference.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\stock_reference.py",
+      "sha256": "5aba767e3db9b036be0b7d96900e43c89f2a2e1fc601eb72321c70f23baf1bb7",
+      "size_bytes": 12916
+    },
+    {
+      "member": "src/expertflow/compiler/stock_search.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\stock_search.py",
+      "sha256": "5d0abe5fb531dac4f42b9f7f8cf8752e24a2f109d35d2dc14e28fcd6c87002d7",
+      "size_bytes": 6021
+    },
+    {
+      "member": "src/expertflow/compiler/stock_validation.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\stock_validation.py",
+      "sha256": "23fa1658a176f1fd8ec6409ec37925257180f0d1857e6e379e1acd1be5412b8d",
+      "size_bytes": 12145
+    },
+    {
+      "member": "src/expertflow/stock/__init__.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\stock\\__init__.py",
+      "sha256": "2e52dea33f694cc6d95c5d55ca0e76227820bfe441abe31e9f5b9d8bcfa974cf",
+      "size_bytes": 70
+    },
+    {
+      "member": "src/expertflow/stock/cli.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\stock\\cli.py",
+      "sha256": "3fc102f678dda01023dcd0a2c55a60c5afa1ae6d98c08ce0b80ee39d6a5bd08f",
+      "size_bytes": 13778
+    },
+    {
+      "member": "src/expertflow/stock/coverage.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\stock\\coverage.py",
+      "sha256": "f1662b0d2f194e72320e2a0ed74c1fe481d428b2b4256057fca57be3cacda723",
+      "size_bytes": 8115
+    },
+    {
+      "member": "src/expertflow/stock/readers.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\stock\\readers.py",
+      "sha256": "27e227293c3e39d4f48885ae564dc97ec4943e825e424d665ed39a18b6f4570c",
+      "size_bytes": 1360
+    },
+    {
+      "member": "src/expertflow/stock/wider.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\stock\\wider.py",
+      "sha256": "6388451cd1fdd3097c247131d52f5b64c0741ad74e83ea5b68bcf7359fe51732",
+      "size_bytes": 16947
+    },
+    {
+      "member": "src/expertflow/stock/wider_audit.py",
+      "original_path": "C:\\sem4\\expertflow\\src\\expertflow\\stock\\wider_audit.py",
+      "sha256": "b8440e44c2882b41b016b5485961979334a1d47b9f464a0ed8ae5cf1460100fc",
+      "size_bytes": 19190
+    },
+    {
+      "member": "tests/test_stock_wider.py",
+      "original_path": "C:\\sem4\\expertflow\\tests\\test_stock_wider.py",
+      "sha256": "105549fa9ff8f91c26c130b731b17516140f5221d9261128567325d7472ee8f6",
+      "size_bytes": 10976
+    },
+    {
+      "member": "tests/test_stock_wider_review.py",
+      "original_path": "C:\\sem4\\expertflow\\tests\\test_stock_wider_review.py",
+      "sha256": "46dc6cb5d354f11137c35a8753ed6349234ca9fb80e6c76281dbef2f109069e8",
+      "size_bytes": 11473
+    },
+    {
+      "member": "tests/test_stock_wider_sequence.py",
+      "original_path": "C:\\sem4\\expertflow\\tests\\test_stock_wider_sequence.py",
+      "sha256": "60e7a9dcd77d0e190de51969e4fc1129216469df326e48ebb9ee7eb5e0b93c5f",
+      "size_bytes": 11672
+    }
+  ],
+  "scope": "Exact raw reviewed source/input bytes; native weights/artifacts retain their registered absolute paths.",
+  "source_commit": "78ad5f0063f2bc372a528e37ec1f45d8be1ceb11",
+  "source_files": {
+    "C:\\sem4\\expertflow\\.gitattributes": "1c4617057cc7b57803e0f9a2f08141bf43cb6713e2e518ea2ec0e426eeb5125a",
+    "C:\\sem4\\expertflow\\configs\\baseline-prompt.txt": "91a5f0213640da6b1c8dd8bc304fa831aec7b2bc616b3cc5ecb7469390785dfa",
+    "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q4-code-coverage.json": "c1025ad26a8bffb6577cbcf4fc56d84c081ddcbd9029d14760d5687f6a9daed8",
+    "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q4-model.json": "1646fe01814e980ed0a12adeff49c3877598cac2e330c0b8a3470c43f1bab9bd",
+    "C:\\sem4\\expertflow\\configs\\compiler\\gemma4-q4-prose-coverage.json": "1226a23a518a35ba8636957d099f43d5f992d8e3090a4bed4000d6cf6f9a587b",
+    "C:\\sem4\\expertflow\\configs\\compiler\\granite-q6-code-coverage.json": "c1025ad26a8bffb6577cbcf4fc56d84c081ddcbd9029d14760d5687f6a9daed8",
+    "C:\\sem4\\expertflow\\configs\\compiler\\granite-q6-model.json": "de8275950bcbeaa0752ee41e57e99a163acffac09c0495276c6e57fbd80cd131",
+    "C:\\sem4\\expertflow\\configs\\compiler\\granite-q6-prose-coverage.json": "1226a23a518a35ba8636957d099f43d5f992d8e3090a4bed4000d6cf6f9a587b",
+    "C:\\sem4\\expertflow\\configs\\compiler\\runtime-stock.json": "e46120718c551dc8fce984f40c52ac7338f89642828f5283ad19ed0697418eed",
+    "C:\\sem4\\expertflow\\configs\\compiler\\stock-coverage-20261005.json": "7f4a9662a7de7b1263e153c3660aaaccfe1c2e5cacf27cbf809583480ee2f4b9",
+    "C:\\sem4\\expertflow\\configs\\compiler\\stock-utility-heldout-prompt.txt": "db06dbe3251f7b615550a81324c7753a0bc809a76a898914e05637e7f3cb47ab",
+    "C:\\sem4\\expertflow\\docs\\evidence\\compiler-granite-20261004\\runtime-identity.json": "e8139a1c253a537524ce5a06d940232728212fe31990d39885065aea4a8859b4",
+    "C:\\sem4\\expertflow\\docs\\evidence\\compiler-granite-20261004\\tensor-inventory.json": "fd4961265036e7884c18b5973aabbb15c04955d75ec662e05f121bea726e3009",
+    "C:\\sem4\\expertflow\\docs\\evidence\\compiler-phase3\\inputs\\hardware.json": "391249a0aa9c61ec234501b7853e0f00b1336c1601af7b9e24e3cb885b3582dd",
+    "C:\\sem4\\expertflow\\docs\\evidence\\stock-coverage-20261005\\implementation-review.md": "5f9ae21949dd1495a31431c24c4b88886244c539a7d09095f5d4796316844fed",
+    "C:\\sem4\\expertflow\\docs\\evidence\\stock-coverage-20261005\\independent_audit.py": "451758561f28a06b97d12c5c4da6f74b1358bf53ad471c2d0d16e6f457eb4509",
+    "C:\\sem4\\expertflow\\docs\\evidence\\stock-coverage-20261005\\run-registered.ps1": "ec543c17185b7e922d38816527b5914151636097424e9de08741fb78d6e9a253",
+    "C:\\sem4\\expertflow\\docs\\evidence\\stock-discovery-20261004\\q4-runtime-identity.json": "8d307212eb09d653155ba84efdca34053c8153c36b2926b2b91ba7a400716a1b",
+    "C:\\sem4\\expertflow\\docs\\evidence\\stock-discovery-20261004\\q4-tensor-inventory.json": "11cc6e653c9511e4c27b9a9542d6d3a86efc3611dfe41646e691ae104a26cf5b",
+    "C:\\sem4\\expertflow\\docs\\evidence\\stock-repeatability-20261004\\main-frozen-manifest.json": "ddc145ee1c28310831e38b9ee2bc1a75aaa944096d29bb3f8cfe2c7015e68ab9",
+    "C:\\sem4\\expertflow\\docs\\evidence\\stock-repeatability-20261004\\transfer-frozen-manifest.json": "3b6b10f83b5995bd3208b4b3740a4aeec1b2b2b9300f965b84ca54c104f0da86",
+    "C:\\sem4\\expertflow\\docs\\superpowers\\specs\\2026-10-04-stock-configuration-discovery.md": "aa26a0902c21bb36dc8fd860b9f5f31fb82d9120eb24fd006849a6aacd951aad",
+    "C:\\sem4\\expertflow\\docs\\superpowers\\specs\\2026-10-05-stock-coverage.md": "43abca97a1014c798e50a72bf24d00ce6d90a18d32a4b08ca61400002adc2b19",
+    "C:\\sem4\\expertflow\\scripts\\benchmark_compiler_stock_coverage.py": "d93ac6152d7cb27bda3799424fc7b9d9432ec606cb2f460d35b0954128f61017",
+    "C:\\sem4\\expertflow\\scripts\\benchmark_compiler_stock_repeatability.py": "41c5947cb9537ffe1f5006d3fcf134bdbcf0f9ed8afdc47a722e92dfc412985d",
+    "C:\\sem4\\expertflow\\scripts\\benchmark_compiler_stock_utility.py": "8dc6fb7db2582dbfb09b64b4b544b28d1358c2925642d11d872f46ff296479d6",
+    "C:\\sem4\\expertflow\\src\\expertflow\\artifacts.py": "88ae02b9cd51550e08bdc1820fd0bdbfef76b1be9837c410bb62604220c9f6fc",
+    "C:\\sem4\\expertflow\\src\\expertflow\\cli\\main.py": "fabac691932deefce770ccf2b435e326d2e454b1dc82f6cfad95c0af1c62f35d",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\__init__.py": "682e7a8b5de67d7860d06a0bedf5917314a38dfbce34d2f95ed98d27c13f6736",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\adapters\\__init__.py": "84cc32ef696f27fa4e9875ddd2fc17ffff6c63ed087978b9fe3785ae800fb7a6",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\adapters\\base.py": "a94f7aa8812a6d5b6479af1ca5a663bbcb29dd963ab602dc4e8bedde27734972",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\adapters\\gemma4.py": "f79ce8c9abbd3c36db81f94b90785c3dafc816d5bf1095c168c0cb72d4b3ead6",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\adapters\\granitemoe.py": "407170fae962699cca268a4b7e9fdee4dcc2f8229f21b1c2755e0be4422f7eaf",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\commands.py": "4c94b69024bd610e266199d67574023b07f01108b67c8cce0524d21ace3d2b83",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\cost_model.py": "1fe418086f42a9911c1553e0778712869c89066b295970728b7c083aa388fcc4",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\cuda_pdl.py": "3660143b1a83df2ce291877fcd49ec9b1cddee71a023677f4fe12aaad6cbb660",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\diagnostics.py": "30a9cd7d2ce663a87aa3d08340c835d57d95a4d72f4c9f4ad797764c88cfc916",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\evidence.py": "c67bb4553bcc5eed446c028222b1c535b3e198e033cc9e11dd259413d6c8f808",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\passes\\__init__.py": "5651d7e1cd27e9b162e1a718f8ac9f1632e753420cbeef5ae604949f7f261b23",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\passes\\base.py": "11cc25d1630940f77de562d02093f369c20165a77b9d3437b14a32b4877301db",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\pipeline.py": "4aad0ff0e0163a878a8005b3797ccb33589823f39e254fe98c694ea34c13b098",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\plan.py": "8ca61090587744f294b649bd51d5a1ea1a6b7d1047b1c8f685506639b048f551",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\preflight.py": "a79182c0e622ccbd741b033d628735a0109691279d210368d1826dd092d45818",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\reference.py": "9021a967b97d9d97e72ce3ff5499347080a867099834b12c994295ceb6c38dcf",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\refinement.py": "8aa37191a4a7c652b283a94a271b278fecab3308aba4d8e0352e23ffe8234836",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\runner.py": "7e128ff7194217e98cc60a499f411f21e4051c5a72cfa905f936297398f14c58",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\schema.py": "b60627d59fc109caab87d61bf574b8a9e59dad38cc7b19546888805a49489b24",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\static_placement.py": "a7ab797692ac8516fbc852c778c129f89e8ba55682d3c8092f486f178a6d5ffd",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\stock.py": "988d0b3dc56f54dfec447198e65bde57f2a57a40585f4282224573df640d7319",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\stock_discovery.py": "34e93183cbef4b2ccc61911bed3a52e295e1cdf5f064108a3580249f7d0e9d84",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\stock_eligibility.py": "37d4d11cbc1fbc3aa10b2cc5800a57dd9c48807bada58a2dc4c8c4201cac9ffd",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\stock_reference.py": "5aba767e3db9b036be0b7d96900e43c89f2a2e1fc601eb72321c70f23baf1bb7",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\stock_search.py": "5d0abe5fb531dac4f42b9f7f8cf8752e24a2f109d35d2dc14e28fcd6c87002d7",
+    "C:\\sem4\\expertflow\\src\\expertflow\\compiler\\stock_validation.py": "23fa1658a176f1fd8ec6409ec37925257180f0d1857e6e379e1acd1be5412b8d",
+    "C:\\sem4\\expertflow\\src\\expertflow\\stock\\__init__.py": "2e52dea33f694cc6d95c5d55ca0e76227820bfe441abe31e9f5b9d8bcfa974cf",
+    "C:\\sem4\\expertflow\\src\\expertflow\\stock\\cli.py": "3fc102f678dda01023dcd0a2c55a60c5afa1ae6d98c08ce0b80ee39d6a5bd08f",
+    "C:\\sem4\\expertflow\\src\\expertflow\\stock\\coverage.py": "f1662b0d2f194e72320e2a0ed74c1fe481d428b2b4256057fca57be3cacda723",
+    "C:\\sem4\\expertflow\\src\\expertflow\\stock\\readers.py": "27e227293c3e39d4f48885ae564dc97ec4943e825e424d665ed39a18b6f4570c",
+    "C:\\sem4\\expertflow\\src\\expertflow\\stock\\wider.py": "6388451cd1fdd3097c247131d52f5b64c0741ad74e83ea5b68bcf7359fe51732",
+    "C:\\sem4\\expertflow\\src\\expertflow\\stock\\wider_audit.py": "b8440e44c2882b41b016b5485961979334a1d47b9f464a0ed8ae5cf1460100fc",
+    "C:\\sem4\\expertflow\\tests\\test_stock_wider.py": "105549fa9ff8f91c26c130b731b17516140f5221d9261128567325d7472ee8f6",
+    "C:\\sem4\\expertflow\\tests\\test_stock_wider_review.py": "46dc6cb5d354f11137c35a8753ed6349234ca9fb80e6c76281dbef2f109069e8",
+    "C:\\sem4\\expertflow\\tests\\test_stock_wider_sequence.py": "60e7a9dcd77d0e190de51969e4fc1129216469df326e48ebb9ee7eb5e0b93c5f"
+  }
+}

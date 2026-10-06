@@ -1,6 +1,6 @@
 # ExpertFlow current status
 
-Updated 2026-10-05. Branch: `ef-v2`. Prior accepted evidence checkpoint:
+Updated 2026-10-06. Branch: `ef-v2`. Prior accepted evidence checkpoint:
 `a793889`; measured Granite implementation: `7cbae5d`.
 
 ## Current decision
@@ -62,13 +62,15 @@ native calls; all 41 source/prerequisite files and six history pins remained
 unchanged. These are descriptive timing comparisons. See
 [implementation and archived source evidence](evidence/stock-cli-20261005/report.md).
 
-The [wider utility registration](superpowers/specs/2026-10-05-stock-coverage.md)
-pins four Q4/Granite prose/code cases, 107 calls each/428 maximum, with fixed
-controls, pacing, gates, costs and stop rules. **REGISTERED-NOT-RUN**: a separate
-wider collector/validator is being verified under the [implementation plan](superpowers/plans/2026-10-05-wider-stock-collector.md).
-Independent review and immutable source/live-input freeze precede native
-collection and independent audit. No other host or serving
-performance claim follows from registration.
+The [wider utility comparison](evidence/stock-coverage-20261005/report.md)
+completed from `78ad5f0`: **COMPLETE-STOCK-COVERAGE**, exit0, 344 retained calls,
+four **NO-UTILITY-GAIN** outcomes. Q4 prose/code gained +1.03%/+0.78%, below
+the fixed 5% gate. Granite selected the 8-thread/graphs-on default, with paired
+changes−0.02%/−0.23%. Each case retained 86 records and equal 18/18 searches;
+no new product or consumer ran. Fresh public validation passed in 93.40 seconds
+with zero extra calls and unchanged original source/history evidence.
+Independent final raw audit passed with no material discrepancies. Wider useful tuning, other hosts and
+serving performance remain unproved; the positive Q6 scope is unchanged.
 
 ## Verified milestones
 
@@ -81,6 +83,7 @@ performance claim follows from registration.
 | Gemma phase-aware profiling | CPU expert work dominated synchronized decode; diagnostic instrumentation perturbs overlap | [Profile report](evidence/compiler-phase-profile-20261004/report.md) |
 | Gemma Q6 utility fallback | +12.70% over resolved thread/graph defaults; manual equivalence passed; final product equivalence inconclusive, no transfer | [Utility result and audit](evidence/stock-utility-20261004/report.md) |
 | Gemma Q6 repeatability/transfer | Both main blocks and consumers passed; held-out +9.38% over resolved defaults, manual equivalence and fresh product PASS; 148 calls | [Follow-up proof](evidence/stock-repeatability-20261004/report.md) |
+| Q4/Granite wider utility | Four complete NO-UTILITY-GAIN cases, 344 retained calls; public validation and independent audit PASS | [Separate results](evidence/stock-coverage-20261005/report.md) |
 
 Gemma Q6/Q4 use pristine CPU-MoE; Granite uses a pristine GPU-resident baseline.
 All three retained 12 threads and CUDA graphs on in their declared search spaces.
@@ -88,9 +91,9 @@ Granite's small-model TPS and Q4's different quantization are not Q6 speedups.
 Live coverage is two families on one pinned Windows/NVIDIA host/build, not
 universal model/hardware support or a global stock optimum.
 
-Latest full suite: **835 passed, 7 historical source-environment skips**;
-**6 applicable pinned native source checks passed** separately.
-See [stock CLI implementation verification](evidence/stock-cli-20261005/implementation-verification.json).
+Latest full suite: **891 passed, 7 historical source-environment skips**;
+**6 applicable pinned native source checks and 7 installed-wheel checks passed** separately.
+See [wider implementation verification](evidence/stock-coverage-20261005/implementation-review.md).
 These tests establish implementation checks; live results come from the native
 records and independent audits linked above.
 
