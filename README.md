@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="docs/assets/expertflow-logo.png" alt="ExpertFlow" width="640">
-</p>
 
 # ExpertFlow
 
