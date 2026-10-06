@@ -279,4 +279,3 @@ result={'status':'PASS-FINAL-INDEPENDENT-RAW-EVIDENCE-AUDIT','audited_at_utc':da
 (WS/'final-independent-audit.json').write_text(json.dumps(result,indent=2,sort_keys=True)+'\n',encoding='utf-8')
 (WS/'final-independent-source-bound-auditor.json').write_text(json.dumps(raw_audit,indent=2,sort_keys=True)+'\n',encoding='utf-8')
 print(json.dumps({k:v for k,v in result.items() if k!='cases'},indent=2),flush=True)
-
