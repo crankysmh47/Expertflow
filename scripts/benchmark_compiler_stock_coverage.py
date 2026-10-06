@@ -36,8 +36,18 @@ def require_committed_sources(source_files):
         relative=Path(name).resolve().relative_to(root).as_posix()
         blob=subprocess.check_output(['git','show','HEAD:'+relative])
         import hashlib
+        actual=Path(name).read_bytes()
+        if hashlib.sha256(actual).hexdigest()!=digest:
+            raise ValueError('reviewed source changed during commit attestation: '+relative)
         if hashlib.sha256(blob).hexdigest()!=digest:
-            raise ValueError('reviewed source must be committed before collection: '+relative)
+            # Git's explicit LF text policy may store a different line ending
+            # from a historically frozen input. Bind the exact raw digest in
+            # the manifest while proving that only CRLF differs from HEAD.
+            attributes=subprocess.check_output(['git','check-attr','text','eol','--',relative],text=True).splitlines()
+            equivalent=(len(attributes)==2 and attributes[0].endswith(': text: set') and
+                attributes[1].endswith(': eol: lf') and actual.replace(b'\r\n',b'\n')==blob)
+            if not equivalent:
+                raise ValueError('reviewed source must be committed before collection: '+relative)
 
 
 def require_matching_package():

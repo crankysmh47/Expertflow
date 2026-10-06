@@ -3,6 +3,7 @@ from copy import deepcopy
 from dataclasses import replace
 import json
 from pathlib import Path
+import subprocess
 import sys
 
 import pytest
@@ -122,6 +123,31 @@ def test_actual_runner_blocks_drift_and_retains_resource_type(tmp_path, monkeypa
 def test_executing_artifact_verifier_in_source_freeze():
     from expertflow.stock.wider import sources
     assert str(Path('src/expertflow/artifacts.py').resolve()) in sources()
+
+
+@pytest.mark.parametrize('change', ['lf','crlf','content'])
+def test_committed_source_attestation_preserves_only_equivalent_line_endings(tmp_path,monkeypatch,change):
+    from expertflow.compiler.preflight import file_sha256
+    from scripts.benchmark_compiler_stock_coverage import require_committed_sources
+    subprocess.run(['git','init','-q',str(tmp_path)],check=True)
+    marker=tmp_path/'docs/evidence/stock-coverage-20261005/implementation-review.md'
+    marker.parent.mkdir(parents=True)
+    marker.write_text('reviewed\n')
+    (tmp_path/'.gitattributes').write_text('*.json text eol=lf\n')
+    source=tmp_path/'input.json'
+    source.write_bytes(b'{"value":1}\n')
+    subprocess.run(['git','-C',str(tmp_path),'add','.'],check=True)
+    subprocess.run(['git','-C',str(tmp_path),'-c','user.email=fixture@example.invalid',
+                    '-c','user.name=Fixture','commit','-qm','fixture'],check=True)
+    if change=='crlf':source.write_bytes(b'{"value":1}\r\n')
+    if change=='content':source.write_bytes(b'{"value":2}\r\n')
+    before=source.read_bytes()
+    monkeypatch.chdir(tmp_path)
+    if change=='content':
+        with pytest.raises(ValueError,match='committed'):require_committed_sources({str(source):file_sha256(source)})
+    else:
+        require_committed_sources({str(source):file_sha256(source)})
+    assert source.read_bytes()==before
 
 
 @pytest.mark.parametrize('module_name, relative', [

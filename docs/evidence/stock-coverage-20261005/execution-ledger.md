@@ -24,3 +24,10 @@ Base: `5da6786`; implementation candidate: `6a0eed4` on `ef-v2`.
 - Rebuilt installed wheel passed7 routing/help/source-matching smoke checks; six applicable pinned native source checks passed. Two historical phase-profile checks target a different external source revision and are retained as an environment-scope attempt, not current runtime failures.
 - Current host matches the registration; every wider root remains unused. No native freeze or wider native call has started.
 - Original study integrity:41 frozen files,6 history pins,148 native starts; original report SHA remains464defd327d43c4f510f3768266d1dacaefc77d25c239afefef5cc4226c1d0c5.
+
+## Precollection attestation and recovery
+
+- A declared LF/CRLF difference in `runtime-stock.json` blocked exact Git-blob attestation before any output root or native call. Its pinned raw bytes were preserved. The new control failed for CRLF before the fix, then all 15 fast guards passed with content-change rejection.
+- Ruling: accept only declared Git LF normalization during commit attestation while preserving raw frozen input bytes and source-map hashes. Cost if wrong: commit-to-worktree byte equivalence is limited to line endings; arbitrary content changes still fail and live raw digests remain authoritative.
+- Ruling: use logged hidden supervisors for long verification/collection so a session restart can recover owned job state. Cost if wrong: background process ownership must be checked from saved PID/time, reports and artifacts before any further launch.
+- The daemon interrupted the first latest test job with an empty log and no surviving process. Only that unfinished check was restarted; final current suite passed **889 tests, 7 expected skips, 1,374.07 seconds**, with the launcher/source-attribute pins included. Seven rebuilt wheel checks passed. Native collection remains unstarted at this gate.

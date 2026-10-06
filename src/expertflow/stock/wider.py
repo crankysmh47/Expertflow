@@ -30,12 +30,13 @@ class ResourceStop(RuntimeError):
 
 
 def sources():
-    paths = [*Path('src/expertflow/compiler').rglob('*.py'),
+    paths = [Path('.gitattributes'),*Path('src/expertflow/compiler').rglob('*.py'),
         *Path('src/expertflow/stock').rglob('*.py'), Path('src/expertflow/cli/main.py'),
         Path('src/expertflow/artifacts.py'),
         Path('scripts/benchmark_compiler_stock_utility.py'),
         Path('scripts/benchmark_compiler_stock_repeatability.py'),
         Path('scripts/benchmark_compiler_stock_coverage.py'),
+        Path('docs/evidence/stock-coverage-20261005/run-registered.ps1'),
         Path('docs/superpowers/specs/2026-10-05-stock-coverage.md'),
         Path('docs/superpowers/specs/2026-10-04-stock-configuration-discovery.md'),
         *Path('tests').glob('test_stock_wider*.py')]
