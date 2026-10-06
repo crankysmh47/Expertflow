@@ -170,6 +170,8 @@ def test_doctor_reports_replay_only_with_actionable_cross_platform_status(monkey
 
 
 def test_doctor_resolves_live_paths_from_environment(tmp_path: Path, monkeypatch, capsys) -> None:
+    # This is path-resolution evidence on a model-free host, not GPU qualification.
+    monkeypatch.setattr(commands.shutil, "which", lambda name: None)
     monkeypatch.setattr(commands.platform, "system", lambda: "Windows")
     monkeypatch.setattr(commands.platform, "machine", lambda: "AMD64")
     model = tmp_path / "model.gguf"
@@ -181,8 +183,9 @@ def test_doctor_resolves_live_paths_from_environment(tmp_path: Path, monkeypatch
     monkeypatch.setenv("EXPERTFLOW_MODEL_PATH", str(model))
     monkeypatch.setenv("EXPERTFLOW_LLAMA_CLI", str(cli))
     monkeypatch.setenv("EXPERTFLOW_LLAMA_SERVER", str(server))
-    assert main(["doctor"]) == 20
+    assert main(["doctor"]) == 10
     report = json.loads(capsys.readouterr().out)
+    assert report["live_acceleration_supported"] is False
     by_name = {item["name"]: item for item in report["checks"]}
     assert by_name["model"]["path"] == str(model)
     assert by_name["model"]["bytes"] == 5
