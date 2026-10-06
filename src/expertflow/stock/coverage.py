@@ -20,8 +20,25 @@ GATES = {'minimum_defaults_gain_pct':5, 'defaults_ci95_lower_strictly_above_pct'
     'owned_memory_reserve_cleanup':True}
 CASES = (('gemma4-q4-prose','gemma4','Q4_0'), ('gemma4-q4-code','gemma4','Q4_0'),
          ('granite-q6-prose','granitemoe','Q6_K'), ('granite-q6-code','granitemoe','Q6_K'))
-HOST_REFERENCE = 'docs/research/evidence/stock-repeatability-20261004/main-frozen-manifest.json'
-DEFAULT_REFERENCE = 'docs/research/evidence/stock-repeatability-20261004/transfer-frozen-manifest.json'
+HOST_REFERENCE = 'docs/evidence/stock-repeatability-20261004/main-frozen-manifest.json'
+DEFAULT_REFERENCE = 'docs/evidence/stock-repeatability-20261004/transfer-frozen-manifest.json'
+
+
+def archived_input(root, relative):
+    """Resolve frozen logical names without changing their recorded identity."""
+    path = (root / relative).resolve()
+    if not path.is_relative_to(root):
+        raise ValueError('registration input path outside project')
+    if path.is_file():
+        return path
+    for old, new in (('docs/evidence/', 'docs/research/evidence/'),
+                     ('docs/superpowers/', 'docs/research/protocols/')):
+        if relative.startswith(old):
+            path = (root / new / relative[len(old):]).resolve()
+            if not path.is_relative_to(root):
+                raise ValueError('registration input path outside project')
+            return path
+    return path
 
 
 def verify_registration(data, project):
@@ -43,15 +60,15 @@ def verify_registration(data, project):
         raise ValueError('registered statistical/default/pacing controls mismatch')
     root = Path(project).resolve()
     for relative, expected in data['input_files'].items():
-        path = (root/relative).resolve()
+        path = archived_input(root, relative)
         if not path.is_relative_to(root):
             raise ValueError('registration input path outside project')
         if not path.is_file() or file_sha256(path) != expected:
             raise ValueError('registration input identity mismatch: ' + relative)
     if any(p not in data['input_files'] for p in (HOST_REFERENCE,DEFAULT_REFERENCE)):
         raise ValueError('registration host/default source references not pinned')
-    host_reference = json.loads((root/HOST_REFERENCE).read_text())
-    default_reference = json.loads((root/DEFAULT_REFERENCE).read_text())
+    host_reference = json.loads(archived_input(root, HOST_REFERENCE).read_text())
+    default_reference = json.loads(archived_input(root, DEFAULT_REFERENCE).read_text())
     host = host_reference['host_environment']
     if (canonical_sha256(data['host_environment']) != canonical_sha256(host)
             or data['host_environment_sha256'] != canonical_sha256(host)
@@ -68,7 +85,7 @@ def verify_registration(data, project):
                     case['runtime_identity'],data['hardware'],data['specification'])
         if any(path not in data['input_files'] for path in required):
             raise ValueError('registered case input is not pinned')
-        descriptor = json.loads((root/case['descriptor']).read_text())
+        descriptor = json.loads(archived_input(root, case['descriptor']).read_text())
         if (descriptor['family'], descriptor['quantization']) != (family,quantization):
             raise ValueError('registered descriptor scope mismatch')
         ids = case['candidate_ids']
@@ -76,7 +93,7 @@ def verify_registration(data, project):
                 or len(case['screening_schedule']) != 3
                 or any(len(block) != 6 or set(block) != set(ids) for block in case['screening_schedule'])):
             raise ValueError('registered candidate grid/schedule mismatch')
-        model = inspect_model(root/case['descriptor'],root/case['inventory'])
+        model = inspect_model(archived_input(root, case['descriptor']),archived_input(root, case['inventory']))
         workload = WorkloadIR.from_reference(load_reference_workload(root,root/case['workload']))
         workload = replace(workload,threads=8,cuda_graphs='on')
         inputs = _snapshot_inputs({**host_reference['main_inputs'],'model':canonical_payload(model)},workload)

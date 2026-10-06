@@ -3,7 +3,7 @@
 Status: **REGISTERED-NOT-RUN**. This registration defines the next four comparisons.
 It does not extend the completed Q6 study, establish another gain, or authorize
 reusing its budget. Machine-readable identities are in
-[stock-coverage-20261005.json](../../../../configs/compiler/stock-coverage-20261005.json).
+[stock-coverage-20261005.json](../../../configs/compiler/stock-coverage-20261005.json).
 
 ## Question and cases
 
