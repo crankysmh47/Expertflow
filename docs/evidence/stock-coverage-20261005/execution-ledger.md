@@ -44,3 +44,12 @@ Final correction suite completed:891 passed,7 expected skips,1607.12s,exit0. Sup
 
 Task 3: complete (native source78ad5f0; public coverage validate PASS exit0,93.399970s; independent raw audit PASS344 records; zero extra calls; four NO-UTILITY-GAIN outcomes). Keep active ef-v2 in place; no integration requested.
 Final collection wall17741.438s; original41/sixhistory/148 unchanged. The zero-start attempt and all rulings remain separately preserved. Documentation formatting inspection caught a UTF-8/cp1252 round trip; it was reversed before staging, without touching any measured source/input/artifact.
+
+## Archived workspace retention
+
+Automatic approval review rejected deletion of only the verified, archived
+scratch workspace `.superpowers/sdd/2026-10-05-wider-stock-collector` with
+"blocked by policy" before execution. The complete workspace is retained;
+no deletion retry or alternate cleanup mechanism is authorized by this ruling.
+Its 75-file owned recovery archive remains published separately. This retention
+does not block evidence reconstruction or the read-only follow-on audit.

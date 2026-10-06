@@ -72,6 +72,15 @@ with zero extra calls and unchanged original source/history evidence.
 Independent final raw audit passed with no material discrepancies. Wider useful tuning, other hosts and
 serving performance remain unproved; the positive Q6 scope is unchanged.
 
+The follow-on [offload/attention/batch eligibility audit](evidence/stock-control-scope-20261006/report.md)
+is complete at a **scoped no-go**, with 16 pinned upstream objects, zero native
+calls and 55 passing contract tests. Offload and flash attention change numerical
+paths; nonbinding batch caps have no demonstrated serial-decode benefit on
+these short prompts. Further native optimization needs a new exact numerical
+qualification and useful mechanism, or a separate quality policy/provider and
+held-out acceptance protocol. This is the current research blocker, not a
+universal impossibility result. Both completed studies and their budgets stay closed.
+
 ## Verified milestones
 
 | Work | Result and scope | Evidence |

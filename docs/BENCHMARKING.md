@@ -65,6 +65,11 @@ seconds of fixed waits; native phases totaled 4,427.471 seconds. Fresh public
 validation passed in 93.40 seconds with zero additional calls. Final independent
 raw audit passed. See [per-case intervals, costs and scope](evidence/stock-coverage-20261005/report.md).
 
+The subsequent [control eligibility audit](evidence/stock-control-scope-20261006/report.md)
+closed at a scoped no-go with zero native calls. A new experiment first needs
+an admitted numerical path and useful mechanism, or a separate quality policy
+and acceptance protocol; the closed study's budget cannot be transferred.
+
 The separate public sequence uses `expertflow stock coverage run` and
 `expertflow stock coverage validate`. All four live inputs, exact roots,
 eligibility/defaults proofs and the reviewed source map freeze before the first

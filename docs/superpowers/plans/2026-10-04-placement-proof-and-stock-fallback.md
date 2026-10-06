@@ -99,9 +99,12 @@ wider utility coverage completed the [four registered comparisons](../../evidenc
 from `78ad5f0`: 344 retained calls and four NO-UTILITY-GAIN outcomes, with
 fresh public reconstruction and final independent raw audit passing.
 Q4's gains were below the 5% gate; Granite retained the default. No new product
-or consumer followed. Next is a read-only offload/attention/batch numerical-scope
-audit before any new protocol. These results establish no global optimum,
-superiority to manual tuning, new placement acceleration or serving throughput.
+or consumer followed. The read-only offload/attention/batch numerical-scope
+audit is [complete at a scoped no-go](../../evidence/stock-control-scope-20261006/report.md).
+Further native work is blocked by missing numerical qualification and a useful
+mechanism for another control, or a separate quality policy and acceptance
+protocol. These results establish no global optimum, superiority to manual
+tuning, new placement acceleration or serving throughput.
 
 ## Tracking and verification
 

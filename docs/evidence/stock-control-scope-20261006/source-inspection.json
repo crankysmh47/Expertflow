@@ -1,0 +1,242 @@
+{
+  "additional_native_calls": 0,
+  "after": {
+    "cases": [
+      {
+        "case_id": "gemma4-q4-prose",
+        "completion_sha256": "33a352294661f9520e1264c07649d0ef87ff3febb35188abff22762d11795ae3",
+        "native_decode_tokens": 512,
+        "native_prompt_tokens": 39,
+        "native_reference_dir": "C:\\models\\expertflow\\runs\\compiler-stock-coverage-20261005\\gemma4-q4-prose\\raw\\reference-00",
+        "tokenize_prompt_tokens": 39,
+        "tokenize_sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+        "workload": {
+          "batch_size": 2048,
+          "concurrency": 1,
+          "context_size": 4096,
+          "microbatch_size": 512,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512
+        }
+      },
+      {
+        "case_id": "gemma4-q4-code",
+        "completion_sha256": "798d742621577526dd9b766d3d82f9872988bdb51570c50d1a223739a57400d1",
+        "native_decode_tokens": 512,
+        "native_prompt_tokens": 45,
+        "native_reference_dir": "C:\\models\\expertflow\\runs\\compiler-stock-coverage-20261005\\gemma4-q4-code\\raw\\reference-00",
+        "tokenize_prompt_tokens": 45,
+        "tokenize_sha256": "89a36ce3049f104de3754d652507dc94697d51ae37dcf48f91596ccf70c87571",
+        "workload": {
+          "batch_size": 2048,
+          "concurrency": 1,
+          "context_size": 4096,
+          "microbatch_size": 512,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512
+        }
+      },
+      {
+        "case_id": "granite-q6-prose",
+        "completion_sha256": "d6e6d1dd4c3be159706a84d5ed83754dce0c6ce4af5e2b65870b0e27b8062ab3",
+        "native_decode_tokens": 512,
+        "native_prompt_tokens": 41,
+        "native_reference_dir": "C:\\models\\expertflow\\runs\\compiler-stock-coverage-20261005\\granite-q6-prose\\raw\\reference-00",
+        "tokenize_prompt_tokens": 41,
+        "tokenize_sha256": "5e38510df3a6c3585eb979275adecedddef86808125522a9da6da2021755f11e",
+        "workload": {
+          "batch_size": 2048,
+          "concurrency": 1,
+          "context_size": 4096,
+          "microbatch_size": 512,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512
+        }
+      },
+      {
+        "case_id": "granite-q6-code",
+        "completion_sha256": "a66449e13d63c78c0803c0a1a2963ebd33effe28a60c7450343f0ba14a2a5053",
+        "native_decode_tokens": 512,
+        "native_prompt_tokens": 46,
+        "native_reference_dir": "C:\\models\\expertflow\\runs\\compiler-stock-coverage-20261005\\granite-q6-code\\raw\\reference-00",
+        "tokenize_prompt_tokens": 46,
+        "tokenize_sha256": "84b672c73216df70e5242f66ab3f1f59fa1a9e2ccb72f3c397466a06ef6a2fb9",
+        "workload": {
+          "batch_size": 2048,
+          "concurrency": 1,
+          "context_size": 4096,
+          "microbatch_size": 512,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512
+        }
+      }
+    ],
+    "frozen_source_files": 63,
+    "native_starts": 344,
+    "report_sha256": "4a74d814daceb07be0d7d3319127e513003dcee9f49f306c4c6fd452745762c9"
+  },
+  "before": {
+    "cases": [
+      {
+        "case_id": "gemma4-q4-prose",
+        "completion_sha256": "33a352294661f9520e1264c07649d0ef87ff3febb35188abff22762d11795ae3",
+        "native_decode_tokens": 512,
+        "native_prompt_tokens": 39,
+        "native_reference_dir": "C:\\models\\expertflow\\runs\\compiler-stock-coverage-20261005\\gemma4-q4-prose\\raw\\reference-00",
+        "tokenize_prompt_tokens": 39,
+        "tokenize_sha256": "7450bc4f89bca623fda3998cddac3c86085c43c68df3b488e47b54b75d90eddc",
+        "workload": {
+          "batch_size": 2048,
+          "concurrency": 1,
+          "context_size": 4096,
+          "microbatch_size": 512,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512
+        }
+      },
+      {
+        "case_id": "gemma4-q4-code",
+        "completion_sha256": "798d742621577526dd9b766d3d82f9872988bdb51570c50d1a223739a57400d1",
+        "native_decode_tokens": 512,
+        "native_prompt_tokens": 45,
+        "native_reference_dir": "C:\\models\\expertflow\\runs\\compiler-stock-coverage-20261005\\gemma4-q4-code\\raw\\reference-00",
+        "tokenize_prompt_tokens": 45,
+        "tokenize_sha256": "89a36ce3049f104de3754d652507dc94697d51ae37dcf48f91596ccf70c87571",
+        "workload": {
+          "batch_size": 2048,
+          "concurrency": 1,
+          "context_size": 4096,
+          "microbatch_size": 512,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512
+        }
+      },
+      {
+        "case_id": "granite-q6-prose",
+        "completion_sha256": "d6e6d1dd4c3be159706a84d5ed83754dce0c6ce4af5e2b65870b0e27b8062ab3",
+        "native_decode_tokens": 512,
+        "native_prompt_tokens": 41,
+        "native_reference_dir": "C:\\models\\expertflow\\runs\\compiler-stock-coverage-20261005\\granite-q6-prose\\raw\\reference-00",
+        "tokenize_prompt_tokens": 41,
+        "tokenize_sha256": "5e38510df3a6c3585eb979275adecedddef86808125522a9da6da2021755f11e",
+        "workload": {
+          "batch_size": 2048,
+          "concurrency": 1,
+          "context_size": 4096,
+          "microbatch_size": 512,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512
+        }
+      },
+      {
+        "case_id": "granite-q6-code",
+        "completion_sha256": "a66449e13d63c78c0803c0a1a2963ebd33effe28a60c7450343f0ba14a2a5053",
+        "native_decode_tokens": 512,
+        "native_prompt_tokens": 46,
+        "native_reference_dir": "C:\\models\\expertflow\\runs\\compiler-stock-coverage-20261005\\granite-q6-code\\raw\\reference-00",
+        "tokenize_prompt_tokens": 46,
+        "tokenize_sha256": "84b672c73216df70e5242f66ab3f1f59fa1a9e2ccb72f3c397466a06ef6a2fb9",
+        "workload": {
+          "batch_size": 2048,
+          "concurrency": 1,
+          "context_size": 4096,
+          "microbatch_size": 512,
+          "objective": "decode_tps",
+          "policy": "exact",
+          "predict_tokens": 512
+        }
+      }
+    ],
+    "frozen_source_files": 63,
+    "native_starts": 344,
+    "report_sha256": "4a74d814daceb07be0d7d3319127e513003dcee9f49f306c4c6fd452745762c9"
+  },
+  "inspected_at_utc": "2026-10-06T10:09:12.050036+00:00",
+  "local_contract_files": {
+    "src/expertflow/compiler/plan.py": "8ca61090587744f294b649bd51d5a1ea1a6b7d1047b1c8f685506639b048f551",
+    "src/expertflow/compiler/runner.py": "7e128ff7194217e98cc60a499f411f21e4051c5a72cfa905f936297398f14c58",
+    "src/expertflow/compiler/schema.py": "b60627d59fc109caab87d61bf574b8a9e59dad38cc7b19546888805a49489b24",
+    "src/expertflow/compiler/stock_eligibility.py": "37d4d11cbc1fbc3aa10b2cc5800a57dd9c48807bada58a2dc4c8c4201cac9ffd",
+    "src/expertflow/compiler/stock_search.py": "5d0abe5fb531dac4f42b9f7f8cf8752e24a2f109d35d2dc14e28fcd6c87002d7"
+  },
+  "repository": "C:\\models\\expertflow\\worktrees\\llama-q6-placement-final",
+  "repository_worktree_head": "451224ab4d12a616dc3e16e8c8063f4b331f531c",
+  "scope": "Source inventory and actual short-prompt shape evidence only; no new control admission or performance/quality measurement.",
+  "source_archive_sha256": "659ff245567cb6d7832cbc21bcaa609ffa3b54f4e4e8107de83a3fc64a5a792e",
+  "source_objects": {
+    "common/arg.cpp": {
+      "git_blob": "9aefcd20297ab2ae95797564fd4ba6fb1a3701d4",
+      "sha256": "6f2380517b49e69a7ba69ab8a12566ed0c8047b76afd65335c220a6ea8fcb63b",
+      "size_bytes": 197820
+    },
+    "ggml/src/ggml-cpu/arch/x86/repack.cpp": {
+      "git_blob": "af1cebad131d17118c26634faccb9a6e0c08a6f9",
+      "sha256": "c69735f83caf854172cac78eed2cbc022ef81c077e5f6aca55a49d3404a02331",
+      "size_bytes": 665038
+    },
+    "ggml/src/ggml-cpu/ggml-cpu.c": {
+      "git_blob": "2745a7dbb29ea12f45c1722f55bc913141669419",
+      "sha256": "149369487188440b670c89d6cd46452846d70da4f928735b544729e84d3c33a7",
+      "size_bytes": 129274
+    },
+    "ggml/src/ggml-cpu/ops.cpp": {
+      "git_blob": "7c54cb6f469da40913c7a9bd4beb51359a4b7e72",
+      "sha256": "aaaeccd8e112542abc195f113a0e68137f5592ce450e6e35c986b89be3e588ca",
+      "size_bytes": 399809
+    },
+    "ggml/src/ggml-cuda/fattn-common.cuh": {
+      "git_blob": "e67cc7fdf784c18bc4ce93918005cbf048148c26",
+      "sha256": "47537d7980d81f7dc9daa18698f5fdbb990ef6b916fa75fed4bc0bbfd1aa08cb",
+      "size_bytes": 47668
+    },
+    "ggml/src/ggml-cuda/fattn.cu": {
+      "git_blob": "00ffacf2992104e94af25e6b4091b5c55fc94dff",
+      "sha256": "346e87241847effac1c9fc4a1238b0befb3860dd053c925d972aec43affd7e42",
+      "size_bytes": 23724
+    },
+    "ggml/src/ggml-cuda/ggml-cuda.cu": {
+      "git_blob": "0878ab9c08afb783c6b5d459d4f9654617807d1d",
+      "sha256": "04987b82f83f3c81311c3f92a970d6815a8287fbe53f84f557b4a95f315daabd",
+      "size_bytes": 211957
+    },
+    "ggml/src/ggml-cuda/mmq.cu": {
+      "git_blob": "bf9f5d5264762df4c26fe6af64d9029f169ac8e5",
+      "sha256": "87505af8244c518f9b069fb0ca2a9cf2ffe15426a332bfdef31b4f9cbc263254",
+      "size_bytes": 12944
+    },
+    "ggml/src/ggml-cuda/mmvq.cu": {
+      "git_blob": "e18ada5377d5e111ab8ff90e4df4a292697a49af",
+      "sha256": "7dd8df4666d524a749c0e1aafe8f6fb99a3ea565b4a2fc3ce957a406ab3d4776",
+      "size_bytes": 61624
+    },
+    "src/llama-batch.cpp": {
+      "git_blob": "2b98a552f48f73ed7c29c2e3e48383245f5d39ec",
+      "sha256": "484607d92fb08d510727e0c4b01139e27a40137ef03e74e1dbea4aac3965e328",
+      "size_bytes": 31110
+    },
+    "src/llama-context.cpp": {
+      "git_blob": "3a469bc90bd90fbdf3d924afa696d4b61fcd1d00",
+      "sha256": "fd1094fd6ea5f29fd71ce8e1a1355b6550bec5e5f611a427d9f06d6958c56e97",
+      "size_bytes": 144304
+    },
+    "src/llama-graph.cpp": {
+      "git_blob": "c8ecb0a2854cc2a43ca3102ebafea89e386d917f",
+      "sha256": "fc5037613eee32a4912ebbaef0489dc1936eed6eccf01c192e922f8b6a77a5e5",
+      "size_bytes": 123657
+    },
+    "src/llama-model.cpp": {
+      "git_blob": "eaf3f35d2d8e86722d130be89430298b991babfc",
+      "sha256": "42d1d9c382dc7f287db7b5121fbf9ca8da339b2cd10726082a682d2d826548d4",
+      "size_bytes": 125506
+    }
+  },
+  "status": "READ-ONLY-INSPECTION-PASS",
+  "upstream_revision": "a7312ae94f801fc9c6786dc56e38df57b964f697"
+}

@@ -412,5 +412,8 @@ results or infer a simultaneous family-wide guarantee.
 Fresh public validation passed in 93.40 seconds, using four readers with zero
 new native calls and unchanged source/history pins. Final independent raw audit
 passed. See [separate results and costs](evidence/stock-coverage-20261005/report.md).
-Further control-space expansion requires a numerical-scope audit and a separate
-registration; it cannot reuse this study's 84 unspent conditional calls.
+The [completed numerical-scope audit](evidence/stock-control-scope-20261006/report.md)
+admits no new useful exact control from offload, attention or batch sizing under
+the present profile. Further expansion needs numerical qualification and a
+useful mechanism, or a separate quality policy/provider and held-out protocol,
+then a new registration. It cannot reuse this study's 84 unspent conditional calls.

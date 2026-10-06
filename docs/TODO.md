@@ -87,10 +87,13 @@ none met the practical utility gate. Serving and other hosts remain unverified.
 
 ## Next research gate; other expansion remains deferred
 
-- [ ] Next: audit wider offload/attention/batch operation paths and numerical
-  eligibility before designing any new native experiment. Retain an explicit
-  no-go if no setting qualifies under the current exact profile; do not retune
-  the completed thread/graph study.
+- [x] Audit wider offload/attention/batch operation paths and numerical
+  eligibility: [scoped no-go](evidence/stock-control-scope-20261006/report.md),
+  16 pinned upstream objects, zero native calls, 55 contract tests passed.
+- [ ] Blocked native extension: establish complete exact arithmetic equivalence
+  and a useful mechanism for a new control, or define a separate quality
+  policy/provider, datasets and held-out gates. Register a new fixed budget
+  before collection; do not retune or reuse the completed studies.
 - [ ] KV compression/TurboQuant and shared memory-budget optimization.
 - [ ] MTP/speculation, two-table dynamic residency and joint search.
 - [ ] Broad family/hardware coverage, serving integration and presentation polish.

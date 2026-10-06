@@ -82,6 +82,8 @@ uv run --no-sync expertflow stock coverage validate --help
 
 The registered sequence is closed. Use `uv run --no-sync expertflow stock coverage validate` to reconstruct its four outcomes. `coverage run` refuses the occupied fixed roots and has no retry/resume operation; further experiments require a separate registration. A neutral/default-optimal case remains `NO-UTILITY-GAIN`. See the [collector plan](docs/superpowers/plans/2026-10-05-wider-stock-collector.md).
 
+The subsequent [offload/attention/batch audit](docs/evidence/stock-control-scope-20261006/report.md) found no new useful control qualified under the current exact profile. Further native optimization needs numerical qualification and a concrete benefit mechanism, or a separate quality policy and acceptance protocol. The audit made zero native calls; the completed studies remain closed.
+
 The earlier deployment interface remains available: `expertflow doctor`, `expertflow profile`, `expertflow optimize`, positional `expertflow run`, `expertflow serve` and `expertflow compare`. Its setup is documented in the historical [judge guide](JUDGES.md) and [deployment guide](DEPLOYMENT.md). It does not promote the old placement result into current exact acceptance.
 
 | Platform | Historical replay | Current live compiler evidence |

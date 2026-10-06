@@ -46,6 +46,12 @@ limited to the qualified Q6 workloads. Serving performance remains unverified.
 See [wider results](evidence/stock-coverage-20261005/report.md), [status](STATUS.md),
 [tasks](TODO.md), and [the current stock method](stock-configuration-method.md).
 
+The [follow-on control audit](evidence/stock-control-scope-20261006/report.md)
+admits no new useful exact control from offload, flash attention or batch sizing
+under this profile. Extending native optimization now requires numerical
+qualification and a useful mechanism, or a separate quality policy/provider and
+held-out acceptance protocol. No further performance samples were collected.
+
 ## Historical placement architecture
 
 The sections below describe the archived placement release and its experiments.
