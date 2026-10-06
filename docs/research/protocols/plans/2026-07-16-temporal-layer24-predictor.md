@@ -1,7 +1,5 @@
 # Temporal Layer-24 Predictor Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Build and seal a leakage-safe offline predictor for layer-24 experts at decode token `t+1` from the same layer's experts at token `t`.
 
 **Architecture:** Add temporal-specific dataset, policy, metrics, and shadow modules rather than changing the accepted adjacent-layer implementation. A guarded CLI materializes train/validation during fit, writes an immutable selection lock, and opens the frozen test split exactly once.

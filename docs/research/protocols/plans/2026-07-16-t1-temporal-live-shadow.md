@@ -1,7 +1,5 @@
 # T1 Temporal Live-Shadow Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Reproduce the frozen T0 layer-24 next-token predictor in the live canonical runtime and measure the real shadow-only transfer lead-time window.
 
 **Architecture:** Export a distinct hashed temporal binary artifact and golden vectors. Add a fixed native scorer/state machine and a disabled-by-default scheduler integration that observes authoritative layer-24 decode IDs, records host-wall timing, and never touches cache residency or CUDA transfer services.

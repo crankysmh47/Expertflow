@@ -1,7 +1,5 @@
 # Non-Perturbing Router Observer Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Quarantine callback-derived real-model evidence and determine whether merely registering the llama.cpp evaluation callback changes clean-runtime output.
 
 **Architecture:** Add a checked-in evidence-status manifest that withdraws callback-derived claims without deleting artifacts. Extend the separate router probe with one diagnostic `empty` callback mode, then run only T0/T1 first. If T1 fails, stop the in-callback matrix and document scheduler interception as the earliest perturbing boundary.
@@ -149,7 +147,7 @@ If T1 fails, show that the empty callback performs no readback/allocation/I/O/st
 
 - [x] **Step 2: Verify the checkpoint**
 
-Read and use `superpowers:verification-before-completion`. Run the full ExpertFlow suite, judge replay, JSON/JSONL parsing, artifact-hash reconciliation, `git diff --check`, worktree/protected/source cleanliness, no cache environment variables, and no persistent model process.
+Read and use the verification checklist. Run the full ExpertFlow suite, judge replay, JSON/JSONL parsing, artifact-hash reconciliation, `git diff --check`, worktree/protected/source cleanliness, no cache environment variables, and no persistent model process.
 
 - [x] **Step 3: Commit the isolation result**
 

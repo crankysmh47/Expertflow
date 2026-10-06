@@ -1,7 +1,5 @@
 # Stock validation, public CLI and coverage registration
 
-> **For agentic workers:** Use the implementation checklist for inline execution and one final independent review.
-
 **Goal:** Reduce repeated model hashing, expose the existing stock workflows through `expertflow stock`, and register wider utility comparisons before collecting them.
 
 **Architecture:** Keep the measured compiler modules and collectors byte-for-byte intact. An adapter outside `compiler/` loads the existing project drivers and scopes one verified EvidenceStore per database to a read-only validation invocation. Installed CLI help works everywhere; execution requires an explicit research checkout and the original identity-bound inputs.
@@ -50,7 +48,7 @@ Interface: `expertflow stock [--project PATH] <reference|product|search|utility|
 
 ## Task 3: Wider registration and documentation
 
-Files: `configs/compiler/stock-coverage-20261005.json`, new Q4/Granite workload configurations, `docs/superpowers/specs/2026-10-05-stock-coverage.md`, README, STATUS, TODO, BENCHMARKING, stock method and project log.
+Files: `configs/compiler/stock-coverage-20261005.json`, new Q4/Granite workload configurations, `docs/research/protocols/specs/2026-10-05-stock-coverage.md`, README, STATUS, TODO, BENCHMARKING, stock method and project log.
 
 - [x] Register Q4 and Granite, each with existing prose and code prompts: four separately bounded 107-call comparisons, 428 calls maximum, no pooling or retries.
 - [x] Pin model, inventory, workload/prompt, runtime, host, defaults proof, candidate controls, costs, gates and stop rules; explicitly require a reviewed wider collector and frozen implementation before execution.

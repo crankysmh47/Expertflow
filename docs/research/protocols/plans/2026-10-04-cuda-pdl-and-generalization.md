@@ -1,7 +1,5 @@
 # CUDA PDL and generalization implementation plan
 
-> **For agentic workers:** Use the implementation checklist task by task.
-
 **Goal:** Close the qualified Gemma CUDA scheduling hypothesis, then validate
 the existing compiler method on a real second MoE family.
 
@@ -11,7 +9,7 @@ eligibility, reference, product and search contracts for generalization.
 
 **Tech stack:** Python, pytest, SQLite, pinned llama.cpp/CUDA12.8, native CUPTI probe.
 
-**Spec:** `docs/superpowers/specs/2026-10-04-cuda-pdl-and-generalization.md`.
+**Spec:** `docs/research/protocols/specs/2026-10-04-cuda-pdl-and-generalization.md`.
 
 ## Constraints and review focus
 

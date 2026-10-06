@@ -1,7 +1,5 @@
 # Q6 Predictive Final Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Evaluate fixed MMLU for the frozen 12-layer Q6 static champion, then admit hybrid caching work only when measured routing locality satisfies the frozen memory and throughput gates.
 
 **Architecture:** Preserve the static champion and its failed strict PPL result. Reuse the established server/MMLU, canonical observer, simulator, and exact cache implementations in sequential stages; every stage emits machine-readable evidence and a commit, and each declared stop condition terminates later runtime work.

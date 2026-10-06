@@ -1,14 +1,12 @@
 # ExpertFlow Inference Compiler Spine Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Build the Phase 0–3 ExpertFlow compiler spine that inspects a Gemma 4 GGUF inventory, models the machine and workload with typed IRs, measures a strongest-stock floor, tests bounded static-MoE candidates, and emits an explainable exact execution plan or an explicit stock fallback for the pinned llama.cpp runtime.
 
 **Architecture:** Add a focused `expertflow.compiler` package around existing artifact, benchmark, Q6 inventory, and placement modules, with a native server measurement runner. The package uses immutable typed IRs, a dependency-checked pass manager, append-only evidence, measured candidate selection, and a strict plan validator; existing research and product commands remain compatible. This plan stops after the exact Phase 3 compiler product, including a valid stock fallback—CUDA autotuning, KV/TurboQuant, extra model adapters, MTP, and dynamic caching remain independent later plans.
 
 **Tech Stack:** Python 3.11+, standard-library dataclasses/enums/protocols/JSON/hashlib/sqlite3, pytest 8.4, uv, GGUF metadata exported by the pinned llama.cpp `gguf-py`, Windows 11 x64, one NVIDIA RTX 5060 Ti, CUDA 12.8, pinned ExpertFlow llama.cpp fork.
 
-**Spec:** `docs/superpowers/specs/2026-08-28-expertflow-inference-compiler-design.md`
+**Spec:** `docs/research/protocols/specs/2026-08-28-expertflow-inference-compiler-design.md`
 
 ## Global Constraints
 

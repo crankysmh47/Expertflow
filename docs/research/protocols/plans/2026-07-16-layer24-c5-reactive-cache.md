@@ -1,7 +1,5 @@
 # Layer-24 C5 Reactive Cache Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Verify an exact conversation-local 32-slot reactive LRU cache for layer 24 using the unchanged packed CUDA `MUL_MAT_ID` path.
 
 **Architecture:** Generalize C4's pure planner and persistent direct CUDA operand to 32 resident slices while keeping each top-8 demand exact. Deterministic protected LRU selects slots; blocking transfers complete and validate before physical IDs replace logical IDs for execution.

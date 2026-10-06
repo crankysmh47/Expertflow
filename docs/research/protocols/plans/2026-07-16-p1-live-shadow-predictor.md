@@ -1,7 +1,5 @@
 # P1 Live Shadow Predictor Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Reproduce the frozen B2 layer-23-to-layer-24 predictor inside the canonical runtime in telemetry-only shadow mode.
 
 **Architecture:** ExpertFlow deterministically exports one versioned binary table artifact and offline parity fixtures. llama.cpp loads the artifact once into fixed-capacity arrays, receives an explicit one-call phase from the probe, predicts after layer 23, and reconciles against layer 24 without moving weights or changing cache state.
@@ -121,7 +119,7 @@
 ### Task 7: Passing milestone and P2 handoff
 
 **Files:**
-- Create: `docs/superpowers/specs/2026-07-16-p2-async-layer24-design.md` only after P1 passes.
+- Create: `docs/research/protocols/specs/2026-07-16-p2-async-layer24-design.md` only after P1 passes.
 
 - [ ] Hash the runtime binary, predictor artifact, configuration, and measured summaries.
 - [ ] Request explicit authorization for the llama.cpp and ExpertFlow P1 commits.

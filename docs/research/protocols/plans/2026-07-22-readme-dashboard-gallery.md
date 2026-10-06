@@ -1,7 +1,5 @@
 # README Dashboard Gallery Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Give the README the dashboard's visual identity through two real screenshots and a compact judge-links block.
 
 **Architecture:** Capture the self-contained dashboard at a consistent desktop viewport, store the PNGs with existing assets, and replace the older inline visual sequence without changing product claims.

@@ -1,7 +1,5 @@
 # ExpertFlow Visual Identity Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Replace generic release visuals with a routed-circuit and carbon-gold identity derived from the supplied ExpertFlow logo, then polish the submission README around the verified result and the full project maintainers/project maintainers workflow.
 
 **Architecture:** Keep all product claims and runtime artifacts unchanged. Add the canonical raster logo as a repository asset, rebuild diagrams as self-contained GitHub-compatible SVGs, apply the same tokens to the static dashboard, and reference those assets from a reorganized README. Extend release tests to enforce the logo, visual palette, attribution, and evidence boundaries.
@@ -71,7 +69,7 @@ Do not commit while the new README assertions are still failing; Task 3 complete
 - Modify: `tests/test_final_polish.py`
 
 **Interfaces:**
-- Consumes: palette and evidence constraints from `docs/superpowers/specs/2026-07-21-expertflow-visual-identity-design.md`
+- Consumes: palette and evidence constraints from `docs/research/protocols/specs/2026-07-21-expertflow-visual-identity-design.md`
 - Produces: standalone SVG assets with `viewBox`, `<title>`, `<desc>`, and no external fonts or scripts
 
 - [ ] **Step 1: Add failing asset and palette assertions**

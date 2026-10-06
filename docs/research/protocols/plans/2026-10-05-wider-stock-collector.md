@@ -1,7 +1,5 @@
 # Wider stock collector implementation plan
 
-> **For agentic workers:** Use the implementation checklist inline, with one independent review before native collection.
-
 **Goal:** Collect and reconstruct the four registered wider stock utility cases without modifying the closed Q6 collectors.
 
 **Architecture:** A new project driver freezes the complete registered sequence and loads all live inputs before collection. A separate wider module uses the original native runner, eligibility providers, selection and statistics primitives, with its own registered scope, paced attempt journal and prefix reconstruction. Existing stock product acceptance remains authoritative.

@@ -72,7 +72,7 @@ The public report may say the model fits only after these measurements exist. Fi
 
 ```text
 configs/                 pinned model and runtime manifests
-docs/superpowers/        approved designs and execution plans
+docs/research/protocols/        approved designs and execution plans
 docs/evidence/           compact source maps and gate decisions
 scripts/                 reproducible setup, download, and benchmark entry points
 src/expertflow/          Python product package

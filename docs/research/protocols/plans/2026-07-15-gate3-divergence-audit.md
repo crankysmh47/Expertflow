@@ -1,7 +1,5 @@
 # Gate 3 Cross-Runtime Divergence Audit Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Classify the Gate 3 cross-binary routing/token divergence as benign build-dependent numerical drift or evidence of an incorrect clean runtime, without changing the canonical llama.cpp source or creating cache code.
 
 **Architecture:** Preserve `1fc549bd87ed58aea7c603c59ac26037324ec157` and the protected Observatory, derive a complete configuration manifest from durable artifacts and source defaults, then use one diagnostic-only probe binary against copied reference and clean runtime DLL sets. Capture one pre-top-k tensor at a time to minimize callback-induced scheduling changes, compare the first divergent selection numerically, and test the clean runtime repeatedly before applying the written decision rule.
@@ -124,7 +122,7 @@ Separate CPU backend dispatch differences, CUDA toolkit/code-generation differen
 - Create: `docs/evidence/live-cache/gate3-divergence-audit.md`
 - Modify: `configs/llama-a7312ae-cuda128.json`
 - Modify: `docs/evidence/live-cache/gate3-clean-llama.md`
-- Modify: `docs/superpowers/plans/2026-07-15-bounded-live-cache.md`
+- Modify: `docs/research/protocols/plans/2026-07-15-bounded-live-cache.md`
 - Modify: `PROJECT_LOG.md`
 
 **Interfaces:**

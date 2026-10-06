@@ -1,7 +1,5 @@
 # T2 Temporal Two-Slot Sidecar Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Measure one exact asynchronous temporal prefetch per decode token using two dedicated layer-24 sidecar slots without allowing speculation to mutate the protected 32-slot reactive LRU.
 
 **Architecture:** Keep reactive policy state at 32 slots while conditionally exposing one contiguous 34-slice packed tensor to the unchanged `MUL_MAT_ID`. Add a separate two-slot CPU state machine, reuse the existing two-descriptor CUDA prefetch service, and extend cache planning with at most one validated external physical mapping.

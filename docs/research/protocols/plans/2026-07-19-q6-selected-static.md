@@ -1,7 +1,5 @@
 # Q6 Selected Static Experiment Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Decide whether static CUDA expert islands for Q6 layers `[0,1,15,20]` produce a stable, quality-safe, statistically meaningful decode improvement.
 
 **Architecture:** Start from the frozen Q1b ExpertFlow and llama.cpp commits in separate worktrees. Add only a disabled stock split-timing probe for the bottleneck gate, then use the existing four-layer persistent-shadow implementation unchanged for static proof, matched cold-process performance, and frozen Q1b quality evaluation.

@@ -1,7 +1,5 @@
 # Bounded Live-Cache Spike Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Build and measure one exact, blocking, true-router-selected Q4 expert-slot replacement at one Gemma 4 layer without changing the protected Observatory or the default llama.cpp path.
 
 **Architecture:** Protect and reproduce `d846bdf`, install the NVIDIA-supported Windows compiler/toolkit pair, then establish an unmodified CUDA llama.cpp baseline at the exact source pin. Only after that gate passes, add a small pure slot-planning unit beside ggml and integrate it at the existing `MUL_MAT_ID` host-weight transfer boundary. The proof uses layer 1 of training conversation `train-general-08`: seven fixed experts and one replaceable slot across a measured 50-token decode window.

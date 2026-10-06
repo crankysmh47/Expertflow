@@ -1,7 +1,5 @@
 # ExpertFlow Final Demo and Script Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Replace foreground slideshow flashes with full-background circuit flow, add a judge-readable live TPS rehearsal command, and freeze the final timed recording script.
 
 **Architecture:** Keep visual motion inside the existing offline HTML deck using inline SVG circuit fields. Extend the proven Q6 pair harness with visible progress and one-sample-safe analysis, then wrap it in a small PowerShell recording entry point rather than changing llama.cpp or the Python product runtime.

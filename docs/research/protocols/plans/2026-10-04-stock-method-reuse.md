@@ -1,7 +1,7 @@
 # Stock method reuse implementation plan
 
 Use the implementation checklist. Spec:
-`docs/superpowers/specs/2026-10-04-stock-method-reuse.md`.
+`docs/research/protocols/specs/2026-10-04-stock-method-reuse.md`.
 
 Do not change measured compiler/driver/spec while Q6 search is live. Q4 maximum
 68 native processes, conditional on its source eligibility and successive gates.

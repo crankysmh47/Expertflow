@@ -1,7 +1,5 @@
 # Trace Observer v2 One-Layer Prototype Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Prove that one configured Gemma 4 MoE layer's already-materialized selected expert IDs can be recorded without evaluation callbacks, graph segmentation, new synchronization, token changes, or persistent memory growth.
 
 **Architecture:** Add a private, disabled-by-default observer state to the pinned llama.cpp scheduler in `ggml-backend.cpp`. Configuration and fixed storage are created before execution; the hot capture path only validates fixed tensor metadata and copies scalar values already present in the existing host `ids` vector. Records are emitted only when the scheduler is destroyed.

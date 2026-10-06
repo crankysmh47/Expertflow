@@ -1,7 +1,5 @@
 # CUDA-Resident Eligible Cache Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Restrict the existing exact 32-slot ExpertFlow cache to MoE layers whose normal execution path is already CUDA-resident, then validate layers 21 and 24 together at `-ngl 10`.
 
 **Architecture:** Preserve requested layers separately from runtime-eligible layers. Let the scheduler perform its ordinary backend assignment first, classify each requested layer using the naturally placed same-layer MoE router and expert consumers, then redirect only eligible expert consumers to the existing cache arena. Explicit requests fail if any layer is rejected; auto mode selects all compatible CUDA-resident layers.

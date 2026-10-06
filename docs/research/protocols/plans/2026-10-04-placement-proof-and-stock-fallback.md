@@ -1,7 +1,5 @@
 # Placement proof and stock-tuning fallback plan
 
-> **For agentic workers:** Use the implementation checklist task by task. This is a planning checkpoint; implementation and native measurements are separate work.
-
 **Goal:** Establish useful compiler-selected MoE acceleration before product expansion; pivot to validated stock autotuning if placement cannot qualify.
 
 **Architecture:** Reuse model adapters, profiling, static candidate selection, the owned runner and EvidenceStore. First prove a placement mechanism, then automatic selection and transfer. The fallback uses pristine llama.cpp and separately eligible stock controls.

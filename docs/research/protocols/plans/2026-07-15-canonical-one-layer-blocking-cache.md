@@ -1,7 +1,5 @@
 # Canonical One-Layer Blocking Cache Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Prove exact true-router-directed blocking replacement for eight coordinated packed Gemma Q4 expert slots at layer 24 within the canonical Observer v1 runtime.
 
 **Architecture:** Use the existing tensor-buffer override API to keep only layer-24 MoE expert tensors on host when the cache flag is enabled. The approved eight-slot arena makes every slot replaceable so each authoritative top-8 set can be loaded and remapped without a kernel or graph rewrite.

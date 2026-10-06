@@ -1,7 +1,5 @@
 # ExpertFlow Stage 0 Q4 Baseline Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Produce a reproducible, measured, uninstrumented Gemma 4 Q4 llama.cpp baseline and a source-level routing feasibility decision.
 
 **Architecture:** Model weights are downloaded to an external artifact directory from a pinned Hugging Face revision and verified before use. A pinned llama.cpp dependency runs the Q4 baseline; repository scripts capture commands and memory evidence. Source inspection ends in a written routing-hook map and a pass/fail decision before any runtime patch is planned.

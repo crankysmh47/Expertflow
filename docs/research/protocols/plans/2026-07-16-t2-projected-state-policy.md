@@ -1,7 +1,5 @@
 # T2 Projected-State Policy Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Run the final exact layer-24 sidecar experiment using frozen temporal candidates filtered against the projected post-current-token reactive cache state.
 
 **Architecture:** Add one pure cache-policy helper that plans and commits the current authoritative demands on a copied state, then selects the highest-ranked candidate absent from that projected state. Replace only T2's current-state candidate filter with this helper; reuse the complete 34-slot sidecar, CUDA transfer, reconciliation, fallback, telemetry, and benchmark paths.

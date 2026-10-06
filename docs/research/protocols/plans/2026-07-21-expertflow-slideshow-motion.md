@@ -1,7 +1,5 @@
 # ExpertFlow Slideshow Motion Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Animate the nine-slide ExpertFlow recording deck so its copy and motion present an evidence-driven placement compiler and remain reliable offline.
 
 **Architecture:** Keep the deck as one dependency-free HTML file. Embed each existing SVG as a same-origin `object`; the page owns slide activation, navigation, replay, and a lightweight injected SVG animation stylesheet, while each source SVG remains reusable elsewhere.

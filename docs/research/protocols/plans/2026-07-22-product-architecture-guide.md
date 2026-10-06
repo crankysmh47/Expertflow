@@ -1,7 +1,5 @@
 # Product Architecture Guide Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Ship a canonical product and architecture guide for ExpertFlow and expose it through every judge-facing entry point.
 
 **Architecture:** `docs/PRODUCT.md` becomes the explanatory layer between README and evidence. Existing SVGs provide the visual architecture; source contracts prevent claim drift and guarantee release packaging.

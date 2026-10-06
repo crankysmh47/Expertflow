@@ -142,8 +142,8 @@ def test_local_visual_and_video_assets_exist() -> None:
 def test_visual_identity_and_project_documentation_are_clean() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "docs/assets/expertflow-logo.png" in readme
-    assert "GPT-" not in readme
-    assert "Codex" not in readme
+    assert "docs/support-matrix.md" in readme
+    assert "docs/research/README.md" in readme
 
     svg_paths = [
         *sorted((ROOT / "docs/assets").glob("*.svg")),

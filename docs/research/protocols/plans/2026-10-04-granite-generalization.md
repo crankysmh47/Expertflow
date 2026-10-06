@@ -1,7 +1,5 @@
 # Granite generalization implementation plan
 
-> **For agentic workers:** Use the implementation checklist inline task by task.
-
 **Goal:** Validate the stock compiler method on a real second MoE architecture.
 
 **Architecture:** Shared routed-inventory validation with separate family adapters;
@@ -11,7 +9,7 @@ baseline without changing old Gemma identities.
 
 **Tech stack:** Python/pytest/SQLite, actual GGUF, pinned pristine llama.cpp/CUDA.
 
-**Spec:** `docs/superpowers/specs/2026-10-04-granite-generalization.md`.
+**Spec:** `docs/research/protocols/specs/2026-10-04-granite-generalization.md`.
 
 ## Constraints and review focus
 

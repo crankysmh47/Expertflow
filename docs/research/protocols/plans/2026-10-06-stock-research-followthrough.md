@@ -1,14 +1,12 @@
 # Stock research and product follow-through implementation plan
 
-> **For agentic workers:** Use the implementation checklist for inline execution. Preserve the user's instruction to continue down either result path.
-
 **Goal:** Close one candidate's mechanism gate and finish the appropriate next deliverable.
 
 **Architecture:** A source-only gate determines whether to design a new native study or continue the bounded stock prototype. A standalone checkout helper delegates all fresh acceptance decisions to the existing public CLI and preserves measured sources.
 
 **Tech stack:** Python standard library, pytest, pinned Git objects, existing public stock validators.
 
-**Spec:** `docs/superpowers/specs/2026-10-06-stock-research-followthrough.md`
+**Spec:** `docs/research/protocols/specs/2026-10-06-stock-research-followthrough.md`
 
 ## Global constraints
 

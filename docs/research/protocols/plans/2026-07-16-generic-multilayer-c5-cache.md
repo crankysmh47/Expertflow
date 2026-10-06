@@ -1,7 +1,5 @@
 # Generic Multi-Layer C5 Cache Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Generalize the exact layer-24 C5 cache into a disabled-by-default, consolidated 32-slot-per-layer cache and validate it at two, five, then all 30 Gemma MoE layers.
 
 **Architecture:** Parse exact `blk.N` component names into fixed per-layer contexts, keep independent C5 LRU state per enabled layer, and back every layer's three direct packed tensor views with one aligned CUDA allocation. Advance through explicit layer sets only after cache-off/cache-on exactness, memory, blocking, and throughput gates pass.

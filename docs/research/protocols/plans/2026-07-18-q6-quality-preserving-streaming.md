@@ -1,7 +1,5 @@
 # Q6 Quality-Preserving Expert Streaming Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Prove or reject the existing layer-0 CUDA expert island under frozen quality gates before implementing any reactive streaming.
 
 **Architecture:** ExpertFlow owns immutable benchmark manifests, analysis, and evidence; an isolated llama.cpp worktree owns the disabled-by-default static CUDA shadow. The first executable milestone is Q1 only: feature-off and feature-on builds share one binary, model, tokenizer, inputs, and settings, with persistent complete Q4 expert bundles and no eviction.

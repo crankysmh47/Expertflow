@@ -1,7 +1,5 @@
 # Q6 Placement Optimizer Final Sprint Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Measure and validate the fastest bounded Q6 full-static expert placement, stopping unless it reaches 23.5 TPS and beats the strongest fair stock runtime.
 
 **Architecture:** Reuse the disabled synchronized split profiler for offline ranking, increase only the fixed static-island capacity, and drive a sequential two-layer greedy search with cold-process matched measurements. Run cleanup, tuning, final quality, and product packaging only after their explicit performance gates pass.

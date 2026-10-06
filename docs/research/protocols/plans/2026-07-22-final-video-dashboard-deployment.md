@@ -1,7 +1,5 @@
 # Final Video, Dashboard, and Deployment Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Deliver the final human narration, live proof recording path, narrative dashboard, and public static deployment.
 
 **Architecture:** Keep the video assets and dashboard dependency-free. The source dashboard remains `docs/evidence/product-release/dashboard.html`; release packaging copies it to the archive. Vercel serves that static artifact through root rewrites without adding a frontend build system.

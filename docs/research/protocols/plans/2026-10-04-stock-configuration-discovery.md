@@ -1,7 +1,5 @@
 # Stock Configuration Discovery Implementation Plan
 
-> **For agentic workers:** Use the implementation checklist for inline execution.
-
 **Goal:** Validate a usable stock plan, then find the strongest eligible stock
 configuration for the current model and provide a reusable MoE/hardware method.
 
@@ -12,7 +10,7 @@ after the new product validation passes.
 
 **Tech Stack:** Python3.11+, stdlib, pytest/uv, pinned pristine llama.cpp, Windows.
 
-**Spec:** docs/superpowers/specs/2026-10-04-stock-configuration-discovery.md
+**Spec:** docs/research/protocols/specs/2026-10-04-stock-configuration-discovery.md
 
 ## Global constraints
 
@@ -30,7 +28,7 @@ after the new product validation passes.
   Record source hashes, mode/interface/concurrency, stock22.9667, confirmation
  24.411/replay25.383, static28.13qualitySTOP and aggregate35.6699 distinction.
 - [x] Capture CPU topology/identity, RAM, OS and power policy without changing them.
-- [x] Establish .superpowers/sdd/stock-configuration-discovery/progress.md as ledger
+- [x] Establish the temporary study directory stock-configuration-discovery/progress.md as ledger
   for this complete user objective; retain native process handles there.
 
 ### Task2: evidence-backed paired stock-product acceptance

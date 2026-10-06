@@ -35,3 +35,6 @@ docs/evidence/local-product-20261006/** -text !eol whitespace=-blank-at-eol,cr-a
 
 # Historical raw receipts and snapshots keep their physical bytes across platforms.
 docs/research/evidence/** -text !eol whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+
+# Frozen legacy distribution manifest binds exact bytes, including line endings.
+docs/research/release/** -text !eol whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol

@@ -1,7 +1,5 @@
 # ExpertFlow Bounded Physical-Feasibility Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Decide whether a minimal exact blocking live-cache spike is physically justified, using a 40-conversation Q4 corpus, exhaustive expert-byte accounting, independent CUDA transfer measurements, and held-out deadline estimates without modifying the live llama.cpp cache path.
 
 **Architecture:** Keep raw prompts, paired probe outputs, runtime logs, and generated measurement JSON under `C:\models\expertflow`; check in only reproducible manifests, analysis code, tests, evidence documents, and bounded fixtures. Fit static residents on the frozen training split, evaluate validation/test conversations independently, and keep Vulkan callback windows, CUDA transfer measurements, cross-backend simulation, oracle estimates, and any future live-runtime measurements as separate evidence classes.

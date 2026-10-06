@@ -62,5 +62,12 @@
     "model_processes": 2,
     "receipt_directory": "jobs/settle-wheel-check",
     "report_sha256": "3b02f6ca16220477522bbf9c364687cb78a89eeae8de2898c6252e9674b07964"
+  },
+  {
+    "job": "final-wheel-native",
+    "status": "PASS-OPERATIONAL-SOAK",
+    "model_processes": 1,
+    "receipt_directory": "jobs/final-wheel-native",
+    "report_sha256": "20f8abf39e79c27619e52909d9cce09931291fa18648833b7635cb7815b88d24"
   }
 ]

@@ -1,7 +1,5 @@
 # Performance-First Diagnostic Benchmark Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use the implementation checklist (recommended) or the implementation checklist to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
 **Goal:** Produce and commit a reproducible five-mode throughput, latency, memory, parity, and cache-accounting benchmark before any multi-layer llama.cpp source edit.
 
 **Architecture:** Add a benchmark-only C++ probe that emits stable machine-readable timing data while linking unchanged verified runtimes. Add a Python runner/parser that executes the fixed matrix, samples GPU memory, validates parity/accounting, aggregates repetitions, and renders evidence.
@@ -70,7 +68,7 @@
 **Files:**
 - Create: `docs/evidence/live-cache/performance-first-diagnostic.md`
 - Modify: `PROJECT_LOG.md`
-- Modify: `docs/superpowers/plans/2026-07-16-performance-first-diagnostic-benchmark.md`
+- Modify: `docs/research/protocols/plans/2026-07-16-performance-first-diagnostic-benchmark.md`
 
 **Interfaces:**
 - Consumes: reconciled aggregate JSON and raw artifacts.
