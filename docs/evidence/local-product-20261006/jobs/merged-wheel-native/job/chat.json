@@ -1,0 +1,14 @@
+{
+  "turns": [
+    {
+      "response": "Jade is a precious stone, a symbol of beauty and elegance. It is often used in traditional Chinese culture and is considered a symbol of wealth and status.",
+      "ttft_seconds": 0.046999999998661224,
+      "wall_seconds": 0.10900000000401633
+    },
+    {
+      "response": "I did not ask you to remember anything. I was created to assist you with any questions or tasks you may have.",
+      "ttft_seconds": 0.0319999999992433,
+      "wall_seconds": 0.07899999999790452
+    }
+  ]
+}

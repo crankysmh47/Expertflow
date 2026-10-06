@@ -13,5 +13,9 @@
   "reproducible_kit_same_environment": true,
   "final_native_receipt": "jobs/release-wheel-native/job/report.json",
   "source_core_commit": "8b3b701",
-  "tui": "deferred pending pilot friction"
+  "tui": "deferred pending pilot friction",
+  "handoff_wheel_sha256": "db953501047c3cd2a62c641b795506f981be2b92eae57e01de9d76caf228cd70",
+  "handoff_native_receipt": "jobs/merged-wheel-native/job/report.json",
+  "handoff_source_commit": "e90b8ae",
+  "main_remote_ci": "Windows/Linux contracts and three-platform replay passed"
 }

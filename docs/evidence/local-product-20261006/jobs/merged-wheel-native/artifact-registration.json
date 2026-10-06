@@ -1,0 +1,6 @@
+{
+  "wheel_sha256": "db953501047c3cd2a62c641b795506f981be2b92eae57e01de9d76caf228cd70",
+  "scope": "exact handoff wheel after Git line-ending normalization; operational only",
+  "maximum_model_processes": 1,
+  "wall_budget_seconds": 300
+}

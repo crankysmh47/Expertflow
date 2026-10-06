@@ -76,5 +76,12 @@
     "model_processes": 1,
     "receipt_directory": "jobs/release-wheel-native",
     "report_sha256": "294691b5c085eb7e7e5c76b7c08723a987f03b1bb8e5c359986a5efee519d527"
+  },
+  {
+    "job": "merged-wheel-native",
+    "status": "PASS-OPERATIONAL-SOAK",
+    "model_processes": 1,
+    "receipt_directory": "jobs/merged-wheel-native",
+    "report_sha256": "b20b11991912a5f8ab48ed6f63e3c470b02a347d1ccdcb42c84fc8a199f975ae"
   }
 ]
