@@ -417,3 +417,18 @@ admits no new useful exact control from offload, attention or batch sizing under
 the present profile. Further expansion needs numerical qualification and a
 useful mechanism, or a separate quality policy/provider and held-out protocol,
 then a new registration. It cannot reuse this study's 84 unspent conditional calls.
+
+## Bounded prototype result inspection
+
+The [follow-through source gate](evidence/stock-followthrough-20261006/report.md)
+rejected explicit flash-attention enable as a new supported fused-decode
+mechanism, then continued into stock-tool qualification. The checkout helper
+checks an independently pinned catalogue and report digests for archive display;
+fresh qualification delegates to the existing public repeatability and coverage
+validators. It preserves all four negative wider outcomes and the positive
+Q6 scope, without adding provider controls or model processes.
+
+Use `uv run --no-sync python scripts/stock_product_status.py status` or the
+fresh-output `verify` procedure in [the handoff](stock-product-handoff.md).
+Archived display is not fresh model/runtime/artifact validation. Local
+reconstruction is not portability, user acceptance or a new performance study.

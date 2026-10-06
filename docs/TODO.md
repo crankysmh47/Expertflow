@@ -94,6 +94,17 @@ none met the practical utility gate. Serving and other hosts remain unverified.
   and a useful mechanism for a new control, or define a separate quality
   policy/provider, datasets and held-out gates. Register a new fixed budget
   before collection; do not retune or reuse the completed studies.
+- [x] Test the explicit-enable attention mechanism prerequisite from pinned
+  source: [no new supported fused-decode mechanism](evidence/stock-followthrough-20261006/report.md),
+  492 existing launch records preserved and zero new model processes.
+- [x] Continue the fail path into readable archived stock outcomes and delegated
+  public verification; 55 focused helper/CLI/reader tests passed after one review,
+  its fix pass and a live argument-binding correction. No compiler/provider changes.
+- [x] Prepare executable status/verification commands and a five-task
+  [independent-user handoff](stock-product-handoff.md).
+- [ ] Obtain actual independent-user usability results; continue onboarding
+  on pass, or fix the observed workflow problem on fail. Agent checks do not
+  complete this product gate.
 - [ ] KV compression/TurboQuant and shared memory-budget optimization.
 - [ ] MTP/speculation, two-table dynamic residency and joint search.
 - [ ] Broad family/hardware coverage, serving integration and presentation polish.

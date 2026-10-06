@@ -27,3 +27,11 @@ The reviewer verified all three archived upstream objects, the frozen launcher,
 interpretation is sound only for its stated explicit-enable rationale: AUTO
 already probes support; forcing enable supplies no new supported GPU kernel.
 Effective per-layer modes, native quality and performance remain unmeasured.
+
+Subsequent live integration exposed a separate argument-shape defect: the wider
+manifest's registration is embedded JSON rather than a filename. Windows 206
+stopped the wider subprocess after a passing Q6 validator. This is preserved as
+a failed qualification, not hidden by the CPU/review checks. The registration
+argument regression was observed RED; the fixed project-file binding then
+passed all **55 focused tests** in 134.24 seconds. No independent re-review is
+claimed for this one-line integration correction.

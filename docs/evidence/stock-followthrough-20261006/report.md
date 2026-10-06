@@ -38,10 +38,25 @@ Missing or changed inputs, nonfinite intervals, invalid statuses, a mismatched
 report identity or mutated source/run-start inventory cannot produce a fresh
 success claim. Protected study roots and occupied outputs are rejected.
 
-Focused controls currently pass 24 tests, including timeout diagnostic retention,
-failed validator decisions and source/native-start mutation. Fresh local
-qualification and independent implementation review are recorded separately
-before this deliverable is marked complete.
+One independent implementation review found two Important defects and one
+presentation omission; all four reproducing controls failed before the fix pass.
+Catalogue byte pinning, nested JSON handling and readable comparator/default
+details were corrected. Initial final verification passed 54 focused controls.
+
+The first live read-only qualification at `c41672e` retained a
+`VALIDATION-STOP`: Q6 public validation passed in 222.84 seconds, then Windows
+error 206 prevented the wider validator from starting because an embedded
+registration object was incorrectly passed as a filename. The complete
+[failed attempt](precorrection/verification.json),
+[preservation record](precorrection/preservation.json) and original helper source
+snapshot are retained. Zero model calls; original 41 files/six pins/148 starts
+and wider 63 files/344 starts remained unchanged.
+
+A reproducing registration-argument control failed before the one-line binding
+fix. Corrected focused verification: **55 passed**, including 29 helper controls,
+in 134.24 seconds. The corrected helper binds the fixed project registration
+file; the existing public CLI attests it. Corrected live qualification uses a
+separate fresh directory and is recorded before final acceptance.
 
 The [user handoff](../../stock-product-handoff.md) supplies executable status and
 verification commands and a five-task independent-user procedure. This is a

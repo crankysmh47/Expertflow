@@ -67,3 +67,16 @@ controls failed before the one fix pass, then passed. Final focused verification
 54 tests passed in 125.98 seconds (28 helper controls plus 26 public CLI/readers).
 Status also passed from outside the checkout. Existing compiler/provider sources
 were not edited; no new full native/scientific qualification is inferred.
+
+Live qualification at `c41672e` stopped after Q6 public validation passed in
+222.84 seconds. The wider manifest embeds its registration object, but the
+helper passed that object as a filename, causing Windows error 206 before the
+wider validator started. One reproducing registration-argument test failed.
+Ruling: preserve the entire failed read-only attempt, bind the command to the
+fixed project registration file that the public CLI already attests, and run
+the corrected helper into a separate fresh output. Cost if wrong: retained
+duplicate read-only validation overhead; no model call or scientific budget reuse.
+
+Corrected focused gate: 55 passed in 134.24 seconds, including all 29 helper
+controls. Commit the correction and preserve its raw helper snapshot before
+the separately identified fresh read-only qualification.

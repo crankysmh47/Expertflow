@@ -52,6 +52,13 @@ under this profile. Extending native optimization now requires numerical
 qualification and a useful mechanism, or a separate quality policy/provider and
 held-out acceptance protocol. No further performance samples were collected.
 
+The next explicit-enable attention rationale failed its source-mechanism gate;
+the [follow-through](evidence/stock-followthrough-20261006/report.md) continued into
+a bounded checkout helper that presents separate archived outcomes and delegates
+fresh checks to the public CLI. The [handoff](stock-product-handoff.md) records the
+remaining independent-user workflow gate. This adds no numerical policy, model
+support, new plan, speed claim or production deployment.
+
 ## Historical placement architecture
 
 The sections below describe the archived placement release and its experiments.

@@ -81,7 +81,7 @@ def successful_validator(command, **kwargs):
     if workflow == 'repeatability':
         report = str(Path(command[command.index('--output-dir')+1])/'report.json')
     else:
-        report = str(Path(command[command.index('--registration')+1]).parent/'wider/report.json')
+        report = str(Path(command[command.index('--project')+1])/'wider/report.json')
     return subprocess.CompletedProcess(command, 0,
         json.dumps({'status': status, 'report': report, 'decision': {'evidence_verified': True}}), '')
 
@@ -289,3 +289,16 @@ def test_readable_output_preserves_counts_and_comparators(evidence, capsys):
     assert '148' in text and '344' in text
     assert 'manual CI90' in text and 'selected default' in text
     assert product.snapshot(*evidence[:2])['cases'][0]['selected_default'] is False
+
+
+def test_embedded_registration_is_not_passed_as_a_filename(evidence, monkeypatch):
+    mutate(evidence, 'wider', lambda data: data['manifest'].update(registration={'cases': ['embedded']}))
+    native_starts(evidence)
+    commands = []
+    def launch(command, **kwargs):
+        commands.append(command)
+        return successful_validator(command, **kwargs)
+    monkeypatch.setattr(product.subprocess, 'run', launch)
+    assert product.verify(*evidence[:2], evidence[0]/'verification')['fresh_validation'] is True
+    argument = commands[1][commands[1].index('--registration')+1]
+    assert argument == str(evidence[0]/'configs/compiler/stock-coverage-20261005.json')

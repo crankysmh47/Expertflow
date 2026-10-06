@@ -84,6 +84,17 @@ The registered sequence is closed. Use `uv run --no-sync expertflow stock covera
 
 The subsequent [offload/attention/batch audit](docs/evidence/stock-control-scope-20261006/report.md) found no new useful control qualified under the current exact profile. Further native optimization needs numerical qualification and a concrete benefit mechanism, or a separate quality policy and acceptance protocol. The audit made zero native calls; the completed studies remain closed.
 
+The [follow-through](docs/evidence/stock-followthrough-20261006/report.md) rejected explicit flash-attention enable as a new supported fused-decode mechanism: pristine stock already resolves AUTO support. This is a source-feasibility result, with no new quality or speed measurement. Work continued into the bounded stock prototype.
+
+Inspect its archived outcomes or delegate fresh reconstruction to the existing public CLI:
+
+```powershell
+uv run --no-sync python scripts/stock_product_status.py status
+uv run --no-sync python scripts/stock_product_status.py verify --output-dir C:/models/expertflow/runs/stock-product-user-check-01
+```
+
+Verification requires a fresh output directory and the original local artifacts. The helper launches zero model processes, retains failed diagnostics, and preserves each positive or negative outcome. See the [prepared-user handoff and acceptance procedure](docs/stock-product-handoff.md). Independent-user usability and portability remain unmeasured.
+
 The earlier deployment interface remains available: `expertflow doctor`, `expertflow profile`, `expertflow optimize`, positional `expertflow run`, `expertflow serve` and `expertflow compare`. Its setup is documented in the historical [judge guide](JUDGES.md) and [deployment guide](DEPLOYMENT.md). It does not promote the old placement result into current exact acceptance.
 
 | Platform | Historical replay | Current live compiler evidence |

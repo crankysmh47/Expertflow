@@ -81,6 +81,17 @@ qualification and useful mechanism, or a separate quality policy/provider and
 held-out acceptance protocol. This is the current research blocker, not a
 universal impossibility result. Both completed studies and their budgets stay closed.
 
+The [follow-through](evidence/stock-followthrough-20261006/report.md) closed the
+explicit-enable flash-attention rationale at **NO-NEW-SUPPORTED-FUSED-DECODE-MECHANISM**:
+pristine stock already probes AUTO support; forcing enable supplies no new
+supported GPU kernel. No native quality or speed experiment followed. The fail
+path produced a readable archived-status helper and delegated public verification,
+with 55 passing helper/CLI/reader controls after one independent review, its fix
+pass and a live registration-argument correction. The failed initial read-only
+qualification is preserved. Compiler/provider sources remain unchanged. The
+[user handoff](stock-product-handoff.md) is prepared; actual independent-user
+workflow acceptance, demand and portability remain unmeasured.
+
 ## Verified milestones
 
 | Work | Result and scope | Evidence |

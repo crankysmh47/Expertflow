@@ -162,7 +162,7 @@ def verify(project, catalogue, output):
             if name == 'q6':
                 command += ['--output-dir', str(roots[name])]
             else:
-                command += ['--registration', str(reports[name]['manifest']['registration'])]
+                command += ['--registration', str(project/'configs/compiler/stock-coverage-20261005.json')]
             check_started = time.perf_counter()
             stdout, stderr = output/(name+'-stdout.json'), output/(name+'-stderr.log')
             try:
