@@ -1,11 +1,31 @@
 {
-  "status": "NOT-TRIED",
-  "evidence_kind": "Conversation user reply to the five-task independent-user handoff question",
-  "reported_answer": "Not tried yet",
+  "status": "PARTIAL-USER-ATTEMPT-AGENT-ASSISTANCE-REQUESTED",
+  "evidence_kind": "User-submitted validation output and explicit request for a Luna agent walkthrough",
+  "initial_reported_answer": "Not tried yet",
   "recorded_date": "2026-10-06",
-  "actual_task_results": [],
+  "actual_task_results": [
+    {
+      "task": 4,
+      "status": "ATTEMPTED-ENVIRONMENT-BLOCKED",
+      "output_root": "C:/models/expertflow/runs/stock-product-user-check-01",
+      "overall_status": "VALIDATION-STOP",
+      "q6_status": "PASS-STOCK-REPEATABILITY-TRANSFER",
+      "wider_status": "ENVIRONMENT-BLOCKED",
+      "reason": "GPU is busy or device-free reserve unavailable",
+      "validator_wall_seconds": 230.966139199998,
+      "limit": "Command execution is observed; unaided interpretation and log-location success were not reported."
+    }
+  ],
   "unaided_success_established": false,
   "user_timings_available": false,
-  "next_gate": "Actual intended-user execution of docs/stock-product-handoff.md; continue onboarding on success or fix the observed workflow failure",
-  "limits": "Local automated/source/live-readonly qualification is separate from user acceptance and demand."
+  "agent_walkthrough": "docs/evidence/stock-agent-walkthrough-20261006/report.md",
+  "agent_full_validation": {
+    "status": "PASS-LOCAL-STOCK-QUALIFICATION",
+    "output_root": "C:/models/expertflow/runs/stock-product-agent-walkthrough-20261006-after-close-dfdbe90df824",
+    "wall_seconds": 313.50706390000414,
+    "additional_native_calls": 0,
+    "limit": "Agent-run post-closure validation, not a human task-success result"
+  },
+  "next_gate": "Retain the requested agent walkthrough as software evidence; independent intended-user acceptance requires separately observed unaided tasks.",
+  "limits": "Agent interpretation and automated/source/live-readonly qualification do not establish human acceptance or demand; no human timing was reported."
 }

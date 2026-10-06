@@ -78,9 +78,13 @@ attempts was 554.51 seconds, without new model outputs.
 
 The [user handoff](../../stock-product-handoff.md) supplies executable status and
 verification commands and a five-task independent-user procedure. This is a
-locally qualified research prototype. The user reported **"Not tried yet"**;
-[usability state](usability-state.json) records no actual task results or timings.
-The next gate requires an intended user to complete the five tasks unaided.
+locally qualified research prototype. The initial user reply was **"Not tried yet"**.
+The subsequent user validation passed Q6 and stopped at the wider GPU guard;
+the user requested a [Luna agent walkthrough](../stock-agent-walkthrough-20261006/report.md)
+of the remaining questions. The [current usability state](usability-state.json)
+records that partial attempt and assistance request, without human task timings
+or five-task unaided success. Independent-user acceptance still requires an
+intended user to complete the five tasks unaided.
 On pass, continue scoped packaging/onboarding; on fail, fix the observed workflow
 problem and repeat with a fresh user session. Actual user success, demand,
 portability and launch readiness remain unmeasured; agent tests must not stand

@@ -45,12 +45,13 @@ the helper creates no new plan and changes no provider policy.
 
 ## Independent-user acceptance procedure
 
-Current state (2026-10-06): the user reported **"Not tried yet"**. No actual task
-results or user timings are available; see the
-[recorded state](evidence/stock-followthrough-20261006/usability-state.json).
-Both studies passed agent-run fresh local qualification with zero model calls;
-that [receipt](evidence/stock-followthrough-20261006/verification.json) does not
-complete this independent-user gate.
+Current state (2026-10-06): the user ran verification. Q6 passed; wider stopped
+at the GPU environment guard. The user then requested a Luna agent walkthrough
+of the interpretation tasks. See the [answers and retained attempts](evidence/stock-agent-walkthrough-20261006/report.md)
+and [recorded state](evidence/stock-followthrough-20261006/usability-state.json).
+The earlier agent-run [local qualification](evidence/stock-followthrough-20261006/verification.json)
+passed both studies with zero model calls. Agent answers and validation receipts
+do not establish five-task unaided human success; human task timings are unavailable.
 
 The agent can demonstrate commands and validate evidence, but independent-user
 usability remains unmeasured. Have an actual intended user, without coaching,
@@ -74,3 +75,17 @@ On pass, continue with scoped packaging/onboarding based on that evidence.
 On fail, fix the observed workflow problem and repeat the usability procedure
 with a fresh user session. A new scientific performance claim still requires its
 own registered experiment. Publishing or deployment remains a separate action.
+
+## GPU environment stop
+
+`ENVIRONMENT-BLOCKED` with "GPU is busy or device-free reserve unavailable"
+means the live guard detected GPU utilization above 10% or less than 256 MiB
+free VRAM. Its error does not report which condition or the rejecting values.
+Inspect `q6-stdout.json` or `wider-stdout.json` for the validator's reason; the
+overall helper reason alone may be less specific. A wider log exists only if
+that validator started.
+
+Close or idle GPU-heavy apps, then run read-only verification into a new output
+directory. Keep the failed directory; never overwrite it or change the guard
+to obtain a pass. This read-only check launches no model processes and does not
+reuse native collection budgets. The helper does not close apps automatically.

@@ -107,8 +107,13 @@ none met the practical utility gate. Serving and other hosts remain unverified.
   331.65 seconds, zero extra native calls; failed initial attempt preserved.
 - [ ] Obtain actual independent-user usability results; continue onboarding
   on pass, or fix the observed workflow problem on fail. Agent checks do not
-  complete this product gate. User reported **not tried yet** on 2026-10-06;
-  [state](evidence/stock-followthrough-20261006/usability-state.json) has no task results.
+  complete this product gate. The user attempted verification, then requested
+  agent help with the questions; [state](evidence/stock-followthrough-20261006/usability-state.json)
+  records no five-task unaided success or human timings.
+- [x] Complete the requested Luna walkthrough and full agent-run reconstruction
+  after authorized GPU-app closure: [PASS in 313.51 seconds](evidence/stock-agent-walkthrough-20261006/report.md),
+  zero extra model calls, earlier blocked attempts retained. Add GPU-stop guidance
+  without changing native guards or scientific thresholds.
 - [ ] KV compression/TurboQuant and shared memory-budget optimization.
 - [ ] MTP/speculation, two-table dynamic residency and joint search.
 - [ ] Broad family/hardware coverage, serving integration and presentation polish.

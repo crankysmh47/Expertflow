@@ -1,0 +1,3 @@
+*.log -text !eol whitespace=-blank-at-eof,cr-at-eol
+*.json -text !eol whitespace=-blank-at-eof,cr-at-eol
+*.jsonl -text !eol whitespace=-blank-at-eof,cr-at-eol

@@ -93,8 +93,14 @@ passed both public validators in 331.65 seconds (Q6 212.65; wider 118.90), with
 zero additional native calls and unchanged source/report/start digests; see the
 [receipt](evidence/stock-followthrough-20261006/verification.json).
 Compiler/provider sources remain unchanged. The [user handoff](stock-product-handoff.md)
-is prepared; the user reported **not tried yet**, with no actual task results.
-Independent-user workflow acceptance, demand and portability remain unmeasured.
+is prepared. The user subsequently ran verification: Q6 passed and wider hit
+the GPU environment guard. At the user's request, Luna completed the agent
+interpretation walkthrough and the root agent closed the observed GPU-consuming
+Zen processes and Terminal instance. A separate fresh full check then passed
+in 313.51 seconds with zero extra native calls; all blocked prefixes remain
+preserved in the [walkthrough archive](evidence/stock-agent-walkthrough-20261006/report.md).
+This establishes agent-run local reconstruction, not five-task unaided human
+success. Independent-user workflow acceptance, demand and portability remain unmeasured.
 
 ## Verified milestones
 

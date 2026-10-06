@@ -436,5 +436,8 @@ reconstruction is not portability, user acceptance or a new performance study.
 Fresh local qualification from helper commit `c9d2f97` passed both public
 validators in 331.65 seconds with zero extra native calls and unchanged bound
 source/report/start inventories. The [receipt](evidence/stock-followthrough-20261006/verification.json)
-and preserved failed prefix distinguish the two attempts. The independent-user
-procedure is **not tried yet**; no user success or timing is inferred.
+and preserved failed prefix distinguish the two attempts. The user subsequently
+attempted verification, then requested agent help interpreting the results.
+The [Luna walkthrough and post-closure reconstruction](evidence/stock-agent-walkthrough-20261006/report.md)
+completed separately: fresh full PASS in 313.51 seconds, zero extra model calls,
+blocked prefixes retained. No five-task unaided user success or human timing is inferred.

@@ -1,0 +1,145 @@
+{
+  "status": "PASS-LOCAL-STOCK-QUALIFICATION",
+  "fresh_validation": true,
+  "started_at_utc": "2026-10-06T15:16:10.245241+00:00",
+  "checks": [
+    {
+      "study": "q6",
+      "command": [
+        "C:\\sem4\\expertflow\\.venv\\Scripts\\python.exe",
+        "-m",
+        "expertflow.cli.main",
+        "stock",
+        "--project",
+        "C:\\sem4\\expertflow",
+        "repeatability",
+        "validate",
+        "--output-dir",
+        "C:\\models\\expertflow\\runs\\compiler-stock-repeatability-20261004"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 203.70862150000175,
+      "stdout_sha256": "34c34c3aa788ae57aabd19c345f0ea6dd233cdd01c0f855400c61a0c99d06341",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "PASS-STOCK-REPEATABILITY-TRANSFER"
+    },
+    {
+      "study": "wider",
+      "command": [
+        "C:\\sem4\\expertflow\\.venv\\Scripts\\python.exe",
+        "-m",
+        "expertflow.cli.main",
+        "stock",
+        "--project",
+        "C:\\sem4\\expertflow",
+        "coverage",
+        "validate",
+        "--registration",
+        "C:\\sem4\\expertflow\\configs\\compiler\\stock-coverage-20261005.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 109.68530669999745,
+      "stdout_sha256": "111b997a7b91fba4302ec3843ef3a190012ead4e729a2b457806974f24ea878b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "COMPLETE-STOCK-COVERAGE"
+    }
+  ],
+  "archived_results": {
+    "status": "ARCHIVED-STOCK-RESULTS",
+    "fresh_validation": false,
+    "native_calls": {
+      "q6": 148,
+      "wider": 344
+    },
+    "cases": [
+      {
+        "case_id": "gemma4-q6-heldout",
+        "status": "PASS-STOCK-UTILITY-PRODUCT",
+        "gain_pct": 9.375596996174446,
+        "gain_ci95_pct": [
+          7.923766295439615,
+          10.6129831270326
+        ],
+        "manual_ci90_pct": [
+          -0.3890232988562566,
+          0.6452811605106383
+        ],
+        "automatic_evaluations": 18,
+        "manual_evaluations": 18,
+        "selected_default": false
+      },
+      {
+        "case_id": "gemma4-q4-prose",
+        "status": "NO-UTILITY-GAIN",
+        "gain_pct": 1.0294817985819156,
+        "gain_ci95_pct": [
+          0.8820475951369215,
+          1.1931413451301915
+        ],
+        "manual_ci90_pct": [
+          -1.014155413749197,
+          0.11137024293821224
+        ],
+        "automatic_evaluations": 18,
+        "manual_evaluations": 18,
+        "selected_default": false
+      },
+      {
+        "case_id": "gemma4-q4-code",
+        "status": "NO-UTILITY-GAIN",
+        "gain_pct": 0.7818498083470878,
+        "gain_ci95_pct": [
+          0.6262919371896855,
+          0.9332598509993749
+        ],
+        "manual_ci90_pct": [
+          -0.2011448558954105,
+          0.08272361697442496
+        ],
+        "automatic_evaluations": 18,
+        "manual_evaluations": 18,
+        "selected_default": false
+      },
+      {
+        "case_id": "granite-q6-prose",
+        "status": "NO-UTILITY-GAIN",
+        "gain_pct": -0.02428767293806148,
+        "gain_ci95_pct": [
+          -0.1483346591388183,
+          0.08629683041138075
+        ],
+        "manual_ci90_pct": [
+          -0.11830377253102674,
+          0.03549795893435659
+        ],
+        "automatic_evaluations": 18,
+        "manual_evaluations": 18,
+        "selected_default": true
+      },
+      {
+        "case_id": "granite-q6-code",
+        "status": "NO-UTILITY-GAIN",
+        "gain_pct": -0.23496794908614585,
+        "gain_ci95_pct": [
+          -0.3823163256853225,
+          -0.08235746063018386
+        ],
+        "manual_ci90_pct": [
+          -0.20126252380921814,
+          0.038732558714943924
+        ],
+        "automatic_evaluations": 18,
+        "manual_evaluations": 18,
+        "selected_default": true
+      }
+    ],
+    "scope": "Pinned Q6 workloads and four Q4/Granite cases on one Windows/NVIDIA host/build. Archived report digests checked; raw artifacts, model/runtime identity and current host require the delegated fresh validators.",
+    "global_optimum_established": false,
+    "serving_throughput_established": false,
+    "new_placement_gain_established": false
+  },
+  "additional_native_calls": 0,
+  "integrity_sha256": "5d7f5a39830ab32a242ab0d3a1df704fd745eca25395e59da945846a8a7360a2",
+  "wall_seconds": 313.50706390000414,
+  "finished_at_utc": "2026-10-06T15:21:23.755940+00:00"
+}

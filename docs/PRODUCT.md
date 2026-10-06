@@ -57,7 +57,10 @@ the [follow-through](evidence/stock-followthrough-20261006/report.md) continued 
 a bounded checkout helper that presents separate archived outcomes and delegates
 fresh checks to the public CLI. Both studies passed fresh local qualification
 in 331.65 seconds with zero extra native calls. The [handoff](stock-product-handoff.md)
-records the remaining independent-user workflow gate, reported **not tried yet**.
+records the remaining independent-user workflow gate. The user's partial validation
+hit a GPU guard; the requested [Luna agent walkthrough](evidence/stock-agent-walkthrough-20261006/report.md)
+and post-closure full validation passed separately, without establishing unaided
+human acceptance.
 This adds no numerical policy, model
 support, new plan, speed claim or production deployment.
 

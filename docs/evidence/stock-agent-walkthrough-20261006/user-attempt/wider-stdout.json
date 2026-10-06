@@ -1,0 +1,12 @@
+{
+  "action": "validate",
+  "decision": {
+    "evidence_verified": false,
+    "global_optimum_established": false,
+    "serving_throughput_established": false,
+    "utility_gain_established": false
+  },
+  "reason": "GPU is busy or device-free reserve unavailable",
+  "status": "ENVIRONMENT-BLOCKED",
+  "workflow": "coverage"
+}

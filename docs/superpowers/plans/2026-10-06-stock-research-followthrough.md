@@ -93,3 +93,17 @@ results and timings are unavailable. All independent repository work is complete
 the next product gate depends on actual intended-user execution. Continue scoped
 onboarding on pass, or fix only observed workflow failures and repeat on fail.
 Neither outcome reopens the closed native studies or establishes market demand.
+
+Requested continuation: the user ran read-only verification (Q6 PASS, wider GPU
+ENVIRONMENT-BLOCKED), then explicitly requested a Luna agent to answer the tasks
+and the root agent to run the full check. Luna ran status and read the evidence.
+Two agent prefixes stopped at the Q6 GPU guard. The user then explicitly authorized
+termination of GPU-consuming apps. GPU-engine samples identified Zen video decode
+and Terminal 3D activity; the observed app processes/instance were stopped, while
+Windows/Codex were retained. Terminal reopened under a new PID and sampled idle.
+No guard or frozen source was changed. A fresh post-closure check passed both
+public validators in 313.51 seconds with zero model calls; all prefixes and
+app-closure observations are retained in the separate walkthrough archive.
+Archive/integrity reconstruction passed. The actual human evidence is a partial
+attempt plus a request for assistance; Luna answers are agent evidence, not a
+five-task unaided human pass. This requested walkthrough is complete.
