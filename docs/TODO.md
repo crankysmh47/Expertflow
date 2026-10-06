@@ -21,7 +21,8 @@ research task history is preserved in [the archived roadmap](research/TODO.md).
 - [x] Provide reproducible small wheel/source kit, notices, checksums and Windows/Linux model-free CI.
 - [x] Organize current docs and archive historical research under `docs/research`.
 - [x] Remove tool authorship, session dumps and obsolete presentation naming.
-- [ ] Verify final reorganized tree and checksummed kit; integrate through a PR into `main`.
+- [x] Verify the final reorganized tree and checksummed kit (988 passed, 7 external-source skips).
+- [ ] Integrate through a checked PR into `main`.
 
 ## First-user use
 

@@ -608,8 +608,8 @@
     },
     {
       "path": "submission/demo-video-script-final.md",
-      "bytes": 5226,
-      "sha256": "eb502b6db92e0d0199114775515b7005a9cd0ff15f2aaa2635a7baa7e22b5cc7"
+      "bytes": 5037,
+      "sha256": "7c7fbdf93a783cbf4ba66f7201d7b8256752776745a5503ab1a532b1906c01df"
     },
     {
       "path": "submission/demo-video-script.md",
@@ -618,8 +618,8 @@
     },
     {
       "path": "submission/demo-video-shot-list-final.md",
-      "bytes": 2256,
-      "sha256": "abcf9ad05c7570dbad39787f8fdb0f0951a6c73f4dd183245f2773517c1a5f9b"
+      "bytes": 2260,
+      "sha256": "17499eb7f626c9120162deadfef637f564a55ac2055077c50f58610e97275e9f"
     },
     {
       "path": "submission/demo-video-slideshow.html",
@@ -628,8 +628,8 @@
     },
     {
       "path": "submission/final-devpost-draft.md",
-      "bytes": 3194,
-      "sha256": "5e551350f30d1cd1caa58fa140a367447c5a79fa117222756abc078ddf9b3018"
+      "bytes": 3214,
+      "sha256": "07f6d186bddc71110195b11797244ba9ddc1eefc88b8259ea65535e3ef43c510"
     },
     {
       "path": "submission/judge-test-guide.md",

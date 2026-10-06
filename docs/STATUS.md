@@ -26,4 +26,10 @@ The kit contains a wheel, source distribution, guides, notices and checksums.
 It includes no weights or native runtime and is not a PyPI release. Use
 [the quickstart](local-quickstart.md) to install outside the checkout.
 
+Engineering validation: **988 passed, 7 skipped** in the full suite; skips require
+the external patched llama.cpp source checkout. Exact Windows wheel installation
+without extras, Ubuntu WSL help/doctor, source installation and reproducible kit
+checks passed. Native receipts cover dense GPU/RAM long prompts, Gemma Q4 and
+Granite operations; final wheel 8K/multi-turn/disconnect/cleanup passed.
+
 Earlier results and open compiler questions are in [research status](research/STATUS.md).

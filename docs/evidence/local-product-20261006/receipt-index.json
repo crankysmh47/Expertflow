@@ -69,5 +69,12 @@
     "model_processes": 1,
     "receipt_directory": "jobs/final-wheel-native",
     "report_sha256": "20f8abf39e79c27619e52909d9cce09931291fa18648833b7635cb7815b88d24"
+  },
+  {
+    "job": "release-wheel-native",
+    "status": "PASS-OPERATIONAL-SOAK",
+    "model_processes": 1,
+    "receipt_directory": "jobs/release-wheel-native",
+    "report_sha256": "294691b5c085eb7e7e5c76b7c08723a987f03b1bb8e5c359986a5efee519d527"
   }
 ]

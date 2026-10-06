@@ -10,7 +10,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Runtime direction: pinned Gemma 4 26B A4B Q4 GGUF for real inference; minimal llama.cpp routing telemetry patch; Python for validation, analysis, simulation, recommendation, and replay.
 - Q8 was removed from the critical path.
 - Repository began as an unborn `main` branch containing only the untracked `expertflow_hackathon_spec_v0_11.md`.
-- Created branch `project maintainers/expertflow-stage0`; no linked worktree was created because the repository had no initial commit.
+- Created branch `codex/expertflow-stage0`; no linked worktree was created because the repository had no initial commit.
 - Initial repository policy placed weights under `D:\models\expertflow`; this was corrected to `C:\models\expertflow` at 21:31 PKT when the user clarified that `D:` is an HDD.
 
 ### 21:25 PKT — Machine and artifact preflight
@@ -161,7 +161,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 ### 22:50 PKT — Judge-facing README added and verified
 
 - Added the root `README.md` with reproducible Windows setup, the current Q4-first runtime direction, exact fetch and measured-baseline commands, trace/profile/simulation examples, architecture, repository map, and Build Week integration notes.
-- Kept the status section evidence-based: the CUDA runtime and analysis harness are complete, while the Q4 baseline, router trace, and project maintainers integration remain explicitly pending.
+- Kept the status section evidence-based: the CUDA runtime and analysis harness are complete, while the Q4 baseline, router trace, and explanation integration remain explicitly pending.
 - Verified every local README link resolves, both installed console entry points render help, and the full suite passes `31` tests in `0.07s`.
 - Model and exact llama.cpp source downloads remained active throughout this documentation work; no download-completion claim is made here.
 
@@ -242,11 +242,11 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - TDD red result: the reproduction test failed because `examples/replay/expected.json` did not exist. Added the trace, expected evidence, and a short CPU-only reproduction guide.
 - TDD green result: the fixture reproduces 26 static-hotset hits and 19 LRU hits across 64 expert demands at eight slots/layer. The same checked evidence produces `CONDITIONAL`, `live_cache_enabled=false`, static-hotset policy, and `7,234` MiB measured configurable headroom.
 - Final Layer 2 gate passed: `44` tests in `0.18s`, Python compilation, both TOML manifests, every local README link, and `git diff --check`.
-- Layer 2 verdict remains `CONDITIONAL`. Live caching stays disabled until expert byte size, transfer timing, and a stratified multi-prompt trace are measured. Browser visual inspection of the standalone report is also pending because the in-app browser blocked its local URL. project maintainers explanation is the next product layer and is not yet claimed.
+- Layer 2 verdict remains `CONDITIONAL`. Live caching stays disabled until expert byte size, transfer timing, and a stratified multi-prompt trace are measured. Browser visual inspection of the standalone report is also pending because the in-app browser blocked its local URL. explanation is the next product layer and is not yet claimed.
 
 ### 00:17 PKT — Stratified Q4 trace collection exposed a GPU parity failure
 
-- Superseded the proposed API-backed project maintainers explanation layer. The user confirmed this project maintainers/project maintainers build session itself should provide annotations and judge-facing explanations; ExpertFlow will not add an unnecessary API-key dependency.
+- Superseded the proposed API-backed explanation layer. The user confirmed this the development session build session itself should provide annotations and judge-facing explanations; ExpertFlow will not add an unnecessary API-key dependency.
 - Preflight measured the RTX 5060 Ti at `2,212` MiB used, `13,839` MiB free, and 13% utilization, with no llama or probe process active.
 - The first collection wrapper stopped before inference because Windows PowerShell promoted normal CUDA initialization text on native stderr into a terminating `NativeCommandError`. Root cause was the wrapper boundary, not the model. A process-level redirection diagnostic passed `--version` with exit `0`; all subsequent runs used `Start-Process`, hidden windows, redirected stdout/stderr, and explicit native exit codes.
 - Collected paired tracing-disabled/tracing-enabled Q4 runs for five public synthetic prompt shapes under `C:\models\expertflow\runs\stratified-q4`: code generation, short factual response, constrained planning, incident summarization, and bilingual explanation.
@@ -327,10 +327,10 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 
 ### 08:55 PKT - Bounded physical-feasibility stage resumed
 
-- project maintainers/project maintainers accepted the user's staged direction without starting the live CUDA cache path. The active branch is `project maintainers/expertflow-stage0` at `32044e8`; the worktree was clean at resumption.
+- the development session accepted the user's staged direction without starting the live CUDA cache path. The active branch is `codex/expertflow-stage0` at `32044e8`; the worktree was clean at resumption.
 - Preflight commands: `git rev-parse --path-format=absolute --git-dir`, `git rev-parse --path-format=absolute --git-common-dir`, `git branch --show-current`, `git status --short`, `nvidia-smi`, relevant-process inspection, product-spec search with `rg`, and `uv run pytest -q`.
 - No interrupted router probe, llama.cpp, Python collector, build, or benchmark process was active. `nvidia-smi` reported `2,357 MiB / 16,311 MiB` with Chrome and ordinary Windows desktop/display clients; no model compute process was listed.
-- The fresh baseline remained green at 66 tests. The repository is a normal checkout on the dedicated `project maintainers/expertflow-stage0` branch rather than a linked worktree; this existing user-directed branch remains the continuous shippable workspace.
+- The fresh baseline remained green at 66 tests. The repository is a normal checkout on the dedicated `codex/expertflow-stage0` branch rather than a linked worktree; this existing user-directed branch remains the continuous shippable workspace.
 - Product-spec review locked the dry-run target to the maximum declared `24-40` range: 40 independent conversations. The new frozen split will be 32 train, 4 validation, and 4 test at the conversation level. Existing five-prompt training and five-prompt held-out artifacts remain historical evidence and will not be silently relabeled into the new split.
 - The corpus will cover general chat, code, math/reasoning, translation, multilingual/code-switching, long-context summarization/retrieval, structured output, and deliberate topic shifts. Paired trace-off/trace-on runs will use deterministic greedy decoding, 64 generated tokens where feasible, the verified Q4 model, pinned b10002 Vulkan telemetry runtime, 10 GPU layers, and 12 threads.
 - Measurement boundary decision: add single-copy CUDA-event p50/p95 and host `cudaMemcpyAsync` enqueue overhead to the independent transfer benchmark. Keep sustained batch bandwidth separate. Any deadline rerun that combines those CUDA copy values with Vulkan callback windows must be labeled `estimated_cross_backend`, never a CUDA deadline or live-runtime result.
@@ -431,14 +431,14 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Fresh final verification completed in 2.232 seconds: 87 tests in 0.45 seconds, Python compilation, CLI startup, three TOML files, 18 local README links, all collection/evaluation/layout/timing/report reconciliations, and `git diff --check` passed.
 - Final evidence reconciliation: 40 corpus conversations; 39 parity-passed and 1 explicitly failed pair; 8 held-out conversations; static-96 87.5720% versus conversation-reset LRU 86.3390%; 3,840 packed objects; exact projected cache 6,745,632,768 bytes; 3 transfer trials; deadline label `estimated_cross_backend`; contention measured false; live runtime measured false; live cache enabled false.
 - The HTML remained unchanged after visual inspection: SHA-256 `f3dc647d9965d726771632421b8fa5dffddc165d3ebae49f6f10381bbb75a90c`. The HTTP server remained stopped, and no llama/probe/ExpertFlow model process was active. `nvidia-smi` reported 2,422 MiB desktop allocation and 2% utilization, not a model workload.
-- Git environment is a normal repository (`.git` equals the common Git directory) on `project maintainers/expertflow-stage0`. The remote advertises no default branch/reference, so no merge, push, or PR action was inferred. The continuously shippable branch is preserved for user review.
+- Git environment is a normal repository (`.git` equals the common Git directory) on `codex/expertflow-stage0`. The remote advertises no default branch/reference, so no merge, push, or PR action was inferred. The continuously shippable branch is preserved for user review.
 - Final decision remains no-go for a minimal live-cache spike on current evidence. No live allocation, blocking slot experiment, asynchronous prefetch, predictor, MTP, KV-cache change, CUDA deadline claim, or runtime speedup claim was added.
 
 ### 10:18 PKT - Protected live-cache gates opened
 
 - The user changed the runtime verdict to `CONDITIONAL-GO-FOR-BOUNDED-SPIKE` while keeping the Observatory at `d846bdfcb1980dfc44d9f951e2824f58429f16d7` as the guaranteed submission floor and `live_cache_enabled=false` as the release default.
 - Before any installer or native source change, `uv run pytest -q` passed all 87 tests in 0.43 seconds, `git diff --check` passed, and the protected checkout was clean. The annotated tag `observatory-floor-2026-07-15` was created at `d846bdf`.
-- Created the isolated branch `project maintainers/live-cache-blocking-spike` at the same commit in `C:\models\expertflow\worktrees\live-cache-blocking`. `uv sync --frozen --extra dev` created its C-drive environment and a second baseline passed all 87 tests in 0.84 seconds. The protected branch was not modified.
+- Created the isolated branch `codex/live-cache-blocking-spike` at the same commit in `C:\models\expertflow\worktrees\live-cache-blocking`. `uv sync --frozen --extra dev` created its C-drive environment and a second baseline passed all 87 tests in 0.84 seconds. The protected branch was not modified.
 - Read-only source inspection confirmed the existing true-router-selected `GGML_OP_MUL_MAT_ID` copy boundary in pinned `ggml/src/ggml-backend.cpp` and the authoritative top-k construction in `src/llama-graph.cpp`. CUDA offload uses `GGML_OP_MUL_MAT_ID` batch size and defaults `GGML_OP_OFFLOAD_MIN_BATCH` to 32.
 - Verified the static-96 correction before changing the verdict: the serialized report fits on 31 `train-*` traces and evaluates eight untouched conversations (four validation, four test). `build_held_out_capacity_curve` counts residents only from `training_events` and scores only `evaluation_events`. The 9.0257% cold-byte reduction remains unchanged and is not relabeled.
 - Flagged an exact-execution constraint: this model selects eight experts per token, while unchanged `MUL_MAT_ID` requires every selected expert to be simultaneously addressable. The bounded working interpretation is seven fixed slots plus one replaceable slot for a controlled one-layer proof. If a measured sequence cannot exercise repeated one-at-a-time replacement, or if one/two total slots are mandatory, Gate 4 stops rather than introducing a broad graph/kernel rewrite.
@@ -451,7 +451,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 ### 10:36 PKT - Gate 1 protected floor reproduced and recorded
 
 - Captured immutable pre-install provenance at `C:\models\expertflow\runs\live-cache-spike\gate1\provenance.json`: Windows 11 Pro 10.0.26200, RTX 5060 Ti, driver 591.86, compute capability 12.0, 16,311 MiB VRAM, CMake 4.3.1, Ninja 1.13.2, uv 0.11.1, Git 2.52.0.windows.1, existing VS Community 2026 18.3.1, and no `nvcc` or PATH-visible `cl`. The record hashes 116 relevant executables/DLLs plus the 14,439,361,440-byte Q4 model; the model SHA-256 remains `4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5`. Relevant non-secret environment variables were captured; every `EXPERTFLOW_LIVE_CACHE*` variable was unset.
-- Verified the annotated tag object `2da2dd960dd74aee319e680615e124c68077319c` records exactly protected commit `d846bdfcb1980dfc44d9f951e2824f58429f16d7`. The protected checkout remains clean on `project maintainers/expertflow-stage0`; the isolated live worktree is on `project maintainers/live-cache-blocking-spike`.
+- Verified the annotated tag object `2da2dd960dd74aee319e680615e124c68077319c` records exactly protected commit `d846bdfcb1980dfc44d9f951e2824f58429f16d7`. The protected checkout remains clean on `codex/expertflow-stage0`; the isolated live worktree is on `codex/live-cache-blocking-spike`.
 - Archived the protected tag to `protected-d846bdf.zip` (SHA-256 `be042bc9578f845a3b4e77fd2a53adfe18fabbb2463810a9348941e6a381c6d2`), expanded it on C, installed the locked environment, passed all 87 tests in 0.52 seconds, and reproduced the judge fixture: canonical LF trace `245aac7ffa83f464f33f220c2c7cafbf931671884c48fe2f92d48795ef11df8e`, 8 events / 64 demands, static 26/38 and LRU 19/45.
 - The first post-run evidence checker failed because it looked for policy totals at the JSON root rather than under `simulation`; all protected project commands had already passed. Schema inspection proved the checker defect. Correcting only the checker yielded the expected totals.
 - Found and documented a second evidence-identity issue: raw replay JSON hashes depend on the absolute `source_trace` path. The fresh raw hash is `2550bcbb081994d8fe95fab0da5b50ede02f5c81d8b04a65a7b7f020fd94dfff`, while the historical raw hash is `54f46ccbf719b37f5cca55cc87d1625b8e8abdfd88f34faadc13042709010162`. Normalizing only that path field gives matching canonical SHA-256 `6c658457ea3320f065a47b8931bb5992700c2ba075c6b77a2351072a3589358c`; measured values are untouched.
@@ -463,7 +463,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 
 ### 10:46 PKT - Gate 2 prepared; supported installation blocked at local UAC
 
-- Preflight found 117.91 GiB free on C, a non-elevated project maintainers process, no `C:\BuildTools2022`, and no CUDA v12.8 installation. Existing Visual Studio Community 2026 remains present and unchanged.
+- Preflight found 117.91 GiB free on C, a non-elevated shell process, no `C:\BuildTools2022`, and no CUDA v12.8 installation. Existing Visual Studio Community 2026 remains present and unchanged.
 - Downloaded only the two official installers to `C:\models\expertflow\installers`. VS Build Tools 17.14.37502.11 is 4,458,200 bytes, SHA-256 `c9cc76c0d03cbcb523e18b559a978ce5df11a667ef78e4e4d264331f1227ddd7`, and has a valid Microsoft signature. CUDA 12.8.1 network installer 1.0.14 is 14,404,064 bytes, SHA-256 `779bee8ff557255c1cf5f36e0230f081675b9bb41e44be38839920cd5209bdeb`, and has a valid NVIDIA signature. Download durations were 3.691 and 6.846 seconds respectively.
 - Started the exact VS side-by-side command twice with `Microsoft.VisualStudio.Workload.VCTools`, recommended components, `Microsoft.VisualStudio.Component.VC.14.39.17.9.x86.x64`, and `Microsoft.VisualStudio.Component.Windows11SDK.26100`. Both elevation requests waited about 122.4 seconds then returned `The operation was canceled by the user`; no setup process or target directory appeared.
 - The user explicitly authorized accepting UAC through Windows Computer Use. The skill's supported `list_apps` and `list_windows` path could not expose the UAC secure desktop, so it could not click consent. No UAC/security setting was changed and no terminal/UI or elevation bypass was attempted. A person at the machine must accept the secure-desktop prompt.
@@ -524,7 +524,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 
 ### 20:55 PKT - Callback-derived real-model evidence quarantined
 
-- The tracing-repair directive treats the cross-build numerical drift as resolved and the callback's observational perturbation as the active blocker. Created branch `project maintainers/trace-observer-repair` from preserved audit commit `c41b9394c0443a66b3b486936d128c034ea3a4d7`; the protected Observatory and pinned llama.cpp checkout remain out of scope for modification.
+- The tracing-repair directive treats the cross-build numerical drift as resolved and the callback's observational perturbation as the active blocker. Created branch `codex/trace-observer-repair` from preserved audit commit `c41b9394c0443a66b3b486936d128c034ea3a4d7`; the protected Observatory and pinned llama.cpp checkout remain out of scope for modification.
 - TDD RED failed because `configs/trace-evidence-status.json` did not exist. Added the manifest with label `trace_v1_perturbing`, stopped corpus collection, closed Gate 4, and marked all current callback-derived real-model roots and locality/static/LRU/session/oracle/deadline claims ineligible for final use.
 - The historical multi-domain `93.28%` result is explicitly withdrawn pending parity-safe recollection. Existing artifacts are preserved and may be used only for audit/diagnosis. The small checked-in replay fixture remains available for offline parser/simulator reproduction and cannot support a real-model cache-policy claim.
 - No cache code, replacement trace, MTP, prefetch, or API work began. The next bounded experiment is T0 callback disabled versus T1 callback registered with a completely empty body.
@@ -541,9 +541,9 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 
 ### 22:20 PKT - Observer isolation merged; non-segmenting v2 boundary identified
 
-- Locally merged `project maintainers/trace-observer-repair` into `project maintainers/live-cache-blocking-spike` as `62fee62bd54775a13257ddc4b52aa40e7309a701`. Isolation commit `aec5dd1ae0171f9814a4124827a2c73ba5089aff` remains reachable. No push or pull request was made.
+- Locally merged `codex/trace-observer-repair` into `codex/live-cache-blocking-spike` as `62fee62bd54775a13257ddc4b52aa40e7309a701`. Isolation commit `aec5dd1ae0171f9814a4124827a2c73ba5089aff` remains reachable. No push or pull request was made.
 - Post-merge verification passed all 88 tests and reproduced the judge fixture at 64 demands, static-hotset 26 hits, and LRU 19 hits. The first combined PowerShell wrapper failed before testing due to a parser error; a later checker used obsolete replay field names. Both command-layer mistakes were corrected and preserved in the repair ledger. The merged worktree was clean after verification.
-- Created `project maintainers/trace-observer-v2` from the verified merge. Read-only inspection used the exact clean pinned llama.cpp checkout at `a7312ae94f801fc9c6786dc56e38df57b964f697`; the checkout remained clean.
+- Created `codex/trace-observer-v2` from the verified merge. Read-only inspection used the exact clean pinned llama.cpp checkout at `a7312ae94f801fc9c6786dc56e38df57b964f697`; the checkout remained clean.
 - Identified the smallest non-segmenting boundary at the existing `GGML_OP_MUL_MAT_ID` host-weight offload optimization in `ggml/src/ggml-backend.cpp`. That path already materializes and synchronizes the authoritative selected IDs before selecting expert byte ranges. A one-layer record immediately after the existing read would add no callback request, graph view, synchronization, or allocator lifetime change.
 - Rejected deferred post-graph tensor retention because gallocr storage is reset/reused. Deferred a CUDA `ARGSORT` ring buffer because it requires materially broader CUDA state, allocation, metadata, and drain plumbing than the already-existing host-ID boundary.
 - Wrote `docs/evidence/live-cache/trace-observer-v2-feasibility.md` with verdict `CONDITIONAL-GO-FOR-ONE-LAYER-OBSERVER-PROTOTYPE`. No implementation began. The recommendation is limited to one future llama.cpp file, approximately 90-140 lines, strict one-token microbatches, an observer-only disabled-by-default flag, and immediate stop if the target layer does not traverse the existing boundary.
@@ -551,7 +551,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 
 ### 23:00 PKT - One-layer Observer v2 stops because boundary is not traversed
 
-- Created isolated llama.cpp worktree `C:\models\expertflow\worktrees\llama-trace-observer-v2` on `project maintainers/trace-observer-v2-prototype` at exact pin `a7312ae94f801fc9c6786dc56e38df57b964f697`. The pristine pinned checkout remained clean. Committed the execution plan as `f82e9c4` before native implementation.
+- Created isolated llama.cpp worktree `C:\models\expertflow\worktrees\llama-trace-observer-v2` on `codex/trace-observer-v2-prototype` at exact pin `a7312ae94f801fc9c6786dc56e38df57b964f697`. The pristine pinned checkout remained clean. Committed the execution plan as `f82e9c4` before native implementation.
 - TDD RED confirmed the observer contract was absent. Added a disabled-by-default, fixed-capacity prototype in only `ggml/src/ggml-backend.cpp`; the hot capture function contains no file I/O, formatting, allocation, tensor retrieval, or synchronization. The one-file diff is 185 insertions, above the earlier 90-140 estimate but without any second file, graph, CUDA, allocator, or cache change.
 - Four configure wrappers failed before source compilation: inherited MSYS compilers, missing `cl` in the first developer-shell wrapper, an MSYS resource compiler, and a backslash-escaped Windows SDK path. Clearing `CC/CXX`, pinning MSVC 19.39/CUDA host compiler, pinning Windows SDK `rc`/`mt`, and using forward-slash CMake paths produced a successful 435-target `llama-cli` build. The existing external router probe rebuilt successfully against it.
 - V0 completed nine runs across general/code/translation and matched prior clean-runtime tokens exactly for every repetition. V1 `noop` completed nine runs with exact V0 parity, zero records, intact canaries, and no overflow or contract error.
@@ -561,7 +561,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 ### 23:27 PKT - Canonical graph-segmenting observer accepted
 
 - Preserved the failed one-file Observer v2 llama.cpp prototype as stash `bb8ee4522f28dafd1b819747d58f7198d0a3a038`; protected Observatory `d846bdf`, Observer v2 evidence `8c3cef0`, and clean pinned llama.cpp `a7312ae` were not modified.
-- Created isolated branch/worktree `project maintainers/canonical-observer-runtime`, restored the existing Observer v1 callback path, and added only post-generation text serialization needed for objective validation. A rejected batched-prefill attempt was reverted after it produced malformed output; canonical batch and microbatch remain one.
+- Created isolated branch/worktree `codex/canonical-observer-runtime`, restored the existing Observer v1 callback path, and added only post-generation text serialization needed for objective validation. A rejected batched-prefill attempt was reverted after it produced malformed output; canonical batch and microbatch remain one.
 - Final canonical binary SHA-256 is `7ea12e0c44258bb2d75f99b7e180e7ef7cb0c7d3e285ca231fe26ad8c8c4932c`; Gemma Q4 remains `4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5`.
 - Seven-task smoke: Mode N 6/7, Mode O 7/7, retained successful outcomes 6/7. Final Mode O determinism repeated exactly for tokens and 1,980 routing records excluding timestamps. All processes cleaned up and settled GPU memory returned to baseline.
 - Accepted `expertflow-canonical-observer-v1`; old `trace_v1_perturbing` evidence remains quarantined and new collection is labeled `trace_v2_canonical_segmented`. Cache remains disabled and no speed claim is made.
@@ -577,7 +577,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 
 - Accepted the user-authorized bounded C0-C4 stage from canonical Observer v1 commits `42a6b21` and `56d2ab4`. Protected Observatory `d846bdf` and pinned llama.cpp `a7312ae9` were confirmed clean before modification.
 - Canonical preflight passed 89 tests in 0.58 seconds. The preserved probe rehashed to `7ea12e0c44258bb2d75f99b7e180e7ef7cb0c7d3e285ca231fe26ad8c8c4932c`; the 14,439,361,440-byte model rehashed to `4c856523d61d77922dbc0b26753a6bf6208e5d69d80db0c04dcd776832d054c5`.
-- Created isolated ExpertFlow worktree `C:\models\expertflow\worktrees\one-layer-blocking-cache` on branch `project maintainers/one-layer-blocking-cache` from `56d2ab4`. Its first immediate test invocation reported 87 tests while environment setup completed; a subsequent collection in both same-commit worktrees found the identical 89 tests. No source discrepancy or hidden test file exists.
+- Created isolated ExpertFlow worktree `C:\models\expertflow\worktrees\one-layer-blocking-cache` on branch `codex/one-layer-blocking-cache` from `56d2ab4`. Its first immediate test invocation reported 87 tests while environment setup completed; a subsequent collection in both same-commit worktrees found the identical 89 tests. No source discrepancy or hidden test file exists.
 - Mapped middle MoE layer 24. Canonical `-ngl 10` offloads nine repeating layers plus output; layer 24 expert tensors are normally CUDA-resident. Existing llama.cpp tensor-buffer overrides can keep only `blk.24.ffn_gate_up_exps.weight`, `blk.24.ffn_down_exps.weight`, and `blk.24.ffn_down_exps.scale` on host while retaining CUDA execution, avoiding a model-loader rewrite.
 - Confirmed the unchanged Gemma graph binds one logical top-8 ID tensor to fused gate/up and down `MUL_MAT_ID` consumers and the F32 scale lookup. Because the CUDA kernels index one rank-3 expert tensor, one or two total physical slots cannot execute an eight-expert event without a prohibited mixed-storage kernel or graph rewrite. The minimum exact layout is eight coordinated slots: seven stable active experts and one replaceable proof slot.
 - Recorded the revised approved design and inline execution plan. No llama.cpp or cache runtime source has been modified yet; `live_cache_enabled=false` remains the only executed state.
@@ -603,7 +603,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 
 ### 01:46 PKT - C5 architecture specification blocker
 
-- Inspected isolated branches `project maintainers/c5-reactive-cache` at ExpertFlow `9e81124` and llama.cpp `e41f54b0` before modifying runtime code. The worktrees started clean.
+- Inspected isolated branches `codex/c5-reactive-cache` at ExpertFlow `9e81124` and llama.cpp `e41f54b0` before modifying runtime code. The worktrees started clean.
 - The approved three-track request names a C5 exact live-cache runtime and the canonical pilot reports a simulated 32-slot reset-LRU result, but no checked-in C5/32-slot runtime specification or validation ladder exists. The committed C4 result explicitly leaves the next stage closed.
 - C4 hard-codes eight slots in planner state, reduced tensor shapes, copy bounds, and event records. A 32-slot reactive cache could either expose one direct 32-slice packed CUDA operand to unchanged `MUL_MAT_ID`, or use 32 resident slices plus an eight-slice execution staging view. Those alternatives have different allocations, transfers, ID mappings, logs, and correctness risks; selecting one without approval would change architecture.
 - Stopped before tests or source changes and reported the blocker. Requested an explicit C5 specification covering the direct/staging choice, deterministic eviction/tie-break semantics, exact allocation and event contracts, and C5 parity/memory progression. No llama.cpp source was modified and the default remains disabled.
@@ -688,7 +688,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 
 ### 01:55 PKT - Next-layer shadow predictor pilot
 
-- Created isolated branch/worktree `project maintainers/next-layer-shadow-predictor` from canonical pilot commit `56d2ab4`; baseline passed 89 tests. No llama.cpp, observer runtime, cache branch, GPU residency, transfer, or runtime decision was modified.
+- Created isolated branch/worktree `codex/next-layer-shadow-predictor` from canonical pilot commit `56d2ab4`; baseline passed 89 tests. No llama.cpp, observer runtime, cache branch, GPU residency, transfer, or runtime decision was modified.
 - Committed the concise approved specification as `bfde66c` and the TDD execution plan as `b47c561`. Preserved the immutable canonical seven-train/four-validation/three-test split and strict same-conversation/forward/token adjacent-layer joins. Missing, duplicate, ambiguous, non-adjacent, or cross-split data fails closed.
 - Genuine RED/GREEN cycles added strict dataset construction, B0 copy, B1 training-only target-layer frequency, B2 training-only transition counts, fixed CPU B3 linear, one fixed shared B4 MLP, metrics, and paired conversation-reset 32-slot shadow LRU. The full suite reached 103 passing tests.
 - Canonical traces expose no routing weights; binary source vectors are used. Fixed learned features contain 128 source values, 30 target-layer one-hot values, one phase bit, and 128 uniquely joined causal previous-token target-layer values. Seed is `20260716`; no search was run.
@@ -798,7 +798,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
   qualifications: temporal samples require unambiguous consecutive decode
   ordering, and temporal selection receives a new lock before its sealed test
   is opened. Prior adjacent-layer test results are provenance only.
-- Created isolated `project maintainers/temporal-layer24-predictor` branches from the exact P2
+- Created isolated `codex/temporal-layer24-predictor` branches from the exact P2
   tips. The P2 branches remain untouched.
 - Audited the frozen 84-conversation corpus. Layer 24 contains 2,594 decode
   events and 2,510 consecutive-token pairs, with zero forward-ID gaps and zero
@@ -849,7 +849,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 ### 19:20 PKT - T0 committed; T1 live shadow measured and T2 stopped
 
 - Committed the complete frozen T0 temporal predictor as `afe17d1` on
-  `project maintainers/temporal-layer24-predictor`; it remains unmerged and unpushed.
+  `codex/temporal-layer24-predictor`; it remains unmerged and unpushed.
 - Exported a versioned temporal runtime artifact and implemented an isolated,
   disabled-by-default T1 shadow path. The first native load failure was a stale
   filename in the command, not an artifact defect. A later smoke exposed that
@@ -1001,7 +1001,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 
 ### 22:28 PKT - Observatory release integration assembled
 
-- Created `project maintainers/build-week-release` from the frozen final runtime evidence.
+- Created `codex/build-week-release` from the frozen final runtime evidence.
   The protected Observatory worktree remains untouched at `d846bdf`, and the
   final temporal-runtime branch remains preserved at `2235533`.
 - Applied the project selection gate: because the final predictive runtime did
@@ -1038,7 +1038,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 - Applied the product gate: even optimistic linear scaling over the maximum 15 additional full arenas allowed by measured peak VRAM and a 256 MiB reserve reaches only 27.0275 TPS, below 28.709, and no additional low-sensitivity layer set is verified. Froze the runtime path with `Q6 PERFORMANCE STOP`; reactive caching and further architecture work remain closed.
 # 2026-07-19 — Final bounded Q6 placement sprint
 
-- Created isolated `project maintainers/q6-placement-final` and `project maintainers/q6-placement-final-llama` worktrees from the verified selected-static milestones; no merge or push.
+- Created isolated `codex/q6-placement-final` and `codex/q6-placement-final-llama` worktrees from the verified selected-static milestones; no merge or push.
 - Three fresh diagnostic profiles left 64.42% of measured split time in unselected CPU expert paths. Greedy full-shadow expansion retained pairs `[2,3]`, `[4,6]`, `[7,8]`, and `[5,9]`, stopping at twelve selected layers when the 23.5 TPS smoke threshold was reached.
 - Expanded only the bounded static capacity (12 layers/48 shadow tensors). Precomputed selected-layer membership was retained after a +0.15 TPS two-pair mean improvement. CUDA graphs improved the two-pair ExpertFlow mean from 25.60 to 27.45 TPS and stock from 21.0 to 22.0 TPS.
 - Authoritative ten-pair result: 22.28 stock versus 28.13 ExpertFlow decode TPS; paired +26.47%, 95% `[+23.46%, +29.83%]`; 10,966.801 MiB process-owned peak. One deterministic response hash per mode.
@@ -1064,7 +1064,7 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 
 # 2026-07-19 — Deterministic release polish
 
-- Created `project maintainers/final-polish` from frozen release commit `f8b88bd`; runtime code, placement, measurements, and model artifacts remained untouched.
+- Created `codex/final-polish` from frozen release commit `f8b88bd`; runtime code, placement, measurements, and model artifacts remained untouched.
 - Found and fixed a clean-checkout replay defect caused by Windows line-ending conversion. Evidence hashes now use canonical JSON, while the release builder normalizes text to LF before hashing and archiving.
 - Added the release scorecard, judge-first README, benchmark provenance, three-path judge guide, local SVGs, portable replay/verification wrappers, cross-platform replay CI, and a timed demo-video package. The required `/feedback` Session ID remains an explicit manual placeholder.
 - Enhanced `expertflow doctor` with structured pass/replay-only/failure exits and checks for platform, Python/uv, GPU/driver/VRAM, CUDA runtime, model size/hash, binary identity, free disk, writable evidence path, port, and deployment schema. The verified live system passed 12/12 checks.
@@ -1087,13 +1087,13 @@ This append-oriented log records decisions, commands, evidence, failures, and ne
 
 # 2026-07-22 - Final narrative dashboard and deployment package
 
-- Replaced the card-heavy dashboard with a responsive PCB-console narrative: motivation, measured 28.13 TPS result, stock-versus-ExpertFlow execution boundary, three judge proof paths, the 30-layer placement map, evidence-driven cache-to-placement pivot, and the project maintainers/project maintainers workflow.
+- Replaced the card-heavy dashboard with a responsive PCB-console narrative: motivation, measured 28.13 TPS result, stock-versus-ExpertFlow execution boundary, three judge proof paths, the 30-layer placement map, evidence-driven cache-to-placement pivot, and the the development session workflow.
 - Added static Vercel routing and a deployment guide covering hosted import, local serving, evidence replay, compatible live hardware, and pinned-runtime reproduction. Production publication was attempted but stopped because the machine's stored Vercel credential was invalid.
 - Browser-rendered the dashboard at 1440x1000 and Chrome's 500x915 minimum responsive viewport; corrected mojibaked typography and narrow-layout clipping. Focused contracts passed 22/22; final applicable suite passed 273 tests with four external-source-contract skips. Release ZIP SHA-256: `94b46ffbfe46e22fa2860cd5441f147a7c976f4d417fb6226ebba019c60afe03`.
 
 ## Product architecture guide
 
-- Added `docs/PRODUCT.md` as the canonical bridge between the submission README and detailed evidence. It documents the product pipeline, stock/runtime boundary, complete packed expert-bank invariant, identity-mapped static CUDA shadows, emitted twelve-layer Q6 plan, measured result, cache-to-placement decision, CLI surfaces, reproduction paths, support boundary, and project maintainers/project maintainers workflow.
+- Added `docs/PRODUCT.md` as the canonical bridge between the submission README and detailed evidence. It documents the product pipeline, stock/runtime boundary, complete packed expert-bank invariant, identity-mapped static CUDA shadows, emitted twelve-layer Q6 plan, measured result, cache-to-placement decision, CLI surfaces, reproduction paths, support boundary, and the development session workflow.
 - Linked the guide from README and the narrative dashboard, added it to the deterministic release allowlist, and protected the integration with source-contract tests. The dashboard uses the canonical GitHub URL so the link survives source hosting and release-root packaging. Final applicable suite: 275 passed, 4 external-source-contract skips; release verified 126 files with ZIP SHA-256 `aefab5ec377415a8a88f5b2e0817abae09fd36261cdaeef3e033c102bd921935`.
 
 ## README dashboard gallery

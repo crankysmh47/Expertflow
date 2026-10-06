@@ -5,7 +5,7 @@ Follow this file from top to bottom. Do not begin the final voice-over until the
 ## Final deliverable
 
 - Maximum duration: `2:59`
-- Resolution: `1920 × 1080`
+- Resolution: `1920 Ã— 1080`
 - Frame rate: `30 FPS`
 - Format: H.264 MP4
 - Presentation: screen recording plus voice-over; no webcam required
@@ -13,13 +13,13 @@ Follow this file from top to bottom. Do not begin the final voice-over until the
 
 ---
 
-## Phase 1 — Prepare the machine
+## Phase 1 â€” Prepare the machine
 
 - [ ] Restart the computer if GPU memory is unexpectedly occupied.
 - [ ] Close Chrome, games, model servers, and unrelated GPU-heavy programs.
 - [ ] Keep only OBS and Windows Terminal open for the benchmark.
 - [ ] Open Windows Terminal and maximize it.
-- [ ] Set the terminal font to Cascadia Mono or Consolas at `22–24 pt`.
+- [ ] Set the terminal font to Cascadia Mono or Consolas at `22â€“24 pt`.
 - [ ] Open the repository:
 
 ```powershell
@@ -50,7 +50,7 @@ Clear-Host
 
 ---
 
-## Phase 2 — Record the live TPS proof
+## Phase 2 â€” Record the live TPS proof
 
 - [ ] Start OBS recording before entering the command.
 - [ ] Run the one-pair live demonstration:
@@ -88,16 +88,16 @@ Fix or rerun the benchmark before recording the remaining video.
 
 ---
 
-## Phase 3 — Extract the live terminal sequence
+## Phase 3 â€” Extract the live terminal sequence
 
 Create four clips from the successful recording:
 
 | Final position | Keep on screen | Duration |
 |---:|---|---:|
-| `0:57–1:02` | Verified model/runtime identity and matched configuration | 5 s |
-| `1:02–1:08` | Stock `[RESULT off]` line | 6 s |
-| `1:08–1:14` | ExpertFlow `[RESULT on]` line | 6 s |
-| `1:14–1:28` | Complete `LIVE RESULT` table and evidence path | 14 s |
+| `0:57â€“1:02` | Verified model/runtime identity and matched configuration | 5 s |
+| `1:02â€“1:08` | Stock `[RESULT off]` line | 6 s |
+| `1:08â€“1:14` | ExpertFlow `[RESULT on]` line | 6 s |
+| `1:14â€“1:28` | Complete `LIVE RESULT` table and evidence path | 14 s |
 
 - [ ] Use straight cuts between the clips.
 - [ ] Do not fabricate or retype terminal output.
@@ -105,12 +105,12 @@ Create four clips from the successful recording:
 - [ ] Add this subtitle throughout the terminal sequence:
 
 ```text
-ONE LIVE PAIR · AUTHORITATIVE RESULT USES TEN PAIRS
+ONE LIVE PAIR Â· AUTHORITATIVE RESULT USES TEN PAIRS
 ```
 
 ---
 
-## Phase 4 — Record the animated slideshow
+## Phase 4 â€” Record the animated slideshow
 
 - [ ] Open a second terminal in the repository.
 - [ ] Start the local server:
@@ -126,7 +126,7 @@ py -m http.server 8767 --bind 127.0.0.1
 http://127.0.0.1:8767/submission/demo-video-slideshow.html
 ```
 
-- [ ] Set the browser to `1920 × 1080` and `100%` zoom.
+- [ ] Set the browser to `1920 Ã— 1080` and `100%` zoom.
 - [ ] Hide bookmarks, downloads, and unrelated tabs.
 - [ ] Start on scene 1.
 - [ ] Start OBS recording.
@@ -139,22 +139,22 @@ http://127.0.0.1:8767/submission/demo-video-slideshow.html
 
 | Final timeline | Scene | Visual |
 |---:|---:|---|
-| `0:00–0:17` | 1 | Personal problem and ExpertFlow opening |
-| `0:17–0:34` | 2 | Hidden CPU/GPU boundary |
-| `0:34–0:57` | 3 | project maintainers and project maintainers workflow |
-| `0:57–1:28` | Terminal | Live matched TPS proof |
-| `1:28–1:39` | 4 | Authoritative ten-pair result |
-| `1:39–1:59` | 5 | Predictive cache rejected by measurement |
-| `1:59–2:20` | 6 | Compiled Q6 placement |
-| `2:20–2:40` | 7 | Runnable product interfaces |
-| `2:40–2:51` | 8 | Replay, live test, and rebuild paths |
-| `2:51–2:59` | 9 | Closing frame |
+| `0:00â€“0:17` | 1 | Personal problem and ExpertFlow opening |
+| `0:17â€“0:34` | 2 | Hidden CPU/GPU boundary |
+| `0:34â€“0:57` | 3 | Measured engineering workflow |
+| `0:57â€“1:28` | Terminal | Live matched TPS proof |
+| `1:28â€“1:39` | 4 | Authoritative ten-pair result |
+| `1:39â€“1:59` | 5 | Predictive cache rejected by measurement |
+| `1:59â€“2:20` | 6 | Compiled Q6 placement |
+| `2:20â€“2:40` | 7 | Runnable product interfaces |
+| `2:40â€“2:51` | 8 | Replay, live test, and rebuild paths |
+| `2:51â€“2:59` | 9 | Closing frame |
 
 ---
 
-## Phase 5 — Record two proof inserts
+## Phase 5 â€” Record two proof inserts
 
-### project maintainers engineering evidence
+### Engineering evidence
 
 - [ ] Open [`../PROJECT_LOG.md`](../PROJECT_LOG.md).
 - [ ] Scroll slowly through a section containing experiments, decisions, commands, and measurements.
@@ -182,10 +182,10 @@ uv run expertflow demo --replay
 
 ---
 
-## Phase 6 — Build the silent edit
+## Phase 6 â€” Build the silent edit
 
 - [ ] Place the slideshow scenes on the exact timeline above.
-- [ ] Insert the four terminal clips at `0:57–1:28`.
+- [ ] Insert the four terminal clips at `0:57â€“1:28`.
 - [ ] Insert the project-log shot during scene 3.
 - [ ] Insert the replay result during scene 7.
 - [ ] Use only straight cuts.
@@ -195,7 +195,7 @@ uv run expertflow demo --replay
 
 ---
 
-## Phase 7 — Record the voice-over
+## Phase 7 â€” Record the voice-over
 
 - [ ] Open [`demo-video-script-final.md`](demo-video-script-final.md).
 - [ ] Play the silent edit while recording the narration.
@@ -212,27 +212,26 @@ The evidence changed the product.
 
 - [ ] If a sentence feels unnatural, preserve its meaning but say it in your own words.
 - [ ] Keep the narration below `2:59`.
-- [ ] Keep voice peaks near `−6 dB`.
+- [ ] Keep voice peaks near `âˆ’6 dB`.
 - [ ] Use no music, or keep it quiet enough that every benchmark number is unmistakable.
 
 ---
 
-## Phase 8 — Export and inspect
+## Phase 8 â€” Export and inspect
 
 - [ ] Export as H.264 MP4.
-- [ ] Use `1920 × 1080`, `30 FPS`, and approximately `10–16 Mbps` video bitrate.
+- [ ] Use `1920 Ã— 1080`, `30 FPS`, and approximately `10â€“16 Mbps` video bitrate.
 - [ ] Use AAC audio at `192 kbps` or higher.
 - [ ] Watch the exported file once from beginning to end.
 - [ ] Confirm the final duration is below three minutes.
 - [ ] Confirm stock and ExpertFlow live results are both visible.
 - [ ] Confirm `28.13 TPS`, `22.967 TPS`, and `+22.48%` are readable.
-- [ ] Confirm project maintainers and project maintainers are explicitly discussed.
 - [ ] Confirm the GitHub repository or replay command appears on screen.
 - [ ] Confirm no tokens, private tabs, unrelated files, or personal notifications appear.
 
 ---
 
-## Phase 9 — Upload
+## Phase 9 â€” Upload
 
 - [ ] Upload the MP4 to YouTube.
 - [ ] Set visibility to `Public` or `Unlisted`, never `Private`.
@@ -251,7 +250,7 @@ uv run expertflow demo --replay
 Label it visibly:
 
 ```text
-HASH-VERIFIED RECORDED EVIDENCE REPLAY · NOT A LIVE BENCHMARK
+HASH-VERIFIED RECORDED EVIDENCE REPLAY Â· NOT A LIVE BENCHMARK
 ```
 
 The preferred submission remains the real live TPS path above.

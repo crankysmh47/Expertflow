@@ -27,11 +27,11 @@ The command verifies both hashes, launches fresh matched stock and ExpertFlow pr
 
 > Gemma 4 26B made me question that trade-off. It is sparse, and its router already chooses only a few experts. But I found that layers reported as GPU-offloaded could still send the expensive expert work back through the CPU. The problem was not the router. It was where the work lived.
 
-### 0:34–0:57 — Building with project maintainers
+### 0:34–0:57 — The engineering loop
 
 **Screen:** scene 3; briefly cut to `PROJECT_LOG.md` or passing tests.
 
-> I started with a predictive-cache idea, and project maintainers helped turn it into a sequence of experiments. project maintainers with project maintainers handled the engineering loop: isolated branches, llama.cpp instrumentation, traces, cache prototypes, parity checks, VRAM measurements, benchmarks, and all the small fixes between them. When an idea failed, it kept the evidence instead of trying to make the story look cleaner.
+> I started with a predictive-cache idea and tested it through bounded experiments: runtime instrumentation, traces, cache prototypes, parity checks, memory measurements and matched benchmarks. Failed paths stayed in the evidence so the next decision followed the measurements.
 
 ### 0:57–1:28 — Live matched TPS run
 
@@ -75,7 +75,7 @@ The command verifies both hashes, launches fresh matched stock and ExpertFlow pr
 
 **Screen:** scene 9.
 
-> ExpertFlow lets me keep the higher-quality model I wanted—and use my GPU where it matters most. That is what project maintainers helped me turn into a real, measured product.
+> ExpertFlow lets me keep the higher-quality model I wanted—and use my GPU where it matters most. The measurements defined the useful scope of this prototype.
 
 ## Recording rules
 

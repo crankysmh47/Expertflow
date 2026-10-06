@@ -1,0 +1,17 @@
+{
+  "scope": "Windows alpha engineering; no human pilot or broader native qualification",
+  "full_suite": {
+    "passed": 988,
+    "skipped": 7,
+    "seconds": 1516.29,
+    "skip_reason": "external patched llama.cpp source checkout not provided"
+  },
+  "installed_wheel_sha256": "6a4f5ebbfbadb198dcc2043a83ec020f1d5817406410f1c407343fabb1b1b75c",
+  "windows_wheel_no_extras": true,
+  "linux_wsl_help_doctor": true,
+  "sdist_install_no_extras": true,
+  "reproducible_kit_same_environment": true,
+  "final_native_receipt": "jobs/release-wheel-native/job/report.json",
+  "source_core_commit": "8b3b701",
+  "tui": "deferred pending pilot friction"
+}
