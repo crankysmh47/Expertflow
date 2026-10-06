@@ -34,10 +34,10 @@ Files: create `src/expertflow/stock/wider.py`, `src/expertflow/stock/wider_audit
 
 Interfaces: `execute_case(inputs, case, sequence, runner_factory, capture)` returns a persisted terminal report; `validate_case(report, inputs, sequence, capture)` reconstructs every retained native record and complete statistical gates. `PacedRunner` journals a call before waiting and binds it to the outer manifest.
 
-- [ ] Write positive/neutral, incomplete prefix, changed statistics/costs/model/source, pacing and budget tests; observe expected failures.
-- [ ] Implement separate registered scope and six-candidate collection using original pure utility primitives; never call or patch the Q6 scope guard.
-- [ ] Reconstruct complete gates and incomplete prefixes, product/source/consumer binding and all attempts; reject missing/unaccounted starts.
-- [ ] Run `uv run pytest -q tests/test_stock_wider.py`; expected all pass. Record RED/GREEN logs.
+- [x] Write positive/neutral, incomplete prefix, changed statistics/costs/model/source, pacing and budget tests; observe expected failures.
+- [x] Implement separate registered scope and six-candidate collection using original pure utility primitives; never call or patch the Q6 scope guard.
+- [x] Reconstruct complete gates and incomplete prefixes, product/source/consumer binding and all attempts; reject missing/unaccounted starts.
+- [x] Run `uv run pytest -q tests/test_stock_wider.py`; expected all pass. Record RED/GREEN logs.
 
 ```python
 assert neutral['status'] == 'NO-UTILITY-GAIN'
@@ -52,11 +52,11 @@ Files: create `scripts/benchmark_compiler_stock_coverage.py`, `tests/test_stock_
 
 Interfaces: `run_sequence(registration_path)` freezes all four live inputs, roots, proofs, source commit/map and schedules before the first call; `validate_sequence(report_path)` independently reconstructs the sequence without native launches. Public commands are `expertflow stock coverage run` and `expertflow stock coverage validate`; `inspect` remains registration-only.
 
-- [ ] Test full sequence, statistical continuation, environment/resource stop, fresh-root enforcement and validation-only native-call count; observe failures.
-- [ ] Implement exact registered roots and sequence manifest, source-map guards, pooled readers, explicit per-case/phase/wait/load/reconstruction costs and existing sampler lifecycle.
-- [ ] Run `uv run pytest -q tests/test_stock_wider.py tests/test_stock_wider_sequence.py tests/test_stock_cli.py tests/test_stock_coverage.py`; expected all pass.
-- [ ] Verify installed wheel help and public coverage routing outside the repository; update docs with exact commands and pending collection status.
-- [ ] Commit only task-owned files, then obtain one independent implementation review. Fix important findings with failing regression controls followed by passing focused/full checks.
+- [x] Test full sequence, statistical continuation, environment/resource stop, fresh-root enforcement and validation-only native-call count; observe failures.
+- [x] Implement exact registered roots and sequence manifest, source-map guards, pooled readers, explicit per-case/phase/wait/load/reconstruction costs and existing sampler lifecycle.
+- [x] Run `uv run pytest -q tests/test_stock_wider.py tests/test_stock_wider_sequence.py tests/test_stock_cli.py tests/test_stock_coverage.py`; expected all pass.
+- [x] Verify installed wheel help and public coverage routing outside the repository; update docs with exact commands and pending collection status.
+- [x] Commit only task-owned files, then obtain one independent implementation review. Fix important findings with failing regression controls followed by passing focused/full checks.
 
 ```powershell
 uv run expertflow stock coverage inspect

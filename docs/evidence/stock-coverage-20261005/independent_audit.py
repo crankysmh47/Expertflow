@@ -67,10 +67,25 @@ def audit(path):
             if not entry['wait_finished_monotonic_ns']<=identity['started_monotonic_ns']<=entry['finished_monotonic_ns']:
                 raise ValueError('raw native/wait order mismatch')
             total+=1
+            launch_path=output/'launch.json'
+            if not launch_path.is_file():
+                raise ValueError('failed start lacks raw frozen launch')
+            launch=json.loads(launch_path.read_text())
+            if launch.get('experiment_context')!={'manifest_sha256':manifest['manifest_sha256']} or launch.get('host_environment')!=sequence['host_environment']:
+                raise ValueError('raw launch lost outer freeze')
             if not entry.get('measurement_id'):
                 process=output/'process.json'
-                if not process.is_file() or json.loads(process.read_text()).get('cleanup') is not True:
+                memory=output/'memory.json'
+                if not process.is_file() or not memory.is_file():
                     raise ValueError('failed start lacks raw owned cleanup')
+                receipt=json.loads(process.read_text())
+                teardown=json.loads(memory.read_text()).get('teardown_reading') or {}
+                if (any(receipt.get(k)!=identity.get(k) for k in ('pid','run_id','creation_time_100ns')) or
+                        any(receipt.get(k) is not True for k in ('cleanup','exited','memory_settled')) or
+                        receipt.get('forced_kill') is not False or teardown.get('pid')!=identity['pid'] or
+                        teardown.get('counter_available') is not True or teardown.get('state')!='absent' or
+                        teardown.get('dedicated_bytes')!=0):
+                    raise ValueError('failed raw cleanup differs from owned process')
                 continue
             db=Path(entry['database']).resolve()
             if db not in stores:stores[db]=EvidenceStore(db)

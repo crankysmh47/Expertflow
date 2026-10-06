@@ -42,6 +42,18 @@ def fixture_context(root, patch, *, rates=None, fail=False):
     patch.setattr(wider.EligibilityRegistry, 'with_builtins', classmethod(lambda cls: FixtureEligibility()))
     patch.setattr(utility, 'audit_defaults', lambda *args: {'fixture': True})
     inputs = make_inputs(root)
+    # This study guards the complete runtime inventory at each spawn.
+    from expertflow.compiler.runner import RuntimeBinding
+    from expertflow.compiler.schema import ArtifactIdentity
+    from expertflow.compiler.preflight import file_sha256
+    binary_dir=root/'binaries'
+    binary_dir.mkdir()
+    server,cli,cuda=binary_dir/'llama-server.exe',binary_dir/'llama-cli.exe',root/'cuda.dll'
+    for path in (server,cli,cuda):path.write_bytes(path.name.encode())
+    identity=lambda p:ArtifactIdentity(str(p.resolve()),p.stat().st_size,file_sha256(p))
+    manifest={'binaries':{p.name:file_sha256(p) for p in (server,cli)},'dependencies':{},
+        'cuda_runtime_sha256':file_sha256(cuda),'patches':[]}
+    inputs=replace(inputs,stock=RuntimeBinding(identity(server),json.dumps(manifest),(),identity(cuda)))
     inputs = replace(inputs, workload=replace(inputs.workload, threads=8, cuda_graphs='on'))
     default = CandidatePlan(inputs.identities(inputs.stock), RuntimeSettings(99, True))
     candidates = scheduling_space(default, HOST).candidates
@@ -99,7 +111,7 @@ def test_positive_runs_exact_107_independent_calls_with_fixed_wait(completed,mon
     assert result['utility_gain_established'] is True
 
 
-@pytest.mark.parametrize('mutation',['statistics','cost','selection','prefix','wait','owner','root','scope'])
+@pytest.mark.parametrize('mutation',['statistics','cost','selection','prefix','wait','owner','root','scope','collection'])
 def test_reconstruction_rejects_tampered_proof(completed,monkeypatch,mutation):
     context,original=completed
     report=deepcopy(original)
@@ -111,6 +123,9 @@ def test_reconstruction_rejects_tampered_proof(completed,monkeypatch,mutation):
     elif mutation=='owner':report['attempts'][1]['process_identity']=report['attempts'][0]['process_identity']
     elif mutation=='root':report['attempts'][0]['output_dir']=str(Path(report['manifest']['experiment_root'])/'elsewhere')
     elif mutation=='scope':report['manifest']['case']['model_ir_sha256']='f'*64
+    elif mutation=='collection':
+        report['collection_finished_monotonic_ns']=report['manifest']['case_started_monotonic_ns']
+        report['collection_wall_seconds']=0
     with pytest.raises(ValueError):validate(context,report,monkeypatch)
 
 

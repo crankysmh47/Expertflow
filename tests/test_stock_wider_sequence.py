@@ -183,7 +183,7 @@ def test_public_coverage_validation_uses_one_restored_reader_pool(tmp_path,monke
     assert constructors==[wider.EvidenceStore,wider_audit.EvidenceStore,wider_audit.repeatability.EvidenceStore]
 
 
-@pytest.mark.parametrize('mutation',['stats','cost','resource','unrun','count'])
+@pytest.mark.parametrize('mutation',['stats','cost','resource','unrun','count','sequence-cost','sequence-start'])
 def test_sequence_rejects_claimed_result_and_cost_mutations(completed_sequence,monkeypatch,mutation):
     report=deepcopy(completed_sequence[2])
     if mutation=='stats':report['cases'][0]['statistics']['gain']['geometric_change_pct']=100
@@ -191,4 +191,6 @@ def test_sequence_rejects_claimed_result_and_cost_mutations(completed_sequence,m
     elif mutation=='resource':report['cases'][0]['resource_budget_pass']=False
     elif mutation=='unrun':report['cases'][1]['status']='NOT-RUN'
     elif mutation=='count':report['native_processes']=0
+    elif mutation=='sequence-cost':report['sequence_wall_seconds']=0
+    elif mutation=='sequence-start':report['sequence_started_monotonic_ns']+=1
     with pytest.raises(ValueError):validate_fixture(completed_sequence,monkeypatch,report)

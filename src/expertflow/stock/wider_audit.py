@@ -51,6 +51,8 @@ def audit_attempts(report):
                 raise ValueError('native launch after wall budget')
             owners.add(owner)
         launch_path=output/'launch.json'
+        if started.is_file() and not launch_path.is_file():
+            raise ValueError('failed native call lacks frozen launch context')
         if launch_path.is_file():
             launch=json.loads(launch_path.read_text())
             if (launch.get('host_environment')!=m['host_environment'] or
@@ -71,8 +73,17 @@ def audit_attempts(report):
         elif started.is_file():
             # A failed native call is retained but cannot be accepted as valid evidence.
             process_path=output/'process.json'
-            if not process_path.is_file() or json.loads(process_path.read_text()).get('cleanup') is not True:
+            memory_path=output/'memory.json'
+            if not process_path.is_file() or not memory_path.is_file():
                 raise ValueError('failed native call lacks owned cleanup evidence')
+            process=json.loads(process_path.read_text())
+            teardown=json.loads(memory_path.read_text()).get('teardown_reading') or {}
+            if (any(process.get(k)!=observed.get(k) for k in ('pid','run_id','creation_time_100ns')) or
+                    any(process.get(k) is not True for k in ('cleanup','exited','memory_settled')) or
+                    process.get('forced_kill') is not False or teardown.get('pid')!=observed['pid'] or
+                    teardown.get('counter_available') is not True or teardown.get('state')!='absent' or
+                    teardown.get('dedicated_bytes')!=0):
+                raise ValueError('failed native cleanup differs from owned process')
     if len(list(root.rglob('run-start.json')))!=len(owners):
         raise ValueError('unaccounted native starts in case')
     return owners
@@ -97,7 +108,8 @@ def reconstruct_case(report,inputs,sequence,*,host_environment):
     if (type(m['input_load_seconds']) not in (int,float) or not math.isfinite(m['input_load_seconds']) or
             m['input_load_seconds']<0 or not sequence['frozen_monotonic_ns']<=m['case_started_monotonic_ns']<=m['frozen_monotonic_ns']):
         raise ValueError('wider freeze/loading cost order mismatch')
-    if (report['collection_finished_monotonic_ns']<m['case_started_monotonic_ns'] or
+    if (report['collection_finished_monotonic_ns']<max(
+            [m['frozen_monotonic_ns'],*[e['finished_monotonic_ns'] for e in report['attempts']]]) or
             report['collection_wall_seconds']!=(report['collection_finished_monotonic_ns']-m['case_started_monotonic_ns'])/1e9):
         raise ValueError('wider collection wall cost mismatch')
     matches=[c for c in sequence['registration']['cases'] if c['case_id']==m['case']['case_id']]
@@ -264,7 +276,13 @@ def verify_product(report,source_store,automatic,sequence,host,entries):
         return
     product=json.loads(product_path.read_text())
     product_store=EvidenceStore(root/'product.sqlite3')
-    passed=repeatability.verify_block(product,root/'product',product_store,root/'selected-plan.json',
+    block=product
+    publication_stop=len(product['rows'])==20 and product['status']=='VALIDATION-STOP'
+    if publication_stop:
+        # Verify the complete raw statistical block separately from a failed
+        # acceptance publication; no receipt or consumer is accepted here.
+        block={**product,'status':evaluate_pairs(product['rows'])['status']}
+    passed=repeatability.verify_block(block,root/'product',product_store,root/'selected-plan.json',
         source_store,entries[:20],host,report['manifest'])
     if len(entries)<=20 and report['status']=='PASS-STOCK-UTILITY-PRODUCT':
         raise ValueError('wider product pass lacks fresh consumer')
@@ -272,8 +290,8 @@ def verify_product(report,source_store,automatic,sequence,host,entries):
         if passed or len(entries)!=20 or evaluate_pairs(product['rows'])['status']=='PASS-MEASUREMENT':
             raise ValueError('claimed product statistical stop differs from native gates')
         return
-    if not passed:
-        if report['status'] not in ('VALIDATION-STOP','RESOURCE-BUDGET-STOP'):
+    if not passed or publication_stop:
+        if report['status'] not in ('VALIDATION-STOP','RESOURCE-BUDGET-STOP','ENVIRONMENT-BLOCKED'):
             raise ValueError('incomplete/invalid product falsely accepted')
         return
     plan=load_validated_stock_plan(root/'product/accepted/execution-plan.json',

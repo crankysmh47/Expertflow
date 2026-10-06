@@ -1,0 +1,463 @@
+FFFFFFFFFFFFFF                                                           [100%]
+================================== FAILURES ===================================
+__________ test_product_failed_prefix_retains_environment_reason[1] ___________
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1390/test_product_failed_prefix_ret0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A320079110>
+fail_at = 1
+
+    @pytest.mark.parametrize('fail_at', [1, 10, 20])
+    def test_product_failed_prefix_retains_environment_reason(tmp_path, monkeypatch, fail_at):
+        context = fixture_context(tmp_path, monkeypatch)
+        wider, inputs, case, sequence, clock, factory, runners, host = context
+        def failure_factory(store):
+            runner = factory(store)
+            original = runner.run_once
+            def run(*args, **kwargs):
+                runner.fail = store.path.name == 'product.sqlite3' and len(runner.calls) == fail_at - 1
+                return original(*args, **kwargs)
+            runner.run_once = run
+            return runner
+        report = wider.execute_case(inputs, case, sequence, runner_factory=failure_factory,
+                                    capture=lambda: deepcopy(host))
+>       assert report['status'] == 'ENVIRONMENT-BLOCKED'
+E       AssertionError: assert 'PRODUCT-VALIDATION-STOP' == 'ENVIRONMENT-BLOCKED'
+E         
+E         - ENVIRONMENT-BLOCKED
+E         + PRODUCT-VALIDATION-STOP
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:28: AssertionError
+__________ test_product_failed_prefix_retains_environment_reason[10] __________
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1390/test_product_failed_prefix_ret1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A320B32150>
+fail_at = 10
+
+    @pytest.mark.parametrize('fail_at', [1, 10, 20])
+    def test_product_failed_prefix_retains_environment_reason(tmp_path, monkeypatch, fail_at):
+        context = fixture_context(tmp_path, monkeypatch)
+        wider, inputs, case, sequence, clock, factory, runners, host = context
+        def failure_factory(store):
+            runner = factory(store)
+            original = runner.run_once
+            def run(*args, **kwargs):
+                runner.fail = store.path.name == 'product.sqlite3' and len(runner.calls) == fail_at - 1
+                return original(*args, **kwargs)
+            runner.run_once = run
+            return runner
+        report = wider.execute_case(inputs, case, sequence, runner_factory=failure_factory,
+                                    capture=lambda: deepcopy(host))
+>       assert report['status'] == 'ENVIRONMENT-BLOCKED'
+E       AssertionError: assert 'PRODUCT-VALIDATION-STOP' == 'ENVIRONMENT-BLOCKED'
+E         
+E         - ENVIRONMENT-BLOCKED
+E         + PRODUCT-VALIDATION-STOP
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:28: AssertionError
+__________ test_product_failed_prefix_retains_environment_reason[20] __________
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1390/test_product_failed_prefix_ret2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A320BC3950>
+fail_at = 20
+
+    @pytest.mark.parametrize('fail_at', [1, 10, 20])
+    def test_product_failed_prefix_retains_environment_reason(tmp_path, monkeypatch, fail_at):
+        context = fixture_context(tmp_path, monkeypatch)
+        wider, inputs, case, sequence, clock, factory, runners, host = context
+        def failure_factory(store):
+            runner = factory(store)
+            original = runner.run_once
+            def run(*args, **kwargs):
+                runner.fail = store.path.name == 'product.sqlite3' and len(runner.calls) == fail_at - 1
+                return original(*args, **kwargs)
+            runner.run_once = run
+            return runner
+        report = wider.execute_case(inputs, case, sequence, runner_factory=failure_factory,
+                                    capture=lambda: deepcopy(host))
+>       assert report['status'] == 'ENVIRONMENT-BLOCKED'
+E       AssertionError: assert 'PRODUCT-VALIDATION-STOP' == 'ENVIRONMENT-BLOCKED'
+E         
+E         - ENVIRONMENT-BLOCKED
+E         + PRODUCT-VALIDATION-STOP
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:28: AssertionError
+_____________ test_product_prelaunch_resource_prefix_reconstructs _____________
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1390/test_product_prelaunch_resourc0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A320B27C90>
+
+    def test_product_prelaunch_resource_prefix_reconstructs(tmp_path, monkeypatch):
+        context = fixture_context(tmp_path, monkeypatch)
+        wider, inputs, case, sequence, clock, factory, runners, host = context
+        def stop_before_product(store):
+            runner = factory(store)
+            if store.path.name == 'product.sqlite3':
+                original_sleep = clock.sleep
+                def exhausted(seconds):
+                    original_sleep(seconds)
+                    clock.value += 14400_000_000_000
+                monkeypatch.setattr(wider.time, 'sleep', exhausted)
+            return runner
+        report = wider.execute_case(inputs, case, sequence, runner_factory=stop_before_product,
+                                    capture=lambda: deepcopy(host))
+        assert report['status'] == 'RESOURCE-BUDGET-STOP'
+>       result = validate(context, report, monkeypatch)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_stock_wider.py:87: in validate
+    return wider.validate_case(report,inputs,sequence,host_environment=host)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\expertflow\stock\wider.py:264: in validate_case
+    return wider_audit.reconstruct_case(report,inputs,sequence,host_environment=host_environment)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\expertflow\stock\wider_audit.py:201: in reconstruct_case
+    verify_product(report,store,candidates[auto],sequence,host_environment,entries[86:])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+report = {'attempts': [{'database': 'C:\\Users\\Hank47\\AppData\\Local\\Temp\\pytest-of-Hank47\\pytest-1390\\test_product_prela...944929bd5a8eaa8c30a89a', 'collection_finished_monotonic_ns': 275533456000000, 'collection_wall_seconds': 17010.61, ...}
+source_store = <expertflow.compiler.evidence.EvidenceStore object at 0x000002A320B31D10>
+automatic = CandidatePlan(identities=PlanIdentities(model_sha256='19e30c55ac0e013040e71fcd1822e356defacafc35357b6fa17411aa5213b5a5...teStatus.UNMEASURED: 'unmeasured'>, estimated_decode_tps=None, measurement_ids=(), rejection_reasons=(), validation=())
+sequence = {'default_source_proof': {'fixture': True}, 'frozen_monotonic_ns': 258522844000000, 'host_environment': {'architecture...ffinity_mask': 65535, ...}, 'manifest_sha256': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', ...}
+host = {'architecture': 'AMD64', 'cpu': [{'cores': 8, 'logical_processors': 16, 'name': 'synthetic'}], 'power_policy': {'settings_sha256': 'dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd'}, 'process_affinity_mask': 65535, ...}
+entries = [{'database': 'C:\\Users\\Hank47\\AppData\\Local\\Temp\\pytest-of-Hank47\\pytest-1390\\test_product_prelaunch_resourc0...ct.sqlite3', 'exception_type': 'ResourceStop', 'finished_monotonic_ns': 275533455000000, 'native_started': False, ...}]
+
+    def verify_product(report,source_store,automatic,sequence,host,entries):
+        root=Path(report['manifest']['experiment_root']).resolve()
+        if not (root/'selected-plan.json').is_file():
+            if report['status'] not in ('RESOURCE-BUDGET-STOP','VALIDATION-STOP') or entries:
+                raise ValueError('passing utility has no sealed source plan')
+            return
+        source=load_execution_plan(root/'selected-plan.json',store=source_store)
+        expected=tuple(r['measurement_id'] for r in report['rows']
+            if r['label'].startswith('manual-pair-') and r['label'].endswith('-sealed'))
+        if source.candidate.candidate_id!=automatic.candidate_id or source.candidate.measurement_ids!=expected:
+            raise ValueError('wider product source differs from selected confirmation')
+        product_path=root/'product/report.json'
+        if not product_path.is_file():
+            if report['status'] not in ('RESOURCE-BUDGET-STOP','VALIDATION-STOP') or entries:
+>               raise ValueError('wider product report missing')
+E               ValueError: wider product report missing
+
+src\expertflow\stock\wider_audit.py:263: ValueError
+______________ test_collection_finish_cannot_precede_any_attempt ______________
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1390/test_collection_finish_cannot_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A320A5F250>
+
+    def test_collection_finish_cannot_precede_any_attempt(tmp_path, monkeypatch):
+        context = fixture_context(tmp_path, monkeypatch, fail=True)
+        wider, inputs, case, sequence, clock, factory, runners, host = context
+        report = wider.execute_case(inputs, case, sequence, runner_factory=factory,
+                                    capture=lambda: deepcopy(host))
+        report['collection_finished_monotonic_ns'] = report['manifest']['case_started_monotonic_ns']
+        report['collection_wall_seconds'] = 0
+>       with pytest.raises(ValueError, match='collection'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:63: Failed
+____ test_actual_runner_blocks_drift_and_retains_resource_type[companion] _____
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1390/test_actual_runner_blocks_drif0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A320A5F290>
+drift = 'companion'
+
+    @pytest.mark.parametrize('drift', ['companion', 'dll', 'resource'])
+    def test_actual_runner_blocks_drift_and_retains_resource_type(tmp_path, monkeypatch, drift):
+        from expertflow.compiler import preflight
+        from expertflow.compiler.evidence import EvidenceStore
+        from expertflow.compiler.plan import CandidatePlan, RuntimeSettings
+        from expertflow.compiler.runner import ServerMeasurementRunner
+        context = fixture_context(tmp_path, monkeypatch)
+        wider, inputs, case, sequence, clock, factory, runners, host = context
+        binding, cli = runtime_binding(tmp_path)
+        inputs = replace(inputs, stock=binding)
+        candidate = CandidatePlan(inputs.identities(binding), RuntimeSettings(99, True))
+        root = Path(case['planned_root']); root.mkdir()
+        report = {'manifest': {'experiment_root': str(root), 'source_files': wider.sources(),
+            'host_environment': host, 'case_started_monotonic_ns': clock.now(),
+            'sequence_started_monotonic_ns': clock.now(), 'input_load_seconds': 0,
+            'manifest_sha256': 'a'*64}, 'attempts': []}
+        monkeypatch.setattr(preflight, 'capture_host_environment', lambda: deepcopy(host))
+        def wait(seconds):
+            clock.sleep(seconds)
+            if drift == 'companion': cli.write_bytes(b'changed')
+            if drift == 'dll': (cli.parent/'unpinned.dll').write_bytes(b'changed')
+        monkeypatch.setattr(wider.time, 'sleep', wait)
+        class Preparation:
+            def check_idle(self):
+                if drift == 'resource': clock.value += 14400_000_000_000
+                return {}
+        spawns = []
+        def spawn(*args, **kwargs):
+            spawns.append(True)
+            raise RuntimeError('sentinel; no native process')
+        inner = ServerMeasurementRunner(EvidenceStore(root/'utility.sqlite3'), process_factory=spawn,
+                                        memory_sampler=Preparation())
+        wrapper = wider.PacedRunner(inner, report, lambda: deepcopy(host))
+>       with pytest.raises(wider.ResourceStop if drift == 'resource' else ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:114: Failed
+_______ test_actual_runner_blocks_drift_and_retains_resource_type[dll] ________
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1390/test_actual_runner_blocks_drif1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A320B2E450>
+drift = 'dll'
+
+    @pytest.mark.parametrize('drift', ['companion', 'dll', 'resource'])
+    def test_actual_runner_blocks_drift_and_retains_resource_type(tmp_path, monkeypatch, drift):
+        from expertflow.compiler import preflight
+        from expertflow.compiler.evidence import EvidenceStore
+        from expertflow.compiler.plan import CandidatePlan, RuntimeSettings
+        from expertflow.compiler.runner import ServerMeasurementRunner
+        context = fixture_context(tmp_path, monkeypatch)
+        wider, inputs, case, sequence, clock, factory, runners, host = context
+        binding, cli = runtime_binding(tmp_path)
+        inputs = replace(inputs, stock=binding)
+        candidate = CandidatePlan(inputs.identities(binding), RuntimeSettings(99, True))
+        root = Path(case['planned_root']); root.mkdir()
+        report = {'manifest': {'experiment_root': str(root), 'source_files': wider.sources(),
+            'host_environment': host, 'case_started_monotonic_ns': clock.now(),
+            'sequence_started_monotonic_ns': clock.now(), 'input_load_seconds': 0,
+            'manifest_sha256': 'a'*64}, 'attempts': []}
+        monkeypatch.setattr(preflight, 'capture_host_environment', lambda: deepcopy(host))
+        def wait(seconds):
+            clock.sleep(seconds)
+            if drift == 'companion': cli.write_bytes(b'changed')
+            if drift == 'dll': (cli.parent/'unpinned.dll').write_bytes(b'changed')
+        monkeypatch.setattr(wider.time, 'sleep', wait)
+        class Preparation:
+            def check_idle(self):
+                if drift == 'resource': clock.value += 14400_000_000_000
+                return {}
+        spawns = []
+        def spawn(*args, **kwargs):
+            spawns.append(True)
+            raise RuntimeError('sentinel; no native process')
+        inner = ServerMeasurementRunner(EvidenceStore(root/'utility.sqlite3'), process_factory=spawn,
+                                        memory_sampler=Preparation())
+        wrapper = wider.PacedRunner(inner, report, lambda: deepcopy(host))
+>       with pytest.raises(wider.ResourceStop if drift == 'resource' else ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:114: Failed
+_____ test_actual_runner_blocks_drift_and_retains_resource_type[resource] _____
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1390/test_actual_runner_blocks_drif2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A31FFE6D50>
+drift = 'resource'
+
+    @pytest.mark.parametrize('drift', ['companion', 'dll', 'resource'])
+    def test_actual_runner_blocks_drift_and_retains_resource_type(tmp_path, monkeypatch, drift):
+        from expertflow.compiler import preflight
+        from expertflow.compiler.evidence import EvidenceStore
+        from expertflow.compiler.plan import CandidatePlan, RuntimeSettings
+        from expertflow.compiler.runner import ServerMeasurementRunner
+        context = fixture_context(tmp_path, monkeypatch)
+        wider, inputs, case, sequence, clock, factory, runners, host = context
+        binding, cli = runtime_binding(tmp_path)
+        inputs = replace(inputs, stock=binding)
+        candidate = CandidatePlan(inputs.identities(binding), RuntimeSettings(99, True))
+        root = Path(case['planned_root']); root.mkdir()
+        report = {'manifest': {'experiment_root': str(root), 'source_files': wider.sources(),
+            'host_environment': host, 'case_started_monotonic_ns': clock.now(),
+            'sequence_started_monotonic_ns': clock.now(), 'input_load_seconds': 0,
+            'manifest_sha256': 'a'*64}, 'attempts': []}
+        monkeypatch.setattr(preflight, 'capture_host_environment', lambda: deepcopy(host))
+        def wait(seconds):
+            clock.sleep(seconds)
+            if drift == 'companion': cli.write_bytes(b'changed')
+            if drift == 'dll': (cli.parent/'unpinned.dll').write_bytes(b'changed')
+        monkeypatch.setattr(wider.time, 'sleep', wait)
+        class Preparation:
+            def check_idle(self):
+                if drift == 'resource': clock.value += 14400_000_000_000
+                return {}
+        spawns = []
+        def spawn(*args, **kwargs):
+            spawns.append(True)
+            raise RuntimeError('sentinel; no native process')
+        inner = ServerMeasurementRunner(EvidenceStore(root/'utility.sqlite3'), process_factory=spawn,
+                                        memory_sampler=Preparation())
+        wrapper = wider.PacedRunner(inner, report, lambda: deepcopy(host))
+>       with pytest.raises(wider.ResourceStop if drift == 'resource' else ValueError):
+E       Failed: DID NOT RAISE <class 'expertflow.stock.wider.ResourceStop'>
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:114: Failed
+______________ test_executing_artifact_verifier_in_source_freeze ______________
+
+    def test_executing_artifact_verifier_in_source_freeze():
+        from expertflow.stock.wider import sources
+>       assert str(Path('src/expertflow/artifacts.py').resolve()) in sources()
+E       AssertionError: assert 'C:\\sem4\\expertflow\\src\\expertflow\\artifacts.py' in {'C:\\sem4\\expertflow\\configs\\baseline-prompt.txt': '91a5f0213640da6b1c8dd8bc304fa831aec7b2bc616b3cc5ecb7469390785d...igs\\compiler\\gemma4-q4-prose-coverage.json': '1226a23a518a35ba8636957d099f43d5f992d8e3090a4bed4000d6cf6f9a587b', ...}
+E        +  where 'C:\\sem4\\expertflow\\src\\expertflow\\artifacts.py' = str(WindowsPath('C:/sem4/expertflow/src/expertflow/artifacts.py'))
+E        +    where WindowsPath('C:/sem4/expertflow/src/expertflow/artifacts.py') = resolve()
+E        +      where resolve = WindowsPath('src/expertflow/artifacts.py').resolve
+E        +        where WindowsPath('src/expertflow/artifacts.py') = Path('src/expertflow/artifacts.py')
+E        +  and   {'C:\\sem4\\expertflow\\configs\\baseline-prompt.txt': '91a5f0213640da6b1c8dd8bc304fa831aec7b2bc616b3cc5ecb7469390785d...igs\\compiler\\gemma4-q4-prose-coverage.json': '1226a23a518a35ba8636957d099f43d5f992d8e3090a4bed4000d6cf6f9a587b', ...} = <function sources at 0x000002A31D190900>()
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:122: AssertionError
+_ test_installed_executing_sources_must_match_checkout[expertflow.artifacts-artifacts.py] _
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1390/test_installed_executing_sourc0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A320A7AF10>
+module_name = 'expertflow.artifacts', relative = 'artifacts.py'
+
+    @pytest.mark.parametrize('module_name, relative', [
+        ('expertflow.artifacts', 'artifacts.py'), ('expertflow.cli.main', 'cli/main.py')])
+    def test_installed_executing_sources_must_match_checkout(tmp_path, monkeypatch, module_name, relative):
+        import importlib
+        from scripts.benchmark_compiler_stock_coverage import require_matching_package
+        module = importlib.import_module(module_name)
+        counterfeit = tmp_path/Path(relative).name
+        counterfeit.write_text('different installed source')
+        monkeypatch.setattr(module, '__file__', str(counterfeit))
+>       with pytest.raises(ValueError, match='installed'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:134: Failed
+_ test_installed_executing_sources_must_match_checkout[expertflow.cli.main-cli/main.py] _
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1390/test_installed_executing_sourc1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A320A5F810>
+module_name = 'expertflow.cli.main', relative = 'cli/main.py'
+
+    @pytest.mark.parametrize('module_name, relative', [
+        ('expertflow.artifacts', 'artifacts.py'), ('expertflow.cli.main', 'cli/main.py')])
+    def test_installed_executing_sources_must_match_checkout(tmp_path, monkeypatch, module_name, relative):
+        import importlib
+        from scripts.benchmark_compiler_stock_coverage import require_matching_package
+        module = importlib.import_module(module_name)
+        counterfeit = tmp_path/Path(relative).name
+        counterfeit.write_text('different installed source')
+        monkeypatch.setattr(module, '__file__', str(counterfeit))
+>       with pytest.raises(ValueError, match='installed'):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:134: Failed
+_____ test_failed_native_requires_bound_context_and_owned_cleanup[launch] _____
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1390/test_failed_native_requires_bo0')
+mutation = 'launch'
+
+    @pytest.mark.parametrize('mutation', ['launch', 'owner', 'teardown'])
+    def test_failed_native_requires_bound_context_and_owned_cleanup(tmp_path, mutation):
+        from expertflow.stock.wider_audit import audit_attempts
+        root = tmp_path.resolve(); output = root/'raw/one'; output.mkdir(parents=True)
+        identity = {'pid': 1, 'creation_time_100ns': 2, 'creation_source': 'GetProcessTimes',
+                    'run_id': 'failed-owned-run', 'started_monotonic_ns': 31_000_000_000}
+        launch = {'host_environment': {}, 'experiment_context': {'manifest_sha256': 'a'*64}}
+        process = {'pid': 1, 'run_id': identity['run_id'], 'creation_time_100ns': 2,
+                   'exited': True, 'cleanup': True, 'memory_settled': True, 'forced_kill': False}
+        memory = {'teardown_reading': {'pid': 1, 'state': 'absent', 'counter_available': True,
+                                      'dedicated_bytes': 0}}
+        for name, payload in [('run-start', identity), ('launch', launch), ('process', process), ('memory', memory)]:
+            (output/f'{name}.json').write_text(json.dumps(payload))
+        report = {'manifest': {'experiment_root': str(root), 'frozen_monotonic_ns': 1,
+            'case_started_monotonic_ns': 1, 'sequence_started_monotonic_ns': 1,
+            'input_load_seconds': 0, 'host_environment': {}, 'manifest_sha256': 'a'*64},
+            'attempts': [{'output_dir': str(output), 'database': str(root/'utility.sqlite3'),
+            'wait_started_monotonic_ns': 1_000_000_000, 'wait_finished_monotonic_ns': 31_000_000_000,
+            'wait_elapsed_ns': 30_000_000_000, 'wait_seconds': 30,
+            'finished_monotonic_ns': 32_000_000_000, 'native_started': True,
+            'process_identity': identity, 'status': 'environment_blocked'}]}
+        assert len(audit_attempts(report)) == 1
+        if mutation == 'launch': (output/'launch.json').unlink()
+        elif mutation == 'owner':
+            process['pid'] = 999; (output/'process.json').write_text(json.dumps(process))
+        else:
+            memory['teardown_reading']['pid'] = 999; (output/'memory.json').write_text(json.dumps(memory))
+>       with pytest.raises(ValueError): audit_attempts(report)
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:165: Failed
+_____ test_failed_native_requires_bound_context_and_owned_cleanup[owner] ______
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1390/test_failed_native_requires_bo1')
+mutation = 'owner'
+
+    @pytest.mark.parametrize('mutation', ['launch', 'owner', 'teardown'])
+    def test_failed_native_requires_bound_context_and_owned_cleanup(tmp_path, mutation):
+        from expertflow.stock.wider_audit import audit_attempts
+        root = tmp_path.resolve(); output = root/'raw/one'; output.mkdir(parents=True)
+        identity = {'pid': 1, 'creation_time_100ns': 2, 'creation_source': 'GetProcessTimes',
+                    'run_id': 'failed-owned-run', 'started_monotonic_ns': 31_000_000_000}
+        launch = {'host_environment': {}, 'experiment_context': {'manifest_sha256': 'a'*64}}
+        process = {'pid': 1, 'run_id': identity['run_id'], 'creation_time_100ns': 2,
+                   'exited': True, 'cleanup': True, 'memory_settled': True, 'forced_kill': False}
+        memory = {'teardown_reading': {'pid': 1, 'state': 'absent', 'counter_available': True,
+                                      'dedicated_bytes': 0}}
+        for name, payload in [('run-start', identity), ('launch', launch), ('process', process), ('memory', memory)]:
+            (output/f'{name}.json').write_text(json.dumps(payload))
+        report = {'manifest': {'experiment_root': str(root), 'frozen_monotonic_ns': 1,
+            'case_started_monotonic_ns': 1, 'sequence_started_monotonic_ns': 1,
+            'input_load_seconds': 0, 'host_environment': {}, 'manifest_sha256': 'a'*64},
+            'attempts': [{'output_dir': str(output), 'database': str(root/'utility.sqlite3'),
+            'wait_started_monotonic_ns': 1_000_000_000, 'wait_finished_monotonic_ns': 31_000_000_000,
+            'wait_elapsed_ns': 30_000_000_000, 'wait_seconds': 30,
+            'finished_monotonic_ns': 32_000_000_000, 'native_started': True,
+            'process_identity': identity, 'status': 'environment_blocked'}]}
+        assert len(audit_attempts(report)) == 1
+        if mutation == 'launch': (output/'launch.json').unlink()
+        elif mutation == 'owner':
+            process['pid'] = 999; (output/'process.json').write_text(json.dumps(process))
+        else:
+            memory['teardown_reading']['pid'] = 999; (output/'memory.json').write_text(json.dumps(memory))
+>       with pytest.raises(ValueError): audit_attempts(report)
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:165: Failed
+____ test_failed_native_requires_bound_context_and_owned_cleanup[teardown] ____
+
+tmp_path = WindowsPath('C:/Users/Hank47/AppData/Local/Temp/pytest-of-Hank47/pytest-1390/test_failed_native_requires_bo2')
+mutation = 'teardown'
+
+    @pytest.mark.parametrize('mutation', ['launch', 'owner', 'teardown'])
+    def test_failed_native_requires_bound_context_and_owned_cleanup(tmp_path, mutation):
+        from expertflow.stock.wider_audit import audit_attempts
+        root = tmp_path.resolve(); output = root/'raw/one'; output.mkdir(parents=True)
+        identity = {'pid': 1, 'creation_time_100ns': 2, 'creation_source': 'GetProcessTimes',
+                    'run_id': 'failed-owned-run', 'started_monotonic_ns': 31_000_000_000}
+        launch = {'host_environment': {}, 'experiment_context': {'manifest_sha256': 'a'*64}}
+        process = {'pid': 1, 'run_id': identity['run_id'], 'creation_time_100ns': 2,
+                   'exited': True, 'cleanup': True, 'memory_settled': True, 'forced_kill': False}
+        memory = {'teardown_reading': {'pid': 1, 'state': 'absent', 'counter_available': True,
+                                      'dedicated_bytes': 0}}
+        for name, payload in [('run-start', identity), ('launch', launch), ('process', process), ('memory', memory)]:
+            (output/f'{name}.json').write_text(json.dumps(payload))
+        report = {'manifest': {'experiment_root': str(root), 'frozen_monotonic_ns': 1,
+            'case_started_monotonic_ns': 1, 'sequence_started_monotonic_ns': 1,
+            'input_load_seconds': 0, 'host_environment': {}, 'manifest_sha256': 'a'*64},
+            'attempts': [{'output_dir': str(output), 'database': str(root/'utility.sqlite3'),
+            'wait_started_monotonic_ns': 1_000_000_000, 'wait_finished_monotonic_ns': 31_000_000_000,
+            'wait_elapsed_ns': 30_000_000_000, 'wait_seconds': 30,
+            'finished_monotonic_ns': 32_000_000_000, 'native_started': True,
+            'process_identity': identity, 'status': 'environment_blocked'}]}
+        assert len(audit_attempts(report)) == 1
+        if mutation == 'launch': (output/'launch.json').unlink()
+        elif mutation == 'owner':
+            process['pid'] = 999; (output/'process.json').write_text(json.dumps(process))
+        else:
+            memory['teardown_reading']['pid'] = 999; (output/'memory.json').write_text(json.dumps(memory))
+>       with pytest.raises(ValueError): audit_attempts(report)
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+.superpowers\sdd\2026-10-05-wider-stock-collector\test_review_regressions.py:165: Failed
+=========================== short test summary info ===========================
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_product_failed_prefix_retains_environment_reason[1]
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_product_failed_prefix_retains_environment_reason[10]
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_product_failed_prefix_retains_environment_reason[20]
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_product_prelaunch_resource_prefix_reconstructs
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_collection_finish_cannot_precede_any_attempt
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_actual_runner_blocks_drift_and_retains_resource_type[companion]
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_actual_runner_blocks_drift_and_retains_resource_type[dll]
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_actual_runner_blocks_drift_and_retains_resource_type[resource]
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_executing_artifact_verifier_in_source_freeze
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_installed_executing_sources_must_match_checkout[expertflow.artifacts-artifacts.py]
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_installed_executing_sources_must_match_checkout[expertflow.cli.main-cli/main.py]
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_failed_native_requires_bound_context_and_owned_cleanup[launch]
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_failed_native_requires_bound_context_and_owned_cleanup[owner]
+FAILED .superpowers/sdd/2026-10-05-wider-stock-collector/test_review_regressions.py::test_failed_native_requires_bound_context_and_owned_cleanup[teardown]
+14 failed in 191.13s (0:03:11)

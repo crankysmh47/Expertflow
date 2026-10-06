@@ -48,6 +48,18 @@ def require_matching_package():
     if files!={p.relative_to(declared) for p in declared.rglob('*.py')} or any(
             file_sha256(actual/p)!=file_sha256(declared/p) for p in files):
         raise ValueError('installed stock source differs from reviewed project source')
+    import expertflow.artifacts
+    import expertflow.cli.main
+    import expertflow.compiler
+    compiler=Path(expertflow.compiler.__file__).resolve().parent
+    declared_compiler=Path('src/expertflow/compiler').resolve()
+    compiler_files={p.relative_to(compiler) for p in compiler.rglob('*.py')}
+    if compiler_files!={p.relative_to(declared_compiler) for p in declared_compiler.rglob('*.py')} or any(
+            file_sha256(compiler/p)!=file_sha256(declared_compiler/p) for p in compiler_files):
+        raise ValueError('installed compiler source differs from reviewed project source')
+    for module,relative in ((expertflow.artifacts,'artifacts.py'),(expertflow.cli.main,'cli/main.py')):
+        if file_sha256(Path(module.__file__))!=file_sha256(Path('src/expertflow')/relative):
+            raise ValueError('installed executing source differs from reviewed project source: '+relative)
 
 
 def sequence_root(registration):
@@ -183,6 +195,10 @@ def validate_sequence(report,*,loader=None,capture=None):
             m['maximum_native_processes']!=428 or m['case_wall_cap_seconds']!=14400 or
             m['sequence_wall_cap_seconds']!=57600 or m['experiment_root']!=str(root)):
         raise ValueError('sequence freeze/source/host/protocol mismatch')
+    if (report['sequence_started_monotonic_ns']!=m['sequence_started_monotonic_ns'] or
+            not m['sequence_started_monotonic_ns']<=m['frozen_monotonic_ns']<=report['sequence_finished_monotonic_ns'] or
+            report['sequence_wall_seconds']!=(report['sequence_finished_monotonic_ns']-m['sequence_started_monotonic_ns'])/1e9):
+        raise ValueError('sequence wall cost/clock order mismatch')
     results=[]
     seen_stop=False
     owners=set()

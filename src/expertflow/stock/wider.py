@@ -11,6 +11,7 @@ from expertflow.compiler.pipeline import atomic_json
 from expertflow.compiler.plan import CandidatePlan, CandidateStatus, RuntimeSettings, seal_candidate
 from expertflow.compiler.preflight import file_sha256
 from expertflow.compiler.refinement import balanced_schedule
+from expertflow.compiler.refinement import evaluate_pairs
 from expertflow.compiler.schema import canonical_payload, canonical_sha256
 from expertflow.compiler.stock_eligibility import EligibilityRegistry
 from expertflow.compiler.stock_search import rank_screening, scheduling_space, screening_schedule
@@ -31,6 +32,7 @@ class ResourceStop(RuntimeError):
 def sources():
     paths = [*Path('src/expertflow/compiler').rglob('*.py'),
         *Path('src/expertflow/stock').rglob('*.py'), Path('src/expertflow/cli/main.py'),
+        Path('src/expertflow/artifacts.py'),
         Path('scripts/benchmark_compiler_stock_utility.py'),
         Path('scripts/benchmark_compiler_stock_repeatability.py'),
         Path('scripts/benchmark_compiler_stock_coverage.py'),
@@ -105,6 +107,7 @@ class PacedRunner:
         report['attempts'].append(attempt)
         atomic_json(root/'report.json',report)
         original_factory=getattr(self.runner,'process_factory',None)
+        spawn_error=None
         try:
             time.sleep(30)
             attempt['wait_finished_monotonic_ns']=time.monotonic_ns()
@@ -121,10 +124,18 @@ class PacedRunner:
             if sources()!=m['source_files'] or canonical_payload(self.capture())!=m['host_environment']:
                 raise ValueError('wider source/host changed during fixed wait')
             self.runner.store.prime_model(args[1])
+            args[2].verify_manifest_bindings()
             self.check_scope_budget()
             if original_factory is not None:
                 def guarded_spawn(*argv,**options):
-                    self.check_scope_budget()
+                    nonlocal spawn_error
+                    try:
+                        args[2].verify_manifest_bindings()
+                        self.runner.store.prime_model(args[1])
+                        self.check_scope_budget()
+                    except (ResourceStop,ValueError) as error:
+                        spawn_error=error
+                        raise
                     return original_factory(*argv,**options)
                 self.runner.process_factory=guarded_spawn
             kwargs.update(host_environment=m['host_environment'],
@@ -133,6 +144,8 @@ class PacedRunner:
             atomic_json(root/'report.json',report)
             outcome=self.runner.run_once(*args,**kwargs)
             attempt.update(status=outcome.status,measurement_id=outcome.measurement_id,reason=outcome.reason)
+            if spawn_error is not None:
+                raise spawn_error
             return outcome
         except Exception as error:
             attempt.update(status='exception',reason=str(error),exception_type=type(error).__name__)
@@ -236,18 +249,28 @@ def execute_case(inputs,case,sequence,*,runner_factory,capture,input_load_second
             report['product_status']=product['status']
             report['product_native_processes']=len(product['outcomes'])
             if product['status']!='PASS-STOCK-FALLBACK':
-                report.update(status='PRODUCT-VALIDATION-STOP',reason=product.get('reason'))
+                statistical=len(product['rows'])==20 and evaluate_pairs(product['rows'])['status']!='PASS-MEASUREMENT'
+                report.update(status='PRODUCT-VALIDATION-STOP' if statistical else product['status'],
+                    reason=product.get('reason'))
             else:
                 status,consumer=run_accepted_stock_plan(root/'product/accepted/execution-plan.json',
                     root/'product/accepted/acceptance-receipt.json',adjusted,product_store,
                     root/'consumer',runner=product_runner,host_capture=capture)
                 report['consumer']={'status':status,**consumer}
-                report['status']='PASS-STOCK-UTILITY-PRODUCT' if status=='MEASURED-ACCEPTED-STOCK' else 'CONSUMER-VALIDATION-STOP'
+                report['status']='PASS-STOCK-UTILITY-PRODUCT' if status=='MEASURED-ACCEPTED-STOCK' else status
+                if status!='MEASURED-ACCEPTED-STOCK':report['reason']=consumer.get('reason')
     except ResourceStop as error:
         report.update(status='RESOURCE-BUDGET-STOP',reason=str(error))
     except Exception as error:
         report.update(status='VALIDATION-STOP',reason=str(error),exception_type=type(error).__name__)
     finally:
+        # execute_pairs persists after an outcome; a typed guard may interrupt
+        # its first call before that point. Retain the already-frozen prefix.
+        product_root=root/'product'
+        if (product_root/'frozen-protocol.json').is_file() and not (product_root/'report.json').is_file():
+            atomic_json(product_root/'report.json',{'status':'RUNNING',
+                'frozen':json.loads((product_root/'frozen-protocol.json').read_text()),
+                'rows':[],'outcomes':[],'live_validated_product':False,'optimization_gain_established':False})
         report['collection_finished_monotonic_ns']=time.monotonic_ns()
         report['collection_wall_seconds']=(report['collection_finished_monotonic_ns']-m['case_started_monotonic_ns'])/1e9
         atomic_json(root/'report.json',report)
