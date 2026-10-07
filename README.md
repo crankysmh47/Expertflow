@@ -4,90 +4,64 @@
 
 # ExpertFlow
 
-**Bring a GGUF. Save a working setup. Measure it. Run it locally.**
+**Save a working local-model setup. Know how it performs. Use it again.**
 
-ExpertFlow is a command-line companion for llama.cpp. It inspects your model and
-hardware, saves the runtime and settings that loaded successfully, measures a
-baseline within a fixed budget, and starts local chat or an API for your client.
-No account, telemetry, or prompt upload is required.
+ExpertFlow is a setup and benchmarking tool for running GGUF language models
+with llama.cpp. It turns your model, runtime and launch settings into a reusable
+profile, so you can keep track of what works on your hardware without rebuilding
+the same command each time.
 
-The Windows/NVIDIA alpha is ready for first-user testing. The tested machine is an RTX 5060
-Ti with 16 GB VRAM; another GPU capacity and independent pilot results remain
-open. See the [support matrix](docs/support-matrix.md) for actual tested models
-and limits. This package does not promise automatic speedups.
+- **Check your setup:** inspect hardware and dependencies, then verify that the model loads.
+- **Measure performance:** benchmark generation speed, first-token latency and sampled memory within a time budget.
+- **Run your model:** chat in the terminal, use llama.cpp's web UI, or serve a local API for your existing client.
 
-## Try the alpha
+Everything runs locally. No account, telemetry or prompt upload is required.
 
-Python 3.11+ and a local GGUF are required. Bring a llama.cpp directory containing
-both `llama-cli` and `llama-server`, including its runtime dependencies. Model
-weights and native binaries are not bundled. Build a checksummed kit with `uv run python scripts/build_local_release.py --output release/local-alpha-0.2.0a1`. The alpha wheel is a local build;
-there is no published PyPI installation promised here.
+## Get started
 
-```powershell
-python -m venv .venv
-.venv/Scripts/python -m pip install ./expertflow_local-0.2.0a1-py3-none-any.whl
-.venv/Scripts/expertflow local doctor
-.venv/Scripts/expertflow local setup --model "D:/models/model.gguf" --runtime "D:/llama/bin" --context 4096 --output profile.json
-.venv/Scripts/expertflow local run --profile profile.json --prompt "Explain what VRAM is in two sentences."
-```
+The current release is a **private Windows/NVIDIA alpha**, tested on one
+16 GB GPU. See the [support matrix](docs/support-matrix.md) for tested models
+and remaining checks.
 
-CUDA DLLs missing on Windows? Add `--dll-dir` during setup. The
-[quickstart](docs/local-quickstart.md) covers installation, runtime discovery,
-interactive chat, failed loads, storage, upgrades, and removal.
+You need Python 3.11+, a local GGUF model, and a llama.cpp directory containing
+`llama-cli.exe`, `llama-server.exe` and their dependencies. Models and native
+runtimes are supplied separately.
 
-## Measure and keep the result
+From an unpacked alpha kit, run in PowerShell:
 
 ```powershell
-expertflow local bench --profile profile.json --budget-seconds 120
-expertflow local tune --profile profile.json --budget-seconds 600
-expertflow local report --profile profile.json --json
+py -m venv .expertflow-env
+.expertflow-env\Scripts\python.exe -m pip install .\expertflow_local-0.2.0a1-py3-none-any.whl
+.expertflow-env\Scripts\expertflow.exe local setup --model "C:\models\model.gguf" --runtime "C:\llama\bin" --context 4096 --output profile.json
+.expertflow-env\Scripts\expertflow.exe local run --profile profile.json --prompt "Explain what VRAM is in two sentences."
 ```
 
-Benchmarking reports decode speed, first-token latency, raw timings, and sampled
-memory. Its numbers describe that profile and workload. Tuning searches only
-reviewed exact scheduling controls, then uses separate held-out confirmation
-before selecting a changed profile. Unknown models or runtimes can still run
-and be inspected; they do not inherit a tuning contract.
+The [quickstart](docs/local-quickstart.md) covers building the kit from source,
+installation and troubleshooting. The alpha is not published on PyPI.
+For a fresh PC, follow [testing on another Windows machine](docs/windows-testing.md).
 
-A real Granite run on the tested host finished with `NO-MEASURABLE-GAIN` after
-four launches and 124.89 seconds. The baseline stayed usable and unchanged.
-`INCONCLUSIVE` also keeps the baseline. An `UNSUPPORTED` tuning result means
-there is no reviewed tuning policy for that setup, rather than a promise that
-the model cannot run. [Native receipts and limits](docs/evidence/local-product-20261006/report.md)
-include the negative result alongside operational checks.
+## Measure or serve
+
+Use the same saved profile for both:
 
 ```powershell
-expertflow local verify-job --job-dir "path/from/benchmark/output"
-expertflow local support --job-dir "path/from/benchmark/output" --output support.json
+.expertflow-env\Scripts\expertflow.exe local bench --profile profile.json --budget-seconds 600
+.expertflow-env\Scripts\expertflow.exe local serve --profile profile.json --port 8080
 ```
 
-Receipt verification launches no model. Support export is opt-in and saves a
-redacted summary for you to review; it sends nothing.
+Serving opens the upstream web UI at `http://127.0.0.1:8080` and an API at
+`http://127.0.0.1:8080/v1`. It currently targets single-user text chat.
 
-## Use your existing client
+Optional tuning tests thread settings for a small set of qualified models and
+runtimes. A changed profile is selected only after independent confirmation;
+otherwise you keep the baseline. Broad automatic tuning is still on the roadmap,
+and a speedup is not guaranteed.
 
-```powershell
-expertflow local serve --profile profile.json --port 8080
-```
+## Learn more
 
-Open `http://127.0.0.1:8080` for the upstream web UI, or point an API client at
-`http://127.0.0.1:8080/v1`. Serving binds to loopback and currently targets
-single-user text chat. Ctrl+C stops the owned server; saved session identities
-also support `expertflow local status` and `expertflow local stop`.
+[Documentation](docs/README.md) · [Architecture](docs/PRODUCT.md) ·
+[Roadmap](docs/TODO.md) · [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md)
 
-A TUI is deferred until pilot feedback shows a need. The core workflow and
-upstream chat UI are available without another interface to maintain.
+Earlier compiler studies and their results live in the [research archive](docs/research/README.md).
 
-## Contribute and follow progress
-
-[Contributing](CONTRIBUTING.md) explains model-free tests, native qualification,
-and useful bug reports. [Tasks](docs/TODO.md) tracks delivered work and open
-hardware/human gates. [Changelog](CHANGELOG.md) describes compatibility changes.
-
-[Architecture](docs/PRODUCT.md) and [documentation](docs/README.md) covers the current architecture, support scope,
-and benchmarking procedure. The earlier compiler studies, protocols, presentation,
-and scientific receipts are preserved in the [research archive](docs/research/README.md).
-Their negative results and quality limits remain part of the record.
-
-[Repository](https://github.com/crankysmh47/Expertflow). MIT; see [LICENSE](LICENSE)
-and [third-party notices](THIRD_PARTY_NOTICES.md).
+MIT licensed. See [LICENSE](LICENSE) and [third-party notices](THIRD_PARTY_NOTICES.md).

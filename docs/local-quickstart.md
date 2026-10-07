@@ -8,6 +8,15 @@ other platforms and independent-user acceptance remain open; see the
 
 ## Install without cloning
 
+To build a kit from a source checkout with `uv` installed, choose a fresh directory:
+
+```powershell
+uv run python scripts/build_local_release.py --output release/windows-test-kit
+```
+
+Copy the kit to your installation folder. For testing on a second PC, use the
+[Windows testing guide](windows-testing.md).
+
 Install the built wheel from the release package:
 
 ```powershell
