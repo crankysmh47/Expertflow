@@ -38,5 +38,5 @@ testpaths = ["tests"]
 packages = ["src/expertflow"]
 
 [tool.hatch.build.targets.sdist]
-include = ["/src/expertflow", "/tests/test_local_*.py", "/tests/local_helpers.py", "/pyproject.toml", "/uv.lock", "/README.md", "/LICENSE", "/THIRD_PARTY_NOTICES.md", "/CHANGELOG.md", "/CONTRIBUTING.md", "/docs/local-quickstart.md", "/docs/support-matrix.md", "/docs/local-product-pilot.md", "/docs/runtime-updates.md", "/docs/README.md", "/docs/PRODUCT.md", "/docs/BENCHMARKING.md", "/docs/STATUS.md", "/docs/TODO.md", "/scripts/local_native_smoke.py", "/scripts/build_local_release.py"]
+include = ["/src/expertflow", "/tests/test_local_*.py", "/tests/local_helpers.py", "/pyproject.toml", "/uv.lock", "/README.md", "/LICENSE", "/THIRD_PARTY_NOTICES.md", "/CHANGELOG.md", "/CONTRIBUTING.md", "/docs/local-quickstart.md", "/docs/windows-testing.md", "/docs/support-matrix.md", "/docs/local-product-pilot.md", "/docs/runtime-updates.md", "/docs/README.md", "/docs/PRODUCT.md", "/docs/BENCHMARKING.md", "/docs/STATUS.md", "/docs/TODO.md", "/scripts/local_native_smoke.py", "/scripts/build_local_release.py"]
 exclude = ["**/__pycache__", "**/*.pyc"]

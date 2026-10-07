@@ -75,5 +75,5 @@ def test_judge_docs_and_readme_expose_all_product_commands() -> None:
         assert f"expertflow {command}" in readme or f"expertflow {command}" in guide
     archived = (ROOT / "docs/research/README.md").read_text(encoding="utf-8")
     assert "A hardware-aware configuration compiler for quantized MoE inference." in archived
-    assert "expertflow local setup" in readme
+    assert "expertflow local setup" in readme.replace("expertflow.exe", "expertflow")
     assert "GGUF is not included" in guide

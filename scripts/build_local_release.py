@@ -13,7 +13,7 @@ import tomllib
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-DOCS = ["local-quickstart.md", "support-matrix.md", "local-product-pilot.md", "runtime-updates.md", "README.md", "PRODUCT.md", "BENCHMARKING.md", "STATUS.md", "TODO.md"]
+DOCS = ["local-quickstart.md", "windows-testing.md", "support-matrix.md", "local-product-pilot.md", "runtime-updates.md", "README.md", "PRODUCT.md", "BENCHMARKING.md", "STATUS.md", "TODO.md"]
 
 
 def checksums(directory: Path) -> dict:
